@@ -233,3 +233,52 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\agent-memory-finish.ps1
 - Status: completed
 - Next steps: When opening Claude, paste docs/agent-memory/claude-bootstrap-prompt.md or ensure Claude reads CLAUDE.md in this workspace.
+
+## 2026-06-11 16:29 +03:00 - Codex - GitHub Update With Code Files And Diagram
+
+- Request: Make sure GitHub is updated with all code and files and the diagram.
+- Actions taken:
+  - Pulled compiled memory and inspected local/remote Git state
+  - Added a GitHub-rendered Mermaid workspace architecture diagram and linked it from README and architecture docs
+  - Included Claude bootstrap prompt documentation from the prior work
+  - Included safe human-feedback manager files, schemas, and example input that appeared in the working tree
+  - Excluded ignored sensitive/deferred artifacts from staging and upload
+  - Ran health, Python compile, JSON/JSONL parse, pytest, staged-file audit, remote verification, and forbidden tracked-file audit
+  - Committed and pushed main to private GitHub repo AliHamed17/Vego-Ai at b7ff5fa
+- Files changed:
+  - CLAUDE.md
+  - README.md
+  - VEGO-AI/framework/human_feedback_manager.py
+  - VEGO-AI/inputs/human_feedback.example.jsonl
+  - VEGO-AI/schemas/human_feedback.schema.json
+  - VEGO-AI/schemas/human_review_item.schema.json
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/architecture/README.md
+  - docs/architecture/project-map.md
+  - docs/architecture/workspace-diagram.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - git fetch origin main
+  - git status --short --ignored
+  - rg --files | rg -i diagram search
+  - .\scripts\project-health.ps1
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
+  - python -m py_compile VEGO-AI\framework\human_feedback_manager.py
+  - python -m pytest VEGO-AI\tests -q
+  - python JSON/JSONL parse check
+  - git diff --cached --check
+  - git diff --cached --name-only forbidden-path audit
+  - git commit -m "Add Claude memory prompt and workspace diagram"
+  - git push origin main
+  - gh repo view AliHamed17/Vego-Ai
+  - gh api repos/AliHamed17/Vego-Ai/contents/docs/architecture/workspace-diagram.md?ref=main
+  - git ls-tree forbidden tracked-file audit
+  - .\scripts\agent-memory-finish.ps1
+- Status: completed
+- Next steps: GitHub main is updated; next research step remains data/IRB sensitivity and provenance audit before publishing deferred artifacts.

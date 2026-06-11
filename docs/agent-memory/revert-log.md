@@ -115,3 +115,25 @@ Record file changes and rollback notes here.
   - docs/agent-memory/revert-log.md
 - Rollback note: Revert changes to CLAUDE.md and docs/agent-memory files, and remove docs/agent-memory/claude-bootstrap-prompt.md.
 - Git commit: none recorded by script.
+
+## 2026-06-11 16:29 +03:00 - Codex - GitHub Update With Code Files And Diagram
+
+- Files changed:
+  - CLAUDE.md
+  - README.md
+  - VEGO-AI/framework/human_feedback_manager.py
+  - VEGO-AI/inputs/human_feedback.example.jsonl
+  - VEGO-AI/schemas/human_feedback.schema.json
+  - VEGO-AI/schemas/human_review_item.schema.json
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/architecture/README.md
+  - docs/architecture/project-map.md
+  - docs/architecture/workspace-diagram.md
+- Rollback note: Use Git to revert commit b7ff5fa if this publish update needs to be undone; do not force-push. Deferred ignored artifacts were not uploaded.
+- Git commit: none recorded by script.
