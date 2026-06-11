@@ -35,3 +35,11 @@ Durable decisions for this project.
 - Decision: Ignore large archives, generated outputs, raw/interim/processed/external data zones, Python caches, virtual environments, and generated compiled memory.
 - Reason: Version control should track source, docs, templates, and lightweight reproducibility records without accidentally committing secrets, bulky generated data, or disposable artifacts.
 - Consequence: A baseline commit is still needed before Git gives strong rollback support.
+
+## 2026-06-11 - Safe GitHub Baseline
+
+- Decision: Publish directly to private GitHub repo `AliHamed17/Vego-Ai` on `main` without force-pushing.
+- Decision: Preserve remote README-only history with an `ours` merge.
+- Decision: Exclude root PDF, zip archives, generated outputs, compiled memory, model files, analysis files, eval outputs, visualizer bundled data, generated review queues, bundled executable, and `get-pip.py` from the safe baseline.
+- Reason: The repo should have durable GitHub history while avoiding premature upload of research artifacts that need data/IRB review.
+- Consequence: Deferred artifacts remain local and ignored until the data/provenance audit decides what can be shared.

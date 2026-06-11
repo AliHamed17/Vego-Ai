@@ -88,3 +88,16 @@ Record file changes and rollback notes here.
   - docs/agent-memory/
 - Rollback note: Remove the added scaffold files/folders, remove the extracted VEGO-AI/ folder if the source package should return to zip-only form, remove .git/ if Git initialization should be undone, and restore updated AGENTS.md, CLAUDE.md, scripts/agent-memory-start.ps1, and docs/agent-memory files to the previous memory-only workflow.
 - Git commit: none recorded by script.
+
+## 2026-06-11 16:12 +03:00 - Codex - Safe GitHub Baseline Published
+
+- Files changed:
+  - .gitignore
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Use Git to revert the publish-memory commit if needed; to undo the GitHub baseline, revert commits on main rather than force-pushing. Deferred local artifacts remain ignored and were not uploaded.
+- Git commit: none recorded by script.

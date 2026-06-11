@@ -149,3 +149,41 @@ Chronological prompt history for Codex and Claude.
   - .\\scripts\\agent-memory-finish.ps1
 - Status: completed
 - Next steps: Choose one enhancement package to implement next, preferably baseline Git commit, data/IRB audit, or experiment evidence mapping.
+
+## 2026-06-11 16:12 +03:00 - Codex - Safe GitHub Baseline Published
+
+- Request: Implement the safe baseline publish plan for private GitHub repo AliHamed17/Vego-Ai.
+- Actions taken:
+  - Configured local Git branch, remote, identity, and schannel TLS backend
+  - Tightened ignore policy to exclude sensitive/deferred research artifacts
+  - Moved nested extracted VEGO-AI/.git metadata into ignored artifacts backup
+  - Ran project health, PowerShell parse checks, compileall, and pytest after installing dev requirements
+  - Committed safe baseline and merged remote README-only history without force-pushing
+  - Pushed main to private GitHub repo and verified no forbidden files are tracked
+  - Updated project memory to reflect GitHub baseline status
+- Files changed:
+  - .gitignore
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - git branch -M main
+  - git remote add origin https://github.com/AliHamed17/Vego-Ai.git
+  - git config user.name/user.email/http.sslBackend
+  - git fetch origin main
+  - git add -A
+  - git commit -m "Initialize safe VEGO-AI research baseline"
+  - git merge origin/main --allow-unrelated-histories -s ours --no-edit
+  - git push -u origin main
+  - .\scripts\project-health.ps1
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
+  - python -m pip install -r requirements-dev.txt
+  - python -m pytest VEGO-AI\tests -q
+  - gh repo view AliHamed17/Vego-Ai
+  - git ls-tree forbidden-file audit
+- Status: completed
+- Next steps: Audit data/IRB sensitivity before publishing deferred artifacts; continue committing memory and project changes to main.

@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-11 15:14 +03:00 by Codex.
+- 2026-06-11 16:11 +03:00 by Codex.
 
 ## Project Goal
 
@@ -15,12 +15,15 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 ## Latest Known State
 
 - Workspace root: `c:\Users\ahamed\vego-ai`
-- Git status: repository initialized on 2026-06-11; baseline commit still pending.
+- Git status: repository initialized, safe baseline committed, and pushed to private GitHub repo `AliHamed17/Vego-Ai` on 2026-06-11.
+- Current branch: `main`, tracking `origin/main`.
+- Safe baseline merge commit: `76e7277`.
 - Main visible source files at setup:
   - `Variability_MAS4MODELS2026_Mar28_IRB2איריס (1).pdf`
   - `VEGO-AI-20260611T112722Z-3-001.zip`
 - Original source package extracted to `VEGO-AI/`.
 - PhD/research architecture scaffold exists at the repository root.
+- Safe GitHub baseline intentionally excludes root PDF, zip archives, generated outputs, compiled memory, model files, analysis files, eval outputs, visualizer bundled data, generated review queues, bundled executable, and `get-pip.py`.
 - Core orientation files exist:
   - `README.md`
   - `PROJECT_CHARTER.md`
@@ -45,10 +48,10 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Active Risk
 
-- Real revert support is limited until a baseline Git commit exists.
+- Real revert support is now available through Git for tracked safe-baseline files.
 - Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
 
 ## Next Best Step
 
-- Review ignored/tracked files, configure Git user identity if needed, and create the first baseline commit.
+- Audit data/IRB sensitivity before deciding whether deferred research artifacts can be published.
