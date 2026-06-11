@@ -1,0 +1,186 @@
+{
+  "skill_version": "1.0.0",
+  "case_id": "68059",
+  "existing_mapping": [
+    {
+      "guideline_id": "G1",
+      "evidence": "Orders in the case model are linked to WineBottle through RegularOrderItem and UrgentOrderItem, allowing multiple wines with quantities in orders.",
+      "compliance_status": "Satisfied",
+      "notes": ""
+    },
+    {
+      "guideline_id": "G2",
+      "evidence": "The Customer class records attributes like ID, name, phone number, email, delivery address, and date of first contact, fulfilling the requirement to track customer information.",
+      "compliance_status": "Satisfied",
+      "notes": ""
+    },
+    {
+      "guideline_id": "G3",
+      "evidence": "There is an association between WineBottleComposite and Manufacturer by way of a Manufacturer ID. Every wine in the form of WineBottle has a single manufacturer.",
+      "compliance_status": "Satisfied",
+      "notes": ""
+    },
+    {
+      "guideline_id": "G4",
+      "evidence": "Manufacturer class captures information such as full name, contact phone number, address, and email.",
+      "compliance_status": "Satisfied",
+      "notes": ""
+    },
+    {
+      "guideline_id": "G5",
+      "evidence": "WineBottle class records details like name, description, production year, price per bottle, sweetness level, and product image.",
+      "compliance_status": "Satisfied",
+      "notes": ""
+    },
+    {
+      "guideline_id": "G6",
+      "evidence": "The WineStorage class associates WineBottle with storage locations, tracked by unique storage serials.",
+      "compliance_status": "Partially-Satisfied",
+      "notes": "While storage location identifiers are present, the unique name of the storage location is not explicitly described."
+    }
+  ],
+  "potential_found": [
+    {
+      "guideline_id": "G6",
+      "evidence": "The Storages class in the case model manages various WineStorage instances, and each WineStorage is linked to unique storage serial numbers. Although the model doesn't explicitly mention storage location names, each storage location likely corresponds to an instance of WineStorage managed by unique serial numbers.",
+      "compliance_status": "Partially-Satisfied",
+      "notes": "The unique identifiers (serial numbers) suggest regulated management of storage locations but do not directly address the missing aspect of storage location names."
+    }
+  ],
+  "uncovered_fragments": [
+    {
+      "fragment": "The System class has singleton design pattern attributes and methods, with a static instance and a getInstance method to retrieve this instance.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "reason": "Implementing a singleton pattern is a valid design choice for certain classes like System, which controls access to global resources, even if not explicitly required by the guidelines."
+    },
+    {
+      "fragment": "The Occasions class provides occasion details related to wine types, including a name, season, and location.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "reason": "Although not specifically covered by guideline mappings, providing occasions offers meaningful contextual data for marketing purposes and is a valid addition."
+    },
+    {
+      "fragment": "FoodPairings class includes a list of dish names and an association to Recipes class, which contains multiple recipe URLs.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "reason": "This aligns well with guideline G5 since having detailed food pairings and recipes enhances the wine offering without contradicting any guidelines."
+    },
+    {
+      "fragment": "Storages class uses a HashMap to manage WineStorage instances, linking storage serial numbers to wine quantities.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "reason": "While guideline G6 addresses storage management via associations, the use of a container like HashMap suggests efficient management of storage data."
+    },
+    {
+      "fragment": "Recipes class with attributes for different recipe URLs, allowing up to five recipes per food pairing.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "reason": "Even though not explicitly required in the guidelines, detailed recipe management enhances the utility of food pairings within the domain context."
+    },
+    {
+      "fragment": "System class methods for generating unproductive employee reports, current inventory reports, and wine recommendation reports.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "reason": "These methods provide extended functionality aligned with the system's objectives but are not explicitly covered in the guidelines, representing a valid domain-specific addition."
+    }
+  ],
+  "compliance_contributions": [
+    {
+      "guideline_id": "G1",
+      "compliance_status": "Satisfied",
+      "score": 1.0,
+      "note": ""
+    },
+    {
+      "guideline_id": "G2",
+      "compliance_status": "Satisfied",
+      "score": 1.0,
+      "note": ""
+    },
+    {
+      "guideline_id": "G3",
+      "compliance_status": "Satisfied",
+      "score": 1.0,
+      "note": ""
+    },
+    {
+      "guideline_id": "G4",
+      "compliance_status": "Satisfied",
+      "score": 1.0,
+      "note": ""
+    },
+    {
+      "guideline_id": "G5",
+      "compliance_status": "Satisfied",
+      "score": 1.0,
+      "note": ""
+    },
+    {
+      "guideline_id": "G6",
+      "compliance_status": "Partially-Satisfied",
+      "score": 0.5,
+      "note": ""
+    }
+  ],
+  "fragment_contributions": [
+    {
+      "fragment": "The System class has singleton design pattern attributes and methods, with a static instance and a getInstance method to retrieve this instance.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "base_score": 0.5,
+      "severity_modifier": 0.0,
+      "total_contribution": 0.5,
+      "note": ""
+    },
+    {
+      "fragment": "The Occasions class provides occasion details related to wine types, including a name, season, and location.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "base_score": 0.5,
+      "severity_modifier": 0.0,
+      "total_contribution": 0.5,
+      "note": ""
+    },
+    {
+      "fragment": "FoodPairings class includes a list of dish names and an association to Recipes class, which contains multiple recipe URLs.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "base_score": 0.5,
+      "severity_modifier": 0.0,
+      "total_contribution": 0.5,
+      "note": ""
+    },
+    {
+      "fragment": "Storages class uses a HashMap to manage WineStorage instances, linking storage serial numbers to wine quantities.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "base_score": 0.5,
+      "severity_modifier": 0.0,
+      "total_contribution": 0.5,
+      "note": ""
+    },
+    {
+      "fragment": "Recipes class with attributes for different recipe URLs, allowing up to five recipes per food pairing.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "base_score": 0.5,
+      "severity_modifier": 0.0,
+      "total_contribution": 0.5,
+      "note": ""
+    },
+    {
+      "fragment": "System class methods for generating unproductive employee reports, current inventory reports, and wine recommendation reports.",
+      "label": "Alternative",
+      "severity": "N/A",
+      "base_score": 0.5,
+      "severity_modifier": 0.0,
+      "total_contribution": 0.5,
+      "note": ""
+    }
+  ],
+  "total_score": 7.5,
+  "max_score": 6.0,
+  "score_pct": 125.0,
+  "overall_assessment": "The case model exceeds the expectations with all guidelines satisfied and additional valid alternative modeling choices enhancing the model."
+}

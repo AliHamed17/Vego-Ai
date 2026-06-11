@@ -1,0 +1,421 @@
+{
+  "language_name": "Use Case Diagram",
+  "domain_identifier": "parkWise",
+  "templates_in_scope": [
+    {
+      "id": "T1",
+      "short_name": "Classifier restriction"
+    },
+    {
+      "id": "T2",
+      "short_name": "Actor boundary separation"
+    },
+    {
+      "id": "T3",
+      "short_name": "Use Case enclosure"
+    },
+    {
+      "id": "T4",
+      "short_name": "Association constraint"
+    },
+    {
+      "id": "T5",
+      "short_name": "Include relation usage"
+    },
+    {
+      "id": "T6",
+      "short_name": "Extend relation usage"
+    },
+    {
+      "id": "T7",
+      "short_name": "Generalization taxonomy"
+    },
+    {
+      "id": "T8",
+      "short_name": "System Boundary scope"
+    }
+  ],
+  "reference_guidelines": [
+    {
+      "id": "G1",
+      "fragment_name": "Administrator",
+      "fragment_type": "element",
+      "description": "Actor classifier representing the system administrator interacting with the system; must be located outside the System Boundary",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "citation": "An administrator will be responsible for updating these details in the system."
+    },
+    {
+      "id": "G2",
+      "fragment_name": "Client",
+      "fragment_type": "element",
+      "description": "Actor classifier representing the client interacting with the system; must be located outside the System Boundary",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "citation": "If the barrier does not open, the client will have to follow the instructions displayed at the parking lot entrance."
+    },
+    {
+      "id": "G3",
+      "fragment_name": "Gate Sensor (GS)",
+      "fragment_type": "element",
+      "description": "Actor classifier representing the gate sensor device sending data to the system; must be located outside the System Boundary",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "citation": "a gate sensor (GS) will be installed at the entrance of each parking lot, identifying the arrival and departure of vehicles and sending the data to the system in real-time."
+    },
+    {
+      "id": "G4",
+      "fragment_name": "Conveyors\u2019 Controller (CC)",
+      "fragment_type": "element",
+      "description": "Actor classifier representing the conveyors\u2019 controller device interacting with the system; must be located outside the System Boundary",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "citation": "The Conveyors\u2019 Controller (CC) will scan the vehicle number, assign a conveyor and ask the system to run an optimization algorithm to find the nearest vacant space to the conveyor location."
+    },
+    {
+      "id": "G5",
+      "fragment_name": "Integrated Rate Service (IRS)",
+      "fragment_type": "element",
+      "description": "Actor classifier representing the external rate service interacting with the system; must be located outside the System Boundary",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "citation": "fixed price lists, sent yearly by the Integrated Rate Service (IRS) in a JSON format."
+    },
+    {
+      "id": "G6",
+      "fragment_name": "Payment Gateway (PG)",
+      "fragment_type": "element",
+      "description": "Actor classifier representing the external payment gateway interacting with the system; must be located outside the System Boundary",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "citation": "the system will send a request to the external Payment Gateway (PG) with the client details and the payment amount; Once the payment is approved, the payment gateway will notify the system"
+    },
+    {
+      "id": "G7",
+      "fragment_name": "ParkWise System",
+      "fragment_type": "element",
+      "description": "System Boundary named 'ParkWise System' must enclose only Use Case classifiers relevant to parking and club management",
+      "related_template_ids": [
+        "T8"
+      ],
+      "citation": "To automate its services, the company has initiated the development of an information system that satisfies the following specification."
+    },
+    {
+      "id": "G8",
+      "fragment_name": "Update Parking Lot Details",
+      "fragment_type": "element",
+      "description": "Use Case classifier for administrators to update parking lot number, name, address, and city; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "For each parking lot, the system will store a unique number, name, address, and city. An administrator will be responsible for updating these details in the system."
+    },
+    {
+      "id": "G9",
+      "fragment_name": "Process Vehicle Entry",
+      "fragment_type": "element",
+      "description": "Use Case classifier to process vehicle arrival: get data from gate sensor and search database; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "When a vehicle arrives, the system will get its data (from the gate sensor) and search the database for the corresponding vehicle number."
+    },
+    {
+      "id": "G10",
+      "fragment_name": "Open Barrier",
+      "fragment_type": "element",
+      "description": "Use Case classifier invoked to open the barrier when the vehicle is found; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "If the vehicle is found, the system will instruct the gate sensor to open the barrier."
+    },
+    {
+      "id": "G11",
+      "fragment_name": "Process Vehicle Entry \u2013 include Open Barrier",
+      "fragment_type": "relation",
+      "description": "Include relation from 'Process Vehicle Entry' to 'Open Barrier' for mandatory barrier opening behavior",
+      "related_template_ids": [
+        "T5"
+      ],
+      "citation": "If the vehicle is found, the system will instruct the gate sensor to open the barrier."
+    },
+    {
+      "id": "G12",
+      "fragment_name": "Provide Vehicle Details",
+      "fragment_type": "element",
+      "description": "Use Case classifier for client to provide personal details and photos when barrier fails to open; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "These instructions guide the client to access the system and provide the required details, including first name, last name, mobile phone number, and three photos of the vehicle (front, rear, and side views)."
+    },
+    {
+      "id": "G13",
+      "fragment_name": "Provide Vehicle Details \u2013 extend Process Vehicle Entry",
+      "fragment_type": "relation",
+      "description": "Extend relation from 'Provide Vehicle Details' to 'Process Vehicle Entry' for optional alternative behavior when the barrier does not open",
+      "related_template_ids": [
+        "T6"
+      ],
+      "citation": "If the barrier does not open, the client will have to follow the instructions displayed at the parking lot entrance."
+    },
+    {
+      "id": "G14",
+      "fragment_name": "Extract Vehicle Details",
+      "fragment_type": "element",
+      "description": "Use Case classifier to automatically extract vehicle number, type, color, size, and weight from uploaded photos; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "Based on the uploaded photos, the system automatically extracts the vehicle\u2019s details: number, type (as text), color, size (small, medium, or large), and weight (in kg)."
+    },
+    {
+      "id": "G15",
+      "fragment_name": "Provide Vehicle Details \u2013 include Extract Vehicle Details",
+      "fragment_type": "relation",
+      "description": "Include relation from 'Provide Vehicle Details' to 'Extract Vehicle Details' for mandatory detail extraction behavior",
+      "related_template_ids": [
+        "T5"
+      ],
+      "citation": "Based on the uploaded photos, the system automatically extracts the vehicle\u2019s details: number, type (as text), color, size (small, medium, or large), and weight (in kg)."
+    },
+    {
+      "id": "G16",
+      "fragment_name": "Start Parking Session",
+      "fragment_type": "element",
+      "description": "Use Case classifier to record parking session start time and vehicle details; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "After passing the barrier, the system will store the parking session information, including  start time and vehicle details."
+    },
+    {
+      "id": "G17",
+      "fragment_name": "Assign Conveyor and Optimize Space",
+      "fragment_type": "element",
+      "description": "Use Case classifier to assign a conveyor and run optimization algorithm to find nearest valid parking space; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "The Conveyors\u2019 Controller (CC) will scan the vehicle number, assign a conveyor and ask the system to run an optimization algorithm to find the nearest vacant space to the conveyor location."
+    },
+    {
+      "id": "G18",
+      "fragment_name": "Update Vehicle Location",
+      "fragment_type": "element",
+      "description": "Use Case classifier to update system with final conveyor location and parking completion; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "After moving the vehicle to the designated parking space, the conveyors\u2019 controller will update the system on parking completion and the final location of the operating conveyor."
+    },
+    {
+      "id": "G19",
+      "fragment_name": "Send SMS Notification",
+      "fragment_type": "element",
+      "description": "Use Case classifier to send an SMS message with parking details to the client; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "An SMS message with the parking details will be sent to the client's phone."
+    },
+    {
+      "id": "G20",
+      "fragment_name": "View Parking Details",
+      "fragment_type": "element",
+      "description": "Use Case classifier allowing client to view parking details via system UI using phone number; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "This data is also available through the system UI, if the client enters his or her phone number."
+    },
+    {
+      "id": "G21",
+      "fragment_name": "End Parking Session",
+      "fragment_type": "element",
+      "description": "Use Case classifier for client to end parking session by entering vehicle number and phone number; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "For getting the vehicle back, the client types in the system UI the vehicle number, his or her phone number (for validation), and clicks \"end parking\"."
+    },
+    {
+      "id": "G22",
+      "fragment_name": "Process Payment",
+      "fragment_type": "element",
+      "description": "Use Case classifier to request client payment via system UI; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "The client will be requested to pay via the system UI."
+    },
+    {
+      "id": "G23",
+      "fragment_name": "Calculate Payment Amount",
+      "fragment_type": "element",
+      "description": "Use Case classifier to calculate payment based on fixed price lists from IRS; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "The payment amount will be calculated based on fixed price lists, sent yearly by the Integrated Rate Service (IRS) in a JSON format."
+    },
+    {
+      "id": "G24",
+      "fragment_name": "Maintain Price History",
+      "fragment_type": "element",
+      "description": "Use Case classifier to maintain price history for each parking lot; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "The system will maintain price history for each parking lot."
+    },
+    {
+      "id": "G25",
+      "fragment_name": "Handle Payment Gateway Notification",
+      "fragment_type": "element",
+      "description": "Use Case classifier to handle notification from Payment Gateway and instruct gate sensor to open gate; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "Once the payment is approved, the payment gateway will notify the system, which will instruct the gate sensor to open the gate."
+    },
+    {
+      "id": "G26",
+      "fragment_name": "Process Payment \u2013 include Handle Payment Gateway Notification",
+      "fragment_type": "relation",
+      "description": "Include relation from 'Process Payment' to 'Handle Payment Gateway Notification' for mandatory post-payment behavior",
+      "related_template_ids": [
+        "T5"
+      ],
+      "citation": "Once the payment is approved, the payment gateway will notify the system, which will instruct the gate sensor to open the gate."
+    },
+    {
+      "id": "G27",
+      "fragment_name": "Issue Receipt",
+      "fragment_type": "element",
+      "description": "Use Case classifier to issue receipt upon client\u2019s request showing details and final amount; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "The system will further issue a receipt at the client\u2019s request."
+    },
+    {
+      "id": "G28",
+      "fragment_name": "Register Club Membership",
+      "fragment_type": "element",
+      "description": "Use Case classifier for clients to register for the free club membership; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "Clients can register to the club through the system UI at any point of time."
+    },
+    {
+      "id": "G29",
+      "fragment_name": "Select Preferred Parking Lots",
+      "fragment_type": "element",
+      "description": "Use Case classifier for club members to select preferred parking lots with audit of selection dates; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "During registration, and at any time afterwards, the client can select preferred parking lots (the selection dates are stored for audit purposes)."
+    },
+    {
+      "id": "G30",
+      "fragment_name": "Apply Club Discount",
+      "fragment_type": "element",
+      "description": "Use Case classifier to apply automatic discount or free session for club members; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "Club members will get an automatic, fixed discount for all parking sessions."
+    },
+    {
+      "id": "G31",
+      "fragment_name": "Generate Annual Summary Report",
+      "fragment_type": "element",
+      "description": "Use Case classifier for administrator to generate yearly income report in PDF and XML ordered by city and amount; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "Annual Summary Report \u2013 a yearly overview of all incomes of ParkWise. The report will include a list of all parking lots, the total amount paid (per lot), and the number of vehicles in \u201cother\u201d colors which parked in the lot, in a given year. The report will be ordered by parking lot\u2019s city (descending order) and total amounts (ascending order). The report will be generated  in both PDF and  XML formats."
+    },
+    {
+      "id": "G32",
+      "fragment_name": "Generate Customer Club Growth Report",
+      "fragment_type": "element",
+      "description": "Use Case classifier for administrator to generate monthly club growth report ordered by month; must be enclosed within the System Boundary",
+      "related_template_ids": [
+        "T3",
+        "T8"
+      ],
+      "citation": "Customer Club Growth Report \u2013 a monthly overview of new and total club members. The report includes, for each month in the current year, the number of customers who joined the club in that month, the cumulative total of active members by the end of the month, and the percentage of total growth compared to the previous month. The report will be ordered by month in ascending order."
+    }
+  ],
+  "unoperationalized_domain_parts": [
+    "Detailed optimization algorithm for conveyor-to-space assignment based on coordinates and constraints",
+    "Internal storage and update logic for available spaces and vehicle\u2013client associations",
+    "Technical workings of the photo-to-text extraction module distinguishing colors",
+    "Mechanism of SMS transmission to clients",
+    "Under-the-hood payment handling outside the system",
+    "Detailed maintenance and retrieval of price history records"
+  ],
+  "questions_to_language_advisor": [
+    {
+      "id": "Q1",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "question": "In a Use Case Diagram, can external hardware components like Gate Sensor or Conveyors' Controller be modelled as Actors?"
+    },
+    {
+      "id": "Q2",
+      "related_template_ids": [
+        "T1",
+        "T2"
+      ],
+      "question": "Should external services such as the Payment Gateway (PG) or Integrated Rate Service (IRS) be modelled as Actors in Use Case Diagrams?"
+    }
+  ],
+  "agent1_capabilities": [
+    "When should I use an \u00abinclude\u00bb relationship instead of an \u00abextend\u00bb relationship in a Use Case Diagram?",
+    "Is it valid to connect two Actors with an Association relationship?",
+    "Can a Use Case exist outside of a System Boundary in UML?",
+    "How do I model role hierarchies using Generalization in Use Case Diagrams?",
+    "Can a Use Case appear in multiple System Boundary fragments?"
+  ],
+  "agent2_capabilities": []
+}

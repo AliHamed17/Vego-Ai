@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Secrets
+**/api_key*.txt
+
+# Large bundled binaries / bootstrap (not source)
+vego_visualizer_delivery/VEGO-AI.exe
+framework/get-pip.py
+
+# Runtime logs / interaction traces
+**/interaction_log.jsonl
+**/pipeline.log
+**/evaluator.log
+
+# Framework run output dir (regenerated; eval_output/ is kept as committed results)
+output/
