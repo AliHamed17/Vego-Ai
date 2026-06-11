@@ -2,6 +2,8 @@
 
 This project keeps shared agent memory in `docs/agent-memory/`. Claude and Codex should both read and update these files so progress is preserved across tools.
 
+For a full startup prompt that can be pasted into a fresh Claude chat, use `docs/agent-memory/claude-bootstrap-prompt.md`.
+
 ## Before Working
 
 Treat the memory files as project resources. Use them to understand the flow, avoid repeating old work, and make better decisions.

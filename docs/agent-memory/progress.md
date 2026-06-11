@@ -12,6 +12,9 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | PhD research workspace architecture added | Done | Added source, research, experiment, data, paper, thesis, and reproducibility scaffold. |
 | 2026-06-11 | Git repository initialized | Done | Added `.gitignore` and initialized Git; baseline commit pending. |
 | 2026-06-11 | Safe GitHub baseline published | Done | Pushed safe code/docs baseline to private `AliHamed17/Vego-Ai` on `main`. |
+| 2026-06-11 | Claude bootstrap prompt added | Done | Added a paste-ready Claude startup prompt that enforces shared memory, architecture, Git, and safety rules. |
+| 2026-06-11 | Workspace architecture diagram added | Done | Added a GitHub-rendered Mermaid diagram and linked it from the architecture docs and root README. |
+| 2026-06-11 | Human feedback manager files added | Done | Added structured human-feedback schema, example feedback input, manager module, and review item feedback/status fields. |
 
 ## Active Work
 
@@ -30,6 +33,9 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | Added scripted memory automation for prompt start/end. | `scripts/agent-memory-start.ps1`, `scripts/agent-memory-finish.ps1`, `docs/agent-memory/automation.md` |
 | 2026-06-11 | Extracted original VEGO-AI package and added PhD research architecture scaffold. | `VEGO-AI/`, `README.md`, `PROJECT_CHARTER.md`, `docs/architecture/`, `docs/research/`, `experiments/`, `data/`, `papers/`, `thesis/`, `scripts/` |
 | 2026-06-11 | Published safe baseline to private GitHub repo. | `main` branch on `AliHamed17/Vego-Ai` |
+| 2026-06-11 | Added reusable Claude bootstrap prompt and linked it from Claude instructions. | `CLAUDE.md`, `docs/agent-memory/claude-bootstrap-prompt.md`, `docs/agent-memory/README.md` |
+| 2026-06-11 | Added and linked the workspace architecture diagram. | `README.md`, `docs/architecture/README.md`, `docs/architecture/project-map.md`, `docs/architecture/workspace-diagram.md` |
+| 2026-06-11 | Added human-feedback manager files and schema fields. | `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, `VEGO-AI/schemas/human_review_item.schema.json` |
 
 ## Next Steps
 

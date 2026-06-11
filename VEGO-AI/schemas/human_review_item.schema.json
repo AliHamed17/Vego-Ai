@@ -144,11 +144,20 @@
     },
     "status": {
       "type": "string",
-      "enum": ["pending", "resolved", "dismissed"]
+      "enum": ["pending", "resolved", "dismissed", "signature_mismatch"]
     },
     "feedback_id": {
       "type": ["string", "null"],
       "description": "Set in Milestone 2 once human feedback is attached (join key into the Human Feedback Schema)."
+    },
+    "human_feedback": {
+      "type": ["object", "null"],
+      "description": "The attached human feedback object (conforms to human_feedback.schema.json). Null until resolved.",
+      "additionalProperties": true
+    },
+    "resolution_note": {
+      "type": "string",
+      "description": "Manager note explaining a non-resolved outcome (e.g. signature mismatch)."
     }
   }
 }

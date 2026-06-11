@@ -101,3 +101,17 @@ Record file changes and rollback notes here.
   - docs/agent-memory/revert-log.md
 - Rollback note: Use Git to revert the publish-memory commit if needed; to undo the GitHub baseline, revert commits on main rather than force-pushing. Deferred local artifacts remain ignored and were not uploaded.
 - Git commit: none recorded by script.
+
+## 2026-06-11 16:17 +03:00 - Codex - Claude Bootstrap Prompt
+
+- Files changed:
+  - CLAUDE.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert changes to CLAUDE.md and docs/agent-memory files, and remove docs/agent-memory/claude-bootstrap-prompt.md.
+- Git commit: none recorded by script.

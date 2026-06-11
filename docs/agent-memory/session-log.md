@@ -187,3 +187,49 @@ Chronological prompt history for Codex and Claude.
   - git ls-tree forbidden-file audit
 - Status: completed
 - Next steps: Audit data/IRB sensitivity before publishing deferred artifacts; continue committing memory and project changes to main.
+
+## 2026-06-11 16:17 +03:00 - Codex - Claude Bootstrap Prompt
+
+- Request: Write a big prompt for Claude so it remembers the project history, follows the PhD architecture, and applies the shared memory workflow in Claude.
+- Actions taken:
+  - Read compiled project memory and Claude instructions
+  - Added a paste-ready Claude startup prompt for fresh Claude sessions
+  - Linked the bootstrap prompt from CLAUDE.md
+  - Updated memory map, current state, progress, and decisions to record the Claude prompt artifact
+- Files changed:
+  - CLAUDE.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - Get-Content -Raw docs\agent-memory\compiled-memory.md
+  - Get-Content -Raw CLAUDE.md
+  - git status -sb
+  - .\scripts\project-health.ps1
+  - git diff -- selected docs
+  - .\scripts\agent-memory-finish.ps1
+- Status: completed
+- Next steps: Paste docs/agent-memory/claude-bootstrap-prompt.md into Claude at the start of a new Claude session; optionally commit these documentation changes on the active branch.
+
+## 2026-06-11 16:19 +03:00 - Codex - Claude Memory Workflow Clarification
+
+- Request: Clarify whether Claude will pull and update the shared memory resources at each prompt.
+- Actions taken:
+  - Verified CLAUDE.md instructs Claude to run the memory start script and read compiled memory before work
+  - Verified the Claude bootstrap prompt includes startup and finish memory routines
+  - Explained that the workflow depends on Claude having workspace/tool access and following the prompt/instructions; it is not a background service
+- Files changed:
+  - docs/agent-memory/session-log.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - Get-Content -Raw CLAUDE.md
+  - Get-Content -Raw docs\agent-memory\claude-bootstrap-prompt.md
+  - git status -sb
+  - .\scripts\agent-memory-finish.ps1
+- Status: completed
+- Next steps: When opening Claude, paste docs/agent-memory/claude-bootstrap-prompt.md or ensure Claude reads CLAUDE.md in this workspace.

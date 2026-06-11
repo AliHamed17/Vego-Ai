@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vego-ai/schemas/human_feedback.schema.json",
+  "title": "VEGO-AI Human Feedback",
+  "description": "One structured human decision about a Human Review Queue item. Milestone 2 captures and attaches this feedback; it does NOT yet change any AI decision.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "feedback_id",
+    "review_id",
+    "review_signature",
+    "expert_id",
+    "timestamp",
+    "human_decision"
+  ],
+  "properties": {
+    "feedback_id": {
+      "type": "string",
+      "description": "Unique id for this feedback, e.g. HF-ucd_ch-P4-001."
+    },
+    "review_id": {
+      "type": "string",
+      "description": "The Human Review Queue item this feedback addresses.",
+      "pattern": "^HRQ-.+-P[0-9]+$"
+    },
+    "review_signature": {
+      "type": "string",
+      "description": "The review_signature of the targeted item; used to detect drift.",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "expert_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "human_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_type", "confidence"],
+      "properties": {
+        "decision_type": {
+          "type": "string",
+          "enum": [
+            "approve_ai_decision",
+            "reject_ai_decision",
+            "correct_classification",
+            "valid_alternative",
+            "modeling_error",
+            "domain_specific",
+            "pedagogical_issue",
+            "ambiguous",
+            "needs_guideline_update"
+          ]
+        },
+        "corrected_classification": {
+          "type": ["string", "null"],
+          "description": "The human's classification when it differs from / confirms the AI's.",
+          "enum": ["Substantial Variability", "Occasional Variability", "Undetermined", null]
+        },
+        "confidence": { "type": "string", "enum": ["High", "Medium", "Low"] },
+        "rationale": {
+          "type": "string",
+          "description": "Why. Required by the Feedback Manager for any decision that is not a plain approve."
+        }
+      }
+    },
+    "reusable": {
+      "type": "boolean",
+      "description": "Whether this judgment should be reusable later (Milestone 3 / Human Judgment Memory)."
+    },
+    "reuse_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "domain": { "type": "string" },
+        "diagram_type": { "type": "string" },
+        "applies_to_future_models": { "type": "boolean" },
+        "limitations": { "type": "string" }
+      }
+    },
+    "guideline_update": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action"],
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["none", "add_alternative", "edit_description", "restrict_scope", "reject_guideline", "new_guideline"]
+        },
+        "proposed_text": { "type": "string" },
+        "requires_second_expert": { "type": "boolean" }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

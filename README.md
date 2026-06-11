@@ -8,9 +8,10 @@ The workspace is organized so research context, source code, experiments, data, 
 
 1. Read `PROJECT_CHARTER.md` for the purpose and boundaries.
 2. Read `docs/architecture/project-map.md` for the folder map.
-3. Read `docs/research/research-plan.md` for research questions and milestones.
-4. Read `experiments/registry.md` before creating or running experiments.
-5. Run `.\scripts\agent-memory-start.ps1` before AI-assisted work.
+3. Read `docs/architecture/workspace-diagram.md` for the GitHub-rendered architecture diagram.
+4. Read `docs/research/research-plan.md` for research questions and milestones.
+5. Read `experiments/registry.md` before creating or running experiments.
+6. Run `.\scripts\agent-memory-start.ps1` before AI-assisted work.
 
 ## Current Source Package
 
@@ -59,4 +60,3 @@ Every claim should eventually connect to:
 - an output artifact,
 - an interpretation note,
 - and, when possible, a test or validation check.
-

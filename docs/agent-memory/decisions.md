@@ -43,3 +43,15 @@ Durable decisions for this project.
 - Decision: Exclude root PDF, zip archives, generated outputs, compiled memory, model files, analysis files, eval outputs, visualizer bundled data, generated review queues, bundled executable, and `get-pip.py` from the safe baseline.
 - Reason: The repo should have durable GitHub history while avoiding premature upload of research artifacts that need data/IRB review.
 - Consequence: Deferred artifacts remain local and ignored until the data/provenance audit decides what can be shared.
+
+## 2026-06-11 - Claude Bootstrap Prompt
+
+- Decision: Keep a paste-ready Claude startup prompt at `docs/agent-memory/claude-bootstrap-prompt.md` and link it from `CLAUDE.md`.
+- Reason: Fresh Claude sessions need a reliable way to load shared memory, respect the PhD architecture, and follow the same Git/data-safety workflow as Codex.
+- Consequence: When starting Claude, the user can paste the bootstrap prompt so Claude treats project memory as context and updates it before final responses.
+
+## 2026-06-11 - Workspace Diagram Format
+
+- Decision: Use Markdown plus Mermaid for the first workspace architecture diagram at `docs/architecture/workspace-diagram.md`.
+- Reason: GitHub renders Mermaid diagrams directly, so the diagram stays reviewable as text and avoids binary asset management.
+- Consequence: Future architecture diagrams can follow the same text-first pattern unless a paper-quality figure export is needed.

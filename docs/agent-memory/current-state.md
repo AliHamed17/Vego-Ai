@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-11 16:11 +03:00 by Codex.
+- 2026-06-11 16:24 +03:00 by Codex.
 
 ## Project Goal
 
@@ -24,6 +24,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Original source package extracted to `VEGO-AI/`.
 - PhD/research architecture scaffold exists at the repository root.
 - Safe GitHub baseline intentionally excludes root PDF, zip archives, generated outputs, compiled memory, model files, analysis files, eval outputs, visualizer bundled data, generated review queues, bundled executable, and `get-pip.py`.
+- Human-feedback workflow files now include `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, and feedback attachment/status fields in `VEGO-AI/schemas/human_review_item.schema.json`.
 - Core orientation files exist:
   - `README.md`
   - `PROJECT_CHARTER.md`
@@ -37,6 +38,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Root agent instruction files exist:
   - `AGENTS.md`
   - `CLAUDE.md`
+- A paste-ready Claude startup prompt exists at `docs/agent-memory/claude-bootstrap-prompt.md`.
+- A GitHub-rendered Mermaid workspace diagram exists at `docs/architecture/workspace-diagram.md`.
 
 ## Working Agreement
 

@@ -5,6 +5,7 @@ This folder is the shared project memory for Codex and Claude.
 ## Files
 
 - `automation.md`: scripts and workflow for automatic prompt start/end memory handling.
+- `claude-bootstrap-prompt.md`: paste-ready startup prompt for a fresh Claude session.
 - `compiled-memory.md`: generated combined memory context from all memory files.
 - `current-state.md`: latest known project state and short orientation.
 - `progress.md`: milestones, current tasks, next steps, and completion status.

@@ -18,6 +18,8 @@
 
 Research notes may reference code and outputs. Code should not depend on research notes.
 
+See `workspace-diagram.md` for a GitHub-rendered diagram of the workspace flow.
+
 ```text
 research questions -> experiment protocol -> code/config -> outputs -> analysis -> paper/thesis claim
 ```
