@@ -19,3 +19,8 @@ framework/get-pip.py
 
 # Framework run output dir (regenerated; eval_output/ is kept as committed results)
 output/
+
+# Generated human-review queues (regenerable from eval_output via the CLI)
+human_review_output/
+.tmp_strict/
+

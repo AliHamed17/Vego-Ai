@@ -8,6 +8,7 @@
   "required": [
     "review_id",
     "schema_version",
+    "provenance",
     "setting_id",
     "pattern_id",
     "pipeline_stage",
@@ -26,6 +27,22 @@
       "type": "string",
       "description": "ISO-8601 UTC timestamp when the item was generated."
     },
+    "provenance": {
+      "type": "object",
+      "description": "Where/how this item was produced — for cross-experiment comparison.",
+      "additionalProperties": true,
+      "required": ["source_system", "policy_version", "source_setting"],
+      "properties": {
+        "source_system": { "type": "string" },
+        "policy_version": { "type": "string" },
+        "source_commit": { "type": "string" },
+        "source_setting": { "type": "string" },
+        "policy_config": {
+          "type": "object",
+          "properties": { "include_medium": { "type": "boolean" } }
+        }
+      }
+    },
     "setting_id": {
       "type": "string",
       "enum": ["ucd_ch", "cd_ch", "ucd_pw", "cd_pw"]
@@ -34,14 +51,12 @@
     "diagram_type": { "type": "string", "description": "UCD | CD" },
     "pipeline_stage": {
       "type": "string",
-      "description": "Stage that produced the AI decision.",
       "enum": ["agent4_classify_variability"]
     },
     "pattern_id": { "type": "string", "pattern": "^P[0-9]+$" },
     "pattern_kind": {
       "type": "string",
-      "enum": ["guideline", "fragment", "unknown"],
-      "description": "Whether the pattern is a recurring guideline pattern or a recurring uncovered-fragment pattern."
+      "enum": ["guideline", "fragment", "unknown"]
     },
     "target_fragment": {
       "type": "string",
@@ -49,16 +64,37 @@
     },
     "related_guideline_id": {
       "type": ["string", "null"],
-      "description": "Guideline the pattern concerns (Gj), if known."
+      "description": "Guideline the pattern concerns (Gj), if resolved."
+    },
+    "related_guideline_resolution": {
+      "type": "object",
+      "description": "How related_guideline_id was determined (transparency).",
+      "additionalProperties": false,
+      "required": ["method", "candidate_guidelines"],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["from_pattern", "parsed_from_evidence", "none"]
+        },
+        "confidence": { "type": ["string", "null"], "enum": ["high", "medium", "low", null] },
+        "candidate_guidelines": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
     },
     "affected_cases": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Case IDs in which the pattern recurs (joined from deviation_patterns)."
+      "items": { "type": "string" }
     },
     "pattern_strength": {
-      "type": ["string", "null"],
-      "description": "Recurrence strength as a percentage string, e.g. '22.5%'."
+      "type": "object",
+      "description": "Recurrence strength, both numeric and display form.",
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "display": { "type": ["string", "null"] }
+      }
     },
     "ai_decision": {
       "type": "object",

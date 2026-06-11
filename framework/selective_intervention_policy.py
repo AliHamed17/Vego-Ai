@@ -30,6 +30,10 @@ triggers are what make the queue non-empty on the existing experimental data.
 
 from __future__ import annotations
 
+# Bump whenever the trigger logic below changes, so review items remain
+# comparable across experiments and policy revisions.
+POLICY_VERSION = "human-review-policy-v1"
+
 # Exact strings emitted by agent4_variability_explorer.py
 CLASSIFICATION_UNDETERMINED = "undetermined"
 CONFIDENCE_LOW = "low"
