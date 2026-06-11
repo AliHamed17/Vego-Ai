@@ -28,6 +28,7 @@ It is used two ways:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import logging
 import re
@@ -48,11 +49,23 @@ except ImportError:  # pragma: no cover - fallback when imported as a package
 
 logger = logging.getLogger(__name__)
 
-SCHEMA_VERSION = "1.1.0"
+SCHEMA_VERSION = "1.2.0"
 SOURCE_SYSTEM = "VEGO-AI"
 PIPELINE_STAGE = "agent4_classify_variability"
 QUEUE_FILENAME = "human_review_queue.jsonl"
 DEFAULT_OUT_DIRNAME = "human_review_output"
+
+# Stable fields hashed into review_signature. review_id (HRQ-<setting>-<pid>) is
+# human-readable but depends on Agent 4's pattern ordering; review_signature is
+# order-independent and lets a later feedback join detect that an item drifted
+# (i.e. the same review_id now describes a different pattern).
+SIGNATURE_FIELDS = [
+    "source_setting",
+    "pattern_description",
+    "related_guideline_id",
+    "affected_cases",
+    "classification",
+]
 
 # setting_id → (domain, diagram_type) fallback when not present in the JSON
 _DOMAIN_BY_CODE = {"ch": "cheers", "pw": "parkwise"}
@@ -180,6 +193,34 @@ def resolve_guideline(pattern: dict, evidence: str | None) -> dict:
     }
 
 
+def review_signature(
+    *,
+    setting_id: str,
+    pattern_description: str | None,
+    related_guideline_id: str | None,
+    affected_cases: list[str] | None,
+    classification: str | None,
+) -> str:
+    """
+    Deterministic, order-independent signature over the SIGNATURE_FIELDS.
+
+    affected_cases are sorted and de-duplicated so that re-ordering or duplicate
+    case ids (both occur in the committed Agent 4 outputs) do not change the
+    signature. Returns a 16-hex-char (64-bit) sha256 prefix.
+    """
+    canonical = {
+        "source_setting": setting_id,
+        "pattern_description": (pattern_description or "").strip(),
+        "related_guideline_id": related_guideline_id,
+        "affected_cases": sorted(set(affected_cases or [])),
+        "classification": classification or "",
+    }
+    blob = json.dumps(
+        canonical, sort_keys=True, ensure_ascii=False, separators=(",", ":")
+    )
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
+
+
 # ---------------------------------------------------------------------------
 # Core builder
 # ---------------------------------------------------------------------------
@@ -228,10 +269,19 @@ def build_review_items(
         pid = entry.get("pattern_id", "")
         pattern = pattern_index.get(pid, {})
         guideline = resolve_guideline(pattern, entry.get("evidence"))
+        signature = review_signature(
+            setting_id=setting_id,
+            pattern_description=pattern.get("description", ""),
+            related_guideline_id=guideline["related_guideline_id"],
+            affected_cases=pattern.get("affected_cases", []),
+            classification=entry.get("classification", ""),
+        )
 
         items.append(
             {
                 "review_id": f"HRQ-{setting_id}-{pid}",
+                "review_signature": signature,
+                "signature_fields": SIGNATURE_FIELDS,
                 "schema_version": SCHEMA_VERSION,
                 "created_at": created_at,
                 "provenance": provenance,
@@ -240,6 +290,7 @@ def build_review_items(
                 "diagram_type": diagram,
                 "pipeline_stage": PIPELINE_STAGE,
                 "pattern_id": pid,
+                "source_pattern_id": pid,
                 "pattern_kind": pattern.get("kind", "unknown"),
                 "target_fragment": pattern.get("description", ""),
                 "related_guideline_id": guideline["related_guideline_id"],

@@ -12,7 +12,6 @@ Schema-validation tests are skipped automatically if `jsonschema` is absent.
 from __future__ import annotations
 
 import json
-import os
 import sys
 import tempfile
 from pathlib import Path
@@ -141,6 +140,37 @@ def test_resolve_guideline_none():
 
 
 # ---------------------------------------------------------------------------
+# review_signature stability
+# ---------------------------------------------------------------------------
+
+def test_review_signature_is_16_hex():
+    sig = hrq.review_signature(
+        setting_id="ucd_ch", pattern_description="x",
+        related_guideline_id="G16", affected_cases=["a"],
+        classification="Substantial Variability")
+    assert len(sig) == 16 and all(c in "0123456789abcdef" for c in sig)
+
+
+def test_review_signature_stable_under_reorder_and_dups():
+    a = hrq.review_signature(
+        setting_id="ucd_ch", pattern_description="x", related_guideline_id="G16",
+        affected_cases=["68092", "68162", "68106"], classification="Substantial Variability")
+    b = hrq.review_signature(
+        setting_id="ucd_ch", pattern_description="x", related_guideline_id="G16",
+        affected_cases=["68106", "68092", "68162", "68092"],  # reordered + duplicate
+        classification="Substantial Variability")
+    assert a == b
+
+
+def test_review_signature_changes_with_classification():
+    base = dict(setting_id="ucd_ch", pattern_description="x",
+                related_guideline_id="G16", affected_cases=["a"])
+    s1 = hrq.review_signature(classification="Substantial Variability", **base)
+    s2 = hrq.review_signature(classification="Occasional Variability", **base)
+    assert s1 != s2
+
+
+# ---------------------------------------------------------------------------
 # Build / counts / empty
 # ---------------------------------------------------------------------------
 
@@ -161,6 +191,9 @@ def test_build_counts_and_fields():
     assert ids == ["P1", "P4"]            # P9 (High, no flag) excluded
     p1 = items[0]
     assert p1["review_id"] == "HRQ-ucd_ch-P1"
+    assert p1["source_pattern_id"] == "P1"
+    assert len(p1["review_signature"]) == 16
+    assert p1["signature_fields"] == hrq.SIGNATURE_FIELDS
     assert p1["provenance"]["policy_version"] == sip.POLICY_VERSION
     assert p1["provenance"]["source_setting"] == "ucd_ch"
     assert p1["pattern_kind"] == "guideline"

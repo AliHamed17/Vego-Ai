@@ -64,12 +64,27 @@ different intervention policies?"). On the committed `eval_output/`:
 > are no `Undetermined` patterns (Agent 4's `resolve_with_answers` was never run),
 > so confidence and guideline-update triggers are what populate the queue.
 
-## Output item (schema v1.1.0)
+## Stable identity (review_id vs review_signature)
+
+`review_id` (`HRQ-<setting>-<pattern_id>`) is human-readable but depends on Agent
+4's pattern ordering — if Agent 4 is re-run and emits patterns in a different
+order, `P4` could later describe a different pattern. Because Milestone 2 attaches
+human feedback by id, each item also carries a **`review_signature`**: an
+order-independent sha256 prefix over the stable `signature_fields`
+(`source_setting`, `pattern_description`, `related_guideline_id`, `affected_cases`
+[sorted + de-duplicated], `classification`). Feedback joins can match on
+`review_id` for convenience and verify `review_signature` to detect drift.
+`source_pattern_id` records the originating Agent 4 `pattern_id`.
+
+## Output item (schema v1.2.0)
 
 ```json
 {
   "review_id": "HRQ-ucd_ch-P4",
-  "schema_version": "1.1.0",
+  "review_signature": "a83f91c2d5e07b14",
+  "signature_fields": ["source_setting", "pattern_description", "related_guideline_id", "affected_cases", "classification"],
+  "schema_version": "1.2.0",
+  "source_pattern_id": "P4",
   "created_at": "2026-06-11T12:23:44Z",
   "provenance": {
     "source_system": "VEGO-AI",

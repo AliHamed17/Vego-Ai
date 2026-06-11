@@ -7,6 +7,7 @@
   "additionalProperties": false,
   "required": [
     "review_id",
+    "review_signature",
     "schema_version",
     "provenance",
     "setting_id",
@@ -19,8 +20,23 @@
   "properties": {
     "review_id": {
       "type": "string",
-      "description": "Stable, deduplicating identifier: HRQ-<setting_id>-<pattern_id>.",
+      "description": "Human-readable identifier: HRQ-<setting_id>-<pattern_id>. Note: depends on Agent 4 pattern ordering; use review_signature for stable joins.",
       "pattern": "^HRQ-.+-P[0-9]+$"
+    },
+    "review_signature": {
+      "type": "string",
+      "description": "Order-independent sha256 prefix over signature_fields; detects whether review_id drifted to a different pattern.",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "signature_fields": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Logical field names hashed into review_signature."
+    },
+    "source_pattern_id": {
+      "type": "string",
+      "description": "The Agent 4 pattern_id this item was built from.",
+      "pattern": "^P[0-9]+$"
     },
     "schema_version": { "type": "string" },
     "created_at": {
