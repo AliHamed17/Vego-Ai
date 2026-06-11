@@ -1,0 +1,88 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+pip-wheel-metadata/
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs and generated artifacts
+logs/
+artifacts/**
+!artifacts/README.md
+outputs/**
+!outputs/README.md
+reports/generated/**
+!reports/generated/README.md
+
+# Data zones: keep structure and documentation, not bulk data
+data/raw/**
+!data/raw/README.md
+!data/raw/.gitkeep
+data/interim/**
+!data/interim/README.md
+!data/interim/.gitkeep
+data/processed/**
+!data/processed/README.md
+!data/processed/.gitkeep
+data/external/**
+!data/external/README.md
+!data/external/.gitkeep
+
+# Generated VEGO-AI outputs
+VEGO-AI/framework/output/
+VEGO-AI/eval/eval_output/
+VEGO-AI/eval_output/
+VEGO-AI/human_review_output/
+VEGO-AI/framework/get-pip.py
+
+# Deferred VEGO-AI research artifacts pending data/IRB audit
+VEGO-AI/models/
+VEGO-AI/analysis/
+VEGO-AI/vego_visualizer_delivery/models/
+VEGO-AI/vego_visualizer_delivery/compliance_vectors/
+VEGO-AI/vego_visualizer_delivery/guidelines/
+
+# Research/IRB documents pending sharing review
+*.pdf
+
+# Archives and packages
+*.zip
+*.exe
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# Generated memory bundle
+docs/agent-memory/compiled-memory.md
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini

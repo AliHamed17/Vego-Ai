@@ -1,0 +1,24 @@
+[project]
+name = "vego-ai-research"
+version = "0.1.0"
+description = "PhD research workspace for VEGO-AI agentic variability exploration."
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["VEGO-AI/framework", "VEGO-AI/eval", "src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+extend-exclude = [
+  "VEGO-AI/framework/get-pip.py",
+  "data",
+  "outputs",
+  "artifacts"
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = []
+

@@ -1,0 +1,3 @@
+models_dir: "models"
+guidelines_dir: "guidelines/agentB_best_guidelines.json"
+aggregate_dir: "compliance_vectors"

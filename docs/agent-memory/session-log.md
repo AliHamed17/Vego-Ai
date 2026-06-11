@@ -1,0 +1,151 @@
+# Session Log
+
+Chronological prompt history for Codex and Claude.
+
+## 2026-06-11 14:43 +03:00 - Codex - Memory Tracking Setup
+
+- Request: Set up project-folder memory so Codex and Claude can track all issues, progress, prompt history, documentation, and revert notes.
+- Context found: workspace root was not a Git repository. Top-level files were one PDF and one large zip archive.
+- Actions taken: created shared memory conventions for Codex and Claude.
+- Files changed:
+  - `AGENTS.md`
+  - `CLAUDE.md`
+  - `docs/agent-memory/README.md`
+  - `docs/agent-memory/session-log.md`
+  - `docs/agent-memory/issues.md`
+  - `docs/agent-memory/decisions.md`
+  - `docs/agent-memory/revert-log.md`
+- Commands/checks:
+  - `Get-ChildItem -Force`
+  - `rg --files`
+  - `git status --short` failed because this folder is not a Git repository.
+- Status: completed.
+- Next steps: initialize Git if durable revert support is needed, after deciding whether the zip/PDF should be tracked.
+
+## 2026-06-11 14:48 +03:00 - Codex - Memory Workflow Strengthened
+
+- Request: Improve progress tracking and documentation so each prompt uses memory as a resource to understand flow/history and make better decisions.
+- Context found: basic shared memory existed, but there was no short current-state snapshot or progress tracker.
+- Actions taken: added current-state and progress files, updated Codex/Claude instructions, and expanded the memory README with a prompt checklist.
+- Files changed:
+  - `AGENTS.md`
+  - `CLAUDE.md`
+  - `docs/agent-memory/README.md`
+  - `docs/agent-memory/current-state.md`
+  - `docs/agent-memory/progress.md`
+  - `docs/agent-memory/session-log.md`
+  - `docs/agent-memory/revert-log.md`
+- Commands/checks:
+  - Read existing memory files with `Get-Content -Raw`.
+  - Listed project files with `rg --files`.
+- Status: completed.
+- Next steps: initialize Git if durable revert/history support is needed.
+
+## 2026-06-11 14:58 +03:00 - Codex - Scripted Memory Automation
+
+- Request: Pull all memory files and update memory automatically at each prompt.
+- Actions taken:
+  - Added prompt start script to generate compiled-memory.md
+  - Added prompt finish script to append prompt summaries and rollback notes
+  - Updated Codex and Claude instructions to run the scripts
+  - Added automation documentation
+  - Recorded automation boundary as an active issue/risk
+  - Generated compiled memory file
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - scripts/agent-memory-start.ps1
+  - scripts/agent-memory-finish.ps1
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/compiled-memory.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1
+  - .\\scripts\\agent-memory-finish.ps1 -DryRun
+  - .\\scripts\\agent-memory-finish.ps1
+- Status: completed
+- Next steps: Run the start script at the beginning of every meaningful prompt and the finish script before final response; initialize Git later for stronger rollback.
+
+## 2026-06-11 15:17 +03:00 - Codex - PhD Research Architecture
+
+- Request: Make the project a strong architecture for PhD research and project work.
+- Actions taken:
+  - Extracted the original VEGO-AI source package into VEGO-AI/ while keeping the zip untouched
+  - Added root project charter, README, Git hygiene, Python tooling, and environment example
+  - Added PhD research documentation for methodology, data management, ethics/IRB, validity, publication planning, and architecture
+  - Added experiment registry and experiment creation script
+  - Added data, outputs, reports, literature, papers, thesis, presentations, notebooks, source, tests, artifacts, and configs structure
+  - Added project health and Python bootstrap scripts
+  - Initialized Git and updated memory/issues/decisions to reflect baseline commit as next step
+  - Expanded compiled memory to include core architecture and research resources
+- Files changed:
+  - README.md
+  - PROJECT_CHARTER.md
+  - .gitignore
+  - .gitattributes
+  - .editorconfig
+  - .env.example
+  - pyproject.toml
+  - requirements-dev.txt
+  - VEGO-AI/
+  - docs/architecture/
+  - docs/research/
+  - docs/project-management/
+  - docs/adr/
+  - docs/templates/
+  - experiments/
+  - data/
+  - outputs/
+  - reports/
+  - literature/
+  - papers/
+  - thesis/
+  - presentations/
+  - notebooks/
+  - src/
+  - tests/
+  - artifacts/
+  - configs/
+  - scripts/project-health.ps1
+  - scripts/new-experiment.ps1
+  - scripts/bootstrap-python.ps1
+  - scripts/agent-memory-start.ps1
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1
+  - tar -tf VEGO-AI-20260611T112722Z-3-001.zip
+  - Expand-Archive -LiteralPath VEGO-AI-20260611T112722Z-3-001.zip -DestinationPath . -Force
+  - .\\scripts\\project-health.ps1
+  - PowerShell Parser.ParseFile for scripts
+  - python -m compileall -q VEGO-AI
+  - git init
+  - git status --short
+  - .\\scripts\\agent-memory-finish.ps1
+- Status: completed
+- Next steps: Review git status, configure Git user identity if needed, create the first baseline commit, audit data/IRB sensitivity, and map existing packaged results into experiment cards.
+
+## 2026-06-11 15:51 +03:00 - Codex - Enhancement Roadmap Discussion
+
+- Request: Ask what can be added or enhanced in the PhD research/project architecture.
+- Actions taken:
+  - Reviewed compiled project memory, progress, issues, roadmap, risks, and Git status
+  - Prepared a prioritized enhancement roadmap without changing project architecture files
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1
+  - Get-Content docs\\agent-memory\\current-state.md/progress.md/issues.md
+  - Get-Content docs\\project-management\\roadmap.md/risk-register.md
+  - git status --short
+  - .\\scripts\\agent-memory-finish.ps1
+- Status: completed
+- Next steps: Choose one enhancement package to implement next, preferably baseline Git commit, data/IRB audit, or experiment evidence mapping.

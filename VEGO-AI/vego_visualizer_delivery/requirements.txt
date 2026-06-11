@@ -1,0 +1,6 @@
+# Required to run visualize_compliance.py
+# tkinter is bundled with Python on Windows/Linux.
+# On macOS it may need: brew install python-tk
+
+Pillow>=9.0.0   # optional but recommended – enables zoom/resize on diagrams
+                # without it the diagram still displays (no zoom)
