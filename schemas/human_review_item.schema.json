@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vego-ai/schemas/human_review_item.schema.json",
+  "title": "VEGO-AI Human Review Item",
+  "description": "One human-review item emitted by the Selective Intervention Policy when Agent 4 (Variability Explorer) produces a variability classification that warrants human judgment. Each item corresponds to one recurring variability PATTERN (P1, P2, ...), not to a single case model.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "review_id",
+    "schema_version",
+    "setting_id",
+    "pattern_id",
+    "pipeline_stage",
+    "ai_decision",
+    "trigger_reasons",
+    "status"
+  ],
+  "properties": {
+    "review_id": {
+      "type": "string",
+      "description": "Stable, deduplicating identifier: HRQ-<setting_id>-<pattern_id>.",
+      "pattern": "^HRQ-.+-P[0-9]+$"
+    },
+    "schema_version": { "type": "string" },
+    "created_at": {
+      "type": "string",
+      "description": "ISO-8601 UTC timestamp when the item was generated."
+    },
+    "setting_id": {
+      "type": "string",
+      "enum": ["ucd_ch", "cd_ch", "ucd_pw", "cd_pw"]
+    },
+    "domain": { "type": "string", "description": "e.g. cheers | parkwise" },
+    "diagram_type": { "type": "string", "description": "UCD | CD" },
+    "pipeline_stage": {
+      "type": "string",
+      "description": "Stage that produced the AI decision.",
+      "enum": ["agent4_classify_variability"]
+    },
+    "pattern_id": { "type": "string", "pattern": "^P[0-9]+$" },
+    "pattern_kind": {
+      "type": "string",
+      "enum": ["guideline", "fragment", "unknown"],
+      "description": "Whether the pattern is a recurring guideline pattern or a recurring uncovered-fragment pattern."
+    },
+    "target_fragment": {
+      "type": "string",
+      "description": "Description of the pattern (joined from deviation_patterns)."
+    },
+    "related_guideline_id": {
+      "type": ["string", "null"],
+      "description": "Guideline the pattern concerns (Gj), if known."
+    },
+    "affected_cases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Case IDs in which the pattern recurs (joined from deviation_patterns)."
+    },
+    "pattern_strength": {
+      "type": ["string", "null"],
+      "description": "Recurrence strength as a percentage string, e.g. '22.5%'."
+    },
+    "ai_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "confidence", "flag_for_guidelines_update", "requires_human_review"],
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": ["Substantial Variability", "Occasional Variability", "Undetermined"]
+        },
+        "confidence": { "type": "string", "enum": ["High", "Medium", "Low"] },
+        "justification": { "type": "string" },
+        "evidence": { "type": "string" },
+        "flag_for_guidelines_update": { "type": "boolean" },
+        "requires_human_review": { "type": "boolean" }
+      }
+    },
+    "trigger_reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "agent_requested_human_review",
+          "undetermined_classification",
+          "low_confidence",
+          "medium_confidence",
+          "guideline_update_proposed"
+        ]
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "resolved", "dismissed"]
+    },
+    "feedback_id": {
+      "type": ["string", "null"],
+      "description": "Set in Milestone 2 once human feedback is attached (join key into the Human Feedback Schema)."
+    }
+  }
+}

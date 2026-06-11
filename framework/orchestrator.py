@@ -28,6 +28,7 @@ import agent1_language_advisor as a1
 import agent2_domain_advisor as a2
 import agent3_model_inspector as a3
 import agent4_variability_explorer as a4
+import human_review_queue as hrq  # Milestone 1: Human Review Queue hook
 
 logger = logging.getLogger(__name__)
 
@@ -608,6 +609,17 @@ async def run_setting(
     _write_json(output_dir / "variability_classifications.json",  state.variability_classifications)
     _write_json(output_dir / "lang_qa_history.json",              state.lang_qa_history)
     _write_json(output_dir / "dom_qa_history.json",               state.dom_qa_history)
+
+    # ── Human Review Queue (Milestone 1 — additive, never breaks a run) ──────
+    try:
+        hrq.build_and_write_for_setting(
+            state.variability_classifications,
+            state.deviation_patterns,
+            setting_id,
+            output_dir,
+        )
+    except Exception as exc:  # noqa: BLE001 - the queue must never fail the pipeline
+        logger.warning("Human review queue generation failed: %s", exc)
 
     logger.info("Setting %s complete. Results → %s/", setting_id, output_dir)
 

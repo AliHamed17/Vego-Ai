@@ -85,6 +85,7 @@ import agentB_domain_evaluator   as agB
 import agentC_case_scorer        as agC
 import agentD_variability_evaluator as agD
 import agent4_variability_explorer  as a4
+import human_review_queue as hrq  # Milestone 1: Human Review Queue hook
 from orchestrator import load_inputs
 
 logger = logging.getLogger(__name__)
@@ -647,6 +648,17 @@ async def phase_d(
     )
     variability_classes = await client.call(p42, label="agentD/classify_variability")
     _write_json(output_dir / "agentD_variability_classes.json", variability_classes)
+
+    # ── Human Review Queue (Milestone 1 — additive, never breaks a run) ──────
+    try:
+        hrq.build_and_write_for_setting(
+            variability_classes,
+            deviation_patterns,
+            cfg.get("setting_id", output_dir.name),
+            output_dir,
+        )
+    except Exception as exc:  # noqa: BLE001 - the queue must never fail the pipeline
+        logger.warning("Human review queue generation failed: %s", exc)
 
     substantial = sum(
         1 for v in variability_classes.get("variability_classifications", [])
