@@ -61,3 +61,20 @@ Durable decisions for this project.
 - Decision: Ignore `.claude/*.local.json`.
 - Reason: Claude local settings can contain machine-specific permission state and absolute paths that are not portable project configuration.
 - Consequence: Portable Claude instructions remain tracked in `CLAUDE.md` and `docs/agent-memory/claude-bootstrap-prompt.md`; local permission state stays untracked.
+
+## 2026-06-12 - Research OS And Confluence Sync
+
+- Decision: Use metadata-only research registers for artifact audit, provenance, and publishability before exposing deferred artifacts.
+- Decision: Generate four curated Confluence page bodies after meaningful prompts: wiki home, current state, update changelog, and research operations.
+- Decision: Keep Confluence target IDs in ignored `docs/confluence/wiki-sync-config.local.json`; track only `wiki-sync-config.template.json`.
+- Reason: The project needs an external latest wiki without copying controlled research artifacts or local machine state into Git/Confluence.
+- Consequence: Until real Confluence IDs are configured, agents generate ignored outbox pages and report live sync as pending.
+
+## 2026-06-12 - Milestone Branch/PR Discipline + Baseline Preservation
+
+- Decision: From Milestone 3 onward, milestone CODE goes on a feature branch (e.g. `feature/human-judgment-memory`) and lands on `main` via a reviewed PR. No direct commits of milestone code to `main` without review (applies to both Codex and Claude). Shared-memory/doc updates may still be committed directly.
+- Decision: Preserve the official VEGO-AI baseline (`2eeccb1`) as tag `official-vego-ai-baseline` and branch `baseline/official-vego-ai` on `origin`.
+- Decision: Adopt `main` as the canonical development branch (it already carries baseline + M1 + M1.2 + M2 at `217150c`). Do NOT merge `master` into `main` with `--allow-unrelated-histories`. Keep `master` + `feature/human-review-queue` as a granular-history archive; PR #1 closed as superseded.
+- Reason: A clean, reviewable audit trail is required for thesis reproducibility; M1/M2 had been published directly to `main`, losing per-milestone review.
+- Consequence: Future milestones use feature branches + PRs into `main`, approved before merge.
+- Status: M1 (Human Review Queue) + M1.2 (review_signature) + M2 (Human Feedback Manager) complete on `main`. M3 (Human Judgment Memory) is design-approved-pending — not yet coded.

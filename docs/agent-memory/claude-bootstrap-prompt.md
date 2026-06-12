@@ -204,8 +204,14 @@ If the prompt involved analysis, edits, debugging, planning, decisions, architec
    - next steps
    - rollback note
 
-3. Remember:
+3. Refresh the Confluence wiki layer:
+   .\scripts\build-confluence-wiki.ps1
+
+   If docs\confluence\wiki-sync-config.local.json contains real cloudId, spaceId, and page IDs, update the configured Confluence pages through Atlassian Rovo using Markdown content from docs\confluence\outbox\. If the local config is missing or still uses placeholders, leave the generated outbox as the pending wiki update.
+
+4. Remember:
    - `compiled-memory.md` is generated and should not be committed.
+   - `docs/confluence/outbox/` is generated and should not be committed.
    - Do not log secrets or sensitive private data.
    - Do not invent history. If unknown, write `Unknown`.
 
@@ -227,7 +233,8 @@ Your default behavior is:
 4. Implement with minimal necessary changes.
 5. Run checks.
 6. Update memory.
-7. Summarize clearly.
+7. Refresh Confluence outbox or live wiki pages.
+8. Summarize clearly.
 
 Do not treat this as a blank project. The memory is part of the project.
 ```

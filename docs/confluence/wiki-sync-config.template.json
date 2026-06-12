@@ -1,0 +1,24 @@
+{
+  "cloudId": "https://your-site.atlassian.net/wiki",
+  "spaceId": "YOUR_SPACE_ID_OR_KEY",
+  "parentId": "",
+  "contentFormat": "markdown",
+  "pages": {
+    "home": {
+      "title": "VEGO-AI Wiki Home",
+      "pageId": ""
+    },
+    "currentState": {
+      "title": "VEGO-AI Current State",
+      "pageId": ""
+    },
+    "changelog": {
+      "title": "VEGO-AI Update Changelog",
+      "pageId": ""
+    },
+    "researchOperations": {
+      "title": "VEGO-AI Research Operations",
+      "pageId": ""
+    }
+  }
+}

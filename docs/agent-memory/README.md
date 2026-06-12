@@ -13,6 +13,7 @@ This folder is the shared project memory for Codex and Claude.
 - `issues.md`: open, blocked, and resolved issues.
 - `decisions.md`: durable project decisions and why they were made.
 - `revert-log.md`: changed files and rollback notes.
+- `../confluence/wiki-sync.md`: curated Confluence wiki sync workflow.
 
 ## Workflow
 
@@ -21,7 +22,8 @@ This folder is the shared project memory for Codex and Claude.
 3. Do the requested work.
 4. Before the final response, run `.\scripts\agent-memory-finish.ps1` with the prompt summary.
 5. Update current state, progress, issues, and decisions manually when the work changes them.
-6. If Git is initialized later, include commit hashes in the session and revert logs.
+6. Run `.\scripts\build-confluence-wiki.ps1` to refresh the ignored wiki outbox, then update live Confluence if local target IDs are configured.
+7. If Git is initialized later, include commit hashes in the session and revert logs.
 
 ## Prompt Checklist
 

@@ -24,9 +24,13 @@ For each dataset, record:
 - storage location,
 - whether it can be published.
 
+Use `provenance-register.md` for source/ownership records and `publishability-register.md` for venue-specific sharing decisions.
+
 ## Sensitivity
 
 Treat student models, expert labels, and IRB-related material as controlled research data unless confirmed otherwise.
+
+Use `artifact-audit.md` as the metadata-only register for ignored/deferred artifacts. Do not copy controlled contents into Git, Confluence, or paper/thesis appendices until publishability is explicitly approved.
 
 Never store:
 
@@ -35,4 +39,3 @@ Never store:
 - private emails,
 - raw sensitive data without access control,
 - unpublished third-party material without permission.
-

@@ -320,3 +320,62 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\agent-memory-finish.ps1
 - Status: completed
 - Next steps: Commit and push the human-feedback docs/tests update; then continue with the data/IRB sensitivity and provenance audit.
+
+## 2026-06-12 20:23 +03:00 - Codex - Research OS And Confluence Sync Infrastructure
+
+- Request: Implement the VEGO-AI Research OS plus Confluence sync infrastructure plan.
+- Actions taken:
+  - Switched from feature/human-feedback-manager to main before editing because both branches matched origin/main
+  - Added metadata-only artifact audit, provenance register, and publishability register for controlled/deferred artifacts
+  - Created EXP-000 existing packaged results audit folder and updated the experiment registry
+  - Added Confluence wiki sync docs, placeholder config template, ignored local config/outbox, and a wiki outbox builder
+  - Updated Codex and Claude instructions so meaningful prompts finish with memory update, wiki outbox/live sync, then final response
+  - Added research-health checks and wired project-health to run them
+  - Updated roadmap, risk register, data management, ethics, navigation, issues, decisions, progress, and current state
+  - Generated four ignored Confluence outbox pages; live Confluence sync remains pending because target IDs are not configured
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/architecture/project-map.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/project-management/risk-register.md
+  - docs/project-management/roadmap.md
+  - docs/research/README.md
+  - docs/research/artifact-audit.md
+  - docs/research/data-management-plan.md
+  - docs/research/ethics-irb.md
+  - docs/research/provenance-register.md
+  - docs/research/publishability-register.md
+  - experiments/EXP-000-existing-packaged-results-audit/README.md
+  - experiments/EXP-000-existing-packaged-results-audit/config-manifest.md
+  - experiments/EXP-000-existing-packaged-results-audit/notes.md
+  - experiments/registry.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/project-health.ps1
+  - scripts/research-health.ps1
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - git status -sb
+  - git branch -vv
+  - git switch main
+  - .\scripts\project-health.ps1
+  - .\scripts\research-health.ps1
+  - .\scripts\build-confluence-wiki.ps1
+  - PowerShell Parser.ParseFile for scripts
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
+  - python -m pytest VEGO-AI\tests -q
+  - git status --short --ignored
+- Status: completed
+- Next steps: Commit and push the Research OS infrastructure; later fill docs/confluence/wiki-sync-config.local.json with real Confluence target IDs for live page updates.

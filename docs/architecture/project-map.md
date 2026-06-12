@@ -5,6 +5,7 @@
 | Layer | Folder | Rule |
 | --- | --- | --- |
 | Agent memory | `docs/agent-memory/` | Tracks prompt history, current state, issues, decisions, and rollback notes. |
+| Confluence sync | `docs/confluence/` | Generates curated wiki pages after memory updates; live sync requires local target IDs. |
 | Preserved source package | `VEGO-AI/` | Original runnable package extracted from the delivery zip. Keep behavior stable unless an experiment requires change. |
 | Future clean package | `src/` | Put reusable/refactored code here once behavior has tests. |
 | Research method | `docs/research/` | Research questions, methodology, validity, ethics, and reproducibility. |
@@ -21,7 +22,7 @@ Research notes may reference code and outputs. Code should not depend on researc
 See `workspace-diagram.md` for a GitHub-rendered diagram of the workspace flow.
 
 ```text
-research questions -> experiment protocol -> code/config -> outputs -> analysis -> paper/thesis claim
+research questions -> experiment protocol -> code/config -> outputs -> analysis -> paper/thesis claim -> curated wiki summary
 ```
 
 ## Source Package Boundary

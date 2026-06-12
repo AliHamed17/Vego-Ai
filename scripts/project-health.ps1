@@ -57,6 +57,12 @@ if ($missing.Count -gt 0) {
     throw "Project health failed. Missing paths: $($missing -join ', ')"
 }
 
+$researchHealthScript = Join-Path $PSScriptRoot "research-health.ps1"
+if (Test-Path -LiteralPath $researchHealthScript) {
+    Write-Host ""
+    Write-Host "Running research health check..."
+    & $researchHealthScript
+}
+
 Write-Host ""
 Write-Host "Project health check passed."
-

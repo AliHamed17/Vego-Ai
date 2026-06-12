@@ -82,6 +82,10 @@ VEGO-AI/vego_visualizer_delivery/guidelines/
 # Generated memory bundle
 docs/agent-memory/compiled-memory.md
 
+# Generated Confluence sync outbox and local target config
+docs/confluence/outbox/**
+docs/confluence/wiki-sync-config.local.json
+
 # Local Claude workspace permissions/state
 .claude/*.local.json
 

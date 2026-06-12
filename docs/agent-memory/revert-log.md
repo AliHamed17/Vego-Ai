@@ -153,3 +153,40 @@ Record file changes and rollback notes here.
   - docs/agent-memory/revert-log.md
 - Rollback note: Revert the commit that adds the Milestone 2 docs/tests and .gitignore Claude-local-settings rule if this continuation needs to be undone.
 - Git commit: none recorded by script.
+
+## 2026-06-12 20:23 +03:00 - Codex - Research OS And Confluence Sync Infrastructure
+
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/architecture/project-map.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/project-management/risk-register.md
+  - docs/project-management/roadmap.md
+  - docs/research/README.md
+  - docs/research/artifact-audit.md
+  - docs/research/data-management-plan.md
+  - docs/research/ethics-irb.md
+  - docs/research/provenance-register.md
+  - docs/research/publishability-register.md
+  - experiments/EXP-000-existing-packaged-results-audit/README.md
+  - experiments/EXP-000-existing-packaged-results-audit/config-manifest.md
+  - experiments/EXP-000-existing-packaged-results-audit/notes.md
+  - experiments/registry.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/project-health.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert the Research OS infrastructure commit to remove the new registers, Confluence sync workflow, EXP-000 folder, health script changes, and agent instruction updates. Generated docs/confluence/outbox files are ignored and can be deleted safely.
+- Git commit: none recorded by script.

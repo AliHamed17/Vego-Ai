@@ -6,6 +6,8 @@ Unknown from the repository alone.
 
 The open PDF filename references IRB, so future work should verify the approved protocol, consent constraints, anonymization rules, and publication permissions before sharing data or examples.
 
+Until this checklist is completed, deferred artifacts remain `Controlled / do not publish` in `artifact-audit.md` and `publishability-register.md`.
+
 ## Checklist
 
 - IRB protocol identifier:
@@ -21,4 +23,3 @@ The open PDF filename references IRB, so future work should verify the approved 
 ## Rule
 
 If a file may contain participant, student, expert, or institutional data, treat it as controlled until proven safe.
-

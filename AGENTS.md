@@ -21,6 +21,9 @@ Update the memory files before the final answer whenever the prompt involved ana
 - Update `docs/agent-memory/issues.md` when an issue is found, changed, blocked, or resolved.
 - Update `docs/agent-memory/decisions.md` when a durable decision is made.
 - Update `docs/agent-memory/revert-log.md` for any file changes, including a short rollback note.
+- Run `.\scripts\build-confluence-wiki.ps1` after memory updates.
+- If `docs/confluence/wiki-sync-config.local.json` contains real Confluence IDs, update the configured Confluence pages with Atlassian Rovo using Markdown content. If IDs are missing, treat the generated `docs/confluence/outbox/` files as the pending wiki update.
+- Confluence sync is an agent-enforced workflow, not a background service.
 
 ## Logging Rules
 
@@ -51,3 +54,4 @@ Update the memory files before the final answer whenever the prompt involved ana
 - `docs/agent-memory/revert-log.md`: change and rollback notes.
 - `docs/agent-memory/automation.md`: script workflow for prompt start/end.
 - `docs/agent-memory/compiled-memory.md`: generated combined memory file.
+- `docs/confluence/wiki-sync.md`: Confluence wiki sync workflow and target configuration rules.

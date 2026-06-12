@@ -16,6 +16,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | Workspace architecture diagram added | Done | Added a GitHub-rendered Mermaid diagram and linked it from the architecture docs and root README. |
 | 2026-06-11 | Human feedback manager files added | Done | Added structured human-feedback schema, example feedback input, manager module, and review item feedback/status fields. |
 | 2026-06-12 | Human feedback manager docs/tests added | Done | Added Milestone 2 documentation and tests; full VEGO-AI test suite passes with 30 tests. |
+| 2026-06-12 | Research OS and Confluence sync infrastructure added | In progress | Added research audit registers, EXP-000 folder, Confluence sync docs/config/outbox builder, and research health checks. |
 
 ## Active Work
 
@@ -23,7 +24,8 @@ Track milestones, current work, and next steps here.
 | --- | --- | --- | --- | --- |
 | TASK-001 | 2026-06-11 | Done | Durable revert support started by adding `.gitignore`, initializing Git, and pushing a safe baseline. | Continue using commits for every meaningful change. |
 | TASK-003 | 2026-06-11 | Open | Audit data sensitivity and provenance. | Review `VEGO-AI/inputs/`, `VEGO-AI/models/`, `VEGO-AI/analysis/`, and the IRB-related PDF. |
-| TASK-004 | 2026-06-11 | Open | Map existing paper/package results to experiments. | Start with `EXP-000` in `experiments/registry.md`. |
+| TASK-004 | 2026-06-11 | In progress | Map existing paper/package results to experiments. | Continue `EXP-000-existing-packaged-results-audit` without copying controlled artifacts into Git. |
+| TASK-005 | 2026-06-12 | In progress | Keep curated Confluence wiki current. | Generate outbox after memory updates; configure live IDs later. |
 
 ## Completed Work
 
@@ -38,10 +40,12 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | Added and linked the workspace architecture diagram. | `README.md`, `docs/architecture/README.md`, `docs/architecture/project-map.md`, `docs/architecture/workspace-diagram.md` |
 | 2026-06-11 | Added human-feedback manager files and schema fields. | `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, `VEGO-AI/schemas/human_review_item.schema.json` |
 | 2026-06-12 | Added human-feedback manager docs/tests and ignored local Claude settings. | `.gitignore`, `VEGO-AI/README.md`, `VEGO-AI/docs/human_feedback_manager.md`, `VEGO-AI/docs/human_review_queue.md`, `VEGO-AI/tests/test_human_feedback_manager.py` |
+| 2026-06-12 | Added Research OS and Confluence sync infrastructure. | `docs/research/`, `docs/confluence/`, `experiments/EXP-000-existing-packaged-results-audit/`, `scripts/build-confluence-wiki.ps1`, `scripts/research-health.ps1` |
 
 ## Next Steps
 
-1. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-2. Convert existing package results into experiment cards.
-3. Add tests around evaluator/scoring/parsing behavior.
-4. Continue running the prompt start/end memory scripts for every meaningful prompt.
+1. Fill Confluence local target IDs when available so outbox pages can be pushed live.
+2. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+3. Convert existing package results into evidence entries under `EXP-000`.
+4. Add tests around evaluator/scoring/parsing behavior.
+5. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

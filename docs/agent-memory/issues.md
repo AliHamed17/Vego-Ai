@@ -8,6 +8,7 @@ Track project issues here. Keep active issues near the top.
 | --- | --- | --- | --- | --- | --- | --- |
 | ISS-002 | 2026-06-11 | Codex | Low | Open | Prompt memory automation is script/instruction based, not a background service or native runtime hook. | Use the scripts consistently; consider native hooks later if the active tools support them. |
 | ISS-004 | 2026-06-11 | Codex | Medium | Open | Data sensitivity, provenance, and IRB constraints are not audited yet. | Complete `docs/research/data-management-plan.md` and `docs/research/ethics-irb.md` checklists. |
+| ISS-005 | 2026-06-12 | Codex | Low | Open | Live Confluence sync target IDs are not configured yet. | Fill `docs/confluence/wiki-sync-config.local.json` with real cloud, space, parent, and page IDs when available. |
 
 ## Blocked
 

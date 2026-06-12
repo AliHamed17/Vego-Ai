@@ -50,6 +50,16 @@ Run:
 
 The finish script appends to `session-log.md`, optionally appends to `revert-log.md`, and regenerates `compiled-memory.md`.
 
+Then refresh the Confluence wiki layer:
+
+```powershell
+.\scripts\build-confluence-wiki.ps1
+```
+
+If `docs/confluence/wiki-sync-config.local.json` contains real `cloudId`, `spaceId`, and page IDs, update the configured Confluence pages through Atlassian Rovo with Markdown content from `docs/confluence/outbox/`. If the local config is missing or still has placeholders, leave the ignored outbox files as the pending wiki update.
+
+Confluence sync is agent-enforced automation. It is not a background service.
+
 ## What Still Requires Agent Judgment
 
 The scripts can pull files and standardize entries, but they cannot safely infer new issues, decisions, or project state. Agents must still update these files when relevant:
