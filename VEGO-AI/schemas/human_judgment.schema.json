@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vego-ai/schemas/human_judgment.schema.json",
+  "title": "VEGO-AI Human Judgment (Memory item)",
+  "description": "One reusable human judgment distilled from a resolved Human Review Queue item (Milestone 3). Stored in human_judgment_memory.jsonl and retrieved by simple, explainable matching. M3 does NOT change any AI decision.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "memory_id",
+    "memory_signature",
+    "schema_version",
+    "created_at",
+    "status",
+    "conflict_status",
+    "source_review_id",
+    "source_review_signature",
+    "source_feedback_id",
+    "domain",
+    "diagram_type",
+    "related_guideline_id",
+    "target_fragment",
+    "decision_type",
+    "human_decision",
+    "rationale",
+    "reuse_scope",
+    "provenance"
+  ],
+  "properties": {
+    "memory_id": {
+      "type": "string",
+      "description": "Human-readable id: HJM-<setting>-<pattern_id>.",
+      "pattern": "^HJM-.+-P[0-9]+$"
+    },
+    "memory_signature": {
+      "type": "string",
+      "description": "Deterministic sha256/16-hex over the stable judgment fields (signature_fields).",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "signature_fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "schema_version": { "type": "string" },
+    "created_at": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["active", "retired"]
+    },
+    "conflict_status": {
+      "type": "string",
+      "enum": ["none", "needs_adjudication"]
+    },
+    "conflicting_memory_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other memory_ids this judgment conflicts with (when conflict_status=needs_adjudication)."
+    },
+    "source_review_id": { "type": "string", "pattern": "^HRQ-.+-P[0-9]+$" },
+    "source_review_signature": { "type": "string", "pattern": "^[0-9a-f]{16}$" },
+    "source_feedback_id": { "type": "string" },
+    "domain": { "type": "string" },
+    "diagram_type": { "type": "string" },
+    "related_guideline_id": {
+      "type": ["string", "null"],
+      "description": "Guideline (Gj) the judgment concerns, or null."
+    },
+    "target_fragment": {
+      "type": "string",
+      "description": "Pattern description the judgment is about (a.k.a. pattern_description)."
+    },
+    "decision_type": {
+      "type": "string",
+      "enum": [
+        "approve_ai_decision",
+        "reject_ai_decision",
+        "correct_classification",
+        "valid_alternative",
+        "modeling_error",
+        "domain_specific",
+        "pedagogical_issue",
+        "ambiguous",
+        "needs_guideline_update"
+      ]
+    },
+    "human_classification": {
+      "type": ["string", "null"],
+      "enum": ["Substantial Variability", "Occasional Variability", "Undetermined", null]
+    },
+    "confidence": { "type": "string", "enum": ["High", "Medium", "Low"] },
+    "human_decision": {
+      "type": "object",
+      "description": "The full human_decision object copied from the source feedback.",
+      "additionalProperties": true
+    },
+    "rationale": { "type": "string", "minLength": 1 },
+    "expert_id": { "type": "string" },
+    "reuse_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "domain": { "type": "string" },
+        "diagram_type": { "type": "string" },
+        "applies_to_future_models": { "type": "boolean" },
+        "limitations": { "type": "string" }
+      }
+    },
+    "guideline_update": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "Optional guideline-update suggestion carried from the feedback (not applied in M3)."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_system", "source_setting", "source_pattern_id", "source_schema_versions"],
+      "properties": {
+        "source_system": { "type": "string" },
+        "source_setting": { "type": "string" },
+        "source_pattern_id": { "type": "string", "pattern": "^P[0-9]+$" },
+        "source_commit": { "type": "string" },
+        "source_schema_versions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "review_item_schema": { "type": "string" },
+            "feedback_schema": { "type": "string" },
+            "judgment_schema": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
