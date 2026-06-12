@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vego-ai/schemas/memory_advice.schema.json",
+  "title": "VEGO-AI Memory Advice Report (Milestone 4A)",
+  "description": "Advisory-only report. For each Agent 4 variability pattern, retrieves relevant prior human judgments from Human Judgment Memory and presents them as evidence. M4A NEVER changes an AI classification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "setting_id", "advice_mode", "generated_at", "provenance", "advice"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "setting_id": { "type": "string" },
+    "advice_mode": { "type": "string", "const": "advisory_only" },
+    "generated_at": { "type": "string" },
+    "provenance": { "$ref": "#/definitions/provenance" },
+    "advice": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/advice_item" }
+    }
+  },
+  "definitions": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_memory_file", "source_agent4_files"],
+      "properties": {
+        "source_memory_file": { "type": "string" },
+        "source_agent4_files": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "deviation_patterns": { "type": ["string", "null"] },
+            "variability_classes": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "advice_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "advice_id", "setting_id", "pattern_id",
+        "advice_mode", "ai_classification_changed", "original_ai_classification",
+        "query", "advice_strength", "advice_summary", "memory_matches",
+        "has_conflicting_memory", "conflict_note", "recommended_use", "provenance"
+      ],
+      "properties": {
+        "schema_version": { "type": "string" },
+        "advice_id": { "type": "string", "pattern": "^MADV-.+-P[0-9]+$" },
+        "setting_id": { "type": "string" },
+        "pattern_id": { "type": "string", "pattern": "^P[0-9]+$" },
+        "advice_mode": { "type": "string", "const": "advisory_only" },
+        "ai_classification_changed": { "type": "boolean", "const": false },
+        "original_ai_classification": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "classification": { "type": ["string", "null"] },
+            "confidence": { "type": ["string", "null"] },
+            "requires_human_review": { "type": ["boolean", "null"] },
+            "flag_for_guidelines_update": { "type": ["boolean", "null"] }
+          }
+        },
+        "query": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "domain": { "type": ["string", "null"] },
+            "diagram_type": { "type": ["string", "null"] },
+            "related_guideline_id": { "type": ["string", "null"] },
+            "keywords": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "advice_strength": {
+          "type": "string",
+          "enum": ["none", "weak", "moderate", "strong", "conflicting"]
+        },
+        "advice_summary": { "type": "string" },
+        "memory_matches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["memory_id", "memory_signature", "match_score", "match_reasons"],
+            "properties": {
+              "memory_id": { "type": "string" },
+              "memory_signature": { "type": "string" },
+              "match_score": { "type": "integer" },
+              "match_reasons": { "type": "array", "items": { "type": "string" } },
+              "match_warning": { "type": ["string", "null"] },
+              "human_decision": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "decision_type": { "type": ["string", "null"] },
+                  "classification": { "type": ["string", "null"] },
+                  "rationale": { "type": ["string", "null"] }
+                }
+              },
+              "reuse_scope": { "type": "object", "additionalProperties": true }
+            }
+          }
+        },
+        "has_conflicting_memory": { "type": "boolean" },
+        "conflict_note": { "type": ["string", "null"] },
+        "recommended_use": { "type": "string" },
+        "provenance": { "$ref": "#/definitions/provenance" }
+      }
+    }
+  }
+}
