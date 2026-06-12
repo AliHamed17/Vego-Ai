@@ -4,13 +4,14 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-12 20:41 +03:00 by Codex.
+- 2026-06-12 22:17 +03:00 by Codex.
 
 ## Project Goal
 
 - Maintain a shared project memory so every prompt can use prior context, progress, issues, decisions, and rollback notes.
 - Support both Codex and Claude with plain Markdown documentation.
-- Maintain a PhD-ready VEGO-AI research workspace with source, experiments, data governance, papers, thesis work, and reproducibility documentation.
+- Maintain an MSc-thesis-ready and PhD-continuation VEGO-AI research workspace with source, experiments, data governance, papers, thesis work, and reproducibility documentation.
+- Keep reusable human judgment in AI-assisted domain model assessment as the explicit research spine.
 
 ## Latest Known State
 
@@ -26,6 +27,12 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Safe GitHub baseline intentionally excludes root PDF, zip archives, generated outputs, compiled memory, model files, analysis files, eval outputs, visualizer bundled data, generated review queues, bundled executable, and `get-pip.py`.
 - Human-feedback workflow files now include `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, and feedback attachment/status fields in `VEGO-AI/schemas/human_review_item.schema.json`.
 - Human-feedback manager documentation and tests now exist at `VEGO-AI/docs/human_feedback_manager.md` and `VEGO-AI/tests/test_human_feedback_manager.py`.
+- Milestone 3 Human Judgment Memory is implemented and published on `origin/main` as commit `5e109e5`.
+- M3 remains inert: no Agent 4 wiring, no embeddings, and no visualizer changes.
+- Milestone 4A Human Judgment Memory Advisory Layer was reviewed by Codex in PR #2 and squash-merged to `origin/main` as commit `ecd0972`.
+- M4A retrieves relevant Human Judgment Memory for Agent 4 patterns and emits advisory-only memory advice; it does not change AI classifications.
+- The main research question now centers on reusable human judgment in human-AI collaboration for AI-assisted domain modeling and model assessment.
+- New planning artifacts define the literature-review taxonomy, C0-C4B evaluation plan, thesis outline, claim/evidence table, and EXP-001 planned M4B experiment shell.
 - Core orientation files exist:
   - `README.md`
   - `PROJECT_CHARTER.md`
@@ -59,9 +66,12 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Real revert support is now available through Git for tracked safe-baseline files.
 - Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
+- M4B memory-informed Agent 4 reclassification is planned but not implemented; do not claim behavior improvement until the controlled C4B experiment is run.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
 - Confluence sync currently operates as generated outbox only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted.
 
 ## Next Best Step
 
+- Draft M4B design only; do not implement until the design is reviewed.
+- Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting how Human Judgment Memory advice is supplied to Agent 4.
 - Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`; then create/update the Confluence child pages and record their IDs locally.

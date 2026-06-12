@@ -2,16 +2,17 @@
 
 ## Working Title
 
-VEGO-AI: Agentic AI for Variability Exploration of Domain Models.
+VEGO-AI: Reusable Human Judgment in AI-Assisted Domain Model Assessment.
 
 ## Research Purpose
 
-Develop, evaluate, and document an agentic AI workflow that supports variability exploration in domain models, with careful attention to reproducibility, validity, expert comparison, and research traceability.
+Develop, evaluate, and document an agentic AI workflow that supports variability exploration in domain models while making human expert judgment selectively triggered, structurally captured, and reusable for later model assessment.
 
 ## Primary Outcomes
 
 - A reproducible research pipeline for VEGO-AI experiments.
 - A documented evaluation methodology.
+- A reusable human judgment mechanism for human-AI co-reasoning in model assessment.
 - Evidence tables, figures, and analysis artifacts for papers and thesis chapters.
 - A maintainable codebase that can evolve from prototype to reusable research software.
 - A prompt and decision history that helps Codex and Claude continue work with context.
@@ -46,4 +47,3 @@ Out of scope unless explicitly requested:
 - Clear separation between raw inputs, source code, generated outputs, and interpretation.
 - No secrets in tracked files.
 - Research notes are written so a future examiner, collaborator, or agent can understand why a result exists.
-

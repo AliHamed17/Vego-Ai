@@ -1,6 +1,6 @@
-# VEGO-AI PhD Research Workspace
+# VEGO-AI Research Workspace
 
-This repository is the working PhD research and project workspace for VEGO-AI: agentic AI support for variability exploration of domain models.
+This repository is the working MSc thesis and PhD-continuation workspace for VEGO-AI: agentic AI support for variability exploration of domain models, centered on reusable human judgment in AI-assisted model assessment.
 
 The workspace is organized so research context, source code, experiments, data, outputs, papers, thesis material, and agent memory stay separate but connected.
 

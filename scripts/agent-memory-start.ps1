@@ -14,6 +14,7 @@ $orderedPaths = @(
     "docs/agent-memory/progress.md",
     "docs/agent-memory/issues.md",
     "docs/agent-memory/decisions.md",
+    "docs/agent-memory/milestone-workflow-rules.md",
     "docs/agent-memory/session-log.md",
     "docs/agent-memory/revert-log.md",
     "docs/agent-memory/README.md",

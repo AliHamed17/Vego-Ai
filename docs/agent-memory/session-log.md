@@ -423,3 +423,110 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\agent-memory-finish.ps1
 - Status: completed with live sync blocked
 - Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update page 294914 and create/update the three child pages from docs/confluence/outbox.
+
+## 2026-06-12 21:39 +03:00 - Codex - Reusable Human Judgment Research Story Hardening
+
+- Request: Implement the Research Story Hardening Around Reusable Human Judgment plan: publish M3, reframe research/thesis docs, add evaluation/literature planning, keep M3 inert, and prepare M4 as the next controlled experiment.
+- Actions taken:
+  - Verified and pushed M3 commit 5e109e5 to origin/main before research-story edits.
+  - Reframed the project around reusable human judgment in AI-assisted domain model assessment.
+  - Added literature taxonomy, C0-C4 evaluation plan, and EXP-001 M4 controlled experiment shell.
+  - Updated thesis outline, claim/evidence table, roadmap, risk register, research docs, and memory decisions.
+  - Kept M3 inert and recorded M4 as a planned controlled experiment only.
+- Files changed:
+  - README.md
+  - PROJECT_CHARTER.md
+  - docs/research/research-plan.md
+  - docs/research/methodology.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/evaluation-plan.md
+  - docs/research/README.md
+  - docs/research/publication-plan.md
+  - docs/research/validity-threats.md
+  - thesis/outline.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - docs/project-management/roadmap.md
+  - docs/project-management/risk-register.md
+  - experiments/registry.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - scripts/research-health.ps1
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+- Commands/checks:
+  - git push origin main -> pushed 5e109e5 before docs edits
+  - python -m pytest VEGO-AI\tests -q -> 45 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
+  - PowerShell parser check for scripts -> passed
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+- Status: completed
+- Next steps: Run EXP-001/C4 after audited input selection; grant Atlassian Rovo access before live Confluence sync.
+
+## 2026-06-12 21:47 +03:00 - Codex - Confluence Access Recheck
+
+- Request: Verify whether live Confluence sync can proceed after regenerating the wiki outbox.
+- Actions taken:
+  - Attempted to read Confluence home page 294914 through Atlassian Rovo.
+  - Confirmed live sync is still blocked because the Atlassian cloud is not explicitly granted.
+  - Updated ISS-005 with the latest access-check timestamp.
+- Files changed:
+  - docs/agent-memory/issues.md
+- Commands/checks:
+  - Atlassian Rovo _getconfluencepage cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec page 294914 -> blocked: cloud is not explicitly granted
+- Status: blocked for live sync; local outbox remains generated
+- Next steps: Grant Atlassian Rovo access to the configured cloud, then update page 294914 and child pages from docs/confluence/outbox.
+
+## 2026-06-12 22:29 +03:00 - Codex - M4A PR Review Merge And Research Story Update
+
+- Request: Read the attached PR #2/M4A instruction, review M4A before merge, apply any clear review fixes, merge if approved, and keep M4B design-only.
+- Actions taken:
+  - Reviewed GitHub PR #2 for Milestone 4A Memory Advisory Layer.
+  - Confirmed PR scope added only four M4A files and did not modify Agent 2, Agent 4, orchestrator, evaluator, visualizer, or baseline outputs.
+  - Added review fixes for missing-memory handling and schema-valid default provenance on feature/memory-advisor, then pushed commit 691a6eb.
+  - Posted Codex review report as a PR comment because GitHub would not allow the repository owner account to approve its own PR.
+  - Squash-merged PR #2 into main as ecd0972.
+  - Updated research, roadmap, thesis, experiment, and memory docs to split M4A advisory evidence from M4B design-only reclassification.
+- Files changed:
+  - VEGO-AI/docs/memory_advisor.md via PR #2
+  - VEGO-AI/framework/memory_advisor.py via PR #2
+  - VEGO-AI/schemas/memory_advice.schema.json via PR #2
+  - VEGO-AI/tests/test_memory_advisor.py via PR #2
+  - README.md
+  - PROJECT_CHARTER.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/milestone-workflow-rules.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/research/research-plan.md
+  - docs/research/methodology.md
+  - docs/research/evaluation-plan.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/publication-plan.md
+  - docs/research/validity-threats.md
+  - docs/project-management/roadmap.md
+  - docs/project-management/risk-register.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - thesis/outline.md
+  - experiments/registry.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - scripts/agent-memory-start.ps1
+  - scripts/research-health.ps1
+- Commands/checks:
+  - gh pr view 2 --repo AliHamed17/Vego-Ai -> open, mergeable, four-file M4A PR
+  - python -m pytest VEGO-AI\tests -q -> 57 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
+  - Generated and schema-validated ucd_ch memory advice -> 8 items, none:5, strong:2, moderate:1, classification changes:0
+  - Missing-memory CLI check -> generated advisory-only none advice with 0 classification changes
+  - gh pr comment 2 -> posted Codex review report
+  - gh pr review --approve -> failed because GitHub cannot approve own PR
+  - gh pr merge 2 --squash -> merged as ecd0972
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - PowerShell parser check for scripts -> passed
+- Status: completed
+- Next steps: Ask Claude to refresh the M1-M2-M3-M4A artifact ZIP and manifest; draft M4B design only; grant Atlassian Rovo access before live Confluence sync.

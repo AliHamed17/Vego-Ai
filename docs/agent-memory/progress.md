@@ -18,6 +18,9 @@ Track milestones, current work, and next steps here.
 | 2026-06-12 | Human feedback manager docs/tests added | Done | Added Milestone 2 documentation and tests; full VEGO-AI test suite passes with 30 tests. |
 | 2026-06-12 | Research OS and Confluence sync infrastructure added | In progress | Added research audit registers, EXP-000 folder, Confluence sync docs/config/outbox builder, and research health checks. |
 | 2026-06-12 | Confluence live target configured locally | In progress | Local config targets page `294914`; live sync blocked until Atlassian Rovo cloud access is granted. |
+| 2026-06-12 | M3 Human Judgment Memory published | Done | Verified 45 tests, compileall, health checks, secret/forbidden audits, then pushed commit `5e109e5` to `origin/main`. |
+| 2026-06-12 | Reusable human judgment research story hardened | Done | Updated research plan, methodology, evaluation plan, literature taxonomy, thesis outline, claim/evidence table, roadmap, risks, and EXP-001 shell. |
+| 2026-06-12 | M4A Memory Advisory Layer reviewed and merged | Done | Reviewed PR #2, added edge-case fixes, posted review report, and squash-merged as `ecd0972`. |
 
 ## Active Work
 
@@ -27,6 +30,7 @@ Track milestones, current work, and next steps here.
 | TASK-003 | 2026-06-11 | Open | Audit data sensitivity and provenance. | Review `VEGO-AI/inputs/`, `VEGO-AI/models/`, `VEGO-AI/analysis/`, and the IRB-related PDF. |
 | TASK-004 | 2026-06-11 | In progress | Map existing paper/package results to experiments. | Continue `EXP-000-existing-packaged-results-audit` without copying controlled artifacts into Git. |
 | TASK-005 | 2026-06-12 | Blocked | Keep curated Confluence wiki current. | Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, then create/update child pages and store page IDs in local config. |
+| TASK-006 | 2026-06-12 | Planned | Design M4B memory-informed Agent 4 controlled experiment. | Draft design only; no implementation until review. |
 
 ## Completed Work
 
@@ -43,11 +47,17 @@ Track milestones, current work, and next steps here.
 | 2026-06-12 | Added human-feedback manager docs/tests and ignored local Claude settings. | `.gitignore`, `VEGO-AI/README.md`, `VEGO-AI/docs/human_feedback_manager.md`, `VEGO-AI/docs/human_review_queue.md`, `VEGO-AI/tests/test_human_feedback_manager.py` |
 | 2026-06-12 | Added Research OS and Confluence sync infrastructure. | `docs/research/`, `docs/confluence/`, `experiments/EXP-000-existing-packaged-results-audit/`, `scripts/build-confluence-wiki.ps1`, `scripts/research-health.ps1` |
 | 2026-06-12 | Configured ignored local Confluence target. | `docs/confluence/wiki-sync-config.local.json` (ignored), `docs/confluence/wiki-sync.md`, agent instruction files |
+| 2026-06-12 | Published M3 Human Judgment Memory to GitHub. | Commit `5e109e5` on `origin/main` |
+| 2026-06-12 | Hardened the MSc/PhD research story around reusable human judgment. | `PROJECT_CHARTER.md`, `docs/research/*`, `thesis/outline.md`, `papers/mas4models2026/claim-evidence-table.md`, `docs/project-management/*`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md` |
+| 2026-06-12 | Reviewed and merged M4A advisory layer. | PR #2, commit `ecd0972`, `VEGO-AI/framework/memory_advisor.py`, `VEGO-AI/schemas/memory_advice.schema.json`, `VEGO-AI/tests/test_memory_advisor.py`, `VEGO-AI/docs/memory_advisor.md` |
 
 ## Next Steps
 
-1. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-2. Create/update the three Confluence child pages and store their IDs in ignored local config.
-3. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-4. Convert existing package results into evidence entries under `EXP-000`.
-5. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+1. Ask Claude to refresh the review artifact with M1-M2-M3-M4A files and manifest.
+2. Draft M4B design only; do not implement M4B until reviewed.
+3. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
+4. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+5. Create/update the three Confluence child pages and store their IDs in ignored local config.
+6. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+7. Convert existing package results into evidence entries under `EXP-000`.
+8. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

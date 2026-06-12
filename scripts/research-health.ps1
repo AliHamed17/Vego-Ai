@@ -6,6 +6,8 @@ $ErrorActionPreference = "Stop"
 $repoRoot = Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")
 $requiredPaths = @(
     "docs/research/artifact-audit.md",
+    "docs/research/evaluation-plan.md",
+    "docs/research/literature-review-taxonomy.md",
     "docs/research/provenance-register.md",
     "docs/research/publishability-register.md",
     "docs/confluence/wiki-sync.md",

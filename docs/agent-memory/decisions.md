@@ -85,4 +85,27 @@ Durable decisions for this project.
 - Decision: Adopt `main` as the canonical development branch (it already carries baseline + M1 + M1.2 + M2 at `217150c`). Do NOT merge `master` into `main` with `--allow-unrelated-histories`. Keep `master` + `feature/human-review-queue` as a granular-history archive; PR #1 closed as superseded.
 - Reason: A clean, reviewable audit trail is required for thesis reproducibility; M1/M2 had been published directly to `main`, losing per-milestone review.
 - Consequence: Future milestones use feature branches + PRs into `main`, approved before merge.
-- Status: M1 (Human Review Queue) + M1.2 (review_signature) + M2 (Human Feedback Manager) complete on `main`. M3 (Human Judgment Memory) is design-approved-pending — not yet coded.
+- Status: M1 (Human Review Queue) + M1.2 (review_signature) + M2 (Human Feedback Manager) complete on `main`. M3 (Human Judgment Memory) was implemented and published as commit `5e109e5`.
+
+## 2026-06-12 - Reusable Human Judgment Research Spine
+
+- Decision: Make reusable human judgment in AI-assisted domain model assessment the explicit research spine for VEGO-AI.
+- Decision: Use the main research question: "What approaches have been proposed to support human-AI collaboration in AI-assisted domain modeling and model assessment, and how can they inform the design of reusable human judgment mechanisms in systems such as VEGO-AI?"
+- Decision: Use the contribution statement: "selectively triggered, structurally captured, and stored as reusable knowledge."
+- Reason: The research review identified this framing as the strongest MSc thesis foundation and the clearest bridge to PhD continuation.
+- Consequence: Research docs, thesis outline, evaluation plan, roadmap, and claim/evidence tracking should align to M1 selective review, M2 structured feedback, M3 reusable memory, M4A advisory evidence, and M4B controlled reuse.
+
+## 2026-06-12 - M3 Inert Boundary And M4 Controlled Reuse
+
+- Decision: Treat M3 Human Judgment Memory as implemented but inert.
+- Decision: Do not wire memory into Agent 4, embeddings, guideline mutation, or the visualizer until a separate controlled experiment is run.
+- Reason: The thesis needs a clean distinction between building reusable knowledge and proving that reused knowledge improves AI-assisted variability interpretation.
+- Consequence: M4A is advisory-only; M4B/EXP-001 is the next behavior-changing controlled experiment and behavior-improvement claims wait for C4B evidence.
+
+## 2026-06-12 - M4A Advisory Boundary And M4B Design Gate
+
+- Decision: Treat M4A as an advisory-only bridge from Human Judgment Memory to future model assessment.
+- Decision: M4A may retrieve relevant human judgments and generate `memory_advice.json`, but it must not change Agent 4 classifications, prompts, guidelines, visualizer behavior, or baseline evaluation outputs.
+- Decision: M4B is design-only until separately reviewed; it must preserve original Agent 4 output and produce a comparison rather than replacing the baseline classification.
+- Reason: PR #2 showed the safe bridge needed before any behavior-changing memory-informed reclassification.
+- Consequence: Future M4B plans must include `original_agent4_classification`, `memory_advice`, `memory_informed_classification`, `classification_changed?`, `change_reason`, and `human_memory_used`.

@@ -5,13 +5,16 @@
 | ID | Milestone | Status | Exit Criteria |
 | --- | --- | --- | --- |
 | M0 | Architecture baseline | Done | Folder structure, Git hygiene, memory, GitHub baseline, and docs are in place. |
-| M1 | Data and artifact audit | In progress | Data sensitivity, provenance, and publishability recorded without exposing controlled contents. |
-| M2 | Reproducibility baseline | In progress | Framework/evaluator commands rerun or validated; generated outputs are linked to experiment records. |
-| M3 | Experiment registry complete | In progress | Existing paper results mapped to experiment cards, starting with `EXP-000-existing-packaged-results-audit`. |
-| M4 | Test harness | In progress | Core human-review/human-feedback tests exist; evaluator/scoring/parsing tests still need expansion. |
-| M5 | Paper evidence table | Not started | Claims linked to outputs and figures. |
-| M6 | Thesis scaffold | Not started | Chapters, evidence map, and writing plan ready. |
-| M7 | Confluence wiki sync | In progress | Curated wiki pages generated after meaningful prompts; live Confluence updates wait for target IDs. |
+| M1 | Human Review Queue | Done | Selective intervention creates signed review items with trigger reasons. |
+| M2 | Human Feedback Manager | Done | Structured feedback validates, attaches to review items, and preserves status/signatures. |
+| M3 | Human Judgment Memory | Done | Reusable resolved judgments are stored with provenance, explainable retrieval, and conflict detection; published as commit `5e109e5`. |
+| M4A | Memory Advisory Layer | Done | Advisory report retrieves relevant memory for Agent 4 patterns with `ai_classification_changed=false`; PR #2 squash-merged as `ecd0972`. |
+| M4B | Memory-informed Agent 4 experiment | Design-only | Controlled C4B experiment supplies relevant M4A advice as explicit context and compares outputs to C0-C4A. |
+| M5 | Human-approved guideline refinement | Planned | Guideline changes require explicit human approval and traceable provenance. |
+| M6 | MSc thesis evidence and PhD continuation | Planned | Claim/evidence table, C0-C4 results, validity analysis, and continuation roadmap are coherent. |
+| OPS-1 | Data and artifact audit | In progress | Data sensitivity, provenance, and publishability recorded without exposing controlled contents. |
+| OPS-2 | Reproducibility baseline | In progress | Framework/evaluator commands rerun or validated; generated outputs are linked to experiment records. |
+| OPS-3 | Confluence wiki sync | Blocked | Curated wiki pages generated after meaningful prompts; live Confluence updates wait for Atlassian Rovo cloud access. |
 
 ## Weekly Review
 

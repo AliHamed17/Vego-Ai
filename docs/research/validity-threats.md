@@ -11,6 +11,7 @@
 - "Meaningful variability" must be operationalized clearly.
 - Evaluation scores may not capture all expert reasoning.
 - Compliance labels may hide partial or ambiguous modeling choices.
+- Human judgment must be modeled specifically as review decisions, rationales, reuse scope, and guideline suggestions, not as a vague "human in the loop."
 
 ## External Validity
 
@@ -23,6 +24,7 @@
 - Repeated runs and confidence intervals may be needed.
 - Small case counts can overstate differences.
 - LLM stochasticity and rate-limit retries can affect results.
+- Future reuse claims require C4B evidence; M3 proves storage/retrieval and M4A proves advisory reporting, not improved AI behavior.
 
 ## Mitigations
 
@@ -31,4 +33,5 @@
 - Compare against expert annotations.
 - Use experiment cards.
 - Preserve outputs used for claims.
-
+- Surface conflicting human judgments for adjudication instead of merging them silently.
+- Separate implemented mechanisms from planned PhD continuation milestones.

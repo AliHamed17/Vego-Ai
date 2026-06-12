@@ -211,3 +211,69 @@ Record file changes and rollback notes here.
   - scripts/research-health.ps1
 - Rollback note: Revert the commit for tracked docs/script changes; delete ignored docs/confluence/wiki-sync-config.local.json if the local Confluence target should be removed.
 - Git commit: none recorded by script.
+
+## 2026-06-12 21:39 +03:00 - Codex - Reusable Human Judgment Research Story Hardening
+
+- Files changed:
+  - README.md
+  - PROJECT_CHARTER.md
+  - docs/research/research-plan.md
+  - docs/research/methodology.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/evaluation-plan.md
+  - docs/research/README.md
+  - docs/research/publication-plan.md
+  - docs/research/validity-threats.md
+  - thesis/outline.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - docs/project-management/roadmap.md
+  - docs/project-management/risk-register.md
+  - experiments/registry.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - scripts/research-health.ps1
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert the research-story hardening commit to restore the previous research plan, thesis outline, roadmap, risks, memory notes, and EXP-001 shell. M3 commit 5e109e5 was already pushed separately; revert it only if Human Judgment Memory itself must be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-12 21:47 +03:00 - Codex - Confluence Access Recheck
+
+- Files changed:
+  - docs/agent-memory/issues.md
+- Rollback note: Revert the ISS-005 timestamp update if this access-check note should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-12 22:29 +03:00 - Codex - M4A PR Review Merge And Research Story Update
+
+- Files changed:
+  - VEGO-AI/docs/memory_advisor.md via PR #2
+  - VEGO-AI/framework/memory_advisor.py via PR #2
+  - VEGO-AI/schemas/memory_advice.schema.json via PR #2
+  - VEGO-AI/tests/test_memory_advisor.py via PR #2
+  - README.md
+  - PROJECT_CHARTER.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/milestone-workflow-rules.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/research/research-plan.md
+  - docs/research/methodology.md
+  - docs/research/evaluation-plan.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/publication-plan.md
+  - docs/research/validity-threats.md
+  - docs/project-management/roadmap.md
+  - docs/project-management/risk-register.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - thesis/outline.md
+  - experiments/registry.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - scripts/agent-memory-start.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert the documentation hardening commit to undo the research/memory/roadmap updates. Revert GitHub squash merge ecd0972 if M4A itself must be removed. Do not force-push main.
+- Git commit: none recorded by script.
