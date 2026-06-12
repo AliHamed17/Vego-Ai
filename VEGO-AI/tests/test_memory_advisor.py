@@ -121,6 +121,29 @@ def test_empty_memory_all_none():
     assert all(i["advice_strength"] == "none" for i in items)
 
 
+def test_missing_memory_file_loads_as_empty(tmp_path):
+    missing = tmp_path / "missing-memory.jsonl"
+    assert ma.load_memory_or_empty(missing) == []
+
+
+def test_missing_memory_file_cli_writes_none_advice(tmp_path):
+    patterns = tmp_path / "patterns.json"
+    classes = tmp_path / "classes.json"
+    out = tmp_path / "memory_advice.json"
+    patterns.write_text(json.dumps(_patterns({"P5": P5_DESC})), encoding="utf-8")
+    classes.write_text(json.dumps(_classes([_entry("P5")])), encoding="utf-8")
+    ma.main([
+        "--patterns", str(patterns),
+        "--classes", str(classes),
+        "--memory", str(tmp_path / "missing-memory.jsonl"),
+        "--out", str(out),
+        "--setting", "ucd_ch",
+    ])
+    report = json.loads(out.read_text(encoding="utf-8"))
+    assert report["advice"][0]["advice_strength"] == "none"
+    assert report["advice"][0]["ai_classification_changed"] is False
+
+
 # ---------------------------------------------------------------------------
 # Conflict surfacing (never auto-resolved)
 # ---------------------------------------------------------------------------
@@ -168,6 +191,19 @@ def test_report_validates_against_schema():
     items = ma.build_advice_items(vc, _patterns({"P5": P5_DESC, "P1": P1_DESC}),
                                   [_mem()], "ucd_ch", provenance=prov)
     report = ma.generate_report(items, "ucd_ch", prov)
+    Draft7Validator(schema).validate(report)
+
+
+def test_default_provenance_is_schema_valid():
+    try:
+        from jsonschema import Draft7Validator
+    except ImportError:
+        print("    (skipped: jsonschema not installed)")
+        return
+    schema = json.loads(ADVICE_SCHEMA.read_text(encoding="utf-8"))
+    vc = _classes([{"pattern_id": "P9"}])
+    items = ma.build_advice_items(vc, _patterns({"P9": "Unknown fragment"}), [], "ucd_ch")
+    report = ma.generate_report(items, "ucd_ch", items[0]["provenance"])
     Draft7Validator(schema).validate(report)
 
 

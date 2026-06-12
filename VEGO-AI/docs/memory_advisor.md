@@ -97,7 +97,8 @@ python memory_advisor.py \
 Expected on `ucd_ch` (with the 3 example judgments P4/P5/P6 in memory): advice for
 all 8 patterns; **P5 → strong** (cites `HJM-ucd_ch-P5`, guideline G12 + keyword
 Marketing), P4/P6 lower strength, the rest `none`. **No** item has
-`ai_classification_changed=true`.
+`ai_classification_changed=true`. If the memory file is missing, M4A logs a
+warning and writes advisory-only `none` items rather than changing classification.
 
 Run the tests:
 

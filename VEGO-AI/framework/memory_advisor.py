@@ -69,6 +69,15 @@ def load_json(path: str | Path) -> dict:
         return json.load(fh)
 
 
+def load_memory_or_empty(path: str | Path) -> list[dict]:
+    """Load Human Judgment Memory, or continue with no matches if M3 has not run yet."""
+    try:
+        return load_memory(path)
+    except FileNotFoundError:
+        logger.warning("Human Judgment Memory file not found: %s; continuing with empty memory.", path)
+        return []
+
+
 def _index_patterns(deviation_patterns: dict) -> dict[str, dict]:
     index: dict[str, dict] = {}
     for key in ("recurring_guideline_patterns", "recurring_fragment_patterns"):
@@ -168,7 +177,7 @@ def build_advice_items(
     pattern_index = _index_patterns(deviation_patterns or {})
     domain_default, diagram = derive_domain_and_diagram(setting_id)
     domain = variability_classes.get("domain_identifier") or domain_default
-    prov = provenance or {"source_memory_file": None,
+    prov = provenance or {"source_memory_file": "unknown",
                           "source_agent4_files": {"deviation_patterns": None,
                                                   "variability_classes": None}}
 
@@ -259,7 +268,7 @@ def main(argv: list[str] | None = None) -> None:
     setting_id = args.setting or Path(args.out).resolve().parent.name
     deviation_patterns = load_json(args.patterns)
     variability_classes = load_json(args.classes)
-    memory = load_memory(args.memory)
+    memory = load_memory_or_empty(args.memory)
 
     provenance = {
         "source_memory_file": str(args.memory),
