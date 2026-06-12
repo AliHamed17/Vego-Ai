@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-11 16:24 +03:00 by Codex.
+- 2026-06-12 by Codex.
 
 ## Project Goal
 
@@ -25,6 +25,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - PhD/research architecture scaffold exists at the repository root.
 - Safe GitHub baseline intentionally excludes root PDF, zip archives, generated outputs, compiled memory, model files, analysis files, eval outputs, visualizer bundled data, generated review queues, bundled executable, and `get-pip.py`.
 - Human-feedback workflow files now include `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, and feedback attachment/status fields in `VEGO-AI/schemas/human_review_item.schema.json`.
+- Human-feedback manager documentation and tests now exist at `VEGO-AI/docs/human_feedback_manager.md` and `VEGO-AI/tests/test_human_feedback_manager.py`.
 - Core orientation files exist:
   - `README.md`
   - `PROJECT_CHARTER.md`
@@ -54,6 +55,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Real revert support is now available through Git for tracked safe-baseline files.
 - Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
+- Local Claude permission state is ignored via `.claude/*.local.json`.
 
 ## Next Best Step
 

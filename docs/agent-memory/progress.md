@@ -15,6 +15,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | Claude bootstrap prompt added | Done | Added a paste-ready Claude startup prompt that enforces shared memory, architecture, Git, and safety rules. |
 | 2026-06-11 | Workspace architecture diagram added | Done | Added a GitHub-rendered Mermaid diagram and linked it from the architecture docs and root README. |
 | 2026-06-11 | Human feedback manager files added | Done | Added structured human-feedback schema, example feedback input, manager module, and review item feedback/status fields. |
+| 2026-06-12 | Human feedback manager docs/tests added | Done | Added Milestone 2 documentation and tests; full VEGO-AI test suite passes with 30 tests. |
 
 ## Active Work
 
@@ -36,6 +37,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | Added reusable Claude bootstrap prompt and linked it from Claude instructions. | `CLAUDE.md`, `docs/agent-memory/claude-bootstrap-prompt.md`, `docs/agent-memory/README.md` |
 | 2026-06-11 | Added and linked the workspace architecture diagram. | `README.md`, `docs/architecture/README.md`, `docs/architecture/project-map.md`, `docs/architecture/workspace-diagram.md` |
 | 2026-06-11 | Added human-feedback manager files and schema fields. | `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, `VEGO-AI/schemas/human_review_item.schema.json` |
+| 2026-06-12 | Added human-feedback manager docs/tests and ignored local Claude settings. | `.gitignore`, `VEGO-AI/README.md`, `VEGO-AI/docs/human_feedback_manager.md`, `VEGO-AI/docs/human_review_queue.md`, `VEGO-AI/tests/test_human_feedback_manager.py` |
 
 ## Next Steps
 

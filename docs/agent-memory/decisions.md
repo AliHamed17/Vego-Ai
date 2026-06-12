@@ -55,3 +55,9 @@ Durable decisions for this project.
 - Decision: Use Markdown plus Mermaid for the first workspace architecture diagram at `docs/architecture/workspace-diagram.md`.
 - Reason: GitHub renders Mermaid diagrams directly, so the diagram stays reviewable as text and avoids binary asset management.
 - Consequence: Future architecture diagrams can follow the same text-first pattern unless a paper-quality figure export is needed.
+
+## 2026-06-12 - Claude Local Settings Policy
+
+- Decision: Ignore `.claude/*.local.json`.
+- Reason: Claude local settings can contain machine-specific permission state and absolute paths that are not portable project configuration.
+- Consequence: Portable Claude instructions remain tracked in `CLAUDE.md` and `docs/agent-memory/claude-bootstrap-prompt.md`; local permission state stays untracked.

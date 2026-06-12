@@ -166,9 +166,11 @@ own `output_dir`.
 - **Versioned**: every item carries `schema_version`, `policy_version`, and
   `source_commit` for cross-experiment comparison.
 
-## Deferred to later milestones
+## Follow-On Milestones
 
-Human feedback input + `human_feedback_manager.py` (M2); Human Judgment Memory and
-reuse into Agents 2/4 via `resolve_with_answers` (M3); gating the auto
-guideline-refinement loop behind human approval; visualizer feedback widgets. All
-of these join on `review_id`.
+Milestone 2 is documented in `human_feedback_manager.md`: human feedback input,
+schema validation, signature checking, and resolved queue writing.
+
+Still deferred: Human Judgment Memory and reuse into Agents 2/4 via
+`resolve_with_answers` (M3), gating the auto guideline-refinement loop behind
+human approval, and visualizer feedback widgets. All of these join on `review_id`.

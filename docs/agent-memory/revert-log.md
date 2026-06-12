@@ -137,3 +137,19 @@ Record file changes and rollback notes here.
   - docs/architecture/workspace-diagram.md
 - Rollback note: Use Git to revert commit b7ff5fa if this publish update needs to be undone; do not force-push. Deferred ignored artifacts were not uploaded.
 - Git commit: none recorded by script.
+
+## 2026-06-12 19:51 +03:00 - Codex - Human Feedback Manager Docs And Tests
+
+- Files changed:
+  - .gitignore
+  - VEGO-AI/README.md
+  - VEGO-AI/docs/human_feedback_manager.md
+  - VEGO-AI/docs/human_review_queue.md
+  - VEGO-AI/tests/test_human_feedback_manager.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the commit that adds the Milestone 2 docs/tests and .gitignore Claude-local-settings rule if this continuation needs to be undone.
+- Git commit: none recorded by script.

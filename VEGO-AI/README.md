@@ -12,3 +12,8 @@ Six folders:
 ├── inputs/         # Domain descriptions, language bases, and scoring schema (ch, pw)
 └── models/         # Case models, organized by experimental condition (CD_Ch, CD_PW, UCD_Ch, UCD_PW)
 ```
+
+## Human-AI Co-Reasoning Extension
+
+- `docs/human_review_queue.md` documents Milestone 1: selective human-review queue generation.
+- `docs/human_feedback_manager.md` documents Milestone 2: validating and attaching structured human feedback to review items.
