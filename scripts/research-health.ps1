@@ -60,6 +60,24 @@ if (Test-Path -LiteralPath $configPath) {
     }
 }
 
+$localConfigRelative = "docs/confluence/wiki-sync-config.local.json"
+$localConfigPath = Join-Path $repoRoot $localConfigRelative
+if (Test-Path -LiteralPath $localConfigPath) {
+    try {
+        Get-Content -Raw -LiteralPath $localConfigPath | ConvertFrom-Json | Out-Null
+        Write-Host "[ok]      Local Confluence config parses as JSON"
+    }
+    catch {
+        throw "Local Confluence config is invalid JSON: $($_.Exception.Message)"
+    }
+
+    & git -C $repoRoot check-ignore -q $localConfigRelative
+    if ($LASTEXITCODE -ne 0) {
+        throw "Local Confluence config must be ignored by Git: $localConfigRelative"
+    }
+    Write-Host "[ok]      Local Confluence config is ignored by Git"
+}
+
 $registryPath = Join-Path $repoRoot "experiments/registry.md"
 $registry = Get-Content -Raw -LiteralPath $registryPath
 $experimentIds = [regex]::Matches($registry, '\|\s*(EXP-[A-Za-z0-9-]+)\s*\|') |

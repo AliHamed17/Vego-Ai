@@ -24,7 +24,8 @@ If the prompt included analysis, edits, debugging, planning, or a decision, upda
 - `docs/agent-memory/decisions.md` with durable decisions.
 - `docs/agent-memory/revert-log.md` with changed files and rollback notes.
 - Run `.\scripts\build-confluence-wiki.ps1` after memory updates.
-- If `docs/confluence/wiki-sync-config.local.json` contains real Confluence IDs, update the configured Confluence pages with Atlassian Rovo using Markdown content. If IDs are missing, treat the generated `docs/confluence/outbox/` files as the pending wiki update.
+- If `docs/confluence/wiki-sync-config.local.json` contains real Confluence IDs and Atlassian Rovo has access, update the configured Confluence pages with Markdown content from `docs/confluence/outbox/`.
+- If IDs are missing or Atlassian access is not granted, treat the generated `docs/confluence/outbox/` files as the pending wiki update and report the blocked live sync clearly.
 - Confluence sync is an agent-enforced workflow, not a background service.
 
 ## Entry Standards

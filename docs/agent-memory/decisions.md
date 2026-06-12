@@ -70,6 +70,14 @@ Durable decisions for this project.
 - Reason: The project needs an external latest wiki without copying controlled research artifacts or local machine state into Git/Confluence.
 - Consequence: Until real Confluence IDs are configured, agents generate ignored outbox pages and report live sync as pending.
 
+## 2026-06-12 - Confluence Live Target
+
+- Decision: Use Confluence page `294914` in `https://alih10j.atlassian.net/wiki` as `VEGO-AI Wiki Home`.
+- Decision: Use child pages under `294914` for current state, update changelog, and research operations.
+- Decision: Store actual target/page IDs only in ignored `docs/confluence/wiki-sync-config.local.json`.
+- Reason: The user provided the Confluence edit URL and requested the wiki stay updated with the latest project state.
+- Consequence: Live sync is blocked until Atlassian Rovo access is granted for cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`; generated outbox remains the pending update meanwhile.
+
 ## 2026-06-12 - Milestone Branch/PR Discipline + Baseline Preservation
 
 - Decision: From Milestone 3 onward, milestone CODE goes on a feature branch (e.g. `feature/human-judgment-memory`) and lands on `main` via a reviewed PR. No direct commits of milestone code to `main` without review (applies to both Codex and Claude). Shared-memory/doc updates may still be committed directly.

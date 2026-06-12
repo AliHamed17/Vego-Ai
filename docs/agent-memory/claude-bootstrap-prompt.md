@@ -207,7 +207,7 @@ If the prompt involved analysis, edits, debugging, planning, decisions, architec
 3. Refresh the Confluence wiki layer:
    .\scripts\build-confluence-wiki.ps1
 
-   If docs\confluence\wiki-sync-config.local.json contains real cloudId, spaceId, and page IDs, update the configured Confluence pages through Atlassian Rovo using Markdown content from docs\confluence\outbox\. If the local config is missing or still uses placeholders, leave the generated outbox as the pending wiki update.
+   If docs\confluence\wiki-sync-config.local.json contains real cloudId, spaceId, and page IDs, and Atlassian Rovo has access, update the configured Confluence pages through Atlassian Rovo using Markdown content from docs\confluence\outbox\. If the local config is missing, still uses placeholders, or Atlassian access is not granted, leave the generated outbox as the pending wiki update.
 
 4. Remember:
    - `compiled-memory.md` is generated and should not be committed.

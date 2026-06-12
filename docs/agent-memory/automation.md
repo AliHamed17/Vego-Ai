@@ -56,7 +56,7 @@ Then refresh the Confluence wiki layer:
 .\scripts\build-confluence-wiki.ps1
 ```
 
-If `docs/confluence/wiki-sync-config.local.json` contains real `cloudId`, `spaceId`, and page IDs, update the configured Confluence pages through Atlassian Rovo with Markdown content from `docs/confluence/outbox/`. If the local config is missing or still has placeholders, leave the ignored outbox files as the pending wiki update.
+If `docs/confluence/wiki-sync-config.local.json` contains real `cloudId`, `spaceId`, and page IDs, and Atlassian Rovo has access, update the configured Confluence pages through Atlassian Rovo with Markdown content from `docs/confluence/outbox/`. If the local config is missing, still has placeholders, or Atlassian access is not granted, leave the ignored outbox files as the pending wiki update.
 
 Confluence sync is agent-enforced automation. It is not a background service.
 

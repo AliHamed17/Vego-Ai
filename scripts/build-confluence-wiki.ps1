@@ -176,4 +176,4 @@ Write-WikiPage -FileName "vego-ai-update-changelog.md" -Body $updates
 Write-WikiPage -FileName "vego-ai-research-operations.md" -Body $ops
 
 Write-Host "Confluence wiki outbox generated: $outputPath"
-Write-Host "Live Confluence update requires docs/confluence/wiki-sync-config.local.json with real page IDs."
+Write-Host "Live Confluence update requires Atlassian access plus page IDs in docs/confluence/wiki-sync-config.local.json."

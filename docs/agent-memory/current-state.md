@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-12 20:20 +03:00 by Codex.
+- 2026-06-12 20:41 +03:00 by Codex.
 
 ## Project Goal
 
@@ -42,7 +42,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - A paste-ready Claude startup prompt exists at `docs/agent-memory/claude-bootstrap-prompt.md`.
 - A GitHub-rendered Mermaid workspace diagram exists at `docs/architecture/workspace-diagram.md`.
 - Research OS registers exist for artifact audit, provenance, and publishability under `docs/research/`.
-- Confluence wiki sync infrastructure exists under `docs/confluence/`; live sync is pending until `docs/confluence/wiki-sync-config.local.json` has real target IDs.
+- Confluence wiki sync infrastructure exists under `docs/confluence/`; local target config points to `https://alih10j.atlassian.net/wiki`, cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, space `~71202099edcf0e26ec40cea521806deb9e9687`, home page `294914`.
 - `scripts/build-confluence-wiki.ps1` generates ignored curated wiki pages in `docs/confluence/outbox/`.
 - `scripts/research-health.ps1` checks research infrastructure, experiment folders, Confluence config template JSON, and forbidden tracked artifacts.
 
@@ -60,8 +60,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
-- Confluence sync currently operates as generated outbox only because target IDs are not configured.
+- Confluence sync currently operates as generated outbox only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted.
 
 ## Next Best Step
 
-- Fill Confluence target IDs when available; continue the data/IRB sensitivity audit before deciding whether deferred research artifacts can be published.
+- Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`; then create/update the Confluence child pages and record their IDs locally.

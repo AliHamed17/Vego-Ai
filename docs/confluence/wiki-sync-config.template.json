@@ -6,19 +6,23 @@
   "pages": {
     "home": {
       "title": "VEGO-AI Wiki Home",
-      "pageId": ""
+      "pageId": "",
+      "outboxFile": "vego-ai-wiki-home.md"
     },
     "currentState": {
       "title": "VEGO-AI Current State",
-      "pageId": ""
+      "pageId": "",
+      "outboxFile": "vego-ai-current-state.md"
     },
     "changelog": {
       "title": "VEGO-AI Update Changelog",
-      "pageId": ""
+      "pageId": "",
+      "outboxFile": "vego-ai-update-changelog.md"
     },
     "researchOperations": {
       "title": "VEGO-AI Research Operations",
-      "pageId": ""
+      "pageId": "",
+      "outboxFile": "vego-ai-research-operations.md"
     }
   }
 }

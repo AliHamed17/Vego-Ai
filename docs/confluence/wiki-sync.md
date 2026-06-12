@@ -4,9 +4,23 @@ The Confluence wiki is the external, curated view of the VEGO-AI research worksp
 
 ## Current Mode
 
-- Live Confluence target: not configured.
+- Live Confluence target: configured locally, but Atlassian Rovo access is not granted yet.
 - Default behavior: generate local Markdown page bodies in `docs/confluence/outbox/`.
 - Generated outbox files are ignored by Git.
+
+## Target
+
+The intended live wiki target is:
+
+| Field | Value |
+| --- | --- |
+| Site URL | `https://alih10j.atlassian.net/wiki` |
+| Cloud ID | `724252a1-a5b7-45a5-b6ec-27a8292197ec` |
+| Space | `~71202099edcf0e26ec40cea521806deb9e9687` |
+| Home page ID | `294914` |
+| Layout | Page `294914` is `VEGO-AI Wiki Home`; the other curated pages are children. |
+
+Current access note: Atlassian Rovo reports that cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted. Live sync must wait until that grant is completed.
 
 ## End-Of-Prompt Order
 
@@ -16,8 +30,8 @@ For every meaningful prompt:
 2. Do the requested work.
 3. Update memory files and run `.\scripts\agent-memory-finish.ps1`.
 4. Run `.\scripts\build-confluence-wiki.ps1`.
-5. If `docs/confluence/wiki-sync-config.local.json` has real Confluence IDs, update the configured Confluence pages with Atlassian Rovo using `contentFormat: markdown`.
-6. If IDs are missing, leave the generated outbox as the pending wiki update and mention that live Confluence sync is pending.
+5. If `docs/confluence/wiki-sync-config.local.json` has real Confluence IDs and Atlassian Rovo access is granted, update the configured Confluence pages with Atlassian Rovo using `contentFormat: markdown`.
+6. If IDs or access are missing, leave the generated outbox as the pending wiki update and mention that live Confluence sync is pending.
 
 ## Curated Pages
 
@@ -41,6 +55,8 @@ Copy `docs/confluence/wiki-sync-config.template.json` to `docs/confluence/wiki-s
 - `pages.researchOperations.pageId`
 
 Do not commit the local config.
+
+The local config currently maps `home.pageId` to `294914`; child page IDs remain blank until the pages are created or discovered after Atlassian access is granted.
 
 ## Safety Rules
 

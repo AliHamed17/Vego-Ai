@@ -17,6 +17,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | Human feedback manager files added | Done | Added structured human-feedback schema, example feedback input, manager module, and review item feedback/status fields. |
 | 2026-06-12 | Human feedback manager docs/tests added | Done | Added Milestone 2 documentation and tests; full VEGO-AI test suite passes with 30 tests. |
 | 2026-06-12 | Research OS and Confluence sync infrastructure added | In progress | Added research audit registers, EXP-000 folder, Confluence sync docs/config/outbox builder, and research health checks. |
+| 2026-06-12 | Confluence live target configured locally | In progress | Local config targets page `294914`; live sync blocked until Atlassian Rovo cloud access is granted. |
 
 ## Active Work
 
@@ -25,7 +26,7 @@ Track milestones, current work, and next steps here.
 | TASK-001 | 2026-06-11 | Done | Durable revert support started by adding `.gitignore`, initializing Git, and pushing a safe baseline. | Continue using commits for every meaningful change. |
 | TASK-003 | 2026-06-11 | Open | Audit data sensitivity and provenance. | Review `VEGO-AI/inputs/`, `VEGO-AI/models/`, `VEGO-AI/analysis/`, and the IRB-related PDF. |
 | TASK-004 | 2026-06-11 | In progress | Map existing paper/package results to experiments. | Continue `EXP-000-existing-packaged-results-audit` without copying controlled artifacts into Git. |
-| TASK-005 | 2026-06-12 | In progress | Keep curated Confluence wiki current. | Generate outbox after memory updates; configure live IDs later. |
+| TASK-005 | 2026-06-12 | Blocked | Keep curated Confluence wiki current. | Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, then create/update child pages and store page IDs in local config. |
 
 ## Completed Work
 
@@ -41,11 +42,12 @@ Track milestones, current work, and next steps here.
 | 2026-06-11 | Added human-feedback manager files and schema fields. | `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, `VEGO-AI/schemas/human_review_item.schema.json` |
 | 2026-06-12 | Added human-feedback manager docs/tests and ignored local Claude settings. | `.gitignore`, `VEGO-AI/README.md`, `VEGO-AI/docs/human_feedback_manager.md`, `VEGO-AI/docs/human_review_queue.md`, `VEGO-AI/tests/test_human_feedback_manager.py` |
 | 2026-06-12 | Added Research OS and Confluence sync infrastructure. | `docs/research/`, `docs/confluence/`, `experiments/EXP-000-existing-packaged-results-audit/`, `scripts/build-confluence-wiki.ps1`, `scripts/research-health.ps1` |
+| 2026-06-12 | Configured ignored local Confluence target. | `docs/confluence/wiki-sync-config.local.json` (ignored), `docs/confluence/wiki-sync.md`, agent instruction files |
 
 ## Next Steps
 
-1. Fill Confluence local target IDs when available so outbox pages can be pushed live.
-2. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-3. Convert existing package results into evidence entries under `EXP-000`.
-4. Add tests around evaluator/scoring/parsing behavior.
+1. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+2. Create/update the three Confluence child pages and store their IDs in ignored local config.
+3. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+4. Convert existing package results into evidence entries under `EXP-000`.
 5. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

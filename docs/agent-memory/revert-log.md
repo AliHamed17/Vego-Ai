@@ -190,3 +190,24 @@ Record file changes and rollback notes here.
   - scripts/research-health.ps1
 - Rollback note: Revert the Research OS infrastructure commit to remove the new registers, Confluence sync workflow, EXP-000 folder, health script changes, and agent instruction updates. Generated docs/confluence/outbox files are ignored and can be deleted safely.
 - Git commit: none recorded by script.
+
+## 2026-06-12 20:47 +03:00 - Codex - Confluence Live Target Wiring
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/confluence/wiki-sync-config.local.json (ignored)
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert the commit for tracked docs/script changes; delete ignored docs/confluence/wiki-sync-config.local.json if the local Confluence target should be removed.
+- Git commit: none recorded by script.

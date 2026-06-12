@@ -379,3 +379,47 @@ Chronological prompt history for Codex and Claude.
   - git status --short --ignored
 - Status: completed
 - Next steps: Commit and push the Research OS infrastructure; later fill docs/confluence/wiki-sync-config.local.json with real Confluence target IDs for live page updates.
+
+## 2026-06-12 20:47 +03:00 - Codex - Confluence Live Target Wiring
+
+- Request: Implement the plan to wire VEGO-AI Confluence live wiki sync using page 294914 as the wiki home.
+- Actions taken:
+  - Started from memory and discovered the workspace was on feature/human-judgment-memory, then switched to main because main contains the Research OS infrastructure and matches origin/main
+  - Verified Atlassian Rovo still cannot read Confluence page 294914 because cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec is not explicitly granted
+  - Created ignored local Confluence sync config for site https://alih10j.atlassian.net/wiki, space ~71202099edcf0e26ec40cea521806deb9e9687, parent/home page 294914
+  - Updated tracked Confluence sync docs with the exact non-secret target and Home + Children layout
+  - Updated agent instructions to treat missing Atlassian access the same as a pending live sync and to keep using the generated outbox
+  - Enhanced research-health to validate local Confluence config JSON and confirm it is ignored by Git
+  - Generated the four wiki outbox pages; live Confluence writes were skipped because access is blocked
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/confluence/wiki-sync-config.local.json (ignored)
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - git status -sb
+  - git branch -vv
+  - git switch main
+  - Atlassian Rovo _getconfluencepage pageId=294914
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\research-health.ps1
+  - git check-ignore -v docs\confluence\wiki-sync-config.local.json docs\confluence\outbox\vego-ai-wiki-home.md
+  - .\scripts\project-health.ps1
+  - PowerShell Parser.ParseFile for scripts
+  - python -m pytest VEGO-AI\tests -q
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
+  - .\scripts\agent-memory-finish.ps1
+- Status: completed with live sync blocked
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update page 294914 and create/update the three child pages from docs/confluence/outbox.
