@@ -564,3 +564,65 @@ Chronological prompt history for Codex and Claude.
   - PowerShell parser check for scripts -> passed
 - Status: completed
 - Next steps: Use docs/agent-memory/claude-m4b-handoff-prompt.md with Claude to refresh the M1-M4A artifact ZIP/manifest and draft M4B design only.
+
+## 2026-06-13 13:17 +03:00 - Codex - Add Dashboard KPI Confluence Tracking
+
+- Request: Create dashboards, results, and KPI tracking and wire them into Confluence tracking.
+- Actions taken:
+  - Added tracked progress, KPI, and results dashboard docs.
+  - Updated agent instructions so dashboards are refreshed when project state changes.
+  - Extended Confluence wiki generation with a VEGO-AI Progress Dashboard outbox page.
+  - Added dashboard files to research-health required paths.
+  - Recorded dashboard tracking in current state, progress, decisions, and Confluence blocker notes.
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/architecture/project-map.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+  - docs/confluence/wiki-sync-config.local.json (ignored local config)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - .\scripts\build-confluence-wiki.ps1
+  - python -m pytest VEGO-AI\tests -q -> 57 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - PowerShell parser check -> passed after rerun with initialized parser refs
+  - git diff --check -> passed with line-ending warnings only
+  - .\scripts\agent-memory-finish.ps1 -> first two invocations used wrong parameters, final splatted invocation passed
+- Status: completed; live Confluence pending
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then create/update the four child pages including VEGO-AI Progress Dashboard and store page IDs in ignored local config.
+
+## 2026-06-13 13:19 +03:00 - Codex - Recheck Confluence Live Access For Dashboard Sync
+
+- Request: Track dashboards and progress in Confluence, using live sync when possible.
+- Actions taken:
+  - Loaded Atlassian Rovo Confluence tools.
+  - Attempted to read Confluence page 294914 on cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec.
+  - Confirmed live sync is still blocked because the cloud is not explicitly granted.
+  - Updated memory, dashboard, and sync docs with the 2026-06-13 13:18 +03:00 recheck.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Commands/checks:
+  - Atlassian Rovo _getconfluencepage cloudId=724252a1-a5b7-45a5-b6ec-27a8292197ec pageId=294914 -> blocked: cloud is not explicitly granted
+  - .\scripts\agent-memory-finish.ps1 -> passed
+- Status: completed; live Confluence blocked by access grant
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then sync the five generated outbox pages live.

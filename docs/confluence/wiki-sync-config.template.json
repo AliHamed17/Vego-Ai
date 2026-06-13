@@ -14,6 +14,11 @@
       "pageId": "",
       "outboxFile": "vego-ai-current-state.md"
     },
+    "dashboard": {
+      "title": "VEGO-AI Progress Dashboard",
+      "pageId": "",
+      "outboxFile": "vego-ai-progress-dashboard.md"
+    },
     "changelog": {
       "title": "VEGO-AI Update Changelog",
       "pageId": "",

@@ -292,3 +292,39 @@ Record file changes and rollback notes here.
   - scripts/research-health.ps1
 - Rollback note: Delete the three pushed tags if the milestone anchors must be removed. Revert this docs commit to remove the M4A confirmation note, Claude handoff prompt, and memory/health updates. Do not force-push main.
 - Git commit: none recorded by script.
+
+## 2026-06-13 13:17 +03:00 - Codex - Add Dashboard KPI Confluence Tracking
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/architecture/project-map.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+  - docs/confluence/wiki-sync-config.local.json (ignored local config)
+- Rollback note: Revert the dashboard docs, agent instruction edits, Confluence builder/template/docs changes, research-health path additions, and memory updates; local Confluence config can remove the dashboard page slot if needed.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:19 +03:00 - Codex - Recheck Confluence Live Access For Dashboard Sync
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the blocker timestamp updates in current-state, issues, dashboard docs, wiki-sync docs, session log, and revert log if this access check should not be recorded.
+- Git commit: none recorded by script.

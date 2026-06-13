@@ -20,7 +20,7 @@ The intended live wiki target is:
 | Home page ID | `294914` |
 | Layout | Page `294914` is `VEGO-AI Wiki Home`; the other curated pages are children. |
 
-Current access note: Atlassian Rovo reports that cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted. Live sync must wait until that grant is completed.
+Current access note: Atlassian Rovo reports that cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:18 +03:00. Live sync must wait until that grant is completed.
 
 ## End-Of-Prompt Order
 
@@ -39,6 +39,7 @@ For every meaningful prompt:
 | --- | --- | --- |
 | VEGO-AI Wiki Home | `vego-ai-wiki-home.md` | Project overview and navigation. |
 | VEGO-AI Current State | `vego-ai-current-state.md` | Latest status, active risks, and next steps. |
+| VEGO-AI Progress Dashboard | `vego-ai-progress-dashboard.md` | KPI, milestone, and validated-results tracking. |
 | VEGO-AI Update Changelog | `vego-ai-update-changelog.md` | Recent prompt/update history. |
 | VEGO-AI Research Operations | `vego-ai-research-operations.md` | Roadmap, risks, experiment registry, audit posture. |
 
@@ -51,6 +52,7 @@ Copy `docs/confluence/wiki-sync-config.template.json` to `docs/confluence/wiki-s
 - `parentId`, optional
 - `pages.home.pageId`
 - `pages.currentState.pageId`
+- `pages.dashboard.pageId`
 - `pages.changelog.pageId`
 - `pages.researchOperations.pageId`
 

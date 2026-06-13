@@ -42,6 +42,9 @@ STARTUP ROUTINE - DO THIS BEFORE ANY REAL WORK
    - docs\architecture\project-map.md
    - docs\architecture\research-lifecycle.md
    - docs\architecture\reproducibility-contract.md
+   - docs\dashboards\progress-dashboard.md
+   - docs\dashboards\kpi-register.md
+   - docs\dashboards\results-dashboard.md
    - docs\research\research-plan.md
    - experiments\registry.md
 
@@ -99,6 +102,7 @@ Respect the project boundaries:
 - `VEGO-AI\` is the preserved original runnable source package.
 - `docs\` contains architecture, research method, decisions, memory, and documentation.
 - `docs\agent-memory\` is shared memory for Claude and Codex.
+- `docs\dashboards\` contains progress, KPI, and results dashboard sources for local and Confluence tracking.
 - `experiments\` contains experiment cards and registry entries.
 - `data\` contains controlled data zones and should be handled cautiously.
 - `outputs\` and reports are generated or curated results.
@@ -142,7 +146,8 @@ The current best next steps are:
 1. Audit data sensitivity, provenance, and IRB constraints before publishing deferred artifacts.
 2. Map existing packaged results into experiment cards, starting with `EXP-000`.
 3. Add tests around evaluator, scoring, parsing, and reproducibility behavior.
-4. Keep memory updated at the start and end of meaningful work.
+4. Keep dashboards updated when progress, KPI values, validated results, or Confluence tracking status changes.
+5. Keep memory updated at the start and end of meaningful work.
 
 GIT RULES
 
@@ -191,6 +196,7 @@ If the prompt involved analysis, edits, debugging, planning, decisions, architec
    - `docs\agent-memory\issues.md` when issues are opened, changed, blocked, or resolved.
    - `docs\agent-memory\decisions.md` when durable decisions are made.
    - `docs\agent-memory\revert-log.md` when files change.
+   - `docs\dashboards\` when progress, KPI values, validated results, or Confluence tracking status changes.
 
 2. Run:
    .\scripts\agent-memory-finish.ps1

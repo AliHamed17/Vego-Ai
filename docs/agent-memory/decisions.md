@@ -65,7 +65,7 @@ Durable decisions for this project.
 ## 2026-06-12 - Research OS And Confluence Sync
 
 - Decision: Use metadata-only research registers for artifact audit, provenance, and publishability before exposing deferred artifacts.
-- Decision: Generate four curated Confluence page bodies after meaningful prompts: wiki home, current state, update changelog, and research operations.
+- Decision: Generate five curated Confluence page bodies after meaningful prompts: wiki home, current state, progress dashboard, update changelog, and research operations.
 - Decision: Keep Confluence target IDs in ignored `docs/confluence/wiki-sync-config.local.json`; track only `wiki-sync-config.template.json`.
 - Reason: The project needs an external latest wiki without copying controlled research artifacts or local machine state into Git/Confluence.
 - Consequence: Until real Confluence IDs are configured, agents generate ignored outbox pages and report live sync as pending.
@@ -73,10 +73,18 @@ Durable decisions for this project.
 ## 2026-06-12 - Confluence Live Target
 
 - Decision: Use Confluence page `294914` in `https://alih10j.atlassian.net/wiki` as `VEGO-AI Wiki Home`.
-- Decision: Use child pages under `294914` for current state, update changelog, and research operations.
+- Decision: Use child pages under `294914` for current state, progress dashboard, update changelog, and research operations.
 - Decision: Store actual target/page IDs only in ignored `docs/confluence/wiki-sync-config.local.json`.
 - Reason: The user provided the Confluence edit URL and requested the wiki stay updated with the latest project state.
 - Consequence: Live sync is blocked until Atlassian Rovo access is granted for cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`; generated outbox remains the pending update meanwhile.
+
+## 2026-06-13 - Dashboard/KPI Tracking
+
+- Decision: Use tracked Markdown files under `docs/dashboards/` as the source of truth for progress, KPI, and results dashboards.
+- Decision: Generate a dedicated `VEGO-AI Progress Dashboard` Confluence outbox page from those tracked dashboard sources.
+- Decision: Add dashboard files to research health so progress tracking becomes part of the standard quality gate.
+- Reason: The user wants progress and research results visible in Confluence without copying controlled artifacts or relying on ad hoc summaries.
+- Consequence: Agents should update `docs/dashboards/` whenever progress, KPI values, validated results, or Confluence tracking status changes, then regenerate the Confluence outbox.
 
 ## 2026-06-12 - Milestone Branch/PR Discipline + Baseline Preservation
 

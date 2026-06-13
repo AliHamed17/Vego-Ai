@@ -10,9 +10,10 @@ The workspace is organized so research context, source code, experiments, data, 
 2. Read `docs/architecture/project-map.md` for the folder map.
 3. Read `docs/architecture/workspace-diagram.md` for the GitHub-rendered architecture diagram.
 4. Read `docs/research/research-plan.md` for research questions and milestones.
-5. Read `experiments/registry.md` before creating or running experiments.
-6. Read `docs/confluence/wiki-sync.md` for the curated wiki sync workflow.
-7. Run `.\scripts\agent-memory-start.ps1` before AI-assisted work.
+5. Read `docs/dashboards/progress-dashboard.md` and `docs/dashboards/kpi-register.md` for progress and KPI tracking.
+6. Read `experiments/registry.md` before creating or running experiments.
+7. Read `docs/confluence/wiki-sync.md` for the curated wiki sync workflow.
+8. Run `.\scripts\agent-memory-start.ps1` before AI-assisted work.
 
 ## Current Source Package
 
@@ -32,6 +33,7 @@ Do not mix thesis notes, experiment notes, or project-management files inside `V
 | --- | --- |
 | `VEGO-AI/` | Preserved source package and bundled experiment materials. |
 | `docs/` | Architecture, research method, project memory, decisions, and documentation. |
+| `docs/dashboards/` | Progress, KPI, and results dashboards for local and Confluence tracking. |
 | `docs/confluence/` | Curated Confluence wiki sync workflow and generated outbox. |
 | `experiments/` | One folder per planned or executed experiment. |
 | `data/` | Controlled data zones with documentation. |

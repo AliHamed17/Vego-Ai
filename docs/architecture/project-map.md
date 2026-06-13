@@ -5,6 +5,7 @@
 | Layer | Folder | Rule |
 | --- | --- | --- |
 | Agent memory | `docs/agent-memory/` | Tracks prompt history, current state, issues, decisions, and rollback notes. |
+| Dashboards | `docs/dashboards/` | Tracks progress, KPIs, and results for local review and Confluence dashboards. |
 | Confluence sync | `docs/confluence/` | Generates curated wiki pages after memory updates; live sync requires local target IDs. |
 | Preserved source package | `VEGO-AI/` | Original runnable package extracted from the delivery zip. Keep behavior stable unless an experiment requires change. |
 | Future clean package | `src/` | Put reusable/refactored code here once behavior has tests. |

@@ -82,6 +82,9 @@ $provenance = Read-RepoText "docs/research/provenance-register.md"
 $publishability = Read-RepoText "docs/research/publishability-register.md"
 $researchPlan = Read-RepoText "docs/research/research-plan.md"
 $architecture = Read-RepoText "docs/architecture/project-map.md"
+$progressDashboard = Read-RepoText "docs/dashboards/progress-dashboard.md"
+$kpiRegister = Read-RepoText "docs/dashboards/kpi-register.md"
+$resultsDashboard = Read-RepoText "docs/dashboards/results-dashboard.md"
 $changelog = Get-RecentSessionEntries -Limit $MaxChangelogEntries
 
 $homePage = @"
@@ -94,6 +97,7 @@ This Confluence wiki is a curated external view. The Git repository and `docs/ag
 ## Navigation
 
 - VEGO-AI Current State
+- VEGO-AI Progress Dashboard
 - VEGO-AI Update Changelog
 - VEGO-AI Research Operations
 
@@ -140,6 +144,24 @@ Showing the latest $MaxChangelogEntries session entries.
 $changelog
 "@
 
+$dashboard = @"
+# VEGO-AI Progress Dashboard
+
+Generated from repository memory on $generated.
+
+## Progress Dashboard
+
+$progressDashboard
+
+## KPI Register
+
+$kpiRegister
+
+## Results Dashboard
+
+$resultsDashboard
+"@
+
 $ops = @"
 # VEGO-AI Research Operations
 
@@ -172,6 +194,7 @@ $publishability
 
 Write-WikiPage -FileName "vego-ai-wiki-home.md" -Body $homePage
 Write-WikiPage -FileName "vego-ai-current-state.md" -Body $current
+Write-WikiPage -FileName "vego-ai-progress-dashboard.md" -Body $dashboard
 Write-WikiPage -FileName "vego-ai-update-changelog.md" -Body $updates
 Write-WikiPage -FileName "vego-ai-research-operations.md" -Body $ops
 
