@@ -4,6 +4,8 @@ This project keeps shared agent memory in `docs/agent-memory/`. Claude and Codex
 
 For a full startup prompt that can be pasted into a fresh Claude chat, use `docs/agent-memory/claude-bootstrap-prompt.md`.
 
+For the current M4A artifact refresh and M4B design-only handoff, use `docs/agent-memory/claude-m4b-handoff-prompt.md` after the normal startup routine.
+
 ## Before Working
 
 Treat the memory files as project resources. Use them to understand the flow, avoid repeating old work, and make better decisions.

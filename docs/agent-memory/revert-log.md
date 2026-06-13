@@ -277,3 +277,18 @@ Record file changes and rollback notes here.
   - scripts/research-health.ps1
 - Rollback note: Revert the documentation hardening commit to undo the research/memory/roadmap updates. Revert GitHub squash merge ecd0972 if M4A itself must be removed. Do not force-push main.
 - Git commit: none recorded by script.
+
+## 2026-06-13 13:01 +03:00 - Codex - M4A Tags And Claude Handoff
+
+- Files changed:
+  - docs/research/m4a-post-merge-confirmation.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/research/README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - CLAUDE.md
+  - scripts/research-health.ps1
+- Rollback note: Delete the three pushed tags if the milestone anchors must be removed. Revert this docs commit to remove the M4A confirmation note, Claude handoff prompt, and memory/health updates. Do not force-push main.
+- Git commit: none recorded by script.

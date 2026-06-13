@@ -109,3 +109,10 @@ Durable decisions for this project.
 - Decision: M4B is design-only until separately reviewed; it must preserve original Agent 4 output and produce a comparison rather than replacing the baseline classification.
 - Reason: PR #2 showed the safe bridge needed before any behavior-changing memory-informed reclassification.
 - Consequence: Future M4B plans must include `original_agent4_classification`, `memory_advice`, `memory_informed_classification`, `classification_changed?`, `change_reason`, and `human_memory_used`.
+
+## 2026-06-13 - M4A Reproducibility Tags
+
+- Decision: Use lightweight Git tags for the M3 code state, M4A code state, and M4A research-state snapshot.
+- Decision: Keep `milestone-m3-human-judgment-memory` at `5e109e5f9f2073d9cdc2325bcea2823d57c77882`, `milestone-m4a-memory-advisory` at `ecd097245c463089a5721d68b17d6b22a1005a43`, and `research-state-m4a` at `28289405fc7cb687665f949bf039355a97967c59`.
+- Reason: Thesis and artifact review need stable, reproducible anchors for the code milestone and the surrounding research-story state.
+- Consequence: Future artifact manifests should reference these tags instead of relying only on moving branch names.

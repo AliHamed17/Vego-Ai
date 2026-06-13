@@ -530,3 +530,37 @@ Chronological prompt history for Codex and Claude.
   - PowerShell parser check for scripts -> passed
 - Status: completed
 - Next steps: Ask Claude to refresh the M1-M2-M3-M4A artifact ZIP and manifest; draft M4B design only; grant Atlassian Rovo access before live Confluence sync.
+
+## 2026-06-13 13:01 +03:00 - Codex - M4A Tags And Claude Handoff
+
+- Request: Implement post-M4A hygiene: confirm 2828940 did not change VEGO-AI behavior, create milestone tags, add Claude handoff for artifact refresh and M4B design-only, update memory, and refresh Confluence outbox.
+- Actions taken:
+  - Created and pushed lightweight milestone tags for M3, M4A, and research-state M4A.
+  - Confirmed commit 2828940 did not modify VEGO-AI framework, schemas, or tests.
+  - Added M4A post-merge confirmation note.
+  - Added paste-ready Claude M4B handoff prompt for artifact refresh and design-only work.
+  - Updated memory summaries and research health requirements.
+  - Kept M4B implementation blocked.
+- Files changed:
+  - docs/research/m4a-post-merge-confirmation.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/research/README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - CLAUDE.md
+  - scripts/research-health.ps1
+- Commands/checks:
+  - git tag milestone-m3-human-judgment-memory 5e109e5f9f2073d9cdc2325bcea2823d57c77882
+  - git tag milestone-m4a-memory-advisory ecd097245c463089a5721d68b17d6b22a1005a43
+  - git tag research-state-m4a 28289405fc7cb687665f949bf039355a97967c59
+  - git push origin milestone-m3-human-judgment-memory milestone-m4a-memory-advisory research-state-m4a -> pushed
+  - git diff --name-status ecd0972..2828940 -- VEGO-AI/framework VEGO-AI/schemas VEGO-AI/tests -> no output
+  - python -m pytest VEGO-AI\tests -q -> 57 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - PowerShell parser check for scripts -> passed
+- Status: completed
+- Next steps: Use docs/agent-memory/claude-m4b-handoff-prompt.md with Claude to refresh the M1-M4A artifact ZIP/manifest and draft M4B design only.

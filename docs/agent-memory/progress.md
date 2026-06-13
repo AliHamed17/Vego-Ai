@@ -21,6 +21,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-12 | M3 Human Judgment Memory published | Done | Verified 45 tests, compileall, health checks, secret/forbidden audits, then pushed commit `5e109e5` to `origin/main`. |
 | 2026-06-12 | Reusable human judgment research story hardened | Done | Updated research plan, methodology, evaluation plan, literature taxonomy, thesis outline, claim/evidence table, roadmap, risks, and EXP-001 shell. |
 | 2026-06-12 | M4A Memory Advisory Layer reviewed and merged | Done | Reviewed PR #2, added edge-case fixes, posted review report, and squash-merged as `ecd0972`. |
+| 2026-06-13 | M4A reproducibility tags and Claude handoff prepared | Done | Tagged M3, M4A, and research-state commits; added post-merge confirmation and Claude M4B handoff prompt. |
 
 ## Active Work
 
@@ -31,6 +32,7 @@ Track milestones, current work, and next steps here.
 | TASK-004 | 2026-06-11 | In progress | Map existing paper/package results to experiments. | Continue `EXP-000-existing-packaged-results-audit` without copying controlled artifacts into Git. |
 | TASK-005 | 2026-06-12 | Blocked | Keep curated Confluence wiki current. | Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, then create/update child pages and store page IDs in local config. |
 | TASK-006 | 2026-06-12 | Planned | Design M4B memory-informed Agent 4 controlled experiment. | Draft design only; no implementation until review. |
+| TASK-007 | 2026-06-13 | Planned | Refresh M1-M4A review artifact for external review. | Ask Claude to create the ignored ZIP and manifest listed in `docs/agent-memory/claude-m4b-handoff-prompt.md`. |
 
 ## Completed Work
 
@@ -50,11 +52,12 @@ Track milestones, current work, and next steps here.
 | 2026-06-12 | Published M3 Human Judgment Memory to GitHub. | Commit `5e109e5` on `origin/main` |
 | 2026-06-12 | Hardened the MSc/PhD research story around reusable human judgment. | `PROJECT_CHARTER.md`, `docs/research/*`, `thesis/outline.md`, `papers/mas4models2026/claim-evidence-table.md`, `docs/project-management/*`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md` |
 | 2026-06-12 | Reviewed and merged M4A advisory layer. | PR #2, commit `ecd0972`, `VEGO-AI/framework/memory_advisor.py`, `VEGO-AI/schemas/memory_advice.schema.json`, `VEGO-AI/tests/test_memory_advisor.py`, `VEGO-AI/docs/memory_advisor.md` |
+| 2026-06-13 | Tagged reproducible M3/M4A states and added Claude handoff. | `docs/research/m4a-post-merge-confirmation.md`, `docs/agent-memory/claude-m4b-handoff-prompt.md`, tags `milestone-m3-human-judgment-memory`, `milestone-m4a-memory-advisory`, `research-state-m4a` |
 
 ## Next Steps
 
-1. Ask Claude to refresh the review artifact with M1-M2-M3-M4A files and manifest.
-2. Draft M4B design only; do not implement M4B until reviewed.
+1. Ask Claude to refresh the review artifact with M1-M2-M3-M4A files and manifest using `docs/agent-memory/claude-m4b-handoff-prompt.md`.
+2. Ask Claude to draft M4B design only; do not implement M4B until reviewed.
 3. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
 4. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
 5. Create/update the three Confluence child pages and store their IDs in ignored local config.

@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-12 22:17 +03:00 by Codex.
+- 2026-06-13 12:44 +03:00 by Codex.
 
 ## Project Goal
 
@@ -31,6 +31,11 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - M3 remains inert: no Agent 4 wiring, no embeddings, and no visualizer changes.
 - Milestone 4A Human Judgment Memory Advisory Layer was reviewed by Codex in PR #2 and squash-merged to `origin/main` as commit `ecd0972`.
 - M4A retrieves relevant Human Judgment Memory for Agent 4 patterns and emits advisory-only memory advice; it does not change AI classifications.
+- Reproducibility tags now exist on GitHub:
+  - `milestone-m3-human-judgment-memory` -> `5e109e5f9f2073d9cdc2325bcea2823d57c77882`
+  - `milestone-m4a-memory-advisory` -> `ecd097245c463089a5721d68b17d6b22a1005a43`
+  - `research-state-m4a` -> `28289405fc7cb687665f949bf039355a97967c59`
+- Post-merge behavior confirmation exists at `docs/research/m4a-post-merge-confirmation.md`.
 - The main research question now centers on reusable human judgment in human-AI collaboration for AI-assisted domain modeling and model assessment.
 - New planning artifacts define the literature-review taxonomy, C0-C4B evaluation plan, thesis outline, claim/evidence table, and EXP-001 planned M4B experiment shell.
 - Core orientation files exist:
@@ -47,6 +52,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
   - `AGENTS.md`
   - `CLAUDE.md`
 - A paste-ready Claude startup prompt exists at `docs/agent-memory/claude-bootstrap-prompt.md`.
+- A paste-ready Claude M4B handoff prompt exists at `docs/agent-memory/claude-m4b-handoff-prompt.md`.
 - A GitHub-rendered Mermaid workspace diagram exists at `docs/architecture/workspace-diagram.md`.
 - Research OS registers exist for artifact audit, provenance, and publishability under `docs/research/`.
 - Confluence wiki sync infrastructure exists under `docs/confluence/`; local target config points to `https://alih10j.atlassian.net/wiki`, cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, space `~71202099edcf0e26ec40cea521806deb9e9687`, home page `294914`.
@@ -73,5 +79,6 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 ## Next Best Step
 
 - Draft M4B design only; do not implement until the design is reviewed.
+- Ask Claude to refresh `artifacts/vego-ai-M1-M2-M3-M4A-changes.zip` and `artifacts/M1-M2-M3-M4A-manifest.md` using `docs/agent-memory/claude-m4b-handoff-prompt.md`.
 - Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting how Human Judgment Memory advice is supplied to Agent 4.
 - Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`; then create/update the Confluence child pages and record their IDs locally.
