@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-13 13:18 +03:00 by Codex.
+- 2026-06-13 13:30 +03:00 by Codex.
 
 ## Project Goal
 
@@ -36,7 +36,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
   - `milestone-m4a-memory-advisory` -> `ecd097245c463089a5721d68b17d6b22a1005a43`
   - `research-state-m4a` -> `28289405fc7cb687665f949bf039355a97967c59`
 - Post-merge behavior confirmation exists at `docs/research/m4a-post-merge-confirmation.md`.
-- Progress, KPI, and results dashboards exist under `docs/dashboards/`; they are checked by research health and feed the generated Confluence Progress Dashboard page.
+- Progress, KPI, and results dashboards exist under `docs/dashboards/`; they are checked by `scripts/dashboard-health.ps1` and research health, then feed the generated Confluence Progress Dashboard page.
 - The main research question now centers on reusable human judgment in human-AI collaboration for AI-assisted domain modeling and model assessment.
 - New planning artifacts define the literature-review taxonomy, C0-C4B evaluation plan, thesis outline, claim/evidence table, and EXP-001 planned M4B experiment shell.
 - Core orientation files exist:
@@ -58,7 +58,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Research OS registers exist for artifact audit, provenance, and publishability under `docs/research/`.
 - Confluence wiki sync infrastructure exists under `docs/confluence/`; local target config points to `https://alih10j.atlassian.net/wiki`, cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, space `~71202099edcf0e26ec40cea521806deb9e9687`, home page `294914`.
 - `scripts/build-confluence-wiki.ps1` generates ignored curated wiki pages in `docs/confluence/outbox/`, including the progress dashboard.
-- `scripts/research-health.ps1` checks research infrastructure, experiment folders, Confluence config template JSON, and forbidden tracked artifacts.
+- `scripts/dashboard-health.ps1` verifies dashboard sources, KPI rows, Confluence builder wiring, config page slots, and generated outbox readiness.
+- `scripts/research-health.ps1` checks research infrastructure, experiment folders, Confluence config template JSON, dashboard health, and forbidden tracked artifacts.
 
 ## Working Agreement
 
@@ -75,7 +76,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
 - M4B memory-informed Agent 4 reclassification is planned but not implemented; do not claim behavior improvement until the controlled C4B experiment is run.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
-- Confluence sync currently operates as generated outbox only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:18 +03:00.
+- Confluence sync currently operates as generated outbox only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:30 +03:00.
 
 ## Next Best Step
 

@@ -23,6 +23,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-12 | M4A Memory Advisory Layer reviewed and merged | Done | Reviewed PR #2, added edge-case fixes, posted review report, and squash-merged as `ecd0972`. |
 | 2026-06-13 | M4A reproducibility tags and Claude handoff prepared | Done | Tagged M3, M4A, and research-state commits; added post-merge confirmation and Claude M4B handoff prompt. |
 | 2026-06-13 | Dashboard/KPI tracking layer added | Done | Added tracked progress, KPI, and results dashboards and generated a fifth Confluence outbox page for progress tracking. |
+| 2026-06-13 | Dashboard health gate added | Done | Added `scripts/dashboard-health.ps1` and wired it into research/project health plus agent end-of-prompt workflow. |
 
 ## Active Work
 
@@ -35,6 +36,7 @@ Track milestones, current work, and next steps here.
 | TASK-006 | 2026-06-12 | Planned | Design M4B memory-informed Agent 4 controlled experiment. | Draft design only; no implementation until review. |
 | TASK-007 | 2026-06-13 | Planned | Refresh M1-M4A review artifact for external review. | Ask Claude to create the ignored ZIP and manifest listed in `docs/agent-memory/claude-m4b-handoff-prompt.md`. |
 | TASK-008 | 2026-06-13 | Open | Keep progress, KPI, and results dashboards current. | Update `docs/dashboards/` whenever progress, KPI values, validated results, or Confluence tracking status changes. |
+| TASK-009 | 2026-06-13 | Open | Keep dashboard/wiki tracking health verified. | Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after every Confluence outbox build. |
 
 ## Completed Work
 
@@ -56,6 +58,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-12 | Reviewed and merged M4A advisory layer. | PR #2, commit `ecd0972`, `VEGO-AI/framework/memory_advisor.py`, `VEGO-AI/schemas/memory_advice.schema.json`, `VEGO-AI/tests/test_memory_advisor.py`, `VEGO-AI/docs/memory_advisor.md` |
 | 2026-06-13 | Tagged reproducible M3/M4A states and added Claude handoff. | `docs/research/m4a-post-merge-confirmation.md`, `docs/agent-memory/claude-m4b-handoff-prompt.md`, tags `milestone-m3-human-judgment-memory`, `milestone-m4a-memory-advisory`, `research-state-m4a` |
 | 2026-06-13 | Added progress/KPI/results dashboard tracking. | `docs/dashboards/`, `scripts/build-confluence-wiki.ps1`, `scripts/research-health.ps1`, agent instructions, Confluence sync docs |
+| 2026-06-13 | Added dashboard health enforcement. | `scripts/dashboard-health.ps1`, `scripts/research-health.ps1`, agent instructions, dashboard docs |
 
 ## Next Steps
 
@@ -63,8 +66,9 @@ Track milestones, current work, and next steps here.
 2. Ask Claude to draft M4B design only; do not implement M4B until reviewed.
 3. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
 4. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-5. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-6. Create/update the four Confluence child pages and store their IDs in ignored local config.
-7. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-8. Convert existing package results into evidence entries under `EXP-000`.
-9. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+5. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
+6. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+7. Create/update the four Confluence child pages and store their IDs in ignored local config.
+8. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+9. Convert existing package results into evidence entries under `EXP-000`.
+10. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

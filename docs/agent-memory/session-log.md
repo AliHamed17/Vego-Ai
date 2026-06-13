@@ -626,3 +626,61 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\agent-memory-finish.ps1 -> passed
 - Status: completed; live Confluence blocked by access grant
 - Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then sync the five generated outbox pages live.
+
+## 2026-06-13 13:29 +03:00 - Codex - Add Dashboard Health Gate
+
+- Request: Continue toward dashboards, results, KPI, and Confluence progress tracking.
+- Actions taken:
+  - Added scripts/dashboard-health.ps1 to verify dashboard sources, KPI rows, Confluence builder wiring, config page slots, and generated outbox readiness.
+  - Wired dashboard-health into research-health and the agent end-of-prompt workflow.
+  - Updated dashboard docs, Confluence sync docs, README, Codex/Claude instructions, and Claude bootstrap prompt.
+  - Recorded the dashboard health gate as a KPI/result and in shared memory.
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 -> passed
+  - .\scripts\build-confluence-wiki.ps1 -> generated five page outbox
+  - .\scripts\dashboard-health.ps1 -> passed
+  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed
+  - python -m pytest VEGO-AI\tests -q -> 57 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed and calls dashboard-health
+  - PowerShell parser check -> passed
+  - git diff --check -> passed with line-ending warning only
+- Status: completed; live Confluence still pending on Atlassian cloud grant
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then run dashboard-health -RequireLivePageIds after child page IDs are stored locally.
+
+## 2026-06-13 13:31 +03:00 - Codex - Recheck Confluence Access For Dashboard Health Gate
+
+- Request: Continue dashboard, KPI, results, and Confluence progress tracking.
+- Actions taken:
+  - Discovered the Atlassian Rovo create-page tool is available for future live sync.
+  - Retried reading Confluence page 294914 on cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec.
+  - Confirmed live sync remains blocked because the cloud is not explicitly granted.
+  - Updated memory, dashboard, and wiki-sync docs with the 2026-06-13 13:30 +03:00 recheck.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Commands/checks:
+  - Atlassian Rovo _getconfluencepage cloudId=724252a1-a5b7-45a5-b6ec-27a8292197ec pageId=294914 -> blocked: cloud is not explicitly granted
+  - .\scripts\agent-memory-finish.ps1 -> passed
+- Status: completed; live Confluence still blocked by access grant
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update home page 294914 and create/update child pages from outbox.

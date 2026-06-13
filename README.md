@@ -54,6 +54,7 @@ Do not mix thesis notes, experiment notes, or project-management files inside `V
 4. Record research changes in the relevant registry or template.
 5. Finish with `.\scripts\agent-memory-finish.ps1` so future prompts can continue the thread.
 6. Refresh the Confluence outbox with `.\scripts\build-confluence-wiki.ps1`.
+7. Verify dashboard/wiki readiness with `.\scripts\dashboard-health.ps1 -RequireOutbox`.
 
 ## Reproducibility Rule
 

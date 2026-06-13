@@ -328,3 +328,35 @@ Record file changes and rollback notes here.
   - docs/confluence/wiki-sync.md
 - Rollback note: Revert the blocker timestamp updates in current-state, issues, dashboard docs, wiki-sync docs, session log, and revert log if this access check should not be recorded.
 - Git commit: none recorded by script.
+
+## 2026-06-13 13:29 +03:00 - Codex - Add Dashboard Health Gate
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert scripts/dashboard-health.ps1, the research-health invocation, workflow doc updates, dashboard KPI/result rows, and memory entries if this enforcement gate should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:31 +03:00 - Codex - Recheck Confluence Access For Dashboard Health Gate
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the latest blocker timestamp updates in current-state, issues, dashboards, wiki-sync docs, session log, and revert log if this access check should not be recorded.
+- Git commit: none recorded by script.

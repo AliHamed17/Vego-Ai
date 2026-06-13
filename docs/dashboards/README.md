@@ -15,6 +15,12 @@ The dashboards are curated Markdown, designed for two uses:
 | `kpi-register.md` | KPI definitions, current values, status, source evidence, and next actions. |
 | `results-dashboard.md` | Validated implementation and research result snapshots. |
 
+## Checks
+
+- Run `.\scripts\dashboard-health.ps1` to verify dashboard sources, Confluence template wiring, local sync config shape, and generated outbox when present.
+- Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after `.\scripts\build-confluence-wiki.ps1` to require all five generated wiki page bodies.
+- Run `.\scripts\dashboard-health.ps1 -RequireLivePageIds` only after Atlassian Rovo access is granted and child page IDs are recorded locally.
+
 ## Update Rules
 
 - Update these dashboards after meaningful milestone, experiment, review, or publication-state changes.

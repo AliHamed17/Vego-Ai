@@ -23,6 +23,7 @@ Update the memory files before the final answer whenever the prompt involved ana
 - Update `docs/agent-memory/revert-log.md` for any file changes, including a short rollback note.
 - Update `docs/dashboards/` when progress, KPI values, validated results, or Confluence tracking status changes.
 - Run `.\scripts\build-confluence-wiki.ps1` after memory updates.
+- Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the wiki outbox.
 - If `docs/confluence/wiki-sync-config.local.json` contains real Confluence IDs and Atlassian Rovo has access, update the configured Confluence pages with Markdown content from `docs/confluence/outbox/`.
 - If IDs are missing or Atlassian access is not granted, treat the generated `docs/confluence/outbox/` files as the pending wiki update and report the blocked live sync clearly.
 - Confluence sync is an agent-enforced workflow, not a background service.

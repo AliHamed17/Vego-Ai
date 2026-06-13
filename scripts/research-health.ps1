@@ -21,7 +21,8 @@ $requiredPaths = @(
     "experiments/EXP-000-existing-packaged-results-audit/README.md",
     "experiments/EXP-000-existing-packaged-results-audit/config-manifest.md",
     "experiments/EXP-000-existing-packaged-results-audit/notes.md",
-    "scripts/build-confluence-wiki.ps1"
+    "scripts/build-confluence-wiki.ps1",
+    "scripts/dashboard-health.ps1"
 )
 
 $forbiddenTrackedPatterns = @(
@@ -152,6 +153,13 @@ else {
 
 if ($missing.Count -gt 0) {
     throw "Research health failed. Missing paths: $($missing -join ', ')"
+}
+
+$dashboardHealthScript = Join-Path $PSScriptRoot "dashboard-health.ps1"
+if (Test-Path -LiteralPath $dashboardHealthScript) {
+    Write-Host ""
+    Write-Host "Running dashboard health check..."
+    & $dashboardHealthScript
 }
 
 Write-Host ""

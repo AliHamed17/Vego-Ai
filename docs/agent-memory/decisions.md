@@ -83,8 +83,9 @@ Durable decisions for this project.
 - Decision: Use tracked Markdown files under `docs/dashboards/` as the source of truth for progress, KPI, and results dashboards.
 - Decision: Generate a dedicated `VEGO-AI Progress Dashboard` Confluence outbox page from those tracked dashboard sources.
 - Decision: Add dashboard files to research health so progress tracking becomes part of the standard quality gate.
+- Decision: Add `scripts/dashboard-health.ps1` to verify dashboard sources, KPI rows, Confluence builder wiring, config page slots, and generated outbox readiness.
 - Reason: The user wants progress and research results visible in Confluence without copying controlled artifacts or relying on ad hoc summaries.
-- Consequence: Agents should update `docs/dashboards/` whenever progress, KPI values, validated results, or Confluence tracking status changes, then regenerate the Confluence outbox.
+- Consequence: Agents should update `docs/dashboards/` whenever progress, KPI values, validated results, or Confluence tracking status changes, then regenerate the Confluence outbox and run `.\scripts\dashboard-health.ps1 -RequireOutbox`.
 
 ## 2026-06-12 - Milestone Branch/PR Discipline + Baseline Preservation
 
