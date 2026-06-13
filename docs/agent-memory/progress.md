@@ -25,6 +25,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-13 | Dashboard/KPI tracking layer added | Done | Added tracked progress, KPI, and results dashboards and generated a fifth Confluence outbox page for progress tracking. |
 | 2026-06-13 | Dashboard health gate added | Done | Added `scripts/dashboard-health.ps1` and wired it into research/project health plus agent end-of-prompt workflow. |
 | 2026-06-13 | Dashboard runtime snapshot added | Done | Added `scripts/build-dashboard-snapshot.ps1`; Confluence wiki builds now embed a fresh ignored snapshot with repo, KPI, active-work, outbox, and live-sync status. |
+| 2026-06-13 | Manual Confluence sync pack added | Done | Added a generated, ignored manual sync pack with page bodies, target metadata, and hashes for approved fallback publishing. |
 
 ## Active Work
 
@@ -39,6 +40,7 @@ Track milestones, current work, and next steps here.
 | TASK-008 | 2026-06-13 | Open | Keep progress, KPI, and results dashboards current. | Update `docs/dashboards/` whenever progress, KPI values, validated results, or Confluence tracking status changes. |
 | TASK-009 | 2026-06-13 | Open | Keep dashboard/wiki tracking health verified. | Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after every Confluence outbox build. |
 | TASK-010 | 2026-06-13 | Open | Keep runtime dashboard snapshot fresh. | Run `.\scripts\build-confluence-wiki.ps1` after memory/dashboard updates; it regenerates `docs/dashboards/status-snapshot.generated.md`. |
+| TASK-011 | 2026-06-13 | Open | Keep manual Confluence sync pack fresh while live access is blocked. | Run `.\scripts\build-confluence-wiki.ps1`; it regenerates `docs/confluence/manual-sync-pack.generated.md`. |
 
 ## Completed Work
 
@@ -62,6 +64,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-13 | Added progress/KPI/results dashboard tracking. | `docs/dashboards/`, `scripts/build-confluence-wiki.ps1`, `scripts/research-health.ps1`, agent instructions, Confluence sync docs |
 | 2026-06-13 | Added dashboard health enforcement. | `scripts/dashboard-health.ps1`, `scripts/research-health.ps1`, agent instructions, dashboard docs |
 | 2026-06-13 | Added generated dashboard runtime snapshot. | `scripts/build-dashboard-snapshot.ps1`, `scripts/build-confluence-wiki.ps1`, `.gitignore`, dashboard/confluence workflow docs |
+| 2026-06-13 | Added generated manual Confluence sync pack. | `scripts/build-confluence-manual-sync-pack.ps1`, `docs/confluence/manual-sync.md`, `scripts/build-confluence-wiki.ps1`, `scripts/dashboard-health.ps1`, `scripts/research-health.ps1` |
 
 ## Next Steps
 
@@ -69,10 +72,10 @@ Track milestones, current work, and next steps here.
 2. Ask Claude to draft M4B design only; do not implement M4B until reviewed.
 3. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
 4. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-5. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot and wiki outbox.
+5. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
 6. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
 7. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-8. Create/update the four Confluence child pages and store their IDs in ignored local config.
+8. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
 9. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
 10. Convert existing package results into evidence entries under `EXP-000`.
 11. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

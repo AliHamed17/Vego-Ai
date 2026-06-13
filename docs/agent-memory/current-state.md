@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-13 13:50 +03:00 by Codex.
+- 2026-06-13 18:40 +03:00 by Codex.
 
 ## Project Goal
 
@@ -18,6 +18,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Workspace root: `c:\Users\ahamed\vego-ai`
 - Git status: repository initialized, safe baseline committed, and pushed to private GitHub repo `AliHamed17/Vego-Ai` on 2026-06-11.
 - Current branch: `main`, tracking `origin/main`.
+- Current observed HEAD at prompt start: `b213734` (`M4A test-compat: runner-agnostic missing-memory tests (test-only)`), already matching `origin/main`.
 - Safe baseline merge commit: `76e7277`.
 - Main visible source files at setup:
   - `Variability_MAS4MODELS2026_Mar28_IRB2איריס (1).pdf`
@@ -59,8 +60,9 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Confluence wiki sync infrastructure exists under `docs/confluence/`; local target config points to `https://alih10j.atlassian.net/wiki`, cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, space `~71202099edcf0e26ec40cea521806deb9e9687`, home page `294914`.
 - `scripts/build-confluence-wiki.ps1` generates ignored curated wiki pages in `docs/confluence/outbox/`, including the progress dashboard.
 - `scripts/build-dashboard-snapshot.ps1` generates the ignored dashboard runtime snapshot used in the Confluence Progress Dashboard.
+- `scripts/build-confluence-manual-sync-pack.ps1` generates ignored `docs/confluence/manual-sync-pack.generated.md` for manual or browser-assisted Confluence publishing when live Rovo access is unavailable.
 - `scripts/dashboard-health.ps1` verifies dashboard sources, KPI rows, Confluence builder wiring, config page slots, and generated outbox readiness.
-- `scripts/research-health.ps1` checks research infrastructure, experiment folders, Confluence config template JSON, dashboard health, and forbidden tracked artifacts.
+- `scripts/research-health.ps1` checks research infrastructure, experiment folders, Confluence config template JSON, dashboard health, generated Confluence pack safety, and forbidden tracked artifacts.
 
 ## Working Agreement
 
@@ -77,11 +79,11 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
 - M4B memory-informed Agent 4 reclassification is planned but not implemented; do not claim behavior improvement until the controlled C4B experiment is run.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
-- Confluence sync currently operates as generated outbox only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:45 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
+- Confluence sync currently operates as generated outbox/manual sync pack only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 18:40 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
 
 ## Next Best Step
 
 - Draft M4B design only; do not implement until the design is reviewed.
 - Ask Claude to refresh `artifacts/vego-ai-M1-M2-M3-M4A-changes.zip` and `artifacts/M1-M2-M3-M4A-manifest.md` using `docs/agent-memory/claude-m4b-handoff-prompt.md`.
 - Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting how Human Judgment Memory advice is supplied to Agent 4.
-- Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages, including the Progress Dashboard, and record their IDs locally.
+- Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages using the outbox/manual sync pack, including the Progress Dashboard, and record their IDs locally.

@@ -22,6 +22,7 @@ The dashboards are curated Markdown, designed for two uses:
 - Run `.\scripts\dashboard-health.ps1` to verify dashboard sources, Confluence template wiring, local sync config shape, and generated outbox when present.
 - Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after `.\scripts\build-confluence-wiki.ps1` to require all five generated wiki page bodies.
 - Run `.\scripts\dashboard-health.ps1 -RequireLivePageIds` only after Atlassian Rovo access is granted and child page IDs are recorded locally.
+- Use `docs/confluence/manual-sync.md` when a manual Confluence update path is needed while live access is blocked.
 
 ## Update Rules
 
@@ -29,4 +30,4 @@ The dashboards are curated Markdown, designed for two uses:
 - Keep values evidence-backed; cite commits, tags, commands, tests, or docs.
 - Do not copy controlled artifact contents into dashboards.
 - Use metadata-only summaries until publishability is approved.
-- The Confluence outbox and `status-snapshot.generated.md` are generated; do not edit them directly.
+- The Confluence outbox, `status-snapshot.generated.md`, and `manual-sync-pack.generated.md` are generated; do not edit them directly.

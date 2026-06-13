@@ -231,5 +231,10 @@ $resultsDashboard
     Write-WikiPage -FileName "vego-ai-progress-dashboard.md" -Body $dashboard
 }
 
+$manualSyncScript = Join-Path $PSScriptRoot "build-confluence-manual-sync-pack.ps1"
+if (Test-Path -LiteralPath $manualSyncScript) {
+    & $manualSyncScript -OutboxDir $OutputDir -OutputPath "docs\confluence\manual-sync-pack.generated.md" | Out-Host
+}
+
 Write-Host "Confluence wiki outbox generated: $outputPath"
 Write-Host "Live Confluence update requires Atlassian access plus page IDs in docs/confluence/wiki-sync-config.local.json."

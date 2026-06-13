@@ -12,6 +12,7 @@ $requiredPaths = @(
     "docs/research/provenance-register.md",
     "docs/research/publishability-register.md",
     "docs/agent-memory/claude-m4b-handoff-prompt.md",
+    "docs/confluence/manual-sync.md",
     "docs/confluence/wiki-sync.md",
     "docs/confluence/wiki-sync-config.template.json",
     "docs/dashboards/README.md",
@@ -22,6 +23,7 @@ $requiredPaths = @(
     "experiments/EXP-000-existing-packaged-results-audit/config-manifest.md",
     "experiments/EXP-000-existing-packaged-results-audit/notes.md",
     "scripts/build-dashboard-snapshot.ps1",
+    "scripts/build-confluence-manual-sync-pack.ps1",
     "scripts/build-confluence-wiki.ps1",
     "scripts/dashboard-health.ps1"
 )
@@ -41,6 +43,7 @@ $forbiddenTrackedPatterns = @(
     '^VEGO-AI/vego_visualizer_delivery/compliance_vectors/',
     '^VEGO-AI/vego_visualizer_delivery/guidelines/',
     '^docs/dashboards/.*\.generated\.md$',
+    '^docs/confluence/.*\.generated\.md$',
     '^docs/confluence/outbox/'
 )
 
@@ -151,6 +154,28 @@ if (Test-Path -LiteralPath $outboxPath) {
 }
 else {
     Write-Host "[info]    Confluence outbox not generated yet"
+}
+
+$generatedConfluenceFiles = Get-ChildItem -LiteralPath (Join-Path $repoRoot "docs/confluence") -Filter "*.generated.md" -File -ErrorAction SilentlyContinue
+foreach ($file in $generatedConfluenceFiles) {
+    $body = Get-Content -Raw -LiteralPath $file.FullName
+    foreach ($pattern in @(
+        'VEGO-AI/models/',
+        'VEGO-AI/analysis/',
+        'VEGO-AI/eval_output/',
+        'VEGO-AI/human_review_output/',
+        'Variability_MAS4MODELS',
+        '\.pdf',
+        '\.zip',
+        '\.exe'
+    )) {
+        if ($body -match $pattern) {
+            throw "Generated Confluence file mentions forbidden sensitive path/pattern '$pattern' in $($file.Name)."
+        }
+    }
+}
+if ($generatedConfluenceFiles.Count -gt 0) {
+    Write-Host "[ok]      Generated Confluence packs avoid forbidden sensitive path patterns"
 }
 
 if ($missing.Count -gt 0) {

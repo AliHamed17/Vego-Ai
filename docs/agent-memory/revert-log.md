@@ -397,3 +397,40 @@ Record file changes and rollback notes here.
   - docs/confluence/wiki-sync.md
 - Rollback note: Revert the latest blocker/fallback status updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this browser fallback check should not be recorded.
 - Git commit: none recorded by script.
+
+## 2026-06-13 18:40 +03:00 - Codex - Add Confluence Manual Sync Pack
+
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/confluence/manual-sync.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-confluence-manual-sync-pack.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated file)
+- Rollback note: Revert the manual sync pack builder, wiki builder hook, health checks, docs, memory/dashboard updates, and .gitignore generated-pack entry if this fallback path should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-13 18:41 +03:00 - Codex - Recheck Confluence Access After Manual Pack
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the latest Confluence blocker timestamp updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this recheck should not be recorded.
+- Git commit: none recorded by script.

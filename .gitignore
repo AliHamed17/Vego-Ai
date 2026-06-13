@@ -88,6 +88,7 @@ docs/dashboards/*.generated.md
 # Generated Confluence sync outbox and local target config
 docs/confluence/outbox/**
 docs/confluence/wiki-sync-config.local.json
+docs/confluence/*.generated.md
 
 # Local Claude workspace permissions/state
 .claude/*.local.json

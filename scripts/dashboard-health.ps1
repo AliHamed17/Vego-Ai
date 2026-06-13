@@ -24,6 +24,7 @@ $dashboardFiles = @(
 )
 
 $snapshotRelative = "docs/dashboards/status-snapshot.generated.md"
+$manualSyncPackRelative = "docs/confluence/manual-sync-pack.generated.md"
 $requiredPageKeys = @("home", "currentState", "dashboard", "changelog", "researchOperations")
 $requiredOutboxFiles = @(
     "vego-ai-wiki-home.md",
@@ -96,12 +97,32 @@ else {
 
 $builderPath = Join-Path $repoRoot "scripts/build-confluence-wiki.ps1"
 $builder = Get-Content -Raw -LiteralPath $builderPath
-foreach ($requiredBuilderText in @("docs/dashboards/progress-dashboard.md", "docs/dashboards/kpi-register.md", "docs/dashboards/results-dashboard.md", "build-dashboard-snapshot.ps1", "status-snapshot.generated.md", "vego-ai-progress-dashboard.md")) {
+foreach ($requiredBuilderText in @("docs/dashboards/progress-dashboard.md", "docs/dashboards/kpi-register.md", "docs/dashboards/results-dashboard.md", "build-dashboard-snapshot.ps1", "status-snapshot.generated.md", "build-confluence-manual-sync-pack.ps1", "manual-sync-pack.generated.md", "vego-ai-progress-dashboard.md")) {
     if ($builder -notmatch [regex]::Escape($requiredBuilderText)) {
         throw "Confluence wiki builder is missing dashboard wiring: $requiredBuilderText"
     }
 }
 Write-Host "[ok]      Confluence wiki builder includes dashboard sources"
+
+$manualPackPath = Join-Path $repoRoot $manualSyncPackRelative
+if (Test-Path -LiteralPath $manualPackPath) {
+    $manualPack = Get-Content -Raw -LiteralPath $manualPackPath
+    foreach ($requiredText in @("# Confluence Manual Sync Pack", "VEGO-AI Wiki Home", "VEGO-AI Progress Dashboard", "SHA-256")) {
+        if ($manualPack -notmatch [regex]::Escape($requiredText)) {
+            throw "Generated manual sync pack is missing required text: $requiredText"
+        }
+    }
+    if (-not (Test-IgnoredByGit -RelativePath $manualSyncPackRelative)) {
+        throw "Generated manual sync pack must be ignored by Git: $manualSyncPackRelative"
+    }
+    Write-Host "[ok]      Generated Confluence manual sync pack exists and is ignored"
+}
+elseif ($RequireOutbox) {
+    throw "Generated Confluence manual sync pack is required but missing: $manualSyncPackRelative"
+}
+else {
+    Write-Host "[info]    Generated Confluence manual sync pack not generated yet"
+}
 
 $templateRelative = "docs/confluence/wiki-sync-config.template.json"
 $templatePath = Join-Path $repoRoot $templateRelative

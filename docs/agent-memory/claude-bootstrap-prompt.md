@@ -215,6 +215,7 @@ If the prompt involved analysis, edits, debugging, planning, decisions, architec
 
    This also refreshes:
    docs\dashboards\status-snapshot.generated.md
+   docs\confluence\manual-sync-pack.generated.md
 
    Then verify dashboard/wiki readiness:
    .\scripts\dashboard-health.ps1 -RequireOutbox

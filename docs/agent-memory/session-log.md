@@ -751,3 +751,68 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\agent-memory-finish.ps1 -> passed
 - Status: completed locally; live Confluence blocked by missing Atlassian grant and unavailable Chrome extension route
 - Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, or enable the Codex Chrome Extension route, then sync the generated outbox pages live.
+
+## 2026-06-13 18:40 +03:00 - Codex - Add Confluence Manual Sync Pack
+
+- Request: Continue dashboard, results, KPI, and Confluence progress tracking while live access is blocked.
+- Actions taken:
+  - Added scripts/build-confluence-manual-sync-pack.ps1 to generate an ignored manual Confluence publishing package from the safe outbox.
+  - Updated scripts/build-confluence-wiki.ps1 to generate the manual sync pack after the outbox and runtime snapshot.
+  - Added docs/confluence/manual-sync.md with fallback publishing rules and page targets.
+  - Updated dashboard-health and research-health to verify the manual pack exists, is ignored, and avoids forbidden sensitive path patterns.
+  - Observed existing commit b213734 on main/origin-main before edits; it is a test-only M4A compatibility change.
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/confluence/manual-sync.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-confluence-manual-sync-pack.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated file)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 -> passed
+  - git status -sb -> clean at prompt start
+  - git log --oneline -8 -> observed b213734 test-only commit on main/origin-main
+  - .\scripts\build-confluence-wiki.ps1 -> generated outbox, runtime snapshot, and manual sync pack
+  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed
+  - Select-String forbidden generated-pack scan -> no matches
+  - python -m pytest VEGO-AI\tests -q -> 57 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - PowerShell parser check -> passed
+  - git diff --check -> passed with line-ending warnings only
+- Status: completed locally; live Confluence still pending on access grant or browser route
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable the Codex Chrome Extension route, then publish from outbox/manual sync pack and store child page IDs locally.
+
+## 2026-06-13 18:41 +03:00 - Codex - Recheck Confluence Access After Manual Pack
+
+- Request: Continue dashboard and Confluence progress tracking.
+- Actions taken:
+  - Rechecked Atlassian Rovo access to Confluence page 294914 after adding the manual sync pack.
+  - Confirmed live sync remains blocked because the cloud is not explicitly granted.
+  - Updated current state, issues, dashboards, and wiki sync docs with the 2026-06-13 18:40 +03:00 recheck.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Commands/checks:
+  - Atlassian Rovo _getconfluencepage pageId=294914 -> blocked: cloud is not explicitly granted
+  - .\scripts\agent-memory-finish.ps1 -> passed
+- Status: completed; live Confluence still blocked by access grant
+- Next steps: Grant Atlassian Rovo access or enable the Codex Chrome Extension route; use generated outbox/manual sync pack for publishing once access exists.
