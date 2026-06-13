@@ -1,6 +1,6 @@
 # Progress Dashboard
 
-Last curated update: 2026-06-13 13:45 +03:00.
+Last curated update: 2026-06-13 13:50 +03:00.
 
 ## Executive Snapshot
 
@@ -16,7 +16,7 @@ VEGO-AI is currently at the M4A research state. The project has a validated stag
 | Dashboard/wiki tracking gate | Green | Runtime snapshot is generated and `.\scripts\dashboard-health.ps1 -RequireOutbox` passes. | Keep running after wiki outbox builds. |
 | M4B Memory-informed reclassification | Yellow | Design-only in `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/`. | Draft design; do not implement code. |
 | Data/IRB audit | Red | Controlled artifacts still ignored and metadata-only. | Continue audit before sharing artifacts. |
-| Confluence live tracking | Blocked | Outbox exists; Atlassian access not granted as of 2026-06-13 13:45 +03:00. | Grant Rovo access and create/update child pages. |
+| Confluence live tracking | Blocked | Outbox exists; Atlassian access not granted as of 2026-06-13 13:45 +03:00; Chrome extension fallback unavailable as of 2026-06-13 13:50 +03:00. | Grant Rovo access or enable the Chrome extension route, then create/update child pages. |
 
 ## Milestone Flow
 

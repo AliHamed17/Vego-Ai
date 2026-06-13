@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-13 13:45 +03:00 by Codex.
+- 2026-06-13 13:50 +03:00 by Codex.
 
 ## Project Goal
 
@@ -77,11 +77,11 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
 - M4B memory-informed Agent 4 reclassification is planned but not implemented; do not claim behavior improvement until the controlled C4B experiment is run.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
-- Confluence sync currently operates as generated outbox only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:45 +03:00.
+- Confluence sync currently operates as generated outbox only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:45 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
 
 ## Next Best Step
 
 - Draft M4B design only; do not implement until the design is reviewed.
 - Ask Claude to refresh `artifacts/vego-ai-M1-M2-M3-M4A-changes.zip` and `artifacts/M1-M2-M3-M4A-manifest.md` using `docs/agent-memory/claude-m4b-handoff-prompt.md`.
 - Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting how Human Judgment Memory advice is supplied to Agent 4.
-- Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`; then create/update the Confluence child pages, including the Progress Dashboard, and record their IDs locally.
+- Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages, including the Progress Dashboard, and record their IDs locally.

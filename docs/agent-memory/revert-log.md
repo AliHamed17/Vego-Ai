@@ -386,3 +386,14 @@ Record file changes and rollback notes here.
   - docs/dashboards/status-snapshot.generated.md (ignored generated file)
 - Rollback note: Revert the snapshot builder, wiki builder snapshot embedding, dashboard-health snapshot checks, .gitignore entry, docs/memory updates, and regenerated ignored snapshot if this runtime snapshot layer should be removed.
 - Git commit: none recorded by script.
+
+## 2026-06-13 13:51 +03:00 - Codex - Record Confluence Browser Fallback Check
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the latest blocker/fallback status updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this browser fallback check should not be recorded.
+- Git commit: none recorded by script.

@@ -1,6 +1,6 @@
 # KPI Register
 
-Last curated update: 2026-06-13 13:45 +03:00.
+Last curated update: 2026-06-13 13:50 +03:00.
 
 ## Status Legend
 
@@ -26,7 +26,7 @@ Last curated update: 2026-06-13 13:45 +03:00.
 | Review artifact readiness | M1-M4A ZIP and manifest are requested but not refreshed yet. | `artifacts/vego-ai-M1-M2-M3-M4A-changes.zip` and manifest produced for review. | Yellow | `docs/agent-memory/claude-m4b-handoff-prompt.md` | Ask Claude to refresh artifact and manifest. |
 | Experiment registry readiness | EXP-000 and EXP-001 are registered; both are planned. | EXP-000 audit and EXP-001 M4B design are actionable. | Yellow | `experiments/registry.md` | Fill EXP-000 evidence entries and draft M4B design. |
 | Data/IRB audit | Deferred artifacts remain unaudited. | Controlled artifacts get provenance and publishability decisions before sharing. | Red | `docs/research/artifact-audit.md`, `docs/research/publishability-register.md` | Continue metadata-only audit. |
-| Live Confluence sync | Outbox generated; live write blocked by Atlassian Rovo cloud grant. | Confluence pages update live from outbox. | Blocked | `docs/agent-memory/issues.md` ISS-005, rechecked 2026-06-13 13:45 +03:00 | Grant Atlassian access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`. |
+| Live Confluence sync | Outbox generated; live write blocked by Atlassian Rovo cloud grant; Chrome fallback unavailable after retry. | Confluence pages update live from outbox. | Blocked | `docs/agent-memory/issues.md` ISS-005, Rovo rechecked 2026-06-13 13:45 +03:00, Chrome checked 2026-06-13 13:50 +03:00 | Grant Atlassian access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` or enable the Codex Chrome Extension route. |
 
 ## Tracking Cadence
 

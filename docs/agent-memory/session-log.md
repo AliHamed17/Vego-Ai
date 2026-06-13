@@ -729,3 +729,25 @@ Chronological prompt history for Codex and Claude.
   - Atlassian Rovo _getconfluencepage pageId=294914 -> blocked: cloud is not explicitly granted
 - Status: completed locally; live Confluence still blocked by Atlassian access grant
 - Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update home page 294914 and create/update child pages from the generated outbox.
+
+## 2026-06-13 13:51 +03:00 - Codex - Record Confluence Browser Fallback Check
+
+- Request: Continue toward dashboards, results, KPI, and Confluence progress tracking.
+- Actions taken:
+  - Checked Atlassian Rovo live page access again; cloud grant is still missing.
+  - Checked whether Chrome extension-backed browser automation could be used as a UI fallback.
+  - Chrome extension-backed browser channel was unavailable after the required retry.
+  - Updated current state, issues, dashboards, and Confluence sync docs with the browser fallback result.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Commands/checks:
+  - Atlassian Rovo _getconfluencepage pageId=294914 -> blocked: cloud is not explicitly granted
+  - Chrome extension connection check via node_repl -> Browser is not available: extension
+  - Chrome extension connection retry after 2 seconds -> Browser is not available: extension
+  - .\scripts\agent-memory-finish.ps1 -> passed
+- Status: completed locally; live Confluence blocked by missing Atlassian grant and unavailable Chrome extension route
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, or enable the Codex Chrome Extension route, then sync the generated outbox pages live.
