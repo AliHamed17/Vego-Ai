@@ -1,6 +1,6 @@
 # Progress Dashboard
 
-Last curated update: 2026-06-13 13:30 +03:00.
+Last curated update: 2026-06-13 13:45 +03:00.
 
 ## Executive Snapshot
 
@@ -13,10 +13,10 @@ VEGO-AI is currently at the M4A research state. The project has a validated stag
 | M2 Human Feedback Manager | Green | Implemented and tested. | Include schema/docs/tests in artifact manifest. |
 | M3 Human Judgment Memory | Green | Tag `milestone-m3-human-judgment-memory`. | Reference tag in thesis evidence. |
 | M4A Memory Advisory Layer | Green | Tag `milestone-m4a-memory-advisory`. | Include advisory-only proof in manifest. |
-| Dashboard/wiki tracking gate | Green | `.\scripts\dashboard-health.ps1 -RequireOutbox` passes. | Keep running after wiki outbox builds. |
+| Dashboard/wiki tracking gate | Green | Runtime snapshot is generated and `.\scripts\dashboard-health.ps1 -RequireOutbox` passes. | Keep running after wiki outbox builds. |
 | M4B Memory-informed reclassification | Yellow | Design-only in `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/`. | Draft design; do not implement code. |
 | Data/IRB audit | Red | Controlled artifacts still ignored and metadata-only. | Continue audit before sharing artifacts. |
-| Confluence live tracking | Blocked | Outbox exists; Atlassian access not granted as of 2026-06-13 13:30 +03:00. | Grant Rovo access and create/update child pages. |
+| Confluence live tracking | Blocked | Outbox exists; Atlassian access not granted as of 2026-06-13 13:45 +03:00. | Grant Rovo access and create/update child pages. |
 
 ## Milestone Flow
 
@@ -45,6 +45,7 @@ VEGO-AI is currently at the M4A research state. The project has a validated stag
 
 The generated Confluence outbox should include a dashboard page sourced from:
 
+- `docs/dashboards/status-snapshot.generated.md` (ignored runtime snapshot)
 - `docs/dashboards/progress-dashboard.md`
 - `docs/dashboards/kpi-register.md`
 - `docs/dashboards/results-dashboard.md`

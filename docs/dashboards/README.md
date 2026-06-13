@@ -14,9 +14,11 @@ The dashboards are curated Markdown, designed for two uses:
 | `progress-dashboard.md` | Milestone and active-work status for quick project tracking. |
 | `kpi-register.md` | KPI definitions, current values, status, source evidence, and next actions. |
 | `results-dashboard.md` | Validated implementation and research result snapshots. |
+| `status-snapshot.generated.md` | Ignored runtime snapshot generated for Confluence from current repo/outbox state. |
 
 ## Checks
 
+- Run `.\scripts\build-dashboard-snapshot.ps1` to refresh the ignored runtime status snapshot directly.
 - Run `.\scripts\dashboard-health.ps1` to verify dashboard sources, Confluence template wiring, local sync config shape, and generated outbox when present.
 - Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after `.\scripts\build-confluence-wiki.ps1` to require all five generated wiki page bodies.
 - Run `.\scripts\dashboard-health.ps1 -RequireLivePageIds` only after Atlassian Rovo access is granted and child page IDs are recorded locally.
@@ -27,4 +29,4 @@ The dashboards are curated Markdown, designed for two uses:
 - Keep values evidence-backed; cite commits, tags, commands, tests, or docs.
 - Do not copy controlled artifact contents into dashboards.
 - Use metadata-only summaries until publishability is approved.
-- The Confluence outbox is generated from these pages; do not edit `docs/confluence/outbox/` directly.
+- The Confluence outbox and `status-snapshot.generated.md` are generated; do not edit them directly.

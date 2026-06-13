@@ -23,6 +23,7 @@ $dashboardFiles = @(
     }
 )
 
+$snapshotRelative = "docs/dashboards/status-snapshot.generated.md"
 $requiredPageKeys = @("home", "currentState", "dashboard", "changelog", "researchOperations")
 $requiredOutboxFiles = @(
     "vego-ai-wiki-home.md",
@@ -75,9 +76,27 @@ foreach ($requiredKpi in @("Research spine clarity", "Test suite health", "Live 
 }
 Write-Host "[ok]      KPI register includes required tracking rows"
 
+$snapshotPath = Join-Path $repoRoot $snapshotRelative
+if (Test-Path -LiteralPath $snapshotPath) {
+    $snapshot = Get-Content -Raw -LiteralPath $snapshotPath
+    if (-not $snapshot.StartsWith("# Dashboard Status Snapshot")) {
+        throw "Generated dashboard snapshot must start with '# Dashboard Status Snapshot'."
+    }
+    if (-not (Test-IgnoredByGit -RelativePath $snapshotRelative)) {
+        throw "Generated dashboard snapshot must be ignored by Git: $snapshotRelative"
+    }
+    Write-Host "[ok]      Generated dashboard status snapshot exists and is ignored"
+}
+elseif ($RequireOutbox) {
+    throw "Generated dashboard status snapshot is required but missing: $snapshotRelative"
+}
+else {
+    Write-Host "[info]    Generated dashboard status snapshot not generated yet"
+}
+
 $builderPath = Join-Path $repoRoot "scripts/build-confluence-wiki.ps1"
 $builder = Get-Content -Raw -LiteralPath $builderPath
-foreach ($requiredBuilderText in @("docs/dashboards/progress-dashboard.md", "docs/dashboards/kpi-register.md", "docs/dashboards/results-dashboard.md", "vego-ai-progress-dashboard.md")) {
+foreach ($requiredBuilderText in @("docs/dashboards/progress-dashboard.md", "docs/dashboards/kpi-register.md", "docs/dashboards/results-dashboard.md", "build-dashboard-snapshot.ps1", "status-snapshot.generated.md", "vego-ai-progress-dashboard.md")) {
     if ($builder -notmatch [regex]::Escape($requiredBuilderText)) {
         throw "Confluence wiki builder is missing dashboard wiring: $requiredBuilderText"
     }
@@ -141,7 +160,7 @@ if (Test-Path -LiteralPath $outboxPath) {
     }
 
     $dashboardOutbox = Get-Content -Raw -LiteralPath (Join-Path $outboxPath "vego-ai-progress-dashboard.md")
-    foreach ($section in @("## Progress Dashboard", "## KPI Register", "## Results Dashboard")) {
+    foreach ($section in @("## Status Snapshot", "# Dashboard Status Snapshot", "## Progress Dashboard", "## KPI Register", "## Results Dashboard")) {
         if ($dashboardOutbox -notmatch [regex]::Escape($section)) {
             throw "Generated dashboard outbox is missing section: $section"
         }

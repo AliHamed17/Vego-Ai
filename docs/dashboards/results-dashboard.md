@@ -1,6 +1,6 @@
 # Results Dashboard
 
-Last curated update: 2026-06-13 13:26 +03:00.
+Last curated update: 2026-06-13 13:42 +03:00.
 
 ## Validated Implementation Results
 
@@ -8,7 +8,7 @@ Last curated update: 2026-06-13 13:26 +03:00.
 | --- | --- | --- | --- |
 | Full VEGO-AI test suite | 57 passed | `python -m pytest VEGO-AI\tests -q` on 2026-06-13 | M1-M4A tracked tests are green. |
 | Framework/eval compile check | Passed | `python -m compileall -q VEGO-AI\framework VEGO-AI\eval` on 2026-06-13 | Tracked Python modules compile. |
-| Dashboard/wiki tracking health | Passed | `.\scripts\dashboard-health.ps1 -RequireOutbox` on 2026-06-13 | KPI dashboard and generated Confluence outbox wiring are verified. |
+| Dashboard/wiki tracking health | Passed | `.\scripts\build-confluence-wiki.ps1` and `.\scripts\dashboard-health.ps1 -RequireOutbox` on 2026-06-13 | Runtime snapshot, KPI dashboard, and generated Confluence outbox wiring are verified. |
 | M4A advisory report validation | Passed | M4A review session log and schema validation | `memory_advice.json` conforms to the M4A schema. |
 | M4A classification changes | 0 | M4A generated advice review | Advisory layer did not change AI classifications. |
 | M4A advice distribution | none 5, strong 2, moderate 1 | M4A generated `ucd_ch` advice review | Memory advice surfaces relevant prior judgments where available. |

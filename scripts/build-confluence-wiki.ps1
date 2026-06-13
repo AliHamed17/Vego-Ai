@@ -85,6 +85,7 @@ $architecture = Read-RepoText "docs/architecture/project-map.md"
 $progressDashboard = Read-RepoText "docs/dashboards/progress-dashboard.md"
 $kpiRegister = Read-RepoText "docs/dashboards/kpi-register.md"
 $resultsDashboard = Read-RepoText "docs/dashboards/results-dashboard.md"
+$statusSnapshot = "_Dashboard status snapshot is generated during this wiki build._`n"
 $changelog = Get-RecentSessionEntries -Limit $MaxChangelogEntries
 
 $homePage = @"
@@ -149,6 +150,10 @@ $dashboard = @"
 
 Generated from repository memory on $generated.
 
+## Status Snapshot
+
+$statusSnapshot
+
 ## Progress Dashboard
 
 $progressDashboard
@@ -197,6 +202,34 @@ Write-WikiPage -FileName "vego-ai-current-state.md" -Body $current
 Write-WikiPage -FileName "vego-ai-progress-dashboard.md" -Body $dashboard
 Write-WikiPage -FileName "vego-ai-update-changelog.md" -Body $updates
 Write-WikiPage -FileName "vego-ai-research-operations.md" -Body $ops
+
+$snapshotScript = Join-Path $PSScriptRoot "build-dashboard-snapshot.ps1"
+if (Test-Path -LiteralPath $snapshotScript) {
+    & $snapshotScript -OutputPath "docs\dashboards\status-snapshot.generated.md" -OutboxDir $OutputDir | Out-Host
+    $statusSnapshot = Read-RepoText "docs/dashboards/status-snapshot.generated.md"
+    $dashboard = @"
+# VEGO-AI Progress Dashboard
+
+Generated from repository memory on $generated.
+
+## Status Snapshot
+
+$statusSnapshot
+
+## Progress Dashboard
+
+$progressDashboard
+
+## KPI Register
+
+$kpiRegister
+
+## Results Dashboard
+
+$resultsDashboard
+"@
+    Write-WikiPage -FileName "vego-ai-progress-dashboard.md" -Body $dashboard
+}
 
 Write-Host "Confluence wiki outbox generated: $outputPath"
 Write-Host "Live Confluence update requires Atlassian access plus page IDs in docs/confluence/wiki-sync-config.local.json."

@@ -684,3 +684,48 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\agent-memory-finish.ps1 -> passed
 - Status: completed; live Confluence still blocked by access grant
 - Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update home page 294914 and create/update child pages from outbox.
+
+## 2026-06-13 13:46 +03:00 - Codex - Add Runtime Dashboard Snapshot
+
+- Request: Continue toward dashboards, results, KPI, and Confluence progress tracking.
+- Actions taken:
+  - Added scripts/build-dashboard-snapshot.ps1 to generate an ignored runtime snapshot with repository, KPI, active-work, Confluence config, and outbox status.
+  - Updated scripts/build-confluence-wiki.ps1 to embed the generated status snapshot into the VEGO-AI Progress Dashboard outbox page.
+  - Updated dashboard-health to verify the generated snapshot is present, ignored, and embedded in the dashboard outbox.
+  - Updated .gitignore, dashboard docs, Confluence sync docs, agent workflows, and shared memory for the snapshot workflow.
+  - Rechecked live Confluence access and confirmed the cloud grant is still missing.
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-dashboard-snapshot.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - docs/dashboards/status-snapshot.generated.md (ignored generated file)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 -> passed
+  - .\scripts\build-dashboard-snapshot.ps1 -> generated ignored runtime snapshot after one escaping fix
+  - .\scripts\build-confluence-wiki.ps1 -> generated five-page outbox and embedded snapshot
+  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed when run after wiki build
+  - python -m pytest VEGO-AI\tests -q -> 57 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - PowerShell parser check -> passed
+  - git diff --check -> passed with line-ending warnings only
+  - Atlassian Rovo _getconfluencepage pageId=294914 -> blocked: cloud is not explicitly granted
+- Status: completed locally; live Confluence still blocked by Atlassian access grant
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update home page 294914 and create/update child pages from the generated outbox.

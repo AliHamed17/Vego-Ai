@@ -360,3 +360,29 @@ Record file changes and rollback notes here.
   - docs/confluence/wiki-sync.md
 - Rollback note: Revert the latest blocker timestamp updates in current-state, issues, dashboards, wiki-sync docs, session log, and revert log if this access check should not be recorded.
 - Git commit: none recorded by script.
+
+## 2026-06-13 13:46 +03:00 - Codex - Add Runtime Dashboard Snapshot
+
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-dashboard-snapshot.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - docs/dashboards/status-snapshot.generated.md (ignored generated file)
+- Rollback note: Revert the snapshot builder, wiki builder snapshot embedding, dashboard-health snapshot checks, .gitignore entry, docs/memory updates, and regenerated ignored snapshot if this runtime snapshot layer should be removed.
+- Git commit: none recorded by script.

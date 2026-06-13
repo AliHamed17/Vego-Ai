@@ -25,7 +25,7 @@ This folder is the shared project memory for Codex and Claude.
 4. Before the final response, run `.\scripts\agent-memory-finish.ps1` with the prompt summary.
 5. Update current state, progress, issues, and decisions manually when the work changes them.
 6. Update `docs/dashboards/` when progress, KPI values, or validated results change.
-7. Run `.\scripts\build-confluence-wiki.ps1` to refresh the ignored wiki outbox, then update live Confluence if local target IDs are configured.
+7. Run `.\scripts\build-confluence-wiki.ps1` to refresh the ignored dashboard runtime snapshot and wiki outbox, then update live Confluence if local target IDs are configured.
 8. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the wiki outbox.
 9. If Git is initialized later, include commit hashes in the session and revert logs.
 

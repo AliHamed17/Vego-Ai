@@ -21,6 +21,7 @@ $requiredPaths = @(
     "experiments/EXP-000-existing-packaged-results-audit/README.md",
     "experiments/EXP-000-existing-packaged-results-audit/config-manifest.md",
     "experiments/EXP-000-existing-packaged-results-audit/notes.md",
+    "scripts/build-dashboard-snapshot.ps1",
     "scripts/build-confluence-wiki.ps1",
     "scripts/dashboard-health.ps1"
 )
@@ -39,6 +40,7 @@ $forbiddenTrackedPatterns = @(
     '^VEGO-AI/vego_visualizer_delivery/models/',
     '^VEGO-AI/vego_visualizer_delivery/compliance_vectors/',
     '^VEGO-AI/vego_visualizer_delivery/guidelines/',
+    '^docs/dashboards/.*\.generated\.md$',
     '^docs/confluence/outbox/'
 )
 

@@ -53,7 +53,7 @@ Do not mix thesis notes, experiment notes, or project-management files inside `V
 3. Work in the right area: code in `VEGO-AI/` or `src/`, experiments in `experiments/`, notes in `docs/` or `literature/`.
 4. Record research changes in the relevant registry or template.
 5. Finish with `.\scripts\agent-memory-finish.ps1` so future prompts can continue the thread.
-6. Refresh the Confluence outbox with `.\scripts\build-confluence-wiki.ps1`.
+6. Refresh the Confluence outbox and dashboard runtime snapshot with `.\scripts\build-confluence-wiki.ps1`.
 7. Verify dashboard/wiki readiness with `.\scripts\dashboard-health.ps1 -RequireOutbox`.
 
 ## Reproducibility Rule

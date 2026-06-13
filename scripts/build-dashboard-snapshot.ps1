@@ -1,0 +1,203 @@
+[CmdletBinding()]
+param(
+    [string]$OutputPath = "docs\dashboards\status-snapshot.generated.md",
+    [string]$OutboxDir = "docs\confluence\outbox"
+)
+
+$ErrorActionPreference = "Stop"
+
+$repoRoot = Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")
+$outputFullPath = Join-Path $repoRoot $OutputPath
+$outboxPath = Join-Path $repoRoot $OutboxDir
+$generated = Get-Date -Format "yyyy-MM-dd HH:mm zzz"
+
+function Invoke-GitValue {
+    param([Parameter(Mandatory = $true)][string[]]$GitArgs)
+
+    $output = & git -C $repoRoot @GitArgs 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        return "Unknown"
+    }
+    return (($output | Out-String).Trim())
+}
+
+function Read-TextOrEmpty {
+    param([Parameter(Mandatory = $true)][string]$RelativePath)
+
+    $path = Join-Path $repoRoot $RelativePath
+    if (Test-Path -LiteralPath $path) {
+        return (Get-Content -Raw -LiteralPath $path)
+    }
+    return ""
+}
+
+function Get-MarkdownTableStatusCounts {
+    param(
+        [Parameter(Mandatory = $true)][string]$Markdown,
+        [Parameter(Mandatory = $true)][string]$HeaderName,
+        [Parameter(Mandatory = $true)][int]$StatusColumnIndex
+    )
+
+    $counts = [ordered]@{
+        Green = 0
+        Yellow = 0
+        Red = 0
+        Blocked = 0
+        Open = 0
+        Planned = 0
+        "In progress" = 0
+        Done = 0
+        Other = 0
+    }
+
+    foreach ($line in ($Markdown -split "`r?`n")) {
+        if ($line -notmatch '^\|') {
+            continue
+        }
+        if ($line -match '^\|\s*-+\s*\|') {
+            continue
+        }
+        if ($line -match [regex]::Escape($HeaderName)) {
+            continue
+        }
+
+        $columns = @($line.Trim("|") -split "\|" | ForEach-Object { $_.Trim() })
+        if ($columns.Count -le $StatusColumnIndex) {
+            continue
+        }
+
+        $status = $columns[$StatusColumnIndex]
+        if ($counts.Contains($status)) {
+            $counts[$status] += 1
+        }
+        else {
+            $counts["Other"] += 1
+        }
+    }
+
+    return $counts
+}
+
+function Get-ActiveWorkMarkdown {
+    $progress = Read-TextOrEmpty "docs/agent-memory/progress.md"
+    $match = [regex]::Match($progress, "(?ms)^## Active Work\s*(.+?)(?=^## |\z)")
+    if ($match.Success) {
+        return $match.Groups[1].Value
+    }
+    return ""
+}
+
+function Format-Counts {
+    param([Parameter(Mandatory = $true)]$Counts)
+
+    $parts = @()
+    foreach ($key in $Counts.Keys) {
+        if ($Counts[$key] -gt 0) {
+            $parts += "$key $($Counts[$key])"
+        }
+    }
+    if ($parts.Count -eq 0) {
+        return "None"
+    }
+    return ($parts -join ", ")
+}
+
+$branch = Invoke-GitValue -GitArgs @("rev-parse", "--abbrev-ref", "HEAD")
+$head = Invoke-GitValue -GitArgs @("rev-parse", "--short", "HEAD")
+$upstream = Invoke-GitValue -GitArgs @("rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}")
+$statusText = Invoke-GitValue -GitArgs @("status", "--short")
+$worktreeStatus = if ([string]::IsNullOrWhiteSpace($statusText)) { "Clean" } else { "Pending changes" }
+$tagsText = Invoke-GitValue -GitArgs @("tag", "--list", "milestone-*", "research-state-*")
+$tagCount = ($tagsText -split "`r?`n" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }).Count
+
+$kpiMarkdown = Read-TextOrEmpty "docs/dashboards/kpi-register.md"
+$activeWorkMarkdown = Get-ActiveWorkMarkdown
+$kpiCounts = Get-MarkdownTableStatusCounts -Markdown $kpiMarkdown -HeaderName "KPI" -StatusColumnIndex 3
+$activeWorkCounts = Get-MarkdownTableStatusCounts -Markdown $activeWorkMarkdown -HeaderName "ID" -StatusColumnIndex 2
+
+$requiredOutboxFiles = @(
+    "vego-ai-wiki-home.md",
+    "vego-ai-current-state.md",
+    "vego-ai-progress-dashboard.md",
+    "vego-ai-update-changelog.md",
+    "vego-ai-research-operations.md"
+)
+$outboxRows = @()
+foreach ($fileName in $requiredOutboxFiles) {
+    $path = Join-Path $outboxPath $fileName
+    $state = if (Test-Path -LiteralPath $path) { "Ready" } else { "Missing" }
+    $outboxRows += "| $fileName | $state |"
+}
+
+$requiredPageKeys = @("home", "currentState", "dashboard", "changelog", "researchOperations")
+$localConfigPath = Join-Path $repoRoot "docs/confluence/wiki-sync-config.local.json"
+$confluenceStatus = "Local config missing"
+$configuredPageIds = 0
+$missingPageIds = @()
+if (Test-Path -LiteralPath $localConfigPath) {
+    $localConfig = Get-Content -Raw -LiteralPath $localConfigPath | ConvertFrom-Json
+    foreach ($key in $requiredPageKeys) {
+        $pageId = $localConfig.pages.$key.pageId
+        if ([string]::IsNullOrWhiteSpace($pageId)) {
+            $missingPageIds += $key
+        }
+        else {
+            $configuredPageIds += 1
+        }
+    }
+    if ($missingPageIds.Count -eq 0) {
+        $confluenceStatus = "Live page IDs configured; access still must be verified before write."
+    }
+    else {
+        $confluenceStatus = "Pending live child page IDs: $($missingPageIds -join ', ')"
+    }
+}
+
+$body = @"
+# Dashboard Status Snapshot
+
+Generated: $generated.
+
+This snapshot is generated by `scripts/build-dashboard-snapshot.ps1` for local review and Confluence tracking. It is intentionally ignored by Git so the wiki can show fresh runtime status without creating timestamp-only commits.
+
+## Repository State
+
+| Field | Value |
+| --- | --- |
+| Branch | $branch |
+| Upstream | $upstream |
+| HEAD | $head |
+| Worktree | $worktreeStatus |
+| Milestone/research tags | $tagCount |
+
+## KPI Rollup
+
+| Source | Rollup |
+| --- | --- |
+| `docs/dashboards/kpi-register.md` | $(Format-Counts $kpiCounts) |
+| `docs/agent-memory/progress.md` active work | $(Format-Counts $activeWorkCounts) |
+
+## Confluence Tracking
+
+| Field | Value |
+| --- | --- |
+| Generated outbox | $(if (Test-Path -LiteralPath $outboxPath) { "Present" } else { "Missing" }) |
+| Configured page IDs | $configuredPageIds of $($requiredPageKeys.Count) |
+| Live sync state | $confluenceStatus |
+
+## Outbox Pages
+
+| Page Body | State |
+| --- | --- |
+$($outboxRows -join "`n")
+
+## Follow-Up
+
+- If outbox pages are missing, run `.\scripts\build-confluence-wiki.ps1`.
+- If live page IDs are missing, grant Atlassian Rovo access and create/update child pages under Confluence page `294914`.
+- If the worktree shows pending changes, commit safe tracked docs/scripts after forbidden-artifact audit.
+"@
+
+New-Item -ItemType Directory -Path (Split-Path -Parent $outputFullPath) -Force | Out-Null
+Set-Content -LiteralPath $outputFullPath -Value $body -Encoding UTF8
+Write-Host "Dashboard status snapshot generated: $outputFullPath"

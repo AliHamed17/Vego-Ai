@@ -213,6 +213,9 @@ If the prompt involved analysis, edits, debugging, planning, decisions, architec
 3. Refresh the Confluence wiki layer:
    .\scripts\build-confluence-wiki.ps1
 
+   This also refreshes:
+   docs\dashboards\status-snapshot.generated.md
+
    Then verify dashboard/wiki readiness:
    .\scripts\dashboard-health.ps1 -RequireOutbox
 

@@ -20,7 +20,7 @@ The intended live wiki target is:
 | Home page ID | `294914` |
 | Layout | Page `294914` is `VEGO-AI Wiki Home`; the other curated pages are children. |
 
-Current access note: Atlassian Rovo reports that cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:30 +03:00. Live sync must wait until that grant is completed.
+Current access note: Atlassian Rovo reports that cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 13:45 +03:00. Live sync must wait until that grant is completed.
 
 ## End-Of-Prompt Order
 
@@ -29,7 +29,7 @@ For every meaningful prompt:
 1. Run `.\scripts\agent-memory-start.ps1` at the beginning.
 2. Do the requested work.
 3. Update memory files and run `.\scripts\agent-memory-finish.ps1`.
-4. Run `.\scripts\build-confluence-wiki.ps1`.
+4. Run `.\scripts\build-confluence-wiki.ps1`; this also refreshes `docs/dashboards/status-snapshot.generated.md`.
 5. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` to verify the generated dashboard/wiki tracking package.
 6. If `docs/confluence/wiki-sync-config.local.json` has real Confluence IDs and Atlassian Rovo access is granted, update the configured Confluence pages with Atlassian Rovo using `contentFormat: markdown`.
 7. If IDs or access are missing, leave the generated outbox as the pending wiki update and mention that live Confluence sync is pending.
