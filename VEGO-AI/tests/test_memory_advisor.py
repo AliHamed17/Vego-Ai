@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -121,27 +122,30 @@ def test_empty_memory_all_none():
     assert all(i["advice_strength"] == "none" for i in items)
 
 
-def test_missing_memory_file_loads_as_empty(tmp_path):
-    missing = tmp_path / "missing-memory.jsonl"
-    assert ma.load_memory_or_empty(missing) == []
+def test_missing_memory_file_loads_as_empty():
+    with tempfile.TemporaryDirectory() as d:
+        missing = Path(d) / "missing-memory.jsonl"
+        assert ma.load_memory_or_empty(missing) == []
 
 
-def test_missing_memory_file_cli_writes_none_advice(tmp_path):
-    patterns = tmp_path / "patterns.json"
-    classes = tmp_path / "classes.json"
-    out = tmp_path / "memory_advice.json"
-    patterns.write_text(json.dumps(_patterns({"P5": P5_DESC})), encoding="utf-8")
-    classes.write_text(json.dumps(_classes([_entry("P5")])), encoding="utf-8")
-    ma.main([
-        "--patterns", str(patterns),
-        "--classes", str(classes),
-        "--memory", str(tmp_path / "missing-memory.jsonl"),
-        "--out", str(out),
-        "--setting", "ucd_ch",
-    ])
-    report = json.loads(out.read_text(encoding="utf-8"))
-    assert report["advice"][0]["advice_strength"] == "none"
-    assert report["advice"][0]["ai_classification_changed"] is False
+def test_missing_memory_file_cli_writes_none_advice():
+    with tempfile.TemporaryDirectory() as d:
+        dd = Path(d)
+        patterns = dd / "patterns.json"
+        classes = dd / "classes.json"
+        out = dd / "memory_advice.json"
+        patterns.write_text(json.dumps(_patterns({"P5": P5_DESC})), encoding="utf-8")
+        classes.write_text(json.dumps(_classes([_entry("P5")])), encoding="utf-8")
+        ma.main([
+            "--patterns", str(patterns),
+            "--classes", str(classes),
+            "--memory", str(dd / "missing-memory.jsonl"),
+            "--out", str(out),
+            "--setting", "ucd_ch",
+        ])
+        report = json.loads(out.read_text(encoding="utf-8"))
+        assert report["advice"][0]["advice_strength"] == "none"
+        assert report["advice"][0]["ai_classification_changed"] is False
 
 
 # ---------------------------------------------------------------------------
