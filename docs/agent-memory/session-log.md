@@ -881,3 +881,45 @@ Chronological prompt history for Codex and Claude.
   - Atlassian Rovo _getconfluencepage cloudId=724252a1-a5b7-45a5-b6ec-27a8292197ec pageId=294914 -> blocked: cloud is not explicitly granted
 - Status: completed locally; live Confluence still blocked by Atlassian access grant
 - Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable the Codex Chrome Extension route, then publish from outbox/manual sync pack and store child page IDs locally.
+
+## 2026-06-14 11:58 +03:00 - Codex - Offline VEGO-AI results dashboard PR
+
+- Request: Implement local/offline visual metrics dashboard generator, tests, docs, schema, ignored outputs, branch and PR workflow; no AI behavior or M4B changes.
+- Actions taken:
+  - Created branch feature/results-dashboard from main.
+  - Added offline dashboard generator for Agent C, Agent D, Human Review Queue, Human Feedback, Human Judgment Memory, and M4A Memory Advisory artifacts.
+  - Generated VEGO-AI/reports/results_dashboard with index.html, metrics_snapshot.json, and per-setting pages; generated outputs remain ignored.
+  - Committed 61aac60 and opened GitHub PR #5 into main.
+  - Updated current-state, progress, and decisions memory files.
+  - Regenerated Confluence wiki outbox/manual sync pack; live Rovo sync remains blocked because target cloud is not explicitly granted.
+- Files changed:
+  - .gitignore
+  - VEGO-AI/analysis/build_results_dashboard.py
+  - VEGO-AI/docs/results_dashboard.md
+  - VEGO-AI/schemas/results_dashboard_snapshot.schema.json
+  - VEGO-AI/tests/test_results_dashboard.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - python VEGO-AI\\tests\\test_results_dashboard.py -> 13/13 passed
+  - python -m pytest VEGO-AI\\tests -q -> 70 passed
+  - python VEGO-AI\\tests\\test_human_review_queue.py -> 19/19 passed
+  - python VEGO-AI\\tests\\test_human_feedback_manager.py -> 11/11 passed
+  - python VEGO-AI\\tests\\test_human_judgment_memory.py -> 15/15 passed
+  - python VEGO-AI\\tests\\test_memory_advisor.py -> 12/12 passed
+  - python -m compileall -q VEGO-AI/framework VEGO-AI/eval VEGO-AI/analysis -> passed
+  - python VEGO-AI/analysis/build_results_dashboard.py --root VEGO-AI --out VEGO-AI/reports/results_dashboard -> passed
+  - .\\scripts\\project-health.ps1 -> passed
+  - .\\scripts\\research-health.ps1 -> passed
+  - PowerShell parser check for scripts/*.ps1 -> passed
+  - Forbidden staged-file audit -> passed
+  - .\\scripts\\build-confluence-wiki.ps1 -> generated ignored outbox/manual sync pack
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed after serial rerun
+  - Atlassian Rovo accessible-cloud check -> target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec not listed
+  - Atlassian Rovo _getconfluencepage page 294914 -> blocked: cloud is not explicitly granted
+- Status: completed; PR #5 open
+- Next steps: Review and merge PR #5 if acceptable; live Confluence sync remains blocked until Atlassian Rovo access is granted.

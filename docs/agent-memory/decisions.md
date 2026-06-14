@@ -137,3 +137,11 @@ Durable decisions for this project.
 - Decision: Future M4B-1 implementation must use branch `feature/memory-informed-comparison` and PR review; Codex must not commit VEGO-AI milestone implementation paths directly to `main`.
 - Reason: The M4B review approved the research direction only if reusable memory remains a controlled comparison mechanism with leakage tracking and reproducible deterministic rules.
 - Consequence: Claude can implement only the approved M4B-1 scope after confirming `docs/research/m4b-conditional-approval.md`; improvement claims wait for EXP-001/C4B evidence.
+
+## 2026-06-14 - Offline Results Dashboard Boundary
+
+- Decision: Add a local/offline VEGO-AI results dashboard generator under `VEGO-AI/analysis/build_results_dashboard.py`, with generated HTML/JSON output ignored under `VEGO-AI/reports/results_dashboard/`.
+- Decision: Track only the generator, tests, docs, schema, and ignore policy; do not track generated dashboard outputs or controlled result artifacts.
+- Decision: The dashboard is evidence reporting only: it reads existing JSON/JSONL artifacts, performs no LLM/API/network calls, does not modify baseline outputs, and does not change Agent 4 or M4A classifications.
+- Reason: The project needs visual, reviewable research metrics without weakening IRB/data boundaries or confusing reporting with model behavior.
+- Consequence: Use PR #5 for review/merge; keep `ai_classification_changed_count=0` as the M4A boundary check and continue treating M4B as a separate controlled experiment.

@@ -58,11 +58,16 @@ VEGO-AI/framework/output/
 VEGO-AI/eval/eval_output/
 VEGO-AI/eval_output/
 VEGO-AI/human_review_output/
+VEGO-AI/reports/results_dashboard/
 VEGO-AI/framework/get-pip.py
+VEGO-AI/framework/run_config.local.json
+VEGO-AI/eval/eval_config.local.json
 
 # Deferred VEGO-AI research artifacts pending data/IRB audit
 VEGO-AI/models/
-VEGO-AI/analysis/
+VEGO-AI/analysis/**
+!VEGO-AI/analysis/
+!VEGO-AI/analysis/build_results_dashboard.py
 VEGO-AI/vego_visualizer_delivery/models/
 VEGO-AI/vego_visualizer_delivery/compliance_vectors/
 VEGO-AI/vego_visualizer_delivery/guidelines/

@@ -27,6 +27,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-13 | Dashboard runtime snapshot added | Done | Added `scripts/build-dashboard-snapshot.ps1`; Confluence wiki builds now embed a fresh ignored snapshot with repo, KPI, active-work, outbox, and live-sync status. |
 | 2026-06-13 | Manual Confluence sync pack added | Done | Added a generated, ignored manual sync pack with page bodies, target metadata, and hashes for approved fallback publishing. |
 | 2026-06-14 | M4B-1 conditional implementation contract recorded | Done | Added deterministic M4B-1 rules, leakage guard, schema expectations, Codex isolation, and Claude branch/PR handoff. |
+| 2026-06-14 | Offline VEGO-AI results dashboard PR opened | In review | Added static dashboard generator, snapshot schema, docs, tests, and ignored generated reports on `feature/results-dashboard`; opened GitHub PR #5. |
 
 ## Active Work
 
@@ -42,6 +43,7 @@ Track milestones, current work, and next steps here.
 | TASK-009 | 2026-06-13 | Open | Keep dashboard/wiki tracking health verified. | Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after every Confluence outbox build. |
 | TASK-010 | 2026-06-13 | Open | Keep runtime dashboard snapshot fresh. | Run `.\scripts\build-confluence-wiki.ps1` after memory/dashboard updates; it regenerates `docs/dashboards/status-snapshot.generated.md`. |
 | TASK-011 | 2026-06-13 | Open | Keep manual Confluence sync pack fresh while live access is blocked. | Run `.\scripts\build-confluence-wiki.ps1`; it regenerates `docs/confluence/manual-sync-pack.generated.md`. |
+| TASK-012 | 2026-06-14 | In review | Add local/offline visual metrics dashboard for VEGO-AI result artifacts. | Review and merge PR #5, then keep generated `VEGO-AI/reports/results_dashboard/` ignored. |
 
 ## Completed Work
 
@@ -67,18 +69,20 @@ Track milestones, current work, and next steps here.
 | 2026-06-13 | Added generated dashboard runtime snapshot. | `scripts/build-dashboard-snapshot.ps1`, `scripts/build-confluence-wiki.ps1`, `.gitignore`, dashboard/confluence workflow docs |
 | 2026-06-13 | Added generated manual Confluence sync pack. | `scripts/build-confluence-manual-sync-pack.ps1`, `docs/confluence/manual-sync.md`, `scripts/build-confluence-wiki.ps1`, `scripts/dashboard-health.ps1`, `scripts/research-health.ps1` |
 | 2026-06-14 | Recorded M4B-1 conditional approval contract and Claude handoff. | `docs/research/m4b-conditional-approval.md`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md`, `docs/agent-memory/claude-m4b-handoff-prompt.md`, research/planning/dashboard docs |
+| 2026-06-14 | Added offline VEGO-AI results dashboard branch and PR. | PR #5, `.gitignore`, `VEGO-AI/analysis/build_results_dashboard.py`, `VEGO-AI/docs/results_dashboard.md`, `VEGO-AI/schemas/results_dashboard_snapshot.schema.json`, `VEGO-AI/tests/test_results_dashboard.py` |
 
 ## Next Steps
 
-1. Ask Claude to refresh the review artifact with M1-M2-M3-M4A files and manifest using `docs/agent-memory/claude-m4b-handoff-prompt.md`.
-2. Ask Claude to implement M4B-1 only on `feature/memory-informed-comparison`, after confirming `docs/research/m4b-conditional-approval.md`.
-3. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, visualizer changes, and baseline output overwrites blocked.
-4. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
-5. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-6. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
-7. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
-8. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-9. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
-10. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-11. Convert existing package results into evidence entries under `EXP-000`.
-12. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+1. Review and merge PR #5 (`feature/results-dashboard`) if the local dashboard is acceptable.
+2. Ask Claude to refresh the review artifact with M1-M2-M3-M4A files and manifest using `docs/agent-memory/claude-m4b-handoff-prompt.md`.
+3. Ask Claude to continue M4B-1 only on `feature/memory-informed-comparison`, after confirming `docs/research/m4b-conditional-approval.md`.
+4. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, visualizer changes, and baseline output overwrites blocked.
+5. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
+6. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
+7. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
+8. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
+9. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+10. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
+11. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+12. Convert existing package results into evidence entries under `EXP-000`.
+13. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

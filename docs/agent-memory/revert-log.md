@@ -110,7 +110,10 @@ Record file changes and rollback notes here.
   - docs/agent-memory/README.md
   - docs/agent-memory/current-state.md
   - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
   - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
   - docs/agent-memory/session-log.md
   - docs/agent-memory/revert-log.md
 - Rollback note: Revert changes to CLAUDE.md and docs/agent-memory files, and remove docs/agent-memory/claude-bootstrap-prompt.md.
@@ -475,4 +478,18 @@ Record file changes and rollback notes here.
   - docs/dashboards/progress-dashboard.md
   - docs/confluence/wiki-sync.md
 - Rollback note: Revert the Confluence blocker timestamp updates in current-state, ISS-005, dashboard docs, wiki-sync docs, session log, and revert log if this access recheck should not be recorded.
+- Git commit: none recorded by script.
+
+## 2026-06-14 11:58 +03:00 - Codex - Offline VEGO-AI results dashboard PR
+
+- Files changed:
+  - .gitignore
+  - VEGO-AI/analysis/build_results_dashboard.py
+  - VEGO-AI/docs/results_dashboard.md
+  - VEGO-AI/schemas/results_dashboard_snapshot.schema.json
+  - VEGO-AI/tests/test_results_dashboard.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert commit 61aac60 and the follow-up memory commit if needed; generated VEGO-AI/reports/results_dashboard files are ignored and can be deleted safely.
 - Git commit: none recorded by script.
