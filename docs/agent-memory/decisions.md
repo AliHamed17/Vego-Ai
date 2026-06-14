@@ -182,3 +182,9 @@ Durable decisions for this project.
 - Decision: The next major deliverable is `docs/research/evaluation-report.md`, not additional feature implementation.
 - Reason: The engineering prototype is strong, but empirical evidence is still incomplete; the thesis now needs expert-label comparison, leakage-aware evaluation, and dashboard-backed tables/figures.
 - Consequence: M4B-2, Agent 4 memory-based reclassification, LLM resolve modes, embeddings, automatic guideline rewriting, and GUI feedback editing remain blocked until M4B-1 evaluation evidence exists.
+
+## 2026-06-14 - EXP-001 Initial Evaluation Interpretation
+
+- Decision: Treat the first EXP-001 output as mechanism/readiness evidence only.
+- Reason: The run has 27 comparison rows and valid leakage tracking, but only 3 expert-labeled rows are available and all are same-pattern Human Judgment Memory cases; there are 0 generalization-safe expert-labeled rows.
+- Consequence: The thesis may say M4B-1 preserves baseline output, produces reproducible comparison tables, and flags 2 cases for human review after memory. It must not claim accuracy improvement or generalization until held-out expert labels are added and evaluated.

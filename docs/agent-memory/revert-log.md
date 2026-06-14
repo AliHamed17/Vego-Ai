@@ -635,3 +635,25 @@ Record file changes and rollback notes here.
   - docs/agent-memory/compiled-memory.md
 - Rollback note: Remove docs/research/evaluation-plan.md and docs/research/evaluation-report.md from scripts/agent-memory-start.ps1 if compiled memory should return to the previous source set.
 - Git commit: none recorded by script.
+
+## 2026-06-14 18:56 +03:00 - Codex - Start EXP-001 evaluation run
+
+- Files changed:
+  - scripts/build-exp001-evaluation.ps1
+  - docs/research/evaluation-report.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - experiments/registry.md
+  - docs/research/README.md
+  - reports/README.md
+  - docs/dashboards/results-dashboard.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/shared-state-report.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the EXP-001 evaluation commit to remove the script/docs/memory updates; ignored reports/generated/exp001 outputs can be deleted locally if a clean generated workspace is desired.
+- Git commit: none recorded by script.

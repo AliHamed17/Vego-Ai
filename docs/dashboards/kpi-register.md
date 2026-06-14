@@ -1,6 +1,6 @@
 # KPI Register
 
-Last curated update: 2026-06-14 15:12 +03:00.
+Last curated update: 2026-06-14 18:52 +03:00.
 
 ## Status Legend
 
@@ -26,8 +26,8 @@ Last curated update: 2026-06-14 15:12 +03:00.
 | Visualizer UX correctness | Model/result pairing is explicit and no stale model is silently treated as valid. | Mismatch/no-match/match states stay visible and research panels stay read-only. | Green | PR #7, real-display GUI validation, tag `research-state-visualizer-ux-clean` | Preserve this boundary in future visualizer work. |
 | Review artifact readiness | M1-M4A + dashboard + M4B-1 ZIP and manifest are published in the GitHub release for `research-state-m4b1-deterministic-comparison`. | Artifact bundle is available for external technical review. | Green | GitHub release assets `vego-ai-M1-M4A-dashboard-M4B1-changes.zip` and `M1-M4A-dashboard-M4B1-manifest.md` | Download/review externally if needed; do not treat artifact release as empirical proof. |
 | Experiment registry readiness | EXP-000 and EXP-001 are registered; EXP-001 is ready for evaluation using implemented M4B-1. | EXP-001/C4B evidence is gathered before improvement claims. | Yellow | `experiments/registry.md`, `docs/research/evaluation-report.md` | Fill EXP-000 evidence entries and run EXP-001 with expert labels/leakage status. |
-| Evaluation report readiness | Evaluation scaffold exists but empirical results are incomplete. | Thesis evaluation tables and figures are produced from audited runs. | Yellow | `docs/research/evaluation-report.md` | Run evaluation, collect expert labels, and populate results. |
-| M4B leakage control | M4B-1 requires `evaluation_leakage_status` on every comparison item. | No improvement claim without leakage status and clean evaluation design. | Yellow | `docs/research/m4b-conditional-approval.md`, `docs/research/evaluation-plan.md` | Prefer leave-one-pattern-out, cross-setting, cross-domain, cross-diagram, or expert-only holdout evaluation. |
+| Evaluation report readiness | Initial EXP-001 mechanism/readiness run is recorded; empirical generalization evidence is incomplete. | Thesis evaluation tables and figures include held-out expert-label results. | Yellow | `docs/research/evaluation-report.md`, ignored `reports/generated/exp001/` | Collect expert labels and rerun EXP-001. |
+| M4B leakage control | Initial EXP-001 run has 19 no-memory rows, 5 cross-setting memory rows, and 3 same-pattern expert-labeled rows; generalization-safe expert-labeled rows = 0. | No improvement claim without leakage status and clean evaluation design. | Yellow | `docs/research/evaluation-report.md`, `reports/generated/exp001/exp001_summary.json` (ignored) | Prefer leave-one-pattern-out, cross-setting, cross-domain, cross-diagram, or expert-only holdout evaluation. |
 | Data/IRB audit | Deferred artifacts remain unaudited. | Controlled artifacts get provenance and publishability decisions before sharing. | Red | `docs/research/artifact-audit.md`, `docs/research/publishability-register.md` | Continue metadata-only audit. |
 | Live Confluence sync | Outbox and manual sync pack generated; live write blocked by Atlassian Rovo cloud grant; Chrome fallback unavailable after retry. | Confluence pages update live from outbox. | Blocked | `docs/agent-memory/issues.md` ISS-005, Rovo rechecked 2026-06-14 14:50 +03:00, Chrome checked 2026-06-13 13:50 +03:00 | Grant Atlassian access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` or enable the Codex Chrome Extension route. |
 

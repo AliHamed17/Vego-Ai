@@ -18,3 +18,5 @@ This folder is for the scientific substance of the PhD work.
 | `publishability-register.md` | Venue-by-venue sharing status for project artifacts. |
 | `validity-threats.md` | Internal, external, construct, and conclusion validity risks. |
 | `publication-plan.md` | Papers, venues, and writing targets. |
+
+Generated EXP-001 evaluation tables are produced by `scripts/build-exp001-evaluation.ps1` under ignored `reports/generated/exp001/`.

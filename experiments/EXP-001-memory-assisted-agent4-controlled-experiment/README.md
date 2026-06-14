@@ -5,14 +5,14 @@
 - Experiment ID: EXP-001
 - Title: M4B-1 memory-informed parallel comparison experiment
 - Owner: Ali Hamed
-- Date started: Not started
-- Date completed: Not completed
-- Status: Planned; conditionally approved for future implementation after design contract review
+- Date started: 2026-06-14
+- Date completed: Initial mechanism/readiness run completed 2026-06-14
+- Status: Initial evaluation run completed; generalization-safe expert-label evaluation pending
 - Related research question: RQ4
 
 ## Purpose
 
-Test whether reusable Human Judgment Memory can improve or stabilize variability interpretation when M4A advisory evidence is used to produce a deterministic, experimental, parallel comparison result.
+Test whether reusable Human Judgment Memory can improve, clarify, or stabilize variability interpretation when M4A advisory evidence is used to produce a deterministic, experimental, parallel comparison result.
 
 M4B-1 does not change Agent 4, does not call Agent 4, and does not overwrite Agent 4 output. It preserves the original classification and writes a separate comparison artifact.
 
@@ -30,10 +30,10 @@ See `docs/research/m4b-conditional-approval.md` for the mandatory implementation
 
 ## Inputs
 
-- Dataset: TBD after data/IRB and publishability audit.
-- Required records: original Agent 4 variability classifications, `memory_advice.json`, and Human Judgment Memory records.
-- Source files for future implementation: `VEGO-AI/framework/human_judgment_memory.py`, `VEGO-AI/framework/memory_advisor.py`, and the future `VEGO-AI/framework/memory_informed_classifier.py`.
-- Config files: TBD.
+- Dataset: local generated run `VEGO-AI/runs/20260614-122150/human/`; controlled/ignored.
+- Required records: original Agent 4 variability classifications, `memory_advice.json`, `memory_informed_comparison.json`, and Human Judgment Memory records.
+- Source files: `VEGO-AI/framework/human_judgment_memory.py`, `VEGO-AI/framework/memory_advisor.py`, and `VEGO-AI/framework/memory_informed_classifier.py`.
+- Config files: local configs used for run `20260614-122150`; controlled/ignored.
 - Prompt/version notes: None for M4B-1 because the approved mode is deterministic and must not call an LLM.
 
 ## Method
@@ -84,18 +84,45 @@ Allowed `evaluation_leakage_status` values:
 
 ## Outputs
 
-- Output folder: controlled local output folder TBD; keep ignored until publishability is approved.
-- Key file: `memory_informed_comparison.json`.
-- Supporting files: planned C4B run logs, supplied-memory manifest, classification comparison table, leakage-status summary.
-- Figures/tables: TBD.
+- Output folder: `reports/generated/exp001/` (ignored).
+- Key source file: `memory_informed_comparison.json` in each local setting folder.
+- Supporting files:
+  - `reports/generated/exp001/exp001_evaluation_dataset.csv`
+  - `reports/generated/exp001/exp001_evaluation_table.md`
+  - `reports/generated/exp001/exp001_summary.json`
+  - `reports/generated/exp001/exp001_summary.md`
+- Generator: `scripts/build-exp001-evaluation.ps1`.
 
 ## Results
 
-Not run.
+Initial run:
+
+| Measure | Value |
+| --- | ---: |
+| M4B-1 comparison rows | 27 |
+| Settings covered | 4 |
+| Expert-labeled rows available from reusable memory | 3 |
+| Generalization-safe expert-labeled rows | 0 |
+| Memory-informed classifications differing from original | 0 |
+| Human-review-after-memory flags | 2 |
+| Conflicting memory flags | 0 |
+
+Agreement, mechanism validation only:
+
+| Subset | Expert Labels | Original Matches | Memory-Informed Matches | Original Rate | Memory-Informed Rate |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Includes same-pattern memory | 3 | 2 | 2 | 0.6667 | 0.6667 |
+| Generalization-safe | 0 | 0 | 0 | Not evaluable | Not evaluable |
 
 ## Interpretation
 
-Not available. Do not claim behavior improvement until this M4B experiment has evidence.
+The initial run supports mechanism/readiness evaluation: M4B-1 produced a complete non-destructive comparison table, preserved original Agent 4 output, tracked leakage, and flagged two cases for human review after memory.
+
+It does not support an accuracy-improvement claim:
+
+- no memory-informed classification differed from the original Agent 4 classification;
+- expert labels are available only for three same-pattern Human Judgment Memory cases;
+- there are zero generalization-safe expert-labeled rows.
 
 ## Limitations
 
@@ -106,10 +133,18 @@ Not available. Do not claim behavior improvement until this M4B experiment has e
 
 ## Reproducibility
 
-Pending. The future experiment must record code commit, config, deterministic policy version, supplied memory advice, supplied memory items, leakage status, outputs, and interpretation notes.
+Command:
 
-## Future Implementation Workflow
+```powershell
+.\scripts\build-exp001-evaluation.ps1
+```
 
-- Claude implementation branch: `feature/memory-informed-comparison`.
-- Merge path: PR into `main` after review.
-- Codex must not commit M4B implementation files directly to `main`.
+The experiment records code commit, local run root, deterministic policy version, supplied memory advice, supplied memory items, leakage status, outputs, and interpretation notes.
+
+## Next Evaluation Workflow
+
+- Collect or define held-out expert labels.
+- Keep same-pattern memory in a separate mechanism-validation subset.
+- Rerun the evaluation table generator.
+- Populate thesis tables/figures from the generated CSV/JSON/Markdown.
+- Do not implement M4B-2 until deterministic M4B-1 evidence is understood.

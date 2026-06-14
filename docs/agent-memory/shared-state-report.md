@@ -1,6 +1,6 @@
 # VEGO-AI Shared State Report For Claude And Codex
 
-Last curated update: 2026-06-14 15:12 +03:00 by Codex.
+Last curated update: 2026-06-14 18:52 +03:00 by Codex.
 
 Use this report as the high-level shared orientation for Claude and Codex. It summarizes the research framing, implemented milestone chain, governance boundaries, validation state, and next research direction. For exact moving status, always pair this report with `docs/agent-memory/current-state.md` and `git log -1`.
 
@@ -648,9 +648,18 @@ It still needs:
 
 - PR #6 schema hardening review,
 - external review of the released artifact bundle if needed,
-- research evaluation,
+- held-out expert labels for generalization-safe research evaluation,
 - comparison against expert labels,
 - write-up.
+
+Initial EXP-001 evaluation note:
+
+- 27 comparison rows were generated from the local no-key run.
+- 3 expert-labeled rows exist through same-pattern Human Judgment Memory.
+- 0 generalization-safe expert-labeled rows exist.
+- 0 memory-informed classifications differ from original Agent 4.
+- 2 cases are flagged for human review after memory.
+- This is mechanism/readiness evidence only, not proof of accuracy improvement.
 
 Strict assessment:
 

@@ -1,6 +1,6 @@
 # Results Dashboard
 
-Last curated update: 2026-06-14 15:12 +03:00.
+Last curated update: 2026-06-14 18:52 +03:00.
 
 ## Validated Implementation Results
 
@@ -16,6 +16,7 @@ Last curated update: 2026-06-14 15:12 +03:00.
 | Post-merge behavior boundary | No framework/schema/test changes in `2828940` | `docs/research/m4a-post-merge-confirmation.md` | Research-story update did not change VEGO-AI behavior. |
 | M4B-1 implementation baseline | Implemented / evaluation pending | Tag `research-state-m4b1-deterministic-comparison`, `docs/research/evaluation-report.md`, and EXP-001 | M4B-1 is available as deterministic, parallel-only, leakage-labeled comparison; improvement claims still require expert-label evaluation. |
 | M4B-1 release artifact | Published | GitHub release assets `vego-ai-M1-M4A-dashboard-M4B1-changes.zip` and `M1-M4A-dashboard-M4B1-manifest.md` | Artifact bundle supports external technical review, not empirical proof. |
+| EXP-001 initial evaluation run | Mechanism/readiness only | `.\scripts\build-exp001-evaluation.ps1`; ignored `reports/generated/exp001/` | 27 comparisons, 0 memory-informed classification changes, 2 human-review-after-memory flags, 0 generalization-safe expert labels; no accuracy-improvement claim allowed. |
 
 ## Reproducibility Anchors
 
