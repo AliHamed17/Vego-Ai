@@ -1,14 +1,15 @@
 # Results Dashboard
 
-Last curated update: 2026-06-14 11:05 +03:00.
+Last curated update: 2026-06-14 14:50 +03:00.
 
 ## Validated Implementation Results
 
 | Result | Value | Evidence | Interpretation |
 | --- | --- | --- | --- |
-| Full VEGO-AI test suite | 57 passed | `python -m pytest VEGO-AI\tests -q` on 2026-06-14 | M1-M4A tracked tests are green. |
-| Framework/eval compile check | Passed | `python -m compileall -q VEGO-AI\framework VEGO-AI\eval` on 2026-06-14 | Tracked Python modules compile. |
+| Full VEGO-AI test suite | 93 passed | `python -m pytest VEGO-AI\tests -q` on 2026-06-14 after PR #7 merge | Tracked tests are green. |
+| Framework/eval/analysis/visualizer compile check | Passed | `python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery` on 2026-06-14 after PR #7 merge | Tracked Python modules compile. |
 | Dashboard/wiki tracking health | Passed | `.\scripts\build-confluence-wiki.ps1` and `.\scripts\dashboard-health.ps1 -RequireOutbox` on 2026-06-14 | Runtime snapshot, manual sync pack, KPI dashboard, and generated Confluence outbox wiring are verified. |
+| Visualizer real-display GUI validation | Passed | PR #7 checklist on 2026-06-14 with screenshots in `%TEMP%\vego_gui_validation_20260614_144509` | Mismatch warning, no-match stale clearing, auto-match, filters/details, read-only research panels, and graceful diagram failure handling are verified. |
 | M4A advisory report validation | Passed | M4A review session log and schema validation | `memory_advice.json` conforms to the M4A schema. |
 | M4A classification changes | 0 | M4A generated advice review | Advisory layer did not change AI classifications. |
 | M4A advice distribution | none 5, strong 2, moderate 1 | M4A generated `ucd_ch` advice review | Memory advice surfaces relevant prior judgments where available. |
@@ -22,6 +23,8 @@ Last curated update: 2026-06-14 11:05 +03:00.
 | M3 code state | `milestone-m3-human-judgment-memory` / `5e109e5` | Human Judgment Memory milestone. |
 | M4A code state | `milestone-m4a-memory-advisory` / `ecd0972` | Advisory memory layer milestone. |
 | M4A research state | `research-state-m4a` / `2828940` | Research story and documentation state after M4A. |
+| M4B-1 comparison state | `research-state-m4b1-deterministic-comparison` / `944c922` | Deterministic parallel comparison milestone. |
+| Visualizer UX clean state | `research-state-visualizer-ux-clean` / `78b261e` | Model/result matching and read-only research-panel UX cleanup. |
 | Current main | `main` / latest pushed commit | Active workspace state. |
 
 ## Research Result Claims

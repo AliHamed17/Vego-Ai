@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-14 14:23 +03:00 by Codex.
+- 2026-06-14 14:50 +03:00 by Codex.
 
 ## Project Goal
 
@@ -17,8 +17,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 - Workspace root: `c:\Users\ahamed\vego-ai`
 - Git status: repository initialized, safe baseline committed, and pushed to private GitHub repo `AliHamed17/Vego-Ai` on 2026-06-11.
-- Current local branch: `feature/visualizer-ux-refresh`, tracking `origin/feature/visualizer-ux-refresh`.
-- Current `main` / `origin/main` HEAD: `944c922` (`Milestone 4B-1: deterministic memory-informed comparison`).
+- Current local branch: `main`, tracking `origin/main`.
+- Current `main` / `origin/main` HEAD: `78b261e` (`Improve VEGO-AI visualizer UX and model-result matching`).
 - Results dashboard is merged on `main` as `cf78d2d`; reproducibility tag `research-state-results-dashboard` exists.
 - M4B-1 deterministic comparison is merged on `main` as `944c922`; reproducibility tag `research-state-m4b1-deterministic-comparison` exists.
 - Follow-up schema hardening PR #6 is open: `https://github.com/AliHamed17/Vego-Ai/pull/6`.
@@ -47,11 +47,14 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - The results dashboard reads existing JSON/JSONL outputs only and generates ignored static files under `VEGO-AI/reports/results_dashboard/`.
 - Latest generated dashboard snapshot reported 4 settings, 179 cases, 27 variability patterns, 11 human-review queue items, 4 resolved feedback items, 3 reusable memory entries, 8 memory-advice items, and `ai_classification_changed_count=0`.
 - Results dashboard docs/tests/schema exist at `VEGO-AI/docs/results_dashboard.md`, `VEGO-AI/tests/test_results_dashboard.py`, and `VEGO-AI/schemas/results_dashboard_snapshot.schema.json`.
-- M4B-1 follow-up PR #6 hardens nested schema requirements and tests only; it changes no classifier behavior.
-- Visualizer UX refresh PR #7 is open as a draft: `https://github.com/AliHamed17/Vego-Ai/pull/7`.
-- PR #7 commit `ba9ab94` adds pure visualizer matching helpers, exact `<case_id>_` model/result pairing, stale-model clearing, a persistent Matched/Mismatch/Unknown/No matching model found banner, search/status filters, and read-only research panels for M1/M2/M3/M4A/M4B-1 sidecars.
+- M4B-1 follow-up PR #6 is open and ready for separate review: `https://github.com/AliHamed17/Vego-Ai/pull/6`; it hardens nested schema requirements and tests only and changes no classifier behavior.
+- Visualizer UX refresh PR #7 was real-display validated, marked ready, and squash-merged on 2026-06-14 as commit `78b261e`.
+- Reproducibility tag `research-state-visualizer-ux-clean` points to `78b261e033fc4f3f66170985a884aa5cd0a0cfd2`.
+- PR #7 adds pure visualizer matching helpers, exact `<case_id>_` model/result pairing, stale-model clearing, a persistent Matched/Mismatch/Unknown/No matching model found banner, search/status filters, and read-only research panels for M1/M2/M3/M4A/M4B-1 sidecars.
 - PR #7 is UI/read-only: it does not change Agent 2/3/4, evaluator/orchestrator behavior, baseline outputs, feedback/memory/advice/comparison files, OpenAI/API behavior, M4B-2, or controlled artifacts.
+- Real-display GUI validation passed on 2026-06-14 for mismatch warning, no-match stale-model clearing, auto-load matching model, filters/details, read-only research panels, and graceful diagram failure handling. Screenshots are stored outside the repo at `%TEMP%\vego_gui_validation_20260614_144509`.
 - System validation report generated at `VEGO-AI/reports/system_validation_report.md` on 2026-06-14 and updated after governance cleanup with status `PASS`: 93 pytest tests passed, direct runners passed, schema/CLI/compile/dashboard/visualizer/generated-output smoke checks passed, `project-health`, `research-health`, and `dashboard-health` pass, and the report is tracked as a research validation artifact.
+- Post-merge PR #7 validation on `main` passed: `python -m pytest VEGO-AI\tests -q` (93 passed), `python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery`, `.\scripts\project-health.ps1`, `.\scripts\research-health.ps1`, and `.\scripts\dashboard-health.ps1 -RequireOutbox`.
 - Latest local execution package uses run ID `20260614-122150`:
   - Local configs: `VEGO-AI/framework/run_config.local.json`, `VEGO-AI/eval/eval_config.local.json`, smoke configs.
   - Generated local human outputs: `VEGO-AI/runs/20260614-122150/human/`.
@@ -102,12 +105,12 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - `scripts/research-health.ps1` now has a narrow allowlist for the intentionally tracked dashboard generator `VEGO-AI/analysis/build_results_dashboard.py`; controlled/generated analysis artifacts remain forbidden.
 - Codex isolation is active for M4B implementation paths on `main`.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
-- Confluence sync currently operates as generated outbox/manual sync pack only because Atlassian Rovo does not list target cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` among accessible clouds; rechecked 2026-06-14 13:40 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
+- Confluence sync currently operates as generated outbox/manual sync pack only because Atlassian Rovo reports target cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-14 14:50 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
 
 ## Next Best Step
 
 - Review and merge PR #6 for M4B schema hardening.
-- Review PR #7 for the visualizer model/result mismatch fix and UI/read-only research panels.
+- Keep the merged PR #7 visualizer UX boundary intact: no silent model/result mismatch, no stale model selection, and research panels remain read-only.
 - Refresh the M1-M2-M3-M4A-M4B1 artifact package and manifest only after PR #6 / health follow-up decisions are settled.
 - Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting the supplied memory advice, memory items, deterministic policy version, and leakage status.
 - Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages using the outbox/manual sync pack, including the Progress Dashboard, and record their IDs locally.

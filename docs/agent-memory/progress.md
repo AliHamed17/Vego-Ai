@@ -34,6 +34,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Visualizer model/result mismatch fix opened | In review | PR #7 adds exact case matching, stale-model clearing, mismatch banner, helper tests, filters, and read-only research panels. |
 | 2026-06-14 | Full system validation report generated | Done | Tracked report `VEGO-AI/reports/system_validation_report.md` says PASS after governance cleanup; all functional and health checks pass. |
 | 2026-06-14 | QA governance warnings fixed | Done | Added narrow research-health allowlist, restored local baseline tracking branch, and prepared `system_validation_report.md` as a tracked validation artifact. |
+| 2026-06-14 | Visualizer UX refresh merged and tagged | Done | PR #7 passed real-display GUI validation, merged as `78b261e`, and tag `research-state-visualizer-ux-clean` points to the merge commit. |
 
 ## Active Work
 
@@ -52,7 +53,7 @@ Track milestones, current work, and next steps here.
 | TASK-012 | 2026-06-14 | Done | Add local/offline visual metrics dashboard for VEGO-AI result artifacts. | Keep generated `VEGO-AI/reports/results_dashboard/` ignored. |
 | TASK-013 | 2026-06-14 | In review | Harden M4B nested schema requirements. | Review and merge PR #6. |
 | TASK-014 | 2026-06-14 | Done | Fix research-health allowlist for the tracked dashboard generator. | Narrow allowlist added; `project-health`, `research-health`, and `dashboard-health` pass. |
-| TASK-015 | 2026-06-14 | In review | Fix VEGO-AI visualizer model/result mismatch UX. | Review PR #7, verify the banner/manual smoke on a real display if desired, then merge into `main`. |
+| TASK-015 | 2026-06-14 | Done | Fix VEGO-AI visualizer model/result mismatch UX. | Preserve the no-silent-mismatch and read-only research-panel boundaries in future visualizer work. |
 
 ## Completed Work
 
@@ -83,19 +84,19 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Opened visualizer mismatch UX PR. | PR #7, `VEGO-AI/vego_visualizer_delivery/visualizer_utils.py`, `VEGO-AI/vego_visualizer_delivery/visualize_compliance.py`, `VEGO-AI/tests/test_visualizer_helpers.py`, `VEGO-AI/vego_visualizer_delivery/README.md` |
 | 2026-06-14 | Ran full QA/system validation. | `VEGO-AI/reports/system_validation_report.md` (untracked), ignored `VEGO-AI/runs/system_validation_20260614-142018/`, ignored `VEGO-AI/reports/results_dashboard/` |
 | 2026-06-14 | Fixed QA governance warnings after validation. | `scripts/research-health.ps1`, `VEGO-AI/reports/system_validation_report.md`, local `baseline/official-vego-ai` tracking branch, memory files |
+| 2026-06-14 | Merged and tagged visualizer mismatch UX fix. | PR #7, commit `78b261e`, tag `research-state-visualizer-ux-clean`, real-display screenshots in `%TEMP%\vego_gui_validation_20260614_144509` |
 
 ## Next Steps
 
 1. Review and merge PR #6 for M4B schema hardening.
-2. Run real-display GUI validation for PR #7, then review/merge the visualizer model/result mismatch fix if clean.
-3. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-4. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
-5. Refresh the M1-M2-M3-M4A-M4B1 artifact package and manifest only after PR #6 / health follow-up decisions are settled.
-6. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-7. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
-8. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
-9. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-10. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
-11. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-12. Convert existing package results into evidence entries under `EXP-000`.
-13. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+2. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
+3. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
+4. Refresh the M1-M2-M3-M4A-M4B1 artifact package and manifest only after PR #6 / health follow-up decisions are settled.
+5. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
+6. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
+7. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
+8. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+9. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
+10. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+11. Convert existing package results into evidence entries under `EXP-000`.
+12. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

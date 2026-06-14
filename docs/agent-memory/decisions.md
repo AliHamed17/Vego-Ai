@@ -162,3 +162,10 @@ Durable decisions for this project.
 - Decision: Keep all other `VEGO-AI/analysis/` artifacts forbidden unless separately reviewed and explicitly allowlisted.
 - Reason: The full-system QA report is useful thesis/research evidence, and the dashboard generator is now part of the reproducibility infrastructure.
 - Consequence: `project-health`, `research-health`, and `dashboard-health` pass while controlled analysis spreadsheets/outputs remain excluded.
+
+## 2026-06-14 - Visualizer UX Merge Anchor
+
+- Decision: Treat PR #7 as the validated visualizer UX clean state after real-display GUI validation and squash merge.
+- Decision: Use lightweight tag `research-state-visualizer-ux-clean` at commit `78b261e033fc4f3f66170985a884aa5cd0a0cfd2`.
+- Reason: The stale model/result mismatch risk affected research interpretation, so the fixed UI state needs a stable reproducibility anchor.
+- Consequence: Future visualizer work should preserve exact case-id pairing, stale-model clearing, visible match status, read-only research panels, and unchanged AI behavior.
