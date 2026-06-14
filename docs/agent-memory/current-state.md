@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-14 14:50 +03:00 by Codex.
+- 2026-06-14 14:59 +03:00 by Codex.
 
 ## Project Goal
 
@@ -71,6 +71,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
   - `docs/research/research-plan.md`
   - `experiments/registry.md`
 - Shared memory files exist in `docs/agent-memory/`.
+- A high-level shared Claude/Codex state report exists at `docs/agent-memory/shared-state-report.md` and is included in generated compiled memory.
 - Prompt memory automation scripts exist in `scripts/`.
 - Generated compiled memory file is created at `docs/agent-memory/compiled-memory.md` by `scripts/agent-memory-start.ps1`.
 - Compiled memory now includes memory files plus the core project charter, architecture, research plan, and experiment registry.

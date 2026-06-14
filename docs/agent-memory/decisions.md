@@ -169,3 +169,9 @@ Durable decisions for this project.
 - Decision: Use lightweight tag `research-state-visualizer-ux-clean` at commit `78b261e033fc4f3f66170985a884aa5cd0a0cfd2`.
 - Reason: The stale model/result mismatch risk affected research interpretation, so the fixed UI state needs a stable reproducibility anchor.
 - Consequence: Future visualizer work should preserve exact case-id pairing, stale-model clearing, visible match status, read-only research panels, and unchanged AI behavior.
+
+## 2026-06-14 - Shared Claude/Codex State Report
+
+- Decision: Keep a high-level shared state report at `docs/agent-memory/shared-state-report.md` and include it in generated compiled memory.
+- Reason: Claude and Codex need one compact research/governance narrative that explains the milestone chain, contribution, boundaries, and next evaluation direction without relying only on chronological logs.
+- Consequence: Future agents should read the report at startup, but still rely on `current-state.md` and Git for exact moving branch/PR status.

@@ -26,6 +26,7 @@ STARTUP ROUTINE - DO THIS BEFORE ANY REAL WORK
 
 4. Use the compiled memory as your source of truth for:
    - current project state
+   - shared Claude/Codex state report
    - progress and active tasks
    - open and resolved issues
    - durable decisions
@@ -37,6 +38,7 @@ STARTUP ROUTINE - DO THIS BEFORE ANY REAL WORK
 
 5. Also read these files when the task needs more context:
    - CLAUDE.md
+   - docs\agent-memory\shared-state-report.md
    - README.md
    - PROJECT_CHARTER.md
    - docs\architecture\project-map.md

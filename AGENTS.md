@@ -8,7 +8,7 @@ Treat the memory files as project resources. Use them to understand the flow, av
 
 1. Run `.\scripts\agent-memory-start.ps1`.
 2. Read `docs/agent-memory/compiled-memory.md`.
-3. Use the compiled memory to understand current state, progress, issues, decisions, recent prompt history, rollback notes, project architecture, research plan, and experiment registry.
+3. Use the compiled memory to understand current state, the shared state report, progress, issues, decisions, recent prompt history, rollback notes, project architecture, research plan, and experiment registry.
 4. Check whether the folder is a Git repository before promising revert support.
 
 ## End Of Every Prompt
@@ -56,6 +56,7 @@ Future M4B-1 implementation must use branch `feature/memory-informed-comparison`
 ## Memory Map
 
 - `docs/agent-memory/current-state.md`: quick orientation and latest known state.
+- `docs/agent-memory/shared-state-report.md`: high-level Claude/Codex research and governance state report.
 - `docs/agent-memory/progress.md`: milestones, active tasks, and next steps.
 - `docs/agent-memory/session-log.md`: chronological prompt history.
 - `docs/agent-memory/issues.md`: open, blocked, and resolved issues.

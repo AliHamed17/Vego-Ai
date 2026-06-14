@@ -35,6 +35,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Full system validation report generated | Done | Tracked report `VEGO-AI/reports/system_validation_report.md` says PASS after governance cleanup; all functional and health checks pass. |
 | 2026-06-14 | QA governance warnings fixed | Done | Added narrow research-health allowlist, restored local baseline tracking branch, and prepared `system_validation_report.md` as a tracked validation artifact. |
 | 2026-06-14 | Visualizer UX refresh merged and tagged | Done | PR #7 passed real-display GUI validation, merged as `78b261e`, and tag `research-state-visualizer-ux-clean` points to the merge commit. |
+| 2026-06-14 | Shared Claude/Codex state report added | Done | Added `docs/agent-memory/shared-state-report.md` and wired it into compiled memory/startup instructions. |
 
 ## Active Work
 
@@ -85,6 +86,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Ran full QA/system validation. | `VEGO-AI/reports/system_validation_report.md` (untracked), ignored `VEGO-AI/runs/system_validation_20260614-142018/`, ignored `VEGO-AI/reports/results_dashboard/` |
 | 2026-06-14 | Fixed QA governance warnings after validation. | `scripts/research-health.ps1`, `VEGO-AI/reports/system_validation_report.md`, local `baseline/official-vego-ai` tracking branch, memory files |
 | 2026-06-14 | Merged and tagged visualizer mismatch UX fix. | PR #7, commit `78b261e`, tag `research-state-visualizer-ux-clean`, real-display screenshots in `%TEMP%\vego_gui_validation_20260614_144509` |
+| 2026-06-14 | Added shared state report for Claude and Codex. | `docs/agent-memory/shared-state-report.md`, `scripts/agent-memory-start.ps1`, `AGENTS.md`, `CLAUDE.md`, `docs/agent-memory/README.md`, `docs/agent-memory/claude-bootstrap-prompt.md` |
 
 ## Next Steps
 

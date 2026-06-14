@@ -9,6 +9,7 @@ This folder is the shared project memory for Codex and Claude.
 - `claude-m4b-handoff-prompt.md`: paste-ready Claude prompt for M1-M4A artifact refresh and M4B-1 conditional branch/PR implementation work.
 - `compiled-memory.md`: generated combined memory context from all memory files.
 - `current-state.md`: latest known project state and short orientation.
+- `shared-state-report.md`: high-level Claude/Codex research and governance state report.
 - `progress.md`: milestones, current tasks, next steps, and completion status.
 - `session-log.md`: chronological history of prompts and progress.
 - `issues.md`: open, blocked, and resolved issues.

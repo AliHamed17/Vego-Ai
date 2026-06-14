@@ -584,3 +584,21 @@ Record file changes and rollback notes here.
   - docs/dashboards/results-dashboard.md
 - Rollback note: Revert the memory/dashboard update commit if these notes need correction. To undo PR #7, create a normal revert commit against 78b261e on main; do not force-push. Delete research-state-visualizer-ux-clean only with explicit approval.
 - Git commit: none recorded by script.
+
+## 2026-06-14 15:02 +03:00 - Codex - Add Shared Claude Codex State Report
+
+- Files changed:
+  - docs/agent-memory/shared-state-report.md
+  - scripts/agent-memory-start.ps1
+  - docs/agent-memory/README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+- Rollback note: Revert the commit that adds docs/agent-memory/shared-state-report.md and removes it from scripts/agent-memory-start.ps1, AGENTS.md, CLAUDE.md, docs/agent-memory/README.md, docs/agent-memory/claude-bootstrap-prompt.md, current-state, progress, and decisions.
+- Git commit: none recorded by script.

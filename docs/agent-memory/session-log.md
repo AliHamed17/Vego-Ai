@@ -1130,3 +1130,34 @@ Chronological prompt history for Codex and Claude.
   - git tag research-state-visualizer-ux-clean 78b261e; git push origin research-state-visualizer-ux-clean -> pushed
 - Status: completed
 - Next steps: Review/merge PR #6 schema hardening if clean, then refresh the artifact bundle/manifest and move toward EXP-001 evaluation design.
+
+## 2026-06-14 15:02 +03:00 - Codex - Add Shared Claude Codex State Report
+
+- Request: Read the attached pasted report and place it in project memory/agent-memory docs so Claude and Codex stay aligned.
+- Actions taken:
+  - Read the attached shared-state report request.
+  - Converted the report into docs/agent-memory/shared-state-report.md with stale PR #7 details corrected to the current merged/tagged state.
+  - Wired the shared-state report into scripts/agent-memory-start.ps1 so compiled-memory.md includes it.
+  - Updated Codex/Claude instructions, README, current-state, progress, and decisions to reference the report.
+- Files changed:
+  - docs/agent-memory/shared-state-report.md
+  - scripts/agent-memory-start.ps1
+  - docs/agent-memory/README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 -> passed and compiled memory generated
+  - PowerShell parser check for scripts/*.ps1 -> passed
+  - ASCII scan for changed files -> only pre-existing Hebrew PDF filename found in AGENTS/current-state
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - compiled-memory.md includes docs/agent-memory/shared-state-report.md -> verified
+- Status: completed
+- Next steps: Review PR #6 schema hardening next; keep M4B-2 and behavior-changing work blocked; use the new shared-state report plus current-state.md at prompt startup.
