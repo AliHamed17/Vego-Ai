@@ -20,7 +20,7 @@ The intended live wiki target is:
 | Home page ID | `294914` |
 | Layout | Page `294914` is `VEGO-AI Wiki Home`; the other curated pages are children. |
 
-Current access note: Atlassian Rovo reports that cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-14 11:14 +03:00. A Chrome UI fallback was checked 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry. Live sync must wait until Atlassian access is granted or a browser route is enabled.
+Current access note: Atlassian Rovo reports that cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-14 13:40 +03:00. A Chrome UI fallback was checked 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry. Live sync must wait until Atlassian access is granted or a browser route is enabled.
 
 ## End-Of-Prompt Order
 

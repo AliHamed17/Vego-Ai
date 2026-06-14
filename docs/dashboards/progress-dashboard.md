@@ -16,7 +16,7 @@ VEGO-AI is currently at the M4A research state with an M4B-1 conditional design 
 | Dashboard/wiki tracking gate | Green | Runtime snapshot and manual sync pack are generated; `.\scripts\dashboard-health.ps1 -RequireOutbox` passes. | Keep running after wiki outbox builds. |
 | M4B-1 Memory-informed parallel comparison | Yellow | Conditional design contract recorded in `docs/research/m4b-conditional-approval.md` and EXP-001. | Claude may implement M4B-1 only on `feature/memory-informed-comparison` with PR review. |
 | Data/IRB audit | Red | Controlled artifacts still ignored and metadata-only. | Continue audit before sharing artifacts. |
-| Confluence live tracking | Blocked | Outbox/manual sync pack exists; Atlassian access not granted as of 2026-06-14 11:14 +03:00; Chrome extension fallback unavailable as of 2026-06-13 13:50 +03:00. | Grant Rovo access or enable the Chrome extension route, then create/update child pages. |
+| Confluence live tracking | Blocked | Outbox/manual sync pack exists; Atlassian access not granted as of 2026-06-14 13:40 +03:00; Chrome extension fallback unavailable as of 2026-06-13 13:50 +03:00. | Grant Rovo access or enable the Chrome extension route, then create/update child pages. |
 
 ## Milestone Flow
 

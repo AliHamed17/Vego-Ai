@@ -967,3 +967,62 @@ Chronological prompt history for Codex and Claude.
   - Atlassian Rovo accessible-cloud check -> target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec still unavailable
 - Status: completed locally; PR #6 open
 - Next steps: Review/merge PR #6, then fix research-health dashboard-generator allowlist separately; live Confluence sync remains blocked until Atlassian Rovo target cloud access is granted.
+
+## 2026-06-14 13:39 +03:00 - Codex - Visualizer model-result matching PR
+
+- Request: Implement visualizer UX refresh addendum: exact model/result matching, stale-model protection, mismatch banner, helper tests, read-only research panels, and PR into main.
+- Actions taken:
+  - Created branch commit ba9ab94 on feature/visualizer-ux-refresh and opened draft PR #7.
+  - Added pure visualizer matching helpers for case id extraction, Agent C filename extraction, JSON case extraction, exact model discovery, case/domain/diagram mismatch detection.
+  - Updated Tkinter visualizer selection paths so aggregate selection auto-loads exact case-prefix models, clears stale selections when missing, and manual model changes are validated against the current result.
+  - Added persistent Matched/Mismatch/Unknown/No matching model found banner, Auto-load matching model action, table filters/summary, and read-only research sidecar panel.
+  - Added helper regression tests and updated delivery README.
+  - Ran full tests, compile checks, visualizer help smoke, Tkinter selection smoke, and forbidden staged-file audit.
+- Files changed:
+  - VEGO-AI/vego_visualizer_delivery/visualizer_utils.py
+  - VEGO-AI/vego_visualizer_delivery/visualize_compliance.py
+  - VEGO-AI/tests/test_visualizer_helpers.py
+  - VEGO-AI/vego_visualizer_delivery/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - python -m pytest VEGO-AI\\tests -q -> 93 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\vego_visualizer_delivery -> passed
+  - python VEGO-AI\\vego_visualizer_delivery\\visualize_compliance.py --help -> passed
+  - Tkinter smoke with diagram disabled -> passed
+  - git diff --check -> passed
+  - forbidden staged-file audit -> passed
+  - git push -u origin feature/visualizer-ux-refresh -> passed
+  - gh pr create --draft --base main --head feature/visualizer-ux-refresh -> PR #7
+- Status: completed; PR #7 in review
+- Next steps: Review PR #7, optionally verify GUI on a real display, then merge into main. Continue to keep Confluence live sync pending until Atlassian Rovo cloud access is granted.
+
+## 2026-06-14 13:41 +03:00 - Codex - Confluence live sync recheck after PR #7
+
+- Request: Refresh Confluence outbox and attempt live-sync readiness check after the visualizer PR work.
+- Actions taken:
+  - Regenerated the Confluence outbox/manual sync pack.
+  - Checked Atlassian Rovo accessible clouds; target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec is still not listed.
+  - Updated current-state, ISS-005, dashboard docs, and wiki-sync docs with the 2026-06-14 13:40 +03:00 recheck.
+  - Reran dashboard-health sequentially after outbox generation; the earlier parallel run was a race and the sequential check passed.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/outbox/ (ignored generated)
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated)
+  - docs/dashboards/status-snapshot.generated.md (ignored generated)
+- Commands/checks:
+  - .\\scripts\\build-confluence-wiki.ps1 -> regenerated outbox/manual sync pack
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed when rerun sequentially
+  - Atlassian Rovo accessible-cloud check -> target cloud still unavailable
+- Status: completed; live sync blocked
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable a working browser route, then publish the generated outbox pages live.

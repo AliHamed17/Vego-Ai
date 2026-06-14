@@ -145,3 +145,12 @@ Durable decisions for this project.
 - Decision: The dashboard is evidence reporting only: it reads existing JSON/JSONL artifacts, performs no LLM/API/network calls, does not modify baseline outputs, and does not change Agent 4 or M4A classifications.
 - Reason: The project needs visual, reviewable research metrics without weakening IRB/data boundaries or confusing reporting with model behavior.
 - Consequence: Use PR #5 for review/merge; keep `ai_classification_changed_count=0` as the M4A boundary check and continue treating M4B as a separate controlled experiment.
+
+## 2026-06-14 - Visualizer Pairing And Read-Only Research Panels
+
+- Decision: The visualizer must treat model/result pairing as an explicit case-id contract: Agent C results use `agentC_case_<case_id>.json`, model files use the substring before the first underscore, and auto-load searches only for files beginning with `<case_id>_`.
+- Decision: When no exact case-prefix model exists, the visualizer must clear the previous model selection and show `No matching model found`; it must never keep a stale model silently.
+- Decision: Manual model changes must be validated against the currently selected result and surfaced as Matched, Mismatch, Unknown, or No matching model found in a persistent top banner.
+- Decision: Visualizer research panels are read-only only; they may display M1/M2 review, M3 memory, M4A advice, and M4B-1 comparison sidecars, but must not write feedback, memory, advice, comparison, eval output, model, or analysis artifacts.
+- Reason: The review identified stale visualizer pairing as the highest-risk UX issue because it could make a wrong assessment appear normal.
+- Consequence: PR #7 carries the UI/helper/test implementation; any future visualizer work must preserve the no-silent-mismatch boundary and avoid changing Agent 4 or evaluator behavior.

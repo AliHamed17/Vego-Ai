@@ -508,3 +508,35 @@ Record file changes and rollback notes here.
   - ignored VEGO-AI/reports/results_dashboard/
 - Rollback note: Generated run/dashboard outputs are ignored and can be deleted; revert PR #6 commit if schema hardening is not wanted; memory updates can be reverted from this memory commit.
 - Git commit: none recorded by script.
+
+## 2026-06-14 13:39 +03:00 - Codex - Visualizer model-result matching PR
+
+- Files changed:
+  - VEGO-AI/vego_visualizer_delivery/visualizer_utils.py
+  - VEGO-AI/vego_visualizer_delivery/visualize_compliance.py
+  - VEGO-AI/tests/test_visualizer_helpers.py
+  - VEGO-AI/vego_visualizer_delivery/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert commit ba9ab94 and the follow-up memory commit if the visualizer UX refresh is not wanted. The ignored generated compiled memory/outbox files can be rebuilt or deleted safely.
+- Git commit: none recorded by script.
+
+## 2026-06-14 13:41 +03:00 - Codex - Confluence live sync recheck after PR #7
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/outbox/ (ignored generated)
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated)
+  - docs/dashboards/status-snapshot.generated.md (ignored generated)
+- Rollback note: Revert the Confluence recheck timestamp updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this access check should not be recorded. Ignored outbox/manual sync/generated snapshot files can be rebuilt or deleted safely.
+- Git commit: none recorded by script.
