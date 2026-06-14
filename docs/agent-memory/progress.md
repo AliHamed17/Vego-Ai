@@ -31,6 +31,9 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | M4B-1 deterministic comparison merged | Done | PR #4 merged as `944c922`; tag `research-state-m4b1-deterministic-comparison` exists. |
 | 2026-06-14 | M4B schema hardening PR opened | In review | PR #6 adds nested required fields and schema regression coverage only. |
 | 2026-06-14 | Local no-key execution/results package generated | Done | Created local configs, generated M1-M4A/M4B outputs under `VEGO-AI/runs/20260614-122150/`, rebuilt dashboard, and wrote ignored `RUN_SUMMARY.md`. |
+| 2026-06-14 | Visualizer model/result mismatch fix opened | In review | PR #7 adds exact case matching, stale-model clearing, mismatch banner, helper tests, filters, and read-only research panels. |
+| 2026-06-14 | Full system validation report generated | Done | Tracked report `VEGO-AI/reports/system_validation_report.md` says PASS after governance cleanup; all functional and health checks pass. |
+| 2026-06-14 | QA governance warnings fixed | Done | Added narrow research-health allowlist, restored local baseline tracking branch, and prepared `system_validation_report.md` as a tracked validation artifact. |
 
 ## Active Work
 
@@ -48,7 +51,8 @@ Track milestones, current work, and next steps here.
 | TASK-011 | 2026-06-13 | Open | Keep manual Confluence sync pack fresh while live access is blocked. | Run `.\scripts\build-confluence-wiki.ps1`; it regenerates `docs/confluence/manual-sync-pack.generated.md`. |
 | TASK-012 | 2026-06-14 | Done | Add local/offline visual metrics dashboard for VEGO-AI result artifacts. | Keep generated `VEGO-AI/reports/results_dashboard/` ignored. |
 | TASK-013 | 2026-06-14 | In review | Harden M4B nested schema requirements. | Review and merge PR #6. |
-| TASK-014 | 2026-06-14 | Open | Fix research-health allowlist for the tracked dashboard generator. | Patch `scripts/research-health.ps1` separately so `VEGO-AI/analysis/build_results_dashboard.py` is allowed but controlled analysis artifacts remain forbidden. |
+| TASK-014 | 2026-06-14 | Done | Fix research-health allowlist for the tracked dashboard generator. | Narrow allowlist added; `project-health`, `research-health`, and `dashboard-health` pass. |
+| TASK-015 | 2026-06-14 | In review | Fix VEGO-AI visualizer model/result mismatch UX. | Review PR #7, verify the banner/manual smoke on a real display if desired, then merge into `main`. |
 
 ## Completed Work
 
@@ -76,12 +80,15 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Recorded M4B-1 conditional approval contract and Claude handoff. | `docs/research/m4b-conditional-approval.md`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md`, `docs/agent-memory/claude-m4b-handoff-prompt.md`, research/planning/dashboard docs |
 | 2026-06-14 | Added offline VEGO-AI results dashboard branch and PR. | PR #5, `.gitignore`, `VEGO-AI/analysis/build_results_dashboard.py`, `VEGO-AI/docs/results_dashboard.md`, `VEGO-AI/schemas/results_dashboard_snapshot.schema.json`, `VEGO-AI/tests/test_results_dashboard.py` |
 | 2026-06-14 | Ran no-key local execution package and generated results summary. | Ignored `VEGO-AI/runs/20260614-122150/`, ignored `VEGO-AI/reports/results_dashboard/`, local configs, PR #6 |
+| 2026-06-14 | Opened visualizer mismatch UX PR. | PR #7, `VEGO-AI/vego_visualizer_delivery/visualizer_utils.py`, `VEGO-AI/vego_visualizer_delivery/visualize_compliance.py`, `VEGO-AI/tests/test_visualizer_helpers.py`, `VEGO-AI/vego_visualizer_delivery/README.md` |
+| 2026-06-14 | Ran full QA/system validation. | `VEGO-AI/reports/system_validation_report.md` (untracked), ignored `VEGO-AI/runs/system_validation_20260614-142018/`, ignored `VEGO-AI/reports/results_dashboard/` |
+| 2026-06-14 | Fixed QA governance warnings after validation. | `scripts/research-health.ps1`, `VEGO-AI/reports/system_validation_report.md`, local `baseline/official-vego-ai` tracking branch, memory files |
 
 ## Next Steps
 
 1. Review and merge PR #6 for M4B schema hardening.
-2. Add a separate research-health allowlist fix for the tracked dashboard generator.
-3. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, visualizer changes, and baseline output overwrites blocked.
+2. Run real-display GUI validation for PR #7, then review/merge the visualizer model/result mismatch fix if clean.
+3. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
 4. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
 5. Refresh the M1-M2-M3-M4A-M4B1 artifact package and manifest only after PR #6 / health follow-up decisions are settled.
 6. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.

@@ -967,3 +967,131 @@ Chronological prompt history for Codex and Claude.
   - Atlassian Rovo accessible-cloud check -> target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec still unavailable
 - Status: completed locally; PR #6 open
 - Next steps: Review/merge PR #6, then fix research-health dashboard-generator allowlist separately; live Confluence sync remains blocked until Atlassian Rovo target cloud access is granted.
+
+## 2026-06-14 13:39 +03:00 - Codex - Visualizer model-result matching PR
+
+- Request: Implement visualizer UX refresh addendum: exact model/result matching, stale-model protection, mismatch banner, helper tests, read-only research panels, and PR into main.
+- Actions taken:
+  - Created branch commit ba9ab94 on feature/visualizer-ux-refresh and opened draft PR #7.
+  - Added pure visualizer matching helpers for case id extraction, Agent C filename extraction, JSON case extraction, exact model discovery, case/domain/diagram mismatch detection.
+  - Updated Tkinter visualizer selection paths so aggregate selection auto-loads exact case-prefix models, clears stale selections when missing, and manual model changes are validated against the current result.
+  - Added persistent Matched/Mismatch/Unknown/No matching model found banner, Auto-load matching model action, table filters/summary, and read-only research sidecar panel.
+  - Added helper regression tests and updated delivery README.
+  - Ran full tests, compile checks, visualizer help smoke, Tkinter selection smoke, and forbidden staged-file audit.
+- Files changed:
+  - VEGO-AI/vego_visualizer_delivery/visualizer_utils.py
+  - VEGO-AI/vego_visualizer_delivery/visualize_compliance.py
+  - VEGO-AI/tests/test_visualizer_helpers.py
+  - VEGO-AI/vego_visualizer_delivery/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - python -m pytest VEGO-AI\\tests -q -> 93 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\vego_visualizer_delivery -> passed
+  - python VEGO-AI\\vego_visualizer_delivery\\visualize_compliance.py --help -> passed
+  - Tkinter smoke with diagram disabled -> passed
+  - git diff --check -> passed
+  - forbidden staged-file audit -> passed
+  - git push -u origin feature/visualizer-ux-refresh -> passed
+  - gh pr create --draft --base main --head feature/visualizer-ux-refresh -> PR #7
+- Status: completed; PR #7 in review
+- Next steps: Review PR #7, optionally verify GUI on a real display, then merge into main. Continue to keep Confluence live sync pending until Atlassian Rovo cloud access is granted.
+
+## 2026-06-14 13:41 +03:00 - Codex - Confluence live sync recheck after PR #7
+
+- Request: Refresh Confluence outbox and attempt live-sync readiness check after the visualizer PR work.
+- Actions taken:
+  - Regenerated the Confluence outbox/manual sync pack.
+  - Checked Atlassian Rovo accessible clouds; target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec is still not listed.
+  - Updated current-state, ISS-005, dashboard docs, and wiki-sync docs with the 2026-06-14 13:40 +03:00 recheck.
+  - Reran dashboard-health sequentially after outbox generation; the earlier parallel run was a race and the sequential check passed.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/outbox/ (ignored generated)
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated)
+  - docs/dashboards/status-snapshot.generated.md (ignored generated)
+- Commands/checks:
+  - .\\scripts\\build-confluence-wiki.ps1 -> regenerated outbox/manual sync pack
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed when rerun sequentially
+  - Atlassian Rovo accessible-cloud check -> target cloud still unavailable
+- Status: completed; live sync blocked
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable a working browser route, then publish the generated outbox pages live.
+
+## 2026-06-14 14:26 +03:00 - Codex - Full system validation QA report
+
+- Request: Run full VEGO-AI environment, system, regression, dashboard, visualizer, and research-boundary validation without implementing features or committing fixes.
+- Actions taken:
+  - Ran git/reference/inventory/environment checks.
+  - Ran compileall, full pytest, direct/manual test runners, schema validation, and CLI help smoke checks.
+  - Ran generated-output smoke for ucd_ch into ignored VEGO-AI/runs/system_validation_20260614-142018 and verified M4A/M4B boundaries.
+  - Generated results dashboard into ignored VEGO-AI/reports/results_dashboard and verified metrics snapshot.
+  - Ran visualizer helper tests and Tkinter smoke with diagram rendering disabled.
+  - Ran boundary audits, PR #7 changed-file audit, dashboard/project/research health scripts, and forbidden staged-file audit.
+  - Created untracked QA report at VEGO-AI/reports/system_validation_report.md.
+- Files changed:
+  - VEGO-AI/reports/system_validation_report.md (untracked report)
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - VEGO-AI/runs/system_validation_20260614-142018/ (ignored generated)
+  - VEGO-AI/reports/results_dashboard/ (ignored generated)
+- Commands/checks:
+  - python -m pytest VEGO-AI\\tests -q -> 93 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery -> passed
+  - direct runners for M1/M2/M3/M4A/dashboard/visualizer/M4B-1 -> passed
+  - schema validation for six schemas -> passed
+  - CLI --help checks -> passed
+  - M1-M4B-1 generated-output smoke ucd_ch -> passed; M4A changed=0; M4B baseline changed=False
+  - python VEGO-AI\\analysis\\build_results_dashboard.py --root VEGO-AI --out VEGO-AI\\reports\\results_dashboard -> passed
+  - Tkinter visualizer smoke -> passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed
+  - .\\scripts\\research-health.ps1 -> failed on known ISS-008 allowlist issue
+  - .\\scripts\\project-health.ps1 -> failed because research-health failed
+  - forbidden staged-file audit -> passed
+- Status: completed; PASS WITH WARNINGS
+- Next steps: Review report, merge PR #7 after optional real-display visualizer smoke, and fix ISS-008 research-health allowlist separately.
+
+## 2026-06-14 14:39 +03:00 - Codex - Fix validation governance warnings
+
+- Request: Fix the QA warnings: allowlist the dashboard generator in health checks, track the system validation report, and restore local baseline branch tracking.
+- Actions taken:
+  - Added a narrow allowlist for VEGO-AI/analysis/build_results_dashboard.py in scripts/research-health.ps1.
+  - Restored local baseline/official-vego-ai tracking branch from origin/baseline/official-vego-ai.
+  - Updated VEGO-AI/reports/system_validation_report.md from PASS WITH WARNINGS to PASS after governance cleanup.
+  - Marked ISS-008 resolved in memory and recorded the validation artifact decision.
+  - Ran project-health, research-health, dashboard-health, pytest, and compileall; all passed.
+  - Committed and pushed ff9f911 to feature/visualizer-ux-refresh / PR #7.
+  - Updated PR #7 body with governance cleanup and validation status.
+- Files changed:
+  - scripts/research-health.ps1
+  - VEGO-AI/reports/system_validation_report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - git branch --track baseline/official-vego-ai origin/baseline/official-vego-ai -> created local tracking branch
+  - .\\scripts\\project-health.ps1 -> passed
+  - .\\scripts\\research-health.ps1 -> passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed
+  - python -m pytest VEGO-AI\\tests -q -> 93 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery -> passed
+  - git commit -m 'Fix validation governance warnings' -> ff9f911
+  - git push -> passed
+  - gh pr edit 7 --body ... -> passed
+- Status: completed
+- Next steps: Run real-display GUI validation for PR #7, then mark PR #7 ready/merge if clean. Live Confluence sync remains blocked until Atlassian cloud access is granted.

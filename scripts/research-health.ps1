@@ -47,6 +47,10 @@ $forbiddenTrackedPatterns = @(
     '^docs/confluence/outbox/'
 )
 
+$allowedTrackedArtifacts = @(
+    "VEGO-AI/analysis/build_results_dashboard.py"
+)
+
 Write-Host "VEGO-AI research health"
 Write-Host "Root: $repoRoot"
 Write-Host ""
@@ -117,6 +121,9 @@ if ($LASTEXITCODE -ne 0) {
 
 $forbidden = @()
 foreach ($path in $tracked) {
+    if ($allowedTrackedArtifacts -contains $path) {
+        continue
+    }
     foreach ($pattern in $forbiddenTrackedPatterns) {
         if ($path -match $pattern) {
             $forbidden += $path
