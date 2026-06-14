@@ -554,3 +554,17 @@ Record file changes and rollback notes here.
   - VEGO-AI/reports/results_dashboard/ (ignored generated)
 - Rollback note: Delete untracked VEGO-AI/reports/system_validation_report.md and ignored generated VEGO-AI/runs/system_validation_* / VEGO-AI/reports/results_dashboard outputs if this validation artifact should be removed. Revert the memory log/current-state/progress/issues updates if this QA run should not be recorded.
 - Git commit: none recorded by script.
+
+## 2026-06-14 14:39 +03:00 - Codex - Fix validation governance warnings
+
+- Files changed:
+  - scripts/research-health.ps1
+  - VEGO-AI/reports/system_validation_report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert commit ff9f911 and the follow-up memory log commit if the governance cleanup/report tracking should be removed; delete local branch baseline/official-vego-ai if local tracking should not exist.
+- Git commit: none recorded by script.

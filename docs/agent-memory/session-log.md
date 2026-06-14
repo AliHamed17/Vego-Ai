@@ -1062,3 +1062,36 @@ Chronological prompt history for Codex and Claude.
   - forbidden staged-file audit -> passed
 - Status: completed; PASS WITH WARNINGS
 - Next steps: Review report, merge PR #7 after optional real-display visualizer smoke, and fix ISS-008 research-health allowlist separately.
+
+## 2026-06-14 14:39 +03:00 - Codex - Fix validation governance warnings
+
+- Request: Fix the QA warnings: allowlist the dashboard generator in health checks, track the system validation report, and restore local baseline branch tracking.
+- Actions taken:
+  - Added a narrow allowlist for VEGO-AI/analysis/build_results_dashboard.py in scripts/research-health.ps1.
+  - Restored local baseline/official-vego-ai tracking branch from origin/baseline/official-vego-ai.
+  - Updated VEGO-AI/reports/system_validation_report.md from PASS WITH WARNINGS to PASS after governance cleanup.
+  - Marked ISS-008 resolved in memory and recorded the validation artifact decision.
+  - Ran project-health, research-health, dashboard-health, pytest, and compileall; all passed.
+  - Committed and pushed ff9f911 to feature/visualizer-ux-refresh / PR #7.
+  - Updated PR #7 body with governance cleanup and validation status.
+- Files changed:
+  - scripts/research-health.ps1
+  - VEGO-AI/reports/system_validation_report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - git branch --track baseline/official-vego-ai origin/baseline/official-vego-ai -> created local tracking branch
+  - .\\scripts\\project-health.ps1 -> passed
+  - .\\scripts\\research-health.ps1 -> passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed
+  - python -m pytest VEGO-AI\\tests -q -> 93 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery -> passed
+  - git commit -m 'Fix validation governance warnings' -> ff9f911
+  - git push -> passed
+  - gh pr edit 7 --body ... -> passed
+- Status: completed
+- Next steps: Run real-display GUI validation for PR #7, then mark PR #7 ready/merge if clean. Live Confluence sync remains blocked until Atlassian cloud access is granted.
