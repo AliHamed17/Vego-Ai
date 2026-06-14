@@ -625,3 +625,13 @@ Record file changes and rollback notes here.
   - CLAUDE.md
 - Rollback note: Revert the commit adding docs/research/evaluation-report.md and related memory/dashboard/research doc updates to return to the pre-evaluation-pivot documentation state.
 - Git commit: none recorded by script.
+
+## 2026-06-14 18:45 +03:00 - Codex - Include Evaluation Docs In Compiled Memory
+
+- Files changed:
+  - scripts/agent-memory-start.ps1
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+- Rollback note: Remove docs/research/evaluation-plan.md and docs/research/evaluation-report.md from scripts/agent-memory-start.ps1 if compiled memory should return to the previous source set.
+- Git commit: none recorded by script.

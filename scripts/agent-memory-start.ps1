@@ -26,6 +26,8 @@ $orderedPaths = @(
     "docs/architecture/reproducibility-contract.md",
     "docs/architecture/source-package-manifest.md",
     "docs/research/research-plan.md",
+    "docs/research/evaluation-plan.md",
+    "docs/research/evaluation-report.md",
     "experiments/registry.md"
 )
 

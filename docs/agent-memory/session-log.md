@@ -1200,3 +1200,20 @@ Chronological prompt history for Codex and Claude.
   - ASCII scan for changed files -> only pre-existing Hebrew PDF filename in current-state
 - Status: completed
 - Next steps: Run EXP-001/C4B evaluation with audited inputs, expert labels, leakage status, dashboard tables/figures, and no M4B-2 or Agent 4 behavior changes.
+
+## 2026-06-14 18:45 +03:00 - Codex - Include Evaluation Docs In Compiled Memory
+
+- Request: Ensure the evaluation pivot resources are pulled automatically for future Claude/Codex prompts.
+- Actions taken:
+  - Added docs/research/evaluation-plan.md and docs/research/evaluation-report.md to the compiled-memory source list.
+  - Regenerated compiled memory so future prompts pull the evaluation phase context automatically.
+- Files changed:
+  - scripts/agent-memory-start.ps1
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - PowerShell parser check for scripts/agent-memory-start.ps1 -> passed
+  - .\scripts\agent-memory-start.ps1 -> passed
+- Status: completed
+- Next steps: Use compiled memory plus docs/research/evaluation-report.md as the default context for EXP-001/C4B evaluation work.
