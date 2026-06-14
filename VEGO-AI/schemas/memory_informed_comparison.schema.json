@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vego-ai/schemas/memory_informed_comparison.schema.json",
+  "title": "VEGO-AI Memory-Informed Comparison (Milestone 4B-1)",
+  "description": "EXPERIMENTAL, deterministic comparison. For each Agent 4 variability pattern, produces a parallel memory-informed classification alongside the original. M4B-1 NEVER modifies the baseline Agent 4 output; ai_behavior_changed_in_baseline is always false. No LLM/API/embeddings.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "setting_id", "mode", "policy_version",
+               "ai_behavior_changed_in_baseline", "generated_at", "provenance", "comparisons"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "setting_id": { "type": "string" },
+    "mode": { "type": "string", "const": "experimental" },
+    "policy_version": { "type": "string" },
+    "ai_behavior_changed_in_baseline": { "type": "boolean", "const": false },
+    "generated_at": { "type": "string" },
+    "provenance": { "$ref": "#/definitions/provenance" },
+    "comparisons": { "type": "array", "items": { "$ref": "#/definitions/comparison_item" } }
+  },
+  "definitions": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_variability_classes", "source_memory_advice", "source_memory"],
+      "properties": {
+        "source_variability_classes": { "type": ["string", "null"] },
+        "source_memory_advice": { "type": ["string", "null"] },
+        "source_memory": { "type": ["string", "null"] }
+      }
+    },
+    "comparison_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparison_id", "setting_id", "pattern_id", "mode", "policy_version",
+        "ai_behavior_changed_in_baseline", "original_agent4_classification", "memory_advice",
+        "memory_informed_classification", "memory_informed_differs_from_original",
+        "classification_changed_meaning", "requires_human_review_after_memory",
+        "human_memory_used", "evaluation_leakage_status", "rule_applied", "decision_trace"
+      ],
+      "properties": {
+        "comparison_id": { "type": "string", "pattern": "^MINF-.+-P[0-9]+$" },
+        "setting_id": { "type": "string" },
+        "pattern_id": { "type": "string", "pattern": "^P[0-9]+$" },
+        "mode": { "type": "string", "const": "experimental" },
+        "policy_version": { "type": "string" },
+        "ai_behavior_changed_in_baseline": { "type": "boolean", "const": false },
+        "original_agent4_classification": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "classification": { "type": ["string", "null"] },
+            "confidence": { "type": ["string", "null"] },
+            "requires_human_review": { "type": ["boolean", "null"] },
+            "flag_for_guidelines_update": { "type": ["boolean", "null"] }
+          }
+        },
+        "memory_advice": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "advice_strength": { "type": ["string", "null"] },
+            "advice_summary": { "type": ["string", "null"] },
+            "memory_match_ids": { "type": "array", "items": { "type": "string" } },
+            "has_conflicting_memory": { "type": "boolean" }
+          }
+        },
+        "memory_informed_classification": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "classification": { "type": ["string", "null"] },
+            "confidence": { "type": ["string", "null"] },
+            "source": { "type": "string", "enum": ["original_agent4", "human_memory"] }
+          }
+        },
+        "memory_informed_differs_from_original": { "type": "boolean" },
+        "classification_changed_meaning": { "type": "string" },
+        "requires_human_review_after_memory": { "type": "boolean" },
+        "human_memory_used": { "type": "array", "items": { "type": "string" } },
+        "evaluation_leakage_status": {
+          "type": "string",
+          "enum": ["none", "same_pattern_memory_used", "same_setting_memory_used",
+                   "cross_setting_memory_used", "unknown"]
+        },
+        "rule_applied": { "type": "string" },
+        "decision_trace": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
