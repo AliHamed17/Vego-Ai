@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VEGO-AI Results Dashboard Snapshot",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at",
+    "inputs",
+    "settings",
+    "overview",
+    "health",
+    "reproducibility"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "root": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "settings_requested": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "settings": {
+      "type": "object"
+    },
+    "overview": {
+      "type": "object",
+      "required": [
+        "settings_count",
+        "case_count",
+        "variability_pattern_count",
+        "ai_classification_changed_count"
+      ],
+      "properties": {
+        "settings_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "case_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "average_score_mean": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "variability_pattern_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ai_classification_changed_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "health": {
+      "type": "object",
+      "required": [
+        "status",
+        "files_found",
+        "files_missing",
+        "parse_errors",
+        "warnings"
+      ],
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "files_found": {
+          "type": "array"
+        },
+        "files_missing": {
+          "type": "array"
+        },
+        "parse_errors": {
+          "type": "array"
+        },
+        "warnings": {
+          "type": "array"
+        }
+      }
+    },
+    "reproducibility": {
+      "type": "object",
+      "required": [
+        "offline_static_generation",
+        "ai_behavior_changed_by_dashboard"
+      ],
+      "properties": {
+        "offline_static_generation": {
+          "type": "boolean"
+        },
+        "ai_behavior_changed_by_dashboard": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
