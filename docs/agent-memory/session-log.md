@@ -923,3 +923,47 @@ Chronological prompt history for Codex and Claude.
   - Atlassian Rovo _getconfluencepage page 294914 -> blocked: cloud is not explicitly granted
 - Status: completed; PR #5 open
 - Next steps: Review and merge PR #5 if acceptable; live Confluence sync remains blocked until Atlassian Rovo access is granted.
+
+## 2026-06-14 12:35 +03:00 - Codex - No-key VEGO-AI execution and M4B schema follow-up
+
+- Request: Run VEGO-AI safely, generate dashboards/visualization instructions/results summary, include M4B-1 if present, and keep audit trail clean.
+- Actions taken:
+  - Loaded project memory and attachment.
+  - Confirmed OPENAI_API_KEY was not set; skipped smoke/full live LLM runs.
+  - Created ignored local configs and smoke model subsets for run 20260614-122150.
+  - Ran compile/tests/direct runners.
+  - Generated M1 review queues, ucd_ch resolved feedback, ucd_ch Human Judgment Memory, M4A advice for all settings, and M4B-1 experimental comparisons for all settings under ignored VEGO-AI/runs/20260614-122150/.
+  - Rebuilt offline dashboard and wrote ignored VEGO-AI/reports/results_dashboard/RUN_SUMMARY.md.
+  - Confirmed PR #4 was clean and merged; opened PR #6 for nested M4B schema hardening only.
+  - Recorded research-health allowlist issue for tracked dashboard generator.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - VEGO-AI/schemas/memory_informed_comparison.schema.json (PR #6)
+  - VEGO-AI/tests/test_memory_informed_classifier.py (PR #6)
+  - ignored VEGO-AI/runs/20260614-122150/
+  - ignored VEGO-AI/reports/results_dashboard/
+- Commands/checks:
+  - python -m compileall -q VEGO-AI/framework VEGO-AI/eval VEGO-AI/analysis -> passed
+  - python -m pytest VEGO-AI/tests -q -> 86 passed
+  - python VEGO-AI/tests/test_human_review_queue.py -> 19/19 passed
+  - python VEGO-AI/tests/test_human_feedback_manager.py -> 11/11 passed
+  - python VEGO-AI/tests/test_human_judgment_memory.py -> 15/15 passed
+  - python VEGO-AI/tests/test_memory_advisor.py -> 12/12 passed
+  - python VEGO-AI/tests/test_results_dashboard.py -> 13/13 passed
+  - python VEGO-AI/tests/test_memory_informed_classifier.py -> 16/16 passed
+  - python VEGO-AI/framework/human_review_queue.py --all-settings VEGO-AI/eval_output --out-dir VEGO-AI/runs/20260614-122150/human -> 11 review items
+  - python VEGO-AI/framework/human_feedback_manager.py -> 3 resolved feedback items, 1 pending
+  - python VEGO-AI/framework/human_judgment_memory.py -> 3 memory items
+  - python VEGO-AI/framework/memory_advisor.py -> 27 advice items, ai_classification_changed=0
+  - python VEGO-AI/framework/memory_informed_classifier.py -> 27 comparisons, differs=0, requires_review=2, ai_behavior_changed=0
+  - python VEGO-AI/analysis/build_results_dashboard.py --root VEGO-AI --out VEGO-AI/reports/results_dashboard --human-dir VEGO-AI/runs/20260614-122150/human -> passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed
+  - .\\scripts\\project-health.ps1 / .\\scripts\\research-health.ps1 -> failed on ISS-008 allowlist issue
+  - .\\scripts\\build-confluence-wiki.ps1 -> generated ignored outbox/manual sync pack
+  - Atlassian Rovo accessible-cloud check -> target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec still unavailable
+- Status: completed locally; PR #6 open
+- Next steps: Review/merge PR #6, then fix research-health dashboard-generator allowlist separately; live Confluence sync remains blocked until Atlassian Rovo target cloud access is granted.

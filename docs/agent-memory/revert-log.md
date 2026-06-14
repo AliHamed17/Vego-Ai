@@ -493,3 +493,18 @@ Record file changes and rollback notes here.
   - docs/agent-memory/decisions.md
 - Rollback note: Revert commit 61aac60 and the follow-up memory commit if needed; generated VEGO-AI/reports/results_dashboard files are ignored and can be deleted safely.
 - Git commit: none recorded by script.
+
+## 2026-06-14 12:35 +03:00 - Codex - No-key VEGO-AI execution and M4B schema follow-up
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - VEGO-AI/schemas/memory_informed_comparison.schema.json (PR #6)
+  - VEGO-AI/tests/test_memory_informed_classifier.py (PR #6)
+  - ignored VEGO-AI/runs/20260614-122150/
+  - ignored VEGO-AI/reports/results_dashboard/
+- Rollback note: Generated run/dashboard outputs are ignored and can be deleted; revert PR #6 commit if schema hardening is not wanted; memory updates can be reverted from this memory commit.
+- Git commit: none recorded by script.
