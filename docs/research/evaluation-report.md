@@ -1,8 +1,8 @@
 # Evaluation Of Reusable Human Judgment In VEGO-AI
 
-Last curated update: 2026-06-14 18:52 +03:00 by Codex.
+Last curated update: 2026-06-14 19:20 +03:00 by Codex.
 
-Status: initial EXP-001 mechanism/readiness evaluation run completed. Generalization-safe expert-label evaluation is still pending.
+Status: EXP-001 mechanism/readiness evaluation complete; EXP-002 expert-labeling package generated; human labels still pending.
 
 ## Evaluation Position
 
@@ -124,6 +124,79 @@ In this run, M4B-1 clarified review needs rather than changing classifications:
 
 Generalization is not evaluable yet because there are zero held-out or cross-setting expert labels.
 
+## EXP-002 Expert Labeling Package
+
+EXP-002 creates the missing evidence collection artifact: a human/expert labeling package for evaluating M4B-1 without relying on same-pattern memory leakage.
+
+Command:
+
+```powershell
+.\scripts\build-exp002-labeling-package.ps1
+```
+
+Generated local outputs, ignored by Git:
+
+- `reports/generated/exp002/expert_labeling_sheet.csv`
+- `reports/generated/exp002/expert_labeling_sheet.md`
+- `reports/generated/exp002/recommended_patterns_to_label.md`
+- `reports/generated/exp002/exp002_summary.json`
+
+### Initial Package Summary
+
+| Measure | Value |
+| --- | ---: |
+| Labeling rows | 27 |
+| Settings covered | 4 |
+| Existing expert labels found | 3 |
+| Generalization-safe candidate rows | 24 |
+| Requires human review after memory | 2 |
+| Memory-informed differs from original | 0 |
+| Recommended labeling targets | 27 |
+
+Setting distribution: `cd_ch=4`, `cd_pw=7`, `ucd_ch=8`, `ucd_pw=8`.
+
+Original classification distribution: `Occasional Variability=18`, `Substantial Variability=9`.
+
+Leakage distribution: `none=19`, `cross_setting_memory_used=5`, `same_pattern_memory_used=3`.
+
+### Labeling Fields
+
+The sheet consolidates:
+
+- `setting`
+- `pattern_id`
+- `pattern_description`
+- `affected_cases`
+- `related_guideline_id`
+- `original_agent4_classification`
+- `original_confidence`
+- `requires_human_review`
+- `flag_for_guidelines_update`
+- `memory_advice_strength`
+- `memory_informed_classification`
+- `memory_informed_differs_from_original`
+- `requires_human_review_after_memory`
+- `evaluation_leakage_status`
+- `existing_expert_label`
+- blank `expert_label`
+- blank `expert_rationale`
+- blank `reviewer_id`
+- blank `reviewer_confidence`
+
+### Labeling Protocol
+
+Allowed `expert_label` values:
+
+- `Substantial Variability`
+- `Occasional Variability`
+- `Undetermined / Needs Review`
+
+Minimum target: 20 labeled patterns.
+
+Preferred target: 30-50 labeled patterns. If the current package has fewer than 30 rows, label all available rows and add more audited runs later.
+
+Sampling should prioritize memory-related disagreement or review cases, medium/low confidence cases, guideline-update candidates, patterns with no memory, and cross-context memory candidates. Same-pattern rows remain visible for mechanism validation but must be excluded from generalization-safe accuracy claims.
+
 ## Dashboard Figures To Produce
 
 Use the local results dashboard to prepare thesis tables and figures for:
@@ -205,4 +278,4 @@ MSc potential: strong.
 
 Empirical evidence: incomplete.
 
-Best next move: collect or define held-out expert labels, rerun EXP-001 with leakage-aware partitions, and then produce thesis tables/figures.
+Best next move: fill the EXP-002 expert-labeling sheet, then rerun EXP-001 or the next evaluation pass with leakage-aware expert-label partitions.

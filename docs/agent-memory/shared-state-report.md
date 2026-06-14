@@ -1,6 +1,6 @@
 # VEGO-AI Shared State Report For Claude And Codex
 
-Last curated update: 2026-06-14 18:52 +03:00 by Codex.
+Last curated update: 2026-06-14 19:20 +03:00 by Codex.
 
 Use this report as the high-level shared orientation for Claude and Codex. It summarizes the research framing, implemented milestone chain, governance boundaries, validation state, and next research direction. For exact moving status, always pair this report with `docs/agent-memory/current-state.md` and `git log -1`.
 
@@ -600,6 +600,12 @@ Needed evaluation table:
 
 The thesis should shift from implementation to evidence.
 
+Current evaluation packages:
+
+- EXP-001 generated mechanism/readiness outputs with 27 comparison rows, 3 same-pattern expert-labeled rows, 0 generalization-safe expert-labeled rows, 0 memory-informed classification changes, and 2 human-review-after-memory flags.
+- EXP-002 generated an ignored expert-labeling package with 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels, and 27 recommended labeling targets.
+- The next human step is to fill at least 20 EXP-002 labels, preferably all 27 current rows, with `expert_label`, `expert_rationale`, `reviewer_id`, and reviewer confidence.
+
 ## 12. Thesis Contribution Statement
 
 Use this as the main contribution statement:
@@ -660,6 +666,13 @@ Initial EXP-001 evaluation note:
 - 0 memory-informed classifications differ from original Agent 4.
 - 2 cases are flagged for human review after memory.
 - This is mechanism/readiness evidence only, not proof of accuracy improvement.
+
+Initial EXP-002 labeling note:
+
+- 27 labelable rows are available across `cd_ch`, `cd_pw`, `ucd_ch`, and `ucd_pw`.
+- 24 rows are generalization-safe candidates because they are not `same_pattern_memory_used`.
+- 3 rows already have same-pattern Human Judgment Memory labels and must remain mechanism-validation evidence only unless independently relabeled.
+- Human or supervisor labels are required before any accuracy/generalization claim.
 
 Strict assessment:
 

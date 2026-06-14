@@ -188,3 +188,10 @@ Durable decisions for this project.
 - Decision: Treat the first EXP-001 output as mechanism/readiness evidence only.
 - Reason: The run has 27 comparison rows and valid leakage tracking, but only 3 expert-labeled rows are available and all are same-pattern Human Judgment Memory cases; there are 0 generalization-safe expert-labeled rows.
 - Consequence: The thesis may say M4B-1 preserves baseline output, produces reproducible comparison tables, and flags 2 cases for human review after memory. It must not claim accuracy improvement or generalization until held-out expert labels are added and evaluated.
+
+## 2026-06-14 - EXP-002 Expert Labeling Before More Features
+
+- Decision: Move from mechanism validation to expert-label collection through EXP-002 before implementing more memory behavior.
+- Decision: Treat the generated EXP-002 labeling package as the next research artifact: 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels, and 27 recommended labeling targets.
+- Reason: The weak point is empirical evidence, not architecture; M4B-1 cannot support accuracy/generalization claims until independent labels exist.
+- Consequence: M4B-2, Agent 4 `resolve_with_answers`, LLM/API reclassification, embeddings, automatic guideline rewriting, and GUI feedback editing remain blocked. The next manual work is expert labeling and rationale collection.

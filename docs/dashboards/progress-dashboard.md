@@ -1,6 +1,6 @@
 # Progress Dashboard
 
-Last curated update: 2026-06-14 18:52 +03:00.
+Last curated update: 2026-06-14 19:20 +03:00.
 
 ## Executive Snapshot
 
@@ -16,6 +16,7 @@ VEGO-AI is currently at the M4B-1 deterministic comparison state with a validate
 | M4B-1 Memory-informed parallel comparison | Green | Merged as `944c922`; tag `research-state-m4b1-deterministic-comparison`. | Run EXP-001/C4B before making improvement claims. |
 | Visualizer model/result matching | Green | PR #7 real-display validated, merged as `78b261e`, tag `research-state-visualizer-ux-clean`. | Preserve no-silent-mismatch and read-only research-panel boundaries. |
 | EXP-001 evaluation | Yellow | Initial mechanism/readiness run generated ignored `reports/generated/exp001/` tables. | Add held-out or cross-setting expert labels before accuracy/generalization claims. |
+| EXP-002 expert labeling package | Yellow | Ignored `reports/generated/exp002/` package generated: 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels. | Human/supervisor labels should fill at least 20 rows, preferably all 27 current rows. |
 | Dashboard/wiki tracking gate | Green | Runtime snapshot and manual sync pack are generated; `.\scripts\dashboard-health.ps1 -RequireOutbox` passes. | Keep running after wiki outbox builds. |
 | Data/IRB audit | Red | Controlled artifacts still ignored and metadata-only. | Continue audit before sharing artifacts. |
 | Confluence live tracking | Blocked | Outbox/manual sync pack exists; Atlassian Rovo cloud access not explicitly granted as of 2026-06-14 14:50 +03:00; Chrome extension fallback unavailable as of 2026-06-13 13:50 +03:00. | Grant Rovo access or enable the Chrome extension route, then create/update child pages. |
@@ -39,7 +40,7 @@ VEGO-AI is currently at the M4B-1 deterministic comparison state with a validate
 | --- | --- | --- | --- |
 | P1 | Review and merge PR #6 schema hardening if clean. | Codex / reviewer | Open |
 | P1 | Use release artifact bundle for external technical review. | Research lead / agents | Available |
-| P1 | Collect expert labels and rerun EXP-001 generalization-safe evaluation. | Research lead / agents | Next |
+| P1 | Fill EXP-002 expert labeling sheet and rerun EXP-001/generalization-safe evaluation. | Research lead / agents | Next |
 | P1 | Keep M4B-2 and Agent 4/LLM behavior blocked. | All agents | Active rule |
 | P1 | Enforce Codex isolation for VEGO-AI milestone implementation paths on `main`. | Codex | Active rule |
 | P2 | Complete metadata-only audit for deferred artifacts. | Research lead / agents | In progress |

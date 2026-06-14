@@ -1,6 +1,6 @@
 # Results Dashboard
 
-Last curated update: 2026-06-14 18:52 +03:00.
+Last curated update: 2026-06-14 19:20 +03:00.
 
 ## Validated Implementation Results
 
@@ -17,6 +17,7 @@ Last curated update: 2026-06-14 18:52 +03:00.
 | M4B-1 implementation baseline | Implemented / evaluation pending | Tag `research-state-m4b1-deterministic-comparison`, `docs/research/evaluation-report.md`, and EXP-001 | M4B-1 is available as deterministic, parallel-only, leakage-labeled comparison; improvement claims still require expert-label evaluation. |
 | M4B-1 release artifact | Published | GitHub release assets `vego-ai-M1-M4A-dashboard-M4B1-changes.zip` and `M1-M4A-dashboard-M4B1-manifest.md` | Artifact bundle supports external technical review, not empirical proof. |
 | EXP-001 initial evaluation run | Mechanism/readiness only | `.\scripts\build-exp001-evaluation.ps1`; ignored `reports/generated/exp001/` | 27 comparisons, 0 memory-informed classification changes, 2 human-review-after-memory flags, 0 generalization-safe expert labels; no accuracy-improvement claim allowed. |
+| EXP-002 expert labeling package | Ready for human labeling | `.\scripts\build-exp002-labeling-package.ps1`; ignored `reports/generated/exp002/` | 27 labeling rows across 4 settings, 24 generalization-safe candidates, 3 existing same-pattern labels, and 27 recommended labeling targets. |
 
 ## Reproducibility Anchors
 

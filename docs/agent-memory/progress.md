@@ -38,6 +38,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Shared Claude/Codex state report added | Done | Added `docs/agent-memory/shared-state-report.md` and wired it into compiled memory/startup instructions. |
 | 2026-06-14 | Evaluation phase scaffold added | Done | Added `docs/research/evaluation-report.md`; M4B-1 is treated as implemented/evaluation-pending, with release bundle available for review. |
 | 2026-06-14 | EXP-001 initial mechanism/readiness evaluation run | Done | Generated ignored `reports/generated/exp001/` tables: 27 comparisons, 0 M4B-1 classification changes, 2 review-after-memory flags, and 0 generalization-safe expert labels. |
+| 2026-06-14 | EXP-002 expert labeling package generated | Done | Generated ignored `reports/generated/exp002/` package: 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels, and 27 recommended labeling targets. |
 
 ## Active Work
 
@@ -58,6 +59,7 @@ Track milestones, current work, and next steps here.
 | TASK-014 | 2026-06-14 | Done | Fix research-health allowlist for the tracked dashboard generator. | Narrow allowlist added; `project-health`, `research-health`, and `dashboard-health` pass. |
 | TASK-015 | 2026-06-14 | Done | Fix VEGO-AI visualizer model/result mismatch UX. | Preserve the no-silent-mismatch and read-only research-panel boundaries in future visualizer work. |
 | TASK-016 | 2026-06-14 | Open | Complete EXP-001 expert-label evaluation. | Add held-out/cross-setting expert labels, rerun `.\scripts\build-exp001-evaluation.ps1`, and update the evaluation report with generalization-safe metrics. |
+| TASK-017 | 2026-06-14 | Open | Fill EXP-002 expert labeling package. | Human/supervisor should label at least 20 rows, preferably all 27 current rows, then rerun evaluation with leakage-aware partitions. |
 
 ## Completed Work
 
@@ -92,13 +94,14 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Added shared state report for Claude and Codex. | `docs/agent-memory/shared-state-report.md`, `scripts/agent-memory-start.ps1`, `AGENTS.md`, `CLAUDE.md`, `docs/agent-memory/README.md`, `docs/agent-memory/claude-bootstrap-prompt.md` |
 | 2026-06-14 | Added evaluation report scaffold and updated research dashboard state. | `docs/research/evaluation-report.md`, `docs/research/evaluation-plan.md`, `experiments/registry.md`, `docs/dashboards/`, `docs/agent-memory/` |
 | 2026-06-14 | Ran initial EXP-001 mechanism/readiness evaluation. | `scripts/build-exp001-evaluation.ps1`, `docs/research/evaluation-report.md`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md`, ignored `reports/generated/exp001/` |
+| 2026-06-14 | Generated EXP-002 expert labeling package. | `scripts/build-exp002-labeling-package.ps1`, `experiments/EXP-002-expert-label-expansion-holdout-evaluation/README.md`, `docs/research/evaluation-report.md`, ignored `reports/generated/exp002/` |
 
 ## Next Steps
 
 1. Review and merge PR #6 for M4B schema hardening.
 2. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-3. Collect held-out/cross-setting expert labels for EXP-001/C4B.
-4. Rerun `.\scripts\build-exp001-evaluation.ps1` and use the generated dashboard/evaluation outputs to produce thesis tables/figures for review queues, feedback, memory, advice, comparisons, leakage, and human-review-after-memory cases.
+3. Fill `reports/generated/exp002/expert_labeling_sheet.csv` or Markdown with at least 20 expert labels, preferably all 27 current rows.
+4. Rerun `.\scripts\build-exp001-evaluation.ps1` or the next evaluation pass with the completed EXP-002 labels and use the generated outputs to produce thesis tables/figures for review queues, feedback, memory, advice, comparisons, leakage, and human-review-after-memory cases.
 5. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
 6. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
 7. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.

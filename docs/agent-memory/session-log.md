@@ -1252,3 +1252,39 @@ Chronological prompt history for Codex and Claude.
   - .\\scripts\\build-exp001-evaluation.ps1 -> generated ignored EXP-001 outputs
 - Status: completed
 - Next steps: Collect or define held-out/cross-setting expert labels, rerun EXP-001, and keep M4B-2/Agent 4 changes blocked until evaluation evidence exists.
+
+## 2026-06-14 19:10 +03:00 - Codex - Start EXP-002 expert labeling package
+
+- Request: Create EXP-002 expert/held-out labeling package for generalization-safe M4B-1 evaluation without new features, M4B-2, Agent 4 changes, API calls, or baseline overwrites.
+- Actions taken:
+  - Added scripts/build-exp002-labeling-package.ps1 to consolidate M4B-1 patterns into an expert labeling sheet.
+  - Generated ignored EXP-002 outputs under reports/generated/exp002/.
+  - Added EXP-002 experiment documentation and registry entry.
+  - Updated evaluation report, dashboards, and agent memory with EXP-002 counts and labeling protocol.
+  - Confirmed package has 27 rows, 3 existing same-pattern labels, 24 generalization-safe candidates, 2 review-after-memory rows, 0 memory-informed classification changes, and 27 recommended labeling targets.
+- Files changed:
+  - scripts/build-exp002-labeling-package.ps1
+  - experiments/EXP-002-expert-label-expansion-holdout-evaluation/README.md
+  - experiments/registry.md
+  - docs/research/evaluation-report.md
+  - docs/research/README.md
+  - reports/README.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/shared-state-report.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\\scripts\\build-exp002-labeling-package.ps1 -> generated ignored EXP-002 labeling package
+  - PowerShell parser check for scripts/*.ps1 -> passed
+  - python -m pytest VEGO-AI\\tests -q -> 93 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis -> passed
+  - .\\scripts\\project-health.ps1 -> passed
+  - .\\scripts\\research-health.ps1 -> passed
+- Status: completed
+- Next steps: Human/supervisor should fill at least 20 EXP-002 expert labels, preferably all 27 current rows, then rerun EXP-001 or the next evaluation pass with leakage-aware partitions.

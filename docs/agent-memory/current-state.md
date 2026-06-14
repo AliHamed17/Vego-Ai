@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-14 18:52 +03:00 by Codex.
+- 2026-06-14 19:20 +03:00 by Codex.
 
 ## Project Goal
 
@@ -69,6 +69,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - `docs/research/evaluation-report.md` now provides the evaluation scaffold for reusable human judgment evidence, leakage policy, dashboard figures, and thesis claims.
 - Initial EXP-001 mechanism/readiness evaluation has been generated locally with `.\scripts\build-exp001-evaluation.ps1`; ignored outputs are under `reports/generated/exp001/`.
 - Initial EXP-001 result: 27 comparisons, 3 expert-labeled rows from same-pattern Human Judgment Memory, 0 generalization-safe expert-labeled rows, 0 memory-informed classification changes, 2 human-review-after-memory flags, and 0 conflicting memory flags. This supports mechanism/readiness only, not accuracy improvement.
+- EXP-002 expert-labeling package has been generated locally with `.\scripts\build-exp002-labeling-package.ps1`; ignored outputs are under `reports/generated/exp002/`.
+- Initial EXP-002 package result: 27 labeling rows across 4 settings, 3 existing expert labels from same-pattern memory, 24 generalization-safe candidate rows, 2 `requires_human_review_after_memory` rows, 0 memory-informed classification changes, and 27 recommended labeling targets. Human/supervisor labeling is still pending.
 - Core orientation files exist:
   - `README.md`
   - `PROJECT_CHARTER.md`
@@ -119,5 +121,5 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Freeze the M4B-1 implementation baseline for empirical evaluation; treat PR #6 as schema/governance hardening only, not a new feature direction.
 - Keep the merged PR #7 visualizer UX boundary intact: no silent model/result mismatch, no stale model selection, and research panels remain read-only.
 - Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting the supplied memory advice, memory items, deterministic policy version, and leakage status.
-- Collect or define held-out expert labels, then rerun EXP-001 so expert alignment/generalization can be evaluated.
+- Fill the EXP-002 expert-labeling sheet with held-out/cross-setting expert labels, then rerun EXP-001 or the next evaluation pass so expert alignment/generalization can be evaluated.
 - Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages using the outbox/manual sync pack, including the Progress Dashboard, and record their IDs locally.
