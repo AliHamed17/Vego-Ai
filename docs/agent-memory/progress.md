@@ -36,6 +36,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | QA governance warnings fixed | Done | Added narrow research-health allowlist, restored local baseline tracking branch, and prepared `system_validation_report.md` as a tracked validation artifact. |
 | 2026-06-14 | Visualizer UX refresh merged and tagged | Done | PR #7 passed real-display GUI validation, merged as `78b261e`, and tag `research-state-visualizer-ux-clean` points to the merge commit. |
 | 2026-06-14 | Shared Claude/Codex state report added | Done | Added `docs/agent-memory/shared-state-report.md` and wired it into compiled memory/startup instructions. |
+| 2026-06-14 | Evaluation phase scaffold added | Done | Added `docs/research/evaluation-report.md`; M4B-1 is treated as implemented/evaluation-pending, with release bundle available for review. |
 
 ## Active Work
 
@@ -46,7 +47,7 @@ Track milestones, current work, and next steps here.
 | TASK-004 | 2026-06-11 | In progress | Map existing paper/package results to experiments. | Continue `EXP-000-existing-packaged-results-audit` without copying controlled artifacts into Git. |
 | TASK-005 | 2026-06-12 | Blocked | Keep curated Confluence wiki current. | Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, then create/update child pages and store page IDs in local config. |
 | TASK-006 | 2026-06-12 | Done | Design and merge M4B-1 memory-informed parallel comparison. | Keep M4B-1 experimental and run EXP-001/C4B before making improvement claims. |
-| TASK-007 | 2026-06-13 | Planned | Refresh M1-M4A review artifact for external review. | Ask Claude to create the ignored ZIP and manifest listed in `docs/agent-memory/claude-m4b-handoff-prompt.md`. |
+| TASK-007 | 2026-06-13 | Done | Release M1-M4A + dashboard + M4B-1 artifact bundle for external technical review. | Use GitHub release assets for review; do not treat the bundle as empirical proof. |
 | TASK-008 | 2026-06-13 | Open | Keep progress, KPI, and results dashboards current. | Update `docs/dashboards/` whenever progress, KPI values, validated results, or Confluence tracking status changes. |
 | TASK-009 | 2026-06-13 | Open | Keep dashboard/wiki tracking health verified. | Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after every Confluence outbox build. |
 | TASK-010 | 2026-06-13 | Open | Keep runtime dashboard snapshot fresh. | Run `.\scripts\build-confluence-wiki.ps1` after memory/dashboard updates; it regenerates `docs/dashboards/status-snapshot.generated.md`. |
@@ -87,13 +88,14 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Fixed QA governance warnings after validation. | `scripts/research-health.ps1`, `VEGO-AI/reports/system_validation_report.md`, local `baseline/official-vego-ai` tracking branch, memory files |
 | 2026-06-14 | Merged and tagged visualizer mismatch UX fix. | PR #7, commit `78b261e`, tag `research-state-visualizer-ux-clean`, real-display screenshots in `%TEMP%\vego_gui_validation_20260614_144509` |
 | 2026-06-14 | Added shared state report for Claude and Codex. | `docs/agent-memory/shared-state-report.md`, `scripts/agent-memory-start.ps1`, `AGENTS.md`, `CLAUDE.md`, `docs/agent-memory/README.md`, `docs/agent-memory/claude-bootstrap-prompt.md` |
+| 2026-06-14 | Added evaluation report scaffold and updated research dashboard state. | `docs/research/evaluation-report.md`, `docs/research/evaluation-plan.md`, `experiments/registry.md`, `docs/dashboards/`, `docs/agent-memory/` |
 
 ## Next Steps
 
 1. Review and merge PR #6 for M4B schema hardening.
 2. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-3. Select audited inputs for EXP-001 and design the supplied-memory manifest for M4B/C4B.
-4. Refresh the M1-M2-M3-M4A-M4B1 artifact package and manifest only after PR #6 / health follow-up decisions are settled.
+3. Select audited inputs and expert labels for EXP-001/C4B.
+4. Use the dashboard to produce thesis tables/figures for review queues, feedback, memory, advice, comparisons, leakage, and human-review-after-memory cases.
 5. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
 6. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
 7. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.

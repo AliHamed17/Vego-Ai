@@ -1161,3 +1161,42 @@ Chronological prompt history for Codex and Claude.
   - compiled-memory.md includes docs/agent-memory/shared-state-report.md -> verified
 - Status: completed
 - Next steps: Review PR #6 schema hardening next; keep M4B-2 and behavior-changing work blocked; use the new shared-state report plus current-state.md at prompt startup.
+
+## 2026-06-14 18:43 +03:00 - Codex - Record Evaluation Pivot After M4B1 Prototype
+
+- Request: Record the strict review: implementation is complete through M4B-1/dashboard/visualizer/shared memory, freeze the baseline, and move next work to evaluation rather than more features.
+- Actions taken:
+  - Verified current repo state against the user-provided/Claude status: main is newer than 944c922, PR #7 is merged, PR #6 remains open, and the M4B-1 release assets exist.
+  - Added docs/research/evaluation-report.md as the next thesis/evaluation deliverable scaffold.
+  - Updated evaluation plan, methodology, experiment registry, dashboards, current state, progress, decisions, and shared-state report to treat M4B-1 as implemented and evaluation-pending.
+  - Marked the old Claude M4B handoff prompt as historical/superseded so agents do not restart completed implementation work.
+  - Recorded the implementation-freeze/evaluation-pivot decision and kept M4B-2/behavior-changing work blocked.
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/research/evaluation-plan.md
+  - docs/research/methodology.md
+  - docs/research/README.md
+  - experiments/registry.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/results-dashboard.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/shared-state-report.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - CLAUDE.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 -> passed
+  - git status/log -> main clean at start, current main 70411d1 before edits
+  - gh pr view 6 -> PR #6 open
+  - gh release view research-state-m4b1-deterministic-comparison -> release assets verified
+  - rg stale wording scan -> no live tracked-doc stale matches after edits
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - ASCII scan for changed files -> only pre-existing Hebrew PDF filename in current-state
+- Status: completed
+- Next steps: Run EXP-001/C4B evaluation with audited inputs, expert labels, leakage status, dashboard tables/figures, and no M4B-2 or Agent 4 behavior changes.

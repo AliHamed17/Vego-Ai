@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-14 14:59 +03:00 by Codex.
+- 2026-06-14 15:12 +03:00 by Codex.
 
 ## Project Goal
 
@@ -21,6 +21,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Current `main` / `origin/main`: includes PR #7 merge `78b261e` plus the follow-up memory/dashboard sync for that merge; use `git log -1` for the exact moving HEAD.
 - Results dashboard is merged on `main` as `cf78d2d`; reproducibility tag `research-state-results-dashboard` exists.
 - M4B-1 deterministic comparison is merged on `main` as `944c922`; reproducibility tag `research-state-m4b1-deterministic-comparison` exists.
+- The `research-state-m4b1-deterministic-comparison` GitHub release contains `vego-ai-M1-M4A-dashboard-M4B1-changes.zip` and `M1-M4A-dashboard-M4B1-manifest.md` for external technical review.
+- The implementation is now treated as complete through M4B-1 for research-evaluation purposes; the next major work is EXP-001/C4B empirical evaluation, not more feature building.
 - Follow-up schema hardening PR #6 is open: `https://github.com/AliHamed17/Vego-Ai/pull/6`.
 - Safe baseline merge commit: `76e7277`.
 - Main visible source files at setup:
@@ -64,6 +66,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
   - Generated M4B-1 comparisons across four settings: 27 comparisons, 0 memory-informed differences, 2 human-review-after-memory flags, and 0 baseline behavior changes.
 - The main research question now centers on reusable human judgment in human-AI collaboration for AI-assisted domain modeling and model assessment.
 - Planning artifacts define the literature-review taxonomy, C0-C4B evaluation plan, thesis outline, claim/evidence table, and EXP-001 M4B-1 deterministic comparison contract.
+- `docs/research/evaluation-report.md` now provides the evaluation scaffold for reusable human judgment evidence, leakage policy, dashboard figures, and thesis claims.
 - Core orientation files exist:
   - `README.md`
   - `PROJECT_CHARTER.md`
@@ -111,7 +114,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 ## Next Best Step
 
 - Review and merge PR #6 for M4B schema hardening.
+- Freeze the M4B-1 implementation baseline for empirical evaluation; treat PR #6 as schema/governance hardening only, not a new feature direction.
 - Keep the merged PR #7 visualizer UX boundary intact: no silent model/result mismatch, no stale model selection, and research panels remain read-only.
-- Refresh the M1-M2-M3-M4A-M4B1 artifact package and manifest only after PR #6 / health follow-up decisions are settled.
 - Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting the supplied memory advice, memory items, deterministic policy version, and leakage status.
 - Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages using the outbox/manual sync pack, including the Progress Dashboard, and record their IDs locally.

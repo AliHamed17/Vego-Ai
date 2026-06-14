@@ -1,5 +1,7 @@
 # Claude M4B-1 Handoff Prompt
 
+Status: historical / superseded. M4B-1 is now implemented and merged. Keep this file for provenance only; use `docs/agent-memory/shared-state-report.md` and `docs/research/evaluation-report.md` for current direction.
+
 Paste this prompt into Claude after it has run the normal startup routine from `claude-bootstrap-prompt.md`.
 
 ```text

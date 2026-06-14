@@ -1,6 +1,6 @@
 # VEGO-AI Shared State Report For Claude And Codex
 
-Last curated update: 2026-06-14 14:59 +03:00 by Codex.
+Last curated update: 2026-06-14 15:12 +03:00 by Codex.
 
 Use this report as the high-level shared orientation for Claude and Codex. It summarizes the research framing, implemented milestone chain, governance boundaries, validation state, and next research direction. For exact moving status, always pair this report with `docs/agent-memory/current-state.md` and `git log -1`.
 
@@ -562,8 +562,8 @@ Immediate next step:
 
 1. Review and merge PR #6 schema hardening if clean.
 2. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-3. Refresh the artifact bundle after PR #6 / health follow-up decisions.
-4. Move from implementation to evaluation design.
+3. Use the released artifact bundle for external technical review if needed.
+4. Move from implementation to evaluation design and evidence collection.
 
 Post-merge validation for PR #6 or future safe merges:
 
@@ -647,7 +647,7 @@ The project currently has:
 It still needs:
 
 - PR #6 schema hardening review,
-- artifact refresh,
+- external review of the released artifact bundle if needed,
 - research evaluation,
 - comparison against expert labels,
 - write-up.

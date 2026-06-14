@@ -18,6 +18,7 @@ Human-AI co-reasoning layer:
 - Human Feedback Manager: validates and attaches expert feedback.
 - Human Judgment Memory: stores reusable human judgments and retrieves them with explainable matching.
 - Memory Advisory Layer: retrieves relevant judgments for Agent 4 patterns and emits advisory reports without changing AI classifications.
+- Memory-Informed Comparison: produces a deterministic, parallel M4B-1 comparison artifact without changing baseline Agent 4 outputs.
 
 Evaluation agents:
 
@@ -46,7 +47,7 @@ Use the staged C0-C4 design in `evaluation-plan.md`.
 | C2 | Structured feedback | Measures whether expert decisions can be captured reproducibly. |
 | C3 | Reusable memory | Measures memory construction, retrieval, and conflict handling while remaining inert. |
 | C4A | Memory advisory report | Implemented M4A report where prior judgments are retrieved as advisory-only evidence. |
-| C4B | Memory-informed parallel comparison | Planned M4B-1 experiment where a deterministic module compares original Agent 4 output with a separate memory-informed result. |
+| C4B | Memory-informed parallel comparison | Implemented M4B-1 experiment where a deterministic module compares original Agent 4 output with a separate memory-informed result; empirical evaluation is pending. |
 
 ## Measures
 

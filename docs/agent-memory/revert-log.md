@@ -602,3 +602,26 @@ Record file changes and rollback notes here.
   - docs/agent-memory/compiled-memory.md
 - Rollback note: Revert the commit that adds docs/agent-memory/shared-state-report.md and removes it from scripts/agent-memory-start.ps1, AGENTS.md, CLAUDE.md, docs/agent-memory/README.md, docs/agent-memory/claude-bootstrap-prompt.md, current-state, progress, and decisions.
 - Git commit: none recorded by script.
+
+## 2026-06-14 18:43 +03:00 - Codex - Record Evaluation Pivot After M4B1 Prototype
+
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/research/evaluation-plan.md
+  - docs/research/methodology.md
+  - docs/research/README.md
+  - experiments/registry.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/results-dashboard.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/shared-state-report.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - CLAUDE.md
+- Rollback note: Revert the commit adding docs/research/evaluation-report.md and related memory/dashboard/research doc updates to return to the pre-evaluation-pivot documentation state.
+- Git commit: none recorded by script.

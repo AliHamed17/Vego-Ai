@@ -11,7 +11,7 @@ This plan evaluates VEGO-AI as a staged human-AI co-reasoning artifact. The cent
 | C2 | Structured feedback | Implemented in M2 | Expert decisions are validated and attached to review items. | Feedback schema validation, resolved queue records, mismatch handling. |
 | C3 | Reusable memory | Implemented in M3 | Reusable feedback becomes Human Judgment Memory with provenance and conflict detection. | Memory item count, skipped reasons, retrieval reasons, conflict status. |
 | C4A | Memory advisory report | Implemented in M4A | Relevant memory is retrieved for Agent 4 patterns and emitted as advisory-only evidence. | Advice strength distribution, match reasons, conflict warnings, zero classification changes. |
-| C4B | Memory-informed parallel comparison | Planned M4B-1 | Deterministic experimental module compares original Agent 4 output with a separate memory-informed result without changing baseline behavior. | Parallel classification delta, agreement with human judgment, leakage status, decision trace quality, failure cases. |
+| C4B | Memory-informed parallel comparison | Implemented in M4B-1; evaluation pending | Deterministic experimental module compares original Agent 4 output with a separate memory-informed result without changing baseline behavior. | Parallel classification delta, agreement with human judgment, leakage status, decision trace quality, failure cases. |
 
 ## Comparison Logic
 
@@ -37,7 +37,7 @@ This plan evaluates VEGO-AI as a staged human-AI co-reasoning artifact. The cent
 
 M4A is advisory-only and already merged. It generates `memory_advice.json` while keeping `ai_classification_changed=false`.
 
-M4B-1 is conditionally approved as a deterministic parallel-comparison experiment. It must not silently turn memory into default product behavior. It should run as a controlled experiment that:
+M4B-1 is implemented as a deterministic parallel-comparison experiment. It must not silently turn memory into default product behavior. It should now be evaluated as a controlled experiment that:
 
 - selects a documented subset of cases,
 - consumes relevant M4A memory advice without calling Agent 4,
@@ -48,7 +48,7 @@ M4B-1 is conditionally approved as a deterministic parallel-comparison experimen
 - preserves `original_agent4_classification`, `memory_advice`, `memory_informed_classification`, `memory_informed_differs_from_original`, `requires_human_review_after_memory`, `evaluation_leakage_status`, `decision_trace`, `policy_version`, and `human_memory_used`.
 - keeps `ai_behavior_changed_in_baseline=false`.
 
-The future implementation contract is tracked in `docs/research/m4b-conditional-approval.md`.
+The implementation contract is tracked in `docs/research/m4b-conditional-approval.md`.
 
 ## M4B-1 Deterministic Policy
 
@@ -80,4 +80,4 @@ Same-pattern memory reuse can demonstrate the mechanism, but clean evaluation cl
 - Controlled artifacts remain local or ignored until publishability is approved.
 - Reusable memory claims are limited to what M3, M4A, and future C4B evidence supports.
 - The thesis distinguishes implemented mechanisms from planned PhD continuation work.
-- Any future C4B improvement claim reports leakage status and the deterministic policy version used.
+- Any C4B improvement claim reports leakage status and the deterministic policy version used.

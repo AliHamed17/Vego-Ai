@@ -8,6 +8,7 @@ This folder is for the scientific substance of the PhD work.
 | `methodology.md` | Method, pipeline, metrics, and evaluation strategy. |
 | `literature-review-taxonomy.md` | Taxonomy for positioning reusable human judgment in related work. |
 | `evaluation-plan.md` | C0-C4 evaluation design for staged human-AI co-reasoning. |
+| `evaluation-report.md` | Evaluation scaffold for reusable human judgment evidence, metrics, leakage policy, and thesis tables. |
 | `m4a-post-merge-confirmation.md` | Post-merge behavior-boundary confirmation and milestone tags for M4A. |
 | `m4b-conditional-approval.md` | M4B-1 deterministic parallel-comparison approval contract and implementation guardrails. |
 | `data-management-plan.md` | Data zones, governance, sensitivity, and provenance. |

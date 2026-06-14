@@ -1,6 +1,6 @@
 # KPI Register
 
-Last curated update: 2026-06-14 14:50 +03:00.
+Last curated update: 2026-06-14 15:12 +03:00.
 
 ## Status Legend
 
@@ -24,8 +24,9 @@ Last curated update: 2026-06-14 14:50 +03:00.
 | M4A advisory result | 8 advice items: none 5, strong 2, moderate 1, classification changes 0. | Advisory report can surface relevant memory without changing AI behavior. | Green | M4A review result recorded in `docs/agent-memory/session-log.md` | Include in M1-M4A artifact manifest. |
 | Reproducibility anchors | M3, M4A, and research-state tags are pushed to GitHub. | Milestone tags exist and are stable. | Green | `docs/research/m4a-post-merge-confirmation.md` | Reference tags in artifact manifest. |
 | Visualizer UX correctness | Model/result pairing is explicit and no stale model is silently treated as valid. | Mismatch/no-match/match states stay visible and research panels stay read-only. | Green | PR #7, real-display GUI validation, tag `research-state-visualizer-ux-clean` | Preserve this boundary in future visualizer work. |
-| Review artifact readiness | M1-M4A ZIP and manifest are requested but not refreshed yet. | `artifacts/vego-ai-M1-M2-M3-M4A-changes.zip` and manifest produced for review. | Yellow | `docs/agent-memory/claude-m4b-handoff-prompt.md` | Ask Claude to refresh artifact and manifest. |
-| Experiment registry readiness | EXP-000 and EXP-001 are registered; EXP-001 has an M4B-1 deterministic policy contract. | EXP-000 audit and EXP-001 M4B-1 implementation are actionable. | Yellow | `experiments/registry.md`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md` | Fill EXP-000 evidence entries; implement M4B-1 only through branch/PR. |
+| Review artifact readiness | M1-M4A + dashboard + M4B-1 ZIP and manifest are published in the GitHub release for `research-state-m4b1-deterministic-comparison`. | Artifact bundle is available for external technical review. | Green | GitHub release assets `vego-ai-M1-M4A-dashboard-M4B1-changes.zip` and `M1-M4A-dashboard-M4B1-manifest.md` | Download/review externally if needed; do not treat artifact release as empirical proof. |
+| Experiment registry readiness | EXP-000 and EXP-001 are registered; EXP-001 is ready for evaluation using implemented M4B-1. | EXP-001/C4B evidence is gathered before improvement claims. | Yellow | `experiments/registry.md`, `docs/research/evaluation-report.md` | Fill EXP-000 evidence entries and run EXP-001 with expert labels/leakage status. |
+| Evaluation report readiness | Evaluation scaffold exists but empirical results are incomplete. | Thesis evaluation tables and figures are produced from audited runs. | Yellow | `docs/research/evaluation-report.md` | Run evaluation, collect expert labels, and populate results. |
 | M4B leakage control | M4B-1 requires `evaluation_leakage_status` on every comparison item. | No improvement claim without leakage status and clean evaluation design. | Yellow | `docs/research/m4b-conditional-approval.md`, `docs/research/evaluation-plan.md` | Prefer leave-one-pattern-out, cross-setting, cross-domain, cross-diagram, or expert-only holdout evaluation. |
 | Data/IRB audit | Deferred artifacts remain unaudited. | Controlled artifacts get provenance and publishability decisions before sharing. | Red | `docs/research/artifact-audit.md`, `docs/research/publishability-register.md` | Continue metadata-only audit. |
 | Live Confluence sync | Outbox and manual sync pack generated; live write blocked by Atlassian Rovo cloud grant; Chrome fallback unavailable after retry. | Confluence pages update live from outbox. | Blocked | `docs/agent-memory/issues.md` ISS-005, Rovo rechecked 2026-06-14 14:50 +03:00, Chrome checked 2026-06-13 13:50 +03:00 | Grant Atlassian access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` or enable the Codex Chrome Extension route. |

@@ -175,3 +175,10 @@ Durable decisions for this project.
 - Decision: Keep a high-level shared state report at `docs/agent-memory/shared-state-report.md` and include it in generated compiled memory.
 - Reason: Claude and Codex need one compact research/governance narrative that explains the milestone chain, contribution, boundaries, and next evaluation direction without relying only on chronological logs.
 - Consequence: Future agents should read the report at startup, but still rely on `current-state.md` and Git for exact moving branch/PR status.
+
+## 2026-06-14 - Implementation Freeze And Evaluation Pivot
+
+- Decision: Treat the implemented prototype as complete through M4B-1 for evaluation purposes, anchored by `research-state-m4b1-deterministic-comparison` and the later visualizer UX tag `research-state-visualizer-ux-clean`.
+- Decision: The next major deliverable is `docs/research/evaluation-report.md`, not additional feature implementation.
+- Reason: The engineering prototype is strong, but empirical evidence is still incomplete; the thesis now needs expert-label comparison, leakage-aware evaluation, and dashboard-backed tables/figures.
+- Consequence: M4B-2, Agent 4 memory-based reclassification, LLM resolve modes, embeddings, automatic guideline rewriting, and GUI feedback editing remain blocked until M4B-1 evaluation evidence exists.
