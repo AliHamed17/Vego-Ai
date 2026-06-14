@@ -18,7 +18,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Workspace root: `c:\Users\ahamed\vego-ai`
 - Git status: repository initialized, safe baseline committed, and pushed to private GitHub repo `AliHamed17/Vego-Ai` on 2026-06-11.
 - Current local branch: `main`, tracking `origin/main`.
-- Current `main` / `origin/main` HEAD: `78b261e` (`Improve VEGO-AI visualizer UX and model-result matching`).
+- Current `main` / `origin/main`: includes PR #7 merge `78b261e` plus the follow-up memory/dashboard sync for that merge; use `git log -1` for the exact moving HEAD.
 - Results dashboard is merged on `main` as `cf78d2d`; reproducibility tag `research-state-results-dashboard` exists.
 - M4B-1 deterministic comparison is merged on `main` as `944c922`; reproducibility tag `research-state-m4b1-deterministic-comparison` exists.
 - Follow-up schema hardening PR #6 is open: `https://github.com/AliHamed17/Vego-Ai/pull/6`.
