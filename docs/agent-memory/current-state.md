@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-14 13:38 +03:00 by Codex.
+- 2026-06-14 14:23 +03:00 by Codex.
 
 ## Project Goal
 
@@ -51,6 +51,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Visualizer UX refresh PR #7 is open as a draft: `https://github.com/AliHamed17/Vego-Ai/pull/7`.
 - PR #7 commit `ba9ab94` adds pure visualizer matching helpers, exact `<case_id>_` model/result pairing, stale-model clearing, a persistent Matched/Mismatch/Unknown/No matching model found banner, search/status filters, and read-only research panels for M1/M2/M3/M4A/M4B-1 sidecars.
 - PR #7 is UI/read-only: it does not change Agent 2/3/4, evaluator/orchestrator behavior, baseline outputs, feedback/memory/advice/comparison files, OpenAI/API behavior, M4B-2, or controlled artifacts.
+- System validation report generated at `VEGO-AI/reports/system_validation_report.md` on 2026-06-14 and updated after governance cleanup with status `PASS`: 93 pytest tests passed, direct runners passed, schema/CLI/compile/dashboard/visualizer/generated-output smoke checks passed, `project-health`, `research-health`, and `dashboard-health` pass, and the report is tracked as a research validation artifact.
 - Latest local execution package uses run ID `20260614-122150`:
   - Local configs: `VEGO-AI/framework/run_config.local.json`, `VEGO-AI/eval/eval_config.local.json`, smoke configs.
   - Generated local human outputs: `VEGO-AI/runs/20260614-122150/human/`.
@@ -98,7 +99,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
 - M4B-1 memory-informed parallel comparison is merged and available only as an experimental comparison; do not claim behavior improvement until the controlled C4B experiment is run with leakage status recorded.
-- `scripts/research-health.ps1` currently flags `VEGO-AI/analysis/build_results_dashboard.py` as a forbidden tracked analysis artifact even though it is an intentionally tracked dashboard generator; this needs a separate infrastructure allowlist fix.
+- `scripts/research-health.ps1` now has a narrow allowlist for the intentionally tracked dashboard generator `VEGO-AI/analysis/build_results_dashboard.py`; controlled/generated analysis artifacts remain forbidden.
 - Codex isolation is active for M4B implementation paths on `main`.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
 - Confluence sync currently operates as generated outbox/manual sync pack only because Atlassian Rovo does not list target cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` among accessible clouds; rechecked 2026-06-14 13:40 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
@@ -107,7 +108,6 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 - Review and merge PR #6 for M4B schema hardening.
 - Review PR #7 for the visualizer model/result mismatch fix and UI/read-only research panels.
-- Add a separate infrastructure fix so `scripts/research-health.ps1` allows tracked `VEGO-AI/analysis/build_results_dashboard.py` while continuing to forbid controlled analysis artifacts.
 - Refresh the M1-M2-M3-M4A-M4B1 artifact package and manifest only after PR #6 / health follow-up decisions are settled.
 - Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting the supplied memory advice, memory items, deterministic policy version, and leakage status.
 - Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages using the outbox/manual sync pack, including the Progress Dashboard, and record their IDs locally.

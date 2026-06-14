@@ -154,3 +154,11 @@ Durable decisions for this project.
 - Decision: Visualizer research panels are read-only only; they may display M1/M2 review, M3 memory, M4A advice, and M4B-1 comparison sidecars, but must not write feedback, memory, advice, comparison, eval output, model, or analysis artifacts.
 - Reason: The review identified stale visualizer pairing as the highest-risk UX issue because it could make a wrong assessment appear normal.
 - Consequence: PR #7 carries the UI/helper/test implementation; any future visualizer work must preserve the no-silent-mismatch boundary and avoid changing Agent 4 or evaluator behavior.
+
+## 2026-06-14 - System Validation Artifact And Dashboard Generator Allowlist
+
+- Decision: Track `VEGO-AI/reports/system_validation_report.md` as a research validation artifact.
+- Decision: Allowlist only `VEGO-AI/analysis/build_results_dashboard.py` in `scripts/research-health.ps1` because it is an intentionally tracked source generator, not a controlled/generated analysis artifact.
+- Decision: Keep all other `VEGO-AI/analysis/` artifacts forbidden unless separately reviewed and explicitly allowlisted.
+- Reason: The full-system QA report is useful thesis/research evidence, and the dashboard generator is now part of the reproducibility infrastructure.
+- Consequence: `project-health`, `research-health`, and `dashboard-health` pass while controlled analysis spreadsheets/outputs remain excluded.
