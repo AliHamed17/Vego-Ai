@@ -9,7 +9,7 @@
 | M2 | Human Feedback Manager | Done | Structured feedback validates, attaches to review items, and preserves status/signatures. |
 | M3 | Human Judgment Memory | Done | Reusable resolved judgments are stored with provenance, explainable retrieval, and conflict detection; published as commit `5e109e5`. |
 | M4A | Memory Advisory Layer | Done | Advisory report retrieves relevant memory for Agent 4 patterns with `ai_classification_changed=false`; PR #2 squash-merged as `ecd0972`. |
-| M4B | Memory-informed Agent 4 experiment | Design-only | Controlled C4B experiment supplies relevant M4A advice as explicit context and compares outputs to C0-C4A. |
+| M4B | Memory-informed parallel comparison experiment | Design contract approved | M4B-1 must write only a parallel `memory_informed_comparison.json`, preserve original Agent 4 output, label leakage, and land implementation through a reviewed branch/PR. |
 | M5 | Human-approved guideline refinement | Planned | Guideline changes require explicit human approval and traceable provenance. |
 | M6 | MSc thesis evidence and PhD continuation | Planned | Claim/evidence table, C0-C4 results, validity analysis, and continuation roadmap are coherent. |
 | OPS-1 | Data and artifact audit | In progress | Data sensitivity, provenance, and publishability recorded without exposing controlled contents. |

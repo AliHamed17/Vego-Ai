@@ -40,4 +40,4 @@ Expected result: no output.
 
 The enhanced VEGO-AI system supports a staged human-AI co-reasoning workflow: it identifies cases requiring human review, captures structured feedback, stores reusable human judgment, and retrieves that judgment as advisory evidence for future variability patterns without yet changing AI classifications.
 
-M4B remains design-only until separately reviewed.
+M4B-1 now has a conditional deterministic parallel-comparison contract in `docs/research/m4b-conditional-approval.md`. Implementation remains future work and must happen through a reviewed feature branch; M4B-2 remains deferred.

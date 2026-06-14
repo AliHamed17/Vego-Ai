@@ -816,3 +816,68 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\agent-memory-finish.ps1 -> passed
 - Status: completed; live Confluence still blocked by access grant
 - Next steps: Grant Atlassian Rovo access or enable the Codex Chrome Extension route; use generated outbox/manual sync pack for publishing once access exists.
+
+## 2026-06-14 11:13 +03:00 - Codex - M4B-1 Conditional Approval Contract
+
+- Request: Read the attached M4B review and act on it without implementing M4B code: record the conditional M4B-1 design approval, add deterministic policy/leakage/schema guardrails, update Claude handoff, confirm Codex isolation, and keep Confluence/wiki memory current.
+- Actions taken:
+  - Added docs/research/m4b-conditional-approval.md with M4B-1 deterministic parallel-comparison contract, leakage guard, schema expectations, acceptance criteria, and Codex isolation paths.
+  - Updated EXP-001, evaluation/research/methodology/planning/thesis docs, dashboards, and agent instructions to distinguish M4B-1 from deferred M4B-2.
+  - Updated docs/agent-memory/claude-m4b-handoff-prompt.md so Claude refreshes M1-M4A artifacts and implements only M4B-1 on feature/memory-informed-comparison via PR.
+  - Did not modify VEGO-AI framework, schemas, tests, eval, inputs, visualizer, baseline outputs, models, analysis, PDFs, or archives.
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/milestone-workflow-rules.md
+  - docs/agent-memory/progress.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - docs/project-management/risk-register.md
+  - docs/project-management/roadmap.md
+  - docs/research/README.md
+  - docs/research/evaluation-plan.md
+  - docs/research/m4a-post-merge-confirmation.md
+  - docs/research/m4b-conditional-approval.md
+  - docs/research/methodology.md
+  - docs/research/publication-plan.md
+  - docs/research/research-plan.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - experiments/registry.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - thesis/outline.md
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 -> passed
+  - git status -sb -> clean at prompt start on main...origin/main
+  - rg M4B/classification_changed consistency scans -> completed
+  - git diff --check -> passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval -> passed
+  - python -m pytest VEGO-AI\\tests -q -> 57 passed
+  - .\\scripts\\project-health.ps1 -> passed
+  - .\\scripts\\research-health.ps1 -> passed
+  - PowerShell parser check for scripts -> passed
+- Status: completed
+- Next steps: Regenerate Confluence outbox/manual sync pack, run dashboard health with RequireOutbox, audit staged files, commit safe docs, and push to origin/main. Then ask Claude to use the updated handoff on feature/memory-informed-comparison.
+
+## 2026-06-14 11:15 +03:00 - Codex - Confluence Access Recheck For M4B-1 Outbox
+
+- Request: Recheck live Confluence access after regenerating the M4B-1 wiki outbox and keep the pending wiki status current.
+- Actions taken:
+  - Loaded Atlassian Rovo Confluence tools and attempted to read home page 294914.
+  - Confirmed live sync is still blocked because cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec is not explicitly granted.
+  - Updated current-state, ISS-005, dashboards, and wiki-sync docs with the 2026-06-14 11:14 +03:00 recheck.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Commands/checks:
+  - Atlassian Rovo _getconfluencepage cloudId=724252a1-a5b7-45a5-b6ec-27a8292197ec pageId=294914 -> blocked: cloud is not explicitly granted
+- Status: completed locally; live Confluence still blocked by Atlassian access grant
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable the Codex Chrome Extension route, then publish from outbox/manual sync pack and store child page IDs locally.

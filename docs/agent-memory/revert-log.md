@@ -434,3 +434,45 @@ Record file changes and rollback notes here.
   - docs/confluence/wiki-sync.md
 - Rollback note: Revert the latest Confluence blocker timestamp updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this recheck should not be recorded.
 - Git commit: none recorded by script.
+
+## 2026-06-14 11:13 +03:00 - Codex - M4B-1 Conditional Approval Contract
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/milestone-workflow-rules.md
+  - docs/agent-memory/progress.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - docs/project-management/risk-register.md
+  - docs/project-management/roadmap.md
+  - docs/research/README.md
+  - docs/research/evaluation-plan.md
+  - docs/research/m4a-post-merge-confirmation.md
+  - docs/research/m4b-conditional-approval.md
+  - docs/research/methodology.md
+  - docs/research/publication-plan.md
+  - docs/research/research-plan.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - experiments/registry.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - thesis/outline.md
+- Rollback note: Revert the M4B-1 conditional approval docs commit to remove the new contract, updated Claude handoff, EXP-001/evaluation/planning/dashboard/memory changes, and generated pending wiki updates. No VEGO-AI runtime implementation files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-14 11:15 +03:00 - Codex - Confluence Access Recheck For M4B-1 Outbox
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the Confluence blocker timestamp updates in current-state, ISS-005, dashboard docs, wiki-sync docs, session log, and revert log if this access recheck should not be recorded.
+- Git commit: none recorded by script.

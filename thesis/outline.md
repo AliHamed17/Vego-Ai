@@ -30,7 +30,7 @@ Reusable Human Judgment in AI-Assisted Domain Model Assessment: The VEGO-AI Case
 | 7 | Baseline results, review/feedback/memory outputs, and future C4 comparison. | `experiments/registry.md`, `papers/mas4models2026/claim-evidence-table.md` |
 | 8 | Data, IRB, LLM drift, small-sample, and human-disagreement risks. | `docs/research/validity-threats.md`, `docs/project-management/risk-register.md` |
 | 9 | Interpretation of reusable human judgment as human-AI co-reasoning. | Claim/evidence table and experiment notes. |
-| 10 | M4B-M6 continuation: memory-informed Agent 4, guideline refinement, broader evaluation. | `docs/project-management/roadmap.md` |
+| 10 | M4B-M6 continuation: memory-informed parallel comparison, possible later Agent 4/LLM mode, guideline refinement, broader evaluation. | `docs/project-management/roadmap.md` |
 
 ## Milestone Story
 
@@ -40,6 +40,7 @@ Reusable Human Judgment in AI-Assisted Domain Model Assessment: The VEGO-AI Case
 | M2 | Shows expert decisions can be structurally captured. | Implemented |
 | M3 | Shows reusable human judgment can be stored, retrieved, and checked for conflicts. | Implemented and published |
 | M4A | Shows reusable human judgment can be retrieved as advisory evidence for Agent 4 patterns. | Implemented and published |
-| M4B | Tests memory advice as explicit Agent 4 context for reclassification. | Design-only; planned controlled experiment |
+| M4B-1 | Tests memory advice as a deterministic parallel comparison while preserving original Agent 4 output. | Design contract approved; implementation must use branch/PR |
+| M4B-2 | Tests optional Agent 4/LLM-assisted reclassification. | Deferred; not approved |
 | M5 | Studies human-approved guideline refinement. | Planned PhD continuation |
 | M6 | Consolidates broader evaluation and thesis evidence. | Planned |

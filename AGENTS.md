@@ -28,6 +28,12 @@ Update the memory files before the final answer whenever the prompt involved ana
 - If IDs are missing or Atlassian access is not granted, treat the generated `docs/confluence/outbox/` files as the pending wiki update and report the blocked live sync clearly.
 - Confluence sync is an agent-enforced workflow, not a background service.
 
+## M4B Implementation Boundary
+
+M4B touches the AI-decision boundary. Codex may update root-level research, memory, experiment-planning, dashboard, and Confluence documentation on `main`, but must not commit M4B implementation files directly to `main`.
+
+Future M4B-1 implementation must use branch `feature/memory-informed-comparison` and a reviewed PR into `main`. Codex must not directly edit or stage M4B implementation paths under `VEGO-AI/framework/`, `VEGO-AI/schemas/`, `VEGO-AI/tests/`, `VEGO-AI/eval/`, `VEGO-AI/inputs/`, `VEGO-AI/docs/memory_*`, or `VEGO-AI/docs/*advisor*` on `main`.
+
 ## Logging Rules
 
 - Use exact dates and times when available.

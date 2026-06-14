@@ -1,18 +1,19 @@
 # Results Dashboard
 
-Last curated update: 2026-06-13 18:38 +03:00.
+Last curated update: 2026-06-14 11:05 +03:00.
 
 ## Validated Implementation Results
 
 | Result | Value | Evidence | Interpretation |
 | --- | --- | --- | --- |
-| Full VEGO-AI test suite | 57 passed | `python -m pytest VEGO-AI\tests -q` on 2026-06-13 | M1-M4A tracked tests are green. |
-| Framework/eval compile check | Passed | `python -m compileall -q VEGO-AI\framework VEGO-AI\eval` on 2026-06-13 | Tracked Python modules compile. |
-| Dashboard/wiki tracking health | Passed | `.\scripts\build-confluence-wiki.ps1` and `.\scripts\dashboard-health.ps1 -RequireOutbox` on 2026-06-13 | Runtime snapshot, manual sync pack, KPI dashboard, and generated Confluence outbox wiring are verified. |
+| Full VEGO-AI test suite | 57 passed | `python -m pytest VEGO-AI\tests -q` on 2026-06-14 | M1-M4A tracked tests are green. |
+| Framework/eval compile check | Passed | `python -m compileall -q VEGO-AI\framework VEGO-AI\eval` on 2026-06-14 | Tracked Python modules compile. |
+| Dashboard/wiki tracking health | Passed | `.\scripts\build-confluence-wiki.ps1` and `.\scripts\dashboard-health.ps1 -RequireOutbox` on 2026-06-14 | Runtime snapshot, manual sync pack, KPI dashboard, and generated Confluence outbox wiring are verified. |
 | M4A advisory report validation | Passed | M4A review session log and schema validation | `memory_advice.json` conforms to the M4A schema. |
 | M4A classification changes | 0 | M4A generated advice review | Advisory layer did not change AI classifications. |
 | M4A advice distribution | none 5, strong 2, moderate 1 | M4A generated `ucd_ch` advice review | Memory advice surfaces relevant prior judgments where available. |
 | Post-merge behavior boundary | No framework/schema/test changes in `2828940` | `docs/research/m4a-post-merge-confirmation.md` | Research-story update did not change VEGO-AI behavior. |
+| M4B-1 design contract | Conditional approval recorded | `docs/research/m4b-conditional-approval.md` and EXP-001 | Future M4B-1 must be deterministic, parallel-only, leakage-labeled, and branch/PR reviewed. |
 
 ## Reproducibility Anchors
 
@@ -31,7 +32,7 @@ Last curated update: 2026-06-13 18:38 +03:00.
 | VEGO-AI can capture structured human feedback. | M2 schema, manager, docs, and tests. | Supported |
 | VEGO-AI can store reusable human judgment with provenance. | M3 implementation, schema, docs, and tests. | Supported |
 | VEGO-AI can retrieve reusable judgment as advisory evidence without changing AI behavior. | M4A implementation, schema, docs, tests, and review metrics. | Supported |
-| Reusable memory improves AI variability interpretation. | Not yet tested; requires M4B/C4B experiment. | Not claimed |
+| Reusable memory improves AI variability interpretation. | Not yet tested; requires M4B-1/C4B evidence with leakage labels. | Not claimed |
 
 ## Boundaries
 

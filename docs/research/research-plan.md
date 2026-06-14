@@ -35,7 +35,7 @@ This project studies how human review can move from episodic validation to reusa
 | RQ1 | How does VEGO-AI identify and classify variability across domain models before human intervention? | Existing evaluation outputs, case-level scores, Agent D classes, baseline agreement metrics. |
 | RQ2 | Which AI classifications require human judgment, and can selective intervention reduce unnecessary expert effort? | Human Review Queue trigger reasons, queue size, coverage of uncertain or guideline-sensitive cases. |
 | RQ3 | Can human feedback be captured with enough structure and provenance to support audit, conflict detection, and future reuse? | Human feedback schema, resolved queue records, validation tests, conflict cases. |
-| RQ4 | Can reusable human judgment memory support later variability interpretation first as advisory evidence and then, under controlled conditions, as Agent 4 context? | M4A memory advice reports, planned C4B experiment, memory-assisted reclassification results, comparison to non-memory conditions. |
+| RQ4 | Can reusable human judgment memory support later variability interpretation first as advisory evidence and then, under controlled conditions, as a deterministic memory-informed comparison? | M4A memory advice reports, planned C4B experiment, memory-informed comparison results, leakage status, comparison to non-memory conditions. |
 | RQ5 | How should this artifact be positioned within human-in/on-the-loop AI, XAI, expert feedback, AI-assisted modeling, and design-science literature? | Literature-review taxonomy, claim/evidence table, thesis discussion. |
 
 ## Current Mechanism State
@@ -46,7 +46,8 @@ This project studies how human review can move from episodic validation to reusa
 | M2 | Human Feedback Manager | Implemented | Attaches validated human feedback to review items. |
 | M3 | Human Judgment Memory | Implemented and published | Builds and searches reusable memory; remains inert. |
 | M4A | Memory Advisory Layer | Implemented and published | Retrieves relevant memory for Agent 4 patterns and emits advisory reports; no AI classification change. |
-| M4B | Memory-informed Agent 4 reclassification | Design-only | Controlled experiment only; no uncontrolled behavior change. |
+| M4B-1 | Memory-informed parallel comparison | Design contract approved | Deterministic controlled experiment only; writes a separate comparison artifact and keeps baseline behavior unchanged. |
+| M4B-2 | Optional Agent 4/LLM reclassification | Deferred | Not approved; no Agent 4 prompt/API/embedding changes. |
 | M5 | Human-approved guideline refinement | Planned | Future work; guideline changes require explicit approval. |
 | M6 | Evaluation and thesis synthesis | Planned | Consolidates evidence for MSc thesis and PhD continuation. |
 
@@ -62,6 +63,6 @@ This project studies how human review can move from episodic validation to reusa
 1. Complete the data/IRB and publishability audit for deferred artifacts.
 2. Map existing packaged results into `EXP-000` without copying controlled contents into Git.
 3. Ask Claude to refresh the M1-M2-M3-M4A artifact ZIP and manifest.
-4. Draft M4B as a controlled experiment where relevant memory advice is provided as context for Agent 4, but do not implement it until reviewed.
+4. Ask Claude to implement M4B-1 only on `feature/memory-informed-comparison`, after confirming `docs/research/m4b-conditional-approval.md`.
 5. Compare C0-C4B evaluation conditions and update the claim/evidence table.
 6. Draft the MSc thesis around reusable human judgment, with M4B-M6 as the PhD continuation path.

@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-13 18:40 +03:00 by Codex.
+- 2026-06-14 11:05 +03:00 by Codex.
 
 ## Project Goal
 
@@ -18,7 +18,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Workspace root: `c:\Users\ahamed\vego-ai`
 - Git status: repository initialized, safe baseline committed, and pushed to private GitHub repo `AliHamed17/Vego-Ai` on 2026-06-11.
 - Current branch: `main`, tracking `origin/main`.
-- Current observed HEAD at prompt start: `b213734` (`M4A test-compat: runner-agnostic missing-memory tests (test-only)`), already matching `origin/main`.
+- Current observed HEAD at prompt start: `c04f079` (`Add Confluence manual sync pack`), already matching `origin/main`.
 - Safe baseline merge commit: `76e7277`.
 - Main visible source files at setup:
   - `Variability_MAS4MODELS2026_Mar28_IRB2איריס (1).pdf`
@@ -37,9 +37,11 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
   - `milestone-m4a-memory-advisory` -> `ecd097245c463089a5721d68b17d6b22a1005a43`
   - `research-state-m4a` -> `28289405fc7cb687665f949bf039355a97967c59`
 - Post-merge behavior confirmation exists at `docs/research/m4a-post-merge-confirmation.md`.
+- M4B-1 is conditionally approved as a deterministic, experimental, parallel-comparison layer; implementation must preserve original Agent 4 output, write only `memory_informed_comparison.json`, set `ai_behavior_changed_in_baseline=false`, label evaluation leakage, and use branch `feature/memory-informed-comparison` with PR review.
+- M4B-2, Agent 4 `resolve_with_answers`, LLM/API calls, embeddings, visualizer changes, and baseline output overwrites remain not approved.
 - Progress, KPI, and results dashboards exist under `docs/dashboards/`; an ignored runtime snapshot is generated at `docs/dashboards/status-snapshot.generated.md`, checked by `scripts/dashboard-health.ps1`, and embedded in the generated Confluence Progress Dashboard page.
 - The main research question now centers on reusable human judgment in human-AI collaboration for AI-assisted domain modeling and model assessment.
-- New planning artifacts define the literature-review taxonomy, C0-C4B evaluation plan, thesis outline, claim/evidence table, and EXP-001 planned M4B experiment shell.
+- Planning artifacts define the literature-review taxonomy, C0-C4B evaluation plan, thesis outline, claim/evidence table, and EXP-001 M4B-1 deterministic comparison contract.
 - Core orientation files exist:
   - `README.md`
   - `PROJECT_CHARTER.md`
@@ -77,13 +79,14 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Real revert support is now available through Git for tracked safe-baseline files.
 - Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
-- M4B memory-informed Agent 4 reclassification is planned but not implemented; do not claim behavior improvement until the controlled C4B experiment is run.
+- M4B-1 memory-informed parallel comparison is planned but not implemented; do not claim behavior improvement until the controlled C4B experiment is run with leakage status recorded.
+- Codex isolation is active for M4B implementation paths on `main`.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
-- Confluence sync currently operates as generated outbox/manual sync pack only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-13 18:40 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
+- Confluence sync currently operates as generated outbox/manual sync pack only because Atlassian Rovo reports cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-14 11:14 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
 
 ## Next Best Step
 
-- Draft M4B design only; do not implement until the design is reviewed.
 - Ask Claude to refresh `artifacts/vego-ai-M1-M2-M3-M4A-changes.zip` and `artifacts/M1-M2-M3-M4A-manifest.md` using `docs/agent-memory/claude-m4b-handoff-prompt.md`.
-- Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting how Human Judgment Memory advice is supplied to Agent 4.
+- Ask Claude to implement M4B-1 only on `feature/memory-informed-comparison`, after confirming `docs/research/m4b-conditional-approval.md`; do not implement M4B-2.
+- Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting the supplied memory advice, memory items, deterministic policy version, and leakage status.
 - Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages using the outbox/manual sync pack, including the Progress Dashboard, and record their IDs locally.

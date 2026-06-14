@@ -119,7 +119,7 @@ Durable decisions for this project.
 - Decision: M4A may retrieve relevant human judgments and generate `memory_advice.json`, but it must not change Agent 4 classifications, prompts, guidelines, visualizer behavior, or baseline evaluation outputs.
 - Decision: M4B is design-only until separately reviewed; it must preserve original Agent 4 output and produce a comparison rather than replacing the baseline classification.
 - Reason: PR #2 showed the safe bridge needed before any behavior-changing memory-informed reclassification.
-- Consequence: Future M4B plans must include `original_agent4_classification`, `memory_advice`, `memory_informed_classification`, `classification_changed?`, `change_reason`, and `human_memory_used`.
+- Consequence: Future M4B plans must include `original_agent4_classification`, `memory_advice`, `memory_informed_classification`, `memory_informed_differs_from_original`, `requires_human_review_after_memory`, `evaluation_leakage_status`, `decision_trace`, `policy_version`, and `human_memory_used`.
 
 ## 2026-06-13 - M4A Reproducibility Tags
 
@@ -127,3 +127,13 @@ Durable decisions for this project.
 - Decision: Keep `milestone-m3-human-judgment-memory` at `5e109e5f9f2073d9cdc2325bcea2823d57c77882`, `milestone-m4a-memory-advisory` at `ecd097245c463089a5721d68b17d6b22a1005a43`, and `research-state-m4a` at `28289405fc7cb687665f949bf039355a97967c59`.
 - Reason: Thesis and artifact review need stable, reproducible anchors for the code milestone and the surrounding research-story state.
 - Consequence: Future artifact manifests should reference these tags instead of relying only on moving branch names.
+
+## 2026-06-14 - M4B-1 Conditional Approval Contract
+
+- Decision: Treat M4B-1 as a deterministic, experimental, parallel-comparison layer, not a baseline Agent 4 behavior change.
+- Decision: Use `memory_informed_differs_from_original` and always keep `ai_behavior_changed_in_baseline=false`.
+- Decision: Require `policy_version="memory-informed-classifier-v1"`, `decision_trace`, `requires_human_review_after_memory`, and `evaluation_leakage_status` on future M4B-1 outputs.
+- Decision: Defer M4B-2, Agent 4 `resolve_with_answers`, LLM/API calls, embeddings, visualizer changes, and baseline output overwrites.
+- Decision: Future M4B-1 implementation must use branch `feature/memory-informed-comparison` and PR review; Codex must not commit VEGO-AI milestone implementation paths directly to `main`.
+- Reason: The M4B review approved the research direction only if reusable memory remains a controlled comparison mechanism with leakage tracking and reproducible deterministic rules.
+- Consequence: Claude can implement only the approved M4B-1 scope after confirming `docs/research/m4b-conditional-approval.md`; improvement claims wait for EXP-001/C4B evidence.

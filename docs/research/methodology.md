@@ -46,7 +46,7 @@ Use the staged C0-C4 design in `evaluation-plan.md`.
 | C2 | Structured feedback | Measures whether expert decisions can be captured reproducibly. |
 | C3 | Reusable memory | Measures memory construction, retrieval, and conflict handling while remaining inert. |
 | C4A | Memory advisory report | Implemented M4A report where prior judgments are retrieved as advisory-only evidence. |
-| C4B | Memory-assisted reclassification | Planned controlled M4B experiment where Agent 4 receives relevant prior judgments as context. |
+| C4B | Memory-informed parallel comparison | Planned M4B-1 experiment where a deterministic module compares original Agent 4 output with a separate memory-informed result. |
 
 ## Measures
 
@@ -62,7 +62,7 @@ Quantitative:
 - reusable-judgment yield,
 - conflict/adjudication count,
 - advisory strength distribution in C4A,
-- memory-assisted reclassification delta in C4B.
+- memory-informed comparison delta and leakage status in C4B.
 
 Qualitative:
 
@@ -80,4 +80,5 @@ Qualitative:
 - Do not compare runs unless input data, prompts, and configs are documented.
 - Treat expert labels and IRB constraints as controlled research assets.
 - Keep M3 memory inert and M4A advisory-only: no Agent 4 classification change, embeddings, or visualizer changes.
-- Treat C4B as a controlled experiment, not a default product behavior.
+- Treat C4B/M4B-1 as a deterministic controlled experiment, not a default product behavior.
+- Do not approve M4B-2 Agent 4/LLM behavior without a separate design review.

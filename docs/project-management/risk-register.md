@@ -14,3 +14,5 @@
 | RISK-010 | Future AI reuse claims are not grounded in evidence. | Overclaiming. | Medium | Keep M3 inert, keep M4A advisory-only, and reserve behavior-improvement claims for the planned C4B experiment. | Open |
 | RISK-011 | Evaluation set is too small for strong claims. | Weak conclusion validity. | Medium | Report limits, use staged C0-C4 comparisons, and expand cases before final claims. | Open |
 | RISK-012 | Human judgments may conflict. | Memory may encode disagreement. | Medium | Use M3 conflict detection and require adjudication before treating conflicts as reusable guidance. | Open |
+| RISK-013 | M4B reuses memory from the same pattern being evaluated. | M4B can look stronger than it generalizes. | Medium | Require `evaluation_leakage_status` on every comparison item and prefer leave-one-pattern-out, cross-setting, cross-domain, cross-diagram, or expert-only holdout evaluation. | Open |
+| RISK-014 | M4B implementation lands directly on `main`. | AI decision-boundary changes bypass review. | Medium | Enforce branch `feature/memory-informed-comparison`, PR review, and Codex isolation for VEGO-AI milestone implementation files. | Open |

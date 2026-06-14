@@ -20,8 +20,9 @@ For future milestone work, especially M4B and later, Codex must:
 - **Stop auto-syncing / fast-forwarding `main`** with Claude's feature commits.
 - **Not push milestone code directly to `main`.**
 - **Not modify** `VEGO-AI/framework`, `VEGO-AI/schemas`, `VEGO-AI/tests`,
-  `VEGO-AI/docs`, or other milestone files while Claude is implementing, unless
-  explicitly instructed.
+  `VEGO-AI/eval`, `VEGO-AI/inputs`, `VEGO-AI/docs/memory_*`,
+  `VEGO-AI/docs/*advisor*`, or other milestone files while Claude is implementing,
+  unless explicitly instructed through a reviewed branch/PR workflow.
 - Review/test/document/propose fixes on a **review/fix branch** or in **PR comments**,
   not directly on `main`.
 - `main` receives milestone code only **after ChatGPT review**.
@@ -39,5 +40,8 @@ risk. **M4B may change AI behavior**, so unreviewed merges to `main` are not acc
 - **M4A — memory advisory layer**: retrieve relevant judgments per Agent 4 pattern,
   emit an advisory report, **no classification change** (done; PR #2 reviewed by
   Codex and squash-merged to `main` as `ecd0972`).
-- **M4B — controlled reclassification**: memory-informed Agent 4 re-classification with
-  original-vs-informed comparison (design-only until separately reviewed).
+- **M4B-1 — controlled parallel comparison**: deterministic memory-informed comparison
+  with original-vs-informed results, `ai_behavior_changed_in_baseline=false`, leakage
+  tracking, and no baseline overwrite. Future implementation must use branch
+  `feature/memory-informed-comparison`.
+- **M4B-2 — optional LLM/Agent 4 mode**: deferred; not approved.

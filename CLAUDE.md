@@ -4,7 +4,7 @@ This project keeps shared agent memory in `docs/agent-memory/`. Claude and Codex
 
 For a full startup prompt that can be pasted into a fresh Claude chat, use `docs/agent-memory/claude-bootstrap-prompt.md`.
 
-For the current M4A artifact refresh and M4B design-only handoff, use `docs/agent-memory/claude-m4b-handoff-prompt.md` after the normal startup routine.
+For the current M4A artifact refresh and M4B-1 conditional implementation handoff, use `docs/agent-memory/claude-m4b-handoff-prompt.md` after the normal startup routine. M4B-1 implementation must happen on `feature/memory-informed-comparison` and reach `main` only through a reviewed PR.
 
 ## Before Working
 
