@@ -195,3 +195,13 @@ Durable decisions for this project.
 - Decision: Treat the generated EXP-002 labeling package as the next research artifact: 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels, and 27 recommended labeling targets.
 - Reason: The weak point is empirical evidence, not architecture; M4B-1 cannot support accuracy/generalization claims until independent labels exist.
 - Consequence: M4B-2, Agent 4 `resolve_with_answers`, LLM/API reclassification, embeddings, automatic guideline rewriting, and GUI feedback editing remain blocked. The next manual work is expert labeling and rationale collection.
+
+## 2026-06-16 - EXP-003 Accuracy Improvement Gate
+
+- Decision: Treat EXP-003 as the evaluation-first path for any future accuracy-improvement claim or deterministic M4B-1 policy refinement.
+- Decision: Generate full and blind expert-labeling sheets, but do not treat original Agent 4 output, copied analysis files, or same-pattern memory as independent ground truth.
+- Decision: If there are zero generalization-safe expert labels, the required conclusion is `Accuracy improvement cannot be evaluated yet.`
+- Decision: If there are fewer than 20 generalization-safe expert labels, any accuracy or macro-F1 result is pilot evidence only.
+- Decision: Do not implement M4B-1.1, M4B-2, Agent 4 changes, LLM/API calls, embeddings, or baseline-output overwrites until EXP-003 provides enough safe labels and a reviewed policy-refinement plan exists.
+- Reason: The strict evaluation found no independent benchmark, 0 safe labels, and 0 memory-informed classification differences.
+- Consequence: The next research action is expert labeling and error analysis, not classifier behavior change.

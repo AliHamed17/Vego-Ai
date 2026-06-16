@@ -1321,3 +1321,42 @@ Chronological prompt history for Codex and Claude.
   - PPTX verification - 20 slides, 59128 bytes
 - Status: completed
 - Next steps: Use the supervisor demo package in the 2026-06-17 Zoom session, capture supervisor decisions, and collect EXP-002 expert labels before any M4B-2 or Agent 4 behavior work.
+
+## 2026-06-16 22:55 +03:00 - Codex - EXP-003 accuracy improvement evaluation path
+
+- Request: Implement the evaluation-first accuracy improvement research path without changing Agent 4, M4B-2, eval_output, baseline outputs, embeddings, or LLM/API behavior.
+- Actions taken:
+  - Added accuracy-improvement plan and expert-labeling protocol.
+  - Added EXP-003 full/blind labeling preparation and accuracy/error-analysis evaluator tooling.
+  - Generated ignored EXP-003 outputs from the current EXP-002 sheet; strict gate reports accuracy improvement cannot be evaluated yet because there are 0 safe expert labels.
+  - Added experiment registry/folder entry, research-health allowlist, and unit test coverage.
+  - Updated shared memory with EXP-003 status and decision gate.
+- Files changed:
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/evaluation-report.md
+  - experiments/registry.md
+  - experiments/EXP-003-accuracy-improvement-evaluation/README.md
+  - scripts/build-exp003-error-analysis.ps1
+  - scripts/research-health.ps1
+  - VEGO-AI/analysis/evaluate_accuracy_improvement.py
+  - VEGO-AI/tests/test_accuracy_improvement_analysis.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - reports/generated/exp003/ (ignored)
+  - artifacts/ACCURACY_IMPROVEMENT_STRICT_PLAN.md (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - python -m py_compile VEGO-AI\\analysis\\evaluate_accuracy_improvement.py VEGO-AI\\tests\\test_accuracy_improvement_analysis.py - passed
+  - .\\scripts\\build-exp003-error-analysis.ps1 - passed; 27 rows, 24 safe candidates, 0 safe expert labels
+  - python -m pytest VEGO-AI\\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery - passed
+  - PowerShell parser check for scripts/*.ps1 - passed
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+  - Protected boundary audit - no eval_output/Agent 4/M4B policy diffs
+- Status: completed
+- Next steps: Fill EXP-003 blind/full sheets with at least 20 generalization-safe expert labels, rerun build-exp003-error-analysis, and only then decide whether a deterministic M4B-1 policy-refinement plan is justified.

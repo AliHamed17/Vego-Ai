@@ -40,6 +40,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | EXP-001 initial mechanism/readiness evaluation run | Done | Generated ignored `reports/generated/exp001/` tables: 27 comparisons, 0 M4B-1 classification changes, 2 review-after-memory flags, and 0 generalization-safe expert labels. |
 | 2026-06-14 | EXP-002 expert labeling package generated | Done | Generated ignored `reports/generated/exp002/` package: 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels, and 27 recommended labeling targets. |
 | 2026-06-16 | Supervisor Zoom demo package generated | Done | Created ignored `artifacts/supervisor_demo_2026-06-17/` with 20-slide deck, brief, demo script, questions, screenshot checklist, figures, and tables for the 2026-06-17 supervisor session. |
+| 2026-06-16 | EXP-003 accuracy-improvement evaluation tooling added | Done | Added full/blind labeling prep, expert-label protocol, strict accuracy gates, error-analysis/accuracy summary tooling, and ignored EXP-003 outputs. Initial EXP-003 has 0 safe expert labels, so accuracy improvement cannot be evaluated yet. |
 
 ## Active Work
 
@@ -62,6 +63,7 @@ Track milestones, current work, and next steps here.
 | TASK-016 | 2026-06-14 | Open | Complete EXP-001 expert-label evaluation. | Add held-out/cross-setting expert labels, rerun `.\scripts\build-exp001-evaluation.ps1`, and update the evaluation report with generalization-safe metrics. |
 | TASK-017 | 2026-06-14 | Open | Fill EXP-002 expert labeling package. | Human/supervisor should label at least 20 rows, preferably all 27 current rows, then rerun evaluation with leakage-aware partitions. |
 | TASK-018 | 2026-06-16 | Done | Prepare supervisor Zoom package for 2026-06-17. | Use the ignored package locally during the meeting, capture supervisor decisions, and convert accepted labels/decisions into tracked research docs afterward. |
+| TASK-019 | 2026-06-16 | Open | Collect EXP-003 independent expert labels. | Fill the blind/full EXP-003 sheets with at least 20 generalization-safe labels before any accuracy-improvement claim or M4B-1 policy refinement. |
 
 ## Completed Work
 
@@ -98,14 +100,15 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Ran initial EXP-001 mechanism/readiness evaluation. | `scripts/build-exp001-evaluation.ps1`, `docs/research/evaluation-report.md`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md`, ignored `reports/generated/exp001/` |
 | 2026-06-14 | Generated EXP-002 expert labeling package. | `scripts/build-exp002-labeling-package.ps1`, `experiments/EXP-002-expert-label-expansion-holdout-evaluation/README.md`, `docs/research/evaluation-report.md`, ignored `reports/generated/exp002/` |
 | 2026-06-16 | Generated supervisor Zoom demo package. | Ignored `artifacts/supervisor_demo_2026-06-17/`, ignored `outputs/manual-20260616-supervisor/`, refreshed `reports/generated/exp001/`, `reports/generated/exp002/`, and `VEGO-AI/reports/results_dashboard/` |
+| 2026-06-16 | Added EXP-003 accuracy-improvement evaluation path. | `docs/research/accuracy-improvement-plan.md`, `docs/research/expert-labeling-protocol.md`, `experiments/EXP-003-accuracy-improvement-evaluation/README.md`, `scripts/build-exp003-error-analysis.ps1`, EXP-003 evaluator/test, ignored `reports/generated/exp003/` |
 
 ## Next Steps
 
-1. Use `artifacts/supervisor_demo_2026-06-17/` in the 2026-06-17 supervisor Zoom session.
-2. Capture supervisor decisions on thesis framing, EXP-002 label protocol, target label count, leakage policy, and M4B-2 gating.
+1. Fill `reports/generated/exp003/expert_labeling_sheet_blind.csv` or `expert_labeling_sheet_full.csv` with at least 20 generalization-safe expert labels.
+2. Rerun `.\scripts\build-exp003-error-analysis.ps1` and review `reports/generated/exp003/accuracy_summary.json`.
 3. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-4. Fill `reports/generated/exp002/expert_labeling_sheet.csv` or Markdown with at least 20 expert labels, preferably all 27 current rows.
-5. Rerun `.\scripts\build-exp001-evaluation.ps1` or the next evaluation pass with the completed EXP-002 labels and use the generated outputs to produce thesis tables/figures for review queues, feedback, memory, advice, comparisons, leakage, and human-review-after-memory cases.
+4. If EXP-003 shows enough safe labels and baseline errors that memory can plausibly address, write `docs/research/m4b1-policy-refinement-plan.md`; do not implement policy refinement before that approval.
+5. Capture supervisor decisions on thesis framing, label protocol, target label count, leakage policy, and M4B-2 gating.
 6. Review and merge PR #6 for M4B schema hardening when ready.
 7. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
 8. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.

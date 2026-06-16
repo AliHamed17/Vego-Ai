@@ -6,7 +6,9 @@ $ErrorActionPreference = "Stop"
 $repoRoot = Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")
 $requiredPaths = @(
     "docs/research/artifact-audit.md",
+    "docs/research/accuracy-improvement-plan.md",
     "docs/research/evaluation-plan.md",
+    "docs/research/expert-labeling-protocol.md",
     "docs/research/literature-review-taxonomy.md",
     "docs/research/m4a-post-merge-confirmation.md",
     "docs/research/provenance-register.md",
@@ -22,9 +24,11 @@ $requiredPaths = @(
     "experiments/EXP-000-existing-packaged-results-audit/README.md",
     "experiments/EXP-000-existing-packaged-results-audit/config-manifest.md",
     "experiments/EXP-000-existing-packaged-results-audit/notes.md",
+    "experiments/EXP-003-accuracy-improvement-evaluation/README.md",
     "scripts/build-dashboard-snapshot.ps1",
     "scripts/build-confluence-manual-sync-pack.ps1",
     "scripts/build-confluence-wiki.ps1",
+    "scripts/build-exp003-error-analysis.ps1",
     "scripts/dashboard-health.ps1"
 )
 
@@ -48,7 +52,8 @@ $forbiddenTrackedPatterns = @(
 )
 
 $allowedTrackedArtifacts = @(
-    "VEGO-AI/analysis/build_results_dashboard.py"
+    "VEGO-AI/analysis/build_results_dashboard.py",
+    "VEGO-AI/analysis/evaluate_accuracy_improvement.py"
 )
 
 Write-Host "VEGO-AI research health"

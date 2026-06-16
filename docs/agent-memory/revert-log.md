@@ -695,3 +695,24 @@ Record file changes and rollback notes here.
   - VEGO-AI/reports/results_dashboard/ (ignored)
 - Rollback note: Tracked memory changes can be reverted with Git. Ignored generated package/output folders can be deleted to remove the local supervisor demo artifacts; no VEGO-AI behavior files were changed.
 - Git commit: none recorded by script.
+
+## 2026-06-16 22:55 +03:00 - Codex - EXP-003 accuracy improvement evaluation path
+
+- Files changed:
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/evaluation-report.md
+  - experiments/registry.md
+  - experiments/EXP-003-accuracy-improvement-evaluation/README.md
+  - scripts/build-exp003-error-analysis.ps1
+  - scripts/research-health.ps1
+  - VEGO-AI/analysis/evaluate_accuracy_improvement.py
+  - VEGO-AI/tests/test_accuracy_improvement_analysis.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - reports/generated/exp003/ (ignored)
+  - artifacts/ACCURACY_IMPROVEMENT_STRICT_PLAN.md (ignored)
+- Rollback note: Revert the tracked EXP-003/docs/memory commit to remove the new evaluation tooling; delete ignored reports/generated/exp003 and artifacts/ACCURACY_IMPROVEMENT_STRICT_PLAN.md to remove generated local outputs. No baseline or Agent 4 files were changed.
+- Git commit: none recorded by script.

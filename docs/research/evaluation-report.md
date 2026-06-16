@@ -279,3 +279,60 @@ MSc potential: strong.
 Empirical evidence: incomplete.
 
 Best next move: fill the EXP-002 expert-labeling sheet, then rerun EXP-001 or the next evaluation pass with leakage-aware expert-label partitions.
+
+## Strict Evaluation Pass (original vs memory-informed) — 2026-06-16
+
+Read-only strict re-evaluation. Deliverables (Git-ignored): `reports/generated/evaluation_comparison/`
+(`original_vs_memory_informed.csv/.md`, `evaluation_summary.json`) and
+`artifacts/EVALUATION_STRICT_REVIEW.md`. No baseline/Agent-4/eval_output change; no API/LLM.
+
+### Decisive new finding — no independent benchmark exists
+
+`VEGO-AI/analysis/agentD_variability_classes_<setting>.json` are **byte-identical** to the Agent 4 output in
+`VEGO-AI/eval_output/<setting>/agentD_variability_classes*.json` — every field (classification, confidence,
+justification) matches for **all 27 patterns / 4 settings (0 differences)**. Therefore `analysis/` is a
+**copy of Agent 4 output, not author-corrected ground truth**, and must **not** be used as a benchmark
+(doing so grades Agent 4 against itself). The paper's "author-judged" classes reflect author *agreement*
+with Agent 4, which is not an independent label set.
+
+### Provenance integrity
+
+Every `original_agent4_classification` in the four `memory_informed_comparison.json` files equals the
+committed `eval_output` value (**27/27 rows, 0 mismatches**). The comparison faithfully preserves the baseline.
+
+### Strict results
+
+| Question | Answer |
+| --- | --- |
+| Independent benchmark? | No (`analysis/` duplicates Agent 4) |
+| Expert labels | 3 (ucd_ch, from memory), all `same_pattern_memory_used` |
+| Generalization-safe labeled rows | 0 |
+| Memory-informed differs from original | 0 / 27 |
+| Accuracy (all labeled, n=3) | original 0.667 = memory-informed 0.667 |
+| Paired: original-wrong→memory-correct | 0 |
+| Requires human review after memory | 2 |
+
+### Verdict (strict, combined A+C+D)
+
+No accuracy improvement is proven or currently measurable: no independent benchmark, memory-informed never
+differs from the original, and zero generalization-safe expert labels. The demonstrated value is
+**traceability, reusable human judgment, and safer human-review escalation**, under a verified
+non-destructive boundary. Do not claim "better than baseline." Required before any accuracy/generalization
+claim: held-out expert labels (≥20 safe; ideally 30–50; ≥2 raters for κ) via EXP-002, then a leakage-aware
+original-vs-memory-informed-vs-expert comparison on safe rows only.
+
+## Accuracy Improvement Path — 2026-06-16
+
+Accuracy improvement work is now gated by `docs/research/accuracy-improvement-plan.md` and
+`docs/research/expert-labeling-protocol.md`.
+
+EXP-003 adds label preparation and evaluation tooling only:
+
+- `.\scripts\build-exp003-error-analysis.ps1`
+- `VEGO-AI/analysis/evaluate_accuracy_improvement.py`
+- ignored outputs under `reports/generated/exp003/`
+
+The EXP-003 gate is strict: if there are zero generalization-safe expert labels, the report must say
+`Accuracy improvement cannot be evaluated yet.` If there are fewer than 20 safe expert labels, any accuracy
+or macro-F1 result is pilot evidence only. No M4B-1 policy refinement, M4B-2, Agent 4 change, LLM/API call,
+embedding path, or baseline overwrite is approved by this plan.
