@@ -39,6 +39,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Evaluation phase scaffold added | Done | Added `docs/research/evaluation-report.md`; M4B-1 is treated as implemented/evaluation-pending, with release bundle available for review. |
 | 2026-06-14 | EXP-001 initial mechanism/readiness evaluation run | Done | Generated ignored `reports/generated/exp001/` tables: 27 comparisons, 0 M4B-1 classification changes, 2 review-after-memory flags, and 0 generalization-safe expert labels. |
 | 2026-06-14 | EXP-002 expert labeling package generated | Done | Generated ignored `reports/generated/exp002/` package: 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels, and 27 recommended labeling targets. |
+| 2026-06-16 | Supervisor Zoom demo package generated | Done | Created ignored `artifacts/supervisor_demo_2026-06-17/` with 20-slide deck, brief, demo script, questions, screenshot checklist, figures, and tables for the 2026-06-17 supervisor session. |
 
 ## Active Work
 
@@ -60,6 +61,7 @@ Track milestones, current work, and next steps here.
 | TASK-015 | 2026-06-14 | Done | Fix VEGO-AI visualizer model/result mismatch UX. | Preserve the no-silent-mismatch and read-only research-panel boundaries in future visualizer work. |
 | TASK-016 | 2026-06-14 | Open | Complete EXP-001 expert-label evaluation. | Add held-out/cross-setting expert labels, rerun `.\scripts\build-exp001-evaluation.ps1`, and update the evaluation report with generalization-safe metrics. |
 | TASK-017 | 2026-06-14 | Open | Fill EXP-002 expert labeling package. | Human/supervisor should label at least 20 rows, preferably all 27 current rows, then rerun evaluation with leakage-aware partitions. |
+| TASK-018 | 2026-06-16 | Done | Prepare supervisor Zoom package for 2026-06-17. | Use the ignored package locally during the meeting, capture supervisor decisions, and convert accepted labels/decisions into tracked research docs afterward. |
 
 ## Completed Work
 
@@ -95,18 +97,21 @@ Track milestones, current work, and next steps here.
 | 2026-06-14 | Added evaluation report scaffold and updated research dashboard state. | `docs/research/evaluation-report.md`, `docs/research/evaluation-plan.md`, `experiments/registry.md`, `docs/dashboards/`, `docs/agent-memory/` |
 | 2026-06-14 | Ran initial EXP-001 mechanism/readiness evaluation. | `scripts/build-exp001-evaluation.ps1`, `docs/research/evaluation-report.md`, `experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md`, ignored `reports/generated/exp001/` |
 | 2026-06-14 | Generated EXP-002 expert labeling package. | `scripts/build-exp002-labeling-package.ps1`, `experiments/EXP-002-expert-label-expansion-holdout-evaluation/README.md`, `docs/research/evaluation-report.md`, ignored `reports/generated/exp002/` |
+| 2026-06-16 | Generated supervisor Zoom demo package. | Ignored `artifacts/supervisor_demo_2026-06-17/`, ignored `outputs/manual-20260616-supervisor/`, refreshed `reports/generated/exp001/`, `reports/generated/exp002/`, and `VEGO-AI/reports/results_dashboard/` |
 
 ## Next Steps
 
-1. Review and merge PR #6 for M4B schema hardening.
-2. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-3. Fill `reports/generated/exp002/expert_labeling_sheet.csv` or Markdown with at least 20 expert labels, preferably all 27 current rows.
-4. Rerun `.\scripts\build-exp001-evaluation.ps1` or the next evaluation pass with the completed EXP-002 labels and use the generated outputs to produce thesis tables/figures for review queues, feedback, memory, advice, comparisons, leakage, and human-review-after-memory cases.
-5. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-6. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
-7. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
-8. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-9. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
-10. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-11. Convert existing package results into evidence entries under `EXP-000`.
-12. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+1. Use `artifacts/supervisor_demo_2026-06-17/` in the 2026-06-17 supervisor Zoom session.
+2. Capture supervisor decisions on thesis framing, EXP-002 label protocol, target label count, leakage policy, and M4B-2 gating.
+3. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
+4. Fill `reports/generated/exp002/expert_labeling_sheet.csv` or Markdown with at least 20 expert labels, preferably all 27 current rows.
+5. Rerun `.\scripts\build-exp001-evaluation.ps1` or the next evaluation pass with the completed EXP-002 labels and use the generated outputs to produce thesis tables/figures for review queues, feedback, memory, advice, comparisons, leakage, and human-review-after-memory cases.
+6. Review and merge PR #6 for M4B schema hardening when ready.
+7. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
+8. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
+9. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
+10. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+11. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
+12. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+13. Convert existing package results into evidence entries under `EXP-000`.
+14. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

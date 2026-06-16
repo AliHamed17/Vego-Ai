@@ -1288,3 +1288,36 @@ Chronological prompt history for Codex and Claude.
   - .\\scripts\\research-health.ps1 -> passed
 - Status: completed
 - Next steps: Human/supervisor should fill at least 20 EXP-002 expert labels, preferably all 27 current rows, then rerun EXP-001 or the next evaluation pass with leakage-aware partitions.
+
+## 2026-06-16 22:03 +03:00 - Codex - Supervisor Zoom demo package
+
+- Request: Prepare a full visual presentation/demo package for the 2026-06-17 thesis supervisor Zoom session showing experiments, progress, achievements, and next research steps.
+- Actions taken:
+  - Generated ignored supervisor demo package with slides, brief, script, questions, screenshot checklist, figures, and tables.
+  - Refreshed EXP-001, EXP-002, and results dashboard outputs before packaging.
+  - Attempted artifact-tool PPTX export; runtime was unavailable, so generated 20-slide PPTX with local ignored fallback builder.
+  - Updated shared memory summaries with the package path and next-step guidance.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/supervisor_demo_2026-06-17/ (ignored)
+  - outputs/manual-20260616-supervisor/ (ignored)
+  - reports/generated/exp001/ (ignored)
+  - reports/generated/exp002/ (ignored)
+  - VEGO-AI/reports/results_dashboard/ (ignored)
+- Commands/checks:
+  - .\\scripts\\build-exp001-evaluation.ps1 - passed
+  - .\\scripts\\build-exp002-labeling-package.ps1 - passed
+  - python VEGO-AI\\analysis\\build_results_dashboard.py --root VEGO-AI --out VEGO-AI\\reports\\results_dashboard --human-dir VEGO-AI\\runs\\20260614-122150\\human - passed
+  - python -m pytest VEGO-AI\\tests -q - 93 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery - passed
+  - PowerShell parser check for scripts/*.ps1 - passed
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+  - PPTX verification - 20 slides, 59128 bytes
+- Status: completed
+- Next steps: Use the supervisor demo package in the 2026-06-17 Zoom session, capture supervisor decisions, and collect EXP-002 expert labels before any M4B-2 or Agent 4 behavior work.
