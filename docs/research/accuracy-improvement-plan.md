@@ -1,8 +1,8 @@
 # Accuracy Improvement Plan
 
-Last updated: 2026-06-16 by Codex.
+Last updated: 2026-06-17 by Codex.
 
-Status: evaluation-first path defined; no accuracy-improvement claim is allowed yet.
+Status: evaluation-first path defined; EXP-005 real-label gate added; no accuracy-improvement claim is allowed yet.
 
 ## Baseline
 
@@ -62,8 +62,10 @@ Reporting gate:
 3. Run `.\scripts\build-exp003-error-analysis.ps1`.
 4. Diagnose where original Agent 4 is wrong.
 5. Compare original Agent 4 and M4B-1 against expert labels.
-6. If data justifies it, write `docs/research/m4b1-policy-refinement-plan.md`.
-7. Only after approval, implement a deterministic M4B-1.1 policy on a feature branch.
+6. Run `.\scripts\build-policy-sensitivity-simulation.ps1` to compare candidate policy variants without changing the real pipeline.
+7. Run `.\scripts\build-exp005-label-review.ps1` to prepare the supervisor/expert label package and validate filled labels.
+8. If EXP-005 has enough safe labels and the real-label policy gate justifies it, update `docs/research/m4b1-policy-refinement-plan.md`.
+9. Only after approval, implement a deterministic M4B-1.1 policy on a feature branch.
 
 ## Candidate Improvement Strategies
 
@@ -91,6 +93,43 @@ Strategy E: future LLM mode.
 
 - M4B-2 remains blocked until deterministic evaluation is complete.
 
+## EXP-004 Policy Sensitivity
+
+EXP-004 provides a controlled policy-sensitivity harness:
+
+- Script: `.\scripts\build-policy-sensitivity-simulation.ps1`
+- Report: ignored `artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md`
+- Generated matrix: ignored `reports/generated/policy_sensitivity/policy_sensitivity_matrix.csv`
+
+The harness evaluates candidate M4B-1.1-style rules against synthetic truth scenarios. It does not change
+current M4B-1 behavior and does not provide expert evidence.
+
+Initial synthetic finding:
+
+- Current M4B-1 remains at `+0.00 pp` because it changes no classifications.
+- Aggressive policies can create synthetic gains when memory advice is assumed correct.
+- The same aggressive policies can create synthetic losses when original Agent 4 is assumed correct.
+
+Therefore, EXP-004 is useful for policy-risk screening, but real EXP-003 labels are still required before
+any policy refinement or accuracy-improvement claim.
+
+## EXP-005 Real-Label Gate
+
+EXP-005 turns the next research step into a concrete expert-label workflow:
+
+- Script: `.\scripts\build-exp005-label-review.ps1`
+- Report: ignored `artifacts/EXP005_LABEL_REVIEW_PACKAGE.md`
+- Generated package: ignored `reports/generated/exp005_label_review/`
+
+The default run creates a blind label sheet, full audit sheet, label instructions, a prioritized "label these
+first" supervisor summary, validation summary, and a real-label policy gate. If a filled label sheet is later
+provided with `-FilledLabelsSheet ... -RunDownstream`, the wrapper reruns EXP-003 and EXP-004-style outputs in
+the EXP-005 generated folder.
+
+Current expected initial status is still `Accuracy improvement cannot be evaluated yet` because real
+generalization-safe labels have not been filled. EXP-005 is the required gate before M4B-1.1 or M4B-2 can be
+considered.
+
 ## Non-Negotiable Boundaries
 
 - Do not modify Agent 4.
@@ -99,3 +138,4 @@ Strategy E: future LLM mode.
 - Do not use Agent 4 output as expert truth.
 - Do not use same-pattern memory as generalization evidence.
 - Do not implement M4B-2 or embeddings before deterministic evaluation is complete.
+- Do not implement M4B-1.1 until EXP-005 has at least 20 generalization-safe labels and the supervisor/reviewer approves a specific deterministic policy change.

@@ -205,3 +205,29 @@ Durable decisions for this project.
 - Decision: Do not implement M4B-1.1, M4B-2, Agent 4 changes, LLM/API calls, embeddings, or baseline-output overwrites until EXP-003 provides enough safe labels and a reviewed policy-refinement plan exists.
 - Reason: The strict evaluation found no independent benchmark, 0 safe labels, and 0 memory-informed classification differences.
 - Consequence: The next research action is expert labeling and error analysis, not classifier behavior change.
+
+## 2026-06-16 - EXP-004 Policy Sensitivity Boundary
+
+- Decision: Add EXP-004 as a policy-sensitivity simulation harness only.
+- Decision: Treat EXP-004 synthetic deltas as pipeline/risk screening, not expert evidence and not accuracy improvement.
+- Decision: Keep current M4B-1 as the only implemented behavior; candidate variants must not modify Agent 4, M4B-1 production behavior, M4B-2, baseline outputs, `VEGO-AI/eval_output/`, LLM/API behavior, or embeddings.
+- Decision: Use EXP-004 after real EXP-003 labels exist to compare candidate policies against non-synthetic evidence.
+- Reason: The user wants to keep working toward better accuracy, but the project still lacks independent labels; safe progress requires measurable simulations and gates rather than unreviewed behavior changes.
+- Consequence: Accuracy improvement remains unclaimed. Candidate M4B-1.1 policy implementation remains blocked until EXP-003 labels and reviewed error analysis justify a specific rule.
+
+## 2026-06-17 - EXP-005 Real-Label Accuracy Gate
+
+- Decision: Add EXP-005 as the supervisor/expert label-review and real-label policy gate before any deterministic accuracy-improvement change.
+- Decision: Use the EXP-005 blind CSV for expert labeling so original Agent 4 and memory-informed classifications are hidden from the reviewer.
+- Decision: Use the EXP-005 full CSV as audit context and as the merged downstream input when a filled blind sheet is supplied.
+- Decision: Keep the strict gate: `0` safe labels means `Accuracy improvement cannot be evaluated yet`; `1-19` safe labels means pilot evidence only; `20+` safe labels allows quantitative reporting with validity threats, not automatic improvement claims.
+- Decision: Keep M4B-1.1, M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline-output overwrites, and `VEGO-AI/eval_output` changes blocked until EXP-005 evidence and supervisor/reviewer approval justify a specific policy.
+- Reason: EXP-004 showed candidate policy risk synthetically, but real accuracy improvement needs independent, leakage-safe expert labels.
+- Consequence: The immediate accuracy work is filling and validating EXP-005 labels, not changing classifier behavior.
+
+## 2026-06-21 - Local VEGO Workbench Launcher
+
+- Decision: Use `scripts/open-vego-workbench.ps1` as the main local startup command for result review, EXP-005 labeling, demos, and visualizer opening.
+- Decision: Keep the launcher operational only: it may regenerate ignored dashboard/EXP-005/wiki outputs and open local files, but it must not modify Agent 4, M4B-2, `VEGO-AI/eval_output`, baseline outputs, LLM/API behavior, or embeddings.
+- Reason: Manual path mistakes were slowing down review and demos; one repo-root command reduces friction without changing research behavior.
+- Consequence: Daily review can use `.\scripts\open-vego-workbench.ps1`, GUI review can use `.\scripts\open-vego-workbench.ps1 -Gui`, and non-interactive validation can use `.\scripts\open-vego-workbench.ps1 -All -NoOpen`.

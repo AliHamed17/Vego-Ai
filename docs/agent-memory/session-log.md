@@ -1360,3 +1360,294 @@ Chronological prompt history for Codex and Claude.
   - Protected boundary audit - no eval_output/Agent 4/M4B policy diffs
 - Status: completed
 - Next steps: Fill EXP-003 blind/full sheets with at least 20 generalization-safe expert labels, rerun build-exp003-error-analysis, and only then decide whether a deterministic M4B-1 policy-refinement plan is justified.
+
+## 2026-06-16 23:11 +03:00 - Codex - Results and accuracy full report
+
+- Request: Analyze all results and provide a full report on whether VEGO-AI improved results and accuracy.
+- Actions taken:
+  - Created ignored full report from EXP-001, EXP-002, EXP-003, strict comparison, and dashboard summaries.
+  - Linked the report from docs/research/evaluation-report.md with the strict no-proven-accuracy-improvement conclusion.
+  - Verified no VEGO-AI/eval_output changes and that the report artifact is ignored by Git.
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/session-log.md
+  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - git diff --name-status -- VEGO-AI\\eval_output - no output
+  - git check-ignore -v artifacts\\RESULTS_AND_ACCURACY_FULL_REPORT.md - ignored by artifacts/**
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+- Status: completed
+- Next steps: Fill EXP-003 blind/full expert-label sheets with at least 20 generalization-safe labels, then rerun build-exp003-error-analysis before making any accuracy-improvement claim.
+
+## 2026-06-16 23:33 +03:00 - Codex - Synthetic accuracy simulation
+
+- Request: Try synthetic input and run simulations to check accuracy behavior.
+- Actions taken:
+  - Generated four ignored synthetic scenarios from the EXP-003 labeling sheet.
+  - Ran the existing EXP-003 evaluator on each synthetic scenario.
+  - Created synthetic simulation reports and linked the result from docs/research/evaluation-report.md.
+  - Kept the conclusion strict: current M4B-1 has 0 synthetic accuracy delta; counterfactual gains are not real evidence or implemented behavior.
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/session-log.md
+  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
+  - artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
+  - reports/generated/synthetic_accuracy_simulation/ (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - python VEGO-AI\\analysis\\evaluate_accuracy_improvement.py --exp002-sheet <synthetic sheet> --output-dir <scenario dir> - passed for 4 scenarios
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+  - git check-ignore for synthetic outputs - ignored
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+- Status: completed
+- Next steps: Use synthetic results only for pipeline validation; collect real EXP-003 expert labels before any accuracy-improvement claim or policy refinement.
+
+## 2026-06-16 23:50 +03:00 - Codex - Synthetic simulation framing hardening
+
+- Request: Apply the attached review: frame the synthetic simulation as a policy-sensitivity check, not an accuracy result.
+- Actions taken:
+  - Renamed/strengthened the synthetic simulation framing as a policy-sensitivity check.
+  - Added supervisor-ready wording explaining that current M4B-1 has 0 accuracy delta and counterfactual deltas are not expert evidence.
+  - Recorded that the synthetic +16.67 pp upper-bound must not be reported as an actual result.
+  - Verified no protected behavior/baseline paths changed.
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
+  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
+  - reports/generated/synthetic_accuracy_simulation/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+  - git check-ignore for report artifacts - ignored
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+- Status: completed
+- Next steps: Use the synthetic simulation only as pipeline validation; collect real EXP-003 expert labels before accuracy claims or M4B-1.1 implementation.
+
+## 2026-06-17 00:01 +03:00 - Codex - EXP-004 policy sensitivity harness
+
+- Request: Keep improving accuracy with experiments while using full project memory and preserving research boundaries.
+- Actions taken:
+  - Added EXP-004 policy-sensitivity simulation harness for candidate M4B-1.1-style policies.
+  - Generated ignored policy-sensitivity reports and matrix from the current EXP-003 sheet.
+  - Updated research docs, experiment registry, memory decisions, and issue tracking.
+  - Kept the result synthetic-only: current M4B-1 remains +0.00 pp; aggressive candidates can help or harm depending on synthetic truth assumptions.
+- Files changed:
+  - scripts/policy_sensitivity_simulation.py
+  - scripts/build-policy-sensitivity-simulation.ps1
+  - experiments/EXP-004-policy-sensitivity-simulation/README.md
+  - experiments/registry.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md (ignored)
+  - reports/generated/policy_sensitivity/ (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - python -m py_compile scripts\\policy_sensitivity_simulation.py - passed
+  - .\\scripts\\build-policy-sensitivity-simulation.ps1 - passed
+  - PowerShell parser check for scripts/*.ps1 - passed after correcting the check invocation
+  - python -m pytest VEGO-AI\\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+  - Protected path audit for VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no diffs
+- Status: completed
+- Next steps: Collect real EXP-003 expert labels, then rerun EXP-003 and EXP-004 to evaluate candidate policy variants with non-synthetic evidence before implementing any M4B-1.1 change.
+
+## 2026-06-17 00:48 +03:00 - Codex - EXP-005 real-label accuracy gate
+
+- Request: Implement EXP-005 real-label accuracy evaluation and policy gate without changing VEGO-AI behavior.
+- Actions taken:
+  - Added EXP-005 label-review Python helper and PowerShell wrapper.
+  - Generated ignored supervisor/expert label-review package with blind/full sheets, label-first summary, validation summary, and real-label policy gate.
+  - Updated research docs, experiment registry, and memory to keep accuracy claims blocked until real generalization-safe labels exist.
+  - Validated no Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding changes were made.
+- Files changed:
+  - scripts/exp005_label_review.py
+  - scripts/build-exp005-label-review.ps1
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/EXP005_LABEL_REVIEW_PACKAGE.md (ignored)
+  - artifacts/EXP005_POLICY_SENSITIVITY_REPORT.md (ignored)
+  - reports/generated/exp005_label_review/ (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - python -m py_compile scripts\\exp005_label_review.py - passed
+  - PowerShell parser check for scripts/build-exp005-label-review.ps1 - passed
+  - .\\scripts\\build-exp005-label-review.ps1 - passed; gate says Accuracy improvement cannot be evaluated yet
+  - .\\scripts\\build-exp005-label-review.ps1 -FilledLabelsSheet reports\\generated\\exp005_label_review\\exp005_label_review_blind.csv -RunDownstream - passed with blank labels
+  - python -m pytest VEGO-AI\\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
+  - PowerShell parser check for scripts/*.ps1 - passed
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+  - git check-ignore for EXP-005 generated outputs - ignored
+  - git diff --check - only existing CRLF warnings in memory logs
+- Status: completed
+- Next steps: Fill the EXP-005 blind sheet with at least 20 safe expert labels, preferably 30-50, then rerun the EXP-005 wrapper with -FilledLabelsSheet and -RunDownstream before any policy refinement.
+
+## 2026-06-21 13:05 +03:00 - Codex - VEGO workbench launcher
+
+- Request: Continue enhancing the project.
+- Actions taken:
+  - Added a one-command VEGO workbench launcher for dashboard, EXP-005 label review, optional GUI, optional wiki outbox, and optional health checks.
+  - Added operation docs for launcher commands and updated README daily workflow.
+  - Validated the launcher in non-opening mode and full non-interactive mode.
+  - Confirmed no Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding changes were made.
+- Files changed:
+  - scripts/open-vego-workbench.ps1
+  - docs/operations/vego-workbench.md
+  - README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - VEGO-AI/reports/results_dashboard/ (ignored)
+  - reports/generated/exp005_label_review/ (ignored)
+  - docs/confluence/outbox/ (ignored)
+  - docs/confluence/manual-sync-pack.generated.md (ignored)
+  - docs/dashboards/status-snapshot.generated.md (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - PowerShell parser check for scripts/open-vego-workbench.ps1 - passed
+  - .\\scripts\\open-vego-workbench.ps1 -NoOpen - passed
+  - .\\scripts\\open-vego-workbench.ps1 -All -NoOpen - passed
+  - python -m pytest VEGO-AI\\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
+  - PowerShell parser check for scripts/*.ps1 - passed
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+  - git check-ignore for generated dashboard/EXP-005/Confluence outputs - ignored
+  - git diff --check - only existing CRLF warnings in memory logs
+- Status: completed
+- Next steps: Use .\\scripts\\open-vego-workbench.ps1 for daily review, .\\scripts\\open-vego-workbench.ps1 -Gui for visualizer review, and fill EXP-005 blind labels before any accuracy-improvement claim or M4B-1.1/M4B-2 work.
+
+## 2026-06-21 13:11 +03:00 - Codex - Topology report HTML/PDF export
+
+- Request: Export all topology and flow diagrams/content to HTML and PDF.
+- Actions taken:
+  - Added a reusable topology export script.
+  - Generated local HTML and PDF reports under artifacts/topology-export.
+  - Updated operations docs with the export command.
+  - Verified generated exports are ignored and no VEGO behavior paths changed.
+- Files changed:
+  - scripts/export-topology-report.ps1
+  - docs/operations/vego-workbench.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html (ignored)
+  - artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.pdf (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - PowerShell parser check for scripts/export-topology-report.ps1 - passed
+  - .\\scripts\\export-topology-report.ps1 - generated HTML and PDF
+  - PowerShell parser check for scripts/*.ps1 - passed
+  - git check-ignore for topology HTML/PDF - ignored
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+- Status: completed
+- Next steps: Open artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html or .pdf; regenerate anytime with .\\scripts\\export-topology-report.ps1 -Open.
+
+## 2026-06-21 13:15 +03:00 - Codex - Baseline architecture overlay export
+
+- Request: Show the new research flow on top of the main VEGO-AI PDF architecture flow.
+- Actions taken:
+  - Added a reusable baseline-overlay export script.
+  - Generated HTML and PDF overlay reports showing M1-M4B-1 and EXP-005 on top of the VEGO-AI paper architecture layout.
+  - Updated operation docs with the overlay export command.
+  - Verified generated overlay exports are ignored and no VEGO behavior paths changed.
+- Files changed:
+  - scripts/export-baseline-overlay-report.ps1
+  - docs/operations/vego-workbench.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html (ignored)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored)
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - PyPDF2 page scan found the baseline figure context in the main PDF around page 5
+  - PowerShell parser check for scripts/export-baseline-overlay-report.ps1 - passed
+  - .\\scripts\\export-baseline-overlay-report.ps1 - generated HTML and PDF
+  - PowerShell parser check for scripts/*.ps1 - passed
+  - git check-ignore for overlay HTML/PDF - ignored
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+- Status: completed
+- Next steps: Open artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html or .pdf; regenerate anytime with .\\scripts\\export-baseline-overlay-report.ps1 -Open.
+
+## 2026-06-21 13:19 +03:00 - Codex - Publish evidence tooling baseline
+
+- Request: Commit and push current safe tooling changes before moving to expert-label evidence collection.
+- Actions taken:
+  - Prepared the current safe tooling state for publication on main.
+  - Validated EXP-004, EXP-005, workbench, topology exporters, and research documentation boundaries.
+  - Confirmed no Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding changes were made.
+  - Excluded local .vscode/launch.json from the planned commit.
+- Files changed:
+  - README.md
+  - docs/operations/
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/m4b1-policy-refinement-plan.md
+  - experiments/registry.md
+  - experiments/EXP-004-policy-sensitivity-simulation/
+  - experiments/EXP-005-real-label-accuracy-gate/
+  - scripts/build-exp005-label-review.ps1
+  - scripts/build-policy-sensitivity-simulation.ps1
+  - scripts/exp005_label_review.py
+  - scripts/export-baseline-overlay-report.ps1
+  - scripts/export-topology-report.ps1
+  - scripts/open-vego-workbench.ps1
+  - scripts/policy_sensitivity_simulation.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - python -m pytest VEGO-AI\\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
+  - PowerShell parser check for scripts/*.ps1 - passed
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+- Status: completed
+- Next steps: Commit and push the safe evidence-tooling baseline, then collect EXP-005 blind expert labels before any accuracy claim or M4B-1.1/M4B-2 work.

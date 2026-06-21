@@ -49,12 +49,15 @@ Do not mix thesis notes, experiment notes, or project-management files inside `V
 ## Daily Workflow
 
 1. Pull memory context: `.\scripts\agent-memory-start.ps1`.
-2. Check active tasks in `docs/agent-memory/progress.md`.
-3. Work in the right area: code in `VEGO-AI/` or `src/`, experiments in `experiments/`, notes in `docs/` or `literature/`.
-4. Record research changes in the relevant registry or template.
-5. Finish with `.\scripts\agent-memory-finish.ps1` so future prompts can continue the thread.
-6. Refresh the Confluence outbox, dashboard runtime snapshot, and manual sync pack with `.\scripts\build-confluence-wiki.ps1`.
-7. Verify dashboard/wiki readiness with `.\scripts\dashboard-health.ps1 -RequireOutbox`.
+2. Open the local workbench when reviewing results or preparing labels: `.\scripts\open-vego-workbench.ps1`.
+3. Check active tasks in `docs/agent-memory/progress.md`.
+4. Work in the right area: code in `VEGO-AI/` or `src/`, experiments in `experiments/`, notes in `docs/` or `literature/`.
+5. Record research changes in the relevant registry or template.
+6. Finish with `.\scripts\agent-memory-finish.ps1` so future prompts can continue the thread.
+7. Refresh the Confluence outbox, dashboard runtime snapshot, and manual sync pack with `.\scripts\build-confluence-wiki.ps1`.
+8. Verify dashboard/wiki readiness with `.\scripts\dashboard-health.ps1 -RequireOutbox`.
+
+For meeting/demo commands, see `docs/operations/vego-workbench.md`.
 
 ## Reproducibility Rule
 

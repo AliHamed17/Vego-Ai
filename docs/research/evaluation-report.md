@@ -1,8 +1,8 @@
 # Evaluation Of Reusable Human Judgment In VEGO-AI
 
-Last curated update: 2026-06-14 19:20 +03:00 by Codex.
+Last curated update: 2026-06-17 00:45 +03:00 by Codex.
 
-Status: EXP-001 mechanism/readiness evaluation complete; EXP-002 expert-labeling package generated; human labels still pending.
+Status: EXP-001 mechanism/readiness evaluation complete; EXP-002/EXP-003 labeling and accuracy tooling generated; EXP-004 synthetic policy-risk screening complete; EXP-005 real-label gate package added; human labels still pending.
 
 ## Evaluation Position
 
@@ -336,3 +336,91 @@ The EXP-003 gate is strict: if there are zero generalization-safe expert labels,
 `Accuracy improvement cannot be evaluated yet.` If there are fewer than 20 safe expert labels, any accuracy
 or macro-F1 result is pilot evidence only. No M4B-1 policy refinement, M4B-2, Agent 4 change, LLM/API call,
 embedding path, or baseline overwrite is approved by this plan.
+
+## Results And Accuracy Report - 2026-06-16
+
+A full local report was generated at `artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md` from the existing
+EXP-001, EXP-002, EXP-003, strict comparison, and dashboard summaries. The report is intentionally ignored by
+Git under the artifact policy.
+
+Strict conclusion: VEGO-AI has improved research traceability, explainability, human-review routing,
+reusable judgment structure, dashboard visibility, and non-destructive comparison. It has not yet proven
+classification accuracy improvement. Current evidence remains: 27 comparison rows, 3 same-pattern expert
+labels, 0 generalization-safe expert-labeled rows, 0/27 memory-informed classification changes, and the
+EXP-003 gate status `Accuracy improvement cannot be evaluated yet.`
+
+## Synthetic Accuracy Simulation: Policy Sensitivity Check - 2026-06-16
+
+A synthetic-only simulation report was generated at `artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md`
+with detailed outputs under ignored `reports/generated/synthetic_accuracy_simulation/`.
+
+The synthetic simulation was used only to validate the evaluation pipeline and explore the sensitivity of
+future memory-informed policies. It does not provide expert evidence. Under the current M4B-1 policy,
+memory-informed classifications remain identical to the original Agent 4 classifications, so no accuracy
+delta is possible. Counterfactual policies show that measurable improvement would require allowing memory
+advice to modify the parallel classification under controlled conditions. Therefore, real expert labels are
+still required before any accuracy-improvement claim can be made.
+
+Do not report the synthetic `+16.67 pp` upper-bound scenario as an actual result. It is only a counterfactual
+stress test showing that the evaluator can detect a delta if a future approved policy changes classifications.
+
+## EXP-004 Policy Sensitivity Experiment - 2026-06-16
+
+EXP-004 adds a reusable policy-sensitivity harness:
+
+```powershell
+.\scripts\build-policy-sensitivity-simulation.ps1
+```
+
+Generated local outputs, ignored by Git:
+
+- `reports/generated/policy_sensitivity/policy_sensitivity_summary.json`
+- `reports/generated/policy_sensitivity/policy_sensitivity_matrix.csv`
+- `reports/generated/policy_sensitivity/policy_sensitivity_predictions.csv`
+- `reports/generated/policy_sensitivity/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md`
+- `artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md`
+
+Initial synthetic run:
+
+| Finding | Value |
+| --- | ---: |
+| Rows | 27 |
+| Generalization-safe rows | 24 |
+| Memory suggestions available | 8 |
+| Safe memory disagreements | 4 |
+| Current M4B-1 synthetic delta | `+0.00 pp` |
+| Best upper-bound synthetic delta under `all_memory_truth` | `+16.67 pp` |
+| Worst aggressive-policy synthetic loss under `original_truth` | `-16.67 pp` |
+
+Interpretation: current M4B-1 still cannot improve accuracy because it changes no classifications. Candidate
+policies are useful for risk screening only. Aggressive policies can look good when synthetic labels assume
+memory advice is correct, but they also create false-change risk when original Agent 4 is correct. No policy
+variant should be implemented before real EXP-003 expert labels show where Agent 4 is wrong and whether memory
+advice would have corrected those errors.
+
+## EXP-005 Real-Label Accuracy Gate - 2026-06-17
+
+EXP-005 adds the supervisor/expert labeling gate:
+
+```powershell
+.\scripts\build-exp005-label-review.ps1
+```
+
+Generated local outputs, ignored by Git:
+
+- `reports/generated/exp005_label_review/exp005_label_review_blind.csv`
+- `reports/generated/exp005_label_review/exp005_label_review_full.csv`
+- `reports/generated/exp005_label_review/label_these_first.md`
+- `reports/generated/exp005_label_review/label_validation_summary.json`
+- `reports/generated/exp005_label_review/real_vs_synthetic_policy_gate.md`
+- `artifacts/EXP005_LABEL_REVIEW_PACKAGE.md`
+
+The blind sheet hides original Agent 4 and memory-informed classifications for unbiased expert labeling. The
+full sheet preserves audit context. The validation gate remains strict:
+
+- `0` safe labels: `Accuracy improvement cannot be evaluated yet.`
+- `1-19` safe labels: pilot evidence only.
+- `20+` safe labels: quantitative evaluation can be reported, still with validity threats.
+
+EXP-005 is now the required gate before any M4B-1.1 policy refinement or M4B-2 work. Synthetic EXP-004 results
+can guide risk discussion, but they cannot justify an accuracy claim or classifier change without real labels.
