@@ -2399,3 +2399,63 @@ Chronological prompt history for Codex and Claude.
   - .\scripts\research-health.ps1
 - Status: Completed synthetic-only pipeline trial. Real EXP-005 evidence remains blocked until real supervisor/expert labels are saved.
 - Next steps: Use the synthetic report only for pipeline/policy-risk discussion. Collect real EXP-005 blind labels before any real accuracy claim or policy implementation. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
+
+## 2026-06-22 17:19 +03:00 - Codex - EXP-005 synthetic policy candidates documented as design-only
+
+- Request: Continue to next steps after synthetic EXP-005 trial.
+- Actions taken:
+  - Added docs/research/m4b1-synthetic-policy-candidate-review.md as a tracked design-only interpretation of the synthetic EXP-005 trial.
+  - Updated accuracy improvement plan and EXP-005 README to distinguish synthetic pipeline trial from real EXP-005 evidence.
+  - Added KPI row for EXP-005 synthetic trial with 0.00 pp current M4B-1 accuracy delta.
+  - Updated current-state, progress, decisions, and issues memory to preserve the synthetic-only boundary.
+  - Verified no protected VEGO behavior paths were changed.
+- Files changed:
+  - docs/research/m4b1-synthetic-policy-candidate-review.md
+  - docs/research/accuracy-improvement-plan.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - Get-Content artifacts\SYNTHETIC_EXP005_TRIAL_REPORT.md
+  - Get-Content reports\generated\exp005_synthetic_trial\pipeline\real_vs_synthetic_policy_gate.md
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts -> passed
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
+- Status: Completed design-only documentation for synthetic EXP-005 policy candidates. No implementation or behavior changes made.
+- Next steps: Collect real EXP-005 labels, rerun the real-label gate, and only then revisit M4B-1.1 policy candidates. Keep M4B-2, Agent 4 changes, LLM/API, embeddings, baseline outputs, and eval_output blocked.
+
+## 2026-06-22 17:19 +03:00 - Codex - EXP-005 synthetic policy candidate documentation validated
+
+- Request: Continue to next steps after synthetic EXP-005 trial.
+- Actions taken:
+  - Completed tracked design-only documentation for synthetic policy candidates.
+  - Ran wiki/dashboard refresh and validation.
+  - Observed one research-health/dashboard race while wiki outbox was regenerating, then reran research-health sequentially and it passed.
+  - Confirmed compileall and protected-path audits passed.
+- Files changed:
+  - docs/research/m4b1-synthetic-policy-candidate-review.md
+  - docs/research/accuracy-improvement-plan.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed
+  - .\scripts\project-health.ps1 -> passed
+  - .\scripts\research-health.ps1 -> one parallel race, sequential rerun passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts -> passed
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
+- Status: Ready to commit docs-only design checkpoint. No VEGO behavior changed.
+- Next steps: Commit/push docs-only synthetic policy candidate checkpoint. Then collect real EXP-005 labels before any policy refinement.

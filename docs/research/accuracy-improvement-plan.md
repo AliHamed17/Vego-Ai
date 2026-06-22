@@ -1,6 +1,6 @@
 # Accuracy Improvement Plan
 
-Last updated: 2026-06-17 by Codex.
+Last updated: 2026-06-22 by Codex.
 
 Status: evaluation-first path defined; EXP-005 real-label gate added; no accuracy-improvement claim is allowed yet.
 
@@ -130,6 +130,30 @@ the EXP-005 generated folder.
 Current expected initial status is still `Accuracy improvement cannot be evaluated yet` because real
 generalization-safe labels have not been filled. EXP-005 is the required gate before M4B-1.1 or M4B-2 can be
 considered.
+
+## EXP-005 Synthetic Trial
+
+A synthetic-only EXP-005 trial was run to exercise the downstream evidence pipeline without editing the real
+blind label sheet:
+
+- Synthetic report: ignored `artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md`
+- Synthetic outputs: ignored `reports/generated/exp005_synthetic_trial/`
+- Synthetic reviewer ID: `SYNTHETIC_NOT_HUMAN`
+- Design-only interpretation: `docs/research/m4b1-synthetic-policy-candidate-review.md`
+
+Synthetic result:
+
+| Measure | Value |
+| --- | ---: |
+| Synthetic labels | 27 |
+| Synthetic generalization-safe labels | 24 |
+| Current M4B-1 classification changes | 0 / 27 |
+| Generalization-safe original accuracy | 79.17% |
+| Generalization-safe memory-informed accuracy | 79.17% |
+
+The synthetic trial confirms that current M4B-1 still has no accuracy delta because it changes no classifications.
+Synthetic policy variants can suggest which deterministic rules deserve later review, but they are not evidence
+of real accuracy improvement.
 
 ## Strategic Hardening Review
 

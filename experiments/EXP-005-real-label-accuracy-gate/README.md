@@ -1,6 +1,6 @@
 # EXP-005 Real-Label Accuracy Evaluation And Policy Gate
 
-Status: label-review package tooling added; real expert labels pending.
+Status: label-review package tooling added; real expert labels pending. Synthetic pipeline trial completed as simulation only.
 
 ## Purpose
 
@@ -21,6 +21,14 @@ Optional filled-label rerun:
 ```
 
 Use the optional form only after a human reviewer fills labels.
+
+Synthetic trial command used for pipeline testing only:
+
+```powershell
+.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_synthetic_trial\exp005_synthetic_filled_labels.csv -OutputDir reports\generated\exp005_synthetic_trial\pipeline -ArtifactCopy artifacts\EXP005_SYNTHETIC_TRIAL_PACKAGE.md -RunDownstream
+```
+
+The synthetic trial uses reviewer ID `SYNTHETIC_NOT_HUMAN` and must not be treated as real expert evidence.
 
 ## Reviewer Reliability
 
@@ -55,6 +63,18 @@ All outputs are ignored by Git:
 - Preferred target: 30-50 safe labels across audited runs.
 
 No M4B-1.1 or M4B-2 implementation is justified until EXP-005 labels show a real, leakage-safe reason for a deterministic policy change.
+
+## Synthetic Trial Result
+
+The synthetic trial produced a complete end-to-end pipeline run with 27 synthetic labels and 24 synthetic
+generalization-safe rows. Current M4B-1 still changed 0 / 27 classifications, so original and memory-informed
+accuracy were identical under the synthetic labels.
+
+Design-only follow-up:
+
+- `docs/research/m4b1-synthetic-policy-candidate-review.md`
+
+This result supports only pipeline readiness and policy-risk exploration. It does not support an accuracy claim.
 
 ## Stable Evidence Tagging
 

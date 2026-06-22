@@ -248,3 +248,11 @@ Durable decisions for this project.
 - Decision: Treat generated EXP-005 verdicts and manifests as ignored local evidence artifacts until publishability is approved.
 - Reason: The project needs stronger reliability and reproducibility without changing VEGO-AI classification behavior.
 - Consequence: Evidence reruns should review `evidence_verdict.md`, `reproducibility_manifest.json`, reviewer reliability counts, and protected-path diff status before any thesis claim or tag.
+
+## 2026-06-22 - EXP-005 Synthetic Trial Boundary
+
+- Decision: Allow synthetic EXP-005 labels only in a separate ignored trial folder and mark them with reviewer ID `SYNTHETIC_NOT_HUMAN`.
+- Decision: Treat the synthetic policy-candidate review as design-only guidance, not real evidence and not authorization for implementation.
+- Decision: Keep M4B-1.1, M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline-output overwrites, and `VEGO-AI/eval_output` changes blocked after the synthetic trial.
+- Reason: The synthetic trial confirmed the pipeline works and current M4B-1 has 0.00 pp synthetic accuracy delta, while candidate policy gains depend on synthetic assumptions.
+- Consequence: Real EXP-005 labels remain the required next step before any accuracy claim or policy refinement.
