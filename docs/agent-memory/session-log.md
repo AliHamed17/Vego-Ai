@@ -1651,3 +1651,610 @@ Chronological prompt history for Codex and Claude.
   - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
 - Status: completed
 - Next steps: Commit and push the safe evidence-tooling baseline, then collect EXP-005 blind expert labels before any accuracy claim or M4B-1.1/M4B-2 work.
+
+## 2026-06-21 13:45 +03:00 - Codex - EXP-005 label collection sprint setup
+
+- Request: Implement the EXP-005 expert label collection sprint plan.
+- Actions taken:
+  - Opened VEGO workbench with GUI, dashboard, EXP-005 label files, and reports.
+  - Opened baseline/topology PDF exports for supervisor discussion.
+  - Verified EXP-005 still has 0 valid labels and the strict gate remains blocked.
+  - Ran validation checks and confirmed no protected VEGO behavior paths changed.
+- Files changed:
+  - reports/generated/exp005_label_review/ (ignored regenerated)
+  - VEGO-AI/reports/results_dashboard/ (ignored regenerated)
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1 - passed
+  - .\\scripts\\open-vego-workbench.ps1 -Gui - passed
+  - Start-Process artifacts\\topology-export\\VEGO_BASELINE_OVERLAY_REPORT.pdf - opened
+  - Start-Process artifacts\\topology-export\\VEGO_TOPOLOGY_FLOW_REPORT.pdf - opened
+  - python -m pytest VEGO-AI\\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
+  - .\\scripts\\project-health.ps1 - passed
+  - .\\scripts\\research-health.ps1 - passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
+- Status: completed
+- Next steps: Human/supervisor must fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real labels; then run .\\scripts\\build-exp005-label-review.ps1 -FilledLabelsSheet reports\\generated\\exp005_label_review\\exp005_label_review_blind.csv -RunDownstream.
+
+## 2026-06-21 16:44 +03:00 - Codex - EXP-005 manual labeling and evidence gate setup
+
+- Request: Implement the EXP-005 manual labeling and evidence evaluation plan without inventing labels or changing VEGO behavior.
+- Actions taken:
+  - Ran prompt-start memory refresh and read current EXP-005 gate context.
+  - Opened VEGO workbench with GUI plus dashboard, EXP-005 label-priority file, blind CSV, full EXP-005 package, accuracy report, and topology PDFs.
+  - Confirmed the EXP-005 blind CSV still has 27 rows, 0 supplied labels, and 0 complete required label rows.
+  - Skipped downstream EXP-003/EXP-004 rerun because Codex must not invent labels and the real-label gate remains blocked.
+  - Recorded a low-severity Windows CSV file-lock issue for future workbench/build runs.
+  - Ran validation gates and confirmed no protected VEGO behavior diffs.
+- Files changed:
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/ (ignored, opened/current package)
+  - VEGO-AI/reports/results_dashboard/ (ignored, refreshed by workbench)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - git status -sb --short - showed memory log edits plus local .vscode/launch.json
+  - .\scripts\open-vego-workbench.ps1 -Gui - opened workbench; warning: blind CSV locked while opened
+  - EXP-005 CSV label-count check - 0 supplied labels
+  - python -m pytest VEGO-AI\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts - passed
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+  - .\scripts\project-health.ps1 - passed
+  - .\scripts\research-health.ps1 - passed
+  - .\scripts\dashboard-health.ps1 -RequireOutbox - passed
+- Status: Blocked on real labels: EXP-005 has 0 supplied labels, so accuracy improvement cannot be evaluated yet. Validation passed; protected VEGO paths unchanged.
+- Next steps: Fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels only. Close the blind CSV before regenerating the EXP-005 package to avoid Windows file-lock failures. After at least one real label exists, preferably 20+ safe labels, run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API reclassification, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 16:50 +03:00 - Codex - EXP-005 manual labeling gate rerun attempt
+
+- Request: Implement EXP-005 manual expert label collection and evidence rerun plan.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked current EXP-005 gate context.
+  - Confirmed the EXP-005 blind CSV exists with 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected the blind CSV is locked by another process, so skipped regenerating the EXP-005 package and did not run downstream evaluation.
+  - Opened existing dashboard, EXP-005 label-priority file, blind CSV, baseline overlay PDF, and launched the VEGO visualizer GUI directly.
+  - Ran validation gates and confirmed protected VEGO behavior paths remain unchanged.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/ (ignored existing review package opened)
+  - VEGO-AI/reports/results_dashboard/ (ignored existing dashboard opened)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - locked by another process
+  - Start-Process dashboard/EXP-005/topology files - opened existing materials
+  - Start-Process python visualize_compliance.py - launched visualizer GUI directly
+  - python -m pytest VEGO-AI\tests -q - 94 passed
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts - passed
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+  - .\scripts\project-health.ps1 - passed
+  - .\scripts\research-health.ps1 - passed
+  - .\scripts\dashboard-health.ps1 -RequireOutbox - passed
+- Status: Blocked on real labels and current CSV file lock: EXP-005 remains at 0 supplied labels, so downstream accuracy evaluation was skipped. Validation passed and protected VEGO paths were unchanged.
+- Next steps: Close reports/generated/exp005_label_review/exp005_label_review_blind.csv before rerunning any EXP-005 regeneration. Fill the blind CSV with real supervisor/expert labels only. After labels exist, run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API reclassification, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 17:28 +03:00 - Codex - EXP-005 gate checked; labels still missing
+
+- Request: Continue with the next step for EXP-005 expert label collection and evidence rerun.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 gate again.
+  - Confirmed the blind CSV still has 27 rows, 0 supplied labels, and 0 complete required label rows.
+  - Confirmed the blind CSV is still locked by another process, so EXP-005 regeneration and downstream evaluation were not run.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - locked by another process
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked: EXP-005 still has 0 supplied labels and the blind CSV is locked. Downstream accuracy evaluation cannot be run yet.
+- Next steps: Close the process holding reports/generated/exp005_label_review/exp005_label_review_blind.csv, enter real supervisor/expert labels in the required fields, then rerun .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not implement M4B-2, change Agent 4, call LLM/API, add embeddings, overwrite baseline outputs, or change VEGO-AI/eval_output.
+
+## 2026-06-21 17:38 +03:00 - Codex - EXP-005 label file unlocked and reopened for manual labeling
+
+- Request: Implement the EXP-005 immediate next step: unblock label file, collect labels, then rerun evidence.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 gate.
+  - Detected Excel was holding exp005_label_review_blind.csv and requested a clean close of only that Excel window.
+  - Confirmed the blind CSV became unlocked after Excel closed.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid labels.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
+  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual labeling.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - initially locked by Excel
+  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
+  - EXP-005 CSV lock recheck - unlocked
+  - Start-Process EXP-005 review materials - opened for manual labeling
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Partially complete: the label CSV was unlocked and reopened, but EXP-005 still has 0 saved labels, so downstream accuracy evidence remains blocked.
+- Next steps: Fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 17:40 +03:00 - Codex - EXP-005 label file unlocked; labels still pending
+
+- Request: Do the next EXP-005 step.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Detected the blind CSV was locked by Excel and requested a normal close of the exp005_label_review_blind workbook window.
+  - Confirmed the CSV became unlocked after Excel closed.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
+  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual expert labeling.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - initially locked by Excel
+  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
+  - EXP-005 CSV lock recheck - unlocked
+  - Start-Process EXP-005 review materials - opened for manual labeling
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: CSV is usable again and review materials are open, but EXP-005 still has 0 saved labels, so downstream accuracy evidence was skipped.
+- Next steps: Fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 17:44 +03:00 - Codex - EXP-005 still blocked; review files reopened
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected Excel was holding exp005_label_review_blind.csv and requested a normal close of that workbook window only.
+  - Confirmed the CSV became unlocked after Excel closed.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
+  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual labeling.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - initially locked by Excel
+  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
+  - EXP-005 CSV lock recheck - unlocked
+  - Start-Process EXP-005 review materials - opened for manual labeling
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. CSV was unlocked and review materials were reopened.
+- Next steps: Manually fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 17:47 +03:00 - Codex - EXP-005 gate closed and reopened; labels still absent
+
+- Request: Implement EXP-005 close label sheet, require real labels, then run evidence plan.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
+  - Confirmed the CSV became unlocked after Excel closed.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
+  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual labeling.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - initially locked by Excel
+  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
+  - EXP-005 CSV lock recheck - unlocked
+  - Start-Process EXP-005 review materials - opened for manual labeling
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. CSV was unlocked, review materials were reopened, and protected VEGO paths stayed unchanged.
+- Next steps: Manually fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 18:13 +03:00 - Codex - EXP-005 file unlocked; no labels saved
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
+  - Confirmed the CSV became unlocked after Excel closed.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
+  - Left the CSV closed and unlocked so manual labels can be entered cleanly in the next user action.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - initially locked by Excel
+  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
+  - EXP-005 CSV lock recheck - unlocked
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. CSV is now closed and unlocked.
+- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv, fill real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 22:29 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
+
+- Request: Implement EXP-005 next executable step: fill labels before any evidence run.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the blind CSV is unlocked and still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Opened exp005_label_review_blind.csv for manual supervisor/expert labeling.
+  - Opened label_these_first.md for row prioritization.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - unlocked before opening
+  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv - opened
+  - Start-Process reports\generated\exp005_label_review\label_these_first.md - opened
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Manual labeling required: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. Blind CSV is open for human labeling.
+- Next steps: Enter real supervisor/expert labels in reports/generated/exp005_label_review/exp005_label_review_blind.csv, save the file, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not invent labels or change Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, or eval_output.
+
+## 2026-06-21 22:39 +03:00 - Codex - EXP-005 reopen loop stopped; CSV unlocked
+
+- Request: Implement EXP-005 plan to close label sheet, require real labels, and wait.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
+  - Confirmed the CSV is now closed and unlocked.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
+  - Did not reopen the CSV, stopping the reopen loop as requested.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - initially locked by Excel
+  - CloseMainWindow on Excel exp005_label_review_blind window - requested; file became unlocked
+  - EXP-005 CSV lock recheck - unlocked
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is closed and unlocked, and downstream accuracy evidence was not run.
+- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv manually only when ready to enter real supervisor/expert labels. Save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 22:51 +03:00 - Codex - EXP-005 blind sheet opened again for manual labeling
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the blind CSV was unlocked but still had 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Opened exp005_label_review_blind.csv for manual supervisor/expert labeling.
+  - Attempted to open label_these_first.md through the default association; retried with Notepad after the default opener timed out.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - unlocked before opening, locked after opening
+  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv - opened
+  - Start-Process reports\generated\exp005_label_review\label_these_first.md - timed out through default association
+  - Start-Process notepad.exe reports\generated\exp005_label_review\label_these_first.md - opened
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Manual labeling required: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. Blind CSV is open and locked for human labeling.
+- Next steps: Enter real supervisor/expert labels in reports/generated/exp005_label_review/exp005_label_review_blind.csv, save the file, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not invent labels or change Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, or eval_output.
+
+## 2026-06-21 22:53 +03:00 - Codex - EXP-005 checked; CSV left unlocked with no labels
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
+  - Confirmed the CSV is now closed and unlocked.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
+  - Did not reopen the CSV, keeping it closed/unlocked for manual labeling.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - initially locked by Excel
+  - CloseMainWindow on Excel exp005_label_review_blind window - requested; file became unlocked
+  - EXP-005 CSV lock recheck - unlocked
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is closed and unlocked; downstream accuracy evidence was not run.
+- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv manually only when ready to enter real supervisor/expert labels. Save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-21 22:55 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the blind CSV was unlocked and still had 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Opened exp005_label_review_blind.csv for manual supervisor/expert labeling.
+  - Opened label_these_first.md in Notepad for row prioritization.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - unlocked before opening, locked after opening
+  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv - opened
+  - Start-Process notepad.exe reports\generated\exp005_label_review\label_these_first.md - opened
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Manual labeling required: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. Blind CSV is open and locked for human labeling.
+- Next steps: Enter real supervisor/expert labels in reports/generated/exp005_label_review/exp005_label_review_blind.csv, save the file, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not invent labels or change Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, or eval_output.
+
+## 2026-06-21 22:57 +03:00 - Codex - EXP-005 still awaiting saved labels
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected the CSV is locked by Excel, indicating it is open for manual labeling.
+  - Did not close or reopen Excel to avoid interrupting possible unsaved manual work.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - locked by Excel
+  - Get-Process EXCEL - confirmed exp005_label_review_blind workbook window
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is open in Excel; downstream accuracy evidence was not run.
+- Next steps: Finish manual labeling in the open Excel workbook, save it, and close Excel. Then rerun this gate or execute .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-22 11:19 +03:00 - Codex - EXP-005 still open in Excel; labels not saved
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected the CSV is locked by Excel, indicating it is open for manual labeling.
+  - Did not close Excel to avoid interrupting possible unsaved manual work.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - locked by Excel
+  - Get-Process EXCEL - confirmed exp005_label_review_blind workbook window
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is open in Excel; downstream accuracy evidence was not run.
+- Next steps: Finish manual labeling in the open Excel workbook, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-22 13:25 +03:00 - Codex - EXP-005 gate checked; Excel still open
+
+- Request: Do next step for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Detected the CSV is locked by Excel, indicating it is open for manual labeling.
+  - Did not close Excel to avoid interrupting possible unsaved manual work.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - locked by Excel
+  - Get-Process EXCEL - confirmed exp005_label_review_blind workbook window
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is open in Excel; downstream accuracy evidence was not run.
+- Next steps: Finish manual labeling in the open Excel workbook, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-22 13:46 +03:00 - Codex - EXP-005 gate checked; CSV unlocked with no labels
+
+- Request: Implement EXP-005 manual save required before evidence plan.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
+  - Confirmed the saved blind CSV has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
+  - Confirmed the CSV is closed and unlocked; no Excel process is holding it.
+  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
+  - Kept the CSV closed/unlocked for manual label entry.
+  - Confirmed protected VEGO behavior diff remains empty.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1 - passed
+  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
+  - EXP-005 CSV lock check - unlocked
+  - Get-Process EXCEL - no Excel process reported
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
+- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is closed/unlocked; downstream accuracy evidence was not run.
+- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv manually only when ready to enter real supervisor/expert labels. Save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
+
+## 2026-06-22 13:59 +03:00 - Codex - Strategic review and hardening plan
+
+- Request: Review all changes, check the flow, identify weaknesses/vulnerabilities, and implement the strategic hardening plan.
+- Actions taken:
+  - Added strategic review and hardening plan for current VEGO-AI flow and vulnerabilities.
+  - Updated evaluation and accuracy-governance docs with current EXP-005 gate and allowed/blocked claims.
+  - Added risk-register and memory tracker entries for false accuracy narrative risk, missing real labels, CSV workflow friction, and reviewer/adjudication weakness.
+  - Regenerated Confluence wiki outbox/manual sync pack; live sync remains pending Atlassian access/page IDs.
+- Files changed:
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/project-management/risk-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+  - docs/dashboards/status-snapshot.generated.md ignored
+  - docs/confluence/outbox/ ignored
+  - docs/confluence/manual-sync-pack.generated.md ignored
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1
+  - git status -sb --short
+  - git log --oneline --decorate -n 10
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval
+  - .\\scripts\\project-health.ps1 passed
+  - .\\scripts\\research-health.ps1 passed
+  - .\\scripts\\build-confluence-wiki.ps1 passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox passed
+- Status: completed
+- Next steps: Collect at least 20 generalization-safe EXP-005 expert labels, add second reviewer/adjudication for disputed rows, then rerun the EXP-005 downstream evidence gate.
+
+## 2026-06-22 15:27 +03:00 - Codex - Enhancement coverage implementation
+
+- Request: Implement VEGO-AI enhancement coverage plan for evidence quality, reviewer reliability, reproducibility, governance cleanup, and thesis/report readiness.
+- Actions taken:
+  - Extended EXP-005 tooling with generated adjudication sheet, evidence verdict, reviewer reliability summary, and reproducibility manifest.
+  - Updated workbench launcher to open adjudication/verdict files and document -SkipGenerate after labels are saved.
+  - Updated EXP-005, labeling, accuracy, evaluation, publishability, validity, thesis, KPI, registry, strategic review, and memory docs.
+  - Regenerated ignored EXP-005 outputs and Confluence wiki outbox/manual sync pack.
+  - Verified blocked evidence state remains 27 rows, 0 supplied labels, 0 safe valid labels; no accuracy-improvement claim allowed.
+- Files changed:
+  - scripts/exp005_label_review.py
+  - scripts/open-vego-workbench.ps1
+  - docs/operations/vego-workbench.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/publishability-register.md
+  - docs/research/validity-threats.md
+  - docs/dashboards/kpi-register.md
+  - thesis/outline.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/* ignored
+  - artifacts/EXP005_LABEL_REVIEW_PACKAGE.md ignored
+  - docs/confluence/outbox/* ignored
+  - docs/confluence/manual-sync-pack.generated.md ignored
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1
+  - python -m py_compile scripts\\exp005_label_review.py
+  - .\\scripts\\build-exp005-label-review.ps1 passed; generated blocked verdict with 0 labels
+  - python -m pytest VEGO-AI\\tests -q passed: 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts passed
+  - PowerShell parser check for scripts/*.ps1 passed
+  - .\\scripts\\project-health.ps1 passed
+  - .\\scripts\\research-health.ps1 passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox passed
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval returned empty
+  - .\\scripts\\build-confluence-wiki.ps1 passed; live Confluence still pending access/page IDs
+- Status: completed
+- Next steps: Fill EXP-005 blind labels with real supervisor/expert labels, then use exp005_adjudication_sheet.csv for reviewer-2/supervisor adjudication, rerun -FilledLabelsSheet ... -RunDownstream, and review evidence_verdict.md plus reproducibility_manifest.json before any claim or tag.
+
+## 2026-06-22 15:35 +03:00 - Codex - Enhancement coverage review
+
+- Request: Review what still needs enhancement and whether any details are missed.
+- Actions taken:
+  - Reviewed strategic hardening plan, EXP-005 evidence verdict, label validation summary, current git state, and memory workflow.
+  - Confirmed enhancement coverage now includes EXP-005 adjudication sheet, evidence verdict, reproducibility manifest, KPI/thesis/publishability alignment, and workbench -SkipGenerate warning.
+  - Identified remaining gaps as empirical/manual evidence work: real labels, reviewer/adjudication completion, data/IRB audit, Confluence live sync, and eventual commit/publish governance.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1
+  - git status -sb --short
+  - rg MEMORY.md for memory workflow
+  - Get-Content docs\\research\\strategic-review-and-hardening-plan.md
+  - Get-Content reports\\generated\\exp005_label_review\\evidence_verdict.md
+  - Get-Content reports\\generated\\exp005_label_review\\label_validation_summary.json
+- Status: completed
+- Next steps: Fill EXP-005 blind labels, use adjudication sheet for reviewer-2/supervisor decisions, rerun downstream evidence, complete IRB/publishability audit, and keep Confluence outbox refreshed until live sync access exists.
+
+## 2026-06-22 16:00 +03:00 - Codex - Next steps stabilization and evidence gate
+
+- Request: Implement VEGO-AI next steps plan: stabilize safe work, preserve EXP-005 evidence gate, avoid behavior changes, and prepare for manual labels.
+- Actions taken:
+  - Reviewed current local changes and EXP-005 blocked verdict.
+  - Ran full validation gates before commit.
+  - Confirmed protected VEGO behavior paths are unchanged.
+  - Staged only safe docs/scripts/tooling changes; kept .vscode/launch.json uncommitted.
+  - Confirmed EXP-005 remains blocked at 0 supplied labels, 0 valid labels, and 0 safe labels; no labels invented.
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/kpi-register.md
+  - docs/operations/vego-workbench.md
+  - docs/project-management/risk-register.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/publishability-register.md
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/validity-threats.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - scripts/exp005_label_review.py
+  - scripts/open-vego-workbench.ps1
+  - thesis/outline.md
+- Commands/checks:
+  - .\\scripts\\agent-memory-start.ps1
+  - python -m pytest VEGO-AI\\tests -q passed: 94 passed
+  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts passed
+  - PowerShell parser check for scripts/*.ps1 passed
+  - .\\scripts\\project-health.ps1 passed
+  - .\\scripts\\research-health.ps1 passed
+  - .\\scripts\\dashboard-health.ps1 -RequireOutbox passed
+  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval returned empty
+  - staged forbidden-artifact audit passed
+- Status: completed
+- Next steps: Commit and push the safe docs/scripts/tooling update; then manually fill EXP-005 blind labels, use the adjudication sheet for reviewer-2/supervisor review, and rerun EXP-005 downstream evidence.

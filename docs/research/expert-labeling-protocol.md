@@ -1,6 +1,6 @@
 # Expert Labeling Protocol
 
-Last updated: 2026-06-16 by Codex.
+Last updated: 2026-06-22 by Codex.
 
 Purpose: collect independent expert labels for leakage-aware evaluation of VEGO-AI variability classification.
 
@@ -52,6 +52,35 @@ The full sheet may show original Agent 4 and memory-informed classifications for
 - Zero generalization-safe labels: report `Accuracy improvement cannot be evaluated yet.`
 - Preferred target: 30-50 labels, with more than one reviewer if possible.
 
+## Reviewer-2 And Adjudication Protocol
+
+Use the first-pass blind sheet for independent expert labels. After first-pass labels exist, use the EXP-005
+adjudication sheet for reliability and supervisor decisions.
+
+Reviewer-2 fields:
+
+- `reviewer_2_label`
+- `reviewer_2_rationale`
+- `reviewer_2_id`
+- `reviewer_2_date`
+- `reviewer_2_confidence`
+
+Adjudication fields:
+
+- `agreement_status`
+- `adjudicated_label`
+- `adjudicated_rationale`
+- `adjudicator_id`
+- `adjudication_date`
+- `adjudication_notes`
+
+Interpretation:
+
+- Single-reviewer results are preliminary.
+- Reviewer-2 agreement strengthens label reliability.
+- Disagreements should be adjudicated before strong accuracy/generalization claims.
+- Inter-rater agreement can be reported only when enough reviewer-2 labels exist.
+
 ## Files
 
 Generated EXP-003 files are ignored by Git:
@@ -64,4 +93,17 @@ Run:
 
 ```powershell
 .\scripts\build-exp003-error-analysis.ps1
+```
+
+Generated EXP-005 files are ignored by Git:
+
+- `reports/generated/exp005_label_review/exp005_label_review_blind.csv`
+- `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv`
+- `reports/generated/exp005_label_review/evidence_verdict.md`
+- `reports/generated/exp005_label_review/reproducibility_manifest.json`
+
+Run:
+
+```powershell
+.\scripts\build-exp005-label-review.ps1
 ```

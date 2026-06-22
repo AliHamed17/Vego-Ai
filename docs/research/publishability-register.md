@@ -22,6 +22,9 @@ Track whether a project artifact can be shared in GitHub, Confluence, papers, th
 | Case models and visualizer bundled models | Controlled | Metadata only | Controlled examples only | Controlled | May include student/participant/institutional data. | IRB/provenance approval. |
 | Analysis and eval outputs | Controlled | Metadata only | Controlled summaries | Controlled | May encode model or expert-label content. | IRB/provenance approval. |
 | Generated Confluence outbox | Generated internal | Not tracked | No | No | Draft mirror generated from safe docs. | Configure live target before use. |
+| EXP-005 blind/adjudication label sheets | Generated internal | Metadata only | Controlled summaries | Controlled | May contain expert labels, rationales, reviewer IDs, and adjudication notes. | Supervisor/reviewer consent plus IRB/provenance approval. |
+| EXP-005 evidence verdict and reproducibility manifest | Generated internal | Summary only | Controlled summaries | Maybe | Summarizes label counts and evidence status; can be shared after checking it contains no sensitive rationales. | Owner review and data/IRB audit. |
+| Thesis-ready summary tables | Allowed after review | Allowed after review | Reuse/adapt | Maybe | Derived aggregate counts are safer than raw labels but still need claim and data review. | Supervisor review and publishability check. |
 
 ## Current Decision
 

@@ -122,13 +122,37 @@ EXP-005 turns the next research step into a concrete expert-label workflow:
 - Generated package: ignored `reports/generated/exp005_label_review/`
 
 The default run creates a blind label sheet, full audit sheet, label instructions, a prioritized "label these
-first" supervisor summary, validation summary, and a real-label policy gate. If a filled label sheet is later
+first" supervisor summary, adjudication sheet, validation summary, evidence verdict, reproducibility manifest,
+and a real-label policy gate. If a filled label sheet is later
 provided with `-FilledLabelsSheet ... -RunDownstream`, the wrapper reruns EXP-003 and EXP-004-style outputs in
 the EXP-005 generated folder.
 
 Current expected initial status is still `Accuracy improvement cannot be evaluated yet` because real
 generalization-safe labels have not been filled. EXP-005 is the required gate before M4B-1.1 or M4B-2 can be
 considered.
+
+## Strategic Hardening Review
+
+The strategic review in `docs/research/strategic-review-and-hardening-plan.md` keeps the accuracy-improvement path constrained to evidence first:
+
+- Current implementation baseline is `main` at `0976c05`.
+- Current EXP-005 status is 27 rows, 24 generalization-safe candidates, 0 supplied labels, 0 complete valid labels, and 0 generalization-safe valid labels.
+- Current M4B-1 has 0 / 27 memory-informed classifications differing from original Agent 4, so no accuracy delta is possible under the implemented policy.
+- EXP-004 synthetic policy results remain risk screening only.
+- Same-pattern labels remain mechanism validation only.
+- Add a second reviewer or supervisor adjudication before treating EXP-005 results as strong evidence.
+
+No policy refinement is allowed until real EXP-005 labels identify baseline errors that memory would correct without unacceptable false changes.
+
+## Evidence Rerun Manifest
+
+Every EXP-005 rerun generates ignored manifest/verdict artifacts under `reports/generated/exp005_label_review/`:
+
+- `evidence_verdict.md`
+- `reproducibility_manifest.json`
+- `reproducibility_manifest.md`
+
+Use these files to record commit hash, label counts, protected-path diff status, generated outputs, and required validation commands. Stable evidence tags are allowed only after the manifest, health checks, and supervisor/reviewer interpretation are reviewed.
 
 ## Non-Negotiable Boundaries
 

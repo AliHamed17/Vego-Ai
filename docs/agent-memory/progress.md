@@ -48,6 +48,8 @@ Track milestones, current work, and next steps here.
 | 2026-06-21 | VEGO workbench launcher added | Done | Added one-command local launcher for dashboard, EXP-005 labels, optional GUI, optional wiki outbox, and optional health checks. |
 | 2026-06-21 | VEGO topology report exported | Done | Added reusable HTML/PDF topology exporter and generated ignored `artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html` and `.pdf`. |
 | 2026-06-21 | Baseline architecture overlay exported | Done | Added reusable overlay exporter and generated ignored `artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html` and `.pdf` showing M1-M4B-1/EXP-005 on top of the paper architecture. |
+| 2026-06-22 | Strategic review and hardening plan added | Done | Consolidated current flow, vulnerabilities, evidence gates, and next-step strategy in `docs/research/strategic-review-and-hardening-plan.md`; no VEGO behavior changes. |
+| 2026-06-22 | EXP-005 evidence coverage enhanced | Done | Added adjudication sheet, evidence verdict, reproducibility manifest, reviewer-reliability summary, and thesis/KPI/publishability alignment; no VEGO behavior changes. |
 
 ## Active Work
 
@@ -74,6 +76,8 @@ Track milestones, current work, and next steps here.
 | TASK-020 | 2026-06-16 | Open | Use EXP-004 to screen policy candidates after real labels exist. | Rerun `.\scripts\build-policy-sensitivity-simulation.ps1` after EXP-003 has real labels; treat current synthetic results as pipeline/risk screening only. |
 | TASK-021 | 2026-06-17 | Open | Collect EXP-005 supervisor/expert labels through the real-label gate. | Fill `reports/generated/exp005_label_review/exp005_label_review_blind.csv`, then run `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream`. |
 | TASK-022 | 2026-06-21 | Open | Use the VEGO workbench launcher for daily local review. | Run `.\scripts\open-vego-workbench.ps1` from the repo root, or `.\scripts\open-vego-workbench.ps1 -Gui` when the visualizer is needed. |
+| TASK-023 | 2026-06-22 | Open | Harden EXP-005 evidence validity. | Add a second reviewer or supervisor adjudication path for disputed rows before treating EXP-005 labels as strong quantitative evidence. |
+| TASK-024 | 2026-06-22 | Open | Use EXP-005 generated verdict and manifest for evidence reruns. | Review `evidence_verdict.md` and `reproducibility_manifest.json` after every EXP-005 rerun; tag only stable validated evidence states. |
 
 ## Completed Work
 
@@ -118,22 +122,25 @@ Track milestones, current work, and next steps here.
 | 2026-06-21 | Added one-command VEGO workbench launcher. | `scripts/open-vego-workbench.ps1`, `docs/operations/vego-workbench.md`, `README.md`, memory files |
 | 2026-06-21 | Exported VEGO topology/flow report to HTML and PDF. | `scripts/export-topology-report.ps1`, `docs/operations/vego-workbench.md`, ignored `artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html`, ignored `artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.pdf` |
 | 2026-06-21 | Exported baseline architecture overlay to HTML and PDF. | `scripts/export-baseline-overlay-report.ps1`, `docs/operations/vego-workbench.md`, ignored `artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html`, ignored `artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf` |
+| 2026-06-22 | Added strategic review and hardening plan. | `docs/research/strategic-review-and-hardening-plan.md`, `docs/research/evaluation-report.md`, `docs/research/accuracy-improvement-plan.md`, `docs/project-management/risk-register.md`, memory files |
+| 2026-06-22 | Enhanced EXP-005 evidence coverage. | `scripts/exp005_label_review.py`, `scripts/open-vego-workbench.ps1`, `experiments/EXP-005-real-label-accuracy-gate/README.md`, `docs/research/expert-labeling-protocol.md`, `docs/research/accuracy-improvement-plan.md`, `docs/research/publishability-register.md`, `docs/research/validity-threats.md`, `thesis/outline.md`, `docs/dashboards/kpi-register.md`, memory files |
 
 ## Next Steps
 
 1. Run `.\scripts\open-vego-workbench.ps1` for daily local review, or `.\scripts\open-vego-workbench.ps1 -Gui` when the visualizer is needed.
 2. Fill `reports/generated/exp005_label_review/exp005_label_review_blind.csv` with at least 20 generalization-safe expert labels, preferably 30-50.
-3. Rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream` and review `reports/generated/exp005_label_review/label_validation_summary.json`.
-4. Review the EXP-005 real-label policy gate plus rerun EXP-003/EXP-004 generated outputs before any M4B-1.1 design change.
-4. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-5. If EXP-003 shows enough safe labels and baseline errors that memory can plausibly address, write or update `docs/research/m4b1-policy-refinement-plan.md`; do not implement policy refinement before approval.
-6. Capture supervisor decisions on thesis framing, label protocol, target label count, leakage policy, and M4B-2 gating.
-7. Review and merge PR #6 for M4B schema hardening when ready.
-8. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-9. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
-10. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
-11. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-12. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
-13. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-14. Convert existing package results into evidence entries under `EXP-000`.
-15. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+3. Use `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv` for reviewer-2 or supervisor adjudication before treating results as strong quantitative evidence.
+4. Rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream` and review `reports/generated/exp005_label_review/label_validation_summary.json`.
+5. Review `reports/generated/exp005_label_review/evidence_verdict.md`, `reproducibility_manifest.json`, and the EXP-005 real-label policy gate plus rerun EXP-003/EXP-004 generated outputs before any M4B-1.1 design change.
+6. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
+7. If EXP-003 shows enough safe labels and baseline errors that memory can plausibly address, write or update `docs/research/m4b1-policy-refinement-plan.md`; do not implement policy refinement before approval.
+8. Capture supervisor decisions on thesis framing, label protocol, target label count, leakage policy, and M4B-2 gating.
+9. Review and merge PR #6 for M4B schema hardening when ready.
+10. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
+11. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
+12. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
+13. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+14. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
+15. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+16. Convert existing package results into evidence entries under `EXP-000`.
+17. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

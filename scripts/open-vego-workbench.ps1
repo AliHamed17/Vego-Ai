@@ -89,6 +89,8 @@ if ($Wiki -or $All) {
 Open-WorkbenchPath (Join-Path $dashboardOut "index.html")
 Open-WorkbenchPath (Join-Path $repoRoot "reports\generated\exp005_label_review\label_these_first.md")
 Open-WorkbenchPath (Join-Path $repoRoot "reports\generated\exp005_label_review\exp005_label_review_blind.csv")
+Open-WorkbenchPath (Join-Path $repoRoot "reports\generated\exp005_label_review\exp005_adjudication_sheet.csv")
+Open-WorkbenchPath (Join-Path $repoRoot "reports\generated\exp005_label_review\evidence_verdict.md")
 Open-WorkbenchPath (Join-Path $repoRoot "artifacts\EXP005_LABEL_REVIEW_PACKAGE.md")
 Open-WorkbenchPath (Join-Path $repoRoot "artifacts\RESULTS_AND_ACCURACY_FULL_REPORT.md")
 
@@ -113,3 +115,4 @@ Write-Host "VEGO workbench ready."
 Write-Host "Core command: .\scripts\open-vego-workbench.ps1"
 Write-Host "Open GUI too: .\scripts\open-vego-workbench.ps1 -Gui"
 Write-Host "Full check:   .\scripts\open-vego-workbench.ps1 -All"
+Write-Host "After labels: .\scripts\open-vego-workbench.ps1 -SkipGenerate"

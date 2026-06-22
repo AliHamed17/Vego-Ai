@@ -869,3 +869,263 @@ Record file changes and rollback notes here.
   - docs/agent-memory/revert-log.md
 - Rollback note: Revert the publish commit if needed; generated artifacts under artifacts/, reports/generated/, VEGO-AI/reports/results_dashboard/, docs/confluence/outbox/, docs/confluence/*.generated.md, and docs/dashboards/*.generated.md remain ignored. No VEGO-AI behavior or baseline outputs were changed.
 - Git commit: none recorded by script.
+
+## 2026-06-21 13:45 +03:00 - Codex - EXP-005 label collection sprint setup
+
+- Files changed:
+  - reports/generated/exp005_label_review/ (ignored regenerated)
+  - VEGO-AI/reports/results_dashboard/ (ignored regenerated)
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Delete ignored regenerated reports/generated/exp005_label_review/ and VEGO-AI/reports/results_dashboard/ if needed; revert memory log changes with Git if needed. No VEGO-AI behavior or baseline output files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 16:44 +03:00 - Codex - EXP-005 manual labeling and evidence gate setup
+
+- Files changed:
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/ (ignored, opened/current package)
+  - VEGO-AI/reports/results_dashboard/ (ignored, refreshed by workbench)
+- Rollback note: Revert docs/agent-memory/issues.md and the generated memory log entries if needed; delete ignored regenerated dashboard/EXP-005 outputs for a clean local state. No Agent 4, eval_output, baseline output, M4B-2, LLM/API, or embedding files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 16:50 +03:00 - Codex - EXP-005 manual labeling gate rerun attempt
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/ (ignored existing review package opened)
+  - VEGO-AI/reports/results_dashboard/ (ignored existing dashboard opened)
+- Rollback note: Revert generated memory log entries if needed; no tracked VEGO behavior files were changed. Existing ignored dashboard/EXP-005 outputs can be deleted/regenerated if a clean local state is needed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:28 +03:00 - Codex - EXP-005 gate checked; labels still missing
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:38 +03:00 - Codex - EXP-005 label file unlocked and reopened for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:40 +03:00 - Codex - EXP-005 label file unlocked; labels still pending
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:44 +03:00 - Codex - EXP-005 still blocked; review files reopened
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:47 +03:00 - Codex - EXP-005 gate closed and reopened; labels still absent
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 18:13 +03:00 - Codex - EXP-005 file unlocked; no labels saved
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:29 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:39 +03:00 - Codex - EXP-005 reopen loop stopped; CSV unlocked
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:51 +03:00 - Codex - EXP-005 blind sheet opened again for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:53 +03:00 - Codex - EXP-005 checked; CSV left unlocked with no labels
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:55 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:57 +03:00 - Codex - EXP-005 still awaiting saved labels
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 11:19 +03:00 - Codex - EXP-005 still open in Excel; labels not saved
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 13:25 +03:00 - Codex - EXP-005 gate checked; Excel still open
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 13:46 +03:00 - Codex - EXP-005 gate checked; CSV unlocked with no labels
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 13:59 +03:00 - Codex - Strategic review and hardening plan
+
+- Files changed:
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/project-management/risk-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+  - docs/dashboards/status-snapshot.generated.md ignored
+  - docs/confluence/outbox/ ignored
+  - docs/confluence/manual-sync-pack.generated.md ignored
+- Rollback note: Revert documentation/memory changes to remove this strategic review. No VEGO-AI behavior files, eval_output, Agent 4 code, M4B-2 code, LLM/API paths, or embeddings were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-22 15:27 +03:00 - Codex - Enhancement coverage implementation
+
+- Files changed:
+  - scripts/exp005_label_review.py
+  - scripts/open-vego-workbench.ps1
+  - docs/operations/vego-workbench.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/publishability-register.md
+  - docs/research/validity-threats.md
+  - docs/dashboards/kpi-register.md
+  - thesis/outline.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/* ignored
+  - artifacts/EXP005_LABEL_REVIEW_PACKAGE.md ignored
+  - docs/confluence/outbox/* ignored
+  - docs/confluence/manual-sync-pack.generated.md ignored
+- Rollback note: Revert these docs/scripts changes to remove EXP-005 enhancement coverage. Generated reports/outbox are ignored. No Agent 4, M4B-2, eval_output, framework, eval, LLM/API, embeddings, or baseline-output behavior changed.
+- Git commit: none recorded by script.
+
+## 2026-06-22 15:35 +03:00 - Codex - Enhancement coverage review
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Rollback note: Review-only prompt; no implementation changes beyond memory/session logging.
+- Git commit: none recorded by script.
+
+## 2026-06-22 16:00 +03:00 - Codex - Next steps stabilization and evidence gate
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/kpi-register.md
+  - docs/operations/vego-workbench.md
+  - docs/project-management/risk-register.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/publishability-register.md
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/validity-threats.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - scripts/exp005_label_review.py
+  - scripts/open-vego-workbench.ps1
+  - thesis/outline.md
+- Rollback note: Revert the safe docs/scripts commit to remove next-step/evidence-gate stabilization. No Agent 4, M4B-2, eval_output, framework, eval, LLM/API, embeddings, or baseline outputs were changed.
+- Git commit: none recorded by script.

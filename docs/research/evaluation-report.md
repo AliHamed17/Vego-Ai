@@ -424,3 +424,29 @@ full sheet preserves audit context. The validation gate remains strict:
 
 EXP-005 is now the required gate before any M4B-1.1 policy refinement or M4B-2 work. Synthetic EXP-004 results
 can guide risk discussion, but they cannot justify an accuracy claim or classifier change without real labels.
+
+EXP-005 now also generates ignored reliability and reproducibility artifacts:
+
+- `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv`
+- `reports/generated/exp005_label_review/evidence_verdict.md`
+- `reports/generated/exp005_label_review/reproducibility_manifest.json`
+- `reports/generated/exp005_label_review/reproducibility_manifest.md`
+
+The current generated verdict is `blocked`: 27 rows, 24 generalization-safe candidates, 0 supplied labels, 0 valid labels, and 0 generalization-safe valid labels.
+
+## Strategic Review And Hardening - 2026-06-22
+
+The current strategic review is tracked in `docs/research/strategic-review-and-hardening-plan.md`.
+
+Current hardening verdict:
+
+- Feature work should stay frozen.
+- EXP-005 remains the next required evidence gate.
+- Current published baseline is `main` at `0976c05`.
+- Current EXP-005 state has 27 rows, 24 generalization-safe candidates, 0 supplied labels, 0 complete valid labels, and 0 generalization-safe valid labels.
+- M4B-1 remains non-destructive: 0 / 27 memory-informed classifications differ from original Agent 4.
+- Accuracy improvement cannot be evaluated yet.
+
+Allowed thesis claim today: feasibility and governance of reusable human judgment through selective review, structured feedback, reusable memory, advisory retrieval, and non-destructive comparison.
+
+Blocked claim today: improved VEGO-AI classification accuracy.

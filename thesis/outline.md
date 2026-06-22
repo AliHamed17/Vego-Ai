@@ -44,3 +44,55 @@ Reusable Human Judgment in AI-Assisted Domain Model Assessment: The VEGO-AI Case
 | M4B-2 | Tests optional Agent 4/LLM-assisted reclassification. | Deferred; not approved |
 | M5 | Studies human-approved guideline refinement. | Planned PhD continuation |
 | M6 | Consolidates broader evaluation and thesis evidence. | Planned |
+
+## Thesis-Ready Tables To Maintain
+
+### Contribution Chain
+
+| Layer | What it contributes | Current evidence |
+| --- | --- | --- |
+| M1 Human Review Queue | Selectively triggers human judgment where VEGO-AI needs review. | Implemented; dashboard/report counts available. |
+| M2 Feedback Manager | Captures human decisions structurally. | Implemented; resolved feedback records available. |
+| M3 Human Judgment Memory | Stores reusable human judgment with provenance. | Implemented; reusable memory entries available. |
+| M4A Memory Advisory | Retrieves memory as advisory evidence. | Implemented; advice outputs preserve `ai_classification_changed=false`. |
+| M4B-1 Parallel Comparison | Compares original Agent 4 and memory-informed assessment non-destructively. | Implemented; 0 / 27 memory-informed classifications differ from original. |
+
+### Evidence Gates
+
+| Gate | Threshold | Thesis interpretation |
+| --- | --- | --- |
+| 0 safe EXP-005 labels | Current blocked state | Accuracy improvement cannot be evaluated. |
+| 1-19 safe EXP-005 labels | Pilot only | Report as exploratory evidence with validity threats. |
+| 20+ safe EXP-005 labels | Quantitative allowed | Report original vs memory-informed vs expert labels, still with limitations. |
+| Reviewer-2/adjudication present | Reliability strengthened | Use for stronger claims about expert-label validity. |
+
+### Validity Threats
+
+| Threat | Required handling |
+| --- | --- |
+| Same-pattern leakage | Report as mechanism validation only. |
+| Synthetic EXP-004 gains | Report as policy-risk screening only. |
+| Single-reviewer labels | Treat as preliminary unless adjudicated. |
+| Small sample | Report pilot-only below 20 safe labels. |
+| Data/IRB sensitivity | Use aggregate summaries until publishability is approved. |
+
+### Current EXP-005 Status
+
+| Item | Current value |
+| --- | ---: |
+| Label rows | 27 |
+| Generalization-safe candidates | 24 |
+| Supplied labels | 0 |
+| Complete valid labels | 0 |
+| Generalization-safe valid labels | 0 |
+| Current verdict | Accuracy improvement cannot be evaluated yet. |
+
+### Supervisor Decisions Needed
+
+| Decision | Needed output |
+| --- | --- |
+| Label protocol approval | Confirm allowed labels and confidence/rationale expectations. |
+| Reviewer plan | Decide whether supervisor adjudicates directly or a second reviewer labels first. |
+| Minimum evidence target | Confirm 20 safe labels minimum and 24 current safe candidates as immediate target. |
+| Claim boundary | Confirm no accuracy-improvement claim before EXP-005 passes. |
+| Future policy gate | Decide whether M4B-1.1 can be designed only after real-label error analysis. |

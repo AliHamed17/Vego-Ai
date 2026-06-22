@@ -231,3 +231,20 @@ Durable decisions for this project.
 - Decision: Keep the launcher operational only: it may regenerate ignored dashboard/EXP-005/wiki outputs and open local files, but it must not modify Agent 4, M4B-2, `VEGO-AI/eval_output`, baseline outputs, LLM/API behavior, or embeddings.
 - Reason: Manual path mistakes were slowing down review and demos; one repo-root command reduces friction without changing research behavior.
 - Consequence: Daily review can use `.\scripts\open-vego-workbench.ps1`, GUI review can use `.\scripts\open-vego-workbench.ps1 -Gui`, and non-interactive validation can use `.\scripts\open-vego-workbench.ps1 -All -NoOpen`.
+
+## 2026-06-22 - Strategic Review Evidence Freeze
+
+- Decision: Freeze new feature work and treat EXP-005 real labels as the next required evidence gate.
+- Decision: Keep M4B-2, Agent 4 changes, LLM/API reclassification, embeddings, baseline overwrites, and `VEGO-AI/eval_output` changes blocked.
+- Decision: Treat EXP-004 synthetic results and same-pattern labels as mechanism/risk-screening evidence only, not real accuracy improvement.
+- Decision: Add a second reviewer or supervisor adjudication path before treating EXP-005 labels as strong quantitative evidence.
+- Reason: The strategic review found that the architecture is technically strong, while the remaining blocker is empirical validity: 0 supplied EXP-005 labels and 0 generalization-safe valid labels.
+- Consequence: The next move is expert-label collection, validation, and strict interpretation, not classifier or policy implementation.
+
+## 2026-06-22 - EXP-005 Evidence Coverage
+
+- Decision: Keep the blind EXP-005 sheet as the first-pass expert-labeling file and add a separate generated adjudication sheet for reviewer-2 or supervisor review.
+- Decision: Generate an EXP-005 evidence verdict and reproducibility manifest for every package/rerun.
+- Decision: Treat generated EXP-005 verdicts and manifests as ignored local evidence artifacts until publishability is approved.
+- Reason: The project needs stronger reliability and reproducibility without changing VEGO-AI classification behavior.
+- Consequence: Evidence reruns should review `evidence_verdict.md`, `reproducibility_manifest.json`, reviewer reliability counts, and protected-path diff status before any thesis claim or tag.

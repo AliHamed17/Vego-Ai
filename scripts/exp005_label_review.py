@@ -13,6 +13,7 @@ import csv
 import json
 import re
 import shutil
+import subprocess
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -47,6 +48,17 @@ COPY_LABEL_FIELDS = (
     "confidence",
     "reviewer_confidence",
     "notes",
+    "reviewer_2_label",
+    "reviewer_2_rationale",
+    "reviewer_2_id",
+    "reviewer_2_date",
+    "reviewer_2_confidence",
+    "agreement_status",
+    "adjudicated_label",
+    "adjudicated_rationale",
+    "adjudicator_id",
+    "adjudication_date",
+    "adjudication_notes",
 )
 
 BLIND_FIELDS = (
@@ -81,6 +93,37 @@ FULL_EXTRA_FIELDS = (
     "memory_suggestion_available",
     "memory_suggested_label",
     "memory_decision_type",
+)
+
+REVIEWER_ADJUDICATION_FIELDS = (
+    "reviewer_2_label",
+    "reviewer_2_rationale",
+    "reviewer_2_id",
+    "reviewer_2_date",
+    "reviewer_2_confidence",
+    "agreement_status",
+    "adjudicated_label",
+    "adjudicated_rationale",
+    "adjudicator_id",
+    "adjudication_date",
+    "adjudication_notes",
+)
+
+ADJUDICATION_SHEET_FIELDS = (
+    "review_row_id",
+    "exp005_priority_rank",
+    "review_priority",
+    "setting",
+    "pattern_id",
+    "pattern_description",
+    "affected_cases",
+    "related_guideline_id",
+    "expert_label",
+    "expert_rationale",
+    "reviewer_id",
+    "review_date",
+    "confidence",
+    *REVIEWER_ADJUDICATION_FIELDS,
 )
 
 POLICIES = (
@@ -193,6 +236,28 @@ def validation_errors(row: dict[str, str]) -> list[str]:
     return errors
 
 
+def reliability_errors(row: dict[str, str]) -> list[str]:
+    errors: list[str] = []
+    reviewer_2_label = normalize_label(row.get("reviewer_2_label", ""))
+    adjudicated_label = normalize_label(row.get("adjudicated_label", ""))
+
+    if reviewer_2_label:
+        if reviewer_2_label not in ALLOWED_LABELS:
+            errors.append("invalid reviewer_2_label")
+        if not row.get("reviewer_2_rationale", "").strip():
+            errors.append("missing reviewer_2_rationale")
+
+    if adjudicated_label:
+        if adjudicated_label not in ALLOWED_LABELS:
+            errors.append("invalid adjudicated_label")
+        if not row.get("adjudicated_rationale", "").strip():
+            errors.append("missing adjudicated_rationale")
+        if not row.get("adjudicator_id", "").strip():
+            errors.append("missing adjudicator_id")
+
+    return errors
+
+
 def priority_for(row: dict[str, str]) -> tuple[int, str, list[str]]:
     score = 0
     reasons: list[str] = []
@@ -253,6 +318,8 @@ def enrich_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         item = dict(row)
         for field in LABEL_FIELDS:
             item.setdefault(field, "")
+        for field in REVIEWER_ADJUDICATION_FIELDS:
+            item.setdefault(field, "")
         suggestion = suggested_label(item)
         decision_type = memory_decision_type(item)
         safe_disagreement = is_safe_candidate(item) and suggestion in CHANGE_LABELS and suggestion != item.get("original_agent4_classification", "")
@@ -277,6 +344,10 @@ def enrich_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 def make_blind_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return [{field: row.get(field, "") for field in BLIND_FIELDS} for row in rows]
+
+
+def make_adjudication_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    return [{field: row.get(field, "") for field in ADJUDICATION_SHEET_FIELDS} for row in rows]
 
 
 def candidate_prediction(row: dict[str, str], policy: str) -> tuple[str, bool, bool, str]:
@@ -404,10 +475,46 @@ def summarize_labels(rows: list[dict[str, str]]) -> tuple[dict[str, Any], list[d
                 }
             )
 
+    reliability_invalid: list[dict[str, Any]] = []
+    for row in rows:
+        errors = reliability_errors(row)
+        if errors:
+            reliability_invalid.append(
+                {
+                    "setting": row.get("setting", ""),
+                    "pattern_id": row.get("pattern_id", ""),
+                    "expert_label": row.get("expert_label", ""),
+                    "reviewer_2_label": row.get("reviewer_2_label", ""),
+                    "adjudicated_label": row.get("adjudicated_label", ""),
+                    "errors": "; ".join(errors),
+                }
+            )
+
     valid = [row for row in rows if has_valid_label(row)]
     safe_valid = [row for row in valid if is_safe_candidate(row)]
     safe_decidable = [row for row in safe_valid if normalize_label(row.get("expert_label", "")) in CHANGE_LABELS]
     same_pattern = [row for row in valid if row.get("evaluation_leakage_status") == "same_pattern_memory_used"]
+    reviewer_pairs = [
+        (
+            normalize_label(row.get("expert_label", "")),
+            normalize_label(row.get("reviewer_2_label", "")),
+        )
+        for row in valid
+        if normalize_label(row.get("reviewer_2_label", "")) in ALLOWED_LABELS
+    ]
+    reviewer_agreement_count = sum(1 for first, second in reviewer_pairs if first == second)
+    reviewer_disagreement_count = len(reviewer_pairs) - reviewer_agreement_count
+    adjudicated = [row for row in rows if normalize_label(row.get("adjudicated_label", "")) in ALLOWED_LABELS]
+
+    kappa = None
+    observed_agreement = None
+    if reviewer_pairs:
+        observed_agreement = round(reviewer_agreement_count / len(reviewer_pairs), 4)
+        first_counts = Counter(first for first, _ in reviewer_pairs)
+        second_counts = Counter(second for _, second in reviewer_pairs)
+        total = len(reviewer_pairs)
+        expected = sum((first_counts[label] / total) * (second_counts[label] / total) for label in ALLOWED_LABELS)
+        kappa = None if expected == 1 else round((observed_agreement - expected) / (1 - expected), 4)
 
     if len(safe_valid) == 0:
         gate_status = "Accuracy improvement cannot be evaluated yet."
@@ -415,6 +522,15 @@ def summarize_labels(rows: list[dict[str, str]]) -> tuple[dict[str, Any], list[d
         gate_status = "Pilot evidence only; fewer than 20 generalization-safe expert labels."
     else:
         gate_status = "Generalization-safe accuracy evaluation available; improvement claim still requires observed positive delta and review."
+
+    if len(valid) == 0:
+        reliability_status = "no labels supplied"
+    elif len(adjudicated) > 0:
+        reliability_status = "adjudicated labels available"
+    elif len(reviewer_pairs) > 0:
+        reliability_status = "second reviewer evidence available; adjudication still required for disagreements"
+    else:
+        reliability_status = "single-reviewer preliminary evidence only"
 
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -427,11 +543,22 @@ def summarize_labels(rows: list[dict[str, str]]) -> tuple[dict[str, Any], list[d
         "labels_supplied_count": len(supplied),
         "valid_label_count": len(valid),
         "invalid_label_count": len(invalid),
+        "reliability_issue_count": len(reliability_invalid),
         "generalization_safe_valid_label_count": len(safe_valid),
         "generalization_safe_decidable_label_count": len(safe_decidable),
         "same_pattern_valid_label_count": len(same_pattern),
         "label_distribution": dict(Counter(normalize_label(row.get("expert_label", "")) for row in valid)),
         "priority_group_distribution": dict(Counter(row.get("exp005_priority_group", "") for row in rows)),
+        "reviewer_reliability": {
+            "status": reliability_status,
+            "reviewer_2_label_count": len(reviewer_pairs),
+            "adjudicated_label_count": len(adjudicated),
+            "reviewer_agreement_count": reviewer_agreement_count,
+            "reviewer_disagreement_count": reviewer_disagreement_count,
+            "observed_agreement": observed_agreement,
+            "cohen_kappa": kappa,
+            "single_reviewer_results_are_preliminary": len(valid) > 0 and len(adjudicated) == 0,
+        },
         "strict_gate": {
             "minimum_safe_labels_for_non_pilot": 20,
             "preferred_safe_labels": "30-50",
@@ -440,7 +567,7 @@ def summarize_labels(rows: list[dict[str, str]]) -> tuple[dict[str, Any], list[d
             "accuracy_improvement_claim_allowed": False,
         },
     }
-    return summary, invalid
+    return summary, [*invalid, *reliability_invalid]
 
 
 def write_labeling_instructions(path: Path, row_count: int, safe_count: int) -> None:
@@ -451,6 +578,7 @@ Purpose: collect independent expert labels so VEGO-AI accuracy can be evaluated 
 ## Which File To Use
 
 - `exp005_label_review_blind.csv`: use this for expert labeling. It hides original Agent 4 and memory-informed classifications.
+- `exp005_adjudication_sheet.csv`: use this after first-pass labels for reviewer-2 or supervisor adjudication.
 - `exp005_label_review_full.csv`: use this only for audit after labeling. It includes original and memory context.
 
 ## Required Fields
@@ -469,6 +597,29 @@ Fill these fields for each labeled row:
 - `review_date`
 - `confidence`
 - `notes` when clarification is needed
+
+## Reviewer Reliability And Adjudication
+
+Use `exp005_adjudication_sheet.csv` after the blind sheet has first-pass labels.
+
+Optional reviewer-2 fields:
+
+- `reviewer_2_label`
+- `reviewer_2_rationale`
+- `reviewer_2_id`
+- `reviewer_2_date`
+- `reviewer_2_confidence`
+
+Adjudication fields for disagreements or supervisor decisions:
+
+- `agreement_status`
+- `adjudicated_label`
+- `adjudicated_rationale`
+- `adjudicator_id`
+- `adjudication_date`
+- `adjudication_notes`
+
+Single-reviewer results are preliminary until reviewer-2 labels or adjudication exist.
 
 ## Gate
 
@@ -545,6 +696,9 @@ def write_policy_gate_report(
         "",
         "Synthetic EXP-004 results remain policy-risk screening only. Real labels are required before any policy refinement.",
         "",
+        "Reviewer reliability status: "
+        + str(label_summary.get("reviewer_reliability", {}).get("status", "unknown")),
+        "",
     ]
 
     if synthetic_matrix_path.exists():
@@ -596,6 +750,156 @@ def write_policy_gate_report(
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def verdict_name(summary: dict[str, Any]) -> str:
+    safe_count = int(summary.get("generalization_safe_valid_label_count", 0))
+    if safe_count == 0:
+        return "blocked"
+    if safe_count < int(summary["strict_gate"]["minimum_safe_labels_for_non_pilot"]):
+        return "pilot-only"
+    return "quantitative-with-validity-threats"
+
+
+def write_evidence_verdict(path: Path, summary: dict[str, Any]) -> None:
+    verdict = verdict_name(summary)
+    reliability = summary.get("reviewer_reliability", {})
+    lines = [
+        "# EXP-005 Evidence Verdict",
+        "",
+        f"Generated: {summary['generated_at']}",
+        "",
+        "## Verdict",
+        "",
+        f"Status: `{verdict}`",
+        "",
+        summary["strict_gate"]["status"],
+        "",
+        "## Label Counts",
+        "",
+        f"- Rows: {summary['row_count']}",
+        f"- Generalization-safe candidates: {summary['generalization_safe_candidate_count']}",
+        f"- Supplied labels: {summary['labels_supplied_count']}",
+        f"- Valid labels: {summary['valid_label_count']}",
+        f"- Generalization-safe valid labels: {summary['generalization_safe_valid_label_count']}",
+        f"- Same-pattern valid labels: {summary['same_pattern_valid_label_count']}",
+        "",
+        "## Reviewer Reliability",
+        "",
+        f"- Status: {reliability.get('status', 'unknown')}",
+        f"- Reviewer-2 labels: {reliability.get('reviewer_2_label_count', 0)}",
+        f"- Adjudicated labels: {reliability.get('adjudicated_label_count', 0)}",
+        f"- Reviewer agreement count: {reliability.get('reviewer_agreement_count', 0)}",
+        f"- Reviewer disagreement count: {reliability.get('reviewer_disagreement_count', 0)}",
+        f"- Observed agreement: {reliability.get('observed_agreement', '')}",
+        f"- Cohen kappa: {reliability.get('cohen_kappa', '')}",
+        "",
+        "## Reporting Rules",
+        "",
+        "- Same-pattern labels are mechanism validation only.",
+        "- EXP-004 synthetic gains are policy-risk screening only.",
+        "- Single-reviewer results are preliminary unless adjudicated.",
+        "- Do not claim improved classification accuracy unless safe real labels show a justified positive result.",
+    ]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def git_output(repo_root: Path, args: list[str]) -> str:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(repo_root), *args],
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+    except OSError as exc:
+        return f"git unavailable: {exc}"
+    text = (result.stdout or result.stderr or "").strip()
+    return text
+
+
+def build_reproducibility_manifest(
+    repo_root: Path,
+    source_sheet: Path,
+    filled_sheet: Path | None,
+    output_dir: Path,
+    artifact_copy: Path,
+    summary: dict[str, Any],
+) -> dict[str, Any]:
+    output_files = [
+        "exp005_label_review_blind.csv",
+        "exp005_label_review_full.csv",
+        "exp005_adjudication_sheet.csv",
+        "labeling_instructions.md",
+        "label_these_first.md",
+        "label_validation_summary.json",
+        "invalid_labels.csv",
+        "real_label_policy_gate.csv",
+        "real_label_policy_predictions.csv",
+        "real_vs_synthetic_policy_gate.md",
+        "evidence_verdict.md",
+        "reproducibility_manifest.json",
+        "reproducibility_manifest.md",
+        "EXP005_LABEL_REVIEW_PACKAGE.md",
+    ]
+    protected_diff = git_output(repo_root, ["diff", "--name-status", "--", "VEGO-AI/eval_output", "VEGO-AI/framework", "VEGO-AI/eval"])
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "experiment_id": "EXP-005",
+        "commit": git_output(repo_root, ["rev-parse", "HEAD"]),
+        "git_status_short": git_output(repo_root, ["status", "-sb", "--short"]),
+        "source_sheet": str(source_sheet),
+        "filled_label_sheet": str(filled_sheet) if filled_sheet else "",
+        "output_dir": str(output_dir),
+        "artifact_copy": str(artifact_copy),
+        "label_counts": {
+            "row_count": summary["row_count"],
+            "labels_supplied_count": summary["labels_supplied_count"],
+            "valid_label_count": summary["valid_label_count"],
+            "generalization_safe_valid_label_count": summary["generalization_safe_valid_label_count"],
+            "same_pattern_valid_label_count": summary["same_pattern_valid_label_count"],
+        },
+        "evidence_verdict": verdict_name(summary),
+        "reviewer_reliability": summary.get("reviewer_reliability", {}),
+        "protected_path_diff": protected_diff,
+        "protected_paths_unchanged": protected_diff == "",
+        "generated_outputs": [str(output_dir / name) for name in output_files],
+        "required_validation_commands": [
+            "python -m pytest VEGO-AI\\tests -q",
+            "python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts",
+            ".\\scripts\\project-health.ps1",
+            ".\\scripts\\research-health.ps1",
+            ".\\scripts\\dashboard-health.ps1 -RequireOutbox",
+            "git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval",
+        ],
+        "health_check_status": "not run by EXP-005 builder; run required_validation_commands before any evidence claim",
+    }
+
+
+def write_reproducibility_manifest_md(path: Path, manifest: dict[str, Any]) -> None:
+    lines = [
+        "# EXP-005 Reproducibility Manifest",
+        "",
+        f"Generated: {manifest['generated_at']}",
+        "",
+        "## Run Context",
+        "",
+        f"- Commit: `{manifest['commit']}`",
+        f"- Evidence verdict: `{manifest['evidence_verdict']}`",
+        f"- Source sheet: `{manifest['source_sheet']}`",
+        f"- Filled label sheet: `{manifest['filled_label_sheet']}`",
+        f"- Output directory: `{manifest['output_dir']}`",
+        f"- Protected paths unchanged: `{manifest['protected_paths_unchanged']}`",
+        "",
+        "## Label Counts",
+        "",
+    ]
+    for key, value in manifest["label_counts"].items():
+        lines.append(f"- {key}: {value}")
+    lines.extend(["", "## Required Validation Commands", ""])
+    lines.extend(f"- `{command}`" for command in manifest["required_validation_commands"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def build_package_report(
     path: Path,
     summary: dict[str, Any],
@@ -620,19 +924,24 @@ def build_package_report(
         f"- Requires human review after memory: {summary['requires_human_review_after_memory_count']}",
         f"- Valid labels supplied: {summary['valid_label_count']}",
         f"- Generalization-safe valid labels: {summary['generalization_safe_valid_label_count']}",
+        f"- Reviewer reliability: {summary.get('reviewer_reliability', {}).get('status', 'unknown')}",
         "",
         "## Files",
         "",
         f"- `{(output_dir / 'exp005_label_review_blind.csv').as_posix()}`",
         f"- `{(output_dir / 'exp005_label_review_full.csv').as_posix()}`",
+        f"- `{(output_dir / 'exp005_adjudication_sheet.csv').as_posix()}`",
         f"- `{(output_dir / 'label_these_first.md').as_posix()}`",
         f"- `{(output_dir / 'labeling_instructions.md').as_posix()}`",
         f"- `{(output_dir / 'label_validation_summary.json').as_posix()}`",
         f"- `{(output_dir / 'real_vs_synthetic_policy_gate.md').as_posix()}`",
+        f"- `{(output_dir / 'evidence_verdict.md').as_posix()}`",
+        f"- `{(output_dir / 'reproducibility_manifest.json').as_posix()}`",
+        f"- `{(output_dir / 'reproducibility_manifest.md').as_posix()}`",
         "",
         "## Interpretation",
         "",
-        "If no generalization-safe labels are present, accuracy improvement cannot be evaluated yet. If fewer than 20 safe labels are present, report only pilot evidence. Synthetic EXP-004 policy gains remain counterfactual until EXP-005 labels exist.",
+        "If no generalization-safe labels are present, accuracy improvement cannot be evaluated yet. If fewer than 20 safe labels are present, report only pilot evidence. Synthetic EXP-004 policy gains remain counterfactual until EXP-005 labels exist. Single-reviewer results remain preliminary unless reviewer-2 labels or supervisor adjudication are present.",
     ]
 
     if invalid_rows:
@@ -674,10 +983,12 @@ def main() -> int:
     enriched = enrich_rows(rows)
     fieldnames = list(dict.fromkeys([*enriched[0].keys(), *FULL_EXTRA_FIELDS])) if enriched else list(FULL_EXTRA_FIELDS)
     blind_rows = make_blind_rows(enriched)
+    adjudication_rows = make_adjudication_rows(enriched)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     write_csv(output_dir / "exp005_label_review_full.csv", enriched, fieldnames)
     write_csv(output_dir / "exp005_label_review_blind.csv", blind_rows, BLIND_FIELDS)
+    write_csv(output_dir / "exp005_adjudication_sheet.csv", adjudication_rows, ADJUDICATION_SHEET_FIELDS)
     write_labeling_instructions(
         output_dir / "labeling_instructions.md",
         row_count=len(enriched),
@@ -687,7 +998,11 @@ def main() -> int:
 
     summary, invalid_rows = summarize_labels(enriched)
     write_json(output_dir / "label_validation_summary.json", summary)
-    write_csv(output_dir / "invalid_labels.csv", invalid_rows, ("setting", "pattern_id", "expert_label", "errors"))
+    write_csv(
+        output_dir / "invalid_labels.csv",
+        invalid_rows,
+        ("setting", "pattern_id", "expert_label", "reviewer_2_label", "adjudicated_label", "errors"),
+    )
 
     real_matrix, real_predictions = evaluate_real_policy_gate(enriched)
     write_csv(
@@ -727,6 +1042,17 @@ def main() -> int:
         ),
     )
     write_policy_gate_report(output_dir / "real_vs_synthetic_policy_gate.md", summary, real_matrix, synthetic_matrix)
+    write_evidence_verdict(output_dir / "evidence_verdict.md", summary)
+    manifest = build_reproducibility_manifest(
+        repo_root=Path(__file__).resolve().parents[1],
+        source_sheet=source_sheet,
+        filled_sheet=filled_sheet,
+        output_dir=output_dir,
+        artifact_copy=artifact_copy,
+        summary=summary,
+    )
+    write_json(output_dir / "reproducibility_manifest.json", manifest)
+    write_reproducibility_manifest_md(output_dir / "reproducibility_manifest.md", manifest)
 
     package_report = build_package_report(output_dir / "EXP005_LABEL_REVIEW_PACKAGE.md", summary, invalid_rows, output_dir)
     artifact_copy.parent.mkdir(parents=True, exist_ok=True)

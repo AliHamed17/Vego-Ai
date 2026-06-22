@@ -15,8 +15,15 @@ Default behavior:
 - opens the results dashboard;
 - opens the EXP-005 "label these first" summary;
 - opens the EXP-005 blind label sheet;
+- opens the EXP-005 adjudication sheet and evidence verdict when present;
 - opens the EXP-005 local report when present;
 - opens the full results and accuracy report when present.
+
+After real labels are entered, use `-SkipGenerate` for review so the saved CSV is not regenerated accidentally:
+
+```powershell
+.\scripts\open-vego-workbench.ps1 -SkipGenerate
+```
 
 Useful options:
 

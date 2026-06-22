@@ -25,6 +25,8 @@
 - Small case counts can overstate differences.
 - LLM stochasticity and rate-limit retries can affect results.
 - Future reuse claims require C4B evidence; M3 proves storage/retrieval and M4A proves advisory reporting, not improved AI behavior.
+- Single-reviewer EXP-005 labels are preliminary and can encode reviewer bias.
+- Synthetic EXP-004 policy gains can be misread as real accuracy improvement if not separated from real-label evidence.
 
 ## Mitigations
 
@@ -34,4 +36,6 @@
 - Use experiment cards.
 - Preserve outputs used for claims.
 - Surface conflicting human judgments for adjudication instead of merging them silently.
+- Use reviewer-2 labels or supervisor adjudication for disputed EXP-005 rows before strong quantitative claims.
+- Report same-pattern, cross-setting, and generalization-safe partitions separately.
 - Separate implemented mechanisms from planned PhD continuation milestones.

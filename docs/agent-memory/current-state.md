@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-21 13:10 +03:00 by Codex.
+- 2026-06-22 by Codex.
 
 ## Project Goal
 
@@ -79,7 +79,9 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - EXP-004 policy-sensitivity simulation tooling now exists at `scripts/policy_sensitivity_simulation.py`, `scripts/build-policy-sensitivity-simulation.ps1`, and `experiments/EXP-004-policy-sensitivity-simulation/`. Generated ignored outputs live under `reports/generated/policy_sensitivity/` plus ignored `artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md`. Initial synthetic run: current M4B-1 stays at `+0.00 pp`; aggressive variants can show synthetic gains but also synthetic losses, so no policy implementation or accuracy claim is justified without real EXP-003 labels.
 - EXP-005 real-label accuracy gate tooling now exists at `scripts/exp005_label_review.py`, `scripts/build-exp005-label-review.ps1`, and `experiments/EXP-005-real-label-accuracy-gate/`. Generated ignored outputs live under `reports/generated/exp005_label_review/` plus ignored `artifacts/EXP005_LABEL_REVIEW_PACKAGE.md`. Initial package: 27 rows, 24 generalization-safe candidates, 4 safe memory disagreements, 2 review-after-memory cases, 0 valid expert labels, and strict gate status `Accuracy improvement cannot be evaluated yet.`
 - EXP-005 blind labeling sheet hides original Agent 4 and memory-informed classifications; full sheet preserves audit context. Optional `-FilledLabelsSheet ... -RunDownstream` merges blind labels into the full audit context before rerunning EXP-003 and EXP-004-style generated outputs.
-- A local VEGO workbench launcher now exists at `scripts/open-vego-workbench.ps1` with usage docs at `docs/operations/vego-workbench.md`. It regenerates/opens the dashboard and EXP-005 label-review package, can open the Tkinter visualizer with `-Gui`, can run health checks with `-Health`, and can refresh Confluence outbox with `-Wiki` or `-All`. It does not change Agent 4, M4B-2, `VEGO-AI/eval_output`, baseline outputs, LLM/API behavior, or embeddings.
+- EXP-005 now also generates ignored reliability and reproducibility support: `exp005_adjudication_sheet.csv`, `evidence_verdict.md`, `reproducibility_manifest.json`, and `reproducibility_manifest.md`. The current generated verdict is `blocked` because there are 0 supplied labels and 0 generalization-safe valid labels.
+- A strategic review and hardening plan now exists at `docs/research/strategic-review-and-hardening-plan.md`. It consolidates the current flow, vulnerabilities, strict evidence gates, and next-step strategy. Current verdict remains: feature work frozen, EXP-005 labels pending, 0 safe expert labels, and no accuracy-improvement claim allowed.
+- A local VEGO workbench launcher now exists at `scripts/open-vego-workbench.ps1` with usage docs at `docs/operations/vego-workbench.md`. It regenerates/opens the dashboard and EXP-005 label-review package, can open the Tkinter visualizer with `-Gui`, can run health checks with `-Health`, and can refresh Confluence outbox with `-Wiki` or `-All`. After labels are entered, use `-SkipGenerate` to avoid regenerating the saved CSV. It does not change Agent 4, M4B-2, `VEGO-AI/eval_output`, baseline outputs, LLM/API behavior, or embeddings.
 - A topology/flow export script now exists at `scripts/export-topology-report.ps1`. It generates ignored `artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html` and `.pdf` summarizing the VEGO baseline, human judgment memory chain, EXP-001 to EXP-005 evaluation flow, dashboard, visualizer, and wiki topology.
 - A paper-architecture overlay export script now exists at `scripts/export-baseline-overlay-report.ps1`. It generates ignored `artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html` and `.pdf`, recreating the main paper architecture layout and drawing the M1-M4B-1/EXP-005 human-judgment flow on top of it.
 - Supervisor Zoom preparation package for 2026-06-17 has been generated locally under ignored `artifacts/supervisor_demo_2026-06-17/`.
@@ -124,6 +126,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
 - Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
 - M4B-1 memory-informed parallel comparison is merged and available only as an experimental comparison; do not claim behavior improvement until the controlled C4B experiment is run with leakage status recorded.
+- Strategic review adds two active research risks: synthetic or same-pattern evidence must not be reported as real accuracy improvement, and one-reviewer EXP-005 labels should not be treated as strong evidence without supervisor adjudication or a second reviewer.
 - `scripts/research-health.ps1` now has a narrow allowlist for the intentionally tracked dashboard generator `VEGO-AI/analysis/build_results_dashboard.py`; controlled/generated analysis artifacts remain forbidden.
 - Codex isolation is active for M4B implementation paths on `main`.
 - Local Claude permission state is ignored via `.claude/*.local.json`.
@@ -133,6 +136,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 - Use `.\scripts\open-vego-workbench.ps1` for daily review/demo startup; use `-Gui` to open the visualizer and `-All -NoOpen` for a non-interactive full workbench validation.
 - Use the EXP-005 blind label-review sheet to collect at least 20 generalization-safe expert labels, preferably 30-50 across audited runs, before claiming or attempting accuracy improvement.
+- Add reviewer-2 labels or supervisor adjudication in `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv` before treating results as strong quantitative evidence.
 - After real labels are collected, rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream` so labels are validated, EXP-003 is rerun with full context, and candidate policies are compared using non-synthetic evidence.
 - Freeze the M4B-1 implementation baseline for empirical evaluation; treat PR #6 as schema/governance hardening only, not a new feature direction.
 - Keep the merged PR #7 visualizer UX boundary intact: no silent model/result mismatch, no stale model selection, and research panels remain read-only.
