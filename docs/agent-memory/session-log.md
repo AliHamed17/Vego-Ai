@@ -2258,3 +2258,24 @@ Chronological prompt history for Codex and Claude.
   - staged forbidden-artifact audit passed
 - Status: completed
 - Next steps: Commit and push the safe docs/scripts/tooling update; then manually fill EXP-005 blind labels, use the adjudication sheet for reviewer-2/supervisor review, and rerun EXP-005 downstream evidence.
+
+## 2026-06-22 16:02 +03:00 - Codex - EXP-005 stabilization pushed and labeling opened
+
+- Request: Finish implementing VEGO-AI next steps plan and open EXP-005 labeling materials.
+- Actions taken:
+  - Committed and pushed safe docs/scripts/tooling update to origin/main as 5c4639e.
+  - Verified origin/main points to 5c4639e.
+  - Opened workbench with -SkipGenerate for manual EXP-005 labeling.
+  - Confirmed blind CSV is currently locked/open for human labeling.
+  - No expert labels were invented or auto-filled; EXP-005 remains blocked until manual labels are saved.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - git commit -m 'Add EXP-005 evidence gate hardening' -> 5c4639e
+  - git push origin main -> 0976c05..5c4639e
+  - git ls-remote origin refs/heads/main -> 5c4639e
+  - .\\scripts\\open-vego-workbench.ps1 -SkipGenerate opened dashboard, label files, verdict, and reports
+  - blind CSV lock check -> locked/open for labeling
+- Status: completed
+- Next steps: Fill exp005_label_review_blind.csv with real supervisor/expert labels, save and close Excel, then run .\\scripts\\build-exp005-label-review.ps1 -FilledLabelsSheet reports\\generated\\exp005_label_review\\exp005_label_review_blind.csv -RunDownstream.

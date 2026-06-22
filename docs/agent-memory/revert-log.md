@@ -1129,3 +1129,11 @@ Record file changes and rollback notes here.
   - thesis/outline.md
 - Rollback note: Revert the safe docs/scripts commit to remove next-step/evidence-gate stabilization. No Agent 4, M4B-2, eval_output, framework, eval, LLM/API, embeddings, or baseline outputs were changed.
 - Git commit: none recorded by script.
+
+## 2026-06-22 16:02 +03:00 - Codex - EXP-005 stabilization pushed and labeling opened
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert commit 5c4639e and this memory-only follow-up if needed. No VEGO behavior paths were changed.
+- Git commit: none recorded by script.
