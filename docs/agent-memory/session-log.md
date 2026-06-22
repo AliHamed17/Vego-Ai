@@ -2368,3 +2368,34 @@ Chronological prompt history for Codex and Claude.
   - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
 - Status: Blocked on manual labels: saved EXP-005 labels remain 0 and the blind CSV is locked/open. Accuracy improvement cannot be evaluated yet.
 - Next steps: Save real supervisor/expert labels into reports/generated/exp005_label_review/exp005_label_review_blind.csv, close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
+
+## 2026-06-22 17:03 +03:00 - Codex - EXP-005 synthetic trial completed as simulation only
+
+- Request: Complete EXP-005 synthetically for now and continue, without representing synthetic labels as real human labels.
+- Actions taken:
+  - Created a separate ignored synthetic filled-label sheet under reports/generated/exp005_synthetic_trial/.
+  - Marked every synthetic row with reviewer_id=SYNTHETIC_NOT_HUMAN and synthetic rationale/notes; did not edit the real EXP-005 blind CSV.
+  - Ran EXP-005 downstream pipeline against the synthetic copy in reports/generated/exp005_synthetic_trial/pipeline/.
+  - Generated artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md explaining that results are simulation only and cannot prove real accuracy improvement.
+  - Confirmed current M4B-1 still changes 0/27 classifications, so original and memory-informed accuracy are identical under synthetic labels.
+  - Verified generated synthetic outputs are ignored and protected VEGO behavior paths show no diffs.
+  - Regenerated local Confluence/wiki outbox and dashboard status snapshot.
+  - Ran project, research, and dashboard health checks; all passed.
+- Files changed:
+  - reports/generated/exp005_synthetic_trial/ (ignored)
+  - artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md (ignored)
+  - artifacts/EXP005_SYNTHETIC_TRIAL_PACKAGE.md (ignored)
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - Generate synthetic EXP-005 filled labels from exp005_label_review_full.csv
+  - .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_synthetic_trial\exp005_synthetic_filled_labels.csv -OutputDir reports\generated\exp005_synthetic_trial\pipeline -ArtifactCopy artifacts\EXP005_SYNTHETIC_TRIAL_PACKAGE.md -RunDownstream
+  - Read artifacts\SYNTHETIC_EXP005_TRIAL_REPORT.md
+  - git check-ignore for synthetic reports/artifacts
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+  - .\scripts\project-health.ps1
+  - .\scripts\research-health.ps1
+- Status: Completed synthetic-only pipeline trial. Real EXP-005 evidence remains blocked until real supervisor/expert labels are saved.
+- Next steps: Use the synthetic report only for pipeline/policy-risk discussion. Collect real EXP-005 blind labels before any real accuracy claim or policy implementation. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
