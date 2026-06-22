@@ -2346,3 +2346,25 @@ Chronological prompt history for Codex and Claude.
   - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
 - Status: Completed local memory/wiki/dashboard refresh. EXP-005 evidence remains blocked on 0 saved labels.
 - Next steps: Fill and save real EXP-005 blind labels, close Excel, then run the downstream evidence command. Do not run dashboard-health in parallel with build-confluence-wiki because the outbox file is regenerated during the build.
+
+## 2026-06-22 16:47 +03:00 - Codex - EXP-005 gate rechecked; saved labels still zero
+
+- Request: Continue to next steps for EXP-005 evidence workflow.
+- Actions taken:
+  - Ran prompt-start memory refresh and reviewed compiled EXP-005 context.
+  - Checked saved EXP-005 blind CSV: 27 rows, 0 supplied labels, 0 complete required rows, no invalid labels.
+  - Confirmed the blind CSV is locked/open, so no regeneration or downstream evidence run was attempted.
+  - Attempted read-only Excel COM attach to inspect open workbook contents, but COM attach was unavailable; saved CSV remains the authoritative state.
+  - Verified protected VEGO behavior paths show no diffs.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - rg EXP-005 docs\agent-memory\compiled-memory.md
+  - CSV label-count check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
+  - CSV lock check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
+  - Read-only Excel COM attach attempt
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
+- Status: Blocked on manual labels: saved EXP-005 labels remain 0 and the blind CSV is locked/open. Accuracy improvement cannot be evaluated yet.
+- Next steps: Save real supervisor/expert labels into reports/generated/exp005_label_review/exp005_label_review_blind.csv, close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
