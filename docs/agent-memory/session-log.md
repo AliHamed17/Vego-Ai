@@ -2522,3 +2522,21 @@ Chronological prompt history for Codex and Claude.
   - git check-ignore for generated review/wiki/dashboard outputs
 - Status: completed
 - Next steps: Fill real EXP-005 labels; rerun project review and EXP-005 downstream gate after the CSV is saved and closed.
+
+## 2026-06-23 11:08 +03:00 - Codex - Automatic review cycle
+
+- Request: Run the automatic supervised review/next-step cycle.
+- Actions taken:
+  - Ran the supervised next-step loop with review, wiki refresh, and health checks.
+  - Confirmed project review verdict remains blocked because EXP-005 has 0 supplied real labels.
+  - Confirmed no downstream evidence run occurred and no VEGO behavior paths changed.
+  - Confirmed generated review, wiki, dashboard, and loop outputs remain ignored.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - git status -sb --short
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+- Status: completed
+- Next steps: Fill real EXP-005 labels, save and close the CSV, then rerun .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen.

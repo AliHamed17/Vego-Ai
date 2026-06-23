@@ -1156,3 +1156,11 @@ Record file changes and rollback notes here.
   - docs/agent-memory/decisions.md
 - Rollback note: Revert the review architecture by removing scripts/run-project-review.ps1, docs/operations/project-review-architecture.md, docs/agent-memory/review-state.md, and reverting the related instruction/memory edits plus run-codex-next-step.ps1 integration.
 - Git commit: none recorded by script.
+
+## 2026-06-23 11:08 +03:00 - Codex - Automatic review cycle
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the memory-only session/revert log entry if this automatic-cycle record should be removed. No VEGO behavior files were changed.
+- Git commit: none recorded by script.
