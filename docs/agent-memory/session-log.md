@@ -2459,3 +2459,29 @@ Chronological prompt history for Codex and Claude.
   - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
 - Status: Ready to commit docs-only design checkpoint. No VEGO behavior changed.
 - Next steps: Commit/push docs-only synthetic policy candidate checkpoint. Then collect real EXP-005 labels before any policy refinement.
+
+## 2026-06-23 10:27 +03:00 - Codex - EXP-005 real-label materials opened for manual labeling
+
+- Request: Continue to next steps.
+- Actions taken:
+  - Ran prompt-start memory refresh and checked real EXP-005 label state.
+  - Confirmed real blind CSV has 27 rows, 0 supplied labels, 0 complete required rows, and no invalid labels.
+  - Confirmed protected VEGO behavior paths show no diffs.
+  - Opened label_these_first.md, exp005_label_review_blind.csv, m4b1 synthetic policy candidate review, and baseline overlay PDF for manual review.
+  - Confirmed the blind CSV is now open in Excel and locked for manual labeling.
+  - Skipped downstream evidence run because no real saved labels exist yet.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - CSV label-count check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
+  - CSV lock check before opening -> unlocked
+  - Start-Process reports\generated\exp005_label_review\label_these_first.md
+  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv
+  - Start-Process docs\research\m4b1-synthetic-policy-candidate-review.md
+  - Start-Process artifacts\topology-export\VEGO_BASELINE_OVERLAY_REPORT.pdf
+  - CSV lock check after opening -> locked by Excel
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
+- Status: Manual labeling handoff complete. EXP-005 real evidence remains blocked until labels are saved and Excel is closed.
+- Next steps: Fill real expert/supervisor labels in exp005_label_review_blind.csv, save and close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not use synthetic labels as real evidence.
