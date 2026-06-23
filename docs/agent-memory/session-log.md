@@ -2565,3 +2565,23 @@ Chronological prompt history for Codex and Claude.
   - git check-ignore for generated review/wiki/dashboard outputs
 - Status: completed
 - Next steps: Fill real EXP-005 labels, save and close the CSV, then rerun .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen.
+
+## 2026-06-23 11:45 +03:00 - Codex - Confluence MCP update blocked
+
+- Request: Update Confluence page 294914 through Atlassian Rovo MCP.
+- Actions taken:
+  - Rebuilt Confluence wiki outbox and dashboard/manual sync pack.
+  - Verified dashboard health after outbox build.
+  - Read generated home page body from docs/confluence/outbox/vego-ai-wiki-home.md.
+  - Tried Atlassian Rovo _getconfluencepage for cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec page 294914.
+  - Live MCP update was blocked because the cloud is not explicitly granted by the user.
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+  - Atlassian Rovo _getconfluencepage cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec page 294914
+- Status: blocked
+- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then retry the Confluence MCP update from docs/confluence/outbox/vego-ai-wiki-home.md.

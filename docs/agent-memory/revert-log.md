@@ -1172,3 +1172,11 @@ Record file changes and rollback notes here.
   - docs/agent-memory/revert-log.md
 - Rollback note: Revert this memory-only verification entry if not needed. The review architecture implementation is already in commit 8ac0125 and no VEGO behavior files were changed.
 - Git commit: none recorded by script.
+
+## 2026-06-23 11:45 +03:00 - Codex - Confluence MCP update blocked
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert this memory-only blocked-sync entry if needed. No live Confluence write occurred and no VEGO behavior files changed.
+- Git commit: none recorded by script.
