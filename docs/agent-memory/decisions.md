@@ -256,3 +256,22 @@ Durable decisions for this project.
 - Decision: Keep M4B-1.1, M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline-output overwrites, and `VEGO-AI/eval_output` changes blocked after the synthetic trial.
 - Reason: The synthetic trial confirmed the pipeline works and current M4B-1 has 0.00 pp synthetic accuracy delta, while candidate policy gains depend on synthetic assumptions.
 - Consequence: Real EXP-005 labels remain the required next step before any accuracy claim or policy refinement.
+
+## 2026-06-23 - Supervised Next-Step Loop
+
+- Decision: Use `scripts/run-codex-next-step.ps1` as the supervised one-cycle loop for "continue" or "next step" prompts.
+- Decision: Keep the loop per-prompt and explicit; do not represent it as a background service or unattended 24/7 automation.
+- Decision: The loop may inspect state, open blocked materials, refresh wiki/dashboard outputs, and run EXP-005 downstream only when real labels are saved, complete, valid, and the sheet is closed.
+- Decision: The loop must stop on missing labels, invalid/incomplete labels, locked CSV files, or protected VEGO behavior diffs.
+- Reason: The user wants Codex to keep making progress with minimal intervention, but the project has hard research and behavior-safety gates.
+- Consequence: Future continuation prompts should run the loop first, inspect `reports/generated/next_step_loop/last-run.md`, then perform any safe follow-up work.
+
+## 2026-06-23 - Project Review Architecture
+
+- Decision: Add a structured project review architecture connected to shared agent memory.
+- Decision: Keep `docs/agent-memory/review-state.md` as the tracked fast review state and include it in compiled memory.
+- Decision: Use `scripts/run-project-review.ps1` to produce ignored review reports under `reports/generated/project_review/`.
+- Decision: Use fixed review verdicts: `green`, `yellow`, `blocked`, and `unsafe`.
+- Decision: When EXP-005 blocks the next-step loop, run the project review cycle so Codex and Claude get a full audit report instead of only repeating the label blocker.
+- Reason: The project now needs repeatable governance/evidence review more than new feature work.
+- Consequence: Future review/continue prompts should inspect `reports/generated/project_review/latest-review.md`, keep safe claims separate from blocked claims, and update review-state memory when the review changes project state.

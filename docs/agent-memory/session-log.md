@@ -2485,3 +2485,40 @@ Chronological prompt history for Codex and Claude.
   - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
 - Status: Manual labeling handoff complete. EXP-005 real evidence remains blocked until labels are saved and Excel is closed.
 - Next steps: Fill real expert/supervisor labels in exp005_label_review_blind.csv, save and close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not use synthetic labels as real evidence.
+
+## 2026-06-23 10:53 +03:00 - Codex - Project review architecture
+
+- Request: Implement a memory-connected architecture to review VEGO-AI work and project state.
+- Actions taken:
+  - Added structured project review architecture documentation and review-state memory.
+  - Added run-project-review.ps1 for non-destructive review reports with green/yellow/blocked/unsafe verdicts.
+  - Wired run-codex-next-step.ps1 to run the project review cycle when EXP-005 is blocked.
+  - Updated Codex/Claude/README/workbench instructions and progress/decision memory.
+  - Validated that current review verdict is blocked only because EXP-005 has 0 real labels.
+- Files changed:
+  - docs/operations/project-review-architecture.md
+  - docs/agent-memory/review-state.md
+  - scripts/run-project-review.ps1
+  - scripts/run-codex-next-step.ps1
+  - scripts/agent-memory-start.ps1
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/operations/codex-next-step-loop.md
+  - docs/operations/vego-workbench.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - PowerShell parser check for scripts/*.ps1
+  - .\scripts\run-project-review.ps1 -UpdateReviewState
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts
+  - .\scripts\project-health.ps1
+  - .\scripts\research-health.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
+  - git check-ignore for generated review/wiki/dashboard outputs
+- Status: completed
+- Next steps: Fill real EXP-005 labels; rerun project review and EXP-005 downstream gate after the CSV is saved and closed.

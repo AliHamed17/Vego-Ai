@@ -1137,3 +1137,22 @@ Record file changes and rollback notes here.
   - docs/agent-memory/revert-log.md
 - Rollback note: Revert commit 5c4639e and this memory-only follow-up if needed. No VEGO behavior paths were changed.
 - Git commit: none recorded by script.
+
+## 2026-06-23 10:53 +03:00 - Codex - Project review architecture
+
+- Files changed:
+  - docs/operations/project-review-architecture.md
+  - docs/agent-memory/review-state.md
+  - scripts/run-project-review.ps1
+  - scripts/run-codex-next-step.ps1
+  - scripts/agent-memory-start.ps1
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/operations/codex-next-step-loop.md
+  - docs/operations/vego-workbench.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert the review architecture by removing scripts/run-project-review.ps1, docs/operations/project-review-architecture.md, docs/agent-memory/review-state.md, and reverting the related instruction/memory edits plus run-codex-next-step.ps1 integration.
+- Git commit: none recorded by script.

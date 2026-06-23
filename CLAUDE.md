@@ -15,6 +15,16 @@ Treat the memory files as project resources. Use them to understand the flow, av
 3. Use the compiled memory to understand current state, the shared state report, progress, issues, decisions, recent prompt history, rollback notes, project architecture, research plan, and experiment registry.
 4. Check whether Git is available before relying on revert/rollback claims.
 
+## Continue / Next-Step Prompts
+
+When the user asks to review the project, continue, loop, or do the next step without giving a new specific plan, run one supervised next-step cycle:
+
+```powershell
+.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+```
+
+Use `reports/generated/next_step_loop/last-run.md` and `reports/generated/project_review/latest-review.md` to decide what happened. This is a per-prompt workflow, not a background service. Stop at hard gates such as missing real EXP-005 labels, invalid labels, locked label files, or protected VEGO behavior diffs. For a review-only cycle, run `.\scripts\run-project-review.ps1`.
+
 ## After Each Prompt
 
 If the prompt included analysis, edits, debugging, planning, or a decision, update:
@@ -46,6 +56,7 @@ If the prompt included analysis, edits, debugging, planning, or a decision, upda
 
 - `docs/agent-memory/current-state.md`: quick orientation and latest known state.
 - `docs/agent-memory/shared-state-report.md`: high-level Claude/Codex research and governance state report.
+- `docs/agent-memory/review-state.md`: latest structured project review verdict, blockers, allowed claims, and next action.
 - `docs/agent-memory/progress.md`: milestones, active tasks, and next steps.
 - `docs/agent-memory/session-log.md`: chronological prompt history.
 - `docs/agent-memory/issues.md`: open, blocked, and resolved issues.

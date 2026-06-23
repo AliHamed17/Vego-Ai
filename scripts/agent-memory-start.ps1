@@ -12,6 +12,7 @@ $outputPath = Join-Path $memoryDir "compiled-memory.md"
 $orderedPaths = @(
     "docs/agent-memory/current-state.md",
     "docs/agent-memory/shared-state-report.md",
+    "docs/agent-memory/review-state.md",
     "docs/agent-memory/progress.md",
     "docs/agent-memory/issues.md",
     "docs/agent-memory/decisions.md",

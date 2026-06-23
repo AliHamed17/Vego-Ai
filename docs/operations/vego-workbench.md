@@ -36,6 +36,20 @@ Useful options:
 .\scripts\open-vego-workbench.ps1 -NoOpen
 ```
 
+For a supervised one-cycle "continue to next step" workflow, use:
+
+```powershell
+.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+```
+
+For a structured project review only, use:
+
+```powershell
+.\scripts\run-project-review.ps1
+```
+
+Details: `docs/operations/codex-next-step-loop.md` and `docs/operations/project-review-architecture.md`.
+
 Export the topology/flow report to HTML and PDF:
 
 ```powershell

@@ -56,8 +56,9 @@ Do not mix thesis notes, experiment notes, or project-management files inside `V
 6. Finish with `.\scripts\agent-memory-finish.ps1` so future prompts can continue the thread.
 7. Refresh the Confluence outbox, dashboard runtime snapshot, and manual sync pack with `.\scripts\build-confluence-wiki.ps1`.
 8. Verify dashboard/wiki readiness with `.\scripts\dashboard-health.ps1 -RequireOutbox`.
+9. For supervised "review / continue to next step" cycles, run `.\scripts\run-codex-next-step.ps1`.
 
-For meeting/demo commands, see `docs/operations/vego-workbench.md`.
+For meeting/demo commands, see `docs/operations/vego-workbench.md`. For the supervised Codex loop, see `docs/operations/codex-next-step-loop.md`. For the structured review architecture, see `docs/operations/project-review-architecture.md`.
 
 ## Reproducibility Rule
 

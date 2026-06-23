@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-22 by Codex.
+- 2026-06-23 by Codex.
 
 ## Project Goal
 
@@ -83,6 +83,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 - A synthetic-only EXP-005 trial was run in ignored `reports/generated/exp005_synthetic_trial/` with ignored report `artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md`. It used reviewer ID `SYNTHETIC_NOT_HUMAN`, produced 27 synthetic labels and 24 synthetic safe rows, and confirmed current M4B-1 still has 0/27 classification changes and 0.00 pp accuracy delta under synthetic labels. Tracked design-only interpretation is in `docs/research/m4b1-synthetic-policy-candidate-review.md`; do not treat it as real evidence.
 - A strategic review and hardening plan now exists at `docs/research/strategic-review-and-hardening-plan.md`. It consolidates the current flow, vulnerabilities, strict evidence gates, and next-step strategy. Current verdict remains: feature work frozen, EXP-005 labels pending, 0 safe expert labels, and no accuracy-improvement claim allowed.
 - A local VEGO workbench launcher now exists at `scripts/open-vego-workbench.ps1` with usage docs at `docs/operations/vego-workbench.md`. It regenerates/opens the dashboard and EXP-005 label-review package, can open the Tkinter visualizer with `-Gui`, can run health checks with `-Health`, and can refresh Confluence outbox with `-Wiki` or `-All`. After labels are entered, use `-SkipGenerate` to avoid regenerating the saved CSV. It does not change Agent 4, M4B-2, `VEGO-AI/eval_output`, baseline outputs, LLM/API behavior, or embeddings.
+- A supervised one-cycle Codex next-step loop now exists at `scripts/run-codex-next-step.ps1` with docs at `docs/operations/codex-next-step-loop.md`. For "continue" prompts, it checks EXP-005 labels, protected diffs, optional wiki/dashboard refresh, and writes ignored `reports/generated/next_step_loop/last-run.md`; it is not a background service.
+- A memory-connected project review architecture now exists at `docs/operations/project-review-architecture.md`, tracked review state lives in `docs/agent-memory/review-state.md`, and `scripts/run-project-review.ps1` writes ignored structured review reports under `reports/generated/project_review/`.
 - A topology/flow export script now exists at `scripts/export-topology-report.ps1`. It generates ignored `artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html` and `.pdf` summarizing the VEGO baseline, human judgment memory chain, EXP-001 to EXP-005 evaluation flow, dashboard, visualizer, and wiki topology.
 - A paper-architecture overlay export script now exists at `scripts/export-baseline-overlay-report.ps1`. It generates ignored `artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html` and `.pdf`, recreating the main paper architecture layout and drawing the M1-M4B-1/EXP-005 human-judgment flow on top of it.
 - Supervisor Zoom preparation package for 2026-06-17 has been generated locally under ignored `artifacts/supervisor_demo_2026-06-17/`.
@@ -135,7 +137,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Next Best Step
 
-- Use `.\scripts\open-vego-workbench.ps1` for daily review/demo startup; use `-Gui` to open the visualizer and `-All -NoOpen` for a non-interactive full workbench validation.
+- Use `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen` for supervised "review / continue to next step" prompts; use `.\scripts\run-project-review.ps1` for review-only prompts and `.\scripts\open-vego-workbench.ps1` for daily review/demo startup.
 - Use the EXP-005 blind label-review sheet to collect at least 20 generalization-safe expert labels, preferably 30-50 across audited runs, before claiming or attempting accuracy improvement.
 - Use the synthetic EXP-005 policy-candidate review only to prioritize later real-label discussion; it does not justify M4B-1.1, M4B-2, or any Agent 4 behavior change.
 - Add reviewer-2 labels or supervisor adjudication in `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv` before treating results as strong quantitative evidence.
