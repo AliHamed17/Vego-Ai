@@ -1,0 +1,39 @@
+%%{ init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4fd', 'primaryBorderColor': '#2b6cb0', 'lineColor': '#4a5568', 'textColor': '#1a202c' } } }%%
+flowchart LR
+    subgraph baseline["C0 Baseline"]
+        B["179 models → 27 patterns<br/>9 Substantial, 18 Occasional"]
+    end
+
+    subgraph m1s["M1"]
+        M1["11 queued<br/>(40.7% targeting)"]
+    end
+
+    subgraph m2s["M2"]
+        M2["4 feedback<br/>(all schema-valid)"]
+    end
+
+    subgraph m3s["M3"]
+        M3["3 reusable<br/>memories"]
+    end
+
+    subgraph m4as["M4A"]
+        M4A["8 advice items<br/>0 AI changes"]
+    end
+
+    subgraph m4bs["M4B-1"]
+        M4B["27 comparisons<br/>0 differ from original<br/>2 review-after-memory"]
+    end
+
+    subgraph gate["Evidence Gate"]
+        G["0 / 24 safe labels<br/>⛔ Accuracy not evaluable"]
+    end
+
+    B --> M1 --> M2 --> M3 --> M4A --> M4B --> G
+
+    style B fill:#e2e8f0,stroke:#4a5568,color:#1a202c
+    style M1 fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style M2 fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style M3 fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style M4A fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style M4B fill:#c6f6d5,stroke:#276749,color:#1a202c
+    style G fill:#fed7d7,stroke:#c53030,color:#1a202c

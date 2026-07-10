@@ -1,6 +1,56 @@
+<!--
+last_updated: 2026-07-04
+staleness_threshold_days: 14
+-->
+
 # Decisions
 
 Durable decisions for this project.
+
+## Decision Lifecycle Registry
+
+| Date | Title | Status | Notes / Superseded By |
+|---|---|---|---|
+| 2026-06-11 | Shared Agent Memory | Active | Uses AGENTS.md, CLAUDE.md, and docs/agent-memory/ |
+| 2026-06-11 | Current-State First Workflow | Active | Stored in current-state.md and progress.md |
+| 2026-06-11 | Scripted Prompt Memory | Active | start/finish scripts for memory updates |
+| 2026-06-11 | PhD Research Workspace Architecture | Active | Folders for research, thesis, experiments |
+| 2026-06-11 | Git And Generated Artifact Policy | Active | Ignores local large data/caches, tracks code/docs |
+| 2026-06-11 | Safe GitHub Baseline | Active | Pushed safe baseline to private repo |
+| 2026-06-11 | Claude Bootstrap Prompt | Active | Startup instructions at claude-bootstrap-prompt.md |
+| 2026-06-11 | Workspace Diagram Format | Active | Markdown + Mermaid diagram in workspace-diagram.md |
+| 2026-06-12 | Claude Local Settings Policy | Active | Ignored machine-specific permission files |
+| 2026-06-12 | Human-AI Co-Reasoning Milestone 2 | Active | feedback manager and test harness |
+| 2026-06-12 | Research OS Infrastructure | Active | Ethics, management, and audit registers |
+| 2026-06-12 | Confluence Wiki Target Site | Active | Target space ~71202099edcf0e26ec40cea521806deb9e9687 |
+| 2026-06-12 | Reusable Human Judgment Story | Active | Focus on framework, inert memory, controlled M4 |
+| 2026-06-12 | Memory Advisory Layer (M4A) Merge | Active | Squashed to main; advisory-only verification |
+| 2026-06-13 | Milestone Tags & Handoff | Active | Lightweight tags created, Claude prompts written |
+| 2026-06-13 | KPI Register Dashboard | Active | Track dashboards locally and in Confluence outbox |
+| 2026-06-13 | Dashboard Health Gate | Active | dashboard-health.ps1 script blocks invalid outbox |
+| 2026-06-13 | Runtime Dashboard Snapshot | Active | snapshot.generated.md embedded in Progress page |
+| 2026-06-13 | Confluence Manual Sync Pack | Active | Outbox generator fallback for blocked access |
+| 2026-06-14 | Conditional M4B-1 Approval Contract | Active | comparison only, Agent 4 frozen |
+| 2026-06-14 | Results Dashboard Implementation | Active | offline build_results_dashboard.py merged |
+| 2026-06-14 | Visualizer UX and Match Hardening | Active | PR #7 exact matching, auto-clear stale models |
+| 2026-06-14 | Evaluation Report and Register | Active | registry.md and evaluation-report.md created |
+| 2026-06-14 | EXP-001 Mechanism Readiness | Active | mechanism validation on 27 comparisons |
+| 2026-06-14 | EXP-002 Expert Labeling Package | Active | Identified 24 safe candidate rows |
+| 2026-06-16 | Supervisor Zoom Preparation | Active | demo prep scripts and slide decks |
+| 2026-06-16 | EXP-003 Scaffolding & Accuracy | Active | accuracy evaluation path tooling |
+| 2026-06-16 | EXP-004 Policy Sensitivity Tooling | Active | policy sensitivity checks on synthetic labels |
+| 2026-06-17 | EXP-005 Real-Label Gate Tooling | Active | blind labeling sheets, κ stats, adjudication |
+| 2026-06-21 | VEGO Workbench Launcher | Active | open-vego-workbench.ps1 command-line tool |
+| 2026-06-22 | Strategic Review and Hardening | Active | validation consistency checks and strict gates |
+| 2026-06-23 | Supervised Codex Next-Step Loop | Active | run-codex-next-step.ps1 for loop execution |
+| 2026-06-23 | Project Review Architecture | Active | run-project-review.ps1 updates review-state.md |
+| 2026-06-23 | Generated Progress Visualizations | Active | progress visualizations generated for dashboard |
+| 2026-06-23 | Progress Update Architecture | Active | defines e2e report, Confluence, and 4-hr updates |
+| 2026-06-23 | Progress Update Diagram | Active | diagrams the progress update operational contract |
+| 2026-06-23 | E2E Progress Report and Web Page | Active | build-e2e-progress-report.ps1 web output |
+| 2026-06-23 | HITL Resource Pack | Active | literature and tooling templates for Chapter 2 |
+| 2026-06-24 | Hardened Annotation Pack | Active | 24 safe blind rows split, Dev/Holdout split |
+| 2026-07-03 | Tiered Memory & Log Archival | Active | T1/T2/T3 compiled files, session-log pruning |
 
 ## 2026-06-11 - Shared Agent Memory
 
@@ -275,3 +325,23 @@ Durable decisions for this project.
 - Decision: When EXP-005 blocks the next-step loop, run the project review cycle so Codex and Claude get a full audit report instead of only repeating the label blocker.
 - Reason: The project now needs repeatable governance/evidence review more than new feature work.
 - Consequence: Future review/continue prompts should inspect `reports/generated/project_review/latest-review.md`, keep safe claims separate from blocked claims, and update review-state memory when the review changes project state.
+
+## 2026-07-04 - July 2026 Supervisor Redirect Adopted As A Provisional Working Plan
+
+- Repository planning decision: use `docs/research/extension-plan-2026-07-supervisor-redirect.md` as the active provisional framework-first plan while preserving the parked evaluation gate.
+- Proposed design: the human-judgment layer is reframed as an H-layer with skills S1-S7 mapped to H1/H2/H3. Full passive E1-E14 observation, active routing, and agent decomposition remain M-02/M-03 choices, not recorded supervisor decisions.
+- Decision: Rename M1/M2/M3 to H1/H2/H3 in NEW research docs and diagrams only; code, schemas, tags, and history keep M-names until a dedicated rename PR is approved.
+- Working interpretation pending participant confirmation: M4 is deferred to a separate parked evaluation view; framework and evaluation live in separate diagrams.
+- Safety boundary: the expert is a real person; detailed dosage, reviewer roles, source set, round bound, and authority matrix remain M-03..M-05 choices. On timeout, preserve baseline behavior and park the item; no H3 auto-application. S6 is proposal-only.
+- Decision: EXP-005 stays the real-label gate of the parked evaluation track; all existing claim boundaries and behavior blocks remain in force; this phase is documentation-only (no VEGO-AI source changes).
+- Reason: Machine ASR and machine-derived meeting notes support the redirect, but wording, attribution, and D1-D12 still await participant confirmation.
+- Consequence: Offline docs/contracts/experiments may advance. Live implementation stays blocked until M-05 and a separate exact-file authorization are explicitly recorded.
+
+## 2026-07-04 - MediVARIA Drafted As Proposed PhD/Future Work
+
+- Proposal: MediVARIA is a post-meeting planning draft for possible medical-domain transfer; it is not an Iris/Arnon-endorsed clinical project. Study plan: `docs/research/medivaria/medivaria-study-plan.md`.
+- Working boundary: the MSc thesis stays education-domain in scope; MediVARIA appears only as motivation, transferability discussion, and proposed future work unless separately approved.
+- Governance boundary: no patient data in this repository; ethics/IRB review precedes any future data work; education-domain results are never clinical-performance evidence; partner/negotiation details stay out of tracked docs while TBD.
+- Open M-06 choice: whether H-layer detail specs should be domain-parameterized for future transfer. Education remains the MSc empirical scope.
+- Reason: User direction on 2026-07-04 to integrate the MediVARIA study and enhance project/thesis per the supervisor's guidance; MediVARIA operationalizes phd-extension-ideas idea 1 and gives ideas 2, 3, and 5 their clinical setting.
+- Consequence: 2026-07-15 meeting agenda gains the MediVARIA items (study-plan section 8); TASK-043 tracks MV-P0; all existing evidence gates and the framework-first sequencing remain unchanged.

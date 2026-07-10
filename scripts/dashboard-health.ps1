@@ -24,6 +24,10 @@ $dashboardFiles = @(
 )
 
 $snapshotRelative = "docs/dashboards/status-snapshot.generated.md"
+$visualMarkdownRelative = "docs/dashboards/progress-visualizations.generated.md"
+$visualHtmlRelative = "docs/dashboards/progress-visualizations.generated.html"
+$e2eMarkdownRelative = "docs/dashboards/e2e-dashboard.generated.md"
+$e2eHtmlRelative = "reports/generated/e2e_dashboard/index.html"
 $manualSyncPackRelative = "docs/confluence/manual-sync-pack.generated.md"
 $requiredPageKeys = @("home", "currentState", "dashboard", "changelog", "researchOperations")
 $requiredOutboxFiles = @(
@@ -97,12 +101,66 @@ else {
 
 $builderPath = Join-Path $repoRoot "scripts/build-confluence-wiki.ps1"
 $builder = Get-Content -Raw -LiteralPath $builderPath
-foreach ($requiredBuilderText in @("docs/dashboards/progress-dashboard.md", "docs/dashboards/kpi-register.md", "docs/dashboards/results-dashboard.md", "build-dashboard-snapshot.ps1", "status-snapshot.generated.md", "build-confluence-manual-sync-pack.ps1", "manual-sync-pack.generated.md", "vego-ai-progress-dashboard.md")) {
+foreach ($requiredBuilderText in @("docs/dashboards/progress-dashboard.md", "docs/dashboards/kpi-register.md", "docs/dashboards/results-dashboard.md", "build-dashboard-snapshot.ps1", "status-snapshot.generated.md", "build-progress-visualizations.ps1", "progress-visualizations.generated.md", "build-e2e-progress-report.ps1", "e2e-dashboard.generated.md", "reports\generated\e2e_dashboard\index.html", "build-confluence-manual-sync-pack.ps1", "manual-sync-pack.generated.md", "vego-ai-progress-dashboard.md")) {
     if ($builder -notmatch [regex]::Escape($requiredBuilderText)) {
         throw "Confluence wiki builder is missing dashboard wiring: $requiredBuilderText"
     }
 }
 Write-Host "[ok]      Confluence wiki builder includes dashboard sources"
+
+$visualMarkdownPath = Join-Path $repoRoot $visualMarkdownRelative
+if (Test-Path -LiteralPath $visualMarkdownPath) {
+    $visualMarkdown = Get-Content -Raw -LiteralPath $visualMarkdownPath
+    if (-not $visualMarkdown.StartsWith("# Progress Visualizations")) {
+        throw "Generated progress visualizations markdown must start with '# Progress Visualizations'."
+    }
+    if (-not (Test-IgnoredByGit -RelativePath $visualMarkdownRelative)) {
+        throw "Generated progress visualizations markdown must be ignored by Git: $visualMarkdownRelative"
+    }
+    Write-Host "[ok]      Generated progress visualization markdown exists and is ignored"
+}
+
+$visualHtmlPath = Join-Path $repoRoot $visualHtmlRelative
+if (Test-Path -LiteralPath $visualHtmlPath) {
+    $visualHtml = Get-Content -Raw -LiteralPath $visualHtmlPath
+    if ($visualHtml -notmatch "<title>VEGO-AI Progress Visualizations</title>") {
+        throw "Generated progress visualization HTML is missing the expected title."
+    }
+    if (-not (Test-IgnoredByGit -RelativePath $visualHtmlRelative)) {
+        throw "Generated progress visualization HTML must be ignored by Git: $visualHtmlRelative"
+    }
+    Write-Host "[ok]      Generated progress visualization HTML exists and is ignored"
+}
+
+$e2eMarkdownPath = Join-Path $repoRoot $e2eMarkdownRelative
+if (Test-Path -LiteralPath $e2eMarkdownPath) {
+    $e2eMarkdown = Get-Content -Raw -LiteralPath $e2eMarkdownPath
+    if (-not $e2eMarkdown.StartsWith("# VEGO-AI E2E Progress Report")) {
+        throw "Generated E2E dashboard markdown must start with '# VEGO-AI E2E Progress Report'."
+    }
+    if (-not (Test-IgnoredByGit -RelativePath $e2eMarkdownRelative)) {
+        throw "Generated E2E dashboard markdown must be ignored by Git: $e2eMarkdownRelative"
+    }
+    Write-Host "[ok]      Generated E2E dashboard markdown exists and is ignored"
+}
+elseif ($RequireOutbox) {
+    throw "Generated E2E dashboard markdown is required but missing: $e2eMarkdownRelative"
+}
+
+$e2eHtmlPath = Join-Path $repoRoot $e2eHtmlRelative
+if (Test-Path -LiteralPath $e2eHtmlPath) {
+    $e2eHtml = Get-Content -Raw -LiteralPath $e2eHtmlPath
+    if ($e2eHtml -notmatch "<title>VEGO-AI E2E Progress Report</title>") {
+        throw "Generated E2E dashboard HTML is missing the expected title."
+    }
+    if (-not (Test-IgnoredByGit -RelativePath $e2eHtmlRelative)) {
+        throw "Generated E2E dashboard HTML must be ignored by Git: $e2eHtmlRelative"
+    }
+    Write-Host "[ok]      Generated E2E dashboard HTML exists and is ignored"
+}
+elseif ($RequireOutbox) {
+    throw "Generated E2E dashboard HTML is required but missing: $e2eHtmlRelative"
+}
 
 $manualPackPath = Join-Path $repoRoot $manualSyncPackRelative
 if (Test-Path -LiteralPath $manualPackPath) {
@@ -181,7 +239,7 @@ if (Test-Path -LiteralPath $outboxPath) {
     }
 
     $dashboardOutbox = Get-Content -Raw -LiteralPath (Join-Path $outboxPath "vego-ai-progress-dashboard.md")
-    foreach ($section in @("## Status Snapshot", "# Dashboard Status Snapshot", "## Progress Dashboard", "## KPI Register", "## Results Dashboard")) {
+    foreach ($section in @("## Status Snapshot", "# Dashboard Status Snapshot", "## Progress Dashboard", "## Progress Visualizations", "## E2E Progress Report", "# VEGO-AI E2E Progress Report", "## KPI Register", "## Results Dashboard")) {
         if ($dashboardOutbox -notmatch [regex]::Escape($section)) {
             throw "Generated dashboard outbox is missing section: $section"
         }

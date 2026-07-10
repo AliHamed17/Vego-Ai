@@ -82,10 +82,14 @@ $provenance = Read-RepoText "docs/research/provenance-register.md"
 $publishability = Read-RepoText "docs/research/publishability-register.md"
 $researchPlan = Read-RepoText "docs/research/research-plan.md"
 $architecture = Read-RepoText "docs/architecture/project-map.md"
+$progressUpdateDiagram = Read-RepoText "docs/architecture/progress-update-diagram.md"
+$progressUpdateArchitecture = Read-RepoText "docs/operations/progress-update-architecture.md"
 $progressDashboard = Read-RepoText "docs/dashboards/progress-dashboard.md"
 $kpiRegister = Read-RepoText "docs/dashboards/kpi-register.md"
 $resultsDashboard = Read-RepoText "docs/dashboards/results-dashboard.md"
 $statusSnapshot = "_Dashboard status snapshot is generated during this wiki build._`n"
+$progressVisualizations = "_Progress visualizations are generated during this wiki build._`n"
+$e2eDashboard = "_E2E progress report is generated during this wiki build._`n"
 $changelog = Get-RecentSessionEntries -Limit $MaxChangelogEntries
 
 $homePage = @"
@@ -109,6 +113,10 @@ VEGO-AI is a PhD research workspace for agentic AI support for variability explo
 ## Architecture
 
 $architecture
+
+## Progress Update Diagram
+
+$progressUpdateDiagram
 
 ## Research Plan
 
@@ -158,6 +166,14 @@ $statusSnapshot
 
 $progressDashboard
 
+## Progress Visualizations
+
+$progressVisualizations
+
+## E2E Progress Report
+
+$e2eDashboard
+
 ## KPI Register
 
 $kpiRegister
@@ -195,6 +211,10 @@ $provenance
 ## Publishability Register
 
 $publishability
+
+## Progress Update Architecture
+
+$progressUpdateArchitecture
 "@
 
 Write-WikiPage -FileName "vego-ai-wiki-home.md" -Body $homePage
@@ -207,6 +227,21 @@ $snapshotScript = Join-Path $PSScriptRoot "build-dashboard-snapshot.ps1"
 if (Test-Path -LiteralPath $snapshotScript) {
     & $snapshotScript -OutputPath "docs\dashboards\status-snapshot.generated.md" -OutboxDir $OutputDir | Out-Host
     $statusSnapshot = Read-RepoText "docs/dashboards/status-snapshot.generated.md"
+}
+
+$visualizationsScript = Join-Path $PSScriptRoot "build-progress-visualizations.ps1"
+if (Test-Path -LiteralPath $visualizationsScript) {
+    & $visualizationsScript -MarkdownOutputPath "docs\dashboards\progress-visualizations.generated.md" -HtmlOutputPath "docs\dashboards\progress-visualizations.generated.html" | Out-Host
+    $progressVisualizations = Read-RepoText "docs/dashboards/progress-visualizations.generated.md"
+}
+
+$e2eScript = Join-Path $PSScriptRoot "build-e2e-progress-report.ps1"
+if (Test-Path -LiteralPath $e2eScript) {
+    & $e2eScript -MarkdownOutputPath "docs\dashboards\e2e-dashboard.generated.md" -HtmlOutputPath "reports\generated\e2e_dashboard\index.html" | Out-Host
+    $e2eDashboard = Read-RepoText "docs/dashboards/e2e-dashboard.generated.md"
+}
+
+if ((Test-Path -LiteralPath $snapshotScript) -or (Test-Path -LiteralPath $visualizationsScript) -or (Test-Path -LiteralPath $e2eScript)) {
     $dashboard = @"
 # VEGO-AI Progress Dashboard
 
@@ -219,6 +254,14 @@ $statusSnapshot
 ## Progress Dashboard
 
 $progressDashboard
+
+## Progress Visualizations
+
+$progressVisualizations
+
+## E2E Progress Report
+
+$e2eDashboard
 
 ## KPI Register
 

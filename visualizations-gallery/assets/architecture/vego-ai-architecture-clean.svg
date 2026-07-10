@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="780" viewBox="0 0 1760 780">
+<defs>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="glowSm" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+  </filter>
+  <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0A0A12"/>
+    <stop offset="50%" stop-color="#0E0E1A"/>
+    <stop offset="100%" stop-color="#0A0A12"/>
+  </linearGradient>
+  <radialGradient id="orb1" cx="15%" cy="20%">
+    <stop offset="0%" stop-color="#A855F7" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="orb2" cx="85%" cy="80%">
+    <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="neonArrow" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#10B981"/>
+    <stop offset="100%" stop-color="#06B6D4"/>
+  </linearGradient>
+</defs>
+<rect width="1760" height="780" fill="url(#bgGrad)"/>
+<rect width="1760" height="780" fill="url(#orb1)"/>
+<rect width="1760" height="780" fill="url(#orb2)"/>
+<text x="40" y="50" font-family="Arial,sans-serif" font-size="26" fill="#E2E8F0" font-weight="bold">VEGO-AI — Multi-Agent Co-Reasoning Architecture</text>
+<text x="40" y="76" font-family="Arial,sans-serif" font-size="13" fill="#94A3B8">Four cooperating LLM agents that turn language + case inputs into variability patterns and case feedback</text>
+<rect x="60" y="140" width="340" height="160" rx="14" fill="#14141F" fill-opacity="0.6" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="78" y="168" font-family="Arial,sans-serif" font-size="10.5" fill="#C084FC" font-weight="bold" letter-spacing="2">LEGEND</text>
+<line x1="80" y1="194" x2="120" y2="194" stroke="#10B981" stroke-width="2.5" filter="url(#glowSm)"/>
+<polygon points="120,194 110,199 110,189" fill="#10B981"/>
+<text x="132" y="198" font-family="Arial,sans-serif" font-size="12" fill="#E2E8F0" font-weight="bold">Named artifact hand-off</text>
+<text x="132" y="216" font-family="Arial,sans-serif" font-size="10.5" fill="#94A3B8">Language Template · Ref. Guidelines ·</text>
+<text x="132" y="232" font-family="Arial,sans-serif" font-size="10.5" fill="#94A3B8">Identified / Observed Variability</text>
+<line x1="80" y1="252" x2="120" y2="252" stroke="#64748B" stroke-width="1.6" stroke-dasharray="3 4"/>
+<polygon points="120,252 110,257 110,247" fill="#64748B"/><polygon points="80,252 90,247 90,257" fill="#64748B"/>
+<text x="132" y="256" font-family="Arial,sans-serif" font-size="12" fill="#E2E8F0">Q&amp;A — Questions / Answers dialogue</text>
+<line x1="80" y1="278" x2="120" y2="278" stroke="#C084FC" stroke-width="2.2"/>
+<polygon points="120,278 110,283 110,273" fill="#C084FC"/>
+<text x="132" y="282" font-family="Arial,sans-serif" font-size="12" fill="#E2E8F0">External input / output</text>
+<rect x="460" y="140" width="840" height="470" rx="14" fill="#14141F" fill-opacity="0.3" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="720" y="20" width="200" height="64" rx="10" fill="#14141F" fill-opacity="0.4" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="820" y="48" font-family="Arial,sans-serif" font-size="12.5" fill="#3B82F6" font-weight="bold" text-anchor="middle">Language Reference</text>
+<text x="820" y="66" font-family="Arial,sans-serif" font-size="12.5" fill="#3B82F6" font-weight="bold" text-anchor="middle">Manual</text>
+<rect x="945" y="20" width="220" height="64" rx="10" fill="#14141F" fill-opacity="0.4" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="1055" y="48" font-family="Arial,sans-serif" font-size="12" fill="#3B82F6" font-weight="bold" text-anchor="middle">Language Definition</text>
+<text x="1055" y="66" font-family="Arial,sans-serif" font-size="12" fill="#3B82F6" font-weight="bold" text-anchor="middle">(grammars, metamodels)</text>
+<path d="M820,84 L820,118" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-opacity="0.5"/>
+<path d="M1055,84 L1055,118" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-opacity="0.5"/>
+<path d="M820,118 L1055,118" fill="none" stroke="#3B82F6" stroke-width="1.8" stroke-opacity="0.5"/>
+<line x1="910" y1="118" x2="910" y2="186" stroke="#3B82F6" stroke-width="2" stroke-opacity="0.6"/>
+<polygon points="910,186 904,174 916,174" fill="#3B82F6" fill-opacity="0.6"/>
+<rect x="780" y="186" width="260" height="80" rx="12" fill="#14141F" fill-opacity="0.7" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="780" y="186" width="4" height="80" rx="2" fill="#3B82F6"/>
+<circle cx="810" cy="226" r="18" fill="#3B82F6" fill-opacity="0.2" stroke="#3B82F6" stroke-width="1.5"/>
+<text x="810" y="232" font-family="Arial,sans-serif" font-size="16" fill="#3B82F6" font-weight="bold" text-anchor="middle">1</text>
+<text x="838" y="208" font-family="Arial,sans-serif" font-size="10" fill="#94A3B8" font-weight="bold" letter-spacing="2">AGENT 1</text>
+<text x="838" y="230" font-family="Arial,sans-serif" font-size="17" fill="#E2E8F0" font-weight="bold">Language Advisor</text>
+<text x="838" y="250" font-family="Arial,sans-serif" font-size="11.5" fill="#94A3B8">grammar / metamodel expertise</text>
+<rect x="520" y="370" width="240" height="80" rx="12" fill="#14141F" fill-opacity="0.7" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="520" y="370" width="4" height="80" rx="2" fill="#10B981"/>
+<circle cx="550" cy="410" r="18" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1.5"/>
+<text x="550" y="416" font-family="Arial,sans-serif" font-size="16" fill="#10B981" font-weight="bold" text-anchor="middle">2</text>
+<text x="578" y="392" font-family="Arial,sans-serif" font-size="10" fill="#94A3B8" font-weight="bold" letter-spacing="2">AGENT 2</text>
+<text x="578" y="414" font-family="Arial,sans-serif" font-size="17" fill="#E2E8F0" font-weight="bold">Domain Advisor</text>
+<text x="578" y="434" font-family="Arial,sans-serif" font-size="11.5" fill="#94A3B8">domain knowledge &amp; scoping</text>
+<rect x="1020" y="370" width="240" height="80" rx="12" fill="#14141F" fill-opacity="0.7" stroke="#A855F7" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="1020" y="370" width="4" height="80" rx="2" fill="#A855F7"/>
+<circle cx="1050" cy="410" r="18" fill="#A855F7" fill-opacity="0.2" stroke="#A855F7" stroke-width="1.5"/>
+<text x="1050" y="416" font-family="Arial,sans-serif" font-size="16" fill="#A855F7" font-weight="bold" text-anchor="middle">3</text>
+<text x="1078" y="392" font-family="Arial,sans-serif" font-size="10" fill="#94A3B8" font-weight="bold" letter-spacing="2">AGENT 3</text>
+<text x="1078" y="414" font-family="Arial,sans-serif" font-size="17" fill="#E2E8F0" font-weight="bold">Model Inspector</text>
+<text x="1078" y="434" font-family="Arial,sans-serif" font-size="11.5" fill="#94A3B8">case-model inspection</text>
+<rect x="780" y="510" width="260" height="80" rx="12" fill="#14141F" fill-opacity="0.7" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="780" y="510" width="4" height="80" rx="2" fill="#F59E0B"/>
+<circle cx="810" cy="550" r="18" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="1.5"/>
+<text x="810" y="556" font-family="Arial,sans-serif" font-size="16" fill="#F59E0B" font-weight="bold" text-anchor="middle">4</text>
+<text x="838" y="532" font-family="Arial,sans-serif" font-size="10" fill="#94A3B8" font-weight="bold" letter-spacing="2">AGENT 4</text>
+<text x="838" y="554" font-family="Arial,sans-serif" font-size="17" fill="#E2E8F0" font-weight="bold">Variability Explorer</text>
+<text x="838" y="574" font-family="Arial,sans-serif" font-size="11.5" fill="#94A3B8">reconciles &amp; abstracts variability</text>
+<rect x="230" y="380" width="200" height="70" rx="10" fill="#14141F" fill-opacity="0.4" stroke="#10B981" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="330" y="421" font-family="Arial,sans-serif" font-size="14" fill="#10B981" font-weight="bold" text-anchor="middle">Domain Description</text>
+<line x1="430" y1="415" x2="518" y2="410" stroke="#10B981" stroke-width="2.2"/>
+<polygon points="518,410 506,417 505,404" fill="#10B981"/>
+<rect x="1330" y="300" width="180" height="70" rx="10" fill="#14141F" fill-opacity="0.4" stroke="#A855F7" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="1420" y="341" font-family="Arial,sans-serif" font-size="14" fill="#A855F7" font-weight="bold" text-anchor="middle">Case Model</text>
+<path d="M1330,340 L1300,340 L1300,400 L1262,400" fill="none" stroke="#A855F7" stroke-width="2.2"/>
+<polygon points="1262,400 1274,394 1274,406" fill="#A855F7"/>
+<rect x="1330" y="460" width="180" height="70" rx="10" fill="#14141F" fill-opacity="0.4" stroke="#A855F7" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="1420" y="501" font-family="Arial,sans-serif" font-size="14" fill="#A855F7" font-weight="bold" text-anchor="middle">Case Feedback</text>
+<path d="M1262,432 L1300,432 L1300,495 L1330,495" fill="none" stroke="#C084FC" stroke-width="2.2"/>
+<polygon points="1330,495 1318,501 1318,489" fill="#C084FC"/>
+<rect x="230" y="540" width="210" height="70" rx="10" fill="#14141F" fill-opacity="0.4" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="335" y="581" font-family="Arial,sans-serif" font-size="14" fill="#F59E0B" font-weight="bold" text-anchor="middle">Variability Patterns</text>
+<path d="M840,590 L840,640 L335,640 L335,610" fill="none" stroke="#C084FC" stroke-width="2.2"/>
+<polygon points="335,610 341,622 329,622" fill="#C084FC"/>
+<path d="M800,266 L800,296 L600,296 L600,370" fill="none" stroke="#3B82F6" stroke-width="2.5" filter="url(#glowSm)"/>
+<polygon points="600,370 594,358 606,358" fill="#3B82F6"/>
+<rect x="632.5" y="280" width="135" height="20" rx="10" fill="#14141F" fill-opacity="0.8" stroke="#3B82F6" stroke-width="0.8"/>
+<text x="700" y="294" font-family="Arial,sans-serif" font-size="10.5" fill="#3B82F6" text-anchor="middle">Language Template</text>
+<path d="M1030,370 L1030,320 L730,320 L730,370" fill="none" stroke="#A855F7" stroke-width="2.5" filter="url(#glowSm)"/>
+<polygon points="730,370 724,358 736,358" fill="#A855F7"/>
+<rect x="802.0" y="304" width="156" height="20" rx="10" fill="#14141F" fill-opacity="0.8" stroke="#A855F7" stroke-width="0.8"/>
+<text x="880" y="318" font-family="Arial,sans-serif" font-size="10.5" fill="#A855F7" text-anchor="middle">Reference Guidelines</text>
+<path d="M700,450 L700,534 L778,534" fill="none" stroke="#10B981" stroke-width="2.5" filter="url(#glowSm)"/>
+<polygon points="778,534 766,540 766,528" fill="#10B981"/>
+<rect x="605.0" y="475" width="170" height="20" rx="10" fill="#14141F" fill-opacity="0.8" stroke="#10B981" stroke-width="0.8"/>
+<text x="690" y="489" font-family="Arial,sans-serif" font-size="10.5" fill="#10B981" text-anchor="middle">Identified Variability</text>
+<path d="M1070,450 L1070,534 L1042,534" fill="none" stroke="#A855F7" stroke-width="2.5" filter="url(#glowSm)"/>
+<polygon points="1042,534 1054,528 1054,540" fill="#A855F7"/>
+<rect x="1012.0" y="475" width="156" height="20" rx="10" fill="#14141F" fill-opacity="0.8" stroke="#A855F7" stroke-width="0.8"/>
+<text x="1090" y="489" font-family="Arial,sans-serif" font-size="10.5" fill="#A855F7" text-anchor="middle">Observed Variability</text>
+<line x1="870" y1="266" x2="680" y2="370" stroke="#64748B" stroke-width="1.4" stroke-dasharray="3 4" stroke-opacity="0.4"/>
+<polygon points="680,370 673,366 673,374" fill="#64748B" fill-opacity="0.4"/>
+<polygon points="870,266 877,270 877,262" fill="#64748B" fill-opacity="0.4"/>
+<line x1="960" y1="266" x2="1100" y2="370" stroke="#64748B" stroke-width="1.4" stroke-dasharray="3 4" stroke-opacity="0.4"/>
+<polygon points="1100,370 1093,366 1093,374" fill="#64748B" fill-opacity="0.4"/>
+<polygon points="960,266 967,270 967,262" fill="#64748B" fill-opacity="0.4"/>
+<line x1="762" y1="410" x2="1018" y2="410" stroke="#64748B" stroke-width="1.4" stroke-dasharray="3 4" stroke-opacity="0.4"/>
+<polygon points="1018,410 1011,406 1011,414" fill="#64748B" fill-opacity="0.4"/>
+<polygon points="762,410 769,414 769,406" fill="#64748B" fill-opacity="0.4"/>
+<line x1="660" y1="450" x2="800" y2="510" stroke="#64748B" stroke-width="1.4" stroke-dasharray="3 4" stroke-opacity="0.4"/>
+<polygon points="800,510 793,506 793,514" fill="#64748B" fill-opacity="0.4"/>
+<polygon points="660,450 667,454 667,446" fill="#64748B" fill-opacity="0.4"/>
+<line x1="1100" y1="450" x2="1000" y2="510" stroke="#64748B" stroke-width="1.4" stroke-dasharray="3 4" stroke-opacity="0.4"/>
+<polygon points="1000,510 993,506 993,514" fill="#64748B" fill-opacity="0.4"/>
+<polygon points="1100,450 1107,454 1107,446" fill="#64748B" fill-opacity="0.4"/>
+</svg>

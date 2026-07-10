@@ -17,6 +17,35 @@ Reusable Human Judgment in AI-Assisted Domain Model Assessment: The VEGO-AI Case
 9. Discussion
 10. Conclusion and PhD Continuation
 
+## Draft Status
+
+| Chapter | File | Status |
+| --- | --- | --- |
+| 1 Introduction | `thesis/chapters/01-introduction.md` | Draft (unblocked) |
+| 3 Problem & Research Questions | `thesis/chapters/03-problem-and-research-questions.md` | Draft (unblocked) |
+| 4 VEGO-AI Baseline Pipeline | `thesis/chapters/04-vego-ai-baseline-pipeline.md` | Draft (unblocked; system-grounded) |
+| 5 Human–AI Co-Reasoning Artifact | `thesis/chapters/05-human-ai-co-reasoning-artifact.md` | Draft (unblocked; system-grounded) |
+| 6 Evaluation Methodology | `thesis/chapters/06-evaluation-methodology.md` | Draft (unblocked; no labels needed) |
+| 8 Threats to Validity | `thesis/chapters/08-threats-to-validity.md` | Draft (unblocked) |
+| 9 Discussion | `thesis/chapters/09-discussion.md` | Draft (unblocked) |
+| 10 Conclusion & PhD Continuation | `thesis/chapters/10-conclusion-and-phd-continuation.md` | Draft (unblocked) |
+| 2 Background & Related Work | `thesis/chapters/02-background-and-related-work.md` | Draft (verified citations: paper bibliography + resource pack) |
+| 7 Experimental Results | `thesis/chapters/07-experimental-results.md` | Draft scaffold (current evidence written; quantitative accuracy/reliability sections blocked on supervisor-approved EXP-005 expert labels) |
+
+**Full thesis structure now includes:** Abstract (`00-abstract.md`), 10 body chapters, References
+(`11-references.md`, 37 entries), Appendix A (`appendix-a-supplementary.md`, 6 sections), 6 Mermaid
+figures, and AI review loop architecture (`fig-ai-review-loop.md`). Body word count ~20,200+.
+All chapters were expanded on 2026-06-29 with deeper prose, design rationale, concrete examples,
+critical synthesis, RQ-to-findings mapping, comparison with related work, and figure placeholders.
+AI review loop validated on 2026-06-29: 18/18 evidence-consistency checks pass, 0 broken
+cross-references, 0 broken figure references, 0 forbidden accuracy claims, running example
+consistent across 9 chapters. Ch 2 uses only real references (the VEGO-AI MAS4Models 2026
+bibliography + `literature/hitl-resource-pack/bibliography.bib` + three design-science methodology
+references); no sources fabricated. Ch 7 is an honest current-evidence/
+results-readiness draft: it reports mechanism and tooling evidence now, while quantitative accuracy
+results remain blocked on supervisor-approved independent expert labels. All drafts make no accuracy claim
+and continue to pass the claim-language guard.
+
 ## Evidence Map
 
 | Chapter | Needed Evidence | Source |
@@ -96,3 +125,5 @@ Reusable Human Judgment in AI-Assisted Domain Model Assessment: The VEGO-AI Case
 | Minimum evidence target | Confirm 20 safe labels minimum and 24 current safe candidates as immediate target. |
 | Claim boundary | Confirm no accuracy-improvement claim before EXP-005 passes. |
 | Future policy gate | Decide whether M4B-1.1 can be designed only after real-label error analysis. |
+
+Supervisor-facing approval pack: `docs/research/supervisor-label-approval-pack.md`.

@@ -13,7 +13,9 @@ $requiredPaths = @(
     "docs/research/m4a-post-merge-confirmation.md",
     "docs/research/provenance-register.md",
     "docs/research/publishability-register.md",
+    "docs/research/thesis-structure-map.md",
     "docs/agent-memory/claude-m4b-handoff-prompt.md",
+    "docs/agent-memory/resource-memory.md",
     "docs/confluence/manual-sync.md",
     "docs/confluence/wiki-sync.md",
     "docs/confluence/wiki-sync-config.template.json",
@@ -21,14 +23,24 @@ $requiredPaths = @(
     "docs/dashboards/kpi-register.md",
     "docs/dashboards/progress-dashboard.md",
     "docs/dashboards/results-dashboard.md",
+    "docs/architecture/progress-update-diagram.md",
+    "docs/operations/alignment-control.md",
+    "docs/operations/progress-update-architecture.md",
+    "literature/hitl-resource-pack/README.md",
+    "literature/hitl-resource-pack/source-manifest.csv",
+    "literature/hitl-resource-pack/bibliography.bib",
+    "literature/hitl-resource-pack/tool-fit-matrix.md",
     "experiments/EXP-000-existing-packaged-results-audit/README.md",
     "experiments/EXP-000-existing-packaged-results-audit/config-manifest.md",
     "experiments/EXP-000-existing-packaged-results-audit/notes.md",
     "experiments/EXP-003-accuracy-improvement-evaluation/README.md",
     "scripts/build-dashboard-snapshot.ps1",
+    "scripts/build-progress-visualizations.ps1",
+    "scripts/build-e2e-progress-report.ps1",
     "scripts/build-confluence-manual-sync-pack.ps1",
     "scripts/build-confluence-wiki.ps1",
     "scripts/build-exp003-error-analysis.ps1",
+    "scripts/download-hitl-resources.ps1",
     "scripts/dashboard-health.ps1"
 )
 
@@ -47,6 +59,7 @@ $forbiddenTrackedPatterns = @(
     '^VEGO-AI/vego_visualizer_delivery/compliance_vectors/',
     '^VEGO-AI/vego_visualizer_delivery/guidelines/',
     '^docs/dashboards/.*\.generated\.md$',
+    '^docs/dashboards/.*\.generated\.html$',
     '^docs/confluence/.*\.generated\.md$',
     '^docs/confluence/outbox/'
 )

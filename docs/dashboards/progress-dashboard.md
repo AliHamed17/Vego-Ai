@@ -1,23 +1,31 @@
 # Progress Dashboard
 
-Last curated update: 2026-06-14 19:20 +03:00.
+Last curated update: 2026-07-10.
 
 ## Executive Snapshot
 
-VEGO-AI is currently at the M4B-1 deterministic comparison state with a validated visualizer UX cleanup merged. The project has a staged human-AI co-reasoning path through advisory memory reuse and parallel comparison, while future memory-informed behavior changes remain blocked until controlled evaluation evidence exists.
+The machine-derived July 1 record supports a FRAMEWORK-FIRST direction pending participant confirmation. The July 15 package and H-layer specifications are provisional; M-02 through M-05 are not recorded. Nine H-layer iterations are accepted: iteration 008 reliability-only and iteration 009 metric/contract repair, both `NEUTRAL`. EXP-009/010 remain provisional synthetic prototypes, EXP-011 is parked, and EXP-012 stops at safe N=0 / `NOT YET COMPUTABLE`. Live listener work remains blocked.
+
+Run `.\scripts\build-progress-visualizations.ps1` for generated Mermaid status charts and a local HTML progress dashboard at `docs/dashboards/progress-visualizations.generated.html`.
+Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report and local web page at `reports/generated/e2e_dashboard/index.html`.
 
 | Area | Status | Evidence | Next Action |
 | --- | --- | --- | --- |
-| Source baseline | Green | Safe GitHub baseline and later `main` history exist. | Continue small, reviewable commits. |
+| July 2026 supervisor redirect | Yellow / awaiting decisions | Machine-derived notes, enhanced evidence appendix, decision register, provisional skills/specs, and split diagrams. | Confirm M-01; record M-02..M-05 before selecting defaults or architecture. |
+| Phase 0 truth/governance reconciliation | Complete | `docs/research/h-layer/phase-0-boundary-record.md`; source reconciliation, generated memory/wiki refreshes, focused tests, and protected-path checks pass. | Preserve unrelated changes and keep runtime work gated by recorded authorization. |
+| Offline experiment program | Yellow / gated | Nine accepted iterations; iteration 009 repairs contracts/metrics and reports Pareto only; separate conformance run passes offline. | Keep iterations 010/011 blocked until their protocol/decision gates clear. |
+| Passive shadow listener | Blocked | `allowed-touch-proposal.md` and template are proposals only. | Require M-05 plus separate exact-file authorization; default-off/fail-open if later approved. |
+| MediVARIA PhD-track study plan | Yellow (draft; MV-P0 supervisor endorsement pending 2026-07-15) | `docs/research/medivaria/medivaria-study-plan.md` (2026-07-04): clinical transfer mapping, MV-RQ1-6, MV-P0..P5, clinical claim boundaries; one-pager archived ignored. Education-domain TRL3 metrics are not clinical evidence; no MediVARIA performance claims exist. | Present at 2026-07-15 (agenda section 8); confirm role split and first clinical guideline domain with Iris/Arnon. |
+| Source baseline | Historical baseline available; current tree dirty | Safe GitHub baseline and tagged historical states exist; current HEAD is `c72b845` with unrelated local changes. | Preserve the dirty tree; compare protected fingerprints before/after offline work. |
 | M1 Human Review Queue | Green | Implemented and tested. | Use as upstream evidence for artifact manifest. |
 | M2 Human Feedback Manager | Green | Implemented and tested. | Include schema/docs/tests in artifact manifest. |
 | M3 Human Judgment Memory | Green | Tag `milestone-m3-human-judgment-memory`. | Reference tag in thesis evidence. |
 | M4A Memory Advisory Layer | Green | Tag `milestone-m4a-memory-advisory`. | Include advisory-only proof in manifest. |
-| M4B-1 Memory-informed parallel comparison | Green | Merged as `944c922`; tag `research-state-m4b1-deterministic-comparison`. | Run EXP-001/C4B before making improvement claims. |
+| M4B-1 Memory-informed parallel comparison | Historical implementation / evaluation pending | Historical merge `944c922`; tag `research-state-m4b1-deterministic-comparison`. | Keep as evaluation history; do not infer current worktree cleanliness or improvement. |
 | Visualizer model/result matching | Green | PR #7 real-display validated, merged as `78b261e`, tag `research-state-visualizer-ux-clean`. | Preserve no-silent-mismatch and read-only research-panel boundaries. |
 | EXP-001 evaluation | Yellow | Initial mechanism/readiness run generated ignored `reports/generated/exp001/` tables. | Add held-out or cross-setting expert labels before accuracy/generalization claims. |
 | EXP-002 expert labeling package | Yellow | Ignored `reports/generated/exp002/` package generated: 27 rows, 24 generalization-safe candidates, 3 existing same-pattern labels. | Human/supervisor labels should fill at least 20 rows, preferably all 27 current rows. |
-| Dashboard/wiki tracking gate | Green | Runtime snapshot and manual sync pack are generated; `.\scripts\dashboard-health.ps1 -RequireOutbox` passes. | Keep running after wiki outbox builds. |
+| Dashboard/wiki tracking gate | Historical pass / refresh needed | Runtime snapshot and manual sync pack exist; curated dashboard sources changed on 2026-07-10. | Announce generated-file refreshes, rebuild the outbox, then rerun `dashboard-health -RequireOutbox`. |
 | Data/IRB audit | Red | Controlled artifacts still ignored and metadata-only. | Continue audit before sharing artifacts. |
 | Confluence live tracking | Blocked | Outbox/manual sync pack exists; Atlassian Rovo cloud access not explicitly granted as of 2026-06-14 14:50 +03:00; Chrome extension fallback unavailable as of 2026-06-13 13:50 +03:00. | Grant Rovo access or enable the Chrome extension route, then create/update child pages. |
 
@@ -40,7 +48,9 @@ VEGO-AI is currently at the M4B-1 deterministic comparison state with a validate
 | --- | --- | --- | --- |
 | P1 | Review and merge PR #6 schema hardening if clean. | Codex / reviewer | Open |
 | P1 | Use release artifact bundle for external technical review. | Research lead / agents | Available |
-| P1 | Fill EXP-002 expert labeling sheet and rerun EXP-001/generalization-safe evaluation. | Research lead / agents | Next |
+| P1 | Record M-01..M-06; keep unaccepted architecture/dosage/verifier choices configurable. | Iris, Arnon, Ali | Awaiting meeting |
+| P1 | Preserve iteration-009 metric semantics; prepare gated iterations 010/011 without running them. | Research agents | Blocked on decisions |
+| P1 | Approve EXP-005 protocol and schedule two human reviewers; never prefill labels. | Supervisors / research lead | Human-gated |
 | P1 | Keep M4B-2 and Agent 4/LLM behavior blocked. | All agents | Active rule |
 | P1 | Enforce Codex isolation for VEGO-AI milestone implementation paths on `main`. | Codex | Active rule |
 | P2 | Complete metadata-only audit for deferred artifacts. | Research lead / agents | In progress |
@@ -52,6 +62,8 @@ VEGO-AI is currently at the M4B-1 deterministic comparison state with a validate
 The generated Confluence outbox should include a dashboard page sourced from:
 
 - `docs/dashboards/status-snapshot.generated.md` (ignored runtime snapshot)
+- `docs/dashboards/progress-visualizations.generated.md` (ignored generated visual summary)
+- `docs/dashboards/e2e-dashboard.generated.md` (ignored generated E2E report)
 - `docs/dashboards/progress-dashboard.md`
 - `docs/dashboards/kpi-register.md`
 - `docs/dashboards/results-dashboard.md`

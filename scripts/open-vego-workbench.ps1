@@ -17,6 +17,8 @@ $dashboardOut = Join-Path $vegoRoot "reports\results_dashboard"
 $visualizerDir = Join-Path $vegoRoot "vego_visualizer_delivery"
 $visualizerScript = Join-Path $visualizerDir "visualize_compliance.py"
 $exp005Script = Join-Path $repoRoot "scripts\build-exp005-label-review.ps1"
+$e2eScript = Join-Path $repoRoot "scripts\build-e2e-progress-report.ps1"
+$e2eHtml = Join-Path $repoRoot "reports\generated\e2e_dashboard\index.html"
 $wikiScript = Join-Path $repoRoot "scripts\build-confluence-wiki.ps1"
 
 function Invoke-WorkbenchStep {
@@ -75,6 +77,13 @@ if (-not $SkipGenerate) {
         }
         & $exp005Script
     }
+
+    Invoke-WorkbenchStep "Build E2E progress report" {
+        if (-not (Test-Path -LiteralPath $e2eScript)) {
+            throw "E2E progress report generator not found: $e2eScript"
+        }
+        & $e2eScript
+    }
 }
 
 if ($Wiki -or $All) {
@@ -87,6 +96,7 @@ if ($Wiki -or $All) {
 }
 
 Open-WorkbenchPath (Join-Path $dashboardOut "index.html")
+Open-WorkbenchPath $e2eHtml
 Open-WorkbenchPath (Join-Path $repoRoot "reports\generated\exp005_label_review\label_these_first.md")
 Open-WorkbenchPath (Join-Path $repoRoot "reports\generated\exp005_label_review\exp005_label_review_blind.csv")
 Open-WorkbenchPath (Join-Path $repoRoot "reports\generated\exp005_label_review\exp005_adjudication_sheet.csv")

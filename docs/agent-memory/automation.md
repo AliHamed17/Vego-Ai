@@ -20,6 +20,7 @@ This generated file pulls together memory plus the core project orientation docs
 
 - `current-state.md`
 - `progress.md`
+- `resource-memory.md`
 - `issues.md`
 - `decisions.md`
 - `session-log.md`
@@ -30,6 +31,8 @@ This generated file pulls together memory plus the core project orientation docs
 - architecture map/lifecycle/reproducibility/source-package docs
 - `docs/research/research-plan.md`
 - `experiments/registry.md`
+
+For HITL, Human-AI collaboration, expert-labeling, XAI, or governance prompts, `resource-memory.md` points both Codex and Claude to `literature/hitl-resource-pack/` and summarizes how those resources should be used.
 
 ## Finish Every Meaningful Prompt
 
@@ -68,5 +71,6 @@ The scripts can pull files and standardize entries, but they cannot safely infer
 - `progress.md`
 - `issues.md`
 - `decisions.md`
+- `resource-memory.md`
 
 This is project-level automation: Codex and Claude are instructed to run the scripts at prompt start and finish. It is not a background service or native runtime hook.

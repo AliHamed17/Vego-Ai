@@ -1,0 +1,30 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 860 460' width='860' height='460' role='img' aria-label='Figure 7 - Current claim boundary'>
+<rect width='860' height='460' fill='#ffffff'/>
+<text x='430.0' y='40' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='22' font-weight='700' fill='#1f2933'>Figure 7 - Current claim boundary</text>
+<rect x='30' y='90' width='385.0' height='340' rx='10' fill='#f8fafc' stroke='#2f855a' stroke-width='2'/>
+<rect x='30' y='90' width='385.0' height='40' rx='10' fill='#2f855a'/>
+<text x='222.5' y='116' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='17' font-weight='700' fill='#ffffff'>PROVEN now</text>
+<circle cx='54' cy='157' r='4' fill='#2f855a'/>
+<text x='70' y='162' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Mechanism readiness (M1-M4B-1)</text>
+<circle cx='54' cy='195' r='4' fill='#2f855a'/>
+<text x='70' y='200' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Schema validation + 93 tests pass</text>
+<circle cx='54' cy='233' r='4' fill='#2f855a'/>
+<text x='70' y='238' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Reproducible, offline, no API</text>
+<circle cx='54' cy='271' r='4' fill='#2f855a'/>
+<text x='70' y='276' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Non-destructive comparison</text>
+<circle cx='54' cy='309' r='4' fill='#2f855a'/>
+<text x='70' y='314' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>AI classification changed = 0</text>
+<rect x='445.0' y='90' width='385.0' height='340' rx='10' fill='#f8fafc' stroke='#c53030' stroke-width='2'/>
+<rect x='445.0' y='90' width='385.0' height='40' rx='10' fill='#c53030'/>
+<text x='637.5' y='116' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='17' font-weight='700' fill='#ffffff'>NOT proven yet</text>
+<circle cx='469.0' cy='157' r='4' fill='#c53030'/>
+<text x='485.0' y='162' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Accuracy improvement</text>
+<circle cx='469.0' cy='195' r='4' fill='#c53030'/>
+<text x='485.0' y='200' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Generalization (0 safe expert labels)</text>
+<circle cx='469.0' cy='233' r='4' fill='#c53030'/>
+<text x='485.0' y='238' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Expert-agreement gain (0.667 = 0.667)</text>
+<circle cx='469.0' cy='271' r='4' fill='#c53030'/>
+<text x='485.0' y='276' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Cross-domain / cross-setting transfer</text>
+<circle cx='469.0' cy='309' r='4' fill='#c53030'/>
+<text x='485.0' y='314' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='15' fill='#1f2933'>Held-out expert labels still needed</text>
+</svg>

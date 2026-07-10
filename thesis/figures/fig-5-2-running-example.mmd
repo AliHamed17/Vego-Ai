@@ -1,0 +1,23 @@
+%%{ init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4fd', 'primaryBorderColor': '#2b6cb0', 'lineColor': '#4a5568', 'textColor': '#1a202c' } } }%%
+flowchart TB
+    subgraph example["Running Example: 'Customer as Actor' (ucd_ch P6)"]
+        direction TB
+        A4["<b>Agent 4</b> classifies P6:<br/><i>'Customer as actor' appears in 5 models<br/>Classification: <b>Occasional Variability</b><br/>Confidence: Medium</i>"]
+
+        M1E["<b>M1</b> queues for review<br/><i>Trigger: medium_confidence<br/>review_id: HRQ-ucd_ch-P6</i>"]
+
+        EXPERT["<b>Human Expert</b> reviews and disagrees:<br/><i>Decision: valid_alternative<br/>Rationale: 'Customer as actor who places<br/>orders is a legitimate alternative, not an<br/>error; the AI is too strict.'</i>"]
+
+        M3E["<b>M3</b> stores as reusable memory<br/><i>memory_id: HJM-ucd_ch-P6<br/>reuse_scope: Cheers + UCD<br/>applies_to_future_models: true</i>"]
+
+        M4AE["<b>M4A</b> retrieves as advisory evidence<br/><i>advice_strength: moderate<br/>match_reasons: same domain, same diagram<br/>type, keyword match: 'Customer'</i>"]
+
+        M4BE["<b>M4B-1</b> produces comparison<br/><i>Rule: moderate_disagreement_keep_original<br/>Result: keep Occasional (original)<br/>requires_human_review_after_memory: <b>true</b><br/>leakage: same_pattern_memory_used</i>"]
+    end
+
+    A4 --> M1E --> EXPERT --> M3E --> M4AE --> M4BE
+
+    style A4 fill:#fed7d7,stroke:#c53030,color:#1a202c
+    style EXPERT fill:#fefcbf,stroke:#d69e2e,color:#1a202c
+    style M3E fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style M4BE fill:#c6f6d5,stroke:#276749,color:#1a202c

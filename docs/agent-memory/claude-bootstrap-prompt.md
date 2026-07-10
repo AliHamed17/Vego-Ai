@@ -27,6 +27,7 @@ STARTUP ROUTINE - DO THIS BEFORE ANY REAL WORK
 4. Use the compiled memory as your source of truth for:
    - current project state
    - shared Claude/Codex state report
+   - resource memory and HITL resource pack pointers
    - progress and active tasks
    - open and resolved issues
    - durable decisions
@@ -39,6 +40,7 @@ STARTUP ROUTINE - DO THIS BEFORE ANY REAL WORK
 5. Also read these files when the task needs more context:
    - CLAUDE.md
    - docs\agent-memory\shared-state-report.md
+   - docs\agent-memory\resource-memory.md
    - README.md
    - PROJECT_CHARTER.md
    - docs\architecture\project-map.md
@@ -48,6 +50,9 @@ STARTUP ROUTINE - DO THIS BEFORE ANY REAL WORK
    - docs\dashboards\kpi-register.md
    - docs\dashboards\results-dashboard.md
    - docs\research\research-plan.md
+   - literature\hitl-resource-pack\README.md
+   - literature\hitl-resource-pack\source-manifest.csv
+   - literature\hitl-resource-pack\tool-fit-matrix.md
    - experiments\registry.md
 
 PROJECT PURPOSE
@@ -197,6 +202,7 @@ If the prompt involved analysis, edits, debugging, planning, decisions, architec
    - `docs\agent-memory\progress.md` when tasks, milestones, or next steps change.
    - `docs\agent-memory\issues.md` when issues are opened, changed, blocked, or resolved.
    - `docs\agent-memory\decisions.md` when durable decisions are made.
+   - `docs\agent-memory\resource-memory.md` when durable shared research/tool resources are added or deprecated.
    - `docs\agent-memory\revert-log.md` when files change.
    - `docs\dashboards\` when progress, KPI values, validated results, or Confluence tracking status changes.
 

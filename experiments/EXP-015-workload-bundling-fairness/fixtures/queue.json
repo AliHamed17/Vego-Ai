@@ -1,0 +1,20 @@
+{
+  "fixture_version": "1.0",
+  "run_id": "fixture-run-exp015",
+  "settings": ["cd_ch", "ucd_pw"],
+  "adaptive_caps": {"cd_ch": 5, "ucd_pw": 3},
+  "items": [
+    {"id":"item-1","event_type":"E2","setting_id":"cd_ch","case_id":"case-1","guideline_id":"G1","question_id":"Q1","sequence":1,"severity":3,"age":1,"trigger_code":"source_conflict"},
+    {"id":"item-2","event_type":"E3","setting_id":"cd_ch","case_id":"case-1","guideline_id":"G1","question_id":"Q1","sequence":2,"severity":2,"age":2,"trigger_code":"significant_uncertainty"},
+    {"id":"item-3","event_type":"E4","setting_id":"cd_ch","case_id":"case-2","guideline_id":"G2","question_id":null,"sequence":3,"severity":2,"age":1,"trigger_code":"guideline_churn"},
+    {"id":"item-4","event_type":"E6","setting_id":"cd_ch","case_id":"case-3","guideline_id":"G3","question_id":null,"sequence":4,"severity":1,"age":10,"trigger_code":"recurring_ambiguity"},
+    {"id":"item-5","event_type":"E8","setting_id":"cd_ch","case_id":"case-4","guideline_id":null,"question_id":null,"sequence":5,"severity":1,"age":20,"trigger_code":"significant_uncertainty"},
+    {"id":"item-6","event_type":"E12","setting_id":"cd_ch","case_id":"case-5","guideline_id":"G5","question_id":null,"sequence":6,"severity":0,"age":50,"trigger_code":"guideline_churn"},
+    {"id":"item-7","event_type":"E2","setting_id":"ucd_pw","case_id":"case-10","guideline_id":"G10","question_id":"Q10","sequence":7,"severity":3,"age":1,"trigger_code":"source_conflict"},
+    {"id":"item-8","event_type":"E4","setting_id":"ucd_pw","case_id":"case-11","guideline_id":"G11","question_id":null,"sequence":8,"severity":2,"age":3,"trigger_code":"guideline_churn"},
+    {"id":"item-9","event_type":"E6","setting_id":"ucd_pw","case_id":"case-12","guideline_id":"G12","question_id":null,"sequence":9,"severity":1,"age":30,"trigger_code":"recurring_ambiguity"},
+    {"id":"item-10","event_type":"E8","setting_id":"ucd_pw","case_id":"case-13","guideline_id":null,"question_id":null,"sequence":10,"severity":2,"age":2,"trigger_code":"significant_uncertainty"},
+    {"id":"item-11","event_type":"E12","setting_id":"ucd_pw","case_id":"case-14","guideline_id":"G14","question_id":null,"sequence":11,"severity":0,"age":60,"trigger_code":"guideline_churn"},
+    {"id":"item-12","event_type":"E13","setting_id":"ucd_pw","case_id":"case-15","guideline_id":"G15","question_id":null,"sequence":12,"severity":1,"age":40,"trigger_code":"recurring_ambiguity"}
+  ]
+}

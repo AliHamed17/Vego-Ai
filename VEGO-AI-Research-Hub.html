@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VEGO-AI — Research Hub</title>
+<style>
+:root{--bg:#0A0A12;--p1:#1B1430;--p2:#110B1E;--edge:#9333EA;--neon:#A855F7;--neon2:#C084FC;
+--ink:#F6F3FF;--txt:#D8D3EA;--mut:#9A93B4;--faint:#6E6786;--green:#10B981;--red:#EF4444;--amber:#F59E0B;--blue:#3B82F6;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.55}
+a{color:var(--neon2);text-decoration:none}
+.orb{position:fixed;border-radius:50%;filter:blur(44px);z-index:0;opacity:.5;pointer-events:none}
+.orb1{width:560px;height:560px;left:-170px;top:-160px;background:radial-gradient(circle,#7C3AED,transparent 70%)}
+.orb2{width:640px;height:640px;right:-210px;bottom:-240px;background:radial-gradient(circle,#C026D3,transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 26px}
+header.hero{padding:60px 0 18px}
+.kick{color:var(--neon2);font-weight:700;letter-spacing:3px;font-size:13px;text-transform:uppercase}
+h1{font-size:40px;color:var(--ink);margin:10px 0 8px}
+.sub{color:var(--mut);font-size:17px;max-width:820px}
+.pills{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.pill{background:linear-gradient(180deg,var(--p1),var(--p2));border:1px solid rgba(147,51,234,.5);border-radius:13px;padding:11px 16px}
+.pill b{display:block;font-size:21px;font-weight:800}.pill span{font-size:11px;color:var(--mut);letter-spacing:.5px;text-transform:uppercase}
+.c-green{color:var(--green)}.c-red{color:var(--red)}.c-neon{color:var(--neon2)}.c-amber{color:var(--amber)}
+.cp{margin:26px 0 6px;background:linear-gradient(180deg,rgba(245,158,11,.10),rgba(245,158,11,.03));border:1px solid rgba(245,158,11,.5);border-radius:16px;padding:18px 22px}
+.cp h3{color:var(--amber);font-size:15px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.cp p{color:var(--txt);font-size:15px}
+.cp a{font-weight:700}
+section{padding:30px 0 4px}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sh h2{font-size:22px;color:var(--ink)}
+.sh .dot{width:11px;height:11px;border-radius:50%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.card{display:block;background:linear-gradient(180deg,var(--p1),var(--p2));border:1px solid rgba(147,51,234,.45);
+border-radius:15px;padding:18px 18px 16px;transition:transform .14s,box-shadow .14s,border-color .14s}
+.card:hover{transform:translateY(-3px);border-color:var(--neon);box-shadow:0 12px 30px rgba(124,58,237,.32)}
+.card .t{color:var(--ink);font-weight:700;font-size:16px;margin-bottom:5px}
+.card .d{color:var(--mut);font-size:13px}
+.card .meta{margin-top:10px;font-size:11.5px;color:var(--faint);font-family:'Courier New',monospace}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.4px;padding:3px 8px;border-radius:999px;margin-left:8px;vertical-align:middle}
+.tag.now{background:rgba(16,185,129,.16);color:var(--green);border:1px solid rgba(16,185,129,.5)}
+.tag.gate{background:rgba(239,68,68,.16);color:var(--red);border:1px solid rgba(239,68,68,.5)}
+.tag.plan{background:rgba(168,85,247,.16);color:var(--neon2);border:1px solid rgba(168,85,247,.5)}
+footer{padding:46px 0 64px;color:var(--faint);font-size:12.5px;border-top:1px solid rgba(147,51,234,.2);margin-top:38px}
+</style></head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div>
+<header class="hero"><div class="wrap">
+<div class="kick">VEGO-AI · Reusable Human Judgment in AI-Assisted Domain Model Assessment</div>
+<h1>Research Hub</h1>
+<div class="sub">One home for the thesis deliverables — presentation, visualizations, strategy, papers, and the supervisor gate. Mechanism is demonstrated and reproducible; the empirical gate is intentionally bounded.</div>
+<div class="pills">
+<div class="pill"><b class="c-green">M4B-1</b><span>artifact complete</span></div>
+<div class="pill"><b class="c-green">18/18</b><span>evidence invariants</span></div>
+<div class="pill"><b class="c-green">94</b><span>tests passing</span></div>
+<div class="pill"><b class="c-neon">38</b><span>deck slides</span></div>
+<div class="pill"><b class="c-red">0/24</b><span>expert labels (gate)</span></div>
+</div>
+<div class="cp"><h3>Critical path — the one unlock</h3>
+<p>Everything quantitative is gated on one human action: a supervisor approving independent label collection. Start with the
+<a href="docs/research/supervisor-one-pager-2026-06-30.pdf">one-page approval request →</a></p></div>
+</div></header>
+
+<section><div class="wrap">
+<div class="sh"><span class="dot" style="background:var(--neon)"></span><h2>Present &amp; Visualize</h2></div>
+<div class="grid">
+<a class="card" href="VEGO-AI-Thesis-Progress.pptx"><div class="t">Thesis Defense Deck <span class="tag now">38 slides</span></div><div class="d">Full progress presentation — 23 original slides + 15 new research visualizations.</div><div class="meta">VEGO-AI-Thesis-Progress.pptx</div></a>
+<a class="card" href="visualizations-gallery/index.html"><div class="t">Visualization Gallery</div><div class="d">Every diagram, slide, and figure (74 visuals) with click-to-enlarge.</div><div class="meta">visualizations-gallery/index.html</div></a>
+</div></div></section>
+
+<section><div class="wrap">
+<div class="sh"><span class="dot" style="background:var(--blue)"></span><h2>Strategy &amp; Analysis</h2></div>
+<div class="grid">
+<a class="card" href="docs/research/results-deepdive-and-phd-roadmap.md"><div class="t">Results Deep-Dive &amp; PhD Roadmap</div><div class="d">What the results mean, what the progress is for, and the big PhD plan.</div><div class="meta">docs/research/results-deepdive-and-phd-roadmap.md</div></a>
+<a class="card" href="docs/research/baseline-characterization.md"><div class="t">Baseline Characterization <span class="tag now">no-accuracy</span></div><div class="d">Descriptive C0 + artifact operating profile; distributions per setting.</div><div class="meta">docs/research/baseline-characterization.md</div></a>
+<a class="card" href="docs/research/escalation-and-derisk-plan.md"><div class="t">Escalation &amp; De-Risk Plan</div><div class="d">Near-term escalation story + actions for the thin-evidence risk.</div><div class="meta">docs/research/escalation-and-derisk-plan.md</div></a>
+<a class="card" href="docs/research/phd-thesis-optimization-plan.md"><div class="t">PhD Direction Control Page</div><div class="d">P-RQ1–5, P0–P5 phases, L1–L5 capability stack.</div><div class="meta">docs/research/phd-thesis-optimization-plan.md</div></a>
+<a class="card" href="docs/research/defense-qa-prep.md"><div class="t">Defense Q&amp;A Prep <span class="tag now">defense-ready</span></div><div class="d">Anticipated examiner questions + honest, grounded answers.</div><div class="meta">docs/research/defense-qa-prep.md</div></a>
+</div></div></section>
+
+<section><div class="wrap">
+<div class="sh"><span class="dot" style="background:var(--neon2)"></span><h2>Papers</h2></div>
+<div class="grid">
+<a class="card" href="papers/methodology-coreasoning-eval/draft.md"><div class="t">Paper A — Methodology <span class="tag now">writable now</span></div><div class="d">Evaluating reusable human judgment when no clean benchmark exists. 1,565-word draft.</div><div class="meta">papers/methodology-coreasoning-eval/draft.md</div></a>
+<a class="card" href="papers/methodology-coreasoning-eval/claim-evidence-table.md"><div class="t">Paper A — Claim/Evidence Table</div><div class="d">Every claim → source → admissibility (mechanism/methodology only).</div><div class="meta">papers/methodology-coreasoning-eval/claim-evidence-table.md</div></a>
+<a class="card" href="papers/empirical-coreasoning-eval/analysis-plan.md"><div class="t">Paper B — Pre-Registered Plan <span class="tag plan">activates on labels</span></div><div class="d">Hypotheses, metrics, 16/8 dev-holdout, gates — committed before labels.</div><div class="meta">papers/empirical-coreasoning-eval/analysis-plan.md</div></a>
+<a class="card" href="papers/empirical-coreasoning-eval/README.md"><div class="t">Paper B — Overview</div><div class="d">The empirical companion study; results sections gated on EXP-005.</div><div class="meta">papers/empirical-coreasoning-eval/README.md</div></a>
+</div></div></section>
+
+<section><div class="wrap">
+<div class="sh"><span class="dot" style="background:var(--amber)"></span><h2>Supervisor Gate</h2></div>
+<div class="grid">
+<a class="card" href="docs/research/supervisor-one-pager-2026-06-30.pdf"><div class="t">Approval Request (1 page) <span class="tag gate">action</span></div><div class="d">The single decision: approve blind labeling of the 24 safe patterns.</div><div class="meta">docs/research/supervisor-one-pager-2026-06-30.pdf</div></a>
+<a class="card" href="docs/research/supervisor-label-approval-pack.md"><div class="t">Label Approval Pack (detail)</div><div class="d">Full decisions, files to review, approved label values, scope.</div><div class="meta">docs/research/supervisor-label-approval-pack.md</div></a>
+</div></div></section>
+
+<footer><div class="wrap">VEGO-AI Research Hub · generated 2026-06-30 · Ali Ahmed · MSc Information Systems · Evidence boundary: mechanism demonstrated; accuracy improvement not yet evaluable (0/24 labels).</div></footer>
+</body></html>

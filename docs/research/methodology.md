@@ -83,3 +83,9 @@ Qualitative:
 - Keep M3 memory inert and M4A advisory-only: no Agent 4 classification change, embeddings, or visualizer changes.
 - Treat C4B/M4B-1 as a deterministic controlled experiment, not a default product behavior.
 - Do not approve M4B-2 Agent 4/LLM behavior without a separate design review.
+
+## HITL Resource Support
+
+The HITL resource pack in `literature/hitl-resource-pack/` supports the methodology by linking VEGO-AI's selective review, expert labeling, reusable memory, and governed comparison mechanisms to citable Human-AI collaboration literature and tool references.
+
+These resources inform study design and thesis framing only. They do not authorize classifier behavior changes, M4B-2, Agent 4 modifications, embeddings, LLM/API calls, or accuracy-improvement claims.

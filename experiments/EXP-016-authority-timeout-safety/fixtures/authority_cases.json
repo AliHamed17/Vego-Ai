@@ -1,0 +1,12 @@
+{
+  "fixture_version": "1.0",
+  "synthetic_tag": "SYNTHETIC_NOT_HUMAN",
+  "cases": [
+    {"id":"AUTH-01","case_type":"timeout","actor_role":"course_staff","requested_authority":"none","decision":"ambiguous","rationale":"No response arrived before the fixture deadline."},
+    {"id":"AUTH-02","case_type":"rejection","actor_role":"supervisor","requested_authority":"approve_correction","decision":"reject_ai_decision","rationale":"The proposed correction is rejected in this fixture."},
+    {"id":"AUTH-03","case_type":"unresolved_override","actor_role":"course_staff","requested_authority":"adjudicate","decision":"needs_guideline_update","rationale":"An override remains unresolved and requires supervisor adjudication."},
+    {"id":"AUTH-04","case_type":"unauthorized_reviewer","actor_role":"untrained_reviewer","requested_authority":"submit_feedback","decision":"approve_ai_decision","rationale":"This role is not authorized to review the fixture item."},
+    {"id":"AUTH-05","case_type":"missing_approval","actor_role":"supervisor","requested_authority":"submit_feedback","decision":"correct_classification","rationale":"Deterministic checks passed, but correction authorization is absent."},
+    {"id":"AUTH-06","case_type":"rejection","actor_role":"untrained_reviewer","requested_authority":"approve_correction","decision":"reject_ai_decision","rationale":"Case type cannot bypass the actor authority policy."}
+  ]
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <style>
+    .bg { fill: #F8FAFC; }
+    .title { font: 700 48px Arial, sans-serif; fill: #0F172A; }
+    .subtitle { font: 400 25px Arial, sans-serif; fill: #475569; }
+    .cardTitle { font: 700 26px Arial, sans-serif; fill: #0F172A; }
+    .cardBody { font: 400 22px Arial, sans-serif; fill: #334155; }
+    .footer { font: 400 22px Arial, sans-serif; fill: #64748B; }
+  </style>
+  <rect class="bg" width="1600" height="900"/>
+  <text x="90" y="88" class="title">Non-Destructive Comparison Boundary</text>
+  <text x="90" y="132" class="subtitle">The memory-informed layer does not overwrite the original AI pipeline</text>
+  
+      <g transform="translate(90, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#0B7285"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">Original Agent 4</text>
+<text x="0" y="30" class="cardBody">unchanged baseline classification</text></g>
+      </g>
+
+      <g transform="translate(452, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#2F9E44"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">Memory advice</text>
+<text x="0" y="30" class="cardBody">advisory evidence only</text></g>
+      </g>
+
+      <g transform="translate(814, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#5F3DC4"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">M4B-1 output</text>
+<text x="0" y="30" class="cardBody">parallel comparison file</text></g>
+      </g>
+
+      <g transform="translate(1176, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#C2410C"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">Research claim</text>
+<text x="0" y="30" class="cardBody">clarifies, does not automatically correct</text></g>
+      </g>
+  <text x="90" y="842" class="footer">ai_classification_changed_count=0; M4B-1 changed_count=0 in current evidence run.</text>
+</svg>

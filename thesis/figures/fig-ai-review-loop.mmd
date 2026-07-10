@@ -1,0 +1,72 @@
+%%{ init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4fd', 'primaryBorderColor': '#2b6cb0', 'lineColor': '#4a5568', 'textColor': '#1a202c' } } }%%
+flowchart TD
+    subgraph source["Thesis Chapters"]
+        CH["10 Chapters + Abstract"]
+    end
+
+    subgraph validators["AI Review Validators"]
+        direction TB
+
+        subgraph structural["Structural Validators"]
+            XREF["Cross-Reference Validator<br/><i>All section references resolve<br/>to real sections</i>"]
+            FIGREF["Figure Reference Validator<br/><i>All Figure X.Y references<br/>match real figures</i>"]
+            CITE["Citation Integrity Checker<br/><i>In-text citations cross-checked<br/>against reference list</i>"]
+        end
+
+        subgraph consistency["Consistency Validators"]
+            TERM["Terminology Consistency Checker<br/><i>Consistent term usage<br/>across all chapters</i>"]
+            THREAD["Running Example Thread Checker<br/><i>Customer-as-actor P6 threaded<br/>correctly through chapters</i>"]
+        end
+
+        subgraph evidence["Evidence & Claim Guards"]
+            CLAIM["Claim-Language Guard<br/><i>No accuracy claims allowed<br/>(0/24 labels = no claims)</i>"]
+            EGATE["Evidence Gate Enforcer<br/><i>0/20/24 label thresholds<br/>for permitted claims</i>"]
+            ECON["Evidence Consistency Guard<br/><i>18 automated invariant checks<br/>(scripts/check_evidence_consistency.py)</i>"]
+        end
+    end
+
+    subgraph results["Verification Results"]
+        PASS["PASS<br/><i>All checks satisfied</i>"]
+        FAIL["FAIL<br/><i>Issues detected</i>"]
+    end
+
+    CH --> XREF
+    CH --> FIGREF
+    CH --> CITE
+    CH --> TERM
+    CH --> THREAD
+    CH --> CLAIM
+    CH --> EGATE
+    CH --> ECON
+
+    XREF --> PASS
+    FIGREF --> PASS
+    CITE --> PASS
+    TERM --> PASS
+    THREAD --> PASS
+    CLAIM --> PASS
+    EGATE --> PASS
+    ECON --> PASS
+
+    XREF --> FAIL
+    FIGREF --> FAIL
+    CITE --> FAIL
+    TERM --> FAIL
+    THREAD --> FAIL
+    CLAIM --> FAIL
+    EGATE --> FAIL
+    ECON --> FAIL
+
+    FAIL -->|"Feedback loop:<br/>fix issues & re-validate"| CH
+
+    style CH fill:#e2e8f0,stroke:#4a5568,color:#1a202c
+    style XREF fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style FIGREF fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style CITE fill:#bee3f8,stroke:#2b6cb0,color:#1a202c
+    style TERM fill:#e8f4fd,stroke:#2b6cb0,color:#1a202c
+    style THREAD fill:#e8f4fd,stroke:#2b6cb0,color:#1a202c
+    style CLAIM fill:#fed7d7,stroke:#c53030,color:#1a202c
+    style EGATE fill:#fed7d7,stroke:#c53030,color:#1a202c
+    style ECON fill:#fed7d7,stroke:#c53030,color:#1a202c
+    style PASS fill:#c6f6d5,stroke:#276749,color:#1a202c
+    style FAIL fill:#fed7d7,stroke:#c53030,color:#1a202c

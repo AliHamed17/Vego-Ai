@@ -9,11 +9,15 @@ The workspace is organized so research context, source code, experiments, data, 
 1. Read `PROJECT_CHARTER.md` for the purpose and boundaries.
 2. Read `docs/architecture/project-map.md` for the folder map.
 3. Read `docs/architecture/workspace-diagram.md` for the GitHub-rendered architecture diagram.
-4. Read `docs/research/research-plan.md` for research questions and milestones.
-5. Read `docs/dashboards/progress-dashboard.md` and `docs/dashboards/kpi-register.md` for progress and KPI tracking.
-6. Read `experiments/registry.md` before creating or running experiments.
-7. Read `docs/confluence/wiki-sync.md` for the curated wiki sync workflow.
-8. Run `.\scripts\agent-memory-start.ps1` before AI-assisted work.
+4. Read `docs/operations/alignment-control.md` for the current alignment, evidence, and claim boundary checkpoint.
+5. Read `docs/research/phd-thesis-optimization-plan.md` for the MSc-to-PhD trajectory and doctoral capability stack.
+6. Read `docs/architecture/progress-update-diagram.md` for the progress update architecture.
+7. Read `docs/research/research-plan.md` for research questions and milestones.
+8. Read `docs/dashboards/progress-dashboard.md` and `docs/dashboards/kpi-register.md` for progress and KPI tracking.
+9. Generate the local E2E web dashboard with `.\scripts\build-e2e-progress-report.ps1` and open `reports/generated/e2e_dashboard/index.html`.
+10. Read `experiments/registry.md` before creating or running experiments.
+11. Read `docs/confluence/wiki-sync.md` for the curated wiki sync workflow.
+12. Run `.\scripts\agent-memory-start.ps1` before AI-assisted work.
 
 ## Current Source Package
 
@@ -55,10 +59,11 @@ Do not mix thesis notes, experiment notes, or project-management files inside `V
 5. Record research changes in the relevant registry or template.
 6. Finish with `.\scripts\agent-memory-finish.ps1` so future prompts can continue the thread.
 7. Refresh the Confluence outbox, dashboard runtime snapshot, and manual sync pack with `.\scripts\build-confluence-wiki.ps1`.
-8. Verify dashboard/wiki readiness with `.\scripts\dashboard-health.ps1 -RequireOutbox`.
-9. For supervised "review / continue to next step" cycles, run `.\scripts\run-codex-next-step.ps1`.
+8. Refresh the E2E report directly with `.\scripts\build-e2e-progress-report.ps1` when you want the local web dashboard without rebuilding the wiki outbox.
+9. Verify dashboard/wiki readiness with `.\scripts\dashboard-health.ps1 -RequireOutbox`.
+10. For supervised "review / continue to next step" cycles, run `.\scripts\run-codex-next-step.ps1`.
 
-For meeting/demo commands, see `docs/operations/vego-workbench.md`. For the supervised Codex loop, see `docs/operations/codex-next-step-loop.md`. For the structured review architecture, see `docs/operations/project-review-architecture.md`.
+For meeting/demo commands, see `docs/operations/vego-workbench.md`. For the supervised Codex loop, see `docs/operations/codex-next-step-loop.md`. For the structured review architecture, see `docs/operations/project-review-architecture.md`. For the current alignment checkpoint, see `docs/operations/alignment-control.md`. For the PhD review and alignment playbook, see `docs/operations/review-alignment-playbook.md`. For progress dashboards and 4-hour update flow, see `docs/operations/progress-update-architecture.md`.
 
 ## Reproducibility Rule
 

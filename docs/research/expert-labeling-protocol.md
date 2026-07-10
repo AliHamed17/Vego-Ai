@@ -1,8 +1,10 @@
 # Expert Labeling Protocol
 
-Last updated: 2026-06-22 by Codex.
+Last updated: 2026-06-29 by Codex.
 
 Purpose: collect independent expert labels for leakage-aware evaluation of VEGO-AI variability classification.
+
+Supervisor approval pack: `docs/research/supervisor-label-approval-pack.md`.
 
 ## Label Values
 
@@ -36,6 +38,28 @@ Experts should judge each pattern using:
 - evidence text where available.
 
 The full sheet may show original Agent 4 and memory-informed classifications for audit context. The blind sheet hides these fields and should be preferred when independent labels are needed.
+
+## Reviewer Workflow
+
+Use this workflow unless the supervisor explicitly approves a different reviewer plan:
+
+1. Supervisor reviews and approves `docs/research/supervisor-label-approval-pack.md`.
+2. Reviewer 1 fills the first blind sheet only.
+3. Reviewer 2 independently fills the second blind sheet, or the supervisor uses the adjudication sheet after reviewer 1 labels exist.
+4. Disagreements are adjudicated into the final gold-label file.
+5. The filled sheet is rerun through EXP-005; generated verdicts, accuracy summaries, and Chapter 7 are updated only after that rerun.
+
+First-pass reviewer files:
+
+- `reports/generated/exp003/annotation_package/blind_sheet_reviewer1.csv`
+- `reports/generated/exp003/annotation_package/blind_sheet_reviewer2.csv`
+- `reports/generated/exp005_label_review/exp005_label_review_blind.csv`
+
+Adjudication and audit files:
+
+- `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv`
+- `reports/generated/exp003/annotation_package/annotation_sheet_audit.csv`
+- `reports/generated/exp003/annotation_package/gold_labels.csv`
 
 ## Bias And Leakage Rules
 
@@ -107,3 +131,11 @@ Run:
 ```powershell
 .\scripts\build-exp005-label-review.ps1
 ```
+
+After a human fills labels, rerun with:
+
+```powershell
+.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream
+```
+
+Close the filled CSV before rerunning the command, especially if it was edited in Excel.

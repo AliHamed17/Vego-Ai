@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<style>.title{font:700 28px Arial;fill:#0F172A}.label{font:400 15px Arial;fill:#334155}.value{font:700 17px Arial;fill:#0F172A}</style>
+<rect width="900" height="360" fill="#F8FAFC"/>
+<text x="70" y="50" class="title">Memory Advice Strength</text>
+<rect x="111.8" y="260.0" width="106.4" height="20.0" rx="5" fill="#0B7285"/><text x="165.0" y="250.0" text-anchor="middle" class="value">2</text><text x="165.0" y="318" text-anchor="middle" class="label">moderate</text>
+<rect x="301.8" y="90.0" width="106.4" height="190.0" rx="5" fill="#0B7285"/><text x="355.0" y="80.0" text-anchor="middle" class="value">19</text><text x="355.0" y="318" text-anchor="middle" class="label">none</text>
+<rect x="491.8" y="260.0" width="106.4" height="20.0" rx="5" fill="#0B7285"/><text x="545.0" y="250.0" text-anchor="middle" class="value">2</text><text x="545.0" y="318" text-anchor="middle" class="label">strong</text>
+<rect x="681.8" y="240.0" width="106.4" height="40.0" rx="5" fill="#0B7285"/><text x="735.0" y="230.0" text-anchor="middle" class="value">4</text><text x="735.0" y="318" text-anchor="middle" class="label">weak</text>
+</svg>

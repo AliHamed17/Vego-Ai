@@ -1,0 +1,11 @@
+{
+  "from": "orchestrator",
+  "note": "Copy this to reports/generated/visualization_agent/tasks.json, set statuses to 'requested', then run: python scripts/visualization_agent.py  (add --full for heavy tasks).",
+  "tasks": [
+    { "id": "VIZ-001", "type": "evaluation-charts", "status": "requested", "note": "refresh leakage/advice/escalation/label-coverage SVGs from evaluation_summary.json" },
+    { "id": "VIZ-002", "type": "supervisor-figures", "status": "requested", "note": "refresh supervisor deck figures" },
+    { "id": "VIZ-003", "type": "catalog", "status": "requested", "note": "rebuild the diagram inventory" },
+    { "id": "VIZ-004", "type": "progress-visualizations", "status": "deferred", "note": "heavy: Mermaid + HTML progress dashboards (run with --full)" },
+    { "id": "VIZ-005", "type": "results-dashboard", "status": "deferred", "note": "heavy: regenerate VEGO-AI results dashboard" }
+  ]
+}

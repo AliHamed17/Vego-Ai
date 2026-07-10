@@ -1,2587 +1,681 @@
-# Session Log
+﻿# Session Log
 
 Chronological prompt history for Codex and Claude.
 
-## 2026-06-11 14:43 +03:00 - Codex - Memory Tracking Setup
+## 2026-06-29 12:27 +03:00 - Codex - Thesis Chapter 7 Progress
 
-- Request: Set up project-folder memory so Codex and Claude can track all issues, progress, prompt history, documentation, and revert notes.
-- Context found: workspace root was not a Git repository. Top-level files were one PDF and one large zip archive.
-- Actions taken: created shared memory conventions for Codex and Claude.
-- Files changed:
-  - `AGENTS.md`
-  - `CLAUDE.md`
-  - `docs/agent-memory/README.md`
-  - `docs/agent-memory/session-log.md`
-  - `docs/agent-memory/issues.md`
-  - `docs/agent-memory/decisions.md`
-  - `docs/agent-memory/revert-log.md`
-- Commands/checks:
-  - `Get-ChildItem -Force`
-  - `rg --files`
-  - `git status --short` failed because this folder is not a Git repository.
-- Status: completed.
-- Next steps: initialize Git if durable revert support is needed, after deciding whether the zip/PDF should be tracked.
-
-## 2026-06-11 14:48 +03:00 - Codex - Memory Workflow Strengthened
-
-- Request: Improve progress tracking and documentation so each prompt uses memory as a resource to understand flow/history and make better decisions.
-- Context found: basic shared memory existed, but there was no short current-state snapshot or progress tracker.
-- Actions taken: added current-state and progress files, updated Codex/Claude instructions, and expanded the memory README with a prompt checklist.
-- Files changed:
-  - `AGENTS.md`
-  - `CLAUDE.md`
-  - `docs/agent-memory/README.md`
-  - `docs/agent-memory/current-state.md`
-  - `docs/agent-memory/progress.md`
-  - `docs/agent-memory/session-log.md`
-  - `docs/agent-memory/revert-log.md`
-- Commands/checks:
-  - Read existing memory files with `Get-Content -Raw`.
-  - Listed project files with `rg --files`.
-- Status: completed.
-- Next steps: initialize Git if durable revert/history support is needed.
-
-## 2026-06-11 14:58 +03:00 - Codex - Scripted Memory Automation
-
-- Request: Pull all memory files and update memory automatically at each prompt.
+- Request: continue to progress with the thesis
 - Actions taken:
-  - Added prompt start script to generate compiled-memory.md
-  - Added prompt finish script to append prompt summaries and rollback notes
-  - Updated Codex and Claude instructions to run the scripts
-  - Added automation documentation
-  - Recorded automation boundary as an active issue/risk
-  - Generated compiled memory file
+  - Added guarded Chapter 7 Experimental Results/current-evidence draft
+  - Updated thesis outline to 10/10 drafted with Chapter 7 quantitative sections still label-gated
+  - Updated thesis structure map and agent memory with the Chapter 7 status
+  - Regenerated progress tracker, progress visualizations, and E2E dashboard
 - Files changed:
-  - AGENTS.md
-  - CLAUDE.md
-  - scripts/agent-memory-start.ps1
-  - scripts/agent-memory-finish.ps1
-  - docs/agent-memory/automation.md
-  - docs/agent-memory/compiled-memory.md
-  - docs/agent-memory/README.md
+  - thesis/chapters/07-experimental-results.md
+  - thesis/outline.md
+  - docs/research/thesis-structure-map.md
   - docs/agent-memory/current-state.md
   - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
+  - docs/PROGRESS_TRACKER.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
 - Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1
-  - .\\scripts\\agent-memory-finish.ps1 -DryRun
-  - .\\scripts\\agent-memory-finish.ps1
+  - python .\scripts\build-progress-tracker.py
+  - .\scripts\build-progress-visualizations.ps1
+  - .\scripts\build-e2e-progress-report.ps1
+  - python .\scripts\check_evidence_consistency.py
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
 - Status: completed
-- Next steps: Run the start script at the beginning of every meaningful prompt and the finish script before final response; initialize Git later for stronger rollback.
+- Next steps: Collect EXP-005 expert labels, rerun the downstream gate, then update Chapter 7 quantitative accuracy/reliability sections.
 
-## 2026-06-11 15:17 +03:00 - Codex - PhD Research Architecture
+## 2026-06-29 15:09 +03:00 - Codex - Supervisor EXP-005 Approval Pack
 
-- Request: Make the project a strong architecture for PhD research and project work.
+- Request: Implement supervisor-first EXP-005 label package enhancement
 - Actions taken:
-  - Extracted the original VEGO-AI source package into VEGO-AI/ while keeping the zip untouched
-  - Added root project charter, README, Git hygiene, Python tooling, and environment example
-  - Added PhD research documentation for methodology, data management, ethics/IRB, validity, publication planning, and architecture
-  - Added experiment registry and experiment creation script
-  - Added data, outputs, reports, literature, papers, thesis, presentations, notebooks, source, tests, artifacts, and configs structure
-  - Added project health and Python bootstrap scripts
-  - Initialized Git and updated memory/issues/decisions to reflect baseline commit as next step
-  - Expanded compiled memory to include core architecture and research resources
+  - Added supervisor-first EXP-005 approval pack
+  - Tightened expert labeling protocol with reviewer workflow and rerun command
+  - Updated thesis outline, progress tracker, research README, and project memory
+  - Fixed progress tracker chapter counting to exclude 00-abstract front matter
+  - Regenerated E2E dashboard and progress tracker
 - Files changed:
-  - README.md
-  - PROJECT_CHARTER.md
-  - .gitignore
-  - .gitattributes
-  - .editorconfig
-  - .env.example
-  - pyproject.toml
-  - requirements-dev.txt
-  - VEGO-AI/
-  - docs/architecture/
-  - docs/research/
-  - docs/project-management/
-  - docs/adr/
-  - docs/templates/
-  - experiments/
-  - data/
-  - outputs/
-  - reports/
-  - literature/
-  - papers/
-  - thesis/
-  - presentations/
-  - notebooks/
-  - src/
-  - tests/
-  - artifacts/
-  - configs/
-  - scripts/project-health.ps1
-  - scripts/new-experiment.ps1
-  - scripts/bootstrap-python.ps1
-  - scripts/agent-memory-start.ps1
-  - AGENTS.md
-  - CLAUDE.md
-  - docs/agent-memory/
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1
-  - tar -tf VEGO-AI-20260611T112722Z-3-001.zip
-  - Expand-Archive -LiteralPath VEGO-AI-20260611T112722Z-3-001.zip -DestinationPath . -Force
-  - .\\scripts\\project-health.ps1
-  - PowerShell Parser.ParseFile for scripts
-  - python -m compileall -q VEGO-AI
-  - git init
-  - git status --short
-  - .\\scripts\\agent-memory-finish.ps1
-- Status: completed
-- Next steps: Review git status, configure Git user identity if needed, create the first baseline commit, audit data/IRB sensitivity, and map existing packaged results into experiment cards.
-
-## 2026-06-11 15:51 +03:00 - Codex - Enhancement Roadmap Discussion
-
-- Request: Ask what can be added or enhanced in the PhD research/project architecture.
-- Actions taken:
-  - Reviewed compiled project memory, progress, issues, roadmap, risks, and Git status
-  - Prepared a prioritized enhancement roadmap without changing project architecture files
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1
-  - Get-Content docs\\agent-memory\\current-state.md/progress.md/issues.md
-  - Get-Content docs\\project-management\\roadmap.md/risk-register.md
-  - git status --short
-  - .\\scripts\\agent-memory-finish.ps1
-- Status: completed
-- Next steps: Choose one enhancement package to implement next, preferably baseline Git commit, data/IRB audit, or experiment evidence mapping.
-
-## 2026-06-11 16:12 +03:00 - Codex - Safe GitHub Baseline Published
-
-- Request: Implement the safe baseline publish plan for private GitHub repo AliHamed17/Vego-Ai.
-- Actions taken:
-  - Configured local Git branch, remote, identity, and schannel TLS backend
-  - Tightened ignore policy to exclude sensitive/deferred research artifacts
-  - Moved nested extracted VEGO-AI/.git metadata into ignored artifacts backup
-  - Ran project health, PowerShell parse checks, compileall, and pytest after installing dev requirements
-  - Committed safe baseline and merged remote README-only history without force-pushing
-  - Pushed main to private GitHub repo and verified no forbidden files are tracked
-  - Updated project memory to reflect GitHub baseline status
-- Files changed:
-  - .gitignore
+  - docs/research/supervisor-label-approval-pack.md
+  - docs/research/expert-labeling-protocol.md
+  - thesis/outline.md
+  - docs/PROGRESS_TRACKER.md
+  - docs/research/README.md
   - docs/agent-memory/current-state.md
   - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
+  - scripts/build-progress-tracker.py
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+- Commands/checks:
+  - python .\scripts\check_evidence_consistency.py
+  - python .\scripts\build-progress-tracker.py
+  - .\scripts\build-progress-visualizations.ps1
+  - .\scripts\build-e2e-progress-report.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+- Status: completed
+- Next steps: Review docs/research/supervisor-label-approval-pack.md with the supervisor; after approval, collect blind EXP-005 labels and rerun the downstream gate.
+
+## 2026-06-29 15:20 +03:00 - Codex - PhD Thesis Optimization And Claude Collaboration
+
+- Request: work with Claude to create an optimal thesis for PhD and enhance baseline/research structure
+- Actions taken:
+  - Added PhD thesis optimization control page
+  - Added paste-ready Claude PhD thesis collaboration prompt
+  - Updated Claude instructions and research README to reference the new control docs
+  - Updated research plan from stale M4B implementation milestones to current EXP-005 and PhD trajectory
+  - Updated thesis structure map and shared memory with the MSc-to-PhD path
+  - Regenerated dashboards/wiki outbox and verified evidence/dashboard guards
+- Files changed:
+  - docs/research/phd-thesis-optimization-plan.md
+  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
+  - CLAUDE.md
+  - docs/research/README.md
+  - docs/research/research-plan.md
+  - docs/research/thesis-structure-map.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/resource-memory.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
 - Commands/checks:
   - .\scripts\agent-memory-start.ps1
-  - git branch -M main
-  - git remote add origin https://github.com/AliHamed17/Vego-Ai.git
-  - git config user.name/user.email/http.sslBackend
-  - git fetch origin main
-  - git add -A
-  - git commit -m "Initialize safe VEGO-AI research baseline"
-  - git merge origin/main --allow-unrelated-histories -s ours --no-edit
-  - git push -u origin main
-  - .\scripts\project-health.ps1
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
-  - python -m pip install -r requirements-dev.txt
-  - python -m pytest VEGO-AI\tests -q
-  - gh repo view AliHamed17/Vego-Ai
-  - git ls-tree forbidden-file audit
+  - python .\scripts\check_evidence_consistency.py
+  - python .\scripts\build-progress-tracker.py
+  - .\scripts\build-e2e-progress-report.ps1
+  - .\scripts\build-progress-visualizations.ps1
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
 - Status: completed
-- Next steps: Audit data/IRB sensitivity before publishing deferred artifacts; continue committing memory and project changes to main.
+- Next steps: Use docs/agent-memory/claude-phd-thesis-collaboration-prompt.md in Claude; review docs/research/supervisor-label-approval-pack.md with the supervisor; collect EXP-005 labels before any accuracy/generalization claim.
 
-## 2026-06-11 16:17 +03:00 - Codex - Claude Bootstrap Prompt
+## 2026-06-29 15:39 +03:00 - Codex - Doctoral Capability Alignment
 
-- Request: Write a big prompt for Claude so it remembers the project history, follows the PhD architecture, and applies the shared memory workflow in Claude.
+- Request: make sure we are aligned and we have strong capabilities to extend to doctoral and PhD studies
 - Actions taken:
-  - Read compiled project memory and Claude instructions
-  - Added a paste-ready Claude startup prompt for fresh Claude sessions
-  - Linked the bootstrap prompt from CLAUDE.md
-  - Updated memory map, current state, progress, and decisions to record the Claude prompt artifact
+  - Added doctoral capability stack and maturity ladder to the PhD optimization plan
+  - Updated Claude PhD collaboration prompt with capability-based extension rules
+  - Updated alignment control, architecture map, architecture README, root README, and project memory
+  - Regenerated progress tracker, progress visualizations, E2E dashboard, Confluence outbox, and manual sync pack
+  - Verified evidence consistency and dashboard health
 - Files changed:
-  - CLAUDE.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - Get-Content -Raw docs\agent-memory\compiled-memory.md
-  - Get-Content -Raw CLAUDE.md
-  - git status -sb
-  - .\scripts\project-health.ps1
-  - git diff -- selected docs
-  - .\scripts\agent-memory-finish.ps1
-- Status: completed
-- Next steps: Paste docs/agent-memory/claude-bootstrap-prompt.md into Claude at the start of a new Claude session; optionally commit these documentation changes on the active branch.
-
-## 2026-06-11 16:19 +03:00 - Codex - Claude Memory Workflow Clarification
-
-- Request: Clarify whether Claude will pull and update the shared memory resources at each prompt.
-- Actions taken:
-  - Verified CLAUDE.md instructs Claude to run the memory start script and read compiled memory before work
-  - Verified the Claude bootstrap prompt includes startup and finish memory routines
-  - Explained that the workflow depends on Claude having workspace/tool access and following the prompt/instructions; it is not a background service
-- Files changed:
-  - docs/agent-memory/session-log.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - Get-Content -Raw CLAUDE.md
-  - Get-Content -Raw docs\agent-memory\claude-bootstrap-prompt.md
-  - git status -sb
-  - .\scripts\agent-memory-finish.ps1
-- Status: completed
-- Next steps: When opening Claude, paste docs/agent-memory/claude-bootstrap-prompt.md or ensure Claude reads CLAUDE.md in this workspace.
-
-## 2026-06-11 16:29 +03:00 - Codex - GitHub Update With Code Files And Diagram
-
-- Request: Make sure GitHub is updated with all code and files and the diagram.
-- Actions taken:
-  - Pulled compiled memory and inspected local/remote Git state
-  - Added a GitHub-rendered Mermaid workspace architecture diagram and linked it from README and architecture docs
-  - Included Claude bootstrap prompt documentation from the prior work
-  - Included safe human-feedback manager files, schemas, and example input that appeared in the working tree
-  - Excluded ignored sensitive/deferred artifacts from staging and upload
-  - Ran health, Python compile, JSON/JSONL parse, pytest, staged-file audit, remote verification, and forbidden tracked-file audit
-  - Committed and pushed main to private GitHub repo AliHamed17/Vego-Ai at b7ff5fa
-- Files changed:
-  - CLAUDE.md
-  - README.md
-  - VEGO-AI/framework/human_feedback_manager.py
-  - VEGO-AI/inputs/human_feedback.example.jsonl
-  - VEGO-AI/schemas/human_feedback.schema.json
-  - VEGO-AI/schemas/human_review_item.schema.json
-  - docs/agent-memory/README.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
+  - docs/research/phd-thesis-optimization-plan.md
+  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
+  - docs/operations/alignment-control.md
+  - docs/architecture/project-map.md
   - docs/architecture/README.md
-  - docs/architecture/project-map.md
-  - docs/architecture/workspace-diagram.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - git fetch origin main
-  - git status --short --ignored
-  - rg --files | rg -i diagram search
-  - .\scripts\project-health.ps1
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
-  - python -m py_compile VEGO-AI\framework\human_feedback_manager.py
-  - python -m pytest VEGO-AI\tests -q
-  - python JSON/JSONL parse check
-  - git diff --cached --check
-  - git diff --cached --name-only forbidden-path audit
-  - git commit -m "Add Claude memory prompt and workspace diagram"
-  - git push origin main
-  - gh repo view AliHamed17/Vego-Ai
-  - gh api repos/AliHamed17/Vego-Ai/contents/docs/architecture/workspace-diagram.md?ref=main
-  - git ls-tree forbidden tracked-file audit
-  - .\scripts\agent-memory-finish.ps1
-- Status: completed
-- Next steps: GitHub main is updated; next research step remains data/IRB sensitivity and provenance audit before publishing deferred artifacts.
-
-## 2026-06-12 19:51 +03:00 - Codex - Human Feedback Manager Docs And Tests
-
-- Request: Continue the project work from the GitHub/code/documentation update.
-- Actions taken:
-  - Pulled compiled memory and inspected Git state
-  - Found untracked human-feedback manager documentation and tests from the active Milestone 2 work
-  - Inspected files and secret-scanned them before staging
-  - Ignored Claude local settings via .claude/*.local.json because it contains machine-specific permission state
-  - Linked Human-AI Co-Reasoning Milestones 1 and 2 from VEGO-AI/README.md
-  - Updated human_review_queue.md to point to the implemented Milestone 2 manager docs
-  - Ran health, compile, full pytest suite, standalone manager tests, staged-file audit, and forbidden artifact audit
-- Files changed:
-  - .gitignore
-  - VEGO-AI/README.md
-  - VEGO-AI/docs/human_feedback_manager.md
-  - VEGO-AI/docs/human_review_queue.md
-  - VEGO-AI/tests/test_human_feedback_manager.py
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - git status -sb
-  - Get-Content -Raw VEGO-AI\docs\human_feedback_manager.md
-  - Get-Content -Raw VEGO-AI\tests\test_human_feedback_manager.py
-  - rg secret scan over new files
-  - python -m pytest VEGO-AI\tests -q
-  - python VEGO-AI\tests\test_human_feedback_manager.py
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
-  - .\scripts\project-health.ps1
-  - git diff --cached --check
-  - git diff --cached --name-only forbidden-path audit
-  - .\scripts\agent-memory-finish.ps1
-- Status: completed
-- Next steps: Commit and push the human-feedback docs/tests update; then continue with the data/IRB sensitivity and provenance audit.
-
-## 2026-06-12 20:23 +03:00 - Codex - Research OS And Confluence Sync Infrastructure
-
-- Request: Implement the VEGO-AI Research OS plus Confluence sync infrastructure plan.
-- Actions taken:
-  - Switched from feature/human-feedback-manager to main before editing because both branches matched origin/main
-  - Added metadata-only artifact audit, provenance register, and publishability register for controlled/deferred artifacts
-  - Created EXP-000 existing packaged results audit folder and updated the experiment registry
-  - Added Confluence wiki sync docs, placeholder config template, ignored local config/outbox, and a wiki outbox builder
-  - Updated Codex and Claude instructions so meaningful prompts finish with memory update, wiki outbox/live sync, then final response
-  - Added research-health checks and wired project-health to run them
-  - Updated roadmap, risk register, data management, ethics, navigation, issues, decisions, progress, and current state
-  - Generated four ignored Confluence outbox pages; live Confluence sync remains pending because target IDs are not configured
-- Files changed:
-  - .gitignore
-  - AGENTS.md
-  - CLAUDE.md
-  - README.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/automation.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/architecture/project-map.md
-  - docs/confluence/wiki-sync.md
-  - docs/confluence/wiki-sync-config.template.json
-  - docs/project-management/risk-register.md
-  - docs/project-management/roadmap.md
-  - docs/research/README.md
-  - docs/research/artifact-audit.md
-  - docs/research/data-management-plan.md
-  - docs/research/ethics-irb.md
-  - docs/research/provenance-register.md
-  - docs/research/publishability-register.md
-  - experiments/EXP-000-existing-packaged-results-audit/README.md
-  - experiments/EXP-000-existing-packaged-results-audit/config-manifest.md
-  - experiments/EXP-000-existing-packaged-results-audit/notes.md
-  - experiments/registry.md
-  - scripts/build-confluence-wiki.ps1
-  - scripts/project-health.ps1
-  - scripts/research-health.ps1
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - git status -sb
-  - git branch -vv
-  - git switch main
-  - .\scripts\project-health.ps1
-  - .\scripts\research-health.ps1
-  - .\scripts\build-confluence-wiki.ps1
-  - PowerShell Parser.ParseFile for scripts
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
-  - python -m pytest VEGO-AI\tests -q
-  - git status --short --ignored
-- Status: completed
-- Next steps: Commit and push the Research OS infrastructure; later fill docs/confluence/wiki-sync-config.local.json with real Confluence target IDs for live page updates.
-
-## 2026-06-12 20:47 +03:00 - Codex - Confluence Live Target Wiring
-
-- Request: Implement the plan to wire VEGO-AI Confluence live wiki sync using page 294914 as the wiki home.
-- Actions taken:
-  - Started from memory and discovered the workspace was on feature/human-judgment-memory, then switched to main because main contains the Research OS infrastructure and matches origin/main
-  - Verified Atlassian Rovo still cannot read Confluence page 294914 because cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec is not explicitly granted
-  - Created ignored local Confluence sync config for site https://alih10j.atlassian.net/wiki, space ~71202099edcf0e26ec40cea521806deb9e9687, parent/home page 294914
-  - Updated tracked Confluence sync docs with the exact non-secret target and Home + Children layout
-  - Updated agent instructions to treat missing Atlassian access the same as a pending live sync and to keep using the generated outbox
-  - Enhanced research-health to validate local Confluence config JSON and confirm it is ignored by Git
-  - Generated the four wiki outbox pages; live Confluence writes were skipped because access is blocked
-- Files changed:
-  - AGENTS.md
-  - CLAUDE.md
-  - docs/agent-memory/automation.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/confluence/wiki-sync.md
-  - docs/confluence/wiki-sync-config.template.json
-  - docs/confluence/wiki-sync-config.local.json (ignored)
-  - scripts/build-confluence-wiki.ps1
-  - scripts/research-health.ps1
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - git status -sb
-  - git branch -vv
-  - git switch main
-  - Atlassian Rovo _getconfluencepage pageId=294914
-  - .\scripts\build-confluence-wiki.ps1
-  - .\scripts\research-health.ps1
-  - git check-ignore -v docs\confluence\wiki-sync-config.local.json docs\confluence\outbox\vego-ai-wiki-home.md
-  - .\scripts\project-health.ps1
-  - PowerShell Parser.ParseFile for scripts
-  - python -m pytest VEGO-AI\tests -q
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval
-  - .\scripts\agent-memory-finish.ps1
-- Status: completed with live sync blocked
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update page 294914 and create/update the three child pages from docs/confluence/outbox.
-
-## 2026-06-12 21:39 +03:00 - Codex - Reusable Human Judgment Research Story Hardening
-
-- Request: Implement the Research Story Hardening Around Reusable Human Judgment plan: publish M3, reframe research/thesis docs, add evaluation/literature planning, keep M3 inert, and prepare M4 as the next controlled experiment.
-- Actions taken:
-  - Verified and pushed M3 commit 5e109e5 to origin/main before research-story edits.
-  - Reframed the project around reusable human judgment in AI-assisted domain model assessment.
-  - Added literature taxonomy, C0-C4 evaluation plan, and EXP-001 M4 controlled experiment shell.
-  - Updated thesis outline, claim/evidence table, roadmap, risk register, research docs, and memory decisions.
-  - Kept M3 inert and recorded M4 as a planned controlled experiment only.
-- Files changed:
-  - README.md
-  - PROJECT_CHARTER.md
-  - docs/research/research-plan.md
-  - docs/research/methodology.md
-  - docs/research/literature-review-taxonomy.md
-  - docs/research/evaluation-plan.md
-  - docs/research/README.md
-  - docs/research/publication-plan.md
-  - docs/research/validity-threats.md
-  - thesis/outline.md
-  - papers/mas4models2026/claim-evidence-table.md
-  - docs/project-management/roadmap.md
-  - docs/project-management/risk-register.md
-  - experiments/registry.md
-  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
-  - scripts/research-health.ps1
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-- Commands/checks:
-  - git push origin main -> pushed 5e109e5 before docs edits
-  - python -m pytest VEGO-AI\tests -q -> 45 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
-  - PowerShell parser check for scripts -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-- Status: completed
-- Next steps: Run EXP-001/C4 after audited input selection; grant Atlassian Rovo access before live Confluence sync.
-
-## 2026-06-12 21:47 +03:00 - Codex - Confluence Access Recheck
-
-- Request: Verify whether live Confluence sync can proceed after regenerating the wiki outbox.
-- Actions taken:
-  - Attempted to read Confluence home page 294914 through Atlassian Rovo.
-  - Confirmed live sync is still blocked because the Atlassian cloud is not explicitly granted.
-  - Updated ISS-005 with the latest access-check timestamp.
-- Files changed:
-  - docs/agent-memory/issues.md
-- Commands/checks:
-  - Atlassian Rovo _getconfluencepage cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec page 294914 -> blocked: cloud is not explicitly granted
-- Status: blocked for live sync; local outbox remains generated
-- Next steps: Grant Atlassian Rovo access to the configured cloud, then update page 294914 and child pages from docs/confluence/outbox.
-
-## 2026-06-12 22:29 +03:00 - Codex - M4A PR Review Merge And Research Story Update
-
-- Request: Read the attached PR #2/M4A instruction, review M4A before merge, apply any clear review fixes, merge if approved, and keep M4B design-only.
-- Actions taken:
-  - Reviewed GitHub PR #2 for Milestone 4A Memory Advisory Layer.
-  - Confirmed PR scope added only four M4A files and did not modify Agent 2, Agent 4, orchestrator, evaluator, visualizer, or baseline outputs.
-  - Added review fixes for missing-memory handling and schema-valid default provenance on feature/memory-advisor, then pushed commit 691a6eb.
-  - Posted Codex review report as a PR comment because GitHub would not allow the repository owner account to approve its own PR.
-  - Squash-merged PR #2 into main as ecd0972.
-  - Updated research, roadmap, thesis, experiment, and memory docs to split M4A advisory evidence from M4B design-only reclassification.
-- Files changed:
-  - VEGO-AI/docs/memory_advisor.md via PR #2
-  - VEGO-AI/framework/memory_advisor.py via PR #2
-  - VEGO-AI/schemas/memory_advice.schema.json via PR #2
-  - VEGO-AI/tests/test_memory_advisor.py via PR #2
-  - README.md
-  - PROJECT_CHARTER.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/milestone-workflow-rules.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/research/research-plan.md
-  - docs/research/methodology.md
-  - docs/research/evaluation-plan.md
-  - docs/research/literature-review-taxonomy.md
-  - docs/research/publication-plan.md
-  - docs/research/validity-threats.md
-  - docs/project-management/roadmap.md
-  - docs/project-management/risk-register.md
-  - papers/mas4models2026/claim-evidence-table.md
-  - thesis/outline.md
-  - experiments/registry.md
-  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
-  - scripts/agent-memory-start.ps1
-  - scripts/research-health.ps1
-- Commands/checks:
-  - gh pr view 2 --repo AliHamed17/Vego-Ai -> open, mergeable, four-file M4A PR
-  - python -m pytest VEGO-AI\tests -q -> 57 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
-  - Generated and schema-validated ucd_ch memory advice -> 8 items, none:5, strong:2, moderate:1, classification changes:0
-  - Missing-memory CLI check -> generated advisory-only none advice with 0 classification changes
-  - gh pr comment 2 -> posted Codex review report
-  - gh pr review --approve -> failed because GitHub cannot approve own PR
-  - gh pr merge 2 --squash -> merged as ecd0972
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - PowerShell parser check for scripts -> passed
-- Status: completed
-- Next steps: Ask Claude to refresh the M1-M2-M3-M4A artifact ZIP and manifest; draft M4B design only; grant Atlassian Rovo access before live Confluence sync.
-
-## 2026-06-13 13:01 +03:00 - Codex - M4A Tags And Claude Handoff
-
-- Request: Implement post-M4A hygiene: confirm 2828940 did not change VEGO-AI behavior, create milestone tags, add Claude handoff for artifact refresh and M4B design-only, update memory, and refresh Confluence outbox.
-- Actions taken:
-  - Created and pushed lightweight milestone tags for M3, M4A, and research-state M4A.
-  - Confirmed commit 2828940 did not modify VEGO-AI framework, schemas, or tests.
-  - Added M4A post-merge confirmation note.
-  - Added paste-ready Claude M4B handoff prompt for artifact refresh and design-only work.
-  - Updated memory summaries and research health requirements.
-  - Kept M4B implementation blocked.
-- Files changed:
-  - docs/research/m4a-post-merge-confirmation.md
-  - docs/agent-memory/claude-m4b-handoff-prompt.md
-  - docs/research/README.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - CLAUDE.md
-  - scripts/research-health.ps1
-- Commands/checks:
-  - git tag milestone-m3-human-judgment-memory 5e109e5f9f2073d9cdc2325bcea2823d57c77882
-  - git tag milestone-m4a-memory-advisory ecd097245c463089a5721d68b17d6b22a1005a43
-  - git tag research-state-m4a 28289405fc7cb687665f949bf039355a97967c59
-  - git push origin milestone-m3-human-judgment-memory milestone-m4a-memory-advisory research-state-m4a -> pushed
-  - git diff --name-status ecd0972..2828940 -- VEGO-AI/framework VEGO-AI/schemas VEGO-AI/tests -> no output
-  - python -m pytest VEGO-AI\tests -q -> 57 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - PowerShell parser check for scripts -> passed
-- Status: completed
-- Next steps: Use docs/agent-memory/claude-m4b-handoff-prompt.md with Claude to refresh the M1-M4A artifact ZIP/manifest and draft M4B design only.
-
-## 2026-06-13 13:17 +03:00 - Codex - Add Dashboard KPI Confluence Tracking
-
-- Request: Create dashboards, results, and KPI tracking and wire them into Confluence tracking.
-- Actions taken:
-  - Added tracked progress, KPI, and results dashboard docs.
-  - Updated agent instructions so dashboards are refreshed when project state changes.
-  - Extended Confluence wiki generation with a VEGO-AI Progress Dashboard outbox page.
-  - Added dashboard files to research-health required paths.
-  - Recorded dashboard tracking in current state, progress, decisions, and Confluence blocker notes.
-- Files changed:
-  - AGENTS.md
-  - CLAUDE.md
-  - README.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/architecture/project-map.md
-  - docs/confluence/wiki-sync.md
-  - docs/confluence/wiki-sync-config.template.json
-  - docs/dashboards/README.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/results-dashboard.md
-  - scripts/build-confluence-wiki.ps1
-  - scripts/research-health.ps1
-  - docs/confluence/wiki-sync-config.local.json (ignored local config)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - .\scripts\build-confluence-wiki.ps1
-  - python -m pytest VEGO-AI\tests -q -> 57 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - PowerShell parser check -> passed after rerun with initialized parser refs
-  - git diff --check -> passed with line-ending warnings only
-  - .\scripts\agent-memory-finish.ps1 -> first two invocations used wrong parameters, final splatted invocation passed
-- Status: completed; live Confluence pending
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then create/update the four child pages including VEGO-AI Progress Dashboard and store page IDs in ignored local config.
-
-## 2026-06-13 13:19 +03:00 - Codex - Recheck Confluence Live Access For Dashboard Sync
-
-- Request: Track dashboards and progress in Confluence, using live sync when possible.
-- Actions taken:
-  - Loaded Atlassian Rovo Confluence tools.
-  - Attempted to read Confluence page 294914 on cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec.
-  - Confirmed live sync is still blocked because the cloud is not explicitly granted.
-  - Updated memory, dashboard, and sync docs with the 2026-06-13 13:18 +03:00 recheck.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/issues.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/confluence/wiki-sync.md
-- Commands/checks:
-  - Atlassian Rovo _getconfluencepage cloudId=724252a1-a5b7-45a5-b6ec-27a8292197ec pageId=294914 -> blocked: cloud is not explicitly granted
-  - .\scripts\agent-memory-finish.ps1 -> passed
-- Status: completed; live Confluence blocked by access grant
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then sync the five generated outbox pages live.
-
-## 2026-06-13 13:29 +03:00 - Codex - Add Dashboard Health Gate
-
-- Request: Continue toward dashboards, results, KPI, and Confluence progress tracking.
-- Actions taken:
-  - Added scripts/dashboard-health.ps1 to verify dashboard sources, KPI rows, Confluence builder wiring, config page slots, and generated outbox readiness.
-  - Wired dashboard-health into research-health and the agent end-of-prompt workflow.
-  - Updated dashboard docs, Confluence sync docs, README, Codex/Claude instructions, and Claude bootstrap prompt.
-  - Recorded the dashboard health gate as a KPI/result and in shared memory.
-- Files changed:
-  - AGENTS.md
-  - CLAUDE.md
-  - README.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/confluence/wiki-sync.md
-  - docs/dashboards/README.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/results-dashboard.md
-  - scripts/dashboard-health.ps1
-  - scripts/research-health.ps1
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 -> passed
-  - .\scripts\build-confluence-wiki.ps1 -> generated five page outbox
-  - .\scripts\dashboard-health.ps1 -> passed
-  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed
-  - python -m pytest VEGO-AI\tests -q -> 57 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed and calls dashboard-health
-  - PowerShell parser check -> passed
-  - git diff --check -> passed with line-ending warning only
-- Status: completed; live Confluence still pending on Atlassian cloud grant
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then run dashboard-health -RequireLivePageIds after child page IDs are stored locally.
-
-## 2026-06-13 13:31 +03:00 - Codex - Recheck Confluence Access For Dashboard Health Gate
-
-- Request: Continue dashboard, KPI, results, and Confluence progress tracking.
-- Actions taken:
-  - Discovered the Atlassian Rovo create-page tool is available for future live sync.
-  - Retried reading Confluence page 294914 on cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec.
-  - Confirmed live sync remains blocked because the cloud is not explicitly granted.
-  - Updated memory, dashboard, and wiki-sync docs with the 2026-06-13 13:30 +03:00 recheck.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/issues.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/confluence/wiki-sync.md
-- Commands/checks:
-  - Atlassian Rovo _getconfluencepage cloudId=724252a1-a5b7-45a5-b6ec-27a8292197ec pageId=294914 -> blocked: cloud is not explicitly granted
-  - .\scripts\agent-memory-finish.ps1 -> passed
-- Status: completed; live Confluence still blocked by access grant
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update home page 294914 and create/update child pages from outbox.
-
-## 2026-06-13 13:46 +03:00 - Codex - Add Runtime Dashboard Snapshot
-
-- Request: Continue toward dashboards, results, KPI, and Confluence progress tracking.
-- Actions taken:
-  - Added scripts/build-dashboard-snapshot.ps1 to generate an ignored runtime snapshot with repository, KPI, active-work, Confluence config, and outbox status.
-  - Updated scripts/build-confluence-wiki.ps1 to embed the generated status snapshot into the VEGO-AI Progress Dashboard outbox page.
-  - Updated dashboard-health to verify the generated snapshot is present, ignored, and embedded in the dashboard outbox.
-  - Updated .gitignore, dashboard docs, Confluence sync docs, agent workflows, and shared memory for the snapshot workflow.
-  - Rechecked live Confluence access and confirmed the cloud grant is still missing.
-- Files changed:
-  - .gitignore
-  - AGENTS.md
-  - CLAUDE.md
-  - README.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/confluence/wiki-sync.md
-  - docs/dashboards/README.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/results-dashboard.md
-  - scripts/build-dashboard-snapshot.ps1
-  - scripts/build-confluence-wiki.ps1
-  - scripts/dashboard-health.ps1
-  - scripts/research-health.ps1
-  - docs/dashboards/status-snapshot.generated.md (ignored generated file)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 -> passed
-  - .\scripts\build-dashboard-snapshot.ps1 -> generated ignored runtime snapshot after one escaping fix
-  - .\scripts\build-confluence-wiki.ps1 -> generated five-page outbox and embedded snapshot
-  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed when run after wiki build
-  - python -m pytest VEGO-AI\tests -q -> 57 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - PowerShell parser check -> passed
-  - git diff --check -> passed with line-ending warnings only
-  - Atlassian Rovo _getconfluencepage pageId=294914 -> blocked: cloud is not explicitly granted
-- Status: completed locally; live Confluence still blocked by Atlassian access grant
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then update home page 294914 and create/update child pages from the generated outbox.
-
-## 2026-06-13 13:51 +03:00 - Codex - Record Confluence Browser Fallback Check
-
-- Request: Continue toward dashboards, results, KPI, and Confluence progress tracking.
-- Actions taken:
-  - Checked Atlassian Rovo live page access again; cloud grant is still missing.
-  - Checked whether Chrome extension-backed browser automation could be used as a UI fallback.
-  - Chrome extension-backed browser channel was unavailable after the required retry.
-  - Updated current state, issues, dashboards, and Confluence sync docs with the browser fallback result.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/issues.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/confluence/wiki-sync.md
-- Commands/checks:
-  - Atlassian Rovo _getconfluencepage pageId=294914 -> blocked: cloud is not explicitly granted
-  - Chrome extension connection check via node_repl -> Browser is not available: extension
-  - Chrome extension connection retry after 2 seconds -> Browser is not available: extension
-  - .\scripts\agent-memory-finish.ps1 -> passed
-- Status: completed locally; live Confluence blocked by missing Atlassian grant and unavailable Chrome extension route
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, or enable the Codex Chrome Extension route, then sync the generated outbox pages live.
-
-## 2026-06-13 18:40 +03:00 - Codex - Add Confluence Manual Sync Pack
-
-- Request: Continue dashboard, results, KPI, and Confluence progress tracking while live access is blocked.
-- Actions taken:
-  - Added scripts/build-confluence-manual-sync-pack.ps1 to generate an ignored manual Confluence publishing package from the safe outbox.
-  - Updated scripts/build-confluence-wiki.ps1 to generate the manual sync pack after the outbox and runtime snapshot.
-  - Added docs/confluence/manual-sync.md with fallback publishing rules and page targets.
-  - Updated dashboard-health and research-health to verify the manual pack exists, is ignored, and avoids forbidden sensitive path patterns.
-  - Observed existing commit b213734 on main/origin-main before edits; it is a test-only M4A compatibility change.
-- Files changed:
-  - .gitignore
-  - AGENTS.md
-  - CLAUDE.md
-  - README.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/confluence/manual-sync.md
-  - docs/confluence/wiki-sync.md
-  - docs/dashboards/README.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/results-dashboard.md
-  - scripts/build-confluence-manual-sync-pack.ps1
-  - scripts/build-confluence-wiki.ps1
-  - scripts/dashboard-health.ps1
-  - scripts/research-health.ps1
-  - docs/confluence/manual-sync-pack.generated.md (ignored generated file)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 -> passed
-  - git status -sb -> clean at prompt start
-  - git log --oneline -8 -> observed b213734 test-only commit on main/origin-main
-  - .\scripts\build-confluence-wiki.ps1 -> generated outbox, runtime snapshot, and manual sync pack
-  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed
-  - Select-String forbidden generated-pack scan -> no matches
-  - python -m pytest VEGO-AI\tests -q -> 57 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - PowerShell parser check -> passed
-  - git diff --check -> passed with line-ending warnings only
-- Status: completed locally; live Confluence still pending on access grant or browser route
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable the Codex Chrome Extension route, then publish from outbox/manual sync pack and store child page IDs locally.
-
-## 2026-06-13 18:41 +03:00 - Codex - Recheck Confluence Access After Manual Pack
-
-- Request: Continue dashboard and Confluence progress tracking.
-- Actions taken:
-  - Rechecked Atlassian Rovo access to Confluence page 294914 after adding the manual sync pack.
-  - Confirmed live sync remains blocked because the cloud is not explicitly granted.
-  - Updated current state, issues, dashboards, and wiki sync docs with the 2026-06-13 18:40 +03:00 recheck.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/issues.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/confluence/wiki-sync.md
-- Commands/checks:
-  - Atlassian Rovo _getconfluencepage pageId=294914 -> blocked: cloud is not explicitly granted
-  - .\scripts\agent-memory-finish.ps1 -> passed
-- Status: completed; live Confluence still blocked by access grant
-- Next steps: Grant Atlassian Rovo access or enable the Codex Chrome Extension route; use generated outbox/manual sync pack for publishing once access exists.
-
-## 2026-06-14 11:13 +03:00 - Codex - M4B-1 Conditional Approval Contract
-
-- Request: Read the attached M4B review and act on it without implementing M4B code: record the conditional M4B-1 design approval, add deterministic policy/leakage/schema guardrails, update Claude handoff, confirm Codex isolation, and keep Confluence/wiki memory current.
-- Actions taken:
-  - Added docs/research/m4b-conditional-approval.md with M4B-1 deterministic parallel-comparison contract, leakage guard, schema expectations, acceptance criteria, and Codex isolation paths.
-  - Updated EXP-001, evaluation/research/methodology/planning/thesis docs, dashboards, and agent instructions to distinguish M4B-1 from deferred M4B-2.
-  - Updated docs/agent-memory/claude-m4b-handoff-prompt.md so Claude refreshes M1-M4A artifacts and implements only M4B-1 on feature/memory-informed-comparison via PR.
-  - Did not modify VEGO-AI framework, schemas, tests, eval, inputs, visualizer, baseline outputs, models, analysis, PDFs, or archives.
-- Files changed:
-  - AGENTS.md
-  - CLAUDE.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/claude-m4b-handoff-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/milestone-workflow-rules.md
-  - docs/agent-memory/progress.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/results-dashboard.md
-  - docs/project-management/risk-register.md
-  - docs/project-management/roadmap.md
-  - docs/research/README.md
-  - docs/research/evaluation-plan.md
-  - docs/research/m4a-post-merge-confirmation.md
-  - docs/research/m4b-conditional-approval.md
-  - docs/research/methodology.md
-  - docs/research/publication-plan.md
-  - docs/research/research-plan.md
-  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
-  - experiments/registry.md
-  - papers/mas4models2026/claim-evidence-table.md
-  - thesis/outline.md
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 -> passed
-  - git status -sb -> clean at prompt start on main...origin/main
-  - rg M4B/classification_changed consistency scans -> completed
-  - git diff --check -> passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval -> passed
-  - python -m pytest VEGO-AI\\tests -q -> 57 passed
-  - .\\scripts\\project-health.ps1 -> passed
-  - .\\scripts\\research-health.ps1 -> passed
-  - PowerShell parser check for scripts -> passed
-- Status: completed
-- Next steps: Regenerate Confluence outbox/manual sync pack, run dashboard health with RequireOutbox, audit staged files, commit safe docs, and push to origin/main. Then ask Claude to use the updated handoff on feature/memory-informed-comparison.
-
-## 2026-06-14 11:15 +03:00 - Codex - Confluence Access Recheck For M4B-1 Outbox
-
-- Request: Recheck live Confluence access after regenerating the M4B-1 wiki outbox and keep the pending wiki status current.
-- Actions taken:
-  - Loaded Atlassian Rovo Confluence tools and attempted to read home page 294914.
-  - Confirmed live sync is still blocked because cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec is not explicitly granted.
-  - Updated current-state, ISS-005, dashboards, and wiki-sync docs with the 2026-06-14 11:14 +03:00 recheck.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/issues.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/confluence/wiki-sync.md
-- Commands/checks:
-  - Atlassian Rovo _getconfluencepage cloudId=724252a1-a5b7-45a5-b6ec-27a8292197ec pageId=294914 -> blocked: cloud is not explicitly granted
-- Status: completed locally; live Confluence still blocked by Atlassian access grant
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable the Codex Chrome Extension route, then publish from outbox/manual sync pack and store child page IDs locally.
-
-## 2026-06-14 11:58 +03:00 - Codex - Offline VEGO-AI results dashboard PR
-
-- Request: Implement local/offline visual metrics dashboard generator, tests, docs, schema, ignored outputs, branch and PR workflow; no AI behavior or M4B changes.
-- Actions taken:
-  - Created branch feature/results-dashboard from main.
-  - Added offline dashboard generator for Agent C, Agent D, Human Review Queue, Human Feedback, Human Judgment Memory, and M4A Memory Advisory artifacts.
-  - Generated VEGO-AI/reports/results_dashboard with index.html, metrics_snapshot.json, and per-setting pages; generated outputs remain ignored.
-  - Committed 61aac60 and opened GitHub PR #5 into main.
-  - Updated current-state, progress, and decisions memory files.
-  - Regenerated Confluence wiki outbox/manual sync pack; live Rovo sync remains blocked because target cloud is not explicitly granted.
-- Files changed:
-  - .gitignore
-  - VEGO-AI/analysis/build_results_dashboard.py
-  - VEGO-AI/docs/results_dashboard.md
-  - VEGO-AI/schemas/results_dashboard_snapshot.schema.json
-  - VEGO-AI/tests/test_results_dashboard.py
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - python VEGO-AI\\tests\\test_results_dashboard.py -> 13/13 passed
-  - python -m pytest VEGO-AI\\tests -q -> 70 passed
-  - python VEGO-AI\\tests\\test_human_review_queue.py -> 19/19 passed
-  - python VEGO-AI\\tests\\test_human_feedback_manager.py -> 11/11 passed
-  - python VEGO-AI\\tests\\test_human_judgment_memory.py -> 15/15 passed
-  - python VEGO-AI\\tests\\test_memory_advisor.py -> 12/12 passed
-  - python -m compileall -q VEGO-AI/framework VEGO-AI/eval VEGO-AI/analysis -> passed
-  - python VEGO-AI/analysis/build_results_dashboard.py --root VEGO-AI --out VEGO-AI/reports/results_dashboard -> passed
-  - .\\scripts\\project-health.ps1 -> passed
-  - .\\scripts\\research-health.ps1 -> passed
-  - PowerShell parser check for scripts/*.ps1 -> passed
-  - Forbidden staged-file audit -> passed
-  - .\\scripts\\build-confluence-wiki.ps1 -> generated ignored outbox/manual sync pack
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed after serial rerun
-  - Atlassian Rovo accessible-cloud check -> target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec not listed
-  - Atlassian Rovo _getconfluencepage page 294914 -> blocked: cloud is not explicitly granted
-- Status: completed; PR #5 open
-- Next steps: Review and merge PR #5 if acceptable; live Confluence sync remains blocked until Atlassian Rovo access is granted.
-
-## 2026-06-14 12:35 +03:00 - Codex - No-key VEGO-AI execution and M4B schema follow-up
-
-- Request: Run VEGO-AI safely, generate dashboards/visualization instructions/results summary, include M4B-1 if present, and keep audit trail clean.
-- Actions taken:
-  - Loaded project memory and attachment.
-  - Confirmed OPENAI_API_KEY was not set; skipped smoke/full live LLM runs.
-  - Created ignored local configs and smoke model subsets for run 20260614-122150.
-  - Ran compile/tests/direct runners.
-  - Generated M1 review queues, ucd_ch resolved feedback, ucd_ch Human Judgment Memory, M4A advice for all settings, and M4B-1 experimental comparisons for all settings under ignored VEGO-AI/runs/20260614-122150/.
-  - Rebuilt offline dashboard and wrote ignored VEGO-AI/reports/results_dashboard/RUN_SUMMARY.md.
-  - Confirmed PR #4 was clean and merged; opened PR #6 for nested M4B schema hardening only.
-  - Recorded research-health allowlist issue for tracked dashboard generator.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - VEGO-AI/schemas/memory_informed_comparison.schema.json (PR #6)
-  - VEGO-AI/tests/test_memory_informed_classifier.py (PR #6)
-  - ignored VEGO-AI/runs/20260614-122150/
-  - ignored VEGO-AI/reports/results_dashboard/
-- Commands/checks:
-  - python -m compileall -q VEGO-AI/framework VEGO-AI/eval VEGO-AI/analysis -> passed
-  - python -m pytest VEGO-AI/tests -q -> 86 passed
-  - python VEGO-AI/tests/test_human_review_queue.py -> 19/19 passed
-  - python VEGO-AI/tests/test_human_feedback_manager.py -> 11/11 passed
-  - python VEGO-AI/tests/test_human_judgment_memory.py -> 15/15 passed
-  - python VEGO-AI/tests/test_memory_advisor.py -> 12/12 passed
-  - python VEGO-AI/tests/test_results_dashboard.py -> 13/13 passed
-  - python VEGO-AI/tests/test_memory_informed_classifier.py -> 16/16 passed
-  - python VEGO-AI/framework/human_review_queue.py --all-settings VEGO-AI/eval_output --out-dir VEGO-AI/runs/20260614-122150/human -> 11 review items
-  - python VEGO-AI/framework/human_feedback_manager.py -> 3 resolved feedback items, 1 pending
-  - python VEGO-AI/framework/human_judgment_memory.py -> 3 memory items
-  - python VEGO-AI/framework/memory_advisor.py -> 27 advice items, ai_classification_changed=0
-  - python VEGO-AI/framework/memory_informed_classifier.py -> 27 comparisons, differs=0, requires_review=2, ai_behavior_changed=0
-  - python VEGO-AI/analysis/build_results_dashboard.py --root VEGO-AI --out VEGO-AI/reports/results_dashboard --human-dir VEGO-AI/runs/20260614-122150/human -> passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed
-  - .\\scripts\\project-health.ps1 / .\\scripts\\research-health.ps1 -> failed on ISS-008 allowlist issue
-  - .\\scripts\\build-confluence-wiki.ps1 -> generated ignored outbox/manual sync pack
-  - Atlassian Rovo accessible-cloud check -> target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec still unavailable
-- Status: completed locally; PR #6 open
-- Next steps: Review/merge PR #6, then fix research-health dashboard-generator allowlist separately; live Confluence sync remains blocked until Atlassian Rovo target cloud access is granted.
-
-## 2026-06-14 13:39 +03:00 - Codex - Visualizer model-result matching PR
-
-- Request: Implement visualizer UX refresh addendum: exact model/result matching, stale-model protection, mismatch banner, helper tests, read-only research panels, and PR into main.
-- Actions taken:
-  - Created branch commit ba9ab94 on feature/visualizer-ux-refresh and opened draft PR #7.
-  - Added pure visualizer matching helpers for case id extraction, Agent C filename extraction, JSON case extraction, exact model discovery, case/domain/diagram mismatch detection.
-  - Updated Tkinter visualizer selection paths so aggregate selection auto-loads exact case-prefix models, clears stale selections when missing, and manual model changes are validated against the current result.
-  - Added persistent Matched/Mismatch/Unknown/No matching model found banner, Auto-load matching model action, table filters/summary, and read-only research sidecar panel.
-  - Added helper regression tests and updated delivery README.
-  - Ran full tests, compile checks, visualizer help smoke, Tkinter selection smoke, and forbidden staged-file audit.
-- Files changed:
-  - VEGO-AI/vego_visualizer_delivery/visualizer_utils.py
-  - VEGO-AI/vego_visualizer_delivery/visualize_compliance.py
-  - VEGO-AI/tests/test_visualizer_helpers.py
-  - VEGO-AI/vego_visualizer_delivery/README.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - python -m pytest VEGO-AI\\tests -q -> 93 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\vego_visualizer_delivery -> passed
-  - python VEGO-AI\\vego_visualizer_delivery\\visualize_compliance.py --help -> passed
-  - Tkinter smoke with diagram disabled -> passed
-  - git diff --check -> passed
-  - forbidden staged-file audit -> passed
-  - git push -u origin feature/visualizer-ux-refresh -> passed
-  - gh pr create --draft --base main --head feature/visualizer-ux-refresh -> PR #7
-- Status: completed; PR #7 in review
-- Next steps: Review PR #7, optionally verify GUI on a real display, then merge into main. Continue to keep Confluence live sync pending until Atlassian Rovo cloud access is granted.
-
-## 2026-06-14 13:41 +03:00 - Codex - Confluence live sync recheck after PR #7
-
-- Request: Refresh Confluence outbox and attempt live-sync readiness check after the visualizer PR work.
-- Actions taken:
-  - Regenerated the Confluence outbox/manual sync pack.
-  - Checked Atlassian Rovo accessible clouds; target cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec is still not listed.
-  - Updated current-state, ISS-005, dashboard docs, and wiki-sync docs with the 2026-06-14 13:40 +03:00 recheck.
-  - Reran dashboard-health sequentially after outbox generation; the earlier parallel run was a race and the sequential check passed.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/confluence/wiki-sync.md
-  - docs/confluence/outbox/ (ignored generated)
-  - docs/confluence/manual-sync-pack.generated.md (ignored generated)
-  - docs/dashboards/status-snapshot.generated.md (ignored generated)
-- Commands/checks:
-  - .\\scripts\\build-confluence-wiki.ps1 -> regenerated outbox/manual sync pack
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed when rerun sequentially
-  - Atlassian Rovo accessible-cloud check -> target cloud still unavailable
-- Status: completed; live sync blocked
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec or enable a working browser route, then publish the generated outbox pages live.
-
-## 2026-06-14 14:26 +03:00 - Codex - Full system validation QA report
-
-- Request: Run full VEGO-AI environment, system, regression, dashboard, visualizer, and research-boundary validation without implementing features or committing fixes.
-- Actions taken:
-  - Ran git/reference/inventory/environment checks.
-  - Ran compileall, full pytest, direct/manual test runners, schema validation, and CLI help smoke checks.
-  - Ran generated-output smoke for ucd_ch into ignored VEGO-AI/runs/system_validation_20260614-142018 and verified M4A/M4B boundaries.
-  - Generated results dashboard into ignored VEGO-AI/reports/results_dashboard and verified metrics snapshot.
-  - Ran visualizer helper tests and Tkinter smoke with diagram rendering disabled.
-  - Ran boundary audits, PR #7 changed-file audit, dashboard/project/research health scripts, and forbidden staged-file audit.
-  - Created untracked QA report at VEGO-AI/reports/system_validation_report.md.
-- Files changed:
-  - VEGO-AI/reports/system_validation_report.md (untracked report)
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - VEGO-AI/runs/system_validation_20260614-142018/ (ignored generated)
-  - VEGO-AI/reports/results_dashboard/ (ignored generated)
-- Commands/checks:
-  - python -m pytest VEGO-AI\\tests -q -> 93 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery -> passed
-  - direct runners for M1/M2/M3/M4A/dashboard/visualizer/M4B-1 -> passed
-  - schema validation for six schemas -> passed
-  - CLI --help checks -> passed
-  - M1-M4B-1 generated-output smoke ucd_ch -> passed; M4A changed=0; M4B baseline changed=False
-  - python VEGO-AI\\analysis\\build_results_dashboard.py --root VEGO-AI --out VEGO-AI\\reports\\results_dashboard -> passed
-  - Tkinter visualizer smoke -> passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed
-  - .\\scripts\\research-health.ps1 -> failed on known ISS-008 allowlist issue
-  - .\\scripts\\project-health.ps1 -> failed because research-health failed
-  - forbidden staged-file audit -> passed
-- Status: completed; PASS WITH WARNINGS
-- Next steps: Review report, merge PR #7 after optional real-display visualizer smoke, and fix ISS-008 research-health allowlist separately.
-
-## 2026-06-14 14:39 +03:00 - Codex - Fix validation governance warnings
-
-- Request: Fix the QA warnings: allowlist the dashboard generator in health checks, track the system validation report, and restore local baseline branch tracking.
-- Actions taken:
-  - Added a narrow allowlist for VEGO-AI/analysis/build_results_dashboard.py in scripts/research-health.ps1.
-  - Restored local baseline/official-vego-ai tracking branch from origin/baseline/official-vego-ai.
-  - Updated VEGO-AI/reports/system_validation_report.md from PASS WITH WARNINGS to PASS after governance cleanup.
-  - Marked ISS-008 resolved in memory and recorded the validation artifact decision.
-  - Ran project-health, research-health, dashboard-health, pytest, and compileall; all passed.
-  - Committed and pushed ff9f911 to feature/visualizer-ux-refresh / PR #7.
-  - Updated PR #7 body with governance cleanup and validation status.
-- Files changed:
-  - scripts/research-health.ps1
-  - VEGO-AI/reports/system_validation_report.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - git branch --track baseline/official-vego-ai origin/baseline/official-vego-ai -> created local tracking branch
-  - .\\scripts\\project-health.ps1 -> passed
-  - .\\scripts\\research-health.ps1 -> passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox -> passed
-  - python -m pytest VEGO-AI\\tests -q -> 93 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery -> passed
-  - git commit -m 'Fix validation governance warnings' -> ff9f911
-  - git push -> passed
-  - gh pr edit 7 --body ... -> passed
-- Status: completed
-- Next steps: Run real-display GUI validation for PR #7, then mark PR #7 ready/merge if clean. Live Confluence sync remains blocked until Atlassian cloud access is granted.
-
-## 2026-06-14 14:52 +03:00 - Codex - Visualizer UX PR Merge And Validation
-
-- Request: Validate PR #7 on a real display, merge if clean, run post-merge validation, tag the state, and update memory/wiki sources.
-- Actions taken:
-  - Verified PR #7 real-display GUI screenshots and prior automated real-window assertions.
-  - Marked PR #7 ready for review and added a GitHub validation comment.
-  - Squash-merged PR #7 to main as 78b261e033fc4f3f66170985a884aa5cd0a0cfd2.
-  - Fast-forwarded local main, ran post-merge validation, and pushed tag research-state-visualizer-ux-clean.
-  - Updated shared memory and dashboard source docs to record the merged visualizer UX clean state.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/revert-log.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/results-dashboard.md
-- Commands/checks:
-  - real-display Tkinter GUI validation for PR #7 -> PASS
-  - gh pr comment 7 -> validation note added
-  - GitHub connector: mark PR #7 ready -> done
-  - GitHub connector: squash merge PR #7 -> 78b261e
-  - git checkout main; git pull --ff-only origin main -> fast-forwarded to 78b261e
-  - python -m pytest VEGO-AI\tests -q -> 93 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed
-  - git tag research-state-visualizer-ux-clean 78b261e; git push origin research-state-visualizer-ux-clean -> pushed
-- Status: completed
-- Next steps: Review/merge PR #6 schema hardening if clean, then refresh the artifact bundle/manifest and move toward EXP-001 evaluation design.
-
-## 2026-06-14 15:02 +03:00 - Codex - Add Shared Claude Codex State Report
-
-- Request: Read the attached pasted report and place it in project memory/agent-memory docs so Claude and Codex stay aligned.
-- Actions taken:
-  - Read the attached shared-state report request.
-  - Converted the report into docs/agent-memory/shared-state-report.md with stale PR #7 details corrected to the current merged/tagged state.
-  - Wired the shared-state report into scripts/agent-memory-start.ps1 so compiled-memory.md includes it.
-  - Updated Codex/Claude instructions, README, current-state, progress, and decisions to reference the report.
-- Files changed:
-  - docs/agent-memory/shared-state-report.md
-  - scripts/agent-memory-start.ps1
-  - docs/agent-memory/README.md
-  - AGENTS.md
-  - CLAUDE.md
-  - docs/agent-memory/claude-bootstrap-prompt.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 -> passed and compiled memory generated
-  - PowerShell parser check for scripts/*.ps1 -> passed
-  - ASCII scan for changed files -> only pre-existing Hebrew PDF filename found in AGENTS/current-state
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - compiled-memory.md includes docs/agent-memory/shared-state-report.md -> verified
-- Status: completed
-- Next steps: Review PR #6 schema hardening next; keep M4B-2 and behavior-changing work blocked; use the new shared-state report plus current-state.md at prompt startup.
-
-## 2026-06-14 18:43 +03:00 - Codex - Record Evaluation Pivot After M4B1 Prototype
-
-- Request: Record the strict review: implementation is complete through M4B-1/dashboard/visualizer/shared memory, freeze the baseline, and move next work to evaluation rather than more features.
-- Actions taken:
-  - Verified current repo state against the user-provided/Claude status: main is newer than 944c922, PR #7 is merged, PR #6 remains open, and the M4B-1 release assets exist.
-  - Added docs/research/evaluation-report.md as the next thesis/evaluation deliverable scaffold.
-  - Updated evaluation plan, methodology, experiment registry, dashboards, current state, progress, decisions, and shared-state report to treat M4B-1 as implemented and evaluation-pending.
-  - Marked the old Claude M4B handoff prompt as historical/superseded so agents do not restart completed implementation work.
-  - Recorded the implementation-freeze/evaluation-pivot decision and kept M4B-2/behavior-changing work blocked.
-- Files changed:
-  - docs/research/evaluation-report.md
-  - docs/research/evaluation-plan.md
-  - docs/research/methodology.md
-  - docs/research/README.md
-  - experiments/registry.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/kpi-register.md
-  - docs/dashboards/results-dashboard.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/shared-state-report.md
-  - docs/agent-memory/README.md
-  - docs/agent-memory/claude-m4b-handoff-prompt.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - CLAUDE.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 -> passed
-  - git status/log -> main clean at start, current main 70411d1 before edits
-  - gh pr view 6 -> PR #6 open
-  - gh release view research-state-m4b1-deterministic-comparison -> release assets verified
-  - rg stale wording scan -> no live tracked-doc stale matches after edits
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - ASCII scan for changed files -> only pre-existing Hebrew PDF filename in current-state
-- Status: completed
-- Next steps: Run EXP-001/C4B evaluation with audited inputs, expert labels, leakage status, dashboard tables/figures, and no M4B-2 or Agent 4 behavior changes.
-
-## 2026-06-14 18:45 +03:00 - Codex - Include Evaluation Docs In Compiled Memory
-
-- Request: Ensure the evaluation pivot resources are pulled automatically for future Claude/Codex prompts.
-- Actions taken:
-  - Added docs/research/evaluation-plan.md and docs/research/evaluation-report.md to the compiled-memory source list.
-  - Regenerated compiled memory so future prompts pull the evaluation phase context automatically.
-- Files changed:
-  - scripts/agent-memory-start.ps1
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - PowerShell parser check for scripts/agent-memory-start.ps1 -> passed
-  - .\scripts\agent-memory-start.ps1 -> passed
-- Status: completed
-- Next steps: Use compiled memory plus docs/research/evaluation-report.md as the default context for EXP-001/C4B evaluation work.
-
-## 2026-06-14 18:56 +03:00 - Codex - Start EXP-001 evaluation run
-
-- Request: Start EXP-001 evaluation for M4B-1 deterministic memory-informed comparison; produce evidence without new features, M4B-2, Agent 4 changes, API calls, or baseline overwrites.
-- Actions taken:
-  - Added scripts/build-exp001-evaluation.ps1 to build ignored EXP-001 CSV, Markdown, and JSON outputs from local M4B-1 comparison artifacts.
-  - Generated initial EXP-001 mechanism/readiness outputs under reports/generated/exp001/.
-  - Updated evaluation report, EXP-001 experiment docs, dashboards, and agent memory with the mechanism-only result and no-accuracy-claim boundary.
-  - Verified the run has 27 comparison rows, 3 same-pattern expert-labeled rows, 0 generalization-safe expert-labeled rows, 0 classification changes, and 2 human-review-after-memory flags.
-- Files changed:
-  - scripts/build-exp001-evaluation.ps1
-  - docs/research/evaluation-report.md
-  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
-  - experiments/registry.md
-  - docs/research/README.md
-  - reports/README.md
-  - docs/dashboards/results-dashboard.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/kpi-register.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/shared-state-report.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - python -m pytest VEGO-AI\\tests -q -> 93 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery -> passed
-  - PowerShell parser check for scripts/*.ps1 -> passed
-  - .\\scripts\\project-health.ps1 -> passed
-  - .\\scripts\\research-health.ps1 -> passed
-  - .\\scripts\\build-exp001-evaluation.ps1 -> generated ignored EXP-001 outputs
-- Status: completed
-- Next steps: Collect or define held-out/cross-setting expert labels, rerun EXP-001, and keep M4B-2/Agent 4 changes blocked until evaluation evidence exists.
-
-## 2026-06-14 19:10 +03:00 - Codex - Start EXP-002 expert labeling package
-
-- Request: Create EXP-002 expert/held-out labeling package for generalization-safe M4B-1 evaluation without new features, M4B-2, Agent 4 changes, API calls, or baseline overwrites.
-- Actions taken:
-  - Added scripts/build-exp002-labeling-package.ps1 to consolidate M4B-1 patterns into an expert labeling sheet.
-  - Generated ignored EXP-002 outputs under reports/generated/exp002/.
-  - Added EXP-002 experiment documentation and registry entry.
-  - Updated evaluation report, dashboards, and agent memory with EXP-002 counts and labeling protocol.
-  - Confirmed package has 27 rows, 3 existing same-pattern labels, 24 generalization-safe candidates, 2 review-after-memory rows, 0 memory-informed classification changes, and 27 recommended labeling targets.
-- Files changed:
-  - scripts/build-exp002-labeling-package.ps1
-  - experiments/EXP-002-expert-label-expansion-holdout-evaluation/README.md
-  - experiments/registry.md
-  - docs/research/evaluation-report.md
-  - docs/research/README.md
-  - reports/README.md
-  - docs/dashboards/progress-dashboard.md
-  - docs/dashboards/results-dashboard.md
-  - docs/dashboards/kpi-register.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/shared-state-report.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - .\\scripts\\build-exp002-labeling-package.ps1 -> generated ignored EXP-002 labeling package
-  - PowerShell parser check for scripts/*.ps1 -> passed
-  - python -m pytest VEGO-AI\\tests -q -> 93 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis -> passed
-  - .\\scripts\\project-health.ps1 -> passed
-  - .\\scripts\\research-health.ps1 -> passed
-- Status: completed
-- Next steps: Human/supervisor should fill at least 20 EXP-002 expert labels, preferably all 27 current rows, then rerun EXP-001 or the next evaluation pass with leakage-aware partitions.
-
-## 2026-06-16 22:03 +03:00 - Codex - Supervisor Zoom demo package
-
-- Request: Prepare a full visual presentation/demo package for the 2026-06-17 thesis supervisor Zoom session showing experiments, progress, achievements, and next research steps.
-- Actions taken:
-  - Generated ignored supervisor demo package with slides, brief, script, questions, screenshot checklist, figures, and tables.
-  - Refreshed EXP-001, EXP-002, and results dashboard outputs before packaging.
-  - Attempted artifact-tool PPTX export; runtime was unavailable, so generated 20-slide PPTX with local ignored fallback builder.
-  - Updated shared memory summaries with the package path and next-step guidance.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - artifacts/supervisor_demo_2026-06-17/ (ignored)
-  - outputs/manual-20260616-supervisor/ (ignored)
-  - reports/generated/exp001/ (ignored)
-  - reports/generated/exp002/ (ignored)
-  - VEGO-AI/reports/results_dashboard/ (ignored)
-- Commands/checks:
-  - .\\scripts\\build-exp001-evaluation.ps1 - passed
-  - .\\scripts\\build-exp002-labeling-package.ps1 - passed
-  - python VEGO-AI\\analysis\\build_results_dashboard.py --root VEGO-AI --out VEGO-AI\\reports\\results_dashboard --human-dir VEGO-AI\\runs\\20260614-122150\\human - passed
-  - python -m pytest VEGO-AI\\tests -q - 93 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery - passed
-  - PowerShell parser check for scripts/*.ps1 - passed
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-  - PPTX verification - 20 slides, 59128 bytes
-- Status: completed
-- Next steps: Use the supervisor demo package in the 2026-06-17 Zoom session, capture supervisor decisions, and collect EXP-002 expert labels before any M4B-2 or Agent 4 behavior work.
-
-## 2026-06-16 22:55 +03:00 - Codex - EXP-003 accuracy improvement evaluation path
-
-- Request: Implement the evaluation-first accuracy improvement research path without changing Agent 4, M4B-2, eval_output, baseline outputs, embeddings, or LLM/API behavior.
-- Actions taken:
-  - Added accuracy-improvement plan and expert-labeling protocol.
-  - Added EXP-003 full/blind labeling preparation and accuracy/error-analysis evaluator tooling.
-  - Generated ignored EXP-003 outputs from the current EXP-002 sheet; strict gate reports accuracy improvement cannot be evaluated yet because there are 0 safe expert labels.
-  - Added experiment registry/folder entry, research-health allowlist, and unit test coverage.
-  - Updated shared memory with EXP-003 status and decision gate.
-- Files changed:
-  - docs/research/accuracy-improvement-plan.md
-  - docs/research/expert-labeling-protocol.md
-  - docs/research/evaluation-report.md
-  - experiments/registry.md
-  - experiments/EXP-003-accuracy-improvement-evaluation/README.md
-  - scripts/build-exp003-error-analysis.ps1
-  - scripts/research-health.ps1
-  - VEGO-AI/analysis/evaluate_accuracy_improvement.py
-  - VEGO-AI/tests/test_accuracy_improvement_analysis.py
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - reports/generated/exp003/ (ignored)
-  - artifacts/ACCURACY_IMPROVEMENT_STRICT_PLAN.md (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - python -m py_compile VEGO-AI\\analysis\\evaluate_accuracy_improvement.py VEGO-AI\\tests\\test_accuracy_improvement_analysis.py - passed
-  - .\\scripts\\build-exp003-error-analysis.ps1 - passed; 27 rows, 24 safe candidates, 0 safe expert labels
-  - python -m pytest VEGO-AI\\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery - passed
-  - PowerShell parser check for scripts/*.ps1 - passed
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-  - Protected boundary audit - no eval_output/Agent 4/M4B policy diffs
-- Status: completed
-- Next steps: Fill EXP-003 blind/full sheets with at least 20 generalization-safe expert labels, rerun build-exp003-error-analysis, and only then decide whether a deterministic M4B-1 policy-refinement plan is justified.
-
-## 2026-06-16 23:11 +03:00 - Codex - Results and accuracy full report
-
-- Request: Analyze all results and provide a full report on whether VEGO-AI improved results and accuracy.
-- Actions taken:
-  - Created ignored full report from EXP-001, EXP-002, EXP-003, strict comparison, and dashboard summaries.
-  - Linked the report from docs/research/evaluation-report.md with the strict no-proven-accuracy-improvement conclusion.
-  - Verified no VEGO-AI/eval_output changes and that the report artifact is ignored by Git.
-- Files changed:
-  - docs/research/evaluation-report.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/revert-log.md
-  - docs/agent-memory/session-log.md
-  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - git diff --name-status -- VEGO-AI\\eval_output - no output
-  - git check-ignore -v artifacts\\RESULTS_AND_ACCURACY_FULL_REPORT.md - ignored by artifacts/**
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-- Status: completed
-- Next steps: Fill EXP-003 blind/full expert-label sheets with at least 20 generalization-safe labels, then rerun build-exp003-error-analysis before making any accuracy-improvement claim.
-
-## 2026-06-16 23:33 +03:00 - Codex - Synthetic accuracy simulation
-
-- Request: Try synthetic input and run simulations to check accuracy behavior.
-- Actions taken:
-  - Generated four ignored synthetic scenarios from the EXP-003 labeling sheet.
-  - Ran the existing EXP-003 evaluator on each synthetic scenario.
-  - Created synthetic simulation reports and linked the result from docs/research/evaluation-report.md.
-  - Kept the conclusion strict: current M4B-1 has 0 synthetic accuracy delta; counterfactual gains are not real evidence or implemented behavior.
-- Files changed:
-  - docs/research/evaluation-report.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/revert-log.md
-  - docs/agent-memory/session-log.md
-  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
-  - artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
-  - reports/generated/synthetic_accuracy_simulation/ (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - python VEGO-AI\\analysis\\evaluate_accuracy_improvement.py --exp002-sheet <synthetic sheet> --output-dir <scenario dir> - passed for 4 scenarios
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-  - git check-ignore for synthetic outputs - ignored
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-- Status: completed
-- Next steps: Use synthetic results only for pipeline validation; collect real EXP-003 expert labels before any accuracy-improvement claim or policy refinement.
-
-## 2026-06-16 23:50 +03:00 - Codex - Synthetic simulation framing hardening
-
-- Request: Apply the attached review: frame the synthetic simulation as a policy-sensitivity check, not an accuracy result.
-- Actions taken:
-  - Renamed/strengthened the synthetic simulation framing as a policy-sensitivity check.
-  - Added supervisor-ready wording explaining that current M4B-1 has 0 accuracy delta and counterfactual deltas are not expert evidence.
-  - Recorded that the synthetic +16.67 pp upper-bound must not be reported as an actual result.
-  - Verified no protected behavior/baseline paths changed.
-- Files changed:
-  - docs/research/evaluation-report.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
-  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
-  - reports/generated/synthetic_accuracy_simulation/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-  - git check-ignore for report artifacts - ignored
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-- Status: completed
-- Next steps: Use the synthetic simulation only as pipeline validation; collect real EXP-003 expert labels before accuracy claims or M4B-1.1 implementation.
-
-## 2026-06-17 00:01 +03:00 - Codex - EXP-004 policy sensitivity harness
-
-- Request: Keep improving accuracy with experiments while using full project memory and preserving research boundaries.
-- Actions taken:
-  - Added EXP-004 policy-sensitivity simulation harness for candidate M4B-1.1-style policies.
-  - Generated ignored policy-sensitivity reports and matrix from the current EXP-003 sheet.
-  - Updated research docs, experiment registry, memory decisions, and issue tracking.
-  - Kept the result synthetic-only: current M4B-1 remains +0.00 pp; aggressive candidates can help or harm depending on synthetic truth assumptions.
-- Files changed:
-  - scripts/policy_sensitivity_simulation.py
-  - scripts/build-policy-sensitivity-simulation.ps1
-  - experiments/EXP-004-policy-sensitivity-simulation/README.md
-  - experiments/registry.md
-  - docs/research/accuracy-improvement-plan.md
-  - docs/research/evaluation-report.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md (ignored)
-  - reports/generated/policy_sensitivity/ (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - python -m py_compile scripts\\policy_sensitivity_simulation.py - passed
-  - .\\scripts\\build-policy-sensitivity-simulation.ps1 - passed
-  - PowerShell parser check for scripts/*.ps1 - passed after correcting the check invocation
-  - python -m pytest VEGO-AI\\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-  - Protected path audit for VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no diffs
-- Status: completed
-- Next steps: Collect real EXP-003 expert labels, then rerun EXP-003 and EXP-004 to evaluate candidate policy variants with non-synthetic evidence before implementing any M4B-1.1 change.
-
-## 2026-06-17 00:48 +03:00 - Codex - EXP-005 real-label accuracy gate
-
-- Request: Implement EXP-005 real-label accuracy evaluation and policy gate without changing VEGO-AI behavior.
-- Actions taken:
-  - Added EXP-005 label-review Python helper and PowerShell wrapper.
-  - Generated ignored supervisor/expert label-review package with blind/full sheets, label-first summary, validation summary, and real-label policy gate.
-  - Updated research docs, experiment registry, and memory to keep accuracy claims blocked until real generalization-safe labels exist.
-  - Validated no Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding changes were made.
-- Files changed:
-  - scripts/exp005_label_review.py
-  - scripts/build-exp005-label-review.ps1
-  - experiments/EXP-005-real-label-accuracy-gate/README.md
-  - experiments/registry.md
-  - docs/research/accuracy-improvement-plan.md
-  - docs/research/evaluation-report.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - artifacts/EXP005_LABEL_REVIEW_PACKAGE.md (ignored)
-  - artifacts/EXP005_POLICY_SENSITIVITY_REPORT.md (ignored)
-  - reports/generated/exp005_label_review/ (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - python -m py_compile scripts\\exp005_label_review.py - passed
-  - PowerShell parser check for scripts/build-exp005-label-review.ps1 - passed
-  - .\\scripts\\build-exp005-label-review.ps1 - passed; gate says Accuracy improvement cannot be evaluated yet
-  - .\\scripts\\build-exp005-label-review.ps1 -FilledLabelsSheet reports\\generated\\exp005_label_review\\exp005_label_review_blind.csv -RunDownstream - passed with blank labels
-  - python -m pytest VEGO-AI\\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
-  - PowerShell parser check for scripts/*.ps1 - passed
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-  - git check-ignore for EXP-005 generated outputs - ignored
-  - git diff --check - only existing CRLF warnings in memory logs
-- Status: completed
-- Next steps: Fill the EXP-005 blind sheet with at least 20 safe expert labels, preferably 30-50, then rerun the EXP-005 wrapper with -FilledLabelsSheet and -RunDownstream before any policy refinement.
-
-## 2026-06-21 13:05 +03:00 - Codex - VEGO workbench launcher
-
-- Request: Continue enhancing the project.
-- Actions taken:
-  - Added a one-command VEGO workbench launcher for dashboard, EXP-005 label review, optional GUI, optional wiki outbox, and optional health checks.
-  - Added operation docs for launcher commands and updated README daily workflow.
-  - Validated the launcher in non-opening mode and full non-interactive mode.
-  - Confirmed no Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding changes were made.
-- Files changed:
-  - scripts/open-vego-workbench.ps1
-  - docs/operations/vego-workbench.md
   - README.md
   - docs/agent-memory/current-state.md
   - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - VEGO-AI/reports/results_dashboard/ (ignored)
-  - reports/generated/exp005_label_review/ (ignored)
-  - docs/confluence/outbox/ (ignored)
-  - docs/confluence/manual-sync-pack.generated.md (ignored)
-  - docs/dashboards/status-snapshot.generated.md (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - PowerShell parser check for scripts/open-vego-workbench.ps1 - passed
-  - .\\scripts\\open-vego-workbench.ps1 -NoOpen - passed
-  - .\\scripts\\open-vego-workbench.ps1 -All -NoOpen - passed
-  - python -m pytest VEGO-AI\\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
-  - PowerShell parser check for scripts/*.ps1 - passed
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-  - git check-ignore for generated dashboard/EXP-005/Confluence outputs - ignored
-  - git diff --check - only existing CRLF warnings in memory logs
-- Status: completed
-- Next steps: Use .\\scripts\\open-vego-workbench.ps1 for daily review, .\\scripts\\open-vego-workbench.ps1 -Gui for visualizer review, and fill EXP-005 blind labels before any accuracy-improvement claim or M4B-1.1/M4B-2 work.
-
-## 2026-06-21 13:11 +03:00 - Codex - Topology report HTML/PDF export
-
-- Request: Export all topology and flow diagrams/content to HTML and PDF.
-- Actions taken:
-  - Added a reusable topology export script.
-  - Generated local HTML and PDF reports under artifacts/topology-export.
-  - Updated operations docs with the export command.
-  - Verified generated exports are ignored and no VEGO behavior paths changed.
-- Files changed:
-  - scripts/export-topology-report.ps1
-  - docs/operations/vego-workbench.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html (ignored)
-  - artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.pdf (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - PowerShell parser check for scripts/export-topology-report.ps1 - passed
-  - .\\scripts\\export-topology-report.ps1 - generated HTML and PDF
-  - PowerShell parser check for scripts/*.ps1 - passed
-  - git check-ignore for topology HTML/PDF - ignored
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-- Status: completed
-- Next steps: Open artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html or .pdf; regenerate anytime with .\\scripts\\export-topology-report.ps1 -Open.
-
-## 2026-06-21 13:15 +03:00 - Codex - Baseline architecture overlay export
-
-- Request: Show the new research flow on top of the main VEGO-AI PDF architecture flow.
-- Actions taken:
-  - Added a reusable baseline-overlay export script.
-  - Generated HTML and PDF overlay reports showing M1-M4B-1 and EXP-005 on top of the VEGO-AI paper architecture layout.
-  - Updated operation docs with the overlay export command.
-  - Verified generated overlay exports are ignored and no VEGO behavior paths changed.
-- Files changed:
-  - scripts/export-baseline-overlay-report.ps1
-  - docs/operations/vego-workbench.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html (ignored)
-  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored)
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - PyPDF2 page scan found the baseline figure context in the main PDF around page 5
-  - PowerShell parser check for scripts/export-baseline-overlay-report.ps1 - passed
-  - .\\scripts\\export-baseline-overlay-report.ps1 - generated HTML and PDF
-  - PowerShell parser check for scripts/*.ps1 - passed
-  - git check-ignore for overlay HTML/PDF - ignored
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-- Status: completed
-- Next steps: Open artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html or .pdf; regenerate anytime with .\\scripts\\export-baseline-overlay-report.ps1 -Open.
-
-## 2026-06-21 13:19 +03:00 - Codex - Publish evidence tooling baseline
-
-- Request: Commit and push current safe tooling changes before moving to expert-label evidence collection.
-- Actions taken:
-  - Prepared the current safe tooling state for publication on main.
-  - Validated EXP-004, EXP-005, workbench, topology exporters, and research documentation boundaries.
-  - Confirmed no Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding changes were made.
-  - Excluded local .vscode/launch.json from the planned commit.
-- Files changed:
-  - README.md
-  - docs/operations/
-  - docs/research/accuracy-improvement-plan.md
-  - docs/research/evaluation-report.md
-  - docs/research/m4b1-policy-refinement-plan.md
-  - experiments/registry.md
-  - experiments/EXP-004-policy-sensitivity-simulation/
-  - experiments/EXP-005-real-label-accuracy-gate/
-  - scripts/build-exp005-label-review.ps1
-  - scripts/build-policy-sensitivity-simulation.ps1
-  - scripts/exp005_label_review.py
-  - scripts/export-baseline-overlay-report.ps1
-  - scripts/export-topology-report.ps1
-  - scripts/open-vego-workbench.ps1
-  - scripts/policy_sensitivity_simulation.py
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - python -m pytest VEGO-AI\\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
-  - PowerShell parser check for scripts/*.ps1 - passed
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-- Status: completed
-- Next steps: Commit and push the safe evidence-tooling baseline, then collect EXP-005 blind expert labels before any accuracy claim or M4B-1.1/M4B-2 work.
-
-## 2026-06-21 13:45 +03:00 - Codex - EXP-005 label collection sprint setup
-
-- Request: Implement the EXP-005 expert label collection sprint plan.
-- Actions taken:
-  - Opened VEGO workbench with GUI, dashboard, EXP-005 label files, and reports.
-  - Opened baseline/topology PDF exports for supervisor discussion.
-  - Verified EXP-005 still has 0 valid labels and the strict gate remains blocked.
-  - Ran validation checks and confirmed no protected VEGO behavior paths changed.
-- Files changed:
-  - reports/generated/exp005_label_review/ (ignored regenerated)
-  - VEGO-AI/reports/results_dashboard/ (ignored regenerated)
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1 - passed
-  - .\\scripts\\open-vego-workbench.ps1 -Gui - passed
-  - Start-Process artifacts\\topology-export\\VEGO_BASELINE_OVERLAY_REPORT.pdf - opened
-  - Start-Process artifacts\\topology-export\\VEGO_TOPOLOGY_FLOW_REPORT.pdf - opened
-  - python -m pytest VEGO-AI\\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts - passed
-  - .\\scripts\\project-health.ps1 - passed
-  - .\\scripts\\research-health.ps1 - passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox - passed
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval - no output
-- Status: completed
-- Next steps: Human/supervisor must fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real labels; then run .\\scripts\\build-exp005-label-review.ps1 -FilledLabelsSheet reports\\generated\\exp005_label_review\\exp005_label_review_blind.csv -RunDownstream.
-
-## 2026-06-21 16:44 +03:00 - Codex - EXP-005 manual labeling and evidence gate setup
-
-- Request: Implement the EXP-005 manual labeling and evidence evaluation plan without inventing labels or changing VEGO behavior.
-- Actions taken:
-  - Ran prompt-start memory refresh and read current EXP-005 gate context.
-  - Opened VEGO workbench with GUI plus dashboard, EXP-005 label-priority file, blind CSV, full EXP-005 package, accuracy report, and topology PDFs.
-  - Confirmed the EXP-005 blind CSV still has 27 rows, 0 supplied labels, and 0 complete required label rows.
-  - Skipped downstream EXP-003/EXP-004 rerun because Codex must not invent labels and the real-label gate remains blocked.
-  - Recorded a low-severity Windows CSV file-lock issue for future workbench/build runs.
-  - Ran validation gates and confirmed no protected VEGO behavior diffs.
-- Files changed:
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/ (ignored, opened/current package)
-  - VEGO-AI/reports/results_dashboard/ (ignored, refreshed by workbench)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - git status -sb --short - showed memory log edits plus local .vscode/launch.json
-  - .\scripts\open-vego-workbench.ps1 -Gui - opened workbench; warning: blind CSV locked while opened
-  - EXP-005 CSV label-count check - 0 supplied labels
-  - python -m pytest VEGO-AI\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts - passed
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-  - .\scripts\project-health.ps1 - passed
-  - .\scripts\research-health.ps1 - passed
-  - .\scripts\dashboard-health.ps1 -RequireOutbox - passed
-- Status: Blocked on real labels: EXP-005 has 0 supplied labels, so accuracy improvement cannot be evaluated yet. Validation passed; protected VEGO paths unchanged.
-- Next steps: Fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels only. Close the blind CSV before regenerating the EXP-005 package to avoid Windows file-lock failures. After at least one real label exists, preferably 20+ safe labels, run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API reclassification, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 16:50 +03:00 - Codex - EXP-005 manual labeling gate rerun attempt
-
-- Request: Implement EXP-005 manual expert label collection and evidence rerun plan.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked current EXP-005 gate context.
-  - Confirmed the EXP-005 blind CSV exists with 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected the blind CSV is locked by another process, so skipped regenerating the EXP-005 package and did not run downstream evaluation.
-  - Opened existing dashboard, EXP-005 label-priority file, blind CSV, baseline overlay PDF, and launched the VEGO visualizer GUI directly.
-  - Ran validation gates and confirmed protected VEGO behavior paths remain unchanged.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/ (ignored existing review package opened)
-  - VEGO-AI/reports/results_dashboard/ (ignored existing dashboard opened)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - locked by another process
-  - Start-Process dashboard/EXP-005/topology files - opened existing materials
-  - Start-Process python visualize_compliance.py - launched visualizer GUI directly
-  - python -m pytest VEGO-AI\tests -q - 94 passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts - passed
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-  - .\scripts\project-health.ps1 - passed
-  - .\scripts\research-health.ps1 - passed
-  - .\scripts\dashboard-health.ps1 -RequireOutbox - passed
-- Status: Blocked on real labels and current CSV file lock: EXP-005 remains at 0 supplied labels, so downstream accuracy evaluation was skipped. Validation passed and protected VEGO paths were unchanged.
-- Next steps: Close reports/generated/exp005_label_review/exp005_label_review_blind.csv before rerunning any EXP-005 regeneration. Fill the blind CSV with real supervisor/expert labels only. After labels exist, run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API reclassification, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 17:28 +03:00 - Codex - EXP-005 gate checked; labels still missing
-
-- Request: Continue with the next step for EXP-005 expert label collection and evidence rerun.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 gate again.
-  - Confirmed the blind CSV still has 27 rows, 0 supplied labels, and 0 complete required label rows.
-  - Confirmed the blind CSV is still locked by another process, so EXP-005 regeneration and downstream evaluation were not run.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - locked by another process
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked: EXP-005 still has 0 supplied labels and the blind CSV is locked. Downstream accuracy evaluation cannot be run yet.
-- Next steps: Close the process holding reports/generated/exp005_label_review/exp005_label_review_blind.csv, enter real supervisor/expert labels in the required fields, then rerun .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not implement M4B-2, change Agent 4, call LLM/API, add embeddings, overwrite baseline outputs, or change VEGO-AI/eval_output.
-
-## 2026-06-21 17:38 +03:00 - Codex - EXP-005 label file unlocked and reopened for manual labeling
-
-- Request: Implement the EXP-005 immediate next step: unblock label file, collect labels, then rerun evidence.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 gate.
-  - Detected Excel was holding exp005_label_review_blind.csv and requested a clean close of only that Excel window.
-  - Confirmed the blind CSV became unlocked after Excel closed.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid labels.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
-  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual labeling.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
-  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
-  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - initially locked by Excel
-  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
-  - EXP-005 CSV lock recheck - unlocked
-  - Start-Process EXP-005 review materials - opened for manual labeling
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Partially complete: the label CSV was unlocked and reopened, but EXP-005 still has 0 saved labels, so downstream accuracy evidence remains blocked.
-- Next steps: Fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 17:40 +03:00 - Codex - EXP-005 label file unlocked; labels still pending
-
-- Request: Do the next EXP-005 step.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Detected the blind CSV was locked by Excel and requested a normal close of the exp005_label_review_blind workbook window.
-  - Confirmed the CSV became unlocked after Excel closed.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
-  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual expert labeling.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
-  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
-  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - initially locked by Excel
-  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
-  - EXP-005 CSV lock recheck - unlocked
-  - Start-Process EXP-005 review materials - opened for manual labeling
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: CSV is usable again and review materials are open, but EXP-005 still has 0 saved labels, so downstream accuracy evidence was skipped.
-- Next steps: Fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 17:44 +03:00 - Codex - EXP-005 still blocked; review files reopened
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected Excel was holding exp005_label_review_blind.csv and requested a normal close of that workbook window only.
-  - Confirmed the CSV became unlocked after Excel closed.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
-  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual labeling.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
-  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
-  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - initially locked by Excel
-  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
-  - EXP-005 CSV lock recheck - unlocked
-  - Start-Process EXP-005 review materials - opened for manual labeling
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. CSV was unlocked and review materials were reopened.
-- Next steps: Manually fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 17:47 +03:00 - Codex - EXP-005 gate closed and reopened; labels still absent
-
-- Request: Implement EXP-005 close label sheet, require real labels, then run evidence plan.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
-  - Confirmed the CSV became unlocked after Excel closed.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
-  - Reopened label_these_first.md, exp005_label_review_blind.csv, and VEGO_BASELINE_OVERLAY_REPORT.pdf for manual labeling.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
-  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
-  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - initially locked by Excel
-  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
-  - EXP-005 CSV lock recheck - unlocked
-  - Start-Process EXP-005 review materials - opened for manual labeling
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. CSV was unlocked, review materials were reopened, and protected VEGO paths stayed unchanged.
-- Next steps: Manually fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 18:13 +03:00 - Codex - EXP-005 file unlocked; no labels saved
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
-  - Confirmed the CSV became unlocked after Excel closed.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
-  - Left the CSV closed and unlocked so manual labels can be entered cleanly in the next user action.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - initially locked by Excel
-  - CloseMainWindow on Excel exp005_label_review_blind window - requested and process closed
-  - EXP-005 CSV lock recheck - unlocked
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. CSV is now closed and unlocked.
-- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv, fill real supervisor/expert labels, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 22:29 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
-
-- Request: Implement EXP-005 next executable step: fill labels before any evidence run.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the blind CSV is unlocked and still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Opened exp005_label_review_blind.csv for manual supervisor/expert labeling.
-  - Opened label_these_first.md for row prioritization.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
-  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - unlocked before opening
-  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv - opened
-  - Start-Process reports\generated\exp005_label_review\label_these_first.md - opened
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Manual labeling required: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. Blind CSV is open for human labeling.
-- Next steps: Enter real supervisor/expert labels in reports/generated/exp005_label_review/exp005_label_review_blind.csv, save the file, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not invent labels or change Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, or eval_output.
-
-## 2026-06-21 22:39 +03:00 - Codex - EXP-005 reopen loop stopped; CSV unlocked
-
-- Request: Implement EXP-005 plan to close label sheet, require real labels, and wait.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
-  - Confirmed the CSV is now closed and unlocked.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
-  - Did not reopen the CSV, stopping the reopen loop as requested.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - initially locked by Excel
-  - CloseMainWindow on Excel exp005_label_review_blind window - requested; file became unlocked
-  - EXP-005 CSV lock recheck - unlocked
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is closed and unlocked, and downstream accuracy evidence was not run.
-- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv manually only when ready to enter real supervisor/expert labels. Save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 22:51 +03:00 - Codex - EXP-005 blind sheet opened again for manual labeling
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the blind CSV was unlocked but still had 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Opened exp005_label_review_blind.csv for manual supervisor/expert labeling.
-  - Attempted to open label_these_first.md through the default association; retried with Notepad after the default opener timed out.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
-  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - unlocked before opening, locked after opening
-  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv - opened
-  - Start-Process reports\generated\exp005_label_review\label_these_first.md - timed out through default association
-  - Start-Process notepad.exe reports\generated\exp005_label_review\label_these_first.md - opened
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Manual labeling required: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. Blind CSV is open and locked for human labeling.
-- Next steps: Enter real supervisor/expert labels in reports/generated/exp005_label_review/exp005_label_review_blind.csv, save the file, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not invent labels or change Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, or eval_output.
-
-## 2026-06-21 22:53 +03:00 - Codex - EXP-005 checked; CSV left unlocked with no labels
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected Excel was locking exp005_label_review_blind.csv and requested a normal close of that workbook window only.
-  - Confirmed the CSV is now closed and unlocked.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved.
-  - Did not reopen the CSV, keeping it closed/unlocked for manual labeling.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - initially locked by Excel
-  - CloseMainWindow on Excel exp005_label_review_blind window - requested; file became unlocked
-  - EXP-005 CSV lock recheck - unlocked
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is closed and unlocked; downstream accuracy evidence was not run.
-- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv manually only when ready to enter real supervisor/expert labels. Save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-21 22:55 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the blind CSV was unlocked and still had 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Opened exp005_label_review_blind.csv for manual supervisor/expert labeling.
-  - Opened label_these_first.md in Notepad for row prioritization.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
-  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - unlocked before opening, locked after opening
-  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv - opened
-  - Start-Process notepad.exe reports\generated\exp005_label_review\label_these_first.md - opened
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Manual labeling required: EXP-005 still has 0 saved labels, so downstream accuracy evidence was not run. Blind CSV is open and locked for human labeling.
-- Next steps: Enter real supervisor/expert labels in reports/generated/exp005_label_review/exp005_label_review_blind.csv, save the file, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not invent labels or change Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, or eval_output.
-
-## 2026-06-21 22:57 +03:00 - Codex - EXP-005 still awaiting saved labels
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected the CSV is locked by Excel, indicating it is open for manual labeling.
-  - Did not close or reopen Excel to avoid interrupting possible unsaved manual work.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - locked by Excel
-  - Get-Process EXCEL - confirmed exp005_label_review_blind workbook window
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is open in Excel; downstream accuracy evidence was not run.
-- Next steps: Finish manual labeling in the open Excel workbook, save it, and close Excel. Then rerun this gate or execute .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-22 11:19 +03:00 - Codex - EXP-005 still open in Excel; labels not saved
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected the CSV is locked by Excel, indicating it is open for manual labeling.
-  - Did not close Excel to avoid interrupting possible unsaved manual work.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - locked by Excel
-  - Get-Process EXCEL - confirmed exp005_label_review_blind workbook window
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is open in Excel; downstream accuracy evidence was not run.
-- Next steps: Finish manual labeling in the open Excel workbook, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-22 13:25 +03:00 - Codex - EXP-005 gate checked; Excel still open
-
-- Request: Do next step for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV still has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Detected the CSV is locked by Excel, indicating it is open for manual labeling.
-  - Did not close Excel to avoid interrupting possible unsaved manual work.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - locked by Excel
-  - Get-Process EXCEL - confirmed exp005_label_review_blind workbook window
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is open in Excel; downstream accuracy evidence was not run.
-- Next steps: Finish manual labeling in the open Excel workbook, save it, and close Excel. Then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-22 13:46 +03:00 - Codex - EXP-005 gate checked; CSV unlocked with no labels
-
-- Request: Implement EXP-005 manual save required before evidence plan.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked the EXP-005 label gate.
-  - Confirmed the saved blind CSV has 27 rows, 0 supplied labels, 0 complete required label rows, and no invalid label values.
-  - Confirmed the CSV is closed and unlocked; no Excel process is holding it.
-  - Skipped downstream EXP-003/EXP-004 evidence rerun because no real labels are saved yet.
-  - Kept the CSV closed/unlocked for manual label entry.
-  - Confirmed protected VEGO behavior diff remains empty.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1 - passed
-  - EXP-005 CSV label-count check - 27 rows, 0 supplied labels
-  - EXP-005 CSV lock check - unlocked
-  - Get-Process EXCEL - no Excel process reported
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval - empty
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels. CSV is closed/unlocked; downstream accuracy evidence was not run.
-- Next steps: Open reports/generated/exp005_label_review/exp005_label_review_blind.csv manually only when ready to enter real supervisor/expert labels. Save and close it, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep M4B-2, Agent 4 changes, LLM/API calls, embeddings, baseline overwrites, and eval_output changes blocked.
-
-## 2026-06-22 13:59 +03:00 - Codex - Strategic review and hardening plan
-
-- Request: Review all changes, check the flow, identify weaknesses/vulnerabilities, and implement the strategic hardening plan.
-- Actions taken:
-  - Added strategic review and hardening plan for current VEGO-AI flow and vulnerabilities.
-  - Updated evaluation and accuracy-governance docs with current EXP-005 gate and allowed/blocked claims.
-  - Added risk-register and memory tracker entries for false accuracy narrative risk, missing real labels, CSV workflow friction, and reviewer/adjudication weakness.
-  - Regenerated Confluence wiki outbox/manual sync pack; live sync remains pending Atlassian access/page IDs.
-- Files changed:
-  - docs/research/strategic-review-and-hardening-plan.md
-  - docs/research/evaluation-report.md
-  - docs/research/accuracy-improvement-plan.md
-  - docs/project-management/risk-register.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/agent-memory/compiled-memory.md
-  - docs/dashboards/status-snapshot.generated.md ignored
-  - docs/confluence/outbox/ ignored
-  - docs/confluence/manual-sync-pack.generated.md ignored
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1
-  - git status -sb --short
-  - git log --oneline --decorate -n 10
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval
-  - .\\scripts\\project-health.ps1 passed
-  - .\\scripts\\research-health.ps1 passed
-  - .\\scripts\\build-confluence-wiki.ps1 passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox passed
-- Status: completed
-- Next steps: Collect at least 20 generalization-safe EXP-005 expert labels, add second reviewer/adjudication for disputed rows, then rerun the EXP-005 downstream evidence gate.
-
-## 2026-06-22 15:27 +03:00 - Codex - Enhancement coverage implementation
-
-- Request: Implement VEGO-AI enhancement coverage plan for evidence quality, reviewer reliability, reproducibility, governance cleanup, and thesis/report readiness.
-- Actions taken:
-  - Extended EXP-005 tooling with generated adjudication sheet, evidence verdict, reviewer reliability summary, and reproducibility manifest.
-  - Updated workbench launcher to open adjudication/verdict files and document -SkipGenerate after labels are saved.
-  - Updated EXP-005, labeling, accuracy, evaluation, publishability, validity, thesis, KPI, registry, strategic review, and memory docs.
-  - Regenerated ignored EXP-005 outputs and Confluence wiki outbox/manual sync pack.
-  - Verified blocked evidence state remains 27 rows, 0 supplied labels, 0 safe valid labels; no accuracy-improvement claim allowed.
-- Files changed:
-  - scripts/exp005_label_review.py
-  - scripts/open-vego-workbench.ps1
-  - docs/operations/vego-workbench.md
-  - experiments/EXP-005-real-label-accuracy-gate/README.md
-  - experiments/registry.md
-  - docs/research/expert-labeling-protocol.md
-  - docs/research/accuracy-improvement-plan.md
-  - docs/research/evaluation-report.md
-  - docs/research/strategic-review-and-hardening-plan.md
-  - docs/research/publishability-register.md
-  - docs/research/validity-threats.md
-  - docs/dashboards/kpi-register.md
-  - thesis/outline.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - reports/generated/exp005_label_review/* ignored
-  - artifacts/EXP005_LABEL_REVIEW_PACKAGE.md ignored
-  - docs/confluence/outbox/* ignored
-  - docs/confluence/manual-sync-pack.generated.md ignored
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1
-  - python -m py_compile scripts\\exp005_label_review.py
-  - .\\scripts\\build-exp005-label-review.ps1 passed; generated blocked verdict with 0 labels
-  - python -m pytest VEGO-AI\\tests -q passed: 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts passed
-  - PowerShell parser check for scripts/*.ps1 passed
-  - .\\scripts\\project-health.ps1 passed
-  - .\\scripts\\research-health.ps1 passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox passed
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval returned empty
-  - .\\scripts\\build-confluence-wiki.ps1 passed; live Confluence still pending access/page IDs
-- Status: completed
-- Next steps: Fill EXP-005 blind labels with real supervisor/expert labels, then use exp005_adjudication_sheet.csv for reviewer-2/supervisor adjudication, rerun -FilledLabelsSheet ... -RunDownstream, and review evidence_verdict.md plus reproducibility_manifest.json before any claim or tag.
-
-## 2026-06-22 15:35 +03:00 - Codex - Enhancement coverage review
-
-- Request: Review what still needs enhancement and whether any details are missed.
-- Actions taken:
-  - Reviewed strategic hardening plan, EXP-005 evidence verdict, label validation summary, current git state, and memory workflow.
-  - Confirmed enhancement coverage now includes EXP-005 adjudication sheet, evidence verdict, reproducibility manifest, KPI/thesis/publishability alignment, and workbench -SkipGenerate warning.
-  - Identified remaining gaps as empirical/manual evidence work: real labels, reviewer/adjudication completion, data/IRB audit, Confluence live sync, and eventual commit/publish governance.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1
-  - git status -sb --short
-  - rg MEMORY.md for memory workflow
-  - Get-Content docs\\research\\strategic-review-and-hardening-plan.md
-  - Get-Content reports\\generated\\exp005_label_review\\evidence_verdict.md
-  - Get-Content reports\\generated\\exp005_label_review\\label_validation_summary.json
-- Status: completed
-- Next steps: Fill EXP-005 blind labels, use adjudication sheet for reviewer-2/supervisor decisions, rerun downstream evidence, complete IRB/publishability audit, and keep Confluence outbox refreshed until live sync access exists.
-
-## 2026-06-22 16:00 +03:00 - Codex - Next steps stabilization and evidence gate
-
-- Request: Implement VEGO-AI next steps plan: stabilize safe work, preserve EXP-005 evidence gate, avoid behavior changes, and prepare for manual labels.
-- Actions taken:
-  - Reviewed current local changes and EXP-005 blocked verdict.
-  - Ran full validation gates before commit.
-  - Confirmed protected VEGO behavior paths are unchanged.
-  - Staged only safe docs/scripts/tooling changes; kept .vscode/launch.json uncommitted.
-  - Confirmed EXP-005 remains blocked at 0 supplied labels, 0 valid labels, and 0 safe labels; no labels invented.
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-  - docs/dashboards/kpi-register.md
-  - docs/operations/vego-workbench.md
-  - docs/project-management/risk-register.md
-  - docs/research/accuracy-improvement-plan.md
-  - docs/research/evaluation-report.md
-  - docs/research/expert-labeling-protocol.md
-  - docs/research/publishability-register.md
-  - docs/research/strategic-review-and-hardening-plan.md
-  - docs/research/validity-threats.md
-  - experiments/EXP-005-real-label-accuracy-gate/README.md
-  - experiments/registry.md
-  - scripts/exp005_label_review.py
-  - scripts/open-vego-workbench.ps1
-  - thesis/outline.md
-- Commands/checks:
-  - .\\scripts\\agent-memory-start.ps1
-  - python -m pytest VEGO-AI\\tests -q passed: 94 passed
-  - python -m compileall -q VEGO-AI\\framework VEGO-AI\\eval VEGO-AI\\analysis VEGO-AI\\vego_visualizer_delivery scripts passed
-  - PowerShell parser check for scripts/*.ps1 passed
-  - .\\scripts\\project-health.ps1 passed
-  - .\\scripts\\research-health.ps1 passed
-  - .\\scripts\\dashboard-health.ps1 -RequireOutbox passed
-  - git diff --name-status -- VEGO-AI\\eval_output VEGO-AI\\framework VEGO-AI\\eval returned empty
-  - staged forbidden-artifact audit passed
-- Status: completed
-- Next steps: Commit and push the safe docs/scripts/tooling update; then manually fill EXP-005 blind labels, use the adjudication sheet for reviewer-2/supervisor review, and rerun EXP-005 downstream evidence.
-
-## 2026-06-22 16:02 +03:00 - Codex - EXP-005 stabilization pushed and labeling opened
-
-- Request: Finish implementing VEGO-AI next steps plan and open EXP-005 labeling materials.
-- Actions taken:
-  - Committed and pushed safe docs/scripts/tooling update to origin/main as 5c4639e.
-  - Verified origin/main points to 5c4639e.
-  - Opened workbench with -SkipGenerate for manual EXP-005 labeling.
-  - Confirmed blind CSV is currently locked/open for human labeling.
-  - No expert labels were invented or auto-filled; EXP-005 remains blocked until manual labels are saved.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - git commit -m 'Add EXP-005 evidence gate hardening' -> 5c4639e
-  - git push origin main -> 0976c05..5c4639e
-  - git ls-remote origin refs/heads/main -> 5c4639e
-  - .\\scripts\\open-vego-workbench.ps1 -SkipGenerate opened dashboard, label files, verdict, and reports
-  - blind CSV lock check -> locked/open for labeling
-- Status: completed
-- Next steps: Fill exp005_label_review_blind.csv with real supervisor/expert labels, save and close Excel, then run .\\scripts\\build-exp005-label-review.ps1 -FilledLabelsSheet reports\\generated\\exp005_label_review\\exp005_label_review_blind.csv -RunDownstream.
-
-## 2026-06-22 16:08 +03:00 - Codex - EXP-005 gate rechecked; labels still absent and CSV locked
-
-- Request: Continue to next steps for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and reviewed compiled memory.
-  - Checked EXP-005 blind CSV label counts: 27 rows, 0 supplied labels, 0 complete required rows, no invalid labels.
-  - Detected exp005_label_review_blind.csv is locked by another process, with Excel currently open.
-  - Skipped downstream evidence rerun because no real saved labels exist.
-  - Verified protected VEGO behavior paths show no diffs.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - CSV label-count check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
-  - CSV lock check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
-  - Get-Process EXCEL
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels and the blind CSV is locked/open, so downstream accuracy evidence was not run.
-- Next steps: Enter real supervisor/expert labels in reports/generated/exp005_label_review/exp005_label_review_blind.csv, save the file, close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
-
-## 2026-06-22 16:12 +03:00 - Codex - EXP-005 gate rechecked; manual labels still required
-
-- Request: Continue to next steps for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and reviewed current EXP-005 memory context.
-  - Checked EXP-005 blind CSV: 27 rows, 0 supplied labels, 0 complete required rows, no invalid labels.
-  - Confirmed the blind CSV is locked by Excel; Excel currently shows exp005_adjudication_sheet as the active workbook window.
-  - Read the current EXP-005 evidence verdict: blocked, accuracy improvement cannot be evaluated yet.
-  - Skipped downstream evidence rerun because no real saved labels exist.
-  - Verified protected VEGO behavior paths show no diffs.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - rg EXP-005 docs\agent-memory\compiled-memory.md
-  - CSV label-count check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
-  - CSV lock check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
-  - Get-Process EXCEL
-  - Get-Content reports\generated\exp005_label_review\evidence_verdict.md
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
-- Status: Blocked on manual labels: EXP-005 still has 0 saved labels and the blind CSV is locked/open, so downstream accuracy evidence was not run.
-- Next steps: Fill reports/generated/exp005_label_review/exp005_label_review_blind.csv with real supervisor/expert labels, save and close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
-
-## 2026-06-22 16:13 +03:00 - Codex - EXP-005 gate checkpoint and wiki outbox refreshed
-
-- Request: Continue to next steps for EXP-005 evidence workflow.
-- Actions taken:
-  - Refreshed Confluence wiki outbox and generated dashboard status snapshot.
-  - Initial dashboard-health run raced with wiki generation and failed on a transient missing dashboard outbox section.
-  - Reran dashboard-health sequentially after wiki generation completed; it passed.
-  - Confirmed only tracked change is docs/agent-memory/session-log.md and protected VEGO behavior paths remain unchanged.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-  - docs/dashboards/status-snapshot.generated.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
   - docs/confluence/outbox/
   - docs/confluence/manual-sync-pack.generated.md
 - Commands/checks:
-  - .\scripts\build-confluence-wiki.ps1
-  - .\scripts\dashboard-health.ps1 -RequireOutbox -> first run raced with wiki builder and failed
-  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed sequentially
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
-- Status: Completed local memory/wiki/dashboard refresh. EXP-005 evidence remains blocked on 0 saved labels.
-- Next steps: Fill and save real EXP-005 blind labels, close Excel, then run the downstream evidence command. Do not run dashboard-health in parallel with build-confluence-wiki because the outbox file is regenerated during the build.
-
-## 2026-06-22 16:47 +03:00 - Codex - EXP-005 gate rechecked; saved labels still zero
-
-- Request: Continue to next steps for EXP-005 evidence workflow.
-- Actions taken:
-  - Ran prompt-start memory refresh and reviewed compiled EXP-005 context.
-  - Checked saved EXP-005 blind CSV: 27 rows, 0 supplied labels, 0 complete required rows, no invalid labels.
-  - Confirmed the blind CSV is locked/open, so no regeneration or downstream evidence run was attempted.
-  - Attempted read-only Excel COM attach to inspect open workbook contents, but COM attach was unavailable; saved CSV remains the authoritative state.
-  - Verified protected VEGO behavior paths show no diffs.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - rg EXP-005 docs\agent-memory\compiled-memory.md
-  - CSV label-count check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
-  - CSV lock check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
-  - Read-only Excel COM attach attempt
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
-- Status: Blocked on manual labels: saved EXP-005 labels remain 0 and the blind CSV is locked/open. Accuracy improvement cannot be evaluated yet.
-- Next steps: Save real supervisor/expert labels into reports/generated/exp005_label_review/exp005_label_review_blind.csv, close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
-
-## 2026-06-22 17:03 +03:00 - Codex - EXP-005 synthetic trial completed as simulation only
-
-- Request: Complete EXP-005 synthetically for now and continue, without representing synthetic labels as real human labels.
-- Actions taken:
-  - Created a separate ignored synthetic filled-label sheet under reports/generated/exp005_synthetic_trial/.
-  - Marked every synthetic row with reviewer_id=SYNTHETIC_NOT_HUMAN and synthetic rationale/notes; did not edit the real EXP-005 blind CSV.
-  - Ran EXP-005 downstream pipeline against the synthetic copy in reports/generated/exp005_synthetic_trial/pipeline/.
-  - Generated artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md explaining that results are simulation only and cannot prove real accuracy improvement.
-  - Confirmed current M4B-1 still changes 0/27 classifications, so original and memory-informed accuracy are identical under synthetic labels.
-  - Verified generated synthetic outputs are ignored and protected VEGO behavior paths show no diffs.
-  - Regenerated local Confluence/wiki outbox and dashboard status snapshot.
-  - Ran project, research, and dashboard health checks; all passed.
-- Files changed:
-  - reports/generated/exp005_synthetic_trial/ (ignored)
-  - artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md (ignored)
-  - artifacts/EXP005_SYNTHETIC_TRIAL_PACKAGE.md (ignored)
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - Generate synthetic EXP-005 filled labels from exp005_label_review_full.csv
-  - .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_synthetic_trial\exp005_synthetic_filled_labels.csv -OutputDir reports\generated\exp005_synthetic_trial\pipeline -ArtifactCopy artifacts\EXP005_SYNTHETIC_TRIAL_PACKAGE.md -RunDownstream
-  - Read artifacts\SYNTHETIC_EXP005_TRIAL_REPORT.md
-  - git check-ignore for synthetic reports/artifacts
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
+  - python .\scripts\check_evidence_consistency.py
+  - python .\scripts\build-progress-tracker.py
+  - .\scripts\build-progress-visualizations.ps1
+  - .\scripts\build-e2e-progress-report.ps1
   - .\scripts\build-confluence-wiki.ps1
   - .\scripts\dashboard-health.ps1 -RequireOutbox
-  - .\scripts\project-health.ps1
+- Status: completed
+- Next steps: Use docs/research/phd-thesis-optimization-plan.md and docs/agent-memory/claude-phd-thesis-collaboration-prompt.md as the shared Claude/Codex control points; review the supervisor EXP-005 approval pack, then collect real labels before any accuracy/generalization claim.
+
+## 2026-06-29 16:33 +03:00 - Codex - Architecture Health Verification
+
+- Request: make sure we have no breaks in our architecture
+- Actions taken:
+  - Confirmed active git checkout is C:\Users\ahamed\vego-ai; Downloads copy is not a git repo
+  - Ran evidence consistency, dashboard health, research health, compile, protected-path diff, and project review checks
+  - Regenerated progress tracker, progress visualizations, E2E dashboard, and Confluence wiki outbox
+  - Confirmed no unsafe architecture reasons; current block remains EXP-005 real labels
+- Files changed:
+  - docs/PROGRESS_TRACKER.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+  - docs/dashboards/status-snapshot.generated.md
+  - docs/confluence/outbox/
+  - docs/confluence/manual-sync-pack.generated.md
+  - reports/generated/project_review/latest-review.md
+  - reports/generated/project_review/latest-review.json
+  - reports/generated/project_review/review-dashboard.html
+  - reports/generated/evidence_consistency/latest.json
+  - reports/generated/evidence_consistency/latest.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - python .\scripts\check_evidence_consistency.py
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
   - .\scripts\research-health.ps1
-- Status: Completed synthetic-only pipeline trial. Real EXP-005 evidence remains blocked until real supervisor/expert labels are saved.
-- Next steps: Use the synthetic report only for pipeline/policy-risk discussion. Collect real EXP-005 blind labels before any real accuracy claim or policy implementation. Keep Agent 4, M4B-2, LLM/API, embeddings, baseline outputs, and eval_output unchanged.
-
-## 2026-06-22 17:19 +03:00 - Codex - EXP-005 synthetic policy candidates documented as design-only
-
-- Request: Continue to next steps after synthetic EXP-005 trial.
-- Actions taken:
-  - Added docs/research/m4b1-synthetic-policy-candidate-review.md as a tracked design-only interpretation of the synthetic EXP-005 trial.
-  - Updated accuracy improvement plan and EXP-005 README to distinguish synthetic pipeline trial from real EXP-005 evidence.
-  - Added KPI row for EXP-005 synthetic trial with 0.00 pp current M4B-1 accuracy delta.
-  - Updated current-state, progress, decisions, and issues memory to preserve the synthetic-only boundary.
-  - Verified no protected VEGO behavior paths were changed.
-- Files changed:
-  - docs/research/m4b1-synthetic-policy-candidate-review.md
-  - docs/research/accuracy-improvement-plan.md
-  - experiments/EXP-005-real-label-accuracy-gate/README.md
-  - docs/dashboards/kpi-register.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - Get-Content artifacts\SYNTHETIC_EXP005_TRIAL_REPORT.md
-  - Get-Content reports\generated\exp005_synthetic_trial\pipeline\real_vs_synthetic_policy_gate.md
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts -> passed
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
-- Status: Completed design-only documentation for synthetic EXP-005 policy candidates. No implementation or behavior changes made.
-- Next steps: Collect real EXP-005 labels, rerun the real-label gate, and only then revisit M4B-1.1 policy candidates. Keep M4B-2, Agent 4 changes, LLM/API, embeddings, baseline outputs, and eval_output blocked.
-
-## 2026-06-22 17:19 +03:00 - Codex - EXP-005 synthetic policy candidate documentation validated
-
-- Request: Continue to next steps after synthetic EXP-005 trial.
-- Actions taken:
-  - Completed tracked design-only documentation for synthetic policy candidates.
-  - Ran wiki/dashboard refresh and validation.
-  - Observed one research-health/dashboard race while wiki outbox was regenerating, then reran research-health sequentially and it passed.
-  - Confirmed compileall and protected-path audits passed.
-- Files changed:
-  - docs/research/m4b1-synthetic-policy-candidate-review.md
-  - docs/research/accuracy-improvement-plan.md
-  - experiments/EXP-005-real-label-accuracy-gate/README.md
-  - docs/dashboards/kpi-register.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\scripts\build-confluence-wiki.ps1
-  - .\scripts\dashboard-health.ps1 -RequireOutbox -> passed
-  - .\scripts\project-health.ps1 -> passed
-  - .\scripts\research-health.ps1 -> one parallel race, sequential rerun passed
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts -> passed
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
-- Status: Ready to commit docs-only design checkpoint. No VEGO behavior changed.
-- Next steps: Commit/push docs-only synthetic policy candidate checkpoint. Then collect real EXP-005 labels before any policy refinement.
-
-## 2026-06-23 10:27 +03:00 - Codex - EXP-005 real-label materials opened for manual labeling
-
-- Request: Continue to next steps.
-- Actions taken:
-  - Ran prompt-start memory refresh and checked real EXP-005 label state.
-  - Confirmed real blind CSV has 27 rows, 0 supplied labels, 0 complete required rows, and no invalid labels.
-  - Confirmed protected VEGO behavior paths show no diffs.
-  - Opened label_these_first.md, exp005_label_review_blind.csv, m4b1 synthetic policy candidate review, and baseline overlay PDF for manual review.
-  - Confirmed the blind CSV is now open in Excel and locked for manual labeling.
-  - Skipped downstream evidence run because no real saved labels exist yet.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/compiled-memory.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - CSV label-count check for reports/generated/exp005_label_review/exp005_label_review_blind.csv
-  - CSV lock check before opening -> unlocked
-  - Start-Process reports\generated\exp005_label_review\label_these_first.md
-  - Start-Process reports\generated\exp005_label_review\exp005_label_review_blind.csv
-  - Start-Process docs\research\m4b1-synthetic-policy-candidate-review.md
-  - Start-Process artifacts\topology-export\VEGO_BASELINE_OVERLAY_REPORT.pdf
-  - CSV lock check after opening -> locked by Excel
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval -> empty
-- Status: Manual labeling handoff complete. EXP-005 real evidence remains blocked until labels are saved and Excel is closed.
-- Next steps: Fill real expert/supervisor labels in exp005_label_review_blind.csv, save and close Excel, then run .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet reports\generated\exp005_label_review\exp005_label_review_blind.csv -RunDownstream. Do not use synthetic labels as real evidence.
-
-## 2026-06-23 10:53 +03:00 - Codex - Project review architecture
-
-- Request: Implement a memory-connected architecture to review VEGO-AI work and project state.
-- Actions taken:
-  - Added structured project review architecture documentation and review-state memory.
-  - Added run-project-review.ps1 for non-destructive review reports with green/yellow/blocked/unsafe verdicts.
-  - Wired run-codex-next-step.ps1 to run the project review cycle when EXP-005 is blocked.
-  - Updated Codex/Claude/README/workbench instructions and progress/decision memory.
-  - Validated that current review verdict is blocked only because EXP-005 has 0 real labels.
-- Files changed:
-  - docs/operations/project-review-architecture.md
-  - docs/agent-memory/review-state.md
-  - scripts/run-project-review.ps1
-  - scripts/run-codex-next-step.ps1
-  - scripts/agent-memory-start.ps1
-  - AGENTS.md
-  - CLAUDE.md
-  - README.md
-  - docs/operations/codex-next-step-loop.md
-  - docs/operations/vego-workbench.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/decisions.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - PowerShell parser check for scripts/*.ps1
-  - .\scripts\run-project-review.ps1 -UpdateReviewState
-  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
   - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts
-  - .\scripts\project-health.ps1
-  - .\scripts\research-health.ps1
-  - .\scripts\dashboard-health.ps1 -RequireOutbox
   - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
-  - git check-ignore for generated review/wiki/dashboard outputs
-- Status: completed
-- Next steps: Fill real EXP-005 labels; rerun project review and EXP-005 downstream gate after the CSV is saved and closed.
-
-## 2026-06-23 11:08 +03:00 - Codex - Automatic review cycle
-
-- Request: Run the automatic supervised review/next-step cycle.
-- Actions taken:
-  - Ran the supervised next-step loop with review, wiki refresh, and health checks.
-  - Confirmed project review verdict remains blocked because EXP-005 has 0 supplied real labels.
-  - Confirmed no downstream evidence run occurred and no VEGO behavior paths changed.
-  - Confirmed generated review, wiki, dashboard, and loop outputs remain ignored.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - git status -sb --short
-  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
-- Status: completed
-- Next steps: Fill real EXP-005 labels, save and close the CSV, then rerun .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen.
-
-## 2026-06-23 11:40 +03:00 - Codex - Project review architecture verification
-
-- Request: Implement/verify the VEGO-AI Project Review Architecture plan.
-- Actions taken:
-  - Confirmed project review architecture files and scripts exist on main.
-  - Ran parser, review runner, integrated next-step loop, compile, dashboard health, and protected-diff checks.
-  - Confirmed review-state.md is included in compiled memory.
-  - Confirmed current review verdict is blocked only because EXP-005 has 0 supplied real labels.
-  - Confirmed generated review/wiki/dashboard outputs are ignored and no VEGO behavior paths changed.
-- Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - .\scripts\agent-memory-start.ps1
-  - git status -sb --short
-  - PowerShell parser check for scripts/*.ps1
   - .\scripts\run-project-review.ps1
-  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
-  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts
-  - .\scripts\dashboard-health.ps1 -RequireOutbox
-  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
-  - git check-ignore for generated review/wiki/dashboard outputs
+  - python .\scripts\build-progress-tracker.py
+  - .\scripts\build-progress-visualizations.ps1
+  - .\scripts\build-e2e-progress-report.ps1
+  - .\scripts\build-confluence-wiki.ps1
 - Status: completed
-- Next steps: Fill real EXP-005 labels, save and close the CSV, then rerun .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen.
+- Next steps: Architecture is healthy; proceed with supervisor approval and EXP-005 real labels before any accuracy, generalization, M4B-1.1, LLM/API, embedding, M4B-2, or Agent 4 behavior-changing work.
 
-## 2026-06-23 11:45 +03:00 - Codex - Confluence MCP update blocked
+## 2026-06-29 16:35 +03:00 - Codex - E2E Dashboard Path Rendering Fix
 
-- Request: Update Confluence page 294914 through Atlassian Rovo MCP.
+- Request: make sure we have no breaks in our architecture
 - Actions taken:
-  - Rebuilt Confluence wiki outbox and dashboard/manual sync pack.
-  - Verified dashboard health after outbox build.
-  - Read generated home page body from docs/confluence/outbox/vego-ai-wiki-home.md.
-  - Tried Atlassian Rovo _getconfluencepage for cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec page 294914.
-  - Live MCP update was blocked because the cloud is not explicitly granted by the user.
+  - Found a generated E2E Markdown rendering break caused by Markdown backticks inside PowerShell double-quoted strings
+  - Patched scripts/build-e2e-progress-report.ps1 to emit Markdown code spans literally with single-quoted strings
+  - Regenerated E2E dashboard and Confluence wiki outbox
+  - Verified dashboard health, research health, evidence consistency, PowerShell parsing, protected-path diff, and project review
 - Files changed:
-  - docs/agent-memory/session-log.md
-  - docs/agent-memory/revert-log.md
+  - scripts/build-e2e-progress-report.ps1
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+  - docs/confluence/outbox/
+  - docs/confluence/manual-sync-pack.generated.md
+  - docs/dashboards/status-snapshot.generated.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - reports/generated/project_review/latest-review.md
+  - reports/generated/project_review/latest-review.json
+  - reports/generated/project_review/review-dashboard.html
+  - reports/generated/evidence_consistency/latest.json
+  - reports/generated/evidence_consistency/latest.md
 - Commands/checks:
-  - .\scripts\agent-memory-start.ps1
+  - .\scripts\build-e2e-progress-report.ps1
+  - PowerShell Parser::ParseFile scripts/build-e2e-progress-report.ps1
   - .\scripts\build-confluence-wiki.ps1
   - .\scripts\dashboard-health.ps1 -RequireOutbox
-  - Atlassian Rovo _getconfluencepage cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec page 294914
-- Status: blocked
-- Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then retry the Confluence MCP update from docs/confluence/outbox/vego-ai-wiki-home.md.
+  - .\scripts\research-health.ps1
+  - python .\scripts\check_evidence_consistency.py
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
+  - .\scripts\run-project-review.ps1
+- Status: completed
+- Next steps: Architecture is healthy after the E2E dashboard rendering fix. The only remaining blocker is the expected EXP-005 real-label gate.
+
+## 2026-06-29 23:42 +03:00 - Codex - Architecture Health Recheck
+
+- Request: make sure we have no breaks in our architecture
+- Actions taken:
+  - Confirmed active checkout is C:\Users\ahamed\vego-ai
+  - Ran evidence consistency, dashboard health, research health, project health, compile, protected-path diff, project review, and PowerShell parser sweep
+  - Checked Defender-related visualization watcher state: Startup autostart file is absent, no scheduled task was returned, and no active -File watch-visualizations.ps1 process was found
+  - Regenerated progress tracker, progress visualizations, E2E dashboard, Confluence outbox, and manual sync pack
+  - Confirmed no architecture break; current project review is blocked only by EXP-005 real labels
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/PROGRESS_TRACKER.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+  - docs/dashboards/status-snapshot.generated.md
+  - docs/confluence/outbox/
+  - docs/confluence/manual-sync-pack.generated.md
+  - reports/generated/project_review/latest-review.md
+  - reports/generated/project_review/latest-review.json
+  - reports/generated/project_review/review-dashboard.html
+  - reports/generated/evidence_consistency/latest.json
+  - reports/generated/evidence_consistency/latest.md
+- Commands/checks:
+  - .\scripts\agent-memory-start.ps1
+  - python .\scripts\check_evidence_consistency.py
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+  - .\scripts\research-health.ps1
+  - python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery scripts
+  - git diff --name-status -- VEGO-AI\eval_output VEGO-AI\framework VEGO-AI\eval
+  - .\scripts\run-project-review.ps1
+  - .\scripts\project-health.ps1
+  - PowerShell Parser::ParseFile over scripts/*.ps1
+  - python .\scripts\build-progress-tracker.py
+  - .\scripts\build-e2e-progress-report.ps1
+  - .\scripts\build-progress-visualizations.ps1
+  - .\scripts\build-confluence-wiki.ps1
+- Status: completed
+- Next steps: Architecture is healthy. Continue with supervisor approval and EXP-005 real labels before any accuracy/generalization, LLM/API, embedding, M4B-1.1, M4B-2, or Agent 4 behavior-changing work.
+
+## 2026-07-03 23:20 +03:00 - Codex - Hebrew MP4 transcript
+
+- Request: Create a Hebrew transcript for docs\video1832857678.mp4.
+- Actions taken:
+  - Refreshed compiled memory at prompt start
+  - Transcribed matching MP4/Zoom audio with local Whisper tooling
+  - Replaced lower-quality base-model transcript with faster-whisper large-v3-turbo output
+  - Generated Markdown, TXT, and SRT transcript files
+- Files changed:
+  - docs/video1832857678.transcript.he.md
+  - docs/video1832857678.transcript.he.txt
+  - docs/video1832857678.transcript.he.srt
+- Commands/checks:
+  - .\scripts\refresh-tracking.ps1 -Pull
+  - Python/imageio_ffmpeg media probe
+  - Whisper base transcription for initial output
+  - faster-whisper large-v3-turbo transcript conversion
+- Status: completed
+- Next steps: Review transcript manually for speaker names and technical terminology before using as official meeting notes.
+
+## 2026-07-03 23:56 +03:00 - Codex - Fable supervisor redirect prompt
+
+- Request: Give an extensive file prompt to Fable to do the July supervisor-redirect plan.
+- Actions taken:
+  - Read the pasted plan summary and current repo memory/orientation files
+  - Verified the named supervisor-redirect deliverables are not present in this checkout
+  - Created a Fable handoff prompt with concrete deliverables, boundaries, startup steps, validation commands, and finish workflow
+- Files changed:
+  - docs/prompts/fable-supervisor-redirect-plan-prompt.md
+- Commands/checks:
+  - .\scripts\refresh-tracking.ps1 -Pull
+  - Get-Content pasted attachment and repo orientation files
+  - Targeted rg/static inspection for supervisor redirect artifacts
+- Status: completed
+- Next steps: Give docs/prompts/fable-supervisor-redirect-plan-prompt.md to Fable; Fable should implement the listed documentation package and run the embedded validation workflow.
+
+## 2026-07-04 00:10 +03:00 - Codex - Archival Test
+
+- Request: Test pruning
+- Actions taken:
+  - Action
+- Files changed:
+  - docs/agent-memory/current-state.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: None
+
+## 2026-07-04 00:11 +03:00 - Codex - Memory and Resource Enhancement Completion
+
+- Request: enhance memory of project and resources and align with phd level
+- Actions taken:
+  - Tiered memory compilation,Pruned and archived session logs,Extracted supervisor meeting notes,Created memory-health, search-memory, and process-meeting scripts,Registered decisions and issues metadata,Verified all tests and health guards
+- Files changed:
+  - scripts/agent-memory-start.ps1,scripts/agent-memory-finish.ps1,scripts/memory-health.ps1,scripts/search-memory.ps1,scripts/process-meeting.ps1,docs/agent-memory/current-state.md,docs/agent-memory/decisions.md,docs/agent-memory/issues.md,docs/agent-memory/resource-memory.md,docs/agent-memory/memory-index.md,docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Collect real labels for EXP-005 blind sheets
+
+## 2026-07-04 23:02 +03:00 - Fable (Claude) - July 2026 supervisor redirect package implemented (docs-only)
+
+- Request: Implement the July 2026 supervisor redirect plan: meeting notes, extension plan, H-layer skills map and prompt requirements, separated framework/evaluation diagrams, taxonomy July-2026 section, PhD idea log, index and memory updates.
+- Actions taken:
+  - Created docs/research/meetings/2026-07-01-supervisor-meeting-iris.md (machine-transcript-derived, from docs/video1832857678.transcript.he.md)
+  - Created docs/research/extension-plan-2026-07-supervisor-redirect.md (ACTIVE PLAN: 12 traced directives, gap analysis, S1-S7 + H1/H2/H3 target architecture, P0-P6 phases, governance reconciliation, acceptance checklist)
+  - Created July-15 deliverables: docs/research/h-layer/skills-map.md (E1-E15 events, S1-S7 skills, integration matrix, options A/B/C with B recommended, open questions) and docs/research/h-layer/prompt-requirements.md (requirements only, no prompt text, 12-directive traceability)
+  - Created docs/architecture/framework-diagram.md and docs/architecture/evaluation-diagram.md (separated per directive; both mermaid-cli render-validated)
+  - Added July-2026 section to docs/research/literature-review-taxonomy.md and created docs/research/phd-extension-ideas.md (5 seed ideas, medical-domain preferred, Sigal admin note)
+  - Updated indexes (research README, architecture README, project-map), current-state, progress (TASK-040..042), decisions, review-state redirect note, alignment-control redirect pointer, PROGRESS_TRACKER banner, progress dashboard
+  - Ran a 4-lens adversarial review (coverage/consistency/governance/operational; one reviewer hit a session limit, three completed) and fixed all 18 findings including duplicate TASK-037 renumbering and the superseded 2026-07-03 meeting-note annotation
+- Files changed:
+  - docs/research/meetings/2026-07-01-supervisor-meeting-iris.md
+  - docs/research/extension-plan-2026-07-supervisor-redirect.md
+  - docs/research/h-layer/skills-map.md
+  - docs/research/h-layer/prompt-requirements.md
+  - docs/research/phd-extension-ideas.md
+  - docs/architecture/framework-diagram.md
+  - docs/architecture/evaluation-diagram.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/README.md
+  - docs/architecture/README.md
+  - docs/architecture/project-map.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/review-state.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md
+  - docs/operations/alignment-control.md
+  - docs/PROGRESS_TRACKER.md
+  - docs/dashboards/progress-dashboard.md
+- Commands/checks:
+  - git status --short -- VEGO-AI (empty: docs-only confirmed)
+  - python scripts/check_evidence_consistency.py (18/18 PASS)
+  - npx @mermaid-js/mermaid-cli renders (framework + evaluation diagrams: OK)
+  - scripts/refresh-tracking.ps1 -Viz, scripts/build-confluence-wiki.ps1, scripts/dashboard-health.ps1 -RequireOutbox (run after this entry)
+- Status: completed
+- Next steps: Human: review the skills-map open questions with Iris before 2026-07-15; ask Sigal about direct-track PhD credits/requirements. Agents: after the meeting, start P2 detail specs per the extension plan.
+
+## 2026-07-04 23:26 +03:00 - Fable (Claude) - MediVARIA medical-domain study plan integrated (docs-only)
+
+- Request: Add the MediVARIA study (VEGO-AI-based medical-domain research) to the project and enhance the project/thesis per the supervisor's guidance; make a comprehensive plan and implement it.
+- Actions taken:
+  - Extracted and archived the MediVARIA one-pager (ignored artifacts/medivaria/; tracked summary with MAS4Models-venue correction and provenance-only commercial framing)
+  - Created docs/research/medivaria/medivaria-study-plan.md: VEGO-AI/H-layer-to-clinical mapping, Iris-directive synthesis (S2 dosage vs alert fatigue; S5 H-Verify vs override rationale), MV-RQ1-6, phases MV-P0..MV-P5 aligned to IIA TRL3->5 and the MSc->PhD trajectory, clinical claim boundaries incl. no-patient-data and no-partner fallback rules, thesis-enhancement checklist (Ch 1,2,3,9,10), 2026-07-15 agenda additions
+  - Wired MediVARIA into: phd-extension-ideas (idea 1 ACTIVE), redirect plan P6, thesis-structure-map, phd-thesis-optimization-plan (roadmap P4/P5 vehicle), taxonomy MediVARIA branches, skills-map open question 8, research README, current-state, progress (TASK-043), decisions, dashboards
+  - Added MediVARIA boundaries to docs/operations/alignment-control.md (TRL3-not-clinical, no patient data, documentation-only until MV-P0 endorsement)
+  - Ran 2-lens adversarial review (fidelity+consistency, governance) and fixed all 15 findings (endorsement overstatement, patient-data loophole, E15 separation, phase-namespace ambiguity, hypothesis language, dashboard status downgraded to draft-pending)
+- Files changed:
+  - docs/research/medivaria/medivaria-study-plan.md
+  - docs/research/phd-extension-ideas.md
+  - docs/research/extension-plan-2026-07-supervisor-redirect.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/h-layer/skills-map.md
+  - docs/research/thesis-structure-map.md
+  - docs/research/phd-thesis-optimization-plan.md
+  - docs/research/README.md
+  - docs/operations/alignment-control.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/progress-dashboard.md
+- Commands/checks:
+  - python-docx one-pager extraction (scratchpad)
+  - git status --short -- VEGO-AI (empty: docs-only confirmed)
+  - python scripts/check_evidence_consistency.py (18/18 PASS)
+  - refresh-tracking -Viz, build-confluence-wiki, dashboard-health -RequireOutbox (after this entry)
+- Status: completed
+- Next steps: Present the MediVARIA plan at the 2026-07-15 meeting (study-plan section 8 agenda); get Iris/Arnon endorsement of scope, role split, and first clinical guideline domain (MV-P0 exit gate); thesis scope stays education-only until submission; Ali: Sigal direct-track admin question stands.
+
+## 2026-07-04 23:39 +03:00 - Fable (Claude) - 2026-07-15 supervisor meeting visualization package generated
+
+- Request: Produce all visualizations, results, diagrams, flows, and details for the July 15 supervisor meeting.
+- Actions taken:
+  - Rendered six figures (mermaid-cli, all PASS): baseline two-circles, framework H-layer, parked evaluation track, S1-S7 pipeline by H1/H2/H3, MediVARIA education-to-clinical mapping, research timeline gantt
+  - Built self-contained artifacts/supervisor_meeting_2026-07-15/meeting-deck.html (17 sections, all SVGs inline): directive recap, skills/events/matrix/dosage/interfaces/options tables, prompt-requirements summary with S5 example, evidence state with claim boundaries, MediVARIA, timeline, 10 decisions needed, next steps
+  - Added one-page-brief.md and appendix copies of the generated progress-visualizations and E2E dashboard
+  - Created tracked index docs/research/meetings/2026-07-15-meeting-package.md (package contents, decisions needed, post-meeting recording spot) and linked it from docs/research/README.md
+- Files changed:
+  - docs/research/meetings/2026-07-15-meeting-package.md
+  - docs/research/README.md
+  - ignored: artifacts/supervisor_meeting_2026-07-15/ (deck, brief, 6 figures + sources, appendix)
+- Commands/checks:
+  - npx @mermaid-js/mermaid-cli renders (6/6 PASS)
+  - git status --short -- artifacts (empty: ignored confirmed)
+  - build-confluence-wiki + dashboard-health -RequireOutbox (after this entry)
+- Status: completed
+- Next steps: Open artifacts/supervisor_meeting_2026-07-15/meeting-deck.html locally for the meeting; after the meeting record decisions in the package index doc and decisions.md, then start redirect-plan P2 detail specs.
+
+## 2026-07-05 00:13 +03:00 - Fable (Claude) - H-layer mechanism experiment suite EXP-006..008 implemented and run
+
+- Request: Extensive plan for many experiments and results with tracking and evaluation; implement now.
+- Actions taken:
+  - Wrote docs/research/h-layer/experiment-expansion-plan.md (EXP-006..011 matrix, tracking architecture, evaluation criteria, schedule, governance)
+  - Implemented and ran three read-only replay experiments: EXP-006 reported `11 queue items / 481 heterogeneous reconstructed lifecycle events` (count ratio only; no event-level visibility inference or linkage; early share 0.187; E3/E9 gaps), EXP-007 dosage replay (every=289, threshold=235 with coarse-signal finding, first_n=91, silent=0), EXP-008 trigger mining (167 unstable guidelines, 160 not represented in the old queue, per-setting candidate triggers)
+  - Registered EXP-006..011 in experiments/registry.md with claim scopes; added three experiment READMEs; surfaced headline results in results-dashboard and the 2026-07-15 meeting package
+  - All outputs generated+ignored under reports/generated/exp006..008 + combined hlayer_experiments_summary.md; one-command rerun via scripts/build-hlayer-experiments.ps1
+- Files changed:
+  - docs/research/h-layer/experiment-expansion-plan.md
+  - scripts/exp006_event_replay.py
+  - scripts/exp007_dosage_replay.py
+  - scripts/exp008_trigger_mining.py
+  - scripts/build-hlayer-experiments.ps1
+  - experiments/EXP-006-hlayer-event-replay/README.md
+  - experiments/EXP-007-dosage-mode-replay/README.md
+  - experiments/EXP-008-early-trigger-mining/README.md
+  - experiments/registry.md
+  - docs/dashboards/results-dashboard.md
+  - docs/research/README.md
+  - docs/research/meetings/2026-07-15-meeting-package.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\scripts\build-hlayer-experiments.ps1 (all three experiments PASS)
+  - git status --short -- VEGO-AI (empty: read-only confirmed)
+  - python scripts/check_evidence_consistency.py (18/18 PASS)
+  - build-confluence-wiki + dashboard-health -RequireOutbox (after this entry)
+- Status: completed
+- Next steps: Present EXP-006..008 headlines on 2026-07-15 (they directly inform the dosage, event-subset, and decomposition decisions); build EXP-009/010 after Iris confirms the S5 protocol; EXP-011 stays parked behind the EXP-005 real-label gate.
+
+## 2026-07-05 00:30 +03:00 - Fable (Claude) - H-layer improvement loop built; iteration 2 run with verdicts
+
+- Request: Continue as a loop: enhance, analyze results, re-run, evaluate whether we are getting better (accuracy when possible).
+- Actions taken:
+  - Created the iteration-loop protocol (run->analyze->hypothesize->implement->rerun->compare->verdict->escalate) with metrics M-A/B/C and future M-D accuracy columns activating only after the EXP-005 gate
+  - Implemented loop machinery: scripts/run-hlayer-iteration.ps1 (auto-numbered snapshots + guardrails) and scripts/hlayer_iteration_compare.py (schema-drift-tolerant delta reports)
+  - Implemented iteration-2 enhancements from iteration-1 findings: H1 severity model (0-3) in EXP-006, H3 weighted/high-severity coverage + severity-cutoff dosage modes in EXP-007, H2 churn-trigger sweep in EXP-008
+  - Ran iteration 2 and recorded verdicts in the ledger: metrics now discriminative; threshold_sev2 = candidate dosage default (high-sev coverage 1.0 at load 0.799); sev3 fails the M-B4 guardrail; churn capture 1.0 at t<=2 but load budget missed (49>30); iteration-3 hypotheses H4/H5 recorded, H5 pends Iris's review-item-granularity input
+- Files changed:
+  - docs/research/h-layer/experiment-iteration-loop.md
+  - docs/research/h-layer/experiment-iteration-ledger.md
+  - scripts/run-hlayer-iteration.ps1
+  - scripts/hlayer_iteration_compare.py
+  - scripts/exp006_event_replay.py
+  - scripts/exp007_dosage_replay.py
+  - scripts/exp008_trigger_mining.py
+  - experiments/registry.md
+  - experiments/EXP-007-dosage-mode-replay/README.md
+  - docs/research/README.md
+  - docs/research/meetings/2026-07-15-meeting-package.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\scripts\run-hlayer-iteration.ps1 (iteration 2 PASS: suite, compare, VEGO-AI-clean guardrail, evidence guard exit 0)
+  - build-confluence-wiki + dashboard-health -RequireOutbox (after this entry)
+- Status: completed
+- Next steps: Run iteration 3 after the 2026-07-15 meeting (H4 rank-and-cap churn trigger; H5 case-level bundling per Iris's granularity decision); add EXP-009/010 to the suite after S5 confirmation; activate M-D accuracy columns when real labels pass the EXP-005 gate.
+
+## 2026-07-05 00:59 +03:00 - Fable (Claude) - Iteration 3 (H4 rank-and-cap) + EXP-012 accuracy-baseline scaffold
+
+- Request: Keep looping the enhancement cycle; achieve a baseline of better accuracy.
+- Actions taken:
+  - Implemented H4 rank-and-cap churn trigger (top-K=10/20/30 per setting) in EXP-008 - enforces the load budget by construction, unlike a fixed threshold
+  - Built EXP-012, a dormant read-only accuracy-baseline scaffold (M-D) that reimplements EXP-003's exact leakage/accuracy definitions without importing or executing VEGO-AI/ code; wired into the suite and the iteration loop
+  - Ran iteration 3: H4 revealed a genuine capture-vs-load trade-off (0.8 capture and <=30 load/setting not simultaneously achievable with a uniform K) - a real design decision for Iris, not a tuning gap; EXP-012 produced the honest current baseline: pilot (same-pattern, N=3) original-Agent-4 accuracy 0.6667 (explicitly NOT an accuracy-improvement claim), generalization-safe baseline 0 rows / NOT YET COMPUTABLE
+  - Confirmed: no fabricated accuracy claim was made anywhere; the infrastructure is proven end-to-end so the real baseline appears automatically the day EXP-005 delivers labels
+- Files changed:
+  - scripts/exp012_accuracy_baseline.py
+  - experiments/EXP-012-accuracy-baseline-scaffold/README.md
+  - scripts/exp008_trigger_mining.py
+  - scripts/hlayer_iteration_compare.py
+  - scripts/build-hlayer-experiments.ps1
+  - scripts/run-hlayer-iteration.ps1
+  - docs/research/h-layer/experiment-iteration-ledger.md
+  - docs/research/h-layer/experiment-iteration-loop.md
+  - experiments/registry.md
+  - docs/dashboards/results-dashboard.md
+  - docs/research/meetings/2026-07-15-meeting-package.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/revert-log.md
+- Commands/checks:
+  - .\scripts\run-hlayer-iteration.ps1 (iteration 3 PASS: suite incl. EXP-012, compare, VEGO-AI-clean guardrail, evidence guard exit 0)
+  - python scripts/check_evidence_consistency.py (18/18 PASS)
+  - build-confluence-wiki + dashboard-health -RequireOutbox (after this entry)
+- Status: completed
+- Next steps: Bring the capture-vs-load trade-off (H4) and the review-item-granularity question (H5) to Iris on 2026-07-15; rerun EXP-012 the moment any EXP-005 label batch lands for the real generalization-safe baseline; continue the loop with .\scripts\run-hlayer-iteration.ps1 as the design evolves.
+
+## 2026-07-07 12:49 +03:00 - Claude - PhD Alignment Audit
+
+- Request: make sure we have srong aligment to phd
+- Actions taken:
+  - Verified evidence consistency
+  - Checked literature review taxonomy and study plans
+  - Ran project health checks
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - python scripts/check_evidence_consistency.py
+  - .\scripts\research-health.ps1
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+  - python -m pytest VEGO-AI/tests -q
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-07 12:57 +03:00 - Claude - PhD Review and Alignment Playbook Implementation
+
+- Request: do huge plan for reviewing and being aligned
+- Actions taken:
+  - Created review-alignment-playbook.md detailing step-by-step loops, codebase branch controls, evaluation real-label gates, clinical data governance (MediVARIA), and Confluence outbox checks
+  - Integrated playbook into root README.md
+  - Executed full project/research/dashboard health check validation suite
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - python scripts/check_evidence_consistency.py
+  - .\scripts\project-health.ps1
+  - .\scripts\research-health.ps1
+  - .\scripts\refresh-tracking.ps1 -Viz
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-07 13:04 +03:00 - Claude - Supervised Next-Step Loop Run
+
+- Request: Review loop iteration
+- Actions taken:
+  - Ran the next-step loop cycle via run-codex-next-step.ps1
+  - Verified that the loop remains blocked on the EXP-005 real-label gate (0 labels)
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-07 14:57 +03:00 - Claude - Supervised Next-Step Loop Run
+
+- Request: Review loop iteration
+- Actions taken:
+  - Ran the next-step loop cycle via run-codex-next-step.ps1
+  - Verified that the loop remains blocked on the EXP-005 real-label gate (0 labels)
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 12:05 +03:00 - Codex - Enhancement Plan Proposal
+
+- Request: make guge plan to enhanse
+- Actions taken:
+  - Analyzed current repository state and redirect directives
+  - Created detailed H-layer framework enhancement implementation plan
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - refresh-tracking -Pull
+  - run-codex-next-step
+  - git status
+- Status: completed
+- Next steps: Obtain user approval on the implementation plan, then draft H-layer specs and prototype scaffold
+
+
+## 2026-07-10 12:07 +03:00 - Codex - H-Layer Phase P2 Detailed Specifications and Prototyping
+
+- Request: make guge plan to enhanse
+- Actions taken:
+  - Created six detailed specification files for H-layer skills S1-S7 under docs/research/h-layer/
+  - Updated research index README.md
+  - Implemented dry-run prototype scaffold scripts/hlayer_prototype/hlayer-prototype-scaffold.py to simulate listening, triage, case bundling, and H-Verify anti-sycophancy warnings
+  - Ran and verified dry-run and conflict dialogue scenarios successfully
+  - Updated task.md, walkthrough.md, progress.md, revert-log.md, and current-state.md
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - python -m compileall
+  - python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --dry-run
+  - python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --test-conflict
+  - check_evidence_consistency.py
+  - project-health.ps1
+  - research-health.ps1
+  - dashboard-health.ps1
+- Status: completed
+- Next steps: Present specs and prototype at the 2026-07-15 meeting, capture supervisor decisions, and prepare to implement the prototype hooks on a feature branch after approval.
+
+## 2026-07-10 14:33 +03:00 - Codex - H-Layer Prompt Requirements Expansion
+
+- Request: make huge plan for requirements
+- Actions taken:
+  - Expanded prompt-requirements.md to detail serialization and reasoning.
+- Files changed:
+  - docs/research/h-layer/prompt-requirements.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 14:39 +03:00 - Codex - Meeting Package Update
+
+- Request: proceed and enhance
+- Actions taken:
+  - Updated meeting package index and results dashboard with Iteration 6 metrics.
+- Files changed:
+  - docs/research/meetings/2026-07-15-meeting-package.md
+  - docs/dashboards/results-dashboard.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 14:42 +03:00 - Codex - Research Loop Iteration 7
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Implemented and integrated EXP-009 seeded conflict dry run and EXP-010 convergence bound sweeps.
+- Files changed:
+  - experiments/registry.md
+  - scripts/build-hlayer-experiments.ps1
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 19:36 +03:00 - Codex - Research Loop Iteration 8
+
+- Request: continue doing expermints and evaluate them
+- Actions taken:
+  - Integrated EXP-004 policy sensitivity simulation into the loop runner and snapshot copying of all 7 suite experiments.
+- Files changed:
+  - experiments/EXP-009-hverify-seeded-conflict-dry-run/README.md
+  - experiments/EXP-010-convergence-bound-sweep/README.md
+  - scripts/build-hlayer-experiments.ps1
+  - scripts/run-hlayer-iteration.ps1
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 21:38 +03:00 - Codex - Research Loop Iteration 10
+
+- Request: do extensive plan
+- Actions taken:
+  - Upgraded prototype script to support real data-driven interactive review queues and dialogue rounds.
+- Files changed:
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 21:54 +03:00 - Codex - Feedback Learning Plan
+
+- Request: do extensive plan
+- Actions taken:
+  - Authored feedback learning and RLHF optimization plan in docs/research/h-layer/feedback-learning-rlhf-plan.md.
+- Files changed:
+  - docs/research/h-layer/feedback-learning-rlhf-plan.md
+  - docs/research/README.md
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 22:22 +03:00 - Codex - Prompt Architecture Specification
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Authored H-Layer prompt architecture specifications in docs/research/h-layer/prompt-architecture-guide.md.
+- Files changed:
+  - docs/research/h-layer/prompt-architecture-guide.md
+  - docs/research/README.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown

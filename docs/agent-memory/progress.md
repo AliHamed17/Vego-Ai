@@ -2,6 +2,10 @@
 
 Track milestones, current work, and next steps here.
 
+> **Executive at-a-glance view:** [`docs/PROGRESS_TRACKER.md`](../PROGRESS_TRACKER.md) — single-page phase
+> board, milestones, experiments, thesis status, gates, and the human-gated critical path. This file remains
+> the full chronological detail behind it.
+
 ## Milestones
 
 | Date | Milestone | Status | Notes |
@@ -53,6 +57,28 @@ Track milestones, current work, and next steps here.
 | 2026-06-22 | EXP-005 synthetic trial interpreted | Done | Ran a synthetic-only EXP-005 pipeline trial, generated ignored synthetic outputs, and added a tracked design-only policy candidate review. Current M4B-1 remains 0/27 classification changes and 0.00 pp synthetic accuracy delta. |
 | 2026-06-23 | Supervised Codex next-step loop added | Done | Added `scripts/run-codex-next-step.ps1` and docs so "continue" prompts run one safe cycle, stop at EXP-005/protected-path gates, and write ignored loop summaries. |
 | 2026-06-23 | Project review architecture added | Done | Added memory-connected review state, review architecture docs, and `scripts/run-project-review.ps1` so review/continue prompts produce structured verdicts and claim gates. |
+| 2026-06-23 | Progress visualization dashboard added | Done | Added refreshable Mermaid and local HTML progress visualizations generated from progress, KPI, and dashboard source files. |
+| 2026-06-23 | Progress update architecture added | Done | Added the memory, dashboard, Confluence, health-check, and 4-hour thread update architecture. |
+| 2026-06-23 | Progress update architecture diagram added | Done | Added a dedicated architecture-facing diagram for the progress update flow under `docs/architecture/`. |
+| 2026-06-23 | E2E progress report and web dashboard added | Done | Added a generated full report and local static web page tying memory, dashboards, experiment summaries, review state, Git status, Confluence outbox, and 4-hour updates together. |
+| 2026-06-23 | HITL resource pack added | Done | Added curated Human-in-the-Loop / Human-AI collaboration sources, BibTeX, tool-fit matrix, ignored downloads, and a download helper script. |
+| 2026-06-24 | Alignment and structure hardening added | Done | Added the alignment control checkpoint, thesis structure map, and evidence consistency guard; no VEGO behavior changes. |
+| 2026-06-29 | Chapter 7 current-evidence draft added | Done | Added an honest Experimental Results chapter that reports mechanism/readiness evidence and keeps quantitative accuracy results blocked until EXP-005 has real labels. |
+| 2026-06-29 | Supervisor EXP-005 approval pack added | Done | Added a supervisor-first approval document and tightened the expert-labeling protocol so the next human action is explicit before reviewer outreach. |
+| 2026-06-29 | PhD thesis optimization and Claude collaboration control added | Done | Added a PhD research trajectory page, Claude thesis collaboration prompt, and updated the research plan away from stale M4B implementation tasks. |
+| 2026-06-29 | Doctoral capability alignment hardened | Done | Added a PhD capability stack and maturity ladder, updated the Claude prompt, alignment control, architecture map, and README so future work extends the baseline through explicit research capabilities. |
+| 2026-07-04 | July 2026 supervisor redirect package implemented | Done | From the 2026-07-01 meeting transcript: meeting notes, active extension plan (H-layer framework first, evaluation parked), July-15 deliverables (skills map + prompt requirements), separated framework/evaluation diagrams, taxonomy July-2026 section, PhD idea log. Docs-only; no VEGO-AI source changes. |
+| 2026-07-04 | MediVARIA medical-domain study plan integrated | Done | One-page IIA proposal (TRL 3->5) archived (ignored); tracked study plan with VEGO-AI/H-layer mapping, MV-RQ1-6, MV-P0..P5 phases, clinical claim boundaries, thesis-enhancement checklist, and July-15 agenda additions; wired into idea log, redirect plan, thesis map, PhD plan, taxonomy, skills-map open questions. Docs-only. |
+| 2026-07-05 | H-layer mechanism experiment suite EXP-006..008 implemented and run | Done | Read-only replay: EXP-006 reported `11 queue items / 481 heterogeneous reconstructed lifecycle events`; this is a count ratio only, with no event-level visibility inference or linkage. E3/E9 gaps remained. EXP-007 replay found coarse signals; EXP-008 found 167 unstable guidelines, 160 not represented in the old queue. No VEGO-AI file touched. |
+| 2026-07-10 | H-layer Phase P2 detailed specification drafts and prototype scaffold produced | Specs provisional; prototype retired | Six specification drafts remain design aids pending M-02..M-05. The July 10 prototype is preserved only as retired historical scaffolding and is not runnable evidence; use EXP-006..018 and the hardened harness. |
+| 2026-07-10 | Research Loop Iterations 4, 5, and 6 completed | Done | Iteration 4 (baseline comparison run), Iteration 5 (M-B5/M-B6 metrics scaffold), and Iteration 6 (H5 subject-level event bundling in `exp007_dosage_replay.py` and `hlayer_iteration_compare.py`) executed. This quantifies subject-level grouping workload reductions across settings. |
+| 2026-07-10 | Research Loop Iteration 7 accepted | Done / provisional evidence | EXP-009/010 prototype scripts produced assumption-driven `SYNTHETIC_NOT_HUMAN` outputs. They expose rule behavior but do not validate real expert-error handling or approve M-04 choices. |
+| 2026-07-10 | Legacy `iter_008` snapshot generated | Not accepted | The ignored pre-hardening snapshot has no accepted protocol-changing hypothesis/verdict and does not count as iteration 8. Preserve it for audit; the next accepted iteration requires atomic runner hardening and generated evidence. |
+| 2026-07-10 | Phase 0 H-layer truth/governance reconciliation | Complete | Reconciled provisional status, experiment gates, real hook symbols, protected-path fingerprints, and allowed-touch authorization boundary without changing VEGO-AI runtime behavior. The accepted count is nine after metric/contract iteration 009; generated memory, tracker, dashboard, and wiki derivatives were refreshed after the final run. |
+| 2026-07-10 | EXP-013..018 offline conformance fixtures implemented and independently rerun | Validator passed | Six CLIs exited 0 with stable run IDs/hashes; 24 focused tests and the 19/19 offline validator passed. Claim scope remains fixture mechanism/safety only; atomic iteration-008 promotion/verdict is a separate gate. |
+| 2026-07-10 | Hardened reliability iteration 008 accepted | Done / NEUTRAL | Atomically promoted run `hlayer-20260710T171143Z-2a66e71a3f` with per-experiment/suite/iteration manifests, deferred decision snapshot, validated EXP-005 gate at 0 safe labels, repaired EXP-012 canonical cross-check, and no protected runtime diff. Legacy iter-008 snapshots are quarantined. |
+| 2026-07-10 | Offline metric-and-contract iteration 009 accepted | Done / NEUTRAL | Run `hlayer-20260710T175523Z-ab5175fd07` repaired ObservationRecord boundaries, workload denominators, transaction bundling, and Pareto sweeps: 481 captured + 20 explicit gaps; `threshold_sev2` event/transaction load 0.799/0.796, weighted/high-severity coverage 0.981/1.0; K30/K35 capture 0.75/0.85. Aggregate coverage/load target remains unmet; no default selected. |
+| 2026-07-10 | Separate offline conformance suite accepted | Done / offline-only | Run `HLAYER-CONFORMANCE-7a426ce3a5336b158606`, normalized `7a426ce3a5336b15860687f1a7f69da241e88b60b0e1b23f95a1d69b21ebba27`, decision snapshot `681102be14d0aed854dd384fe0f18cc62081d46dfbf64ab6f1a3b47fe92cb0c1`; no runtime authority. |
 
 ## Active Work
 
@@ -84,6 +110,24 @@ Track milestones, current work, and next steps here.
 | TASK-025 | 2026-06-22 | Open | Revisit synthetic M4B-1.1 policy candidates only after real EXP-005 labels exist. | Use `docs/research/m4b1-synthetic-policy-candidate-review.md` as a discussion aid; do not implement policy changes until the real-label gate passes. |
 | TASK-026 | 2026-06-23 | Open | Use the supervised next-step loop for continuation prompts. | Run `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen`; inspect `reports/generated/next_step_loop/last-run.md` and `reports/generated/project_review/latest-review.md`. |
 | TASK-027 | 2026-06-23 | Open | Use the structured project review architecture for review prompts. | Run `.\scripts\run-project-review.ps1 -UpdateReviewState` after meaningful review cycles and keep `docs/agent-memory/review-state.md` current. |
+| TASK-028 | 2026-06-23 | Done | Add generated progress visualizations for local review and Confluence dashboard tracking. | Regenerate with `.\scripts\build-progress-visualizations.ps1` after progress or KPI updates. |
+| TASK-029 | 2026-06-23 | Done | Document the progress update architecture for memory, dashboards, Confluence outbox, health checks, and 4-hour thread updates. | Keep `docs/operations/progress-update-architecture.md` aligned when the update flow changes. |
+| TASK-030 | 2026-06-23 | Done | Add architecture-facing progress update diagram. | Keep `docs/architecture/progress-update-diagram.md` aligned with the operational progress update contract. |
+| TASK-031 | 2026-06-23 | Done | Add HITL resource pack for thesis and tool planning. | Use `literature/hitl-resource-pack/` for Chapter 2 framing and future EXP-005 tool discussions; keep downloads ignored. |
+| TASK-032 | 2026-06-23 | Done | Add E2E progress report and local web dashboard for full project updates. | Regenerate with `.\scripts\build-e2e-progress-report.ps1` after memory, KPI, experiment, or review-state updates. |
+| TASK-033 | 2026-06-24 | Done | Add alignment and structure hardening checkpoint. | Use `docs/operations/alignment-control.md`, `docs/research/thesis-structure-map.md`, and `python scripts\check_evidence_consistency.py` before evidence claims or thesis status updates. |
+| TASK-034 | 2026-06-29 | Done | Draft Chapter 7 without overclaiming results. | After EXP-005 labels exist, rerun the downstream gate and replace the blocked quantitative-result placeholders with real accuracy, macro-F1, paired-correctness, and reliability results. |
+| TASK-035 | 2026-06-29 | Done | Prepare supervisor-first EXP-005 approval pack. | Send/review `docs/research/supervisor-label-approval-pack.md` with the supervisor; after approval, collect blind labels and rerun the EXP-005 downstream gate. |
+| TASK-036 | 2026-06-29 | Done | Align Claude/Codex around the PhD thesis trajectory. | Use `docs/research/phd-thesis-optimization-plan.md` and `docs/agent-memory/claude-phd-thesis-collaboration-prompt.md` for future thesis/research-structure collaboration. |
+| TASK-037 | 2026-06-29 | Done | Harden doctoral extension capability model. | Use the capability stack in `docs/research/phd-thesis-optimization-plan.md` before proposing PhD extension work, especially baseline, memory, evaluation, and governance changes. |
+| TASK-040 | 2026-07-04 | In progress | Execute the July 2026 supervisor redirect (`docs/research/extension-plan-2026-07-supervisor-redirect.md`). | Finalize the 2026-07-15 meeting package (skills map, prompt requirements, framework diagram, open questions); after the meeting, start P2 detail specs. |
+| TASK-041 | 2026-07-04 | Open | Literature survey for Pnina's course per the taxonomy July-2026 section. | Build the corpus log per branch; presentation mid-August 2026; submission end-September/October 2026; the gap statement is the key output. |
+| TASK-042 | 2026-07-04 | Open | Maintain the PhD extension idea log. | Add entries to `docs/research/phd-extension-ideas.md` while reading; medical-domain transfer is the preferred direction; Ali to check direct-track admin with Sigal. |
+| TASK-043 | 2026-07-04 | Open | Execute the MediVARIA study plan (MV-P0 groundwork). | Present `docs/research/medivaria/medivaria-study-plan.md` at the 2026-07-15 meeting (agenda section 8); get Iris/Arnon endorsement of the thesis-vs-IIA role split and the first clinical guideline domain; keep thesis scope education-only until submission. |
+| TASK-044 | 2026-07-05 | Open | Advance the H-layer mechanism experiment suite. | Harden atomic execution first; then rerun only approved protocols. EXP-009/010 already have provisional synthetic prototypes and await M-04. |
+| TASK-045 | 2026-07-05 | Open / gated | Run the H-layer improvement loop per iteration protocol. | Nine iterations are accepted. Preserve iteration-009 Pareto semantics; `threshold_sev2` and K30/K35 are comparison points only. Iterations 010/011 remain blocked. |
+| TASK-046 | 2026-07-05 | Done / human-gated | Repair EXP-012 measurement scaffold. | Validated interface and canonical cross-check pass; safe N=0 remains `NOT YET COMPUTABLE`. Next change requires real human labels, not code inference. |
+| TASK-047 | 2026-07-10 | Blocked | Prepare passive H-layer shadow listener. | Offline design only until M-05 plus the separate five-file implementation authorization are recorded. |
 
 ## Completed Work
 
@@ -133,8 +177,20 @@ Track milestones, current work, and next steps here.
 | 2026-06-22 | Interpreted EXP-005 synthetic trial as design-only policy guidance. | `docs/research/m4b1-synthetic-policy-candidate-review.md`, `docs/research/accuracy-improvement-plan.md`, `experiments/EXP-005-real-label-accuracy-gate/README.md`, `docs/dashboards/kpi-register.md`, ignored `reports/generated/exp005_synthetic_trial/`, ignored `artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md` |
 | 2026-06-23 | Added supervised Codex next-step loop. | `scripts/run-codex-next-step.ps1`, `docs/operations/codex-next-step-loop.md`, `docs/operations/vego-workbench.md`, `README.md`, `AGENTS.md`, `CLAUDE.md`, memory files |
 | 2026-06-23 | Added memory-connected project review architecture. | `scripts/run-project-review.ps1`, `docs/operations/project-review-architecture.md`, `docs/agent-memory/review-state.md`, `scripts/agent-memory-start.ps1`, loop/docs/memory instruction files |
+| 2026-06-23 | Added generated progress visualizations. | `scripts/build-progress-visualizations.ps1`, `docs/dashboards/README.md`, `docs/dashboards/progress-dashboard.md`, `scripts/build-confluence-wiki.ps1`, `scripts/dashboard-health.ps1`, `scripts/research-health.ps1`, `.gitignore` |
+| 2026-06-23 | Added progress update architecture. | `docs/operations/progress-update-architecture.md`, `README.md`, `docs/architecture/project-map.md`, `docs/architecture/README.md`, `docs/dashboards/README.md`, `scripts/build-confluence-wiki.ps1`, `scripts/research-health.ps1` |
+| 2026-06-23 | Added architecture-facing progress update diagram. | `docs/architecture/progress-update-diagram.md`, `README.md`, `docs/architecture/README.md`, `docs/architecture/project-map.md`, `scripts/build-confluence-wiki.ps1`, `scripts/research-health.ps1` |
+| 2026-06-23 | Added E2E progress report and web dashboard. | `scripts/build-e2e-progress-report.ps1`, `docs/dashboards/README.md`, `docs/dashboards/progress-dashboard.md`, `docs/operations/progress-update-architecture.md`, `docs/architecture/progress-update-diagram.md`, `scripts/build-confluence-wiki.ps1`, `scripts/dashboard-health.ps1`, `scripts/research-health.ps1`, `scripts/open-vego-workbench.ps1` |
+| 2026-06-23 | Added HITL resource pack for thesis and tool planning. | `literature/hitl-resource-pack/`, `scripts/download-hitl-resources.ps1`, `docs/research/literature-review-taxonomy.md`, `docs/research/methodology.md`, `docs/research/accuracy-improvement-plan.md`, `scripts/research-health.ps1` |
+| 2026-06-24 | Added alignment and structure hardening sprint. | `docs/operations/alignment-control.md`, `docs/research/thesis-structure-map.md`, `scripts/check_evidence_consistency.py`, `README.md`, `docs/architecture/project-map.md`, `docs/research/README.md`, `docs/agent-memory/resource-memory.md`, `scripts/research-health.ps1` |
+| 2026-06-29 | Added Chapter 7 current-evidence/results-readiness draft and refreshed thesis progress status. | `thesis/chapters/07-experimental-results.md`, `thesis/outline.md`, `docs/research/thesis-structure-map.md`, `docs/PROGRESS_TRACKER.md`, memory files |
+| 2026-06-29 | Added supervisor-first EXP-005 approval pack and label workflow handoff. | `docs/research/supervisor-label-approval-pack.md`, `docs/research/expert-labeling-protocol.md`, `thesis/outline.md`, `docs/PROGRESS_TRACKER.md`, `docs/research/README.md`, memory files |
+| 2026-06-29 | Added PhD thesis optimization and Claude collaboration handoff. | `docs/research/phd-thesis-optimization-plan.md`, `docs/agent-memory/claude-phd-thesis-collaboration-prompt.md`, `CLAUDE.md`, `docs/research/research-plan.md`, `docs/research/thesis-structure-map.md`, `docs/research/README.md`, memory files |
+| 2026-06-29 | Hardened doctoral capability alignment for Claude/Codex and future PhD studies. | `docs/research/phd-thesis-optimization-plan.md`, `docs/agent-memory/claude-phd-thesis-collaboration-prompt.md`, `docs/operations/alignment-control.md`, `docs/architecture/project-map.md`, `docs/architecture/README.md`, `README.md`, memory files |
 
 ## Next Steps
+
+Note (2026-07-10): Phase 0, reliability iteration 008, and metric/contract iteration 009 are complete. Active priorities are (a) record M-01..M-06; (b) keep iterations 010/011 blocked until their gates clear; (c) progress EXP-005 protocol/reviewer scheduling without inventing labels. Live listener work remains blocked.
 
 1. Run `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen` for supervised continuation prompts.
 2. Run `.\scripts\run-project-review.ps1 -UpdateReviewState` for structured review-only prompts.
@@ -149,10 +205,17 @@ Track milestones, current work, and next steps here.
 11. Capture supervisor decisions on thesis framing, label protocol, target label count, leakage policy, and M4B-2 gating.
 12. Review and merge PR #6 for M4B schema hardening when ready.
 13. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-14. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
-15. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
-16. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-17. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
-18. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-19. Convert existing package results into evidence entries under `EXP-000`.
-20. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+14. Run `.\scripts\build-progress-visualizations.ps1` to refresh the local Mermaid/HTML progress visualizations after progress or KPI updates.
+15. Run `.\scripts\build-e2e-progress-report.ps1` to refresh the full report and local web dashboard after progress, KPI, experiment, or review-state updates.
+16. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, progress visualizations, E2E report, wiki outbox, and manual sync pack.
+17. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
+18. Keep `docs/operations/progress-update-architecture.md` aligned when the progress update or scheduled check-in flow changes.
+19. Keep `docs/architecture/progress-update-diagram.md` aligned with the operations contract when the update architecture changes.
+20. Use `literature/hitl-resource-pack/` when writing Chapter 2 or discussing future EXP-005 labeling tools; rerun `.\scripts\download-hitl-resources.ps1` when source downloads need refreshing.
+21. Use `docs/operations/alignment-control.md` as the short alignment checkpoint before project-status or thesis-claim updates.
+22. Run `python scripts\check_evidence_consistency.py` before evidence claims, review summaries, or supervisor-facing status reports.
+23. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
+24. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
+25. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
+26. Convert existing package results into evidence entries under `EXP-000`.
+27. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.

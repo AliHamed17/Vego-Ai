@@ -75,6 +75,15 @@ VEGO-AI/vego_visualizer_delivery/guidelines/
 # Research/IRB documents pending sharing review
 *.pdf
 
+# Private supervisor-meeting source media and raw ASR (local only)
+docs/video1832857678.mp4
+docs/video1832857678.transcript.he.*
+presentations/video1832857678.mp4
+presentations/video1832857678_transcript.*
+
+# Local literature/resource downloads
+literature/hitl-resource-pack/downloads/**
+
 # Archives and packages
 *.zip
 *.exe
@@ -86,9 +95,11 @@ VEGO-AI/vego_visualizer_delivery/guidelines/
 
 # Generated memory bundle
 docs/agent-memory/compiled-memory.md
+docs/agent-memory/compiled-memory-t*.md
 
 # Generated dashboard runtime snapshots
 docs/dashboards/*.generated.md
+docs/dashboards/*.generated.html
 
 # Generated Confluence sync outbox and local target config
 docs/confluence/outbox/**
@@ -97,8 +108,16 @@ docs/confluence/*.generated.md
 
 # Local Claude workspace permissions/state
 .claude/*.local.json
+.claude/agents/**
+.claude/worktrees/**
+
+# Local editor launch config
+.vscode/launch.json
 
 # OS and editor noise
 .DS_Store
 Thumbs.db
 desktop.ini
+.~lock.*
+*.tmp
+*.backup.pptx

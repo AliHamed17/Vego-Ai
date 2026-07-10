@@ -178,6 +178,18 @@ Every EXP-005 rerun generates ignored manifest/verdict artifacts under `reports/
 
 Use these files to record commit hash, label counts, protected-path diff status, generated outputs, and required validation commands. Stable evidence tags are allowed only after the manifest, health checks, and supervisor/reviewer interpretation are reviewed.
 
+## HITL Resource Pack
+
+The curated resource pack in `literature/hitl-resource-pack/` supports the accuracy-improvement path by documenting Human-AI collaboration literature, governance sources, and candidate labeling/data-quality tools.
+
+Use the pack for:
+
+- EXP-005 reviewer workflow design.
+- Supervisor discussion of human oversight, adjudication, and label quality.
+- Future consideration of Label Studio, Argilla, modAL, or cleanlab after real labels exist.
+
+Do not treat resource-pack tools or literature as evidence that VEGO-AI accuracy improved. Accuracy remains blocked until EXP-005 has enough real, generalization-safe expert labels.
+
 ## Non-Negotiable Boundaries
 
 - Do not modify Agent 4.

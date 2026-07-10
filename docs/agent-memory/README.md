@@ -10,6 +10,7 @@ This folder is the shared project memory for Codex and Claude.
 - `compiled-memory.md`: generated combined memory context from all memory files.
 - `current-state.md`: latest known project state and short orientation.
 - `shared-state-report.md`: high-level Claude/Codex research and governance state report.
+- `resource-memory.md`: compact shared index of reusable research/tool resources, including the HITL resource pack.
 - `progress.md`: milestones, current tasks, next steps, and completion status.
 - `session-log.md`: chronological history of prompts and progress.
 - `issues.md`: open, blocked, and resolved issues.
@@ -25,10 +26,11 @@ This folder is the shared project memory for Codex and Claude.
 3. Do the requested work.
 4. Before the final response, run `.\scripts\agent-memory-finish.ps1` with the prompt summary.
 5. Update current state, progress, issues, and decisions manually when the work changes them.
-6. Update `docs/dashboards/` when progress, KPI values, or validated results change.
-7. Run `.\scripts\build-confluence-wiki.ps1` to refresh the ignored dashboard runtime snapshot, wiki outbox, and manual Confluence sync pack, then update live Confluence if local target IDs are configured.
-8. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the wiki outbox.
-9. If Git is initialized later, include commit hashes in the session and revert logs.
+6. Update `resource-memory.md` when durable shared research/tool resources are added, deprecated, or promoted into regular workflow.
+7. Update `docs/dashboards/` when progress, KPI values, or validated results change.
+8. Run `.\scripts\build-confluence-wiki.ps1` to refresh the ignored dashboard runtime snapshot, wiki outbox, and manual Confluence sync pack, then update live Confluence if local target IDs are configured.
+9. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the wiki outbox.
+10. If Git is initialized later, include commit hashes in the session and revert logs.
 
 ## Prompt Checklist
 

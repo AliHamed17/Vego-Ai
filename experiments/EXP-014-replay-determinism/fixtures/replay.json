@@ -1,0 +1,51 @@
+{
+  "fixture_version": "1.0",
+  "run_id": "fixture-run-exp014",
+  "dosage_config": {"mode": "fixture_explicit", "approved_default": false},
+  "events": [
+    {
+      "event_type": "E1",
+      "setting_id": "cd_ch",
+      "case_id": null,
+      "producer": "agent1_fixture",
+      "channel": "artifact",
+      "sequence": 1,
+      "severity": 1,
+      "trigger_codes": [],
+      "payload": {"subject": "template"}
+    },
+    {
+      "event_type": "E2",
+      "setting_id": "cd_ch",
+      "case_id": "case-2",
+      "producer": "agent2_fixture",
+      "channel": "qa",
+      "sequence": 2,
+      "severity": 2,
+      "trigger_codes": ["significant_uncertainty"],
+      "payload": {"subject": "question-Q2"}
+    },
+    {
+      "event_type": "E4",
+      "setting_id": "ucd_pw",
+      "case_id": "case-10",
+      "producer": "agent2_fixture",
+      "channel": "artifact",
+      "sequence": 3,
+      "severity": 2,
+      "trigger_codes": ["guideline_churn"],
+      "payload": {"subject": "guideline-G3"}
+    },
+    {
+      "event_type": "E6",
+      "setting_id": "ucd_pw",
+      "case_id": "case-11",
+      "producer": "agent3_fixture",
+      "channel": "artifact",
+      "sequence": 4,
+      "severity": 3,
+      "trigger_codes": ["significant_uncertainty"],
+      "payload": {"subject": "fragment-F1"}
+    }
+  ]
+}

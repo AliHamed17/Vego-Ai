@@ -1,0 +1,53 @@
+%%{ init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4fd', 'primaryBorderColor': '#2b6cb0', 'lineColor': '#4a5568', 'textColor': '#1a202c' } } }%%
+flowchart TB
+    subgraph baseline["VEGO-AI Baseline (C0) — read-only"]
+        A4OUT["Agent 4 Output<br/><i>27 patterns: 9 Substantial, 18 Occasional</i><br/><i>confidence, requires_human_review, justification</i>"]
+    end
+
+    subgraph artifact["Human–AI Co-Reasoning Artifact"]
+        subgraph m1["M1 — Selective Review"]
+            SIP["Selective Intervention Policy<br/><i>Triggers: review flag, undetermined,<br/>low/medium confidence, guidelines update</i>"]
+            HRQ["human_review_queue.jsonl<br/><i>11 of 27 patterns queued</i>"]
+        end
+
+        subgraph m2["M2 — Structured Feedback"]
+            HFM["Human Feedback Manager<br/><i>Schema-validated decisions<br/>Signature verification</i>"]
+            RES["human_review_queue_resolved.jsonl<br/><i>4 feedback entries attached</i>"]
+        end
+
+        subgraph m3["M3 — Judgment Memory"]
+            HJM["Human Judgment Memory<br/><i>Provenance-tracked, conflict-aware<br/>Explainable, embedding-free retrieval</i>"]
+            MEM["human_judgment_memory.jsonl<br/><i>3 reusable entries</i>"]
+        end
+
+        subgraph m4a["M4A — Advisory Retrieval"]
+            MA["Memory Advisor<br/><i>Graded advice_strength<br/>match_reasons, conflict warnings</i>"]
+            ADV["memory_advice.json<br/><i>8 advice items<br/>ai_classification_changed = false</i>"]
+        end
+
+        subgraph m4b["M4B-1 — Parallel Comparison"]
+            MIC["Memory-Informed Classifier<br/><i>Deterministic policy table<br/>decision_trace, leakage tags</i>"]
+            CMP["memory_informed_comparison.json<br/><i>27 rows, 0 differ from original<br/>ai_behavior_changed_in_baseline = false</i>"]
+        end
+    end
+
+    HUMAN(["Human Expert<br/><i>Reviews, decides, provides rationale</i>"])
+
+    A4OUT --> SIP
+    SIP --> HRQ
+    HRQ --> HUMAN
+    HUMAN --> HFM
+    HFM --> RES
+    RES --> HJM
+    HJM --> MEM
+    MEM --> MA
+    A4OUT --> MA
+    MA --> ADV
+    ADV --> MIC
+    A4OUT --> MIC
+    MIC --> CMP
+
+    style baseline fill:#f7fafc,stroke:#718096
+    style HUMAN fill:#fefcbf,stroke:#d69e2e,color:#1a202c
+    style A4OUT fill:#e2e8f0,stroke:#4a5568,color:#1a202c
+    style CMP fill:#c6f6d5,stroke:#276749,color:#1a202c
