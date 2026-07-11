@@ -2,16 +2,16 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-10 by Codex (Phase 0 H-layer truth/governance reconciliation)
+**Last Updated:** 2026-07-11 by Codex (Phase 0 H-layer feedback generalization boundary)
 
 ---
 
 ## 1. Quick Status (< 10 lines)
-* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. The current `main` worktree is dirty and is not a clean, merged, or finalized package state.
+* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. The current feature-branch worktree is dirty and is not a clean, merged, or finalized package state.
 * Two constraints are active: offline H-layer architecture/experiment hardening and the EXP-005 human-label gate for the parked evaluation track.
 * The machine-derived July 1 meeting record supports a **framework-first** direction pending participant confirmation. M-02 through M-05 have no recorded outcomes.
 * July-15 skills, prompt requirements, and six detailed specifications are **provisional drafts**, not approved interfaces. `allowed-touch-proposal.md` is also unapproved.
-* **Research Loop:** Nine iterations (001-009) are accepted. Iteration 009 (`hlayer-20260710T175523Z-ab5175fd07`) is offline metric/contract repair, `NEUTRAL`: 501 ObservationRecords, repaired dosage denominators/Pareto sweep, no default. Separate conformance run `HLAYER-CONFORMANCE-7a426ce3a5336b158606` is offline-only. Iterations 010/011 remain blocked; EXP-012 safe N=0 remains not computable.
+* **Research Loop:** Twelve iterations (001-012) are accepted. Iteration 009 (`hlayer-20260710T175523Z-ab5175fd07`) is offline metric/contract repair; iteration 010 (`hlayer-20260710T183658Z-9199809f30`) is a reliability-only rerun; iteration 011 (`hlayer-20260711T102518Z-1ecc5dc68f`) snapshots the updated replay suite with decision snapshot synchronizations and the new offline `feedback_generalizer.py` script; iteration 012 (`hlayer-20260711T123453Z-6cca11a0c8`) snapshots the updated replay suite under the updated supervisor decision register snapshot. All are `NEUTRAL` and select no default. Separate conformance run `HLAYER-CONFORMANCE-1bf053acc473a151d37c` is offline-only.
 * **MediVARIA draft added (2026-07-04):** a provisional PhD/future-work proposal exists, but it is not supervisor-endorsed clinical work. MSc evidence remains education-only; there is no patient data or clinical-performance evidence in this repo.
 * **Accuracy Verdict:** *Accuracy improvement cannot be evaluated yet* (0 generalization-safe real labels exist). The EXP-005 gate now gates the PARKED evaluation track only - not framework-track doc/spec work.
 
@@ -28,8 +28,8 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
   -> M4B-1 Deterministic Memory-Informed Comparison (parallel experimental comparison)
 ```
 * **Git Repository:** Initialized; baseline pushed to private `AliHamed17/Vego-Ai`.
-* **Current Branch:** `main` at `c72b845`, with a heavily dirty worktree. The visualizer tag `research-state-visualizer-ux-clean` names a historical commit; it does not describe current workspace cleanliness.
-* **Active PRs:** PR #6 open (schema/tests hardening, no behavior changes).
+* **Current Branch:** `agent/publish-hlayer-and-supervisor-package` at `134ce86`, with a dirty worktree. The visualizer tag `research-state-visualizer-ux-clean` names a historical commit; it does not describe current workspace cleanliness.
+* **Active PRs:** PR #6 open (schema/tests hardening, no behavior changes); draft PR #8 tracks `agent/publish-hlayer-and-supervisor-package`.
 * **Tags:** `milestone-m3-human-judgment-memory`, `milestone-m4a-memory-advisory`, `research-state-m4a-clean`, `research-state-results-dashboard`, `research-state-m4b1-deterministic-comparison`.
 
 ---
@@ -49,7 +49,7 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 ## 4. Next Action
 1. **Phase 0:** source reconciliation and focused validation are complete; preserve the protected fingerprints and refresh compiled-memory/Confluence derivatives only after the final harness outcome.
 2. **Phase 1:** record M-01..M-06. Until then, keep architecture, dosage, H-Verify, authority, and timeout choices provisional.
-3. **Offline advancement:** preserve iterations 008/009 atomic contracts and metric semantics. Iterations 010/011 remain blocked by M-04/architecture decisions and must not be marked complete.
+3. **Offline advancement:** preserve iterations 008-010 atomic contracts and metric semantics. Keep iteration 011, prompt/context integration, and trusted-memory reuse blocked by the decision and evidence gates.
 4. **Phase 4:** remain blocked until M-05 plus a separate exact-file implementation authorization.
 5. **EXP-005:** obtain protocol approval and schedule two human reviewers; supplied generalization-safe real labels remain 0 and must never be inferred or prefilled.
 

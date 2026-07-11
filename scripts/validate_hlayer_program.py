@@ -5,7 +5,7 @@ This validator bridges the historical replay-suite manifest and the versioned
 contract/conformance manifest without changing either runtime API.  It verifies
 their canonical hashes, the EXP-006 -> EXP-007 ObservationRecord boundary,
 decision/EXP-005 gates, the latest accepted iteration, protected paths, and the
-retired prototype marker.
+offline demonstration safety boundary.
 """
 
 from __future__ import annotations
@@ -13,8 +13,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
+import runpy
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any, Callable
 
@@ -49,6 +53,16 @@ def load_json(path: Path) -> dict[str, Any]:
         raise ProgramValidationError(f"cannot read JSON {path}: {exc}") from exc
     if not isinstance(value, dict):
         raise ProgramValidationError(f"JSON root must be an object: {path}")
+    return value
+
+
+def load_json_list(path: Path) -> list[dict[str, Any]]:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ProgramValidationError(f"cannot read JSON {path}: {exc}") from exc
+    if not isinstance(value, list) or not all(isinstance(item, dict) for item in value):
+        raise ProgramValidationError(f"JSON root must be a list of objects: {path}")
     return value
 
 
@@ -203,16 +217,140 @@ def validate_latest_iteration(replay_suite: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def validate_retired_prototype() -> dict[str, Any]:
+def validate_offline_demo() -> dict[str, Any]:
+    """Run the synthetic demo in temp storage and verify its safety markers."""
     path = REPO / "scripts/hlayer_prototype/hlayer-prototype-scaffold.py"
+    try:
+        namespace = runpy.run_path(str(path), run_name="hlayer_demo_validation")
+    except Exception as exc:
+        raise ProgramValidationError(f"offline demo module cannot load: {exc}") from exc
+
+    expected_default = REPO / "reports/generated/hlayer_demo"
+    require(
+        Path(namespace.get("DEFAULT_OUTPUT_DIR", "")) == expected_default,
+        "offline demo default output directory is not isolated",
+    )
+    require(
+        namespace.get("SEMANTIC_CHECKER_ENABLED") is False,
+        "unapproved semantic checker must remain disabled",
+    )
+    require(
+        namespace.get("SYNTHETIC_ORIGIN") == "SYNTHETIC_NOT_HUMAN",
+        "synthetic-origin marker is missing",
+    )
+    output_guard = namespace.get("validate_output_dir")
+    require(callable(output_guard), "offline demo output-path guard is missing")
+    require(
+        output_guard(expected_default) == expected_default,
+        "offline demo output-path guard rejected the intended reports directory",
+    )
+    for protected_output in (REPO / "VEGO-AI/demo-output", REPO / ".git/demo-output"):
+        try:
+            output_guard(protected_output)
+        except ValueError:
+            pass
+        else:
+            raise ProgramValidationError(
+                f"offline demo output-path guard accepted protected path: {protected_output}"
+            )
+
     text = path.read_text(encoding="utf-8")
+    require("Semantic Warning" not in text, "unapproved semantic warning implementation remains")
     require(
-        "RETIRED" in text and "dummy instability" in text, "prototype retirement notice is missing"
+        "violates domain constraints" not in text,
+        "low-certainty guideline is still described as a domain constraint",
     )
-    require(
-        "class HLayerPrototype" not in text, "misleading prototype implementation remains runnable"
-    )
-    return {"path": path.relative_to(REPO).as_posix(), "status": "retired_fail_fast"}
+
+    with tempfile.TemporaryDirectory(prefix="hlayer-demo-validation-") as temp_root:
+        output_dir = Path(temp_root) / "demo-output"
+        process = subprocess.run(
+            [
+                sys.executable,
+                str(path),
+                "--mock-session",
+                "--output-dir",
+                str(output_dir),
+            ],
+            cwd=REPO,
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+        require(
+            process.returncode == 0,
+            "offline demo mock failed: " + (process.stderr or process.stdout)[-1000:],
+        )
+        feedback_path = output_dir / str(namespace["FEEDBACK_FILENAME"])
+        adjudication_path = output_dir / str(namespace["ADJUDICATION_FILENAME"])
+        feedback_records = load_json_list(feedback_path)
+        adjudication_records = load_json_list(adjudication_path)
+
+        require(bool(feedback_records), "mock session produced no ordinary feedback record")
+        require(bool(adjudication_records), "mock session produced no adjudication candidate")
+        all_records = feedback_records + adjudication_records
+        require(
+            all(record.get("origin") == "SYNTHETIC_NOT_HUMAN" for record in all_records),
+            "mock records are not all marked SYNTHETIC_NOT_HUMAN",
+        )
+        require(
+            all(record.get("trusted_memory_eligible") is False for record in all_records),
+            "demo record was marked eligible for trusted memory",
+        )
+        require(
+            all(isinstance(record.get("provenance"), dict) for record in all_records),
+            "demo record is missing provenance",
+        )
+        require(
+            not any(
+                record.get("state") == "needs_adjudication" or record.get("override_requested")
+                for record in feedback_records
+            ),
+            "unadjudicated override leaked into ordinary feedback records",
+        )
+        require(
+            all(
+                record.get("state") == "needs_adjudication"
+                and record.get("record_type") == "adjudication_candidate"
+                for record in adjudication_records
+            ),
+            "adjudication queue contains a non-candidate record",
+        )
+
+        linked_output = Path(temp_root) / "linked-output"
+        linked_output.mkdir()
+        victim = Path(temp_root) / "linked-victim.json"
+        victim.write_text("[]\n", encoding="utf-8")
+        linked_feedback = linked_output / str(namespace["FEEDBACK_FILENAME"])
+        os.link(victim, linked_feedback)
+        store = namespace["DemoOutputStore"](linked_output)
+        try:
+            store.save_feedback_record(
+                {
+                    "record_id": "LINK-SAFETY-CHECK",
+                    "state": "feedback_received",
+                    "override_requested": False,
+                }
+            )
+        except RuntimeError:
+            pass
+        else:
+            raise ProgramValidationError("offline demo accepted a multi-link output file")
+        require(
+            victim.read_text(encoding="utf-8") == "[]\n",
+            "offline demo modified a linked file outside its output record",
+        )
+
+    return {
+        "path": path.relative_to(REPO).as_posix(),
+        "status": "runnable_offline_safe",
+        "default_output": expected_default.relative_to(REPO).as_posix(),
+        "semantic_checker_enabled": False,
+        "mock_origin": "SYNTHETIC_NOT_HUMAN",
+        "trusted_memory_eligible": False,
+        "protected_output_paths_rejected": ["VEGO-AI", ".git"],
+        "linked_output_files_rejected": True,
+    }
 
 
 def validate_registry() -> dict[str, Any]:
@@ -228,7 +366,7 @@ def run_checks() -> dict[str, Any]:
         ("replay_suite", validate_replay_suite),
         ("contract_boundary", validate_contract_boundary),
         ("conformance_suite", validate_conformance_suite),
-        ("retired_prototype", validate_retired_prototype),
+        ("offline_demo", validate_offline_demo),
         ("registry", validate_registry),
     ]
     details: dict[str, Any] = {}

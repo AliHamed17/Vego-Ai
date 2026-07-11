@@ -679,3 +679,165 @@ Chronological prompt history for Codex and Claude.
   - No commands/checks recorded
 - Status: completed
 - Next steps: Unknown
+
+## 2026-07-10 22:58 +03:00 - Codex - Handoff Briefing Prompt
+
+- Request: give extensive prompt to codex for nextstep
+- Actions taken:
+  - Created Codex next-step briefing handoff prompt at docs/agent-memory/codex-nextstep-handoff-prompt.md.
+- Files changed:
+  - docs/agent-memory/codex-nextstep-handoff-prompt.md
+  - docs/agent-memory/README.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 23:48 +03:00 - Codex - Reconcile Iteration 10 and implement gated feedback flow
+
+- Request: Continue from the Codex next-step handoff while preserving the EXP-005 and M-02 through M-05 gates.
+- Actions taken:
+  - Verified iteration 010 and canonical suite membership against manifests.
+  - Reconciled the handoff, registry, ledger, dashboards, progress memory, and feedback-learning documents.
+  - Implemented a deterministic offline feedback generalizer that emits proposal-only artifacts and zero current candidates.
+  - Hardened the supervisor demo with isolated outputs, adjudication separation, deterministic-only checks, provenance, and protected-path guards.
+  - Added the July 15 demo runbook and refreshed validation coverage.
+- Files changed:
+  - scripts/feedback_generalizer.py and scripts/tests/test_feedback_generalizer.py
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py and scripts/validate_hlayer_program.py
+  - docs/research/h-layer/* status, prompt, learning, iteration, and demo-runbook files
+  - experiments/registry.md and docs/dashboards/*
+  - docs/agent-memory current-state, progress, issues, decisions, resource-memory, review-state, README, and handoff
+- Commands/checks:
+  - python -m pytest scripts/tests/test_feedback_generalizer.py -q -> 11 passed
+  - python scripts/validate_hlayer_program.py -> PASS, 8 checks
+  - python scripts/validate_hlayer_offline.py -> PASS, 19 checks
+  - python scripts/check_evidence_consistency.py -> PASS 18/18
+  - project-health.ps1, research-health.ps1, dashboard-health.ps1 -RequireOutbox -> PASS
+  - demo dry-run, deterministic conflict check, and temp mock session -> PASS with legacy outputs hash-unchanged
+- Status: completed
+- Next steps: Use the isolated July 15 demo to record M-01 through M-06. Keep LLM synthesis, trusted-memory reuse, Agent B context delivery, iteration 011, live listener work, and quantitative evaluation blocked until their explicit gates clear.
+
+## 2026-07-10 23:59 +03:00 - Codex - Close final feedback-flow safety findings
+
+- Request: Address final P1/P2 review findings before handoff.
+- Actions taken:
+  - Required trusted-memory eligibility plus allowlisted human/trusted-export origin and rejected demo, synthetic, adjudication, and pending-override records.
+  - Rejected input/output aliases and staged the full generalizer package before promotion.
+  - Made demo JSON writes atomic and rejected symlink, reparse-point, and multi-link destinations.
+  - Corrected current branch, HEAD, and active PR metadata in status surfaces.
+- Files changed:
+  - scripts/feedback_generalizer.py and scripts/tests/test_feedback_generalizer.py
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py and scripts/validate_hlayer_program.py
+  - H-layer eligibility docs and shared current-state/decision/issue memory
+- Commands/checks:
+  - python -m pytest scripts/tests/test_feedback_generalizer.py -q -> 13 passed
+  - python -m ruff check targeted scripts -> PASS
+  - python scripts/validate_hlayer_program.py -> PASS, linked-output guard included
+  - python scripts/feedback_generalizer.py -> BLOCKED_NO_VERIFIED_FEEDBACK, 0 candidates
+- Status: completed
+- Next steps: Record M-decisions and obtain real verified/adjudicated feedback before synthesis; no LLM or Agent B integration.
+
+## 2026-07-11 00:09 +03:00 - Codex - Finalize trusted-export and atomic publication gates
+
+- Request: Close adversarial review findings in the offline feedback flow.
+- Actions taken:
+  - Required a separately validated manifest binding the exact feedback export hash and eligible record IDs.
+  - Added full-package staging, rollback restoration, and preservation of rollback backups when restoration itself fails.
+  - Added regression tests for missing/invalid trust manifests, direct aliases, single promotion failure, and double rollback failure.
+  - Documented the non-authorizing trusted-export manifest shape.
+- Files changed:
+  - scripts/feedback_generalizer.py and scripts/tests/test_feedback_generalizer.py
+  - docs/research/h-layer/feedback-learning-rlhf-plan.md, prompt requirements/architecture, and trusted-feedback-export-manifest.template.json
+  - shared handoff, decisions, issues, current-state, and status surfaces
+- Commands/checks:
+  - python -m pytest scripts/tests/test_feedback_generalizer.py -q -> 16 passed
+  - python -m ruff check targeted generalizer files -> PASS
+  - adversarial independent re-review -> no remaining P0/P1
+  - program/offline/evidence validators -> PASS
+- Status: completed
+- Next steps: A human-governed trusted-feedback export validator/approval must produce the companion manifest before any record can enter offline synthesis; M-05 still blocks runtime delivery.
+
+## 2026-07-11 13:28 +03:00 - Codex - H-Layer Iteration 11 and Conforming Generalizer Implementation
+
+- Request: do extensive plan to continue
+- Actions taken:
+  - Hardened hlayer-prototype-scaffold.py override routing to prevent ordinary feedback memory pollution.
+  - Created and fully verified scripts/feedback_generalizer.py against the offline conformance unit test suite.
+  - Executed run-hlayer-iteration.ps1 to snap-shot and promote accepted Iteration 11.
+- Files changed:
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py
+  - scripts/feedback_generalizer.py
+  - docs/research/h-layer/experiment-iteration-ledger.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/resource-memory.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:36 +03:00 - Codex - Supervisor Meeting Package Synchronization with Iteration 12
+
+- Request: do extensive plan to continue
+- Actions taken:
+  - Updated supervisor pre-reads, follow-up annexes, and decision register to reference Iteration 12 and the feedback_generalizer.py script.
+  - Re-executed build_hlayer_decision_snapshot.py, run_hlayer_conformance_suite.py, and run-hlayer-iteration.ps1 to generate Iteration 12.
+- Files changed:
+  - docs/research/meetings/2026-07-15-supervisor-executive-pre-read.md
+  - docs/research/meetings/2026-07-15-supervisor-follow-up-annex.md
+  - docs/research/meetings/2026-07-15-supervisor-decision-register.md
+  - docs/research/meetings/2026-07-15-full-progress-presentation-manifest.md
+  - docs/research/h-layer/experiment-iteration-ledger.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/codex-nextstep-handoff-prompt.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:47 +03:00 - Codex - Ethics and IRB Data Sensitivity Audit
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Completed ethics-irb checklist using paper PDF and meeting transcript details.
+  - Updated artifact-audit log metadata pass status.
+  - Resolved ISS-004 in issues.md.
+  - Synchronized references in codex-nextstep-handoff-prompt.md.
+- Files changed:
+  - docs/research/ethics-irb.md
+  - docs/research/artifact-audit.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/codex-nextstep-handoff-prompt.md
+  - docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:51 +03:00 - Codex - H-Layer Replay and Protocol References Updates
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Updated experiment-expansion-plan.md, experiment-iteration-loop.md, and supervisor-demo-runbook.md to reference Iteration 12.
+- Files changed:
+  - docs/research/h-layer/experiment-expansion-plan.md
+  - docs/research/h-layer/experiment-iteration-loop.md
+  - docs/research/h-layer/supervisor-demo-runbook.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:56 +03:00 - Codex - Supervisor Meeting Preparation Plan Authoring
+
+- Request: do extensive plan
+- Actions taken:
+  - Created 2026-07-15-supervisor-meeting-preparation-plan.md.
+- Files changed:
+  - docs/research/meetings/2026-07-15-supervisor-meeting-preparation-plan.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown

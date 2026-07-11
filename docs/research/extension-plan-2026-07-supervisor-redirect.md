@@ -10,7 +10,7 @@ Scope: documentation, architecture, thesis framing, and research planning only. 
 
 ## 1. Context And Scope
 
-Historical commits/tags contain M1-M4B-1 evaluation infrastructure, but the current `main` worktree is intentionally dirty and must not be described as clean or fully finalized. The binding evaluation constraint remains EXP-005: 0 of 24 generalization-safe expert labels in the latest validated status, so accuracy, generalization, and clinical-performance claims remain blocked.
+Historical commits/tags contain M1-M4B-1 evaluation infrastructure, but the current feature-branch worktree (`agent/publish-hlayer-and-supervisor-package` at `134ce86`) is intentionally dirty and must not be described as clean or fully finalized. The binding evaluation constraint remains EXP-005: 0 of 24 generalization-safe expert labels in the latest validated status, so accuracy, generalization, and clinical-performance claims remain blocked.
 
 The machine-derived record of the 2026-07-01 supervisor meeting supports a framework-first redirect pending participant confirmation. It records a proposal for the human-judgment layer to become a first-class listener across both inter-agent communication circles, with early intervention, H-terms, and M4 deferred to a separate parked evaluation track. Continuous observation across all events remains an open design choice, not an approved implementation requirement.
 
@@ -117,5 +117,5 @@ Changed by this redirect (sequencing only):
 - [x] Protected runtime paths have no tracked diff for this offline reconciliation; the wider worktree is dirty and is not claimed clean.
 - [x] Framework and evaluation diagrams are separate files; M4/EXP/usability appear as COMPONENTS only in the evaluation diagram (the framework diagram names them solely in explicit exclusion and governance notes).
 - [x] New docs linked from `docs/research/README.md`, `docs/architecture/README.md`, and `docs/architecture/project-map.md`.
-- [x] Memory and progress surfaces distinguish nine accepted iterations (iteration 009 metric/contract repair), provisional synthetic prototypes, and pending M-decisions.
+- [x] Memory and progress surfaces distinguish ten accepted iterations (iteration 009 metric/contract repair; iteration 010 reliability-only rerun), provisional synthetic prototypes, and pending M-decisions.
 - [ ] Re-run current validations only after all offline harness and documentation edits are complete; do not reuse historical PASS labels as current verification.

@@ -27,8 +27,10 @@ This folder is for the scientific substance of the PhD work.
 | `h-layer/percolation-and-generalization-spec.md` | H-layer S7 memory storage, retrieval fallbacks, conflict resolution, and generalization boundaries. |
 | `h-layer/experiment-expansion-plan.md` | EXP-006..018 program: historical replay, provisional synthetic prototypes, parked evaluation, and planned conformance experiments. |
 | `h-layer/experiment-iteration-loop.md` | The run->analyze->enhance->rerun->compare improvement loop: protocol, metrics M-A/B/C (+future M-D accuracy), acceptance criteria, hypotheses. |
-| `h-layer/experiment-iteration-ledger.md` | Ten accepted iterations (001-010); iteration 010 implements the interactive CLI prototype. |
-| `h-layer/feedback-learning-rlhf-plan.md` | H-Layer preference-alignment research plan: ICL generalizer, SFT LoRA pipeline, DPO preference optimization (PhD trajectory). |
+| `h-layer/experiment-iteration-ledger.md` | Ten accepted iterations (001-010); iteration 009 is metric/contract repair and iteration 010 is a reliability-only rerun. |
+| `h-layer/feedback-learning-rlhf-plan.md` | Gated H-layer feedback-learning research plan: offline Vector 1 proposal artifacts now; SFT/DPO only as separately authorized future work. |
+| `h-layer/supervisor-demo-runbook.md` | July 15 isolated H-layer interaction-demo preflight, walkthrough, decision bridge, and abort conditions. |
+| `h-layer/trusted-feedback-export-manifest.template.json` | Non-authorizing template for the hash-bound human-approved input gate required by the offline S7 proposal generator. |
 | `phd-extension-ideas.md` | Lightweight PhD extension idea log; medical-domain transfer is the preferred direction. |
 | `medivaria/medivaria-study-plan.md` | MediVARIA: medical-domain transfer of VEGO-AI + H-layer (PhD track; IIA TRL 3->5 proposal); study questions MV-RQ1-6, phases, clinical claim boundaries. |
 | `research-plan.md` | Big-picture research plan and questions. |

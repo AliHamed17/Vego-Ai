@@ -4,7 +4,7 @@ Last curated update: 2026-07-10.
 
 ## Executive Snapshot
 
-The machine-derived July 1 record supports a FRAMEWORK-FIRST direction pending participant confirmation. The July 15 package and H-layer specifications are provisional; M-02 through M-05 are not recorded. Nine H-layer iterations are accepted: iteration 008 reliability-only and iteration 009 metric/contract repair, both `NEUTRAL`. EXP-009/010 remain provisional synthetic prototypes, EXP-011 is parked, and EXP-012 stops at safe N=0 / `NOT YET COMPUTABLE`. Live listener work remains blocked.
+The machine-derived July 1 record supports a FRAMEWORK-FIRST direction pending participant confirmation. The July 15 package and H-layer specifications are provisional; M-02 through M-05 are not recorded. Ten H-layer iterations are accepted: iteration 008 reliability-only, iteration 009 metric/contract repair, and iteration 010 reliability-only are `NEUTRAL`. The canonical replay runner contains six experiments. EXP-009/010 remain provisional synthetic prototypes, EXP-011 is parked, and EXP-012 stops at safe N=0 / `NOT YET COMPUTABLE`. Live listener and prompt/context integration work remain blocked.
 
 Run `.\scripts\build-progress-visualizations.ps1` for generated Mermaid status charts and a local HTML progress dashboard at `docs/dashboards/progress-visualizations.generated.html`.
 Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report and local web page at `reports/generated/e2e_dashboard/index.html`.
@@ -13,10 +13,10 @@ Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report a
 | --- | --- | --- | --- |
 | July 2026 supervisor redirect | Yellow / awaiting decisions | Machine-derived notes, enhanced evidence appendix, decision register, provisional skills/specs, and split diagrams. | Confirm M-01; record M-02..M-05 before selecting defaults or architecture. |
 | Phase 0 truth/governance reconciliation | Complete | `docs/research/h-layer/phase-0-boundary-record.md`; source reconciliation, generated memory/wiki refreshes, focused tests, and protected-path checks pass. | Preserve unrelated changes and keep runtime work gated by recorded authorization. |
-| Offline experiment program | Yellow / gated | Nine accepted iterations; iteration 009 repairs contracts/metrics and reports Pareto only; separate conformance run passes offline. | Keep iterations 010/011 blocked until their protocol/decision gates clear. |
+| Offline experiment program | Yellow / gated | Ten accepted iterations; iteration 009 repairs contracts/metrics, iteration 010 is a reliability-only rerun, and the separate conformance suite passes offline. | Preserve the six-experiment replay contract; keep iteration 011 and live integration blocked until their gates clear. |
 | Passive shadow listener | Blocked | `allowed-touch-proposal.md` and template are proposals only. | Require M-05 plus separate exact-file authorization; default-off/fail-open if later approved. |
 | MediVARIA PhD-track study plan | Yellow (draft; MV-P0 supervisor endorsement pending 2026-07-15) | `docs/research/medivaria/medivaria-study-plan.md` (2026-07-04): clinical transfer mapping, MV-RQ1-6, MV-P0..P5, clinical claim boundaries; one-pager archived ignored. Education-domain TRL3 metrics are not clinical evidence; no MediVARIA performance claims exist. | Present at 2026-07-15 (agenda section 8); confirm role split and first clinical guideline domain with Iris/Arnon. |
-| Source baseline | Historical baseline available; current tree dirty | Safe GitHub baseline and tagged historical states exist; current HEAD is `c72b845` with unrelated local changes. | Preserve the dirty tree; compare protected fingerprints before/after offline work. |
+| Source baseline | Historical baseline available; current tree dirty | Safe GitHub baseline and tagged historical states exist; current branch is `agent/publish-hlayer-and-supervisor-package` at `134ce86` with local changes. | Preserve the dirty tree; compare protected fingerprints before/after offline work. |
 | M1 Human Review Queue | Green | Implemented and tested. | Use as upstream evidence for artifact manifest. |
 | M2 Human Feedback Manager | Green | Implemented and tested. | Include schema/docs/tests in artifact manifest. |
 | M3 Human Judgment Memory | Green | Tag `milestone-m3-human-judgment-memory`. | Reference tag in thesis evidence. |
@@ -49,7 +49,7 @@ Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report a
 | P1 | Review and merge PR #6 schema hardening if clean. | Codex / reviewer | Open |
 | P1 | Use release artifact bundle for external technical review. | Research lead / agents | Available |
 | P1 | Record M-01..M-06; keep unaccepted architecture/dosage/verifier choices configurable. | Iris, Arnon, Ali | Awaiting meeting |
-| P1 | Preserve iteration-009 metric semantics; prepare gated iterations 010/011 without running them. | Research agents | Blocked on decisions |
+| P1 | Preserve iteration-009 metric semantics and iteration-010 reliability snapshot; keep iteration 011 and live prompt/context work gated. | Research agents | Blocked on decisions |
 | P1 | Approve EXP-005 protocol and schedule two human reviewers; never prefill labels. | Supervisors / research lead | Human-gated |
 | P1 | Keep M4B-2 and Agent 4/LLM behavior blocked. | All agents | Active rule |
 | P1 | Enforce Codex isolation for VEGO-AI milestone implementation paths on `main`. | Codex | Active rule |

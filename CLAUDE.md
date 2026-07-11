@@ -71,6 +71,7 @@ If the prompt included analysis, edits, debugging, planning, or a decision, upda
 - `docs/agent-memory/issues.md`: open, blocked, and resolved issues.
 - `docs/agent-memory/decisions.md`: durable decisions.
 - `docs/agent-memory/revert-log.md`: change and rollback notes.
+- `docs/agent-memory/revert-log-archive.md`: older rollback notes archived by the finish workflow.
 - `docs/agent-memory/automation.md`: script workflow for prompt start/end.
 - `docs/agent-memory/compiled-memory.md`: generated combined memory file.
 - `docs/dashboards/`: progress, KPI, and results dashboards for local and Confluence tracking.

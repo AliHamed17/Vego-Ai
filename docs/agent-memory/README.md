@@ -7,6 +7,7 @@ This folder is the shared project memory for Codex and Claude.
 - `automation.md`: scripts and workflow for automatic prompt start/end memory handling.
 - `claude-bootstrap-prompt.md`: paste-ready startup prompt for a fresh Claude session.
 - `claude-m4b-handoff-prompt.md`: historical Claude prompt for the completed M4B-1 implementation path.
+- `codex-nextstep-handoff-prompt.md`: verified handoff for iteration 010, the six-experiment replay suite, the EXP-005 gate, the isolated demo, and proposal-only next steps.
 - `compiled-memory.md`: generated combined memory context from all memory files.
 - `current-state.md`: latest known project state and short orientation.
 - `shared-state-report.md`: high-level Claude/Codex research and governance state report.
@@ -16,6 +17,7 @@ This folder is the shared project memory for Codex and Claude.
 - `issues.md`: open, blocked, and resolved issues.
 - `decisions.md`: durable project decisions and why they were made.
 - `revert-log.md`: changed files and rollback notes.
+- `revert-log-archive.md`: older rollback entries moved by the finish workflow; preserve it with the active log.
 - `../dashboards/`: progress, KPI, and results dashboard sources used for Confluence tracking.
 - `../confluence/wiki-sync.md`: curated Confluence wiki sync workflow.
 

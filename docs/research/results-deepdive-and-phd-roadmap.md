@@ -58,7 +58,7 @@ it, is a contribution* — arguably the most transferable one.
 ### 1.5 Capability maturity (per the optimization plan's L1–L5)
 
 - **L1 Prototype — achieved** (mechanism exists and is inspectable, M1–M4B-1).
-- **L2 Evidence-ready — achieved** (protocol, dashboards, guards, harness all built).
+- **L2 Evidence-infrastructure ready — achieved as tooling only** (protocol, dashboards, guards, and harness exist; empirical evidence is not implied).
 - **L3 Empirically evaluated — blocked** on EXP-005 real labels.
 - **L4 Generalized / L5 Framework — the PhD.**
 

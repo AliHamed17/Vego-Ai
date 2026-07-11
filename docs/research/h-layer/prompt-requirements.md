@@ -69,13 +69,14 @@ H-layer prompts must enforce the following explicit step-by-step reasoning logic
    * *No Conflict:* Mark as verified (transition to S6/S7).
    * *Conflict (Round 1):* Generate a question highlighting the specific guideline section contradicted.
    * *Conflict (Round 2):* Generate a warning prompt requiring override confirmation and justification.
-   * *Escalation:* Save to override log and bypass block.
+   * *Escalation:* Save only to the adjudication queue as `needs_adjudication`; do not write to trusted memory and do not bypass the correction-approval gate.
 
 ### 3. S7 Generalization Logic
-1. **Analyze Scope:** Read user-selected `validity_scope` (case, pattern, domain, general).
-2. **Key Extraction:** Extract retrieval keys: `domain_id`, `diagram_type`, `guideline_id`, `pattern_signature`, and keywords.
-3. **Conflict Search:** Query existing memory for matching retrieval keys. If a conflict in decisions exists, flag the entry as `active_disagreement` and route to the escalation queue.
-4. **Save & Index:** If clear, save the judgment matching the validity scope boundaries.
+1. **Eligibility Gate:** Accept only S5-verified or explicitly supervisor-adjudicated records from an allowlisted trusted origin, with `trusted_memory_eligible = true`, reusable status, nonblank validity scope, and provenance. Require a separately validated, hash-bound trusted-export manifest that lists the eligible record IDs. Reject record-local assertions, demo, synthetic, and pending-adjudication records without that companion validation.
+2. **Analyze Scope:** Read the expert-confirmed `validity_scope` (case, pattern, domain, general) without expanding it.
+3. **Key Extraction:** Extract retrieval keys: `domain_id`, `diagram_type`, `guideline_id`, `pattern_signature`, and keywords.
+4. **Conflict Search:** Query verified/adjudicated memory for matching retrieval keys. If decisions conflict, flag `active_disagreement`, route to adjudication, and synthesize nothing for that group.
+5. **Proposal Package:** Produce source-linked candidate rules with `PROVISIONAL_NOT_APPLIED` and `runtime_eligible = false`. Any prompt/context delivery is an S6 proposal requiring explicit human approval and separate implementation authorization.
 
 ---
 
@@ -175,11 +176,11 @@ H-layer prompts must enforce the following explicit step-by-step reasoning logic
 | --- | --- |
 | Intent | More than save/retrieve (directive D8): maintain judgment memory (store E12, retrieve E13), detect conflicts, generalize across cases, and improve what the H-layer itself asks and checks over time. |
 | Required context | Verified judgments with scope; existing memory (conflict detection); leakage taxonomy (same-pattern vs. cross-setting reuse - retained from the existing evidence discipline). |
-| Task | Decide reusability level from the expert's stated scope; store with retrieval keys and provenance; surface relevant prior judgments to S2/S3/S5 when similar situations recur; flag conflicting judgments for adjudication rather than overwriting; track which reuses helped. |
+| Task | Decide reusability level from the expert's stated scope; prepare append-only, provenance-bearing candidate memory entries; flag conflicting judgments for adjudication rather than overwriting; in the current phase, emit reviewable retrieval/generalization proposals only. Surfacing anything into S2/S3/S5 runtime context requires separate authorization. |
 | Expected input | S5/S6 outcomes. |
-| Expected output | Judgment memory entries; retrieval results; conflict flags; learning notes (e.g., "questions of type X are consistently resolved as Y - propose guideline refinement via S6"). |
+| Expected output | Proposal-only judgment-memory entries; offline retrieval results; conflict flags; source-linked candidate rules or learning notes routed through S6; `runtime_eligible = false` until authorized. |
 | Reasoning requirements | Pattern extraction; scope-respecting generalization; conflict reasoning; distinguishing "store" from "learn" explicitly. |
-| Guardrails | Conflicts are stored as conflicts, never silently overwritten; leakage status remains trackable; generalization never exceeds the expert's stated scope without a new ruling; anything classification-affecting goes through S6's approval gate. |
+| Guardrails | Only verified or supervisor-adjudicated inputs are eligible; escalated overrides remain outside trusted memory; conflicts are stored as conflicts, never silently overwritten; leakage status remains trackable; rationale text is untrusted data; generalization never exceeds the expert's stated scope; every prompt/context or classification effect goes through S6's approval gate and separate implementation authorization. |
 | Failure modes | Save/retrieve-only regression (the thing Iris said is insufficient); over-generalization; conflicting memory applied without adjudication. |
 | Evidence required | Memory entries with provenance/scope; retrieval traces; conflict registry. |
 | Convergence support | Memory-informed deduplication (via S2) stops re-litigating settled questions across runs. |

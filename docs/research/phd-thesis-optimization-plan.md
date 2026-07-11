@@ -86,7 +86,7 @@ Capability maturity target:
 | Level | Meaning | Current status |
 | --- | --- | --- |
 | L1 Prototype | Mechanism exists and is inspectable. | Achieved through M1-M4B-1. |
-| L2 Evidence-ready | Label protocol, dashboards, and guards exist. | Achieved, but human labels pending. |
+| L2 Evidence-infrastructure ready | Label protocol, dashboards, guards, and offline harness exist; this level does not mean empirical evidence is present. | Achieved as tooling/readiness only; human labels are still pending. |
 | L3 Empirically evaluated | Real labels support quantitative reporting. | Blocked on EXP-005. |
 | L4 Generalized | Evidence spans additional settings, reviewers, and runs. | PhD extension. |
 | L5 Framework contribution | Principles transfer beyond this VEGO-AI instance. | PhD target. |

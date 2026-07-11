@@ -2,7 +2,7 @@
 
 This file is the compact shared resource index for Codex and Claude. It points agents to reusable research resources without forcing every prompt to reload downloaded source files.
 
-Last updated: 2026-07-04 by Codex.
+Last updated: 2026-07-11 by Codex.
 
 ## HITL / Human-AI Resource Pack
 
@@ -148,6 +148,10 @@ Experiment registry: `experiments/registry.md`
 | `refresh-tracking.ps1` | Progress tracker refresh | After progress changes |
 | `download-hitl-resources.ps1` | HITL resource download | Literature needs |
 | `new-experiment.ps1` | Experiment scaffold | New experiments |
+| `feedback_generalizer.py` | Offline eligibility, grouping, conflict, and S7 synthesis-request package; never applies rules | Proposal-only Vector 1 work after feedback changes |
+| `hlayer_prototype/hlayer-prototype-scaffold.py` | Isolated offline supervisor interaction demo with non-trusted outputs | July 15 demo preflight/session using a temporary output directory |
+| `validate_hlayer_program.py` | End-to-end replay/conformance/decision/demo/protected-boundary validation | Before H-layer status claims or supervisor demos |
+| `validate_hlayer_offline.py` | EXP-013–018 contract/conformance validation | After offline contract or fixture changes |
 
 ## Dashboards & Visualizations
 
@@ -174,7 +178,7 @@ Experiment registry: `experiments/registry.md`
 
 ## Practical Current Decision
 
-The immediate project bottleneck remains real EXP-005 expert labels, not tooling. Use the resource pack to support supervisor discussion and thesis writing. Revisit Label Studio or Argilla only if the CSV workflow becomes too slow or the label set expands beyond the current safe candidates.
+The immediate empirical-evaluation bottleneck remains real EXP-005 expert labels, not tooling. The framework track is separately gated by M-02 through M-05 and explicit implementation authorization. Current demo feedback is not trusted input, and the offline generalizer must report `BLOCKED_NO_VERIFIED_FEEDBACK` rather than inventing candidate rules. Use the resource pack to support supervisor discussion and thesis writing. Revisit Label Studio or Argilla only if the CSV workflow becomes too slow or the label set expands beyond the current safe candidates.
 
 ## Alignment Control Links
 
@@ -185,4 +189,3 @@ The immediate project bottleneck remains real EXP-005 expert labels, not tooling
 - Supervisor meeting notes: `docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md`
 
 Use these with the HITL resource pack when writing thesis text or planning evaluation. The resource pack can justify method choices and terminology, but it does not change the EXP-005 evidence gate.
-

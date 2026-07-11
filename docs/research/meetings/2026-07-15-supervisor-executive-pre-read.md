@@ -28,7 +28,7 @@ The current notes are not human-verified. Stockholm and Belgium are candidate fu
 
 ### What the offline replay can honestly say
 
-This Markdown source now reflects accepted offline iteration 009. Regenerate the shareable PDF before treating its figures as current.
+This Markdown source now reflects accepted offline iteration 011, which snapshots the updated replay suite with decision snapshot synchronizations and the new offline `feedback_generalizer.py` script. Regenerate the shareable PDF before treating its figures as current.
 
 - EXP-006 count comparison: `11 queue items / 481 heterogeneous reconstructed lifecycle events` (about 2.3%). This is a count ratio only; no event-level visibility inference or linkage exists.
 - EXP-006 validates 481 captured plus 20 explicit gap records = 501 ObservationRecords; this is offline contract evidence, not complete live coverage.
@@ -50,9 +50,9 @@ This Markdown source now reflects accepted offline iteration 009. Regenerate the
 ### How to read the later evidence
 
 - EXP-009 and EXP-010 are assumption-driven synthetic rule tests. Their seeded cases help inspect a protocol; they do not validate detection of real expert mistakes or real dialogue behavior.
-- All July 10 detailed specifications remain provisional. The July 10 prototype scaffold is retired historical scaffolding and is not runnable evidence; current evidence comes from EXP-006..018 and the hardened offline harness.
+- All July 10 detailed specifications remain provisional. The new `feedback_generalizer.py` script is an offline-only generalization proposal generator enforcing companion manifest checks. The July 10 prototype scaffold is retired historical scaffolding; current evidence comes from EXP-006..018 and the hardened offline harness.
 - EXP-005 remains the parked real-label gate. With zero supplied real labels, accuracy improvement cannot be evaluated yet and no generalization-safe quantitative evaluation is available.
-- EXP-012's same-pattern `N=3` pilot is excluded from this meeting narrative; it is not evidence and not an improvement claim.
+- EXP-012's same-pattern pilot (`N=3`, recorded value `0.6667`) is excluded from the main narrative. It only exercises a computation path and is neither a generalization-safe baseline nor evidence of improvement.
 - MediVARIA is a July 4 planning draft. It has no approved clinical scope, partner, data, ethics route, implementation, or performance evidence.
 
 ### Meeting close

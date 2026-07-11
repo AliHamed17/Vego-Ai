@@ -345,3 +345,13 @@ Durable decisions for this project.
 - Open M-06 choice: whether H-layer detail specs should be domain-parameterized for future transfer. Education remains the MSc empirical scope.
 - Reason: User direction on 2026-07-04 to integrate the MediVARIA study and enhance project/thesis per the supervisor's guidance; MediVARIA operationalizes phd-extension-ideas idea 1 and gives ideas 2, 3, and 5 their clinical setting.
 - Consequence: 2026-07-15 meeting agenda gains the MediVARIA items (study-plan section 8); TASK-043 tracks MV-P0; all existing evidence gates and the framework-first sequencing remain unchanged.
+
+## 2026-07-10 - Offline Feedback Generalization and Demo Boundary
+
+- Decision: Treat iteration manifests as authoritative: iteration 010 is a `NEUTRAL`, `reliability_only` snapshot of the six-experiment replay suite, not an interactive-demo or quality-improvement result.
+- Decision: Implement Vector 1 only as a deterministic, offline proposal generator. It may emit eligibility, grouping, conflict, provenance, and synthesis-request artifacts, but it must not call an LLM, inject Agent B, or mark any rule runtime-eligible.
+- Decision: Require S5-verified or explicitly supervisor-adjudicated status, an allowlisted trusted origin, `trusted_memory_eligible = true`, `reusable = true`, a nonblank reuse scope, provenance references, no unresolved override, and a separately validated manifest binding the exact export hash and eligible record IDs before feedback can enter a synthesis group.
+- Decision: Keep the supervisor CLI as an isolated offline demo. Ordinary demo feedback and `needs_adjudication` candidates use separate files; every record is unconfirmed and `trusted_memory_eligible = false`; semantic checking remains disabled.
+- Decision: Reject generated-output paths under repository `VEGO-AI/` and `.git/` for both the generalizer and demo.
+- Reason: M-02 through M-05 remain deferred, current prototype records are informal/unadjudicated, EXP-005 has zero valid safe labels, and automatic prompt/context delivery would cross the protected decision boundary.
+- Consequence: The current generalizer result is `BLOCKED_NO_VERIFIED_FEEDBACK` with zero candidate rules. Any LLM synthesis, trusted-memory reuse, Agent B context delivery, or live listener work requires new evidence and explicit authorization.

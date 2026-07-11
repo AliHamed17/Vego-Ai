@@ -1,0 +1,12 @@
+{
+  "artifact_type": "validated_trusted_feedback_export",
+  "validation_status": "PASS",
+  "validator_id": "trusted-feedback-export-validator-v1",
+  "approval_scope": "OFFLINE_S7_SYNTHESIS_ONLY",
+  "source_file_sha256": "<sha256-of-exact-feedback-json>",
+  "approved_by": "<human-approver-id-or-role>",
+  "approved_at": "<ISO-8601 timestamp>",
+  "validated_record_ids": [
+    "<feedback-record-id>"
+  ]
+}

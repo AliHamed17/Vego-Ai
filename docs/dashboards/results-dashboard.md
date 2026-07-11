@@ -26,6 +26,7 @@ Last curated update: 2026-07-10. Historical validation rows below retain their o
 | EXP-013–018 conformance fixtures (2026-07-10) | Six CLIs pass; 24 focused tests; offline validator 19/19 PASS | Ignored `reports/generated/exp013/` through `exp018/` | Fixture-level contract, determinism, workload, authority, provenance, and proposal-safety evidence. No empirical-performance or runtime-authorization claim. |
 | H-layer reliability iteration 008 (2026-07-10) | Accepted `NEUTRAL`; run `hlayer-20260710T171143Z-2a66e71a3f` | Ignored `reports/generated/hlayer_iterations/iter_008/` | Atomic temp execution/promotion, manifests, deferred decision snapshot, validated EXP-005 N=0 gate, and repaired EXP-012 cross-check. Reliability evidence only; protected runtime unchanged. |
 | H-layer metric/contract iteration 009 (2026-07-10) | Accepted `NEUTRAL`; run `hlayer-20260710T175523Z-ab5175fd07` | Ignored `reports/generated/hlayer_iterations/iter_009/` | 481 captured + 20 explicit gaps = 501 ObservationRecords; `threshold_sev2` event/transaction load 0.799/0.796, weighted/high-severity coverage 0.981/1.0; target coverage>=0.8 at load<=0.5 remains unmet; K30/K35 capture 0.75/0.85. Pareto only; no default. |
+| H-layer reliability iteration 010 (2026-07-10) | Accepted `NEUTRAL`; run `hlayer-20260710T183658Z-9199809f30` | Ignored `reports/generated/hlayer_iterations/iter_010/` | Reproducibility snapshot of the unchanged six-experiment replay suite. It is not an interactive-demo result and adds no mechanism-performance evidence. EXP-005 safe N=0; EXP-012 remains not computable. |
 | Separate H-layer conformance suite | Offline-only run `HLAYER-CONFORMANCE-7a426ce3a5336b158606` | Normalized `7a426ce3a5336b15860687f1a7f69da241e88b60b0e1b23f95a1d69b21ebba27` | Snapshot `681102be14d0aed854dd384fe0f18cc62081d46dfbf64ab6f1a3b47fe92cb0c1`; separate from numbered iterations; no runtime authorization. |
 
 ## Reproducibility Anchors
@@ -37,7 +38,7 @@ Last curated update: 2026-07-10. Historical validation rows below retain their o
 | M4A research state | `research-state-m4a` / `2828940` | Research story and documentation state after M4A. |
 | M4B-1 comparison state | `research-state-m4b1-deterministic-comparison` / `944c922` | Deterministic parallel comparison milestone. |
 | Visualizer UX clean state | `research-state-visualizer-ux-clean` / `78b261e` | Model/result matching and read-only research-panel UX cleanup. |
-| Current workspace | `main` / `c72b845` | Dirty local workspace; use `phase-0-boundary-record.md` for protected-path fingerprints. |
+| Current workspace | `agent/publish-hlayer-and-supervisor-package` / `134ce86` | Dirty local workspace; use `phase-0-boundary-record.md` for protected-path fingerprints. |
 
 ## Research Result Claims
 

@@ -13,7 +13,7 @@ Purpose: a repeatable enhancement loop - run the experiment suite, analyze resul
 
 Standing guardrails per iteration: read-only over `VEGO-AI/` (verified by `git status -- VEGO-AI` each iteration); enhancements are analysis-side only; synthetic inputs stay labeled and isolated; evidence guard must PASS.
 
-Iteration 008 established atomic runner reliability. Iteration 009 preserved that contract while repairing observation/metric semantics. Iterations 010/011 remain blocked until their protocol and decision gates are satisfied.
+Iteration 008 established atomic runner reliability. Iteration 009 preserved that contract while repairing observation/metric semantics. Iteration 010 is an accepted reliability-only rerun of the same six-experiment suite. Iteration 011 is the feedback-generalization boundary protection, and Iteration 012 is the decision-snapshot synchronization.
 
 ## Loop Protocol (one iteration)
 
@@ -61,4 +61,4 @@ EXP-012 now consumes the validated EXP-005 full export and validation summary, r
 
 ## Cadence
 
-Iteration 009 is the latest accepted run. Run iteration 010 only after M-04 approves its H-Verify protocol; iteration 011 remains blocked by architecture approval, EXP-005 labels, and supervisor go-ahead. EXP-012 remains inactive at safe N=0.
+Iteration 012 is the latest accepted run and is `NEUTRAL`/`reliability_only` under the synchronized decision register. EXP-012 remains `NOT YET COMPUTABLE` at validated-safe N=0.

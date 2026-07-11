@@ -43,14 +43,14 @@ The recording and raw ASR must not be rewritten. Any English rendering is a para
 | EXP-008 churn mining | K30/K35 captured 0.75/0.85 of replay-defined candidates | Instability is not evidence that a guideline is wrong; cap/capture target remains a policy choice | Frames the cap trade-off in M-03 |
 | Rank-and-cap replay | Uniform K30 and K35 sit on different workload/capture points | Does not prove either cap, an adaptive alternative, or the target is operationally correct | Report Pareto/trade-off only |
 | Subject-level bundling | In the cited `cd_ch` setting, absolute items changed 67 to 60 under `every_decision` and 54 to 53 under `threshold_sev2` | Does not support an “up to 45%” workload claim; bundled-load ratios use a changed denominator | Supports only a modest workload-reduction statement under M-03 |
-| EXP-009 seeded conflicts | Four of four synthetic seeded conflicts were detected by the encoded provisional rules | Assumption-driven synthetic rule test; no real expert mistakes, behavioral validation, or generalization evidence | Helps inspect the proposed M-04 protocol |
-| EXP-010 convergence sweep | Under the synthetic dialogue assumptions, a two-round policy resolved or escalated the seeded cases; the experiment ledger reports 60% resolved and 40% escalated overrides for that set | Does not establish the best bound with real experts or real dialogue costs | Helps compare M-04 round-bound options |
+| EXP-009 seeded rule fixtures | Ten `SYNTHETIC_NOT_HUMAN` fixtures contain five expected conflicts and five non-conflicts; the encoded rules produce TP=5, TN=5, FP=0, and FN=0 | Assumption-driven synthetic rule test; no real expert mistakes, behavioral validation, semantic verification, or generalization evidence | Helps inspect the proposed M-04 protocol |
+| EXP-010 round-bound sweep | At B=2 the synthetic suite records two resolved, five passed without conflict, two needing adjudication, and one timed out/parked; B=3 and B=4 are unchanged | Escalation is not resolution, and the fixture plateau does not establish the best bound with real experts or real dialogue costs | Helps compare M-04 round-bound options |
 
 All numbers above are historical recorded outputs unless a generation manifest explicitly says they were rerun for this package.
 
-### July 10: detailed specifications and prototype scaffolds
+### July 10-11: detailed specifications, generalization engines, and prototype scaffolds
 
-The listener-hook catalog, dosage/triage spec, elicitation interface, H-Verify spec, integration/feedback spec, percolation/generalization spec, and reasoning tables are **provisional drafts**. The July 10 script under `scripts/hlayer_prototype/` is retained only as retired historical scaffolding and is not runnable evidence. Current offline evidence comes from EXP-006..018 and the hardened harness; none authorizes runtime changes.
+The listener-hook catalog, dosage/triage spec, elicitation interface, H-Verify spec, integration/feedback spec, percolation/generalization spec, and reasoning tables are **provisional drafts**. The new conforming `scripts/feedback_generalizer.py` script is an offline generalization proposal generator enforcing companion manifest checks. The prototype script under `scripts/hlayer_prototype/` is retained only as retired historical scaffolding; current offline evidence comes from EXP-006..018 and the hardened harness; none authorizes runtime changes.
 
 Specific reconciliation required after M-05: the provisional dosage draft contains a timeout option that applies H3 advice automatically. The package recommendation is instead baseline preservation plus parking the item; the draft must be revised if that recommendation is accepted.
 
