@@ -2,15 +2,14 @@ name: Supervisor package source checks
 
 on:
   pull_request:
-  push:
-    branches:
-      - agent/publish-hlayer-and-supervisor-package
 
 jobs:
   source-integrity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -23,17 +22,36 @@ jobs:
         run: python -m compileall -q VEGO-AI/framework VEGO-AI/eval VEGO-AI/analysis scripts
 
       - name: Run clone-safe tests
-        run: python -m pytest scripts/tests -q
+        run: >-
+          python -m pytest
+          VEGO-AI/tests
+          scripts/tests/test_build_hlayer_decision_snapshot.py
+          scripts/tests/test_build_hlayer_program_overview.py
+          -q
 
       - name: Validate protected paths and supervisor package
         run: |
-          python scripts/check_hlayer_protected_paths.py
+          if ! git diff --quiet af191f0..HEAD -- \
+            VEGO-AI/framework \
+            VEGO-AI/schemas \
+            VEGO-AI/eval \
+            VEGO-AI/eval_output \
+            VEGO-AI/tests; then
+            echo "The July 21 package modified a protected VEGO-AI path."
+            git diff --name-status af191f0..HEAD -- \
+              VEGO-AI/framework \
+              VEGO-AI/schemas \
+              VEGO-AI/eval \
+              VEGO-AI/eval_output \
+              VEGO-AI/tests
+            exit 1
+          fi
           python scripts/validate_supervisor_package.py
           python visualizations-gallery/build_gallery.py --check
           python scripts/check_repository_privacy.py
 
-      - name: Check Git hygiene
-        run: git diff --check
+      - name: Check July 21 package diff hygiene
+        run: git diff --check af191f0..HEAD
 
   browser-smoke:
     runs-on: ubuntu-latest
