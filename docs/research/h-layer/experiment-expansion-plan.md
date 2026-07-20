@@ -1,8 +1,8 @@
 # H-Layer Experiment Expansion Plan (EXP-006 .. EXP-018)
 
-Last updated: 2026-07-11. Status: **ACTIVE, GATED.** Twelve iterations are accepted. Iteration 009 is the offline metric/contract repair, iteration 010 is a reliability-only rerun, iteration 011 is feedback-generalization boundary protection, and iteration 012 is decision register synchronization; all are `NEUTRAL`, report no quality improvement, and select no default. EXP-009/010 remain provisional synthetic prototypes with unapproved protocol, EXP-011 is parked, and EXP-012 N=0 remains not computable.
+Last updated: 2026-07-20. Status: **ACTIVE, GATED.** Fourteen iterations are accepted. Iterations 001-007 are historical/pre-manifest and 008-014 are manifest-backed. Iteration 014 is a reliability-only coherence snapshot; it is `NEUTRAL`, reports no quality improvement, and selects no default. EXP-009/010 remain provisional synthetic fixtures, EXP-011 is parked, and EXP-012 N=0 remains not computable.
 
-Latest numbered run: `hlayer-20260711T123453Z-6cca11a0c8`, normalized `fc8225eb32c741b59e28b75549f5ed0b84c3794fd8d83f097fe644e65a618810`, suite normalized `437094380797453d53181c7581185608cb635114866a6ae4536177b1e1c52883`. Separate offline conformance run: `HLAYER-CONFORMANCE-1bf053acc473a151d37c`, normalized `1bf053acc473a151d37cca55226676094388d773598400aed8bb351a223658fa`, snapshot `a3f02c0d6cab054d72d7057d51a81fbe796526a298171d6c3ba1a26c1ed28620`.
+Latest numbered run: `hlayer-20260720T173308Z-d79047f5e2`, normalized `fa3debf25ba705224bfa27748aaee7cd92d72e8f50b6704ccea2ff9f6255651e`, suite normalized `3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7`. Separate offline conformance run: `HLAYER-CONFORMANCE-8c458da3755870930900`, normalized `8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af`. Neither run authorizes live hooks or empirical claims.
 
 Purpose: give the project a continuous stream of real, legitimate, trackable experimental results NOW, without violating any gate. The trick is scope: accuracy and generalization results stay locked behind real expert labels (EXP-005), but the H-layer redesign raises MEASURABLE mechanism questions that the existing baseline outputs can answer today by offline replay - no VEGO-AI behavior changes, read-only over `VEGO-AI/eval_output` and `VEGO-AI/runs`, all outputs generated and git-ignored.
 
@@ -51,8 +51,8 @@ Purpose: give the project a continuous stream of real, legitimate, trackable exp
 | When | What |
 | --- | --- |
 | 2026-07-05 (now) | EXP-006/007/008 implemented, run on all four settings, results generated and tracked; registry + dashboards updated |
-| 2026-07-15 | Present historical replay and provisional synthetic results with their limits; record M-02..M-05 outcomes |
-| 2026-07-15 .. 2026-08-15 | Preserve accepted iterations 008-012; develop only offline proposal artifacts that preserve the decision boundary |
+| 2026-07-21 | Present historical replay and provisional synthetic results with their limits; record M-01..M-06 outcomes |
+| 2026-07-21 .. 2026-08-21 | Preserve accepted iterations 008-014; develop only offline proposal artifacts that preserve the decision boundary |
 | On evaluation unpark | EXP-011 via the EXP-005 real-label gate |
 
 ## 6. Architecture-Conformance Series
@@ -66,7 +66,7 @@ Purpose: give the project a continuous stream of real, legitimate, trackable exp
 | EXP-017 | Synthetic deterministic-first source trace passes; semantic checks absent | M-04 unrecorded |
 | EXP-018 | Disposable-copy proposal diff is reproducible and not applied | No correction authorization |
 
-These runs are separate offline conformance evidence. Current conformance run `HLAYER-CONFORMANCE-7a426ce3a5336b158606` is atomic and offline-only; it is not a numbered iteration and grants no runtime authority.
+These runs are separate offline conformance evidence. Current conformance run `HLAYER-CONFORMANCE-8c458da3755870930900` is atomic and offline-only; it is not a numbered iteration and grants no runtime authority.
 
 ## 7. Governance
 

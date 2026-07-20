@@ -134,6 +134,7 @@ Track milestones, current work, and next steps here.
 | TASK-046 | 2026-07-05 | Done / human-gated | Repair EXP-012 measurement scaffold. | Validated interface and canonical cross-check pass; safe N=0 remains `NOT YET COMPUTABLE`. Next change requires real human labels, not code inference. |
 | TASK-047 | 2026-07-10 | Blocked | Prepare passive H-layer shadow listener. | Offline design only until M-05 plus the separate five-file implementation authorization are recorded. |
 | TASK-048 | 2026-07-10 | Done / proposal-only | Prepare the offline Vector 1 feedback-generalization gate and safe July 15 CLI demo. | Current feedback yields `BLOCKED_NO_VERIFIED_FEEDBACK`; collect verified/adjudicated reusable records and M-05 authorization before any LLM or Agent B context work. |
+| TASK-049 | 2026-07-12 | Open (Phase 1 done) | Execute the H-layer enhancement plan (`docs/research/h-layer/enhancement-plan-2026-07-12.md`). | Phase 1 delivered: unified program overview (`scripts/build_hlayer_program_overview.py` + 4 tests), one-command gate (`scripts/verify-hlayer-all.ps1`, 9/9 PASS), consistency fixes F1/F2/F7, and iteration-014 coherence repair after the gate caught F8. Next: Phase 2 (E6 perf, E7 wiki wiring, E8 overview HTML) after the 2026-07-15 meeting; Phase 3 (EXP-019/020) needs registered protocols. Run `.\scripts\verify-hlayer-all.ps1` before every finish. |
 
 ## Completed Work
 

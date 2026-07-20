@@ -27,7 +27,9 @@ This folder is for the scientific substance of the PhD work.
 | `h-layer/percolation-and-generalization-spec.md` | H-layer S7 memory storage, retrieval fallbacks, conflict resolution, and generalization boundaries. |
 | `h-layer/experiment-expansion-plan.md` | EXP-006..018 program: historical replay, provisional synthetic prototypes, parked evaluation, and planned conformance experiments. |
 | `h-layer/experiment-iteration-loop.md` | The run->analyze->enhance->rerun->compare improvement loop: protocol, metrics M-A/B/C (+future M-D accuracy), acceptance criteria, hypotheses. |
-| `h-layer/experiment-iteration-ledger.md` | Ten accepted iterations (001-010); iteration 009 is metric/contract repair and iteration 010 is a reliability-only rerun. |
+| `h-layer/experiment-iteration-ledger.md` | Fourteen accepted iterations (001-014); 008-014 are reliability/contract/coherence snapshots. |
+| `h-layer/program-status-snapshot-v1.json` | Tracked manifest-derived status interface for Iteration 14, replay/conformance suites, EXP-005/012 gates, M-01..M-06, protected paths, and verification state. |
+| `h-layer/enhancement-plan-2026-07-12.md` | Comprehensive enhancement backlog from the 2026-07-12 verification sweep: Phase 1 (program overview, verify-all gate, consistency fixes, iteration-014 coherence repair) implemented; Phase 2/3 queued. |
 | `h-layer/feedback-learning-rlhf-plan.md` | Gated H-layer feedback-learning research plan: offline Vector 1 proposal artifacts now; SFT/DPO only as separately authorized future work. |
 | `h-layer/supervisor-demo-runbook.md` | July 15 isolated H-layer interaction-demo preflight, walkthrough, decision bridge, and abort conditions. |
 | `h-layer/trusted-feedback-export-manifest.template.json` | Non-authorizing template for the hash-bound human-approved input gate required by the offline S7 proposal generator. |

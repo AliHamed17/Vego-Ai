@@ -1,6 +1,6 @@
 # H-Layer Experiment Iteration Loop
 
-Last updated: 2026-07-10. Status: **ACTIVE, HARDENING REQUIRED BEFORE NEXT NUMBERED RUN.** Companion to `docs/research/h-layer/experiment-expansion-plan.md`; accepted history lives in the ledger.
+Last updated: 2026-07-20. Status: **ACTIVE, OFFLINE-ONLY.** The hardening demanded by the 2026-07-10 review was delivered in iterations 008-009 and the latest accepted Iteration 14 restores suite/iteration coherence. M-01 through M-06 remain unrecorded; no transition, default, or live implementation is approved. Companion to `docs/research/h-layer/experiment-expansion-plan.md`, `docs/research/h-layer/enhancement-plan-2026-07-12.md`, and the tracked `program-status-snapshot-v1.json`; accepted history lives in the ledger.
 
 Purpose: a repeatable enhancement loop - run the experiment suite, analyze results, derive enhancement hypotheses, implement them, re-run, and compare against the previous iteration with explicit better/worse verdicts. The loop makes improvement MEASURED, not asserted.
 
@@ -13,7 +13,7 @@ Purpose: a repeatable enhancement loop - run the experiment suite, analyze resul
 
 Standing guardrails per iteration: read-only over `VEGO-AI/` (verified by `git status -- VEGO-AI` each iteration); enhancements are analysis-side only; synthetic inputs stay labeled and isolated; evidence guard must PASS.
 
-Iteration 008 established atomic runner reliability. Iteration 009 preserved that contract while repairing observation/metric semantics. Iteration 010 is an accepted reliability-only rerun of the same six-experiment suite. Iteration 011 is the feedback-generalization boundary protection, and Iteration 012 is the decision-snapshot synchronization.
+Iteration 008 established atomic runner reliability. Iteration 009 preserved that contract while repairing observation/metric semantics. Iterations 010-013 are accepted reliability-only snapshots. Iteration 014 is the latest reliability-only coherence snapshot. None selects a default or authorizes live work.
 
 ## Loop Protocol (one iteration)
 
@@ -59,6 +59,12 @@ EXP-012 now consumes the validated EXP-005 full export and validation summary, r
 | H2 | 160/167 unstable guidelines never reached review | Add a churn trigger (instability >= t) to triage; sweep t = 1..3 | t=2 captures most churn within the M-C2 budget |
 | H3 | Coverage 1.0 "by construction" in iter-1 threshold mode was uninformative | Replace with weighted severity coverage + high-severity coverage | Metrics become discriminative between modes |
 
+## Program Views And The Standing Gate (added 2026-07-12)
+
+- `python scripts/build_hlayer_program_overview.py` regenerates the unified program overview - replay suite + conformance suite + program validation + EXP-005 gate + decision snapshot + all accepted iterations + per-mode metric trajectories - at `reports/generated/hlayer_program_overview/{program_overview.json, program_overview.md, metric_trajectories.csv}` (read-only join; creates no evidence).
+- `.\scripts\verify-hlayer-all.ps1` is the one-command verification gate (protected paths, VEGO-AI git cleanliness, evidence consistency, offline + program validators, conformance suite, both pytest suites; `-WithOverview` also rebuilds the overview; `-SkipSlow` skips pytest). Run it before every memory finish and after any suite/iteration run.
+- Coherence rule (learned in iteration 014): never run `build-hlayer-experiments.ps1` out-of-band; the replay suite reruns only through `run-hlayer-iteration.ps1`, otherwise the latest-iteration snapshot no longer matches the promoted suite and the program validator fails by design.
+
 ## Cadence
 
-Iteration 012 is the latest accepted run and is `NEUTRAL`/`reliability_only` under the synchronized decision register. EXP-012 remains `NOT YET COMPUTABLE` at validated-safe N=0.
+Iteration 014 is the latest accepted run and is `NEUTRAL`/`reliability_only` (coherence restoration) under the synchronized decision register. EXP-012 remains `NOT YET COMPUTABLE` at validated-safe N=0.

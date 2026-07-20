@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "ProgramStatusSnapshot-v1",
+  "generatedAt": "2026-07-20T17:45:15.704174+00:00",
+  "sourceRevision": "af191f07849a0bb883750eba135ede0cec908abb",
+  "latestAcceptedIteration": {
+    "iteration": 14,
+    "directory": "reports/generated/hlayer_iterations/iter_014",
+    "generatedAt": "2026-07-20T17:33:19.2210349Z",
+    "runId": "hlayer-20260720T173308Z-d79047f5e2",
+    "iterationKind": "reliability_only",
+    "verdict": "NEUTRAL",
+    "normalizedSha256": "fa3debf25ba705224bfa27748aaee7cd92d72e8f50b6704ccea2ff9f6255651e",
+    "claimScope": "Offline mechanism and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
+  },
+  "replaySuite": {
+    "runId": "hlayer-20260720T173308Z-d79047f5e2",
+    "experiments": [
+      "EXP-006",
+      "EXP-007",
+      "EXP-008",
+      "EXP-009",
+      "EXP-010",
+      "EXP-012"
+    ],
+    "normalizedSha256": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+    "status": "Offline evidence"
+  },
+  "conformanceSuite": {
+    "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+    "experiments": [
+      "EXP-013",
+      "EXP-014",
+      "EXP-015",
+      "EXP-016",
+      "EXP-017",
+      "EXP-018"
+    ],
+    "normalizedSha256": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+    "passed": true,
+    "liveShadowAuthorized": false,
+    "status": "Offline evidence"
+  },
+  "iterationHistory": {
+    "acceptedCount": 14,
+    "historicalPreManifest": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "manifestBacked": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "experimentStates": {
+    "EXP-000": "Documented — parked",
+    "EXP-001": "Implemented",
+    "EXP-002": "Evaluation-ready",
+    "EXP-003": "Pending expert input",
+    "EXP-004": "Synthetic fixture",
+    "EXP-005": "Pending expert input",
+    "EXP-006": "Offline evidence",
+    "EXP-007": "Offline evidence",
+    "EXP-008": "Offline evidence",
+    "EXP-009": "Synthetic fixture",
+    "EXP-010": "Synthetic fixture",
+    "EXP-011": "Documented — parked",
+    "EXP-012": "Blocked",
+    "EXP-013": "Offline evidence",
+    "EXP-014": "Offline evidence",
+    "EXP-015": "Offline evidence",
+    "EXP-016": "Offline evidence",
+    "EXP-017": "Offline evidence",
+    "EXP-018": "Offline evidence"
+  },
+  "exp005Gate": {
+    "candidateRows": 24,
+    "suppliedLabels": 0,
+    "validLabels": 0,
+    "generalizationSafeValidLabels": 0,
+    "minimumForQuantitativeEvaluation": 20,
+    "quantitativeEvaluationAllowed": false,
+    "status": "Pending expert input"
+  },
+  "exp012Gate": {
+    "generalizationSafeN": 0,
+    "result": "NOT YET COMPUTABLE",
+    "status": "Blocked"
+  },
+  "decisionState": {
+    "M-01": "Deferred",
+    "M-02": "Deferred",
+    "M-03": "Deferred",
+    "M-04": "Deferred",
+    "M-05": "Deferred",
+    "M-06": "Deferred",
+    "confirmationStatus": "unconfirmed",
+    "runtimeAuthorization": false
+  },
+  "protectedPathState": {
+    "status": "PASS",
+    "protectedDiff": [],
+    "paths": {
+      "VEGO-AI/framework": "de4749aa39aef4e0ea02b3e24f8ec8174ed46ec0806e92c5778f980077cde8df",
+      "VEGO-AI/schemas": "7dfdea2552ac1f12ea0370263151056e01b5c18c1cd1a2890188fb48efa43455",
+      "VEGO-AI/tests": "1766a596d0c54c94ed83e72693884301d5ba98e973947b4fde1cc777ff032a2c",
+      "VEGO-AI/eval": "f62c34f9f30558269eaa8fdb7b3f96e656f91a5fffc7ee79990234ec4d48e3ec",
+      "VEGO-AI/inputs": "ce6baead0fb775ca926f2fdfe6578aafcc3d603db1785ea8cb2ca6b7d2d3f356"
+    }
+  },
+  "verificationRecord": {
+    "status": "PASS",
+    "tests": {
+      "VEGO-AI/tests": {
+        "passed": 94,
+        "failed": 0,
+        "durationSeconds": 6.41
+      },
+      "scripts/tests": {
+        "passed": 53,
+        "failed": 0,
+        "durationSeconds": 60.43
+      }
+    },
+    "recordedAt": "2026-07-20T19:21:30Z",
+    "command": "python -m pytest <suite> -q",
+    "runtime": "Python 3.13.3 / pytest 8.4.2"
+  },
+  "sourceHashes": {
+    "iteration14Manifest": "d99740517a0c87feeffb8c71bd643f18371144f9463615820f3c3b3a402f99c0",
+    "replaySuiteManifest": "339a7eb2cc8a2b848f3581547f4af2cef4dc20b80497dd83d9c70d75156fa7a6",
+    "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
+    "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
+    "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88"
+  }
+}
