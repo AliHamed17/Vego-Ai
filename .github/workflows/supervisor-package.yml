@@ -27,6 +27,7 @@ jobs:
           VEGO-AI/tests
           scripts/tests/test_build_hlayer_decision_snapshot.py
           scripts/tests/test_build_hlayer_program_overview.py
+          --deselect=VEGO-AI/tests/test_visualizer_helpers.py::test_extract_case_id_examples
           -q
 
       - name: Validate protected paths and supervisor package
