@@ -10,6 +10,7 @@ Fast review state for Codex and Claude. Update this after meaningful review cycl
 
 - Verdict: `blocked`
 - Reason: Collect real EXP-005 labels, save and close the CSV, then rerun the review and EXP-005 downstream gate.
+- Redirect note (2026-07-03): per the 2026-07-01 supervisor meeting (`docs/research/extension-plan-2026-07-supervisor-redirect.md`), this EXP-005 blocker now gates ONLY the parked evaluation track. The active work is the framework track (H-layer skills map, prompt requirements, detail specs); the `blocked` verdict is not a stop signal for framework-track documentation and specification work. All claim boundaries below remain in force unchanged.
 - Review architecture: `docs/operations/project-review-architecture.md`
 - Review runner: `scripts/run-project-review.ps1`
 - Latest generated review output: `reports/generated/project_review/latest-review.md` (ignored)

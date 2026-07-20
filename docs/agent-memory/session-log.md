@@ -2585,3 +2585,39 @@ Chronological prompt history for Codex and Claude.
   - Atlassian Rovo _getconfluencepage cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec page 294914
 - Status: blocked
 - Next steps: Grant Atlassian Rovo access to cloud 724252a1-a5b7-45a5-b6ec-27a8292197ec, then retry the Confluence MCP update from docs/confluence/outbox/vego-ai-wiki-home.md.
+
+## 2026-07-03 23:50 +03:00 - Claude - 2026-07-01 supervisor meeting transcribed; H-layer redirect plan adopted
+
+- Request: Transcribe the 2026-07-01 Zoom meeting with Iris and produce an extensive extension plan implementing all her guidance.
+- Actions taken:
+  - Transcribed 35-min Hebrew audio locally with faster-whisper large-v3-turbo (int8 CPU); transcript stored at ignored artifacts/meetings/2026-07-01-iris/transcript_he.txt
+  - Verified transcript understanding with a 3-lens extraction workflow plus completeness critic (no substantive point missed)
+  - Wrote tracked meeting notes and the active extension plan (supervisor redirect: framework track active, evaluation track PARKED)
+  - Drafted 2026-07-15 deliverables: H-layer skills map (S1-S7, events E1-E15, integration matrix, Option B recommendation) and prompt-requirements spec
+  - Split architecture into framework-diagram.md (H-layer listener over both circles) and evaluation-diagram.md (parked track); Mermaid validated
+  - Extended literature-review taxonomy for the mid-August course survey; started PhD extension idea log
+  - Updated current-state, progress (TASK-028..030, Next Steps reordered), decisions, issues (ISS-006 parked-track note), review-state redirect note, hardening-plan status line, progress dashboard
+  - Ran a 3-lens adversarial review (coverage/consistency/governance) over the new docs and fixed all 16 findings
+- Files changed:
+  - docs/research/meetings/2026-07-01-supervisor-meeting-iris.md
+  - docs/research/extension-plan-2026-07-supervisor-redirect.md
+  - docs/research/h-layer/skills-map.md
+  - docs/research/h-layer/prompt-requirements.md
+  - docs/research/phd-extension-ideas.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/architecture/framework-diagram.md
+  - docs/architecture/evaluation-diagram.md
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/review-state.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/progress-dashboard.md
+- Commands/checks:
+  - faster-whisper transcription (scratchpad script)
+  - extraction + adversarial review workflows
+  - npx @mermaid-js/mermaid-cli render checks
+- Status: completed
+- Next steps: Finalize the 2026-07-15 meeting package and collect Iris's answers to the skills-map open questions; then Phase 2 detail specs per the extension plan.

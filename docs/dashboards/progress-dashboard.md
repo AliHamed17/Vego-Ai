@@ -1,13 +1,14 @@
 # Progress Dashboard
 
-Last curated update: 2026-06-14 19:20 +03:00.
+Last curated update: 2026-07-03 by Claude.
 
 ## Executive Snapshot
 
-VEGO-AI is currently at the M4B-1 deterministic comparison state with a validated visualizer UX cleanup merged. The project has a staged human-AI co-reasoning path through advisory memory reuse and parallel comparison, while future memory-informed behavior changes remain blocked until controlled evaluation evidence exists.
+The 2026-07-01 supervisor meeting redirected the project: the human-judgment layer is being reframed as an H-layer (H1/H2/H3) continuous listener over both VEGO-AI communication circles, framework redesign is the active track, and the evaluation track (M4A/M4B-1 instruments plus EXP-001..005 with the EXP-005 real-label gate) is PARKED in a separate diagram until the framework stabilizes. Active plan: `docs/research/extension-plan-2026-07-supervisor-redirect.md`. Implementation state remains frozen at M4B-1; behavior changes stay blocked.
 
 | Area | Status | Evidence | Next Action |
 | --- | --- | --- | --- |
+| Supervisor redirect (2026-07-01) | Green | Meeting notes, extension plan, H-layer skills map + prompt requirements, framework/evaluation diagrams all tracked. | Present the 2026-07-15 package; capture Iris's decisions on the open questions. |
 | Source baseline | Green | Safe GitHub baseline and later `main` history exist. | Continue small, reviewable commits. |
 | M1 Human Review Queue | Green | Implemented and tested. | Use as upstream evidence for artifact manifest. |
 | M2 Human Feedback Manager | Green | Implemented and tested. | Include schema/docs/tests in artifact manifest. |
@@ -38,6 +39,8 @@ VEGO-AI is currently at the M4B-1 deterministic comparison state with a validate
 
 | Priority | Work Item | Owner | Status |
 | --- | --- | --- | --- |
+| P0 | Finalize 2026-07-15 meeting package: skills map, prompt requirements, framework diagram, open questions. | Ali / agents | In progress |
+| P0 | Literature survey per extended taxonomy (Pnina's course; present mid-Aug, submit end-Sep/Oct). | Ali | Open |
 | P1 | Review and merge PR #6 schema hardening if clean. | Codex / reviewer | Open |
 | P1 | Use release artifact bundle for external technical review. | Research lead / agents | Available |
 | P1 | Fill EXP-002 expert labeling sheet and rerun EXP-001/generalization-safe evaluation. | Research lead / agents | Next |

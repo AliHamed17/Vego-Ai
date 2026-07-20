@@ -1180,3 +1180,24 @@ Record file changes and rollback notes here.
   - docs/agent-memory/revert-log.md
 - Rollback note: Revert this memory-only blocked-sync entry if needed. No live Confluence write occurred and no VEGO behavior files changed.
 - Git commit: none recorded by script.
+
+## 2026-07-03 - Claude - Supervisor Meeting Redirect Package
+
+- Files added:
+  - `docs/research/meetings/2026-07-01-supervisor-meeting-iris.md`
+  - `docs/research/extension-plan-2026-07-supervisor-redirect.md`
+  - `docs/research/h-layer/skills-map.md`
+  - `docs/research/h-layer/prompt-requirements.md`
+  - `docs/research/phd-extension-ideas.md`
+  - `docs/architecture/framework-diagram.md`
+  - `docs/architecture/evaluation-diagram.md`
+  - ignored: `artifacts/meetings/2026-07-01-iris/transcript_he.txt`
+- Files updated:
+  - `docs/research/literature-review-taxonomy.md` (new taxonomy branches + course-work alignment)
+  - `docs/agent-memory/current-state.md`
+  - `docs/agent-memory/progress.md` (milestone, TASK-028..030, Next Steps reordered)
+  - `docs/agent-memory/decisions.md`
+  - `docs/agent-memory/issues.md` (ISS-006 annotated as parked-track)
+- Rollback note: delete the added files and revert the five updated files to their pre-2026-07-03 versions; no VEGO-AI source, schema, eval output, or baseline file was touched (`git diff --name-status -- VEGO-AI` is empty).
+- Commands run: local whisper transcription (scratchpad), extraction + adversarial review workflows, mermaid-cli diagram validation.
+- Addendum (same prompt, post adversarial review): also updated `docs/agent-memory/review-state.md` (redirect note), `docs/research/strategic-review-and-hardening-plan.md` (status line), `docs/dashboards/progress-dashboard.md` (snapshot + work queue), and applied 16 consistency/governance fixes across the new H-layer docs and diagrams found by a three-lens adversarial review.

@@ -1,8 +1,8 @@
 # VEGO-AI Strategic Review And Hardening Plan
 
-Last updated: 2026-06-22 by Codex.
+Last updated: 2026-07-03 by Claude (status line only; content unchanged).
 
-Status: feature work is frozen; EXP-005 real-label evidence is the next required research gate.
+Status: SEQUENCING SUPERSEDED on 2026-07-03 by `docs/research/extension-plan-2026-07-supervisor-redirect.md` (2026-07-01 supervisor meeting): the framework track (H-layer redesign/specs) is now active and the EXP-005 real-label gate moves to the PARKED evaluation track. The evidence gates, claim boundaries, and validation commands in this document remain authoritative and unchanged for any evidence claim.
 
 ## Executive Verdict
 

@@ -4,7 +4,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Last Updated
 
-- 2026-06-23 by Codex.
+- 2026-07-03 by Claude (2026-07-01 supervisor meeting processed; H-layer redirect plan added).
 
 ## Project Goal
 
@@ -15,6 +15,13 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 
 ## Latest Known State
 
+- 2026-07-01 supervisor meeting (Iris + Arnon, recorded) redirected the project: framework redesign FIRST, evaluation PARKED in a separate track. Full notes: `docs/research/meetings/2026-07-01-supervisor-meeting-iris.md`; Hebrew transcript (ignored): `artifacts/meetings/2026-07-01-iris/transcript_he.txt`.
+- Active plan: `docs/research/extension-plan-2026-07-supervisor-redirect.md`. Key directives: human layer = continuous listener over BOTH VEGO-AI communication circles (artifact + Q&A), intervening at early stages; rename M1/M2/M3 -> H1/H2/H3 in new docs (code rename deferred); M4A/M4B-1 repositioned as evaluation instruments and M4 deferred; real human experts only; bidirectional interfaces; learning beyond save/retrieve incl. correcting Agents 1-4; anti-sycophancy verify-then-question protocol; configurable intervention dosage.
+- Deliverables due 2026-07-15 meeting are drafted: `docs/research/h-layer/skills-map.md` (Deliverable A: skills S1-S7, event inventory E1-E13, integration matrix, agents-vs-skills options + Option B recommendation, open questions) and `docs/research/h-layer/prompt-requirements.md` (Deliverable B: prompt requirements, explicitly not prompts).
+- New diagrams: `docs/architecture/framework-diagram.md` (H-layer listener over two circles) and `docs/architecture/evaluation-diagram.md` (PARKED evaluation track: V0 vs V1 + usability questionnaire, M4A/M4B-1 + EXP-001..005 with the EXP-005 real-label gate as track entry). Mermaid validated with mermaid-cli.
+- Literature survey scope extended for Pnina's course (presentation mid-Aug 2026, submission end-Sep/Oct): `docs/research/literature-review-taxonomy.md` gained agentic-HITL, RLHF/RL+LLM, LLM-agent memory/learning, sycophancy/trust, and configurable-intervention branches.
+- PhD idea log started: `docs/research/phd-extension-ideas.md` (medical-domain transfer is the preferred PhD extension per Iris/Arnon).
+- EXP-005 label collection is NOT cancelled: it moves into the parked evaluation track and remains its entry gate; all governance blocks (no M4B-2, no Agent 4 changes, no accuracy claims, frozen tags) remain in force.
 - Workspace root: `c:\Users\ahamed\vego-ai`
 - Git status: repository initialized, safe baseline committed, and pushed to private GitHub repo `AliHamed17/Vego-Ai` on 2026-06-11.
 - Current local branch: `main`, tracking `origin/main`.

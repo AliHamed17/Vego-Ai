@@ -53,6 +53,7 @@ Track milestones, current work, and next steps here.
 | 2026-06-22 | EXP-005 synthetic trial interpreted | Done | Ran a synthetic-only EXP-005 pipeline trial, generated ignored synthetic outputs, and added a tracked design-only policy candidate review. Current M4B-1 remains 0/27 classification changes and 0.00 pp synthetic accuracy delta. |
 | 2026-06-23 | Supervised Codex next-step loop added | Done | Added `scripts/run-codex-next-step.ps1` and docs so "continue" prompts run one safe cycle, stop at EXP-005/protected-path gates, and write ignored loop summaries. |
 | 2026-06-23 | Project review architecture added | Done | Added memory-connected review state, review architecture docs, and `scripts/run-project-review.ps1` so review/continue prompts produce structured verdicts and claim gates. |
+| 2026-07-03 | 2026-07-01 supervisor meeting transcribed and converted into the H-layer redirect plan | Done | Local Hebrew transcription (faster-whisper large-v3-turbo); meeting notes, extension plan, H-layer skills map + prompt requirements (2026-07-15 deliverables), framework/evaluation diagram split, taxonomy v2, PhD idea log. Framework redesign is now the active track; evaluation parked. |
 
 ## Active Work
 
@@ -84,6 +85,9 @@ Track milestones, current work, and next steps here.
 | TASK-025 | 2026-06-22 | Open | Revisit synthetic M4B-1.1 policy candidates only after real EXP-005 labels exist. | Use `docs/research/m4b1-synthetic-policy-candidate-review.md` as a discussion aid; do not implement policy changes until the real-label gate passes. |
 | TASK-026 | 2026-06-23 | Open | Use the supervised next-step loop for continuation prompts. | Run `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen`; inspect `reports/generated/next_step_loop/last-run.md` and `reports/generated/project_review/latest-review.md`. |
 | TASK-027 | 2026-06-23 | Open | Use the structured project review architecture for review prompts. | Run `.\scripts\run-project-review.ps1 -UpdateReviewState` after meaningful review cycles and keep `docs/agent-memory/review-state.md` current. |
+| TASK-028 | 2026-07-03 | In progress | Execute the supervisor-redirect plan (`docs/research/extension-plan-2026-07-supervisor-redirect.md`). | Finalize the 2026-07-15 deliverables (skills map + prompt requirements + framework diagram), collect open-question answers from Iris, then start Phase 2 detail specs. |
+| TASK-029 | 2026-07-03 | Open | Literature survey for Pnina's course per extended taxonomy. | Build the corpus log per taxonomy branch; presentation mid-August 2026; submission end-September/October 2026. |
+| TASK-030 | 2026-07-03 | Open | Maintain the PhD extension idea log. | Add entries to `docs/research/phd-extension-ideas.md` while reading; review with Iris periodically; medical-domain transfer is the preferred direction. |
 
 ## Completed Work
 
@@ -136,18 +140,18 @@ Track milestones, current work, and next steps here.
 
 ## Next Steps
 
-1. Run `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen` for supervised continuation prompts.
-2. Run `.\scripts\run-project-review.ps1 -UpdateReviewState` for structured review-only prompts.
-3. Run `.\scripts\open-vego-workbench.ps1` for daily local review, or `.\scripts\open-vego-workbench.ps1 -Gui` when the visualizer is needed.
-4. Fill `reports/generated/exp005_label_review/exp005_label_review_blind.csv` with at least 20 generalization-safe expert labels, preferably 30-50.
-5. Use `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv` for reviewer-2 or supervisor adjudication before treating results as strong quantitative evidence.
-6. Rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream` and review `reports/generated/exp005_label_review/label_validation_summary.json`.
-7. Review `reports/generated/exp005_label_review/evidence_verdict.md`, `reproducibility_manifest.json`, and the EXP-005 real-label policy gate plus rerun EXP-003/EXP-004 generated outputs before any M4B-1.1 design change.
-8. Use `docs/research/m4b1-synthetic-policy-candidate-review.md` only as a design discussion aid after real labels exist; it is not real evidence.
-9. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-10. If EXP-003 shows enough safe labels and baseline errors that memory can plausibly address, write or update `docs/research/m4b1-policy-refinement-plan.md`; do not implement policy refinement before approval.
-11. Capture supervisor decisions on thesis framing, label protocol, target label count, leakage policy, and M4B-2 gating.
-12. Review and merge PR #6 for M4B schema hardening when ready.
+Reordered on 2026-07-03 per the supervisor redirect (`docs/research/extension-plan-2026-07-supervisor-redirect.md`). Framework track is active; evaluation track is parked (former steps 4-8 and 10 moved there, unchanged in substance).
+
+1. Finalize and self-review the 2026-07-15 meeting package: `docs/research/h-layer/skills-map.md`, `docs/research/h-layer/prompt-requirements.md`, `docs/architecture/framework-diagram.md`, plus the open-questions list (skills map section 7).
+2. At the 2026-07-15 meeting: get Iris's decisions on agents-vs-skills (Option B recommended), first event subset, default dosage mode, percolation approval flow, convergence bounds, and H-naming scope.
+3. After the meeting: start Phase 2 detail specs (listener hook catalog, intervention configuration, anti-sycophancy/convergence protocol, percolation/learning spec, human-interface requirements) per the extension plan.
+4. Only after Iris confirms the skills-map direction: scaffold the non-destructive H-Listen prototype (logging-first, separate branch/PR, baseline untouched).
+5. Progress the literature survey per the extended `docs/research/literature-review-taxonomy.md` (presentation mid-August; submission end-September/October; gap statement is the key output).
+6. Keep collecting PhD extension ideas in `docs/research/phd-extension-ideas.md`; Ali to check direct-track administration with Sigal / Graduate Studies Authority.
+7. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
+8. Parked evaluation track (unpark on Iris's go-ahead): EXP-005 blind labels (>=20 safe), adjudication sheet, downstream rerun, evidence verdict - see `docs/architecture/evaluation-diagram.md` and the hardening plan; accuracy claims stay blocked until then.
+9. Review and merge PR #6 for M4B schema hardening when ready (schema-only; unaffected by the redirect).
+10. Run `.\scripts\open-vego-workbench.ps1` for daily local review; use `.\scripts\run-project-review.ps1 -UpdateReviewState` after meaningful review cycles.
 13. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
 14. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, wiki outbox, and manual sync pack.
 15. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.

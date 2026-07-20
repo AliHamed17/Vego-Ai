@@ -275,3 +275,15 @@ Durable decisions for this project.
 - Decision: When EXP-005 blocks the next-step loop, run the project review cycle so Codex and Claude get a full audit report instead of only repeating the label blocker.
 - Reason: The project now needs repeatable governance/evidence review more than new feature work.
 - Consequence: Future review/continue prompts should inspect `reports/generated/project_review/latest-review.md`, keep safe claims separate from blocked claims, and update review-state memory when the review changes project state.
+
+## 2026-07-03 - Supervisor Redirect: H-Layer Framework First (Meeting 2026-07-01)
+
+- Decision: Adopt the 2026-07-01 supervisor meeting directives as the active plan: `docs/research/extension-plan-2026-07-supervisor-redirect.md`.
+- Decision: The human-judgment layer is reframed as a continuous listener over BOTH VEGO-AI communication circles (artifact circle and Q&A circle), able to intervene at early stages, not only after Agent 4.
+- Decision: Rename M1/M2/M3 to H1/H2/H3 in all NEW research docs and diagrams; code, schemas, tags, and merged history keep M-names until a dedicated rename PR is approved.
+- Decision: M4 (advisory/memory-informed comparison) is deferred and repositioned as an evaluation instrument; framework and evaluation live in separate diagrams (`docs/architecture/framework-diagram.md`, `docs/architecture/evaluation-diagram.md`); the evaluation track is PARKED until the framework stabilizes.
+- Decision: The human expert is a real person (supervisor/TA/external), never a simulated agent; intervention dosage must be configurable (every-decision / threshold / first-N-then-auto / silent) and must never block pipeline progress on missing expert feedback.
+- Decision: Feedback handling must go beyond save/retrieve - reason and learn, including correcting Agents 1-4 knowledge - with an anti-sycophancy verify-then-question protocol and bounded convergence.
+- Decision: EXP-005 label collection is parked with the evaluation track, not cancelled; it remains that track's entry gate. All existing governance blocks (no M4B-2, no Agent 4 behavior change, no LLM/API/embeddings, no baseline overwrites, no accuracy claims) remain in force.
+- Reason: Direct supervisor instruction in the recorded 2026-07-01 meeting (notes: `docs/research/meetings/2026-07-01-supervisor-meeting-iris.md`; verified against the transcript by independent extraction passes).
+- Consequence: The 2026-07-15 meeting package (skills map, prompt requirements, framework diagram, open questions) is the immediate deliverable; H-layer implementation starts only after Iris confirms the skills-map direction.
