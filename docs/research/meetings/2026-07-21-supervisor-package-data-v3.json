@@ -1,0 +1,3354 @@
+{
+  "schemaVersion": "SupervisorPackageData-v3",
+  "generatedAt": "2026-07-21",
+  "claimBoundaries": [
+    "July 1 wording is a machine-derived English paraphrase pending M-01 confirmation.",
+    "July 3–20 work is later author work and is not attributed to Iris or Arnon.",
+    "No accuracy, generalization, benchmark-superiority, reduced-effort-at-scale, or clinical-performance claim.",
+    "Agent 4, protected runtime paths, and baseline eval_output remain unchanged.",
+    "EXP-005 has 24 safe candidates and 0 supplied labels; EXP-012 is NOT YET COMPUTABLE.",
+    "M-01–M-06 are unrecorded and effective Deferred; no default or live implementation is approved.",
+    "Corrections remain proposal-only and require explicit human approval.",
+    "MediVARIA is proposal-only future work; education remains the MSc empirical domain."
+  ],
+  "sources": [
+    {
+      "id": "SRC-BASELINE",
+      "path": "docs/research/h-layer/phase-0-boundary-record.md",
+      "evidenceClass": "historical baseline",
+      "boundary": "read-only",
+      "sha256": "4bd4daac1681de9535901119c31bd5054977ffa6d10c849ded4edaadd0c689a9",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-REVIEW",
+      "path": "reports/generated/exp001/exp001_summary.json",
+      "evidenceClass": "mechanism evidence",
+      "boundary": "not an accuracy label source",
+      "sha256": "06419d6e3a5ac5b547fc8586964ef5a461eaeb450b176f93c6384bcb0822622e",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-MEMORY",
+      "path": "reports/generated/exp001/exp001_summary.json",
+      "evidenceClass": "advisory subset",
+      "boundary": "advisory_only",
+      "sha256": "06419d6e3a5ac5b547fc8586964ef5a461eaeb450b176f93c6384bcb0822622e",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-EXP006",
+      "path": "reports/generated/hlayer_iterations/iter_014/exp006-summary.json",
+      "evidenceClass": "offline replay",
+      "boundary": "heterogeneous lifecycle observations",
+      "sha256": "7d8abc081553537e97118de4283c8a8370c3717af2ec2a87114c43533a5c482f",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-EXP007",
+      "path": "reports/generated/hlayer_iterations/iter_014/exp007-summary.json",
+      "evidenceClass": "offline dosage replay",
+      "boundary": "no default selected",
+      "sha256": "1d1e4922f274ae304fa91ac3042a99272414e2734c86bc5b1d292cc799059dd2",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-EXP008",
+      "path": "reports/generated/hlayer_iterations/iter_014/exp008-summary.json",
+      "evidenceClass": "offline cap sweep",
+      "boundary": "no default selected",
+      "sha256": "de19666dc0166b050d858d2fc5398c4f656913dde29d2c8191025421d33a168b",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-EXP005",
+      "path": "reports/generated/hlayer_iterations/iter_014/exp005-gate.json",
+      "evidenceClass": "evaluation gate",
+      "boundary": "0 supplied labels",
+      "sha256": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-STATUS",
+      "path": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "evidenceClass": "tracked status interface",
+      "boundary": "joins accepted manifests; creates no evidence",
+      "sha256": "a6c7a146be36c3d337f94081088720e44a1dda8269848c5c7b71185f7355d008",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-ITER014",
+      "path": "reports/generated/hlayer_iterations/iter_014/iteration_manifest.json",
+      "evidenceClass": "accepted reliability manifest",
+      "boundary": "NEUTRAL reliability_only; no mechanism-performance claim",
+      "sha256": "d99740517a0c87feeffb8c71bd643f18371144f9463615820f3c3b3a402f99c0",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-CONFORMANCE",
+      "path": "reports/generated/hlayer_conformance/manifest.json",
+      "evidenceClass": "offline conformance",
+      "boundary": "fixtures only; no live authorization",
+      "sha256": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
+      "observationDate": "2026-07-20"
+    },
+    {
+      "id": "SRC-DECISIONS",
+      "path": "reports/generated/h_layer_decisions/decision_snapshot.json",
+      "evidenceClass": "decision snapshot",
+      "boundary": "M-01–M-06 effective Deferred and unconfirmed",
+      "sha256": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
+      "observationDate": "2026-07-20"
+    }
+  ],
+  "skills": [
+    {
+      "id": "S1",
+      "group": "H1",
+      "name": {
+        "en": "Observe",
+        "he": "צפייה"
+      }
+    },
+    {
+      "id": "S2",
+      "group": "H1",
+      "name": {
+        "en": "Triage",
+        "he": "מיון"
+      }
+    },
+    {
+      "id": "S3",
+      "group": "H1",
+      "name": {
+        "en": "Ask",
+        "he": "שאלה"
+      }
+    },
+    {
+      "id": "S4",
+      "group": "H2",
+      "name": {
+        "en": "Capture",
+        "he": "לכידה"
+      }
+    },
+    {
+      "id": "S5",
+      "group": "H2",
+      "name": {
+        "en": "Verify",
+        "he": "אימות"
+      }
+    },
+    {
+      "id": "S6",
+      "group": "H3",
+      "name": {
+        "en": "Propose",
+        "he": "הצעה"
+      }
+    },
+    {
+      "id": "S7",
+      "group": "H3",
+      "name": {
+        "en": "Remember",
+        "he": "זיכרון"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "E1",
+      "name": {
+        "en": "Guideline or requirement authored",
+        "he": "נכתבה הנחיה או דרישה"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E2",
+      "name": {
+        "en": "Question asked",
+        "he": "נשאלה שאלה"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E3",
+      "name": {
+        "en": "Answer persisted",
+        "he": "תשובה נשמרה"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "unobservable",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E4",
+      "name": {
+        "en": "Case context established",
+        "he": "הקשר מקרה נקבע"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E5",
+      "name": {
+        "en": "Artifact version produced",
+        "he": "נוצרה גרסת תוצר"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E6",
+      "name": {
+        "en": "Deviation assessed",
+        "he": "סטייה הוערכה"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E7",
+      "name": {
+        "en": "Uncertainty recorded",
+        "he": "אי-ודאות תועדה"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E8",
+      "name": {
+        "en": "Variability pattern produced",
+        "he": "נוצר דפוס שונות"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E9",
+      "name": {
+        "en": "Human review item created",
+        "he": "נוצר פריט סקירה אנושית"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "unobservable",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E10",
+      "name": {
+        "en": "Human feedback received",
+        "he": "התקבל משוב אנושי"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "unobservable",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E11",
+      "name": {
+        "en": "Verification dialogue recorded",
+        "he": "תועד דיאלוג אימות"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "unobservable",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E12",
+      "name": {
+        "en": "Adjudication outcome recorded",
+        "he": "תועדה תוצאת הכרעה"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E13",
+      "name": {
+        "en": "Correction proposal created",
+        "he": "נוצרה הצעת תיקון"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E14",
+      "name": {
+        "en": "Trusted memory committed",
+        "he": "נשמר זיכרון מהימן"
+      },
+      "scope": "framework_lifecycle",
+      "captureStatus": "unobservable",
+      "eligibleForFrameworkRouting": true,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Proposal — not approved",
+      "claimBoundary": "Offline representation does not authorize a live listener or framework action."
+    },
+    {
+      "id": "E15",
+      "name": {
+        "en": "Evaluation event",
+        "he": "אירוע הערכה"
+      },
+      "scope": "evaluation_only",
+      "captureStatus": "reconstructed",
+      "eligibleForFrameworkRouting": false,
+      "frameworkActionAllowed": false,
+      "operationalStatus": "Documented — parked",
+      "claimBoundary": "E15 cannot produce a framework action."
+    }
+  ],
+  "connections": [
+    {
+      "from": "C1",
+      "to": "C2"
+    },
+    {
+      "from": "C2",
+      "to": "C3"
+    },
+    {
+      "from": "C3",
+      "to": "C4"
+    },
+    {
+      "from": "C4",
+      "to": "C5"
+    },
+    {
+      "from": "C5",
+      "to": "C6"
+    }
+  ],
+  "chronology": [
+    {
+      "id": "record",
+      "date": {
+        "en": "July 1",
+        "he": "1 ביולי"
+      },
+      "title": {
+        "en": "Recorded supervisor redirect",
+        "he": "תיעוד הכוונת המנחה"
+      },
+      "detail": {
+        "en": "Machine-derived paraphrase; confirm or correct under M-01.",
+        "he": "ניסוח מבוסס-מכונה; לאישור או תיקון במסגרת M-01."
+      },
+      "kind": "record"
+    },
+    {
+      "id": "progress",
+      "date": {
+        "en": "July 3–20",
+        "he": "3–20 ביולי"
+      },
+      "title": {
+        "en": "Implementation and offline evidence",
+        "he": "מימוש ועדות offline"
+      },
+      "detail": {
+        "en": "Later authored implementation, manifests, offline replay, synthetic fixtures, and package work.",
+        "he": "מימוש מאוחר, manifests, replay offline, fixtures סינתטיים ועבודת חבילה."
+      },
+      "kind": "working"
+    },
+    {
+      "id": "decisions",
+      "date": {
+        "en": "July 21",
+        "he": "21 ביולי"
+      },
+      "title": {
+        "en": "Decision request M-01–M-06",
+        "he": "בקשת החלטות M-01–M-06"
+      },
+      "detail": {
+        "en": "Record outcome, rationale, owner, and due date.",
+        "he": "לתעד תוצאה, נימוק, אחראי ותאריך יעד."
+      },
+      "kind": "decision"
+    }
+  ],
+  "components": [
+    {
+      "id": "C1",
+      "order": 1,
+      "status": "proposal",
+      "title": {
+        "en": "Baseline and architecture frame",
+        "he": "בסיס ומסגרת ארכיטקטורה"
+      },
+      "short": {
+        "en": "Baseline frame",
+        "he": "מסגרת בסיס"
+      },
+      "why": {
+        "en": "Start with the original four-agent VEGO-AI pipeline and make the H-layer boundary explicit.",
+        "he": "להתחיל מצינור VEGO-AI המקורי בן ארבעת הסוכנים ולהבהיר את גבול שכבת H."
+      },
+      "basis": {
+        "en": "D3 — use H naming and decide agents versus skills.",
+        "he": "D3 — להשתמש בשמות H ולהחליט בין סוכנים למיומנויות."
+      },
+      "work": {
+        "en": "Mapped Agents 1–4, H1/H2/H3, S1–S7, and Options A/B/C.",
+        "he": "מופו סוכנים 1–4, H1/H2/H3, S1–S7 ואפשרויות A/B/C."
+      },
+      "evidence": {
+        "en": "Architecture and prompt-requirement drafts exist; Option B remains a recommendation.",
+        "he": "קיימות טיוטות ארכיטקטורה ודרישות פרומפט; אפשרות B נשארת המלצה."
+      },
+      "boundary": {
+        "en": "No H-layer architecture is approved; Agent 4 remains unchanged.",
+        "he": "טרם אושרה ארכיטקטורת שכבת H; Agent 4 נשאר ללא שינוי."
+      },
+      "decision": {
+        "en": "M-02 — choose the H-layer decomposition.",
+        "he": "M-02 — לבחור את פירוק שכבת H."
+      },
+      "directives": [
+        "D3"
+      ],
+      "skills": [
+        "H1",
+        "H2",
+        "H3",
+        "S1–S7"
+      ],
+      "events": [],
+      "artifacts": [
+        "A-ARCH",
+        "A-SKILLS",
+        "A-PROMPTS"
+      ],
+      "experiments": [],
+      "decisionIds": [
+        "M-02"
+      ],
+      "statusLabel": "Proposal — not approved",
+      "skillGroupIds": [
+        "H1",
+        "H2",
+        "H3"
+      ],
+      "skillIds": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "eventIds": []
+    },
+    {
+      "id": "C2",
+      "order": 2,
+      "status": "offline",
+      "title": {
+        "en": "Observe early and control dosage",
+        "he": "לצפות מוקדם ולשלוט במינון"
+      },
+      "short": {
+        "en": "Observe and triage",
+        "he": "צפייה ומיון"
+      },
+      "why": {
+        "en": "See artifact and Q&A events before Agent 4, then promote only selected cases to human review.",
+        "he": "לראות אירועי תוצרים ושו״ת לפני Agent 4, ואז לקדם רק מקרים נבחרים לסקירה אנושית."
+      },
+      "basis": {
+        "en": "D1, D2, D6 — observe both circles, enter early, and configure human involvement.",
+        "he": "D1, D2, D6 — לצפות בשני המעגלים, להיכנס מוקדם ולהגדיר מעורבות אנושית."
+      },
+      "work": {
+        "en": "Created E1–E15 catalog, early-hook map, S1–S3 routing, EXP-006 replay, EXP-007 dosage, and EXP-008 cap sweep.",
+        "he": "נוצרו קטלוג E1–E15, מפת hooks מוקדמים, ניתוב S1–S3, replay EXP-006, מינון EXP-007 וסריקת cap EXP-008."
+      },
+      "evidence": {
+        "en": "481 heterogeneous reconstructed events; no tested dosage meets both the coverage and load target.",
+        "he": "481 אירועים משוחזרים הטרוגניים; אף מינון שנבדק אינו עומד גם ביעד הכיסוי וגם ביעד העומס."
+      },
+      "boundary": {
+        "en": "Passive observation is proposed; no live hooks or active triggers are authorized.",
+        "he": "מוצעת צפייה פסיבית; hooks חיים וטריגרים פעילים אינם מאושרים."
+      },
+      "decision": {
+        "en": "M-03 — observation scope, triggers, pilot dosage, and cap policy.",
+        "he": "M-03 — היקף צפייה, טריגרים, מינון פיילוט ומדיניות תקרה."
+      },
+      "directives": [
+        "D1",
+        "D2",
+        "D6"
+      ],
+      "skills": [
+        "H1",
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "events": [
+        "E1–E14",
+        "E15 parked"
+      ],
+      "artifacts": [
+        "A-EVENTS",
+        "A-HOOKS"
+      ],
+      "experiments": [
+        "EXP-006",
+        "EXP-007",
+        "EXP-008"
+      ],
+      "decisionIds": [
+        "M-03"
+      ],
+      "statusLabel": "Offline evidence",
+      "skillGroupIds": [
+        "H1"
+      ],
+      "skillIds": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "eventIds": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15"
+      ]
+    },
+    {
+      "id": "C3",
+      "order": 3,
+      "status": "blocked",
+      "title": {
+        "en": "Ask and capture real human judgment",
+        "he": "לשאול וללכוד שיפוט אנושי אמיתי"
+      },
+      "short": {
+        "en": "Human judgment",
+        "he": "שיפוט אנושי"
+      },
+      "why": {
+        "en": "Turn selected uncertainty into a structured, traceable exchange with a real reviewer.",
+        "he": "להפוך אי-ודאות נבחרת לחילופי מידע מובנים ועקיבים עם בודק אמיתי."
+      },
+      "basis": {
+        "en": "D5, D7 — expert means a real person and the interface must be bidirectional.",
+        "he": "D5, D7 — מומחה הוא אדם אמיתי והממשק חייב להיות דו-כיווני."
+      },
+      "work": {
+        "en": "Implemented review queue, stable signatures, structured feedback capture, reviewer roles, and the EXP-005 labeling package.",
+        "he": "מומשו תור סקירה, חתימות יציבות, לכידת משוב מובנה, תפקידי בודקים וחבילת התיוג EXP-005."
+      },
+      "evidence": {
+        "en": "11 review items and 3 reusable judgments demonstrate mechanism readiness; independent labels supplied: 0.",
+        "he": "11 פריטי סקירה ו-3 שיפוטים רב-שימושיים מדגימים מוכנות מנגנון; תוויות עצמאיות שסופקו: 0."
+      },
+      "boundary": {
+        "en": "No label may be invented or inferred; no live human interface is authorized.",
+        "he": "אין להמציא או להסיק תווית; ממשק אנושי חי אינו מאושר."
+      },
+      "decision": {
+        "en": "M-05 — approve protocol, reviewers, roles, and implementation authority.",
+        "he": "M-05 — לאשר פרוטוקול, בודקים, תפקידים וסמכות מימוש."
+      },
+      "directives": [
+        "D5",
+        "D7"
+      ],
+      "skills": [
+        "H2",
+        "S4"
+      ],
+      "events": [
+        "E9",
+        "E10"
+      ],
+      "artifacts": [
+        "A-QUEUE",
+        "A-FEEDBACK",
+        "A-LABELS"
+      ],
+      "experiments": [
+        "EXP-005"
+      ],
+      "decisionIds": [
+        "M-05"
+      ],
+      "statusLabel": "Blocked",
+      "skillGroupIds": [
+        "H2"
+      ],
+      "skillIds": [
+        "S4"
+      ],
+      "eventIds": [
+        "E9",
+        "E10"
+      ]
+    },
+    {
+      "id": "C4",
+      "order": 4,
+      "status": "synthetic",
+      "title": {
+        "en": "Challenge feedback and converge",
+        "he": "לאתגר משוב ולהתכנס"
+      },
+      "short": {
+        "en": "Verify and converge",
+        "he": "אימות והתכנסות"
+      },
+      "why": {
+        "en": "Human feedback is evidence to verify, not an instruction that the system follows automatically.",
+        "he": "משוב אנושי הוא ראיה שיש לאמת, לא הוראה שהמערכת מבצעת אוטומטית."
+      },
+      "basis": {
+        "en": "D9, D10 — challenge feedback against sources and bound the interaction.",
+        "he": "D9, D10 — לאתגר משוב מול מקורות ולהגביל את האינטראקציה."
+      },
+      "work": {
+        "en": "Designed deterministic-first H-Verify, conflict states, bounded rounds, timeout parking, and human adjudication.",
+        "he": "עוצבו H-Verify דטרמיניסטי-תחילה, מצבי קונפליקט, סבבים מוגבלים, חניה ב-timeout והכרעה אנושית."
+      },
+      "evidence": {
+        "en": "EXP-009/010 provide assumption-driven synthetic rule evidence only.",
+        "he": "EXP-009/010 מספקים עדות כללים סינתטית מבוססת-הנחות בלבד."
+      },
+      "boundary": {
+        "en": "Conflict, timeout, or missing evidence ends in parking or adjudication—not automatic approval.",
+        "he": "קונפליקט, timeout או ראיה חסרה מסתיימים בחניה או הכרעה — לא באישור אוטומטי."
+      },
+      "decision": {
+        "en": "M-04 and M-05 — sources, ordering, round bound, timeout, and authority.",
+        "he": "M-04 ו-M-05 — מקורות, סדר, חסם סבבים, timeout וסמכות."
+      },
+      "directives": [
+        "D9",
+        "D10"
+      ],
+      "skills": [
+        "H2",
+        "S5"
+      ],
+      "events": [
+        "E10",
+        "E11"
+      ],
+      "artifacts": [
+        "A-VERIFY"
+      ],
+      "experiments": [
+        "EXP-009",
+        "EXP-010",
+        "EXP-017"
+      ],
+      "decisionIds": [
+        "M-04",
+        "M-05"
+      ],
+      "statusLabel": "Synthetic fixture",
+      "skillGroupIds": [
+        "H2"
+      ],
+      "skillIds": [
+        "S5"
+      ],
+      "eventIds": [
+        "E10",
+        "E11"
+      ]
+    },
+    {
+      "id": "C5",
+      "order": 5,
+      "status": "delivered",
+      "title": {
+        "en": "Learn and reuse without mutation",
+        "he": "ללמוד ולעשות שימוש חוזר ללא שינוי"
+      },
+      "short": {
+        "en": "Memory and advice",
+        "he": "זיכרון וייעוץ"
+      },
+      "why": {
+        "en": "Preserve verified human rationale as reusable, scoped, leakage-aware advisory evidence.",
+        "he": "לשמר נימוק אנושי מאומת כראיה ייעוצית רב-שימושית, תחומה ומודעת-דליפה."
+      },
+      "basis": {
+        "en": "D8, D11 — learning must exceed save/retrieve, with a skills map and prompt requirements.",
+        "he": "D8, D11 — למידה חייבת לעלות על שמירה/שליפה, עם מפת מיומנויות ודרישות פרומפט."
+      },
+      "work": {
+        "en": "Implemented M1, M1.2, M2, M3, M4A, and M4B-1; designed S6 proposal-only corrections and S7 trusted memory.",
+        "he": "מומשו M1, M1.2, M2, M3, M4A ו-M4B-1; עוצבו תיקוני S6 כהצעה בלבד וזיכרון מהימן S7."
+      },
+      "evidence": {
+        "en": "Historical package snapshot: 27 comparison rows, 0 classification changes, and 2 post-memory re-review flags.",
+        "he": "snapshot היסטורי של החבילה: 27 שורות השוואה, 0 שינויי סיווג ו-2 סימוני סקירה חוזרת לאחר זיכרון."
+      },
+      "boundary": {
+        "en": "Advice is advisory_only; S6 cannot mutate artifacts; trusted memory requires verification or adjudication.",
+        "he": "הייעוץ הוא advisory_only; S6 אינו משנה תוצרים; זיכרון מהימן דורש אימות או הכרעה."
+      },
+      "decision": {
+        "en": "M-02 and M-05 — finalize architecture and correction authority.",
+        "he": "M-02 ו-M-05 — להשלים ארכיטקטורה וסמכות תיקון."
+      },
+      "directives": [
+        "D8",
+        "D11"
+      ],
+      "skills": [
+        "H3",
+        "S6",
+        "S7",
+        "M1–M4B-1"
+      ],
+      "events": [
+        "E10–E14"
+      ],
+      "artifacts": [
+        "A-QUEUE",
+        "A-FEEDBACK",
+        "A-MEMORY",
+        "A-ADVICE",
+        "A-COMPARE"
+      ],
+      "experiments": [
+        "EXP-013",
+        "EXP-014",
+        "EXP-016",
+        "EXP-018"
+      ],
+      "decisionIds": [
+        "M-02",
+        "M-05"
+      ],
+      "statusLabel": "Delivered — provisional",
+      "skillGroupIds": [
+        "H3"
+      ],
+      "skillIds": [
+        "S6",
+        "S7"
+      ],
+      "eventIds": [
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14"
+      ]
+    },
+    {
+      "id": "C6",
+      "order": 6,
+      "status": "parked",
+      "title": {
+        "en": "Park evaluation and define future scope",
+        "he": "להקפיא הערכה ולהגדיר היקף עתידי"
+      },
+      "short": {
+        "en": "Evaluation boundary",
+        "he": "גבול הערכה"
+      },
+      "why": {
+        "en": "Keep framework mechanisms separate from claims that require independent expert evidence.",
+        "he": "להפריד מנגנוני מסגרת מטענות הדורשות ראיית מומחה עצמאית."
+      },
+      "basis": {
+        "en": "D4, D12 — park evaluation, continue literature work, and maintain future-study ideas.",
+        "he": "D4, D12 — להקפיא הערכה, להמשיך עבודת ספרות ולתחזק רעיונות עתידיים."
+      },
+      "work": {
+        "en": "Routed E15 outside the framework, prepared 24 safe labeling candidates, and documented literature and future-work directions.",
+        "he": "E15 נותב מחוץ למסגרת, הוכנו 24 מועמדי תיוג בטוחים ותועדו כיווני ספרות ועבודה עתידית."
+      },
+      "evidence": {
+        "en": "EXP-005 supplied labels: 0; EXP-012 accuracy is not yet computable.",
+        "he": "תוויות שסופקו ל-EXP-005: 0; דיוק EXP-012 עדיין אינו ניתן לחישוב."
+      },
+      "boundary": {
+        "en": "No accuracy, generalization, policy tuning, or clinical claim before the evidence gate.",
+        "he": "אין טענת דיוק, הכללה, כוונון מדיניות או טענה קלינית לפני שער הראיות."
+      },
+      "decision": {
+        "en": "M-06 — confirm MSc timing, education scope, and future-work boundary.",
+        "he": "M-06 — לאשר תזמון MSc, היקף חינוכי וגבול עבודה עתידית."
+      },
+      "directives": [
+        "D4",
+        "D12"
+      ],
+      "skills": [
+        "E15",
+        "Evaluation"
+      ],
+      "events": [
+        "E15"
+      ],
+      "artifacts": [
+        "A-LABELS",
+        "A-LITERATURE",
+        "A-FUTURE"
+      ],
+      "experiments": [
+        "EXP-005",
+        "EXP-011",
+        "EXP-012"
+      ],
+      "decisionIds": [
+        "M-06"
+      ],
+      "statusLabel": "Documented — parked",
+      "skillGroupIds": [],
+      "skillIds": [],
+      "eventIds": [
+        "E15"
+      ]
+    }
+  ],
+  "directives": [
+    {
+      "id": "D1",
+      "componentId": "C2",
+      "status": "proposal",
+      "requirement": {
+        "en": "Observe both the artifact process and Q&A interactions.",
+        "he": "לצפות גם בתהליך התוצרים וגם באינטראקציות השו״ת."
+      },
+      "did": {
+        "en": "Created the E1–E15 catalog, framework diagrams, and EXP-006 observation replay.",
+        "he": "נוצרו קטלוג E1–E15, דיאגרמות מסגרת ו-replay תצפית EXP-006."
+      },
+      "current": {
+        "en": "Passive E1–E14 observation is proposed; E15 remains evaluation-only.",
+        "he": "מוצעת צפייה פסיבית E1–E14; E15 נשאר הערכה-בלבד."
+      },
+      "next": {
+        "en": "Confirm observation scope and active triggers under M-03.",
+        "he": "לאשר היקף צפייה וטריגרים פעילים במסגרת M-03."
+      },
+      "boundary": {
+        "en": "No active triggers yet.",
+        "he": "אין עדיין טריגרים פעילים."
+      },
+      "decisionIds": [
+        "M-03"
+      ],
+      "timestamp": "00:02:38-00:04:24",
+      "speakerAttribution": "Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Proposal — not approved",
+      "componentIds": [
+        "C2"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H1"
+      ],
+      "skillIds": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "eventIds": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15"
+      ],
+      "artifactIds": [
+        "A-EVENTS",
+        "A-HOOKS"
+      ],
+      "experimentIds": [
+        "EXP-006",
+        "EXP-007",
+        "EXP-008"
+      ]
+    },
+    {
+      "id": "D2",
+      "componentId": "C2",
+      "status": "offline",
+      "requirement": {
+        "en": "Enter the process before Agent 4.",
+        "he": "להיכנס לתהליך לפני Agent 4."
+      },
+      "did": {
+        "en": "Identified E1–E4 early events, S2 routing, and possible hook locations.",
+        "he": "זוהו אירועי E1–E4 מוקדמים, ניתוב S2 ומיקומי hook אפשריים."
+      },
+      "current": {
+        "en": "Offline reconstruction only.",
+        "he": "שחזור offline בלבד."
+      },
+      "next": {
+        "en": "Authorize hook locations only after M-03 and separate implementation approval.",
+        "he": "לאשר מיקומי hook רק לאחר M-03 ואישור מימוש נפרד."
+      },
+      "boundary": {
+        "en": "No live hook implementation.",
+        "he": "ללא מימוש hook חי."
+      },
+      "decisionIds": [
+        "M-03"
+      ],
+      "timestamp": "00:02:55-00:03:20",
+      "speakerAttribution": "Iris, with a brief confirmation from Ali",
+      "attributionConfidence": "High for instruction; Medium for confirming voice",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Offline design",
+      "componentIds": [
+        "C2"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H1"
+      ],
+      "skillIds": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "eventIds": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15"
+      ],
+      "artifactIds": [
+        "A-EVENTS",
+        "A-HOOKS"
+      ],
+      "experimentIds": [
+        "EXP-006",
+        "EXP-007",
+        "EXP-008"
+      ]
+    },
+    {
+      "id": "D3",
+      "componentId": "C1",
+      "status": "proposal",
+      "requirement": {
+        "en": "Use H-layer naming and decide whether H-elements are agents or skills.",
+        "he": "להשתמש בשמות שכבת H ולהחליט אם רכיבי H הם סוכנים או מיומנויות."
+      },
+      "did": {
+        "en": "Created H1/H2/H3, S1–S7, and architecture Options A/B/C.",
+        "he": "נוצרו H1/H2/H3, S1–S7 ואפשרויות ארכיטקטורה A/B/C."
+      },
+      "current": {
+        "en": "Observer + Integrator is recommended, not approved.",
+        "he": "Observer + Integrator מומלץ, לא מאושר."
+      },
+      "next": {
+        "en": "Choose the H-layer decomposition under M-02.",
+        "he": "לבחור את פירוק שכבת H במסגרת M-02."
+      },
+      "boundary": {
+        "en": "No architecture is approved.",
+        "he": "אין ארכיטקטורה מאושרת."
+      },
+      "decisionIds": [
+        "M-02"
+      ],
+      "timestamp": "00:13:03-00:14:08",
+      "speakerAttribution": "Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Proposal — not approved",
+      "componentIds": [
+        "C1"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H1",
+        "H2",
+        "H3"
+      ],
+      "skillIds": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "eventIds": [],
+      "artifactIds": [
+        "A-ARCH",
+        "A-SKILLS",
+        "A-PROMPTS"
+      ],
+      "experimentIds": []
+    },
+    {
+      "id": "D4",
+      "componentId": "C6",
+      "status": "parked",
+      "requirement": {
+        "en": "Separate evaluation from the operational framework and park it.",
+        "he": "להפריד את ההערכה מהמסגרת התפעולית ולהקפיא אותה."
+      },
+      "did": {
+        "en": "Created separate framework/evaluation views and routed E15 outside the framework.",
+        "he": "נוצרו תצוגות מסגרת/הערכה נפרדות ו-E15 נותב מחוץ למסגרת."
+      },
+      "current": {
+        "en": "Documented and parked behind evidence gates.",
+        "he": "מתועד ומוקפא מאחורי שערי ראיות."
+      },
+      "next": {
+        "en": "Keep evaluation parked until independent labels exist.",
+        "he": "להשאיר הערכה מוקפאת עד שיהיו תוויות עצמאיות."
+      },
+      "boundary": {
+        "en": "E15 cannot create a framework action.",
+        "he": "E15 אינו יכול ליצור פעולת מסגרת."
+      },
+      "decisionIds": [
+        "M-01"
+      ],
+      "timestamp": "00:11:13-00:13:09; 00:22:36-00:22:59",
+      "speakerAttribution": "Iris, with explanatory responses from Ali",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Documented — parked",
+      "componentIds": [
+        "C6"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [],
+      "skillIds": [],
+      "eventIds": [
+        "E15"
+      ],
+      "artifactIds": [
+        "A-LABELS",
+        "A-LITERATURE",
+        "A-FUTURE"
+      ],
+      "experimentIds": [
+        "EXP-005",
+        "EXP-011",
+        "EXP-012"
+      ]
+    },
+    {
+      "id": "D5",
+      "componentId": "C3",
+      "status": "blocked",
+      "requirement": {
+        "en": "Expert judgment must come from a real person.",
+        "he": "שיפוט מומחה חייב להגיע מאדם אמיתי."
+      },
+      "did": {
+        "en": "Defined reviewer roles and prepared the EXP-005 protocol.",
+        "he": "הוגדרו תפקידי בודקים והוכן פרוטוקול EXP-005."
+      },
+      "current": {
+        "en": "Reviewer approval and supplied labels remain open.",
+        "he": "אישור בודקים ותוויות שסופקו עדיין פתוחים."
+      },
+      "next": {
+        "en": "Approve real reviewers and the blind protocol under M-05.",
+        "he": "לאשר בודקים אמיתיים ופרוטוקול עיוור במסגרת M-05."
+      },
+      "boundary": {
+        "en": "No invented, inferred, or AI-generated labels.",
+        "he": "אין תוויות מומצאות, מוסקות או מיוצרות-AI."
+      },
+      "decisionIds": [
+        "M-05"
+      ],
+      "timestamp": "00:05:35-00:08:15",
+      "speakerAttribution": "Iris and Ali",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Blocked",
+      "componentIds": [
+        "C3"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H2"
+      ],
+      "skillIds": [
+        "S4"
+      ],
+      "eventIds": [
+        "E9",
+        "E10"
+      ],
+      "artifactIds": [
+        "A-QUEUE",
+        "A-FEEDBACK",
+        "A-LABELS"
+      ],
+      "experimentIds": [
+        "EXP-005"
+      ]
+    },
+    {
+      "id": "D6",
+      "componentId": "C2",
+      "status": "proposal",
+      "requirement": {
+        "en": "Human involvement must be configurable.",
+        "he": "מעורבות אנושית חייבת להיות ניתנת להגדרה."
+      },
+      "did": {
+        "en": "Documented intervention modes and ran EXP-007 dosage and EXP-008 cap sweeps.",
+        "he": "תועדו מצבי התערבות והורצו סריקות מינון EXP-007 ותקרה EXP-008."
+      },
+      "current": {
+        "en": "No mode or cap is approved.",
+        "he": "אין מצב או תקרה מאושרים."
+      },
+      "next": {
+        "en": "Choose a pilot configuration under M-03.",
+        "he": "לבחור תצורת פיילוט במסגרת M-03."
+      },
+      "boundary": {
+        "en": "threshold_sev2 and adaptive caps remain candidates.",
+        "he": "threshold_sev2 ותקרות אדפטיביות נשארים מועמדים."
+      },
+      "decisionIds": [
+        "M-03"
+      ],
+      "timestamp": "00:14:08-00:17:29; 00:19:51-00:21:19",
+      "speakerAttribution": "Arnon and Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Proposal — not approved",
+      "componentIds": [
+        "C2"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H1"
+      ],
+      "skillIds": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "eventIds": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E15"
+      ],
+      "artifactIds": [
+        "A-EVENTS",
+        "A-HOOKS"
+      ],
+      "experimentIds": [
+        "EXP-006",
+        "EXP-007",
+        "EXP-008"
+      ]
+    },
+    {
+      "id": "D7",
+      "componentId": "C3",
+      "status": "offline",
+      "requirement": {
+        "en": "The human interface must be bidirectional and thesis-relevant.",
+        "he": "הממשק האנושי חייב להיות דו-כיווני ורלוונטי לתזה."
+      },
+      "did": {
+        "en": "Designed S4/S5 human-to-system and system-to-human flows.",
+        "he": "עוצבו זרימות S4/S5 מאדם למערכת ומהמערכת לאדם."
+      },
+      "current": {
+        "en": "Interface design exists; no live interface runtime exists.",
+        "he": "קיים עיצוב ממשק; אין ממשק חי."
+      },
+      "next": {
+        "en": "Decide roles and any implementation authorization under M-05.",
+        "he": "להחליט על תפקידים וכל אישור מימוש במסגרת M-05."
+      },
+      "boundary": {
+        "en": "No live interface implementation is authorized.",
+        "he": "מימוש ממשק חי אינו מאושר."
+      },
+      "decisionIds": [
+        "M-05"
+      ],
+      "timestamp": "00:15:26-00:15:59",
+      "speakerAttribution": "Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Offline design",
+      "componentIds": [
+        "C3"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H2"
+      ],
+      "skillIds": [
+        "S4"
+      ],
+      "eventIds": [
+        "E9",
+        "E10"
+      ],
+      "artifactIds": [
+        "A-QUEUE",
+        "A-FEEDBACK",
+        "A-LABELS"
+      ],
+      "experimentIds": [
+        "EXP-005"
+      ]
+    },
+    {
+      "id": "D8",
+      "componentId": "C5",
+      "status": "proposal",
+      "requirement": {
+        "en": "Learning must exceed simply saving and retrieving feedback.",
+        "he": "הלמידה חייבת להיות יותר משמירה ושליפה של משוב."
+      },
+      "did": {
+        "en": "Defined S6 correction proposals and S7 trusted memory with provenance and approval states.",
+        "he": "הוגדרו הצעות תיקון S6 וזיכרון מהימן S7 עם מקור ומצבי אישור."
+      },
+      "current": {
+        "en": "Proposal-only; no automatic artifact mutation.",
+        "he": "הצעה בלבד; אין שינוי אוטומטי של תוצרים."
+      },
+      "next": {
+        "en": "Approve correction authority under M-05.",
+        "he": "לאשר סמכות תיקון במסגרת M-05."
+      },
+      "boundary": {
+        "en": "S6 proposes; a human approves or rejects.",
+        "he": "S6 מציע; אדם מאשר או דוחה."
+      },
+      "decisionIds": [
+        "M-05"
+      ],
+      "timestamp": "00:15:59-00:17:29",
+      "speakerAttribution": "Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit requirement / derived implementation",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Proposal — not approved",
+      "componentIds": [
+        "C5"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H3"
+      ],
+      "skillIds": [
+        "S6",
+        "S7"
+      ],
+      "eventIds": [
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14"
+      ],
+      "artifactIds": [
+        "A-QUEUE",
+        "A-FEEDBACK",
+        "A-MEMORY",
+        "A-ADVICE",
+        "A-COMPARE"
+      ],
+      "experimentIds": [
+        "EXP-013",
+        "EXP-014",
+        "EXP-016",
+        "EXP-018"
+      ]
+    },
+    {
+      "id": "D9",
+      "componentId": "C4",
+      "status": "offline",
+      "requirement": {
+        "en": "Challenge human feedback against authoritative sources.",
+        "he": "לאתגר משוב אנושי מול מקורות סמכותיים."
+      },
+      "did": {
+        "en": "Designed deterministic-first H-Verify and synthetic rule fixtures.",
+        "he": "עוצבו H-Verify דטרמיניסטי-תחילה ו-fixtures סינתטיים."
+      },
+      "current": {
+        "en": "Synthetic mechanism evidence only.",
+        "he": "עדות מנגנון סינתטית בלבד."
+      },
+      "next": {
+        "en": "Choose source families and ordering under M-04.",
+        "he": "לבחור משפחות מקורות וסדר במסגרת M-04."
+      },
+      "boundary": {
+        "en": "Synthetic fixtures are not validation against real expert mistakes.",
+        "he": "fixtures סינתטיים אינם אימות מול טעויות מומחה אמיתיות."
+      },
+      "decisionIds": [
+        "M-04"
+      ],
+      "timestamp": "00:17:29-00:19:48",
+      "speakerAttribution": "Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Offline evidence",
+      "componentIds": [
+        "C4"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H2"
+      ],
+      "skillIds": [
+        "S5"
+      ],
+      "eventIds": [
+        "E10",
+        "E11"
+      ],
+      "artifactIds": [
+        "A-VERIFY"
+      ],
+      "experimentIds": [
+        "EXP-009",
+        "EXP-010",
+        "EXP-017"
+      ]
+    },
+    {
+      "id": "D10",
+      "componentId": "C4",
+      "status": "proposal",
+      "requirement": {
+        "en": "The interaction should converge rather than continue indefinitely.",
+        "he": "האינטראקציה צריכה להתכנס ולא להימשך ללא הגבלה."
+      },
+      "did": {
+        "en": "Created a bounded state machine and tested EXP-010 round limits.",
+        "he": "נוצרה מכונת מצבים מוגבלת ונבדקו חסמי סבבים EXP-010."
+      },
+      "current": {
+        "en": "A two-round bound is a pilot candidate, not a default.",
+        "he": "חסם שני סבבים הוא מועמד פיילוט, לא ברירת מחדל."
+      },
+      "next": {
+        "en": "Approve round, timeout, and adjudication rules under M-04/M-05.",
+        "he": "לאשר כללי סבב, timeout והכרעה במסגרת M-04/M-05."
+      },
+      "boundary": {
+        "en": "Timeout parks the item and preserves baseline behavior.",
+        "he": "timeout מחנה את הפריט ושומר על התנהגות הבסיס."
+      },
+      "decisionIds": [
+        "M-04",
+        "M-05"
+      ],
+      "timestamp": "00:05:17-00:05:34; 00:18:38-00:18:57",
+      "speakerAttribution": "Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Proposal — not approved",
+      "componentIds": [
+        "C4"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H2"
+      ],
+      "skillIds": [
+        "S5"
+      ],
+      "eventIds": [
+        "E10",
+        "E11"
+      ],
+      "artifactIds": [
+        "A-VERIFY"
+      ],
+      "experimentIds": [
+        "EXP-009",
+        "EXP-010",
+        "EXP-017"
+      ]
+    },
+    {
+      "id": "D11",
+      "componentId": "C5",
+      "status": "delivered",
+      "requirement": {
+        "en": "Deliver a skills map and prompt requirements, not final prompts.",
+        "he": "לספק מפת מיומנויות ודרישות פרומפט, לא פרומפטים סופיים."
+      },
+      "did": {
+        "en": "Produced the H-layer skills map, prompt-requirement traceability, and diagrams.",
+        "he": "הופקו מפת מיומנויות שכבת H, עקיבות דרישות פרומפט ודיאגרמות."
+      },
+      "current": {
+        "en": "Delivered as provisional drafts.",
+        "he": "נמסר כטיוטות ראשוניות."
+      },
+      "next": {
+        "en": "Finalize only after M-02–M-05 decisions.",
+        "he": "להשלים רק לאחר החלטות M-02–M-05."
+      },
+      "boundary": {
+        "en": "Detailed prompts remain provisional.",
+        "he": "פרומפטים מפורטים נשארים ראשוניים."
+      },
+      "decisionIds": [
+        "M-02",
+        "M-03",
+        "M-04",
+        "M-05"
+      ],
+      "timestamp": "00:21:19-00:22:21; 00:27:30-00:27:57",
+      "speakerAttribution": "Iris",
+      "attributionConfidence": "High",
+      "explicitDerivedClass": "Explicit / paraphrase",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Delivered — provisional",
+      "componentIds": [
+        "C5"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [
+        "H3"
+      ],
+      "skillIds": [
+        "S6",
+        "S7"
+      ],
+      "eventIds": [
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14"
+      ],
+      "artifactIds": [
+        "A-QUEUE",
+        "A-FEEDBACK",
+        "A-MEMORY",
+        "A-ADVICE",
+        "A-COMPARE"
+      ],
+      "experimentIds": [
+        "EXP-013",
+        "EXP-014",
+        "EXP-016",
+        "EXP-018"
+      ]
+    },
+    {
+      "id": "D12",
+      "componentId": "C6",
+      "status": "delivered",
+      "requirement": {
+        "en": "Continue literature work and maintain future-study ideas.",
+        "he": "להמשיך עבודת ספרות ולתחזק רעיונות למחקר עתידי."
+      },
+      "did": {
+        "en": "Created a literature taxonomy and future-work/PhD idea log.",
+        "he": "נוצרו טקסונומיית ספרות ויומן רעיונות לעבודה עתידית/דוקטורט."
+      },
+      "current": {
+        "en": "Education remains the MSc scope; MediVARIA remains future work.",
+        "he": "חינוך נשאר היקף ה-MSc; MediVARIA נשאר עבודה עתידית."
+      },
+      "next": {
+        "en": "Confirm the MSc and future-work boundary under M-06.",
+        "he": "לאשר את גבול ה-MSc והעבודה העתידית במסגרת M-06."
+      },
+      "boundary": {
+        "en": "No clinical data or performance claim.",
+        "he": "אין נתונים קליניים או טענת ביצועים."
+      },
+      "decisionIds": [
+        "M-06"
+      ],
+      "timestamp": "00:23:03-00:27:30; 00:28:42-00:33:57",
+      "speakerAttribution": "Iris and Arnon, with responses from Ali",
+      "attributionConfidence": "High for research tasks; Medium for administrative details",
+      "explicitDerivedClass": "Explicit / paraphrase; future direction only",
+      "englishReviewStatus": "Paraphrase pending participant confirmation",
+      "hebrewReviewStatus": "Unreviewed machine ASR; selected evidence only",
+      "statusLabel": "Delivered — provisional",
+      "componentIds": [
+        "C6"
+      ],
+      "provenance": [
+        "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+        "docs/research/meetings/2026-07-01-supervisor-evidence-appendix.md"
+      ],
+      "claimBoundary": "The recorded requirement is not a verified quotation; later implementation details remain separately classified.",
+      "skillGroupIds": [],
+      "skillIds": [],
+      "eventIds": [
+        "E15"
+      ],
+      "artifactIds": [
+        "A-LABELS",
+        "A-LITERATURE",
+        "A-FUTURE"
+      ],
+      "experimentIds": [
+        "EXP-005",
+        "EXP-011",
+        "EXP-012"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "J1-A01",
+      "componentId": "C5",
+      "title": {
+        "en": "Prepare skills map",
+        "he": "להכין מפת מיומנויות"
+      },
+      "did": {
+        "en": "Created H1/H2/H3 and S1–S7 mapping.",
+        "he": "נוצר מיפוי H1/H2/H3 ו-S1–S7."
+      },
+      "status": {
+        "en": "Delivered — provisional.",
+        "he": "נמסר — ראשוני."
+      },
+      "next": {
+        "en": "Finalize after M-02.",
+        "he": "להשלים לאחר M-02."
+      },
+      "origin": "July 1 machine-derived action record; pending M-01",
+      "owner": "To be confirmed",
+      "dueDate": null,
+      "dependency": "M-01",
+      "evidenceLink": "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+      "nextCheckpoint": "2026-07-21 supervisor read-back"
+    },
+    {
+      "id": "J1-A02",
+      "componentId": "C5",
+      "title": {
+        "en": "Prepare prompt requirements, not prompts",
+        "he": "להכין דרישות פרומפט, לא פרומפטים"
+      },
+      "did": {
+        "en": "Created requirements and traceability documents.",
+        "he": "נוצרו מסמכי דרישות ועקיבות."
+      },
+      "status": {
+        "en": "Delivered — provisional.",
+        "he": "נמסר — ראשוני."
+      },
+      "next": {
+        "en": "Finalize after architecture decisions.",
+        "he": "להשלים לאחר החלטות ארכיטקטורה."
+      },
+      "origin": "July 1 machine-derived action record; pending M-01",
+      "owner": "To be confirmed",
+      "dueDate": null,
+      "dependency": "M-01",
+      "evidenceLink": "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+      "nextCheckpoint": "2026-07-21 supervisor read-back"
+    },
+    {
+      "id": "J1-A03",
+      "componentId": "C6",
+      "title": {
+        "en": "Continue literature survey",
+        "he": "להמשיך את סקר הספרות"
+      },
+      "did": {
+        "en": "Created the literature taxonomy and related-work structure.",
+        "he": "נוצרו טקסונומיית ספרות ומבנה עבודות קשורות."
+      },
+      "status": {
+        "en": "Started; timing needs confirmation.",
+        "he": "החל; התזמון דורש אישור."
+      },
+      "next": {
+        "en": "Confirm course and writing timing.",
+        "he": "לאשר תזמון קורס וכתיבה."
+      },
+      "origin": "July 1 machine-derived action record; pending M-01",
+      "owner": "To be confirmed",
+      "dueDate": null,
+      "dependency": "M-01",
+      "evidenceLink": "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+      "nextCheckpoint": "2026-07-21 supervisor read-back"
+    },
+    {
+      "id": "J1-A04",
+      "componentId": "C6",
+      "title": {
+        "en": "Ask Graduate Studies about direct-track rules",
+        "he": "לברר כללי מסלול ישיר מול לימודים מתקדמים"
+      },
+      "did": {
+        "en": "No completion evidence found.",
+        "he": "לא נמצאה עדות להשלמה."
+      },
+      "status": {
+        "en": "Pending.",
+        "he": "ממתין."
+      },
+      "next": {
+        "en": "Complete and document the query.",
+        "he": "להשלים ולתעד את הפנייה."
+      },
+      "origin": "July 1 machine-derived action record; pending M-01",
+      "owner": "To be confirmed",
+      "dueDate": null,
+      "dependency": "External administrative response",
+      "evidenceLink": "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+      "nextCheckpoint": "2026-07-21 supervisor read-back"
+    },
+    {
+      "id": "J1-A05",
+      "componentId": "C6",
+      "title": {
+        "en": "Recorded action: Iris invites Arnon",
+        "he": "משימה מתועדת: איריס מזמינה את ארנון"
+      },
+      "did": {
+        "en": "The package targets Iris and Arnon.",
+        "he": "החבילה מיועדת לאיריס וארנון."
+      },
+      "status": {
+        "en": "Invitation itself is not evidenced.",
+        "he": "ההזמנה עצמה אינה מתועדת."
+      },
+      "next": {
+        "en": "Confirm or correct this action under M-01.",
+        "he": "לאשר או לתקן משימה זו במסגרת M-01."
+      },
+      "origin": "July 1 machine-derived action record; pending M-01",
+      "owner": "To be confirmed",
+      "dueDate": null,
+      "dependency": "M-01",
+      "evidenceLink": "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+      "nextCheckpoint": "2026-07-21 supervisor read-back"
+    },
+    {
+      "id": "J1-A06",
+      "componentId": "C6",
+      "title": {
+        "en": "Maintain future-study idea log",
+        "he": "לתחזק יומן רעיונות למחקר עתידי"
+      },
+      "did": {
+        "en": "Created the extension/future-work log.",
+        "he": "נוצר יומן הרחבה/עבודה עתידית."
+      },
+      "status": {
+        "en": "Delivered — provisional.",
+        "he": "נמסר — ראשוני."
+      },
+      "next": {
+        "en": "Continue logging; keep medical work future-only.",
+        "he": "להמשיך לתעד; להשאיר עבודה רפואית לעתיד בלבד."
+      },
+      "origin": "July 1 machine-derived action record; pending M-01",
+      "owner": "To be confirmed",
+      "dueDate": null,
+      "dependency": "M-01",
+      "evidenceLink": "docs/research/meetings/2026-07-01-supervisor-meeting-iris.md",
+      "nextCheckpoint": "2026-07-21 supervisor read-back"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "A-BASELINE",
+      "componentId": "C1",
+      "kind": "runtime",
+      "name": "agentD_variability_classes*.json",
+      "adds": {
+        "en": "Official Agent 4 classification baseline.",
+        "he": "בסיס הסיווג הרשמי של Agent 4."
+      }
+    },
+    {
+      "id": "A-QUEUE",
+      "componentId": "C3",
+      "kind": "runtime",
+      "name": "human_review_queue.jsonl",
+      "adds": {
+        "en": "Review identity, trigger, evidence, and pending state.",
+        "he": "זהות סקירה, טריגר, ראיה ומצב ממתין."
+      }
+    },
+    {
+      "id": "A-FEEDBACK",
+      "componentId": "C3",
+      "kind": "runtime",
+      "name": "human_review_queue_resolved.jsonl",
+      "adds": {
+        "en": "Validated human decision, rationale, confidence, and scope.",
+        "he": "החלטת אדם מאומתת, נימוק, ביטחון והיקף."
+      }
+    },
+    {
+      "id": "A-MEMORY",
+      "componentId": "C5",
+      "kind": "runtime",
+      "name": "human_judgment_memory.jsonl",
+      "adds": {
+        "en": "Reusable, scoped, append-only human judgment.",
+        "he": "שיפוט אנושי רב-שימושי, תחום ותוספתי."
+      }
+    },
+    {
+      "id": "A-ADVICE",
+      "componentId": "C5",
+      "kind": "runtime",
+      "name": "memory_advice.json",
+      "adds": {
+        "en": "Match reasons and advisory_only evidence.",
+        "he": "סיבות התאמה וראיית advisory_only."
+      }
+    },
+    {
+      "id": "A-COMPARE",
+      "componentId": "C5",
+      "kind": "runtime",
+      "name": "memory_informed_comparison.json",
+      "adds": {
+        "en": "Parallel comparison; baseline remains untouched.",
+        "he": "השוואה מקבילה; הבסיס נשאר ללא שינוי."
+      }
+    },
+    {
+      "id": "A-EVALUATION",
+      "componentId": "C6",
+      "kind": "runtime",
+      "name": "evaluation reports",
+      "adds": {
+        "en": "Held behind independent-label and leakage gates.",
+        "he": "מוחזק מאחורי שערי תוויות עצמאיות ודליפה."
+      }
+    },
+    {
+      "id": "A-ARCH",
+      "componentId": "C1",
+      "kind": "document",
+      "name": "architecture options",
+      "adds": {
+        "en": "Original, enhanced, and H-layer boundaries.",
+        "he": "גבולות ארכיטקטורה מקורית, משופרת ושכבת H."
+      }
+    },
+    {
+      "id": "A-SKILLS",
+      "componentId": "C1",
+      "kind": "document",
+      "name": "H1/H2/H3 · S1–S7 skills map",
+      "adds": {
+        "en": "Visible grouping of responsibilities and skills.",
+        "he": "קיבוץ גלוי של אחריות ומיומנויות."
+      }
+    },
+    {
+      "id": "A-PROMPTS",
+      "componentId": "C1",
+      "kind": "document",
+      "name": "prompt requirements",
+      "adds": {
+        "en": "Provisional requirements, not final prompts.",
+        "he": "דרישות ראשוניות, לא פרומפטים סופיים."
+      }
+    },
+    {
+      "id": "A-EVENTS",
+      "componentId": "C2",
+      "kind": "document",
+      "name": "E1–E15 event catalog",
+      "adds": {
+        "en": "Observation scope and explicit gaps.",
+        "he": "היקף צפייה ופערים מפורשים."
+      }
+    },
+    {
+      "id": "A-HOOKS",
+      "componentId": "C2",
+      "kind": "document",
+      "name": "early-hook catalog",
+      "adds": {
+        "en": "Possible hook locations; no authorization.",
+        "he": "מיקומי hook אפשריים; ללא אישור."
+      }
+    },
+    {
+      "id": "A-LABELS",
+      "componentId": "C3",
+      "kind": "document",
+      "name": "EXP-005 labeling package",
+      "adds": {
+        "en": "Blind protocol and safe candidate rows.",
+        "he": "פרוטוקול עיוור ושורות מועמדות בטוחות."
+      }
+    },
+    {
+      "id": "A-VERIFY",
+      "componentId": "C4",
+      "kind": "document",
+      "name": "H-Verify specification",
+      "adds": {
+        "en": "Deterministic-first checks and adjudication states.",
+        "he": "בדיקות דטרמיניסטיות תחילה ומצבי הכרעה."
+      }
+    },
+    {
+      "id": "A-LITERATURE",
+      "componentId": "C6",
+      "kind": "document",
+      "name": "literature taxonomy",
+      "adds": {
+        "en": "Related-work organization for the thesis.",
+        "he": "ארגון עבודות קשורות לתזה."
+      }
+    },
+    {
+      "id": "A-FUTURE",
+      "componentId": "C6",
+      "kind": "document",
+      "name": "future-work log",
+      "adds": {
+        "en": "MediVARIA and extension ideas remain future-only.",
+        "he": "MediVARIA ורעיונות הרחבה נשארים עתידיים בלבד."
+      }
+    }
+  ],
+  "experiments": [
+    {
+      "id": "EXP-000",
+      "componentId": "C6",
+      "group": "governance",
+      "status": "parked",
+      "statusLabel": {
+        "en": "Documented — parked",
+        "he": "מתועד — מוקפא"
+      },
+      "title": {
+        "en": "Metadata and baseline integrity",
+        "he": "שלמות מטא-דאטה ובסיס"
+      },
+      "result": {
+        "en": "Historical audit protocol; controlled artifacts remain local.",
+        "he": "פרוטוקול ביקורת היסטורי; תוצרים מבוקרים נשארים מקומיים."
+      }
+    },
+    {
+      "id": "EXP-001",
+      "componentId": "C5",
+      "group": "mechanism",
+      "status": "delivered",
+      "statusLabel": {
+        "en": "Implemented",
+        "he": "ממומש"
+      },
+      "title": {
+        "en": "Mechanism readiness",
+        "he": "מוכנות מנגנון"
+      },
+      "result": {
+        "en": "27 parallel comparison rows; 0 baseline classification changes.",
+        "he": "27 שורות השוואה מקבילות; 0 שינויי סיווג בסיס."
+      }
+    },
+    {
+      "id": "EXP-002",
+      "componentId": "C3",
+      "group": "evaluation",
+      "status": "delivered",
+      "statusLabel": {
+        "en": "Evaluation-ready",
+        "he": "מוכן להערכה"
+      },
+      "title": {
+        "en": "Expert-labeling package",
+        "he": "חבילת תיוג מומחים"
+      },
+      "result": {
+        "en": "Blind materials prepared; human review has not started.",
+        "he": "חומרים עיוורים הוכנו; הסקירה האנושית טרם החלה."
+      }
+    },
+    {
+      "id": "EXP-003",
+      "componentId": "C6",
+      "group": "evaluation",
+      "status": "blocked",
+      "statusLabel": {
+        "en": "Pending expert input",
+        "he": "ממתין לקלט מומחה"
+      },
+      "title": {
+        "en": "Held-out expert evaluation",
+        "he": "הערכת מומחים held-out"
+      },
+      "result": {
+        "en": "Tooling exists; quantitative results require at least 20 safe labels.",
+        "he": "קיימים כלים; תוצאות כמותיות דורשות לפחות 20 תוויות בטוחות."
+      }
+    },
+    {
+      "id": "EXP-004",
+      "componentId": "C6",
+      "group": "synthetic",
+      "status": "synthetic",
+      "statusLabel": {
+        "en": "Synthetic fixture",
+        "he": "fixture סינתטי"
+      },
+      "title": {
+        "en": "Policy-sensitivity simulation",
+        "he": "סימולציית רגישות מדיניות"
+      },
+      "result": {
+        "en": "Synthetic screening only; not independent evidence.",
+        "he": "סינון סינתטי בלבד; לא ראיה עצמאית."
+      }
+    },
+    {
+      "id": "EXP-005",
+      "componentId": "C3",
+      "group": "human",
+      "status": "blocked",
+      "title": {
+        "en": "Independent expert labeling gate",
+        "he": "שער תיוג מומחה עצמאי"
+      },
+      "result": {
+        "en": "24 safe candidates prepared; 0 labels supplied.",
+        "he": "24 מועמדים בטוחים הוכנו; 0 תוויות סופקו."
+      },
+      "statusLabel": {
+        "en": "Pending expert input",
+        "he": "ממתין לקלט מומחה"
+      },
+      "evidenceClass": "evaluation gate",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-006",
+      "componentId": "C2",
+      "group": "observe",
+      "status": "offline",
+      "title": {
+        "en": "H-Listen event replay",
+        "he": "Replay אירועי H-Listen"
+      },
+      "result": {
+        "en": "481 captured/reconstructed + 20 explicit gaps = 501 contract records; not correctness evidence.",
+        "he": "481 רשומות שנתפסו/שוחזרו + 20 פערים מפורשים = 501 רשומות חוזה; לא ראיית נכונות."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline replay",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-007",
+      "componentId": "C2",
+      "group": "dosage",
+      "status": "offline",
+      "title": {
+        "en": "Dosage-mode replay",
+        "he": "Replay מצבי מינון"
+      },
+      "result": {
+        "en": "No tested mode meets coverage ≥0.8 and load ≤0.5.",
+        "he": "אף מצב שנבדק אינו עומד בכיסוי ≥0.8 ועומס ≤0.5."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline replay",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-008",
+      "componentId": "C2",
+      "group": "dosage",
+      "status": "offline",
+      "title": {
+        "en": "Cap and churn sweep",
+        "he": "סריקת תקרה ושינוי"
+      },
+      "result": {
+        "en": "K30/K35/K40 capture 0.75/0.85/0.912; no default selected.",
+        "he": "K30/K35/K40 לוכדים 0.75/0.85/0.912; לא נבחרה ברירת מחדל."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline replay",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-009",
+      "componentId": "C4",
+      "group": "verify",
+      "status": "synthetic",
+      "title": {
+        "en": "Deterministic verification rules",
+        "he": "כללי אימות דטרמיניסטיים"
+      },
+      "result": {
+        "en": "Assumption-driven synthetic fixtures only.",
+        "he": "fixtures סינתטיים מבוססי-הנחות בלבד."
+      },
+      "statusLabel": {
+        "en": "Synthetic fixture",
+        "he": "fixture סינתטי"
+      },
+      "evidenceClass": "synthetic fixture",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-010",
+      "componentId": "C4",
+      "group": "verify",
+      "status": "synthetic",
+      "title": {
+        "en": "Bounded convergence",
+        "he": "התכנסות מוגבלת"
+      },
+      "result": {
+        "en": "Synthetic round-bound tests; not real expert validation.",
+        "he": "בדיקות חסם סבבים סינתטיות; לא אימות מומחה אמיתי."
+      },
+      "statusLabel": {
+        "en": "Synthetic fixture",
+        "he": "fixture סינתטי"
+      },
+      "evidenceClass": "synthetic fixture",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-011",
+      "componentId": "C6",
+      "group": "evaluation",
+      "status": "parked",
+      "title": {
+        "en": "Held-out policy comparison",
+        "he": "השוואת מדיניות held-out"
+      },
+      "result": {
+        "en": "Parked behind architecture approval and real labels.",
+        "he": "מוקפא מאחורי אישור ארכיטקטורה ותוויות אמיתיות."
+      },
+      "statusLabel": {
+        "en": "Documented — parked",
+        "he": "מתועד — מוקפא"
+      },
+      "evidenceClass": "evaluation gate",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-012",
+      "componentId": "C6",
+      "group": "evaluation",
+      "status": "blocked",
+      "title": {
+        "en": "Accuracy evaluation",
+        "he": "הערכת דיוק"
+      },
+      "result": {
+        "en": "Generalization-safe N=0; NOT YET COMPUTABLE.",
+        "he": "N בטוח להכללה = 0; עדיין לא ניתן לחישוב."
+      },
+      "statusLabel": {
+        "en": "Blocked",
+        "he": "חסום"
+      },
+      "evidenceClass": "evaluation gate",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-013",
+      "componentId": "C5",
+      "group": "conformance",
+      "status": "offline",
+      "title": {
+        "en": "Event-contract fidelity",
+        "he": "נאמנות חוזה אירועים"
+      },
+      "result": {
+        "en": "Offline conformance fixtures only.",
+        "he": "fixtures התאמה offline בלבד."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline conformance",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-014",
+      "componentId": "C5",
+      "group": "conformance",
+      "status": "offline",
+      "title": {
+        "en": "Replay determinism",
+        "he": "דטרמיניזם replay"
+      },
+      "result": {
+        "en": "Offline conformance fixtures only.",
+        "he": "fixtures התאמה offline בלבד."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline conformance",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-015",
+      "componentId": "C2",
+      "group": "conformance",
+      "status": "offline",
+      "title": {
+        "en": "Workload, bundling, and fairness",
+        "he": "עומס, איגוד והוגנות"
+      },
+      "result": {
+        "en": "Offline conformance fixtures only.",
+        "he": "fixtures התאמה offline בלבד."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline conformance",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-016",
+      "componentId": "C5",
+      "group": "safety",
+      "status": "offline",
+      "title": {
+        "en": "Authority and timeout safety",
+        "he": "בטיחות סמכות ו-timeout"
+      },
+      "result": {
+        "en": "Offline safety fixtures only.",
+        "he": "fixtures בטיחות offline בלבד."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline conformance",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-017",
+      "componentId": "C4",
+      "group": "verify",
+      "status": "offline",
+      "title": {
+        "en": "Verification provenance",
+        "he": "מקור אימות"
+      },
+      "result": {
+        "en": "Offline provenance fixtures only.",
+        "he": "fixtures מקור offline בלבד."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline conformance",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    },
+    {
+      "id": "EXP-018",
+      "componentId": "C5",
+      "group": "safety",
+      "status": "offline",
+      "title": {
+        "en": "Correction-proposal dry run",
+        "he": "הרצה יבשה של הצעת תיקון"
+      },
+      "result": {
+        "en": "Proposal dry run; zero repository-source modification.",
+        "he": "הרצה יבשה של הצעה; אפס שינוי במקור המאגר."
+      },
+      "statusLabel": {
+        "en": "Offline evidence",
+        "he": "עדות offline"
+      },
+      "evidenceClass": "offline conformance",
+      "claimBoundary": "No accuracy, generalization, or live-runtime authorization."
+    }
+  ],
+  "evidence": {
+    "reviewBySetting": [
+      {
+        "label": "ucd_ch",
+        "value": 4
+      },
+      {
+        "label": "ucd_pw",
+        "value": 5
+      },
+      {
+        "label": "cd_ch",
+        "value": 2
+      },
+      {
+        "label": "cd_pw",
+        "value": 0
+      }
+    ],
+    "classification": [
+      {
+        "label": "Substantial",
+        "he": "מהותית",
+        "value": 9
+      },
+      {
+        "label": "Occasional",
+        "he": "מזדמנת",
+        "value": 18
+      },
+      {
+        "label": "Undetermined",
+        "he": "לא נקבע",
+        "value": 0
+      }
+    ],
+    "adviceSubset": [
+      {
+        "label": "strong",
+        "he": "חזק",
+        "value": 2
+      },
+      {
+        "label": "moderate",
+        "he": "בינוני",
+        "value": 1
+      },
+      {
+        "label": "none",
+        "he": "ללא",
+        "value": 5
+      }
+    ],
+    "labelReadiness": [
+      {
+        "label": "safe candidates",
+        "he": "מועמדים בטוחים",
+        "value": 24
+      },
+      {
+        "label": "supplied labels",
+        "he": "תוויות שסופקו",
+        "value": 0
+      }
+    ],
+    "exp006": [
+      {
+        "label": "captured / reconstructed",
+        "he": "נתפס / שוחזר",
+        "value": 481
+      },
+      {
+        "label": "explicit gaps",
+        "he": "פערים מפורשים",
+        "value": 20
+      },
+      {
+        "label": "early-stage",
+        "he": "שלב מוקדם",
+        "value": 90
+      },
+      {
+        "label": "uncertainty marked",
+        "he": "מסומן אי-ודאות",
+        "value": 235
+      },
+      {
+        "label": "severity ≥2",
+        "he": "חומרה ≥2",
+        "value": 231
+      }
+    ],
+    "exp007": [
+      {
+        "mode": "silent",
+        "load": 0,
+        "coverage": 0,
+        "high": 0
+      },
+      {
+        "mode": "sev3",
+        "load": 0.578,
+        "coverage": 0.784,
+        "high": 0.726
+      },
+      {
+        "mode": "first_n",
+        "load": 0.581,
+        "coverage": 0.787,
+        "high": 0.73
+      },
+      {
+        "mode": "sev2",
+        "load": 0.799,
+        "coverage": 0.981,
+        "high": 1
+      },
+      {
+        "mode": "sev1",
+        "load": 0.889,
+        "coverage": 1,
+        "high": 1
+      }
+    ],
+    "exp008": [
+      {
+        "label": "K10",
+        "value": 0.25
+      },
+      {
+        "label": "K20",
+        "value": 0.5
+      },
+      {
+        "label": "K30",
+        "value": 0.75
+      },
+      {
+        "label": "K35",
+        "value": 0.85
+      },
+      {
+        "label": "K40",
+        "value": 0.912
+      }
+    ],
+    "leakage": [
+      {
+        "label": "none",
+        "he": "ללא",
+        "value": 19
+      },
+      {
+        "label": "same pattern",
+        "he": "אותו דפוס",
+        "value": 3
+      },
+      {
+        "label": "cross setting",
+        "he": "הגדרה אחרת",
+        "value": 5
+      }
+    ],
+    "historicalSummary": {
+      "cases": 179,
+      "patterns": 27,
+      "reviewItems": 11,
+      "reusableJudgments": 3,
+      "comparisonRows": 27,
+      "classificationChanges": 0,
+      "postMemoryReview": 2,
+      "safeCandidates": 24,
+      "labels": 0
+    }
+  },
+  "decisions": [
+    {
+      "id": "M-01",
+      "componentIds": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "request": {
+        "en": "Accept, correct, qualify, or defer D1–D12 and the attributed actions.",
+        "he": "לקבל, לתקן, לסייג או לדחות את D1–D12 והמשימות המיוחסות."
+      },
+      "recommendation": {
+        "en": "Confirm as a paraphrased record with corrections; never alter the raw ASR.",
+        "he": "לאשר כרשומה מנוסחת עם תיקונים; לעולם לא לשנות את ה-ASR הגולמי."
+      },
+      "blocked": {
+        "en": "The authoritative framing of every other decision.",
+        "he": "המסגור הסמכותי של כל החלטה אחרת."
+      },
+      "selectedValue": null,
+      "decisionDate": null,
+      "outcome": "Not recorded",
+      "rationale": null,
+      "approver": null,
+      "approverExpected": "Iris and Arnon",
+      "owner": null,
+      "dueDate": null,
+      "constraints": null,
+      "affectedArtifacts": [],
+      "confirmationStatus": "unconfirmed",
+      "statusLabel": "Proposal — not approved"
+    },
+    {
+      "id": "M-02",
+      "componentIds": [
+        "C1",
+        "C5"
+      ],
+      "request": {
+        "en": "Choose three H-agents, Observer + Integrator, or one modular H-agent.",
+        "he": "לבחור שלושה סוכני H, Observer + Integrator, או סוכן H מודולרי אחד."
+      },
+      "recommendation": {
+        "en": "Observer + Integrator while retaining visible H1/H2/H3 groupings.",
+        "he": "Observer + Integrator תוך שמירת קבוצות H1/H2/H3 גלויות."
+      },
+      "blocked": {
+        "en": "H-layer architecture and final skills/prompt requirements.",
+        "he": "ארכיטקטורת שכבת H ודרישות מיומנויות/פרומפט סופיות."
+      },
+      "selectedValue": null,
+      "decisionDate": null,
+      "outcome": "Not recorded",
+      "rationale": null,
+      "approver": null,
+      "approverExpected": "Iris and Arnon",
+      "owner": null,
+      "dueDate": null,
+      "constraints": null,
+      "affectedArtifacts": [],
+      "confirmationStatus": "unconfirmed",
+      "statusLabel": "Proposal — not approved"
+    },
+    {
+      "id": "M-03",
+      "componentIds": [
+        "C2"
+      ],
+      "request": {
+        "en": "Choose observation scope, active triggers, dosage, and cap policy.",
+        "he": "לבחור היקף צפייה, טריגרים פעילים, מינון ומדיניות תקרה."
+      },
+      "recommendation": {
+        "en": "Passive E1–E14 first; limited triggers; threshold_sev2 as pilot candidate only; cap remains open.",
+        "he": "תחילה E1–E14 פסיבי; טריגרים מוגבלים; threshold_sev2 כמועמד פיילוט בלבד; התקרה נשארת פתוחה."
+      },
+      "blocked": {
+        "en": "Active routing, dosage defaults, and early hooks.",
+        "he": "ניתוב פעיל, ברירות מחדל למינון ו-hooks מוקדמים."
+      },
+      "selectedValue": null,
+      "decisionDate": null,
+      "outcome": "Not recorded",
+      "rationale": null,
+      "approver": null,
+      "approverExpected": "Iris and Arnon",
+      "owner": null,
+      "dueDate": null,
+      "constraints": null,
+      "affectedArtifacts": [],
+      "confirmationStatus": "unconfirmed",
+      "statusLabel": "Proposal — not approved"
+    },
+    {
+      "id": "M-04",
+      "componentIds": [
+        "C4"
+      ],
+      "request": {
+        "en": "Choose H-Verify sources, deterministic/semantic order, round bound, and adjudication.",
+        "he": "לבחור מקורות H-Verify, סדר דטרמיניסטי/סמנטי, חסם סבבים והכרעה."
+      },
+      "recommendation": {
+        "en": "Deterministic checks first; source set and two-round bound remain proposals.",
+        "he": "בדיקות דטרמיניסטיות תחילה; מערך מקורות וחסם שני סבבים נשארים הצעות."
+      },
+      "blocked": {
+        "en": "Verification validation and convergence policy.",
+        "he": "אימות מנגנון האימות ומדיניות ההתכנסות."
+      },
+      "selectedValue": null,
+      "decisionDate": null,
+      "outcome": "Not recorded",
+      "rationale": null,
+      "approver": null,
+      "approverExpected": "Iris and Arnon",
+      "owner": null,
+      "dueDate": null,
+      "constraints": null,
+      "affectedArtifacts": [],
+      "confirmationStatus": "unconfirmed",
+      "statusLabel": "Proposal — not approved"
+    },
+    {
+      "id": "M-05",
+      "componentIds": [
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "request": {
+        "en": "Approve labeling protocol, reviewers, correction authority, timeout, roles, and any implementation authorization.",
+        "he": "לאשר פרוטוקול תיוג, בודקים, סמכות תיקון, timeout, תפקידים וכל אישור מימוש."
+      },
+      "recommendation": {
+        "en": "Two independent reviewers; explicit approval; timeout parks; supervisors adjudicate; no live hooks yet.",
+        "he": "שני בודקים עצמאיים; אישור מפורש; timeout מחנה; המנחים מכריעים; עדיין אין hooks חיים."
+      },
+      "blocked": {
+        "en": "Independent labels, live interface work, trusted corrections, and runtime hooks.",
+        "he": "תוויות עצמאיות, ממשק חי, תיקונים מהימנים ו-hooks בזמן ריצה."
+      },
+      "selectedValue": null,
+      "decisionDate": null,
+      "outcome": "Not recorded",
+      "rationale": null,
+      "approver": null,
+      "approverExpected": "Iris and Arnon",
+      "owner": null,
+      "dueDate": null,
+      "constraints": null,
+      "affectedArtifacts": [],
+      "confirmationStatus": "unconfirmed",
+      "statusLabel": "Proposal — not approved"
+    },
+    {
+      "id": "M-06",
+      "componentIds": [
+        "C6"
+      ],
+      "request": {
+        "en": "Confirm MSc research-question timing, education scope, and future-work boundary.",
+        "he": "לאשר תזמון שאלת המחקר ל-MSc, היקף חינוכי וגבול עבודה עתידית."
+      },
+      "recommendation": {
+        "en": "Keep education as the MSc empirical scope; MediVARIA remains future work.",
+        "he": "לשמור חינוך כהיקף האמפירי של ה-MSc; MediVARIA נשאר עבודה עתידית."
+      },
+      "blocked": {
+        "en": "Final thesis framing and strategic extension language.",
+        "he": "מסגור סופי של התזה וניסוח ההרחבה האסטרטגית."
+      },
+      "selectedValue": null,
+      "decisionDate": null,
+      "outcome": "Not recorded",
+      "rationale": null,
+      "approver": null,
+      "approverExpected": "Iris and Arnon",
+      "owner": null,
+      "dueDate": null,
+      "constraints": null,
+      "affectedArtifacts": [],
+      "confirmationStatus": "unconfirmed",
+      "statusLabel": "Proposal — not approved"
+    }
+  ],
+  "systemFlow": [
+    {
+      "stage": 1,
+      "label": {
+        "en": "Agents 1–4 baseline",
+        "he": "בסיס סוכנים 1–4"
+      },
+      "kind": "baseline"
+    },
+    {
+      "stage": 2,
+      "label": {
+        "en": "S1–S3 observe · triage · ask",
+        "he": "S1–S3 צפייה · מיון · שאלה"
+      },
+      "kind": "hlayer"
+    },
+    {
+      "stage": 3,
+      "label": {
+        "en": "Real human + S4 capture",
+        "he": "אדם אמיתי + לכידת S4"
+      },
+      "kind": "human"
+    },
+    {
+      "stage": 4,
+      "label": {
+        "en": "S5 verify · adjudicate",
+        "he": "S5 אימות · הכרעה"
+      },
+      "kind": "verify"
+    },
+    {
+      "stage": 5,
+      "label": {
+        "en": "S6 proposal + S7 memory",
+        "he": "הצעת S6 + זיכרון S7"
+      },
+      "kind": "memory"
+    },
+    {
+      "stage": 5,
+      "label": {
+        "en": "M4A advice + M4B-1 comparison",
+        "he": "ייעוץ M4A + השוואת M4B-1"
+      },
+      "kind": "compare"
+    },
+    {
+      "stage": 6,
+      "label": {
+        "en": "E15 evaluation parked",
+        "he": "הערכת E15 מוקפאת"
+      },
+      "kind": "parked"
+    }
+  ],
+  "meeting": {
+    "date": "2026-07-21",
+    "audience": [
+      "Iris",
+      "Arnon"
+    ],
+    "presenter": "Ali",
+    "timebox": {
+      "presentationMinutes": 20,
+      "discussionMinutes": 20
+    },
+    "purpose": "Confirm the July 1 record, review July 3–20 progress, and record M-01–M-06.",
+    "outcomeRule": "Silence or an incomplete record finalizes as Deferred with confirmationStatus=unconfirmed."
+  },
+  "statusVocabulary": [
+    "Implemented",
+    "Delivered — provisional",
+    "Documented — parked",
+    "Offline design",
+    "Offline evidence",
+    "Synthetic fixture",
+    "Evaluation-ready",
+    "Pending expert input",
+    "Proposal — not approved",
+    "Blocked",
+    "Confirmed outcome"
+  ],
+  "iterations": [
+    {
+      "id": "ITER-001",
+      "number": 1,
+      "manifestBacked": false,
+      "verdict": null,
+      "runId": null
+    },
+    {
+      "id": "ITER-002",
+      "number": 2,
+      "manifestBacked": false,
+      "verdict": null,
+      "runId": null
+    },
+    {
+      "id": "ITER-003",
+      "number": 3,
+      "manifestBacked": false,
+      "verdict": null,
+      "runId": null
+    },
+    {
+      "id": "ITER-004",
+      "number": 4,
+      "manifestBacked": false,
+      "verdict": null,
+      "runId": null
+    },
+    {
+      "id": "ITER-005",
+      "number": 5,
+      "manifestBacked": false,
+      "verdict": null,
+      "runId": null
+    },
+    {
+      "id": "ITER-006",
+      "number": 6,
+      "manifestBacked": false,
+      "verdict": null,
+      "runId": null
+    },
+    {
+      "id": "ITER-007",
+      "number": 7,
+      "manifestBacked": false,
+      "verdict": null,
+      "runId": null
+    },
+    {
+      "id": "ITER-008",
+      "number": 8,
+      "manifestBacked": true,
+      "verdict": "NEUTRAL",
+      "runId": "hlayer-20260710T171143Z-2a66e71a3f"
+    },
+    {
+      "id": "ITER-009",
+      "number": 9,
+      "manifestBacked": true,
+      "verdict": "NEUTRAL",
+      "runId": "hlayer-20260710T175523Z-ab5175fd07"
+    },
+    {
+      "id": "ITER-010",
+      "number": 10,
+      "manifestBacked": true,
+      "verdict": "NEUTRAL",
+      "runId": "hlayer-20260710T183658Z-9199809f30"
+    },
+    {
+      "id": "ITER-011",
+      "number": 11,
+      "manifestBacked": true,
+      "verdict": "NEUTRAL",
+      "runId": "hlayer-20260711T102518Z-1ecc5dc68f"
+    },
+    {
+      "id": "ITER-012",
+      "number": 12,
+      "manifestBacked": true,
+      "verdict": "NEUTRAL",
+      "runId": "hlayer-20260711T123453Z-6cca11a0c8"
+    },
+    {
+      "id": "ITER-013",
+      "number": 13,
+      "manifestBacked": true,
+      "verdict": "NEUTRAL",
+      "runId": "hlayer-20260711T130619Z-f8a39357da"
+    },
+    {
+      "id": "ITER-014",
+      "number": 14,
+      "manifestBacked": true,
+      "verdict": "NEUTRAL",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2"
+    }
+  ],
+  "iterationMetricTrajectory": [
+    {
+      "iteration": "iter_002",
+      "verdict": "",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.96",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.202",
+      "bundled_load": "",
+      "bundled_efficiency": ""
+    },
+    {
+      "iteration": "iter_003",
+      "verdict": "",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.96",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.202",
+      "bundled_load": "",
+      "bundled_efficiency": ""
+    },
+    {
+      "iteration": "iter_004",
+      "verdict": "",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.96",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.202",
+      "bundled_load": "",
+      "bundled_efficiency": ""
+    },
+    {
+      "iteration": "iter_005",
+      "verdict": "",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.96",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.202",
+      "bundled_load": "0.799",
+      "bundled_efficiency": "1.202"
+    },
+    {
+      "iteration": "iter_006",
+      "verdict": "",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.96",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.202",
+      "bundled_load": "0.891",
+      "bundled_efficiency": "1.077"
+    },
+    {
+      "iteration": "iter_007",
+      "verdict": "",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.96",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.202",
+      "bundled_load": "0.891",
+      "bundled_efficiency": "1.077"
+    },
+    {
+      "iteration": "iter_008",
+      "verdict": "NEUTRAL",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.981",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.228",
+      "bundled_load": "0.796",
+      "bundled_efficiency": "1.233"
+    },
+    {
+      "iteration": "iter_009",
+      "verdict": "NEUTRAL",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.981",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.228",
+      "bundled_load": "0.796",
+      "bundled_efficiency": "1.233"
+    },
+    {
+      "iteration": "iter_010",
+      "verdict": "NEUTRAL",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.981",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.228",
+      "bundled_load": "0.796",
+      "bundled_efficiency": "1.233"
+    },
+    {
+      "iteration": "iter_011",
+      "verdict": "NEUTRAL",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.981",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.228",
+      "bundled_load": "0.796",
+      "bundled_efficiency": "1.233"
+    },
+    {
+      "iteration": "iter_012",
+      "verdict": "NEUTRAL",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.981",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.228",
+      "bundled_load": "0.796",
+      "bundled_efficiency": "1.233"
+    },
+    {
+      "iteration": "iter_013",
+      "verdict": "NEUTRAL",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.981",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.228",
+      "bundled_load": "0.796",
+      "bundled_efficiency": "1.233"
+    },
+    {
+      "iteration": "iter_014",
+      "verdict": "NEUTRAL",
+      "mode": "threshold_sev2",
+      "event_load": "0.799",
+      "weighted_coverage": "0.981",
+      "high_severity_coverage": "1.0",
+      "efficiency": "1.228",
+      "bundled_load": "0.796",
+      "bundled_efficiency": "1.233"
+    }
+  ],
+  "evidenceRecords": [
+    {
+      "id": "EV-REVIEW-SETTING",
+      "value": 11,
+      "numerator": 11,
+      "denominator": 11,
+      "unit": "review items",
+      "sourceId": "SRC-REVIEW",
+      "evidenceClass": "mechanism evidence",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "Descriptive/offline mechanism evidence only; not an accuracy or generalization result."
+    },
+    {
+      "id": "EV-AGENT4-DISTRIBUTION",
+      "value": 27,
+      "numerator": 27,
+      "denominator": 27,
+      "unit": "Agent 4 patterns",
+      "sourceId": "SRC-BASELINE",
+      "evidenceClass": "historical baseline",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "Descriptive/offline mechanism evidence only; not an accuracy or generalization result."
+    },
+    {
+      "id": "EV-M4A-ADVICE",
+      "value": 8,
+      "numerator": 8,
+      "denominator": 8,
+      "unit": "advice rows in ucd_ch subset",
+      "sourceId": "SRC-MEMORY",
+      "evidenceClass": "advisory subset",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "Descriptive/offline mechanism evidence only; not an accuracy or generalization result."
+    },
+    {
+      "id": "EV-EXP005-CANDIDATES",
+      "value": 24,
+      "numerator": 24,
+      "denominator": 24,
+      "unit": "generalization-safe candidate rows",
+      "sourceId": "SRC-EXP005",
+      "evidenceClass": "evaluation readiness",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "Zero labels are supplied; no accuracy computation is permitted."
+    },
+    {
+      "id": "EV-EXP005-LABELS",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 24,
+      "unit": "supplied labels",
+      "sourceId": "SRC-EXP005",
+      "evidenceClass": "human gate",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "EXP-012 remains NOT YET COMPUTABLE."
+    },
+    {
+      "id": "EV-EXP006-RECORDS",
+      "value": 481,
+      "numerator": 481,
+      "denominator": 501,
+      "unit": "captured/reconstructed contract records",
+      "sourceId": "SRC-EXP006",
+      "evidenceClass": "offline replay",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "The remaining 20 are explicit gap records; neither count measures correctness."
+    },
+    {
+      "id": "EV-EXP006-GAPS",
+      "value": 20,
+      "numerator": 20,
+      "denominator": 501,
+      "unit": "explicit unobservable gap records",
+      "sourceId": "SRC-EXP006",
+      "evidenceClass": "offline replay",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "Gap visibility does not demonstrate live observability."
+    },
+    {
+      "id": "EV-EXP007-SEV2-LOAD",
+      "value": 0.799,
+      "numerator": null,
+      "denominator": "all triageable event items",
+      "unit": "event-load ratio",
+      "sourceId": "SRC-EXP007",
+      "evidenceClass": "offline Pareto evidence",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "threshold_sev2 is a pilot candidate only and retains about 80% load."
+    },
+    {
+      "id": "EV-EXP007-SEV2-COVERAGE",
+      "value": 0.981,
+      "numerator": null,
+      "denominator": "replay-defined weighted severity mass",
+      "unit": "weighted coverage ratio",
+      "sourceId": "SRC-EXP007",
+      "evidenceClass": "offline Pareto evidence",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "No tested mode met coverage >=0.8 at load <=0.5."
+    },
+    {
+      "id": "EV-EXP008-K35",
+      "value": 0.85,
+      "numerator": null,
+      "denominator": 160,
+      "unit": "capture ratio over unstable never-reviewed guidelines",
+      "sourceId": "SRC-EXP008",
+      "evidenceClass": "offline cap sweep",
+      "observationDate": "2026-07-20",
+      "claimBoundary": "No uniform or adaptive cap is approved."
+    }
+  ],
+  "programStatus": {
+    "schemaVersion": "ProgramStatusSnapshot-v1",
+    "generatedAt": "2026-07-20T17:45:15.704174+00:00",
+    "sourceRevision": "af191f07849a0bb883750eba135ede0cec908abb",
+    "latestAcceptedIteration": {
+      "iteration": 14,
+      "directory": "reports/generated/hlayer_iterations/iter_014",
+      "generatedAt": "2026-07-20T17:33:19.2210349Z",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "iterationKind": "reliability_only",
+      "verdict": "NEUTRAL",
+      "normalizedSha256": "fa3debf25ba705224bfa27748aaee7cd92d72e8f50b6704ccea2ff9f6255651e",
+      "claimScope": "Offline mechanism and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
+    },
+    "replaySuite": {
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "experiments": [
+        "EXP-006",
+        "EXP-007",
+        "EXP-008",
+        "EXP-009",
+        "EXP-010",
+        "EXP-012"
+      ],
+      "normalizedSha256": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+      "status": "Offline evidence"
+    },
+    "conformanceSuite": {
+      "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+      "experiments": [
+        "EXP-013",
+        "EXP-014",
+        "EXP-015",
+        "EXP-016",
+        "EXP-017",
+        "EXP-018"
+      ],
+      "normalizedSha256": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+      "passed": true,
+      "liveShadowAuthorized": false,
+      "status": "Offline evidence"
+    },
+    "iterationHistory": {
+      "acceptedCount": 14,
+      "historicalPreManifest": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "manifestBacked": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    "experimentStates": {
+      "EXP-000": "Documented — parked",
+      "EXP-001": "Implemented",
+      "EXP-002": "Evaluation-ready",
+      "EXP-003": "Pending expert input",
+      "EXP-004": "Synthetic fixture",
+      "EXP-005": "Pending expert input",
+      "EXP-006": "Offline evidence",
+      "EXP-007": "Offline evidence",
+      "EXP-008": "Offline evidence",
+      "EXP-009": "Synthetic fixture",
+      "EXP-010": "Synthetic fixture",
+      "EXP-011": "Documented — parked",
+      "EXP-012": "Blocked",
+      "EXP-013": "Offline evidence",
+      "EXP-014": "Offline evidence",
+      "EXP-015": "Offline evidence",
+      "EXP-016": "Offline evidence",
+      "EXP-017": "Offline evidence",
+      "EXP-018": "Offline evidence"
+    },
+    "exp005Gate": {
+      "candidateRows": 24,
+      "suppliedLabels": 0,
+      "validLabels": 0,
+      "generalizationSafeValidLabels": 0,
+      "minimumForQuantitativeEvaluation": 20,
+      "quantitativeEvaluationAllowed": false,
+      "status": "Pending expert input"
+    },
+    "exp012Gate": {
+      "generalizationSafeN": 0,
+      "result": "NOT YET COMPUTABLE",
+      "status": "Blocked"
+    },
+    "decisionState": {
+      "M-01": "Deferred",
+      "M-02": "Deferred",
+      "M-03": "Deferred",
+      "M-04": "Deferred",
+      "M-05": "Deferred",
+      "M-06": "Deferred",
+      "confirmationStatus": "unconfirmed",
+      "runtimeAuthorization": false
+    },
+    "protectedPathState": {
+      "status": "PASS",
+      "protectedDiff": [],
+      "paths": {
+        "VEGO-AI/framework": "de4749aa39aef4e0ea02b3e24f8ec8174ed46ec0806e92c5778f980077cde8df",
+        "VEGO-AI/schemas": "7dfdea2552ac1f12ea0370263151056e01b5c18c1cd1a2890188fb48efa43455",
+        "VEGO-AI/tests": "1766a596d0c54c94ed83e72693884301d5ba98e973947b4fde1cc777ff032a2c",
+        "VEGO-AI/eval": "f62c34f9f30558269eaa8fdb7b3f96e656f91a5fffc7ee79990234ec4d48e3ec",
+        "VEGO-AI/inputs": "ce6baead0fb775ca926f2fdfe6578aafcc3d603db1785ea8cb2ca6b7d2d3f356"
+      }
+    },
+    "verificationRecord": {
+      "status": "PASS",
+      "tests": {
+        "VEGO-AI/tests": {
+          "passed": 94,
+          "failed": 0,
+          "durationSeconds": 6.41
+        },
+        "scripts/tests": {
+          "passed": 53,
+          "failed": 0,
+          "durationSeconds": 60.43
+        }
+      },
+      "recordedAt": "2026-07-20T19:21:30Z",
+      "command": "python -m pytest <suite> -q",
+      "runtime": "Python 3.13.3 / pytest 8.4.2"
+    },
+    "sourceHashes": {
+      "iteration14Manifest": "d99740517a0c87feeffb8c71bd643f18371144f9463615820f3c3b3a402f99c0",
+      "replaySuiteManifest": "339a7eb2cc8a2b848f3581547f4af2cef4dc20b80497dd83d9c70d75156fa7a6",
+      "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
+      "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
+      "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88"
+    }
+  },
+  "decisionExportSchema": {
+    "schemaVersion": "MeetingDecisionExport-v1",
+    "fields": [
+      "ID",
+      "selectedValue",
+      "decisionDate",
+      "outcome",
+      "rationale",
+      "approver",
+      "owner",
+      "dueDate",
+      "constraints",
+      "affectedArtifacts",
+      "confirmationStatus"
+    ],
+    "allowedOutcomes": [
+      "Accepted",
+      "Accepted with changes",
+      "Rejected",
+      "Deferred"
+    ]
+  }
+}
