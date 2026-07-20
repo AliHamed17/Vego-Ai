@@ -1,0 +1,53 @@
+name: Supervisor package source checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - agent/publish-hlayer-and-supervisor-package
+
+jobs:
+  source-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install source-test dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Compile source
+        run: python -m compileall -q VEGO-AI/framework VEGO-AI/eval VEGO-AI/analysis scripts
+
+      - name: Run clone-safe tests
+        run: python -m pytest scripts/tests -q
+
+      - name: Validate protected paths and supervisor package
+        run: |
+          python scripts/check_hlayer_protected_paths.py
+          python scripts/validate_supervisor_package.py
+          python visualizations-gallery/build_gallery.py --check
+          python scripts/check_repository_privacy.py
+
+      - name: Check Git hygiene
+        run: git diff --check
+
+  browser-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Chromium test runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.61.1
+          npx playwright install --with-deps chromium
+
+      - name: Exercise the bilingual package at all supported widths
+        run: node scripts/tests/supervisor_package_browser_smoke.mjs

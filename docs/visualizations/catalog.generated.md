@@ -1,8 +1,8 @@
 # Visualization Catalog (generated)
 
-Generated: 2026-07-11T12:56:22.476185+00:00
+Generated: 2026-07-20T19:23:14.421947+00:00
 
-Totals: **24** Mermaid · **36** SVG · **14** HTML.
+Totals: **24** Mermaid · **36** SVG · **15** HTML.
 
 <details><summary>All diagram/graph files</summary>
 
@@ -54,6 +54,7 @@ Totals: **24** Mermaid · **36** SVG · **14** HTML.
 - `artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html`
 - `artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html`
 - `docs/dashboards/progress-visualizations.generated.html`
+- `docs/research/meetings/2026-07-21-supervisor-explainer.base.html`
 - `reports/generated/e2e_dashboard/index.html`
 - `reports/generated/evaluation_comparison/figures/E1_leakage_distribution.svg`
 - `reports/generated/evaluation_comparison/figures/E2_advice_strength.svg`
