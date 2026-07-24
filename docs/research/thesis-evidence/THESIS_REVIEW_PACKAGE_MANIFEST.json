@@ -2,27 +2,27 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-24T19:23:58+00:00",
   "packageDate": "2026-07-24",
-  "sourceRevision": "adc56a3ccfec4ccc21a9ed2abb04b116c72a7693",
-  "packageRevision": "8e72a67badb9ef24dee211e1aefaa673d92e8405",
+  "sourceRevision": "279646cb1ba45fe4856e0bb3aa79aeb34e843b00",
+  "packageRevision": "b5234358787b0f7dae582995a9c946dcd18bf0bf",
   "sourceTreeHash": "0b0c086fd5986e38883debf88c8ba2c9316bb13aa252f1eeec7bfc80f3dcd1ed",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "239987803bf3994068560aa9874311f49e9c20a2e1a3a9d5654f6408d614b65f",
+    "sha256": "f85e975f2699a706cb05c80d707021d88438741aa5de9b915475a39cc3f07b94",
     "bytes": 41402,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx",
-      "sha256": "8036ea86f444198a0074427762f253ce12da7ecb96c35e9ba954e81cf68da9a8",
+      "sha256": "7a87b022a19e4ef867d5a8bc79a4c6fef500c98378dbab1a71405f9c663ecd16",
       "bytes": 1770724,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "d40099a8782fff8347732bb1f18c220a750b55e038b3375b4d199c00a983da65",
+      "sha256": "2b3638bcdb141b6aa313fdbfdbd7798f31f64480c7208ad95295aa2a1e986aae",
       "bytes": 70129,
       "tracked": true
     }
@@ -33,15 +33,15 @@
       "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": "82b261845fda17ba43436b64c738010c50c23bec4e0fcbcee0a82f7ccf016be7",
-      "bytes": 1388545
+      "sha256": "caf387f6919e501c593c9b698029561b32730bc7f37d9cbd89a72933ded8398c",
+      "bytes": 1388413
     },
     "renderVerification": {
       "status": "PASS",
       "pdfPageCount": 87,
       "renderedPageCount": 87,
       "sheetCount": 22,
-      "qaReportSha256": "501a293e7eca10b96a3a9246ca02c5be93e2222784dcc5ce4b1781efdb7c58b4"
+      "qaReportSha256": "d82be30f047a5327827b514b039254b3ef29af57def7e3f1cdcce9f63b2475dd"
     }
   },
   "sourceFiles": [
