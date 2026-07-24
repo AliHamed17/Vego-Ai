@@ -41,7 +41,14 @@ GENERATORS = {
                                  "--out", "VEGO-AI/reports/results_dashboard"], None),
 }
 DEFAULT_FAST = ["evaluation-charts", "supervisor-figures", "catalog"]
-CATALOG_DIRS = ["docs", "reports/generated", "artifacts", "thesis", "VEGO-AI/reports"]
+CATALOG_DIRS = [
+    "docs",
+    "reports/generated",
+    "artifacts",
+    "thesis",
+    "VEGO-AI/reports",
+    "visualizations-gallery",
+]
 
 
 def run(cmd, timeout=300):
@@ -66,7 +73,10 @@ def tracked_visual_paths() -> list[str]:
     return sorted(
         path.replace("\\", "/")
         for path in result.stdout.splitlines()
-        if path.replace("\\", "/").startswith(prefixes)
+        if (
+            path.replace("\\", "/").startswith(prefixes)
+            or "/" not in path.replace("\\", "/")
+        )
         and Path(path).suffix.casefold() in {".mmd", ".svg", ".html"}
     )
 
