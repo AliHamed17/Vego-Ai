@@ -326,8 +326,7 @@ def test_chapter_transitions_use_page_break_before_without_blank_break_paragraph
         and paragraph.text.startswith("Chapter ")
     ]
     assert len(chapter_headings) == 11
-    assert chapter_headings[0].paragraph_format.page_break_before in (None, False)
     assert all(
         heading.paragraph_format.page_break_before is True
-        for heading in chapter_headings[1:]
+        for heading in chapter_headings
     )
