@@ -9,6 +9,19 @@ cannot be evaluated yet."*
 > (current `POLICY_VERSION = "memory-informed-classifier-v1"`). It commits to nothing. No LLM/API, no
 > embeddings, no Agent-4 change, no M4B-2, no baseline overwrite — under any refinement considered here.
 
+## 0. Sealed development / holdout discipline (mandatory)
+**Current M4B-1 changes 0/27 classifications.** Real expert labels will measure *baseline* accuracy and
+reveal where Agent 4 errs, but they **cannot** show a current accuracy delta (v1 changes nothing). Any
+M4B-1.1 refinement therefore must be designed and evaluated with strict separation:
+- The 24 generalization-safe labeled rows are split **16 development / 8 sealed holdout**
+  (`reports/generated/exp003/annotation_package/item_mapping_PRIVATE.csv`).
+- **Both reviewers label all 24** (they do not see the split).
+- All error analysis, rule design, and threshold tuning use the **16 development** rows only.
+- The **8 holdout** labels stay **sealed** — not inspected — until the refined policy is **frozen**, then
+  evaluated **exactly once**. Never tune and evaluate on the same rows.
+- Report dev and holdout results separately; a holdout improvement is the only admissible evidence, and even
+  then it is a small-sample pilot (8 rows) pending more labels / a second annotated run.
+
 ## 1. Baseline errors discovered (to be filled from EXP-003)
 **Currently empty by design.** There are 0 generalization-safe expert labels, so we do not yet know where
 Agent 4 is wrong. After EXP-003 (`evaluate_accuracy_improvement.py` → `error_analysis.csv`), fill:

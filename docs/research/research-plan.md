@@ -6,11 +6,14 @@ Reusable human judgment in AI-assisted domain modeling and model assessment.
 
 ## Main Research Question
 
-What approaches have been proposed to support human-AI collaboration in AI-assisted domain modeling and model assessment, and how can they inform the design of reusable human judgment mechanisms in systems such as VEGO-AI?
+How can reusable human judgment be captured, governed, and evaluated so that AI-assisted domain model
+assessment can move from one-off expert correction toward auditable human-AI co-reasoning?
 
 ## Contribution Statement
 
-This research contributes a human-AI co-reasoning approach for AI-assisted domain model assessment, in which human judgment is selectively triggered, structurally captured, and stored as reusable knowledge for future variability interpretation.
+This research contributes a human-AI co-reasoning approach for AI-assisted domain model assessment, in which
+human judgment is selectively triggered, structurally captured, stored as reusable knowledge, and evaluated
+under explicit evidence gates before any automated behavior change is allowed.
 
 ## Core Problem
 
@@ -46,23 +49,27 @@ This project studies how human review can move from episodic validation to reusa
 | M2 | Human Feedback Manager | Implemented | Attaches validated human feedback to review items. |
 | M3 | Human Judgment Memory | Implemented and published | Builds and searches reusable memory; remains inert. |
 | M4A | Memory Advisory Layer | Implemented and published | Retrieves relevant memory for Agent 4 patterns and emits advisory reports; no AI classification change. |
-| M4B-1 | Memory-informed parallel comparison | Design contract approved | Deterministic controlled experiment only; writes a separate comparison artifact and keeps baseline behavior unchanged. |
+| M4B-1 | Memory-informed parallel comparison | Implemented and merged | Deterministic controlled experiment only; writes a separate comparison artifact and keeps baseline behavior unchanged. |
 | M4B-2 | Optional Agent 4/LLM reclassification | Deferred | Not approved; no Agent 4 prompt/API/embedding changes. |
-| M5 | Human-approved guideline refinement | Planned | Future work; guideline changes require explicit approval. |
-| M6 | Evaluation and thesis synthesis | Planned | Consolidates evidence for MSc thesis and PhD continuation. |
+| M5 | Human-approved guideline refinement | Planned PhD continuation | Future work; guideline changes require explicit approval and real-label evidence. |
+| M6 | Broader evaluation and thesis synthesis | Planned PhD continuation | Consolidates evidence across additional runs, reviewers, domains, and diagrams. |
 
 ## Current Artifacts
 
 - Source package: `VEGO-AI/`
-- M1-M4A human-AI co-reasoning implementation and tests.
+- M1-M4B-1 human-AI co-reasoning implementation, comparison tooling, dashboards, and tests.
 - Research OS registers for artifact audit, provenance, and publishability.
+- Thesis drafts under `thesis/chapters/`, including a guarded Chapter 7 current-evidence draft.
+- PhD control page: `docs/research/phd-thesis-optimization-plan.md`.
+- Supervisor EXP-005 approval pack: `docs/research/supervisor-label-approval-pack.md`.
 - Controlled local artifacts including root paper/IRB material, model files, analysis outputs, and evaluation outputs remain ignored until audit.
 
 ## Near-Term Milestones
 
-1. Complete the data/IRB and publishability audit for deferred artifacts.
-2. Map existing packaged results into `EXP-000` without copying controlled contents into Git.
-3. Ask Claude to refresh the M1-M2-M3-M4A artifact ZIP and manifest.
-4. Ask Claude to implement M4B-1 only on `feature/memory-informed-comparison`, after confirming `docs/research/m4b-conditional-approval.md`.
-5. Compare C0-C4B evaluation conditions and update the claim/evidence table.
-6. Draft the MSc thesis around reusable human judgment, with M4B-M6 as the PhD continuation path.
+1. Review `docs/research/supervisor-label-approval-pack.md` with the supervisor.
+2. Approve reviewer plan, consent/anonymity handling, evidence target, and claim boundary.
+3. Collect blind EXP-005 labels for the 24 generalization-safe rows.
+4. Rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream`.
+5. Update Chapter 7 with real-label accuracy, macro-F1, paired-correctness, reliability, and limitations.
+6. Use `docs/research/phd-thesis-optimization-plan.md` to decide the PhD continuation path after real errors are known.
+7. Keep M4B-1.1, M4B-2, Agent 4 behavior changes, LLM/API calls, embeddings, and baseline overwrites blocked until real labels and explicit approval exist.

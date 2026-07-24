@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VEGO-AI — Live Flow Demo</title>
+<style>
+:root{--bg:#0A0A12;--p1:#1B1430;--p2:#110B1E;--edge:#9333EA;--neon:#A855F7;--neon2:#C084FC;
+--ink:#F6F3FF;--txt:#D8D3EA;--mut:#9A93B4;--faint:#6E6786;--green:#10B981;--red:#EF4444;--amber:#F59E0B;--blue:#3B82F6;--mono:'Courier New',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.5;min-height:100vh;overflow-x:hidden}
+.orb{position:fixed;border-radius:50%;filter:blur(46px);z-index:0;opacity:.45;pointer-events:none}
+.orb1{width:560px;height:560px;left:-180px;top:-180px;background:radial-gradient(circle,#7C3AED,transparent 70%)}
+.orb2{width:620px;height:620px;right:-220px;bottom:-240px;background:radial-gradient(circle,#C026D3,transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:22px 26px 40px}
+.kick{color:var(--neon2);font-weight:700;letter-spacing:2.5px;font-size:12px;text-transform:uppercase}
+h1{font-size:30px;color:var(--ink);margin:6px 0 4px}
+.sub{color:var(--mut);font-size:15px}
+.track{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 6px}
+.tchip{font-size:11.5px;color:var(--faint);border:1px solid rgba(147,51,234,.3);border-radius:999px;padding:5px 11px;transition:.15s;white-space:nowrap}
+.tchip.on{color:#fff;border-color:var(--neon);background:rgba(168,85,247,.22);box-shadow:0 0 14px rgba(168,85,247,.5);font-weight:700}
+.tchip.done{color:var(--neon2);border-color:rgba(168,85,247,.5)}
+.stage{margin-top:14px;background:linear-gradient(180deg,var(--p1),var(--p2));border:1px solid rgba(147,51,234,.5);border-radius:18px;padding:26px 28px;min-height:340px;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.rolebadge{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.5px;padding:5px 12px;border-radius:999px;margin-bottom:12px}
+.stage h2{font-size:25px;color:var(--ink);margin-bottom:8px}
+.narr{font-size:16px;color:var(--txt);max-width:760px}
+.data{margin-top:18px;background:#0c0a16;border:1px solid rgba(147,51,234,.4);border-radius:12px;padding:16px 18px;font-family:var(--mono);font-size:13.5px;color:var(--txt);white-space:pre-wrap;line-height:1.7}
+.data .k{color:var(--neon2)} .data .g{color:var(--green)} .data .r{color:var(--red)} .data .a{color:var(--amber)} .data .m{color:var(--mut)}
+.handoff{margin-top:16px;font-size:14px;color:var(--neon2);font-weight:600}
+.nd{position:fixed;top:14px;right:18px;z-index:5;font-size:11.5px;color:var(--green);border:1px solid rgba(16,185,129,.5);background:rgba(16,185,129,.12);border-radius:999px;padding:6px 12px;font-family:var(--mono)}
+.controls{display:flex;align-items:center;gap:12px;margin-top:20px}
+button{font-family:inherit;font-size:15px;font-weight:700;color:#fff;background:linear-gradient(180deg,#7C3AED,#6D28D9);border:none;border-radius:10px;padding:11px 20px;cursor:pointer;transition:.15s}
+button:hover{filter:brightness(1.12)} button:disabled{opacity:.35;cursor:default}
+button.ghost{background:transparent;border:1px solid rgba(147,51,234,.6);color:var(--neon2)}
+.count{margin-left:auto;color:var(--faint);font-size:13px}
+.boundary{margin-top:16px;border:1px solid rgba(245,158,11,.5);background:rgba(245,158,11,.08);border-radius:12px;padding:13px 16px;font-size:13.5px;color:var(--txt)}
+.boundary b{color:var(--amber)}
+.hint{color:var(--faint);font-size:12px;margin-top:10px}
+</style></head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div>
+<div class="nd" id="ndflag">ai_classification_changed = false</div>
+<div class="wrap">
+<div class="kick">VEGO-AI · Reusable Human Judgment — Live Flow</div>
+<h1>How it all works together</h1>
+<div class="sub">One pattern's journey end-to-end — running example: <b>"Customer as actor"</b> (setting ucd_ch, pattern P6). Use ← → or the buttons; press <b>Auto-play</b> to run it hands-free.</div>
+<div class="track" id="track"></div>
+<div class="stage" id="stage"></div>
+<div class="controls">
+  <button class="ghost" id="prev">&#8249; Prev</button>
+  <button id="next">Next &#8250;</button>
+  <button class="ghost" id="auto">▶ Auto-play</button>
+  <span class="count" id="count"></span>
+</div>
+<div class="hint">Tip: present full-screen (F11). To make a video, screen-record while Auto-play runs.</div>
+</div>
+<script>
+const NEON='#A855F7',GREEN='#10B981',AMBER='#F59E0B',BLUE='#3B82F6';
+const stages=[
+ {tag:'INPUT',color:BLUE,title:'1 · Student model input',
+  narr:'The baseline runs over 179 student models across 4 settings, aggregating recurring deviations into 27 variability patterns. Our example: in a use-case diagram, "Customer" is modelled as an actor.',
+  data:'<span class="m">// pattern under review</span>\n<span class="k">setting</span>      : ucd_ch  (Cheers · use-case)\n<span class="k">pattern_id</span>   : P6\n<span class="k">description</span>  : "Customer" modelled as an actor\n<span class="k">scale</span>        : 179 models → 27 patterns',
+  handoff:'→ handed to Agent 4 for classification'},
+ {tag:'AGENT 4 · C0 BASELINE',color:BLUE,title:'2 · Agent 4 classifies (baseline, read-only)',
+  narr:'The original 4-agent pipeline classifies the pattern. It is uncertain here — and crucially, it raises its own review signal. This output is frozen and never modified by anything downstream.',
+  data:'<span class="k">ai_classification</span>      : Occasional\n<span class="k">confidence</span>             : Medium (0.72)\n<span class="k">requires_human_review</span>  : true\n<span class="m">baseline tag: official-vego-ai-baseline (2eeccb1) — preserved</span>',
+  handoff:'→ its review signal activates M1'},
+ {tag:'M1 · SELECTIVE REVIEW',color:NEON,title:'3 · M1 routes it to a human (by exception)',
+  narr:'The Selective Intervention Policy does not review everything — it queues only where the AI signals uncertainty. 11 of 27 patterns are queued (40.7%). Ours enters on the medium-confidence trigger.',
+  data:'<span class="k">queue</span>          : human_review_queue.jsonl (item 1 of 11)\n<span class="k">trigger</span>        : medium_confidence\n<span class="k">review_signature</span> : computed over stable fields (tamper-check)\n<span class="k">source_pattern_id</span>: ucd_ch::P6',
+  handoff:'→ a human expert opens the queue item'},
+ {tag:'EXPERT · M2 FEEDBACK',color:GREEN,title:'4 · Expert disagrees — captured structurally',
+  narr:'The expert reviews the neutral context and disagrees with the AI. The decision is captured as schema-validated feedback with a written rationale — not a free-text note.',
+  data:'<span class="k">decision</span>   : reclassify → <span class="g">Substantial</span>\n<span class="k">rationale</span>  : "Customer as an actor who places orders is a\n             legitimate alternative interpretation, not a\n             modelling error."\n<span class="k">schema_valid</span>: <span class="g">true</span>   <span class="k">signature_match</span>: <span class="g">true</span>',
+  handoff:'→ promoted into reusable memory'},
+ {tag:'M3 · JUDGMENT MEMORY',color:NEON,title:'5 · The judgment becomes a reusable asset',
+  narr:'The feedback is promoted to a memory entry with full provenance — so the same judgement can inform similar future cases instead of being made again from scratch. (3 of 4 feedback entries were promoted.)',
+  data:'<span class="k">memory_id</span>     : HJM-ucd_ch-P6\n<span class="k">provenance</span>    : feedback ← review item ← Agent 4 ← models\n<span class="k">reuse_scope</span>   : domain/diagram matched\n<span class="k">conflict_status</span>: none',
+  handoff:'→ retrieved as advisory evidence by M4A'},
+ {tag:'M4A · ADVISORY',color:NEON,title:'6 · Memory retrieved as advice (never overrides)',
+  narr:'When the pattern is processed again, M4A retrieves the relevant memory and presents it as graded, explainable advice. The AI classification is preserved verbatim — the advice sits alongside it.',
+  data:'<span class="k">advice_strength</span>       : moderate\n<span class="k">match_reasons</span>         : domain match · diagram-type match\n<span class="k">advice_mode</span>           : advisory_only  <span class="m">(const)</span>\n<span class="k">ai_classification_changed</span>: <span class="g">false</span>  <span class="m">(const)</span>',
+  handoff:'→ fed into the deterministic comparison'},
+ {tag:'M4B-1 · COMPARISON',color:AMBER,title:'7 · Governed parallel comparison + escalation',
+  narr:'The deterministic policy compares original vs memory-informed. Here advice is moderate and disagrees, so the rule keeps the original and escalates for another human look — it does not silently relabel. 0 of 27 baseline classifications are changed.',
+  data:'<span class="k">policy</span>        : memory-informed-classifier-v1\n<span class="k">rule_applied</span>  : moderate_disagreement_keep_original_require_review\n<span class="k">result</span>        : keep original (Occasional)\n<span class="a">requires_human_review_after_memory : true</span>\n<span class="k">leakage_status</span>: <span class="a">same_pattern_memory_used</span>  <span class="m">(mechanism only)</span>',
+  handoff:'→ written as a parallel artifact beside the baseline'},
+ {tag:'OUTPUT',color:GREEN,title:'8 · What you just saw (and what it does not claim)',
+  narr:'End to end: the AI flagged uncertainty, a human judgement was captured, stored, reused, and governed — and the baseline was never touched. Every step is schema-validated, reproducible (94 tests · 18/18 invariants), and traceable.',
+  data:'<span class="g">Demonstrated</span> : selective triggering · structured capture · reusable\n               memory · advisory retrieval · governed escalation ·\n               non-destruction (0/27 changed)\n<span class="r">Not yet claimed</span>: accuracy improvement / generalization —\n               gated at 0 / 24 independent expert labels',
+  handoff:'',
+  boundary:'<b>Honest boundary:</b> this demonstrates the <b>mechanism</b> working together, not an accuracy gain. Whether reusable judgement improves classification is well-posed but not yet evaluable — it needs independent expert labels (the one human approval that unlocks the next stage).'}
+];
+let i=0,timer=null;
+const track=document.getElementById('track');
+stages.forEach((s,n)=>{const c=document.createElement('span');c.className='tchip';c.id='t'+n;c.textContent=(n+1);c.title=s.title;c.onclick=()=>{go(n);};track.appendChild(c);});
+function render(){
+ const s=stages[i];
+ const st=document.getElementById('stage');
+ st.innerHTML=`<span class="rolebadge" style="background:${s.color}22;color:${s.color};border:1px solid ${s.color}99">${s.tag}</span>
+  <h2>${s.title}</h2><div class="narr">${s.narr}</div><div class="data">${s.data}</div>
+  ${s.handoff?`<div class="handoff">${s.handoff}</div>`:''}
+  ${s.boundary?`<div class="boundary">${s.boundary}</div>`:''}`;
+ stages.forEach((_,n)=>{const c=document.getElementById('t'+n);c.className='tchip'+(n===i?' on':(n<i?' done':''));});
+ document.getElementById('count').textContent=`Step ${i+1} of ${stages.length}`;
+ document.getElementById('prev').disabled=(i===0);
+ document.getElementById('next').disabled=(i===stages.length-1);
+ document.getElementById('ndflag').style.opacity=(i>=1?1:0.25);
+}
+function go(n){i=Math.max(0,Math.min(stages.length-1,n));render();}
+function next(){if(i<stages.length-1)go(i+1);else stopAuto();}
+function prev(){go(i-1);}
+function stopAuto(){if(timer){clearInterval(timer);timer=null;document.getElementById('auto').textContent='▶ Auto-play';}}
+document.getElementById('next').onclick=()=>{stopAuto();next();};
+document.getElementById('prev').onclick=()=>{stopAuto();prev();};
+document.getElementById('auto').onclick=()=>{if(timer){stopAuto();}else{document.getElementById('auto').textContent='❚❚ Pause';timer=setInterval(next,6000);}};
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){stopAuto();next();}if(e.key==='ArrowLeft'){stopAuto();prev();}});
+render();
+</script></body></html>

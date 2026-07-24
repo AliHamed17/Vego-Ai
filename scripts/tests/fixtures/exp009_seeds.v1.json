@@ -1,0 +1,111 @@
+{
+  "fixture_version": "1.0",
+  "evidence_classification": "SYNTHETIC_NOT_HUMAN",
+  "seeds": [
+    {
+      "id": "SEED_01",
+      "description": "Reject a core guideline",
+      "setting": "cd_ch",
+      "decision": "Reject",
+      "guideline_id": "G5",
+      "detail": "Reject G5",
+      "rationale": "G5 is unnecessary for this setting",
+      "expected_conflict": true,
+      "expected_rule": "R1_CORE_GUIDELINE",
+      "round_2": {"action": "override", "override_rationale": "Request a documented setting exception"}
+    },
+    {
+      "id": "SEED_02",
+      "description": "Mismatched template braces",
+      "setting": "cd_pw",
+      "decision": "Approve",
+      "template_detail": "Modify template to {invalid_name",
+      "detail": "Template change",
+      "rationale": "Updated naming prefix",
+      "expected_conflict": true,
+      "expected_rule": "R2_TEMPLATE_SYNTAX",
+      "round_2": {"action": "correct", "template_detail": "Modify template to {valid_name}"}
+    },
+    {
+      "id": "SEED_03",
+      "description": "Approve with an explicitly conflicting rationale",
+      "setting": "ucd_ch",
+      "decision": "Approve",
+      "detail": "Verify compliance",
+      "rationale": "This template does not conform to core instructions",
+      "expected_conflict": true,
+      "expected_rule": "R4_DECISION_RATIONALE",
+      "round_2": {"action": "correct", "decision": "Reject"}
+    },
+    {
+      "id": "SEED_04",
+      "description": "Stale-memory decision conflict",
+      "setting": "cd_ch",
+      "decision": "Approve",
+      "detail": "pattern_cd_ch-P5",
+      "rationale": "Pattern is acceptable under a newer context",
+      "expected_conflict": true,
+      "expected_rule": "R3_MEMORY_DIVERGENCE",
+      "round_2": {"action": "override", "override_rationale": "Request human adjudication of the context change"}
+    },
+    {
+      "id": "SEED_05",
+      "description": "Malformed feedback missing a decision",
+      "setting": "ucd_pw",
+      "decision": "",
+      "detail": "G11",
+      "rationale": "Conforms to the baseline",
+      "expected_conflict": true,
+      "expected_rule": "R0_REQUIRED_FIELDS",
+      "round_2": {"action": "no_response"}
+    },
+    {
+      "id": "SEED_06",
+      "description": "Valid approval",
+      "setting": "ucd_pw",
+      "decision": "Approve",
+      "guideline_id": "G11",
+      "detail": "Approve G11",
+      "rationale": "Conforms fully to baseline requirements",
+      "expected_conflict": false
+    },
+    {
+      "id": "SEED_07",
+      "description": "Valid rejection of a non-core guideline",
+      "setting": "cd_pw",
+      "decision": "Reject",
+      "guideline_id": "G11",
+      "detail": "Reject G11",
+      "rationale": "The proposal violates the documented G11 constraint",
+      "expected_conflict": false
+    },
+    {
+      "id": "SEED_08",
+      "description": "Valid balanced template syntax",
+      "setting": "cd_pw",
+      "decision": "Approve",
+      "template_detail": "Modify template to {valid_name}",
+      "detail": "Template change",
+      "rationale": "The placeholder is balanced",
+      "expected_conflict": false
+    },
+    {
+      "id": "SEED_09",
+      "description": "Valid decision agreeing with prior memory",
+      "setting": "cd_ch",
+      "decision": "Reject",
+      "detail": "pattern_cd_ch-P5",
+      "rationale": "Prior rejection remains applicable",
+      "expected_conflict": false
+    },
+    {
+      "id": "SEED_10",
+      "description": "Negation variant that must not be treated as negative feedback",
+      "setting": "ucd_ch",
+      "decision": "Approve",
+      "detail": "G12",
+      "rationale": "The proposal is not inconsistent with the guideline",
+      "expected_conflict": false
+    }
+  ]
+}

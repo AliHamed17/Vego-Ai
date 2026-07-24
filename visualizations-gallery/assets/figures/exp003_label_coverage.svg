@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<style>.title{font:700 28px Arial;fill:#0F172A}.label{font:400 15px Arial;fill:#334155}.value{font:700 17px Arial;fill:#0F172A}</style>
+<rect width="900" height="360" fill="#F8FAFC"/>
+<text x="70" y="50" class="title">EXP-003 Label Coverage</text>
+<rect x="111.8" y="280.0" width="106.4" height="0.0" rx="5" fill="#0B7285"/><text x="165.0" y="270.0" text-anchor="middle" class="value">0</text><text x="165.0" y="318" text-anchor="middle" class="label">labeled</text>
+<rect x="301.8" y="90.0" width="106.4" height="190.0" rx="5" fill="#0B7285"/><text x="355.0" y="80.0" text-anchor="middle" class="value">27</text><text x="355.0" y="318" text-anchor="middle" class="label">rows</text>
+<rect x="491.8" y="111.1" width="106.4" height="168.9" rx="5" fill="#0B7285"/><text x="545.0" y="101.1" text-anchor="middle" class="value">24</text><text x="545.0" y="318" text-anchor="middle" class="label">safe candidates</text>
+<rect x="681.8" y="280.0" width="106.4" height="0.0" rx="5" fill="#0B7285"/><text x="735.0" y="270.0" text-anchor="middle" class="value">0</text><text x="735.0" y="318" text-anchor="middle" class="label">safe labeled</text>
+</svg>

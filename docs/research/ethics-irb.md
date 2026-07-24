@@ -10,15 +10,15 @@ Until this checklist is completed, deferred artifacts remain `Controlled / do no
 
 ## Checklist
 
-- IRB protocol identifier:
-- Approval date:
-- Expiration/renewal date:
-- Data categories covered:
-- Participant/student data included:
-- Anonymization method:
-- Sharing restrictions:
-- Publication restrictions:
-- Contact person:
+- IRB protocol identifier: `IRB2-Iris`
+- Approval date: `Unknown (not in repository)`
+- Expiration/renewal date: `Unknown (not in repository)`
+- Data categories covered: `Student domain models (UML use case and class diagrams) from modeling course; expert labeling/evaluation sheets.`
+- Participant/student data included: `Yes (anonymous student models from university course).`
+- Anonymization method: `No names, IDs, or identifiers in data/git. Stored with random candidate hashes.`
+- Sharing restrictions: `Controlled / do not publish (only metadata, synthesized examples, and anonymized statistics may be shared/published; raw student models and expert worksheets are ignored by Git).`
+- Publication restrictions: `Publication restricted to aggregated metrics, illustrative anonymized examples, and theoretical/framework findings in MODELS 2026/thesis; no raw personal data.`
+- Contact person: `Iris Reinhartz-Berger`
 
 ## Rule
 

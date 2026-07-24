@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/thesis-review-package-manifest-v1.schema.json",
+  "title": "ThesisReviewPackageManifest-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "packageDate",
+    "sourceRevision",
+    "packageRevision",
+    "sourceTreeHash",
+    "canonicalSourcesDirtyAtGeneration",
+    "claimBoundary",
+    "evidenceSnapshot",
+    "trackedOutputs",
+    "localArtifacts",
+    "sourceFiles",
+    "toolVersions",
+    "protectedRuntimeChanged",
+    "expertLabelsCreatedOrModified",
+    "runtimeFeatureCodeImplemented",
+    "researchInfrastructureImplemented"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "ThesisReviewPackageManifest-v1"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "packageDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourceRevision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "packageRevision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sourceTreeHash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "canonicalSourcesDirtyAtGeneration": {
+      "const": false
+    },
+    "claimBoundary": {
+      "type": "string",
+      "minLength": 80
+    },
+    "evidenceSnapshot": {
+      "$ref": "#/$defs/trackedArtifact"
+    },
+    "trackedOutputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "docx",
+        "interactiveHtml"
+      ],
+      "properties": {
+        "docx": {
+          "$ref": "#/$defs/trackedArtifact"
+        },
+        "interactiveHtml": {
+          "$ref": "#/$defs/trackedArtifact"
+        }
+      }
+    },
+    "localArtifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pdf",
+        "renderVerification"
+      ],
+      "properties": {
+        "pdf": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "logicalDeliveryId",
+            "filename",
+            "tracked",
+            "availableInClone",
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "logicalDeliveryId": {
+              "const": "thesis-review-pdf-local"
+            },
+            "filename": {
+              "type": "string",
+              "pattern": "\\.pdf$"
+            },
+            "tracked": {
+              "const": false
+            },
+            "availableInClone": {
+              "const": false
+            },
+            "sha256": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/sha256"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "bytes": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "renderVerification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "pdfPageCount",
+            "renderedPageCount",
+            "sheetCount",
+            "qaReportSha256"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "NOT_RECORDED"
+              ]
+            },
+            "pdfPageCount": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "renderedPageCount": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "sheetCount": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "qaReportSha256": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/sha256"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sourceFiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/sourceFile"
+      }
+    },
+    "toolVersions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "required": [
+        "python",
+        "jsonschema"
+      ]
+    },
+    "protectedRuntimeChanged": {
+      "const": false
+    },
+    "expertLabelsCreatedOrModified": {
+      "const": false
+    },
+    "runtimeFeatureCodeImplemented": {
+      "const": false
+    },
+    "researchInfrastructureImplemented": {
+      "const": true
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "(?i)^[a-z]:[\\\\/]"
+      }
+    },
+    "trackedArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "bytes",
+        "tracked"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/repoPath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "tracked": {
+          "const": true
+        }
+      }
+    },
+    "sourceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/repoPath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "_template_notice": "TEMPLATE_ONLY_NOT_AN_APPROVAL_RECORD",
+  "authorization_id": null,
+  "approved_at": null,
+  "approver": null,
+  "scope": "h_layer_shadow_listener",
+  "allowed_touch_outcome": "Not yet recorded",
+  "implementation_outcome": "Not yet recorded",
+  "allowed_touches": [
+    "VEGO-AI/framework/orchestrator.py",
+    "VEGO-AI/framework/qa_registry.py",
+    "VEGO-AI/framework/h_layer_shadow_writer.py",
+    "VEGO-AI/schemas/observation_record.schema.json",
+    "VEGO-AI/tests/test_h_layer_shadow_writer.py"
+  ]
+}

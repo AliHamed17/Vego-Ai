@@ -1,0 +1,41 @@
+%%{ init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4fd', 'primaryBorderColor': '#2b6cb0', 'lineColor': '#4a5568', 'textColor': '#1a202c' } } }%%
+flowchart TB
+    subgraph annotation["Independent Expert Annotation Protocol"]
+        POOL["27 patterns<br/>(24 safe + 3 same-pattern)"]
+        BLIND["Blind Labeling Sheets<br/><i>AI labels hidden, anonymized IDs,<br/>randomized row order per reviewer</i>"]
+        R1["Reviewer 1<br/><i>Labels all 24 safe rows</i>"]
+        R2["Reviewer 2<br/><i>Labels all 24 safe rows independently</i>"]
+        KAPPA["Cohen's κ<br/><i>Inter-rater agreement</i>"]
+        ADJ["Adjudicator<br/><i>Resolves disagreements</i>"]
+        GOLD["gold_labels.csv<br/><i>Frozen ground truth</i>"]
+    end
+
+    subgraph evaluation["Evaluation Harness"]
+        SPLIT["Development (16) / Holdout (8)<br/><i>Sealed split, private mapping</i>"]
+        COMPARE["Per-row comparison:<br/>Original vs Memory-Informed vs Expert"]
+        METRICS["Accuracy, Macro-F1,<br/>Paired Correctness, McNemar,<br/>Escalation P/R"]
+        GATES["Evidence Gates<br/><i>0 → not evaluable<br/>1–19 → pilot only<br/>≥20 → quantitative</i>"]
+    end
+
+    subgraph leakage["Leakage Discipline"]
+        TAG["Per-row evaluation_leakage_status<br/><i>none / same_pattern / same_setting /<br/>cross_setting / unknown</i>"]
+        SAFE["Generalization-safe rows only<br/><i>(same-pattern excluded)</i>"]
+    end
+
+    POOL --> BLIND
+    BLIND --> R1
+    BLIND --> R2
+    R1 --> KAPPA
+    R2 --> KAPPA
+    KAPPA --> ADJ
+    ADJ --> GOLD
+    GOLD --> SPLIT
+    SPLIT --> COMPARE
+    TAG --> SAFE
+    SAFE --> COMPARE
+    COMPARE --> METRICS
+    METRICS --> GATES
+
+    style GOLD fill:#c6f6d5,stroke:#276749,color:#1a202c
+    style GATES fill:#fefcbf,stroke:#d69e2e,color:#1a202c
+    style SAFE fill:#e8f4fd,stroke:#2b6cb0,color:#1a202c

@@ -1,0 +1,40 @@
+%%{ init: { 'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4fd', 'primaryBorderColor': '#2b6cb0', 'lineColor': '#4a5568', 'textColor': '#1a202c' } } }%%
+flowchart TB
+    subgraph inputs["Inputs"]
+        DD["Domain Description<br/><i>(e.g. Cheers cinema system)</i>"]
+        SM["Student Models<br/><i>(179 UML diagrams)</i>"]
+    end
+
+    subgraph pipeline["VEGO-AI Four-Agent Pipeline"]
+        A1["<b>Agent 1 — Language Advisor</b><br/>Builds Language Template<br/><i>(UML constructs enumeration)</i>"]
+        A2["<b>Agent 2 — Domain Advisor</b><br/>Produces Reference Guidelines<br/><i>(with mapping_certainty, valid alternatives)</i>"]
+        A3["<b>Agent 3 — Model Inspector</b><br/>Scores each model vs guidelines<br/><i>(compliance vector per guideline)</i>"]
+        A4["<b>Agent 4 — Variability Explorer</b><br/>Classifies recurring patterns<br/><i>(Substantial / Occasional / Undetermined)</i>"]
+    end
+
+    subgraph outputs["Agent 4 Outputs"]
+        VC["Variability Classifications<br/><i>(27 patterns across 4 settings)</i>"]
+        HR["requires_human_review ✗<br/><i>(latent — never acted upon)</i>"]
+        CF["confidence scores ✗<br/><i>(produced but never gate anything)</i>"]
+        SK["Skills 4-0, 4-3 ✗<br/><i>(implemented but never invoked)</i>"]
+    end
+
+    DD --> A2
+    A1 --> A3
+    A2 --> A3
+    SM --> A3
+    A3 --> A4
+    A4 --> VC
+    A4 --> HR
+    A4 --> CF
+    A4 --> SK
+
+    A4 -- "flag_for_guidelines_update" --> A2
+
+    A3 -. "Q&A loops<br/>(max 10 rounds)" .-> A1
+    A3 -. "Q&A loops<br/>(max 10 rounds)" .-> A2
+
+    style HR fill:#fed7d7,stroke:#c53030,color:#1a202c
+    style CF fill:#fed7d7,stroke:#c53030,color:#1a202c
+    style SK fill:#fed7d7,stroke:#c53030,color:#1a202c
+    style VC fill:#c6f6d5,stroke:#276749,color:#1a202c

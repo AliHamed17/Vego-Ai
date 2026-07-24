@@ -1,0 +1,1397 @@
+# Revert Log Archive
+
+Historical entries.
+
+## 2026-06-11 14:43 +03:00 - Codex - Memory Tracking Setup
+
+- Files added:
+  - `AGENTS.md`
+  - `CLAUDE.md`
+  - `docs/agent-memory/README.md`
+  - `docs/agent-memory/session-log.md`
+  - `docs/agent-memory/issues.md`
+  - `docs/agent-memory/decisions.md`
+  - `docs/agent-memory/revert-log.md`
+- Rollback note: remove the added files/directories above to return the folder to its previous visible state. No existing files were changed.
+- Git commit: none; folder was not a Git repository.
+
+## 2026-06-11 14:48 +03:00 - Codex - Memory Workflow Strengthened
+
+- Files added:
+  - `docs/agent-memory/current-state.md`
+  - `docs/agent-memory/progress.md`
+- Files updated:
+  - `AGENTS.md`
+  - `CLAUDE.md`
+  - `docs/agent-memory/README.md`
+  - `docs/agent-memory/session-log.md`
+  - `docs/agent-memory/decisions.md`
+  - `docs/agent-memory/revert-log.md`
+- Rollback note: remove `current-state.md` and `progress.md`, then revert the listed updated files to their previous memory-tracking version.
+- Git commit: none; folder was not a Git repository.
+
+## 2026-06-11 14:58 +03:00 - Codex - Scripted Memory Automation
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - scripts/agent-memory-start.ps1
+  - scripts/agent-memory-finish.ps1
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/compiled-memory.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Remove the two scripts, automation.md, and compiled-memory.md; then revert AGENTS.md, CLAUDE.md, and docs/agent-memory files to their previous memory workflow state.
+- Git commit: none recorded by script.
+
+## 2026-06-11 15:17 +03:00 - Codex - PhD Research Architecture
+
+- Files changed:
+  - README.md
+  - PROJECT_CHARTER.md
+  - .gitignore
+  - .gitattributes
+  - .editorconfig
+  - .env.example
+  - pyproject.toml
+  - requirements-dev.txt
+  - VEGO-AI/
+  - docs/architecture/
+  - docs/research/
+  - docs/project-management/
+  - docs/adr/
+  - docs/templates/
+  - experiments/
+  - data/
+  - outputs/
+  - reports/
+  - literature/
+  - papers/
+  - thesis/
+  - presentations/
+  - notebooks/
+  - src/
+  - tests/
+  - artifacts/
+  - configs/
+  - scripts/project-health.ps1
+  - scripts/new-experiment.ps1
+  - scripts/bootstrap-python.ps1
+  - scripts/agent-memory-start.ps1
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/
+- Rollback note: Remove the added scaffold files/folders, remove the extracted VEGO-AI/ folder if the source package should return to zip-only form, remove .git/ if Git initialization should be undone, and restore updated AGENTS.md, CLAUDE.md, scripts/agent-memory-start.ps1, and docs/agent-memory files to the previous memory-only workflow.
+- Git commit: none recorded by script.
+
+## 2026-06-11 16:12 +03:00 - Codex - Safe GitHub Baseline Published
+
+- Files changed:
+  - .gitignore
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Use Git to revert the publish-memory commit if needed; to undo the GitHub baseline, revert commits on main rather than force-pushing. Deferred local artifacts remain ignored and were not uploaded.
+- Git commit: none recorded by script.
+
+## 2026-06-11 16:17 +03:00 - Codex - Claude Bootstrap Prompt
+
+- Files changed:
+  - CLAUDE.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert changes to CLAUDE.md and docs/agent-memory files, and remove docs/agent-memory/claude-bootstrap-prompt.md.
+- Git commit: none recorded by script.
+
+## 2026-06-11 16:29 +03:00 - Codex - GitHub Update With Code Files And Diagram
+
+- Files changed:
+  - CLAUDE.md
+  - README.md
+  - VEGO-AI/framework/human_feedback_manager.py
+  - VEGO-AI/inputs/human_feedback.example.jsonl
+  - VEGO-AI/schemas/human_feedback.schema.json
+  - VEGO-AI/schemas/human_review_item.schema.json
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/architecture/README.md
+  - docs/architecture/project-map.md
+  - docs/architecture/workspace-diagram.md
+- Rollback note: Use Git to revert commit b7ff5fa if this publish update needs to be undone; do not force-push. Deferred ignored artifacts were not uploaded.
+- Git commit: none recorded by script.
+
+## 2026-06-12 19:51 +03:00 - Codex - Human Feedback Manager Docs And Tests
+
+- Files changed:
+  - .gitignore
+  - VEGO-AI/README.md
+  - VEGO-AI/docs/human_feedback_manager.md
+  - VEGO-AI/docs/human_review_queue.md
+  - VEGO-AI/tests/test_human_feedback_manager.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the commit that adds the Milestone 2 docs/tests and .gitignore Claude-local-settings rule if this continuation needs to be undone.
+- Git commit: none recorded by script.
+
+## 2026-06-12 20:23 +03:00 - Codex - Research OS And Confluence Sync Infrastructure
+
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/architecture/project-map.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/project-management/risk-register.md
+  - docs/project-management/roadmap.md
+  - docs/research/README.md
+  - docs/research/artifact-audit.md
+  - docs/research/data-management-plan.md
+  - docs/research/ethics-irb.md
+  - docs/research/provenance-register.md
+  - docs/research/publishability-register.md
+  - experiments/EXP-000-existing-packaged-results-audit/README.md
+  - experiments/EXP-000-existing-packaged-results-audit/config-manifest.md
+  - experiments/EXP-000-existing-packaged-results-audit/notes.md
+  - experiments/registry.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/project-health.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert the Research OS infrastructure commit to remove the new registers, Confluence sync workflow, EXP-000 folder, health script changes, and agent instruction updates. Generated docs/confluence/outbox files are ignored and can be deleted safely.
+- Git commit: none recorded by script.
+
+## 2026-06-12 20:47 +03:00 - Codex - Confluence Live Target Wiring
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/confluence/wiki-sync-config.local.json (ignored)
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert the commit for tracked docs/script changes; delete ignored docs/confluence/wiki-sync-config.local.json if the local Confluence target should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-12 21:39 +03:00 - Codex - Reusable Human Judgment Research Story Hardening
+
+- Files changed:
+  - README.md
+  - PROJECT_CHARTER.md
+  - docs/research/research-plan.md
+  - docs/research/methodology.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/evaluation-plan.md
+  - docs/research/README.md
+  - docs/research/publication-plan.md
+  - docs/research/validity-threats.md
+  - thesis/outline.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - docs/project-management/roadmap.md
+  - docs/project-management/risk-register.md
+  - experiments/registry.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - scripts/research-health.ps1
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert the research-story hardening commit to restore the previous research plan, thesis outline, roadmap, risks, memory notes, and EXP-001 shell. M3 commit 5e109e5 was already pushed separately; revert it only if Human Judgment Memory itself must be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-12 21:47 +03:00 - Codex - Confluence Access Recheck
+
+- Files changed:
+  - docs/agent-memory/issues.md
+- Rollback note: Revert the ISS-005 timestamp update if this access-check note should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-12 22:29 +03:00 - Codex - M4A PR Review Merge And Research Story Update
+
+- Files changed:
+  - VEGO-AI/docs/memory_advisor.md via PR #2
+  - VEGO-AI/framework/memory_advisor.py via PR #2
+  - VEGO-AI/schemas/memory_advice.schema.json via PR #2
+  - VEGO-AI/tests/test_memory_advisor.py via PR #2
+  - README.md
+  - PROJECT_CHARTER.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/milestone-workflow-rules.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/research/research-plan.md
+  - docs/research/methodology.md
+  - docs/research/evaluation-plan.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/publication-plan.md
+  - docs/research/validity-threats.md
+  - docs/project-management/roadmap.md
+  - docs/project-management/risk-register.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - thesis/outline.md
+  - experiments/registry.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - scripts/agent-memory-start.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert the documentation hardening commit to undo the research/memory/roadmap updates. Revert GitHub squash merge ecd0972 if M4A itself must be removed. Do not force-push main.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:01 +03:00 - Codex - M4A Tags And Claude Handoff
+
+- Files changed:
+  - docs/research/m4a-post-merge-confirmation.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/research/README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - CLAUDE.md
+  - scripts/research-health.ps1
+- Rollback note: Delete the three pushed tags if the milestone anchors must be removed. Revert this docs commit to remove the M4A confirmation note, Claude handoff prompt, and memory/health updates. Do not force-push main.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:17 +03:00 - Codex - Add Dashboard KPI Confluence Tracking
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/architecture/project-map.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/wiki-sync-config.template.json
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+  - docs/confluence/wiki-sync-config.local.json (ignored local config)
+- Rollback note: Revert the dashboard docs, agent instruction edits, Confluence builder/template/docs changes, research-health path additions, and memory updates; local Confluence config can remove the dashboard page slot if needed.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:19 +03:00 - Codex - Recheck Confluence Live Access For Dashboard Sync
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the blocker timestamp updates in current-state, issues, dashboard docs, wiki-sync docs, session log, and revert log if this access check should not be recorded.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:29 +03:00 - Codex - Add Dashboard Health Gate
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+- Rollback note: Revert scripts/dashboard-health.ps1, the research-health invocation, workflow doc updates, dashboard KPI/result rows, and memory entries if this enforcement gate should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:31 +03:00 - Codex - Recheck Confluence Access For Dashboard Health Gate
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the latest blocker timestamp updates in current-state, issues, dashboards, wiki-sync docs, session log, and revert log if this access check should not be recorded.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:46 +03:00 - Codex - Add Runtime Dashboard Snapshot
+
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-dashboard-snapshot.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - docs/dashboards/status-snapshot.generated.md (ignored generated file)
+- Rollback note: Revert the snapshot builder, wiki builder snapshot embedding, dashboard-health snapshot checks, .gitignore entry, docs/memory updates, and regenerated ignored snapshot if this runtime snapshot layer should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-13 13:51 +03:00 - Codex - Record Confluence Browser Fallback Check
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the latest blocker/fallback status updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this browser fallback check should not be recorded.
+- Git commit: none recorded by script.
+
+## 2026-06-13 18:40 +03:00 - Codex - Add Confluence Manual Sync Pack
+
+- Files changed:
+  - .gitignore
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/confluence/manual-sync.md
+  - docs/confluence/wiki-sync.md
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - scripts/build-confluence-manual-sync-pack.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated file)
+- Rollback note: Revert the manual sync pack builder, wiki builder hook, health checks, docs, memory/dashboard updates, and .gitignore generated-pack entry if this fallback path should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-13 18:41 +03:00 - Codex - Recheck Confluence Access After Manual Pack
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the latest Confluence blocker timestamp updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this recheck should not be recorded.
+- Git commit: none recorded by script.
+
+## 2026-06-14 11:13 +03:00 - Codex - M4B-1 Conditional Approval Contract
+
+- Files changed:
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/milestone-workflow-rules.md
+  - docs/agent-memory/progress.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - docs/project-management/risk-register.md
+  - docs/project-management/roadmap.md
+  - docs/research/README.md
+  - docs/research/evaluation-plan.md
+  - docs/research/m4a-post-merge-confirmation.md
+  - docs/research/m4b-conditional-approval.md
+  - docs/research/methodology.md
+  - docs/research/publication-plan.md
+  - docs/research/research-plan.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - experiments/registry.md
+  - papers/mas4models2026/claim-evidence-table.md
+  - thesis/outline.md
+- Rollback note: Revert the M4B-1 conditional approval docs commit to remove the new contract, updated Claude handoff, EXP-001/evaluation/planning/dashboard/memory changes, and generated pending wiki updates. No VEGO-AI runtime implementation files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-14 11:15 +03:00 - Codex - Confluence Access Recheck For M4B-1 Outbox
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+- Rollback note: Revert the Confluence blocker timestamp updates in current-state, ISS-005, dashboard docs, wiki-sync docs, session log, and revert log if this access recheck should not be recorded.
+- Git commit: none recorded by script.
+
+## 2026-06-14 11:58 +03:00 - Codex - Offline VEGO-AI results dashboard PR
+
+- Files changed:
+  - .gitignore
+  - VEGO-AI/analysis/build_results_dashboard.py
+  - VEGO-AI/docs/results_dashboard.md
+  - VEGO-AI/schemas/results_dashboard_snapshot.schema.json
+  - VEGO-AI/tests/test_results_dashboard.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert commit 61aac60 and the follow-up memory commit if needed; generated VEGO-AI/reports/results_dashboard files are ignored and can be deleted safely.
+- Git commit: none recorded by script.
+
+## 2026-06-14 12:35 +03:00 - Codex - No-key VEGO-AI execution and M4B schema follow-up
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - VEGO-AI/schemas/memory_informed_comparison.schema.json (PR #6)
+  - VEGO-AI/tests/test_memory_informed_classifier.py (PR #6)
+  - ignored VEGO-AI/runs/20260614-122150/
+  - ignored VEGO-AI/reports/results_dashboard/
+- Rollback note: Generated run/dashboard outputs are ignored and can be deleted; revert PR #6 commit if schema hardening is not wanted; memory updates can be reverted from this memory commit.
+- Git commit: none recorded by script.
+
+## 2026-06-14 13:39 +03:00 - Codex - Visualizer model-result matching PR
+
+- Files changed:
+  - VEGO-AI/vego_visualizer_delivery/visualizer_utils.py
+  - VEGO-AI/vego_visualizer_delivery/visualize_compliance.py
+  - VEGO-AI/tests/test_visualizer_helpers.py
+  - VEGO-AI/vego_visualizer_delivery/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert commit ba9ab94 and the follow-up memory commit if the visualizer UX refresh is not wanted. The ignored generated compiled memory/outbox files can be rebuilt or deleted safely.
+- Git commit: none recorded by script.
+
+## 2026-06-14 13:41 +03:00 - Codex - Confluence live sync recheck after PR #7
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/confluence/wiki-sync.md
+  - docs/confluence/outbox/ (ignored generated)
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated)
+  - docs/dashboards/status-snapshot.generated.md (ignored generated)
+- Rollback note: Revert the Confluence recheck timestamp updates in memory, dashboard docs, wiki-sync docs, session log, and revert log if this access check should not be recorded. Ignored outbox/manual sync/generated snapshot files can be rebuilt or deleted safely.
+- Git commit: none recorded by script.
+
+## 2026-06-14 14:26 +03:00 - Codex - Full system validation QA report
+
+- Files changed:
+  - VEGO-AI/reports/system_validation_report.md (untracked report)
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - VEGO-AI/runs/system_validation_20260614-142018/ (ignored generated)
+  - VEGO-AI/reports/results_dashboard/ (ignored generated)
+- Rollback note: Delete untracked VEGO-AI/reports/system_validation_report.md and ignored generated VEGO-AI/runs/system_validation_* / VEGO-AI/reports/results_dashboard outputs if this validation artifact should be removed. Revert the memory log/current-state/progress/issues updates if this QA run should not be recorded.
+- Git commit: none recorded by script.
+
+## 2026-06-14 14:39 +03:00 - Codex - Fix validation governance warnings
+
+- Files changed:
+  - scripts/research-health.ps1
+  - VEGO-AI/reports/system_validation_report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert commit ff9f911 and the follow-up memory log commit if the governance cleanup/report tracking should be removed; delete local branch baseline/official-vego-ai if local tracking should not exist.
+- Git commit: none recorded by script.
+
+## 2026-06-14 14:52 +03:00 - Codex - Visualizer UX PR Merge And Validation
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/results-dashboard.md
+- Rollback note: Revert the memory/dashboard update commit if these notes need correction. To undo PR #7, create a normal revert commit against 78b261e on main; do not force-push. Delete research-state-visualizer-ux-clean only with explicit approval.
+- Git commit: none recorded by script.
+
+## 2026-06-14 15:02 +03:00 - Codex - Add Shared Claude Codex State Report
+
+- Files changed:
+  - docs/agent-memory/shared-state-report.md
+  - scripts/agent-memory-start.ps1
+  - docs/agent-memory/README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+- Rollback note: Revert the commit that adds docs/agent-memory/shared-state-report.md and removes it from scripts/agent-memory-start.ps1, AGENTS.md, CLAUDE.md, docs/agent-memory/README.md, docs/agent-memory/claude-bootstrap-prompt.md, current-state, progress, and decisions.
+- Git commit: none recorded by script.
+
+## 2026-06-14 18:43 +03:00 - Codex - Record Evaluation Pivot After M4B1 Prototype
+
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/research/evaluation-plan.md
+  - docs/research/methodology.md
+  - docs/research/README.md
+  - experiments/registry.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/results-dashboard.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/shared-state-report.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/claude-m4b-handoff-prompt.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - CLAUDE.md
+- Rollback note: Revert the commit adding docs/research/evaluation-report.md and related memory/dashboard/research doc updates to return to the pre-evaluation-pivot documentation state.
+- Git commit: none recorded by script.
+
+## 2026-06-14 18:45 +03:00 - Codex - Include Evaluation Docs In Compiled Memory
+
+- Files changed:
+  - scripts/agent-memory-start.ps1
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+- Rollback note: Remove docs/research/evaluation-plan.md and docs/research/evaluation-report.md from scripts/agent-memory-start.ps1 if compiled memory should return to the previous source set.
+- Git commit: none recorded by script.
+
+## 2026-06-14 18:56 +03:00 - Codex - Start EXP-001 evaluation run
+
+- Files changed:
+  - scripts/build-exp001-evaluation.ps1
+  - docs/research/evaluation-report.md
+  - experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md
+  - experiments/registry.md
+  - docs/research/README.md
+  - reports/README.md
+  - docs/dashboards/results-dashboard.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/shared-state-report.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the EXP-001 evaluation commit to remove the script/docs/memory updates; ignored reports/generated/exp001 outputs can be deleted locally if a clean generated workspace is desired.
+- Git commit: none recorded by script.
+
+## 2026-06-14 19:10 +03:00 - Codex - Start EXP-002 expert labeling package
+
+- Files changed:
+  - scripts/build-exp002-labeling-package.ps1
+  - experiments/EXP-002-expert-label-expansion-holdout-evaluation/README.md
+  - experiments/registry.md
+  - docs/research/evaluation-report.md
+  - docs/research/README.md
+  - reports/README.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/dashboards/results-dashboard.md
+  - docs/dashboards/kpi-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/shared-state-report.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the EXP-002 labeling package commit to remove the script/docs/memory updates; ignored reports/generated/exp002 outputs can be deleted locally if needed.
+- Git commit: none recorded by script.
+
+## 2026-06-16 22:03 +03:00 - Codex - Supervisor Zoom demo package
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/supervisor_demo_2026-06-17/ (ignored)
+  - outputs/manual-20260616-supervisor/ (ignored)
+  - reports/generated/exp001/ (ignored)
+  - reports/generated/exp002/ (ignored)
+  - VEGO-AI/reports/results_dashboard/ (ignored)
+- Rollback note: Tracked memory changes can be reverted with Git. Ignored generated package/output folders can be deleted to remove the local supervisor demo artifacts; no VEGO-AI behavior files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-16 22:55 +03:00 - Codex - EXP-003 accuracy improvement evaluation path
+
+- Files changed:
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/evaluation-report.md
+  - experiments/registry.md
+  - experiments/EXP-003-accuracy-improvement-evaluation/README.md
+  - scripts/build-exp003-error-analysis.ps1
+  - scripts/research-health.ps1
+  - VEGO-AI/analysis/evaluate_accuracy_improvement.py
+  - VEGO-AI/tests/test_accuracy_improvement_analysis.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - reports/generated/exp003/ (ignored)
+  - artifacts/ACCURACY_IMPROVEMENT_STRICT_PLAN.md (ignored)
+- Rollback note: Revert the tracked EXP-003/docs/memory commit to remove the new evaluation tooling; delete ignored reports/generated/exp003 and artifacts/ACCURACY_IMPROVEMENT_STRICT_PLAN.md to remove generated local outputs. No baseline or Agent 4 files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-16 23:07 +03:00 - Codex - Results and accuracy full report
+
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
+- Rollback note: Revert the tracked evaluation-report and memory changes with Git if needed; delete ignored artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md to remove the local full report. No VEGO-AI behavior, Agent 4, M4B-2, eval_output, baseline, LLM/API, or embedding files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-16 23:30 +03:00 - Codex - Synthetic accuracy simulation
+
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
+  - artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
+  - reports/generated/synthetic_accuracy_simulation/ (ignored)
+- Rollback note: Revert tracked evaluation-report and memory changes with Git if needed; delete ignored artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md and reports/generated/synthetic_accuracy_simulation/ to remove synthetic outputs. No Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-16 23:50 +03:00 - Codex - Synthetic simulation framing hardening
+
+- Files changed:
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
+  - artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md (ignored)
+  - reports/generated/synthetic_accuracy_simulation/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md (ignored)
+- Rollback note: Revert tracked evaluation-report and memory changes with Git if needed; delete ignored synthetic/full report artifacts to remove local framing updates. No Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-17 00:01 +03:00 - Codex - EXP-004 policy sensitivity harness
+
+- Files changed:
+  - scripts/policy_sensitivity_simulation.py
+  - scripts/build-policy-sensitivity-simulation.ps1
+  - experiments/EXP-004-policy-sensitivity-simulation/README.md
+  - experiments/registry.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md (ignored)
+  - reports/generated/policy_sensitivity/ (ignored)
+- Rollback note: Revert the tracked EXP-004 script/docs/memory changes with Git if needed; delete ignored artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md and reports/generated/policy_sensitivity/ to remove generated outputs. No Agent 4, M4B-2, eval_output, baseline output, LLM/API, or embedding files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-17 00:46 +03:00 - Codex - EXP-005 real-label accuracy gate
+
+- Files changed:
+  - scripts/exp005_label_review.py
+  - scripts/build-exp005-label-review.ps1
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/EXP005_LABEL_REVIEW_PACKAGE.md (ignored)
+  - artifacts/EXP005_POLICY_SENSITIVITY_REPORT.md (ignored, generated by downstream smoke)
+  - reports/generated/exp005_label_review/ (ignored)
+- Rollback note: Revert tracked EXP-005 script/docs/memory changes with Git if needed; delete ignored artifacts/EXP005_LABEL_REVIEW_PACKAGE.md, artifacts/EXP005_POLICY_SENSITIVITY_REPORT.md, and reports/generated/exp005_label_review/ to remove generated outputs. No Agent 4, M4B-1 production behavior, M4B-2, eval_output, baseline output, LLM/API, or embedding files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 13:05 +03:00 - Codex - VEGO workbench launcher
+
+- Files changed:
+  - scripts/open-vego-workbench.ps1
+  - docs/operations/vego-workbench.md
+  - README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - VEGO-AI/reports/results_dashboard/ (ignored)
+  - reports/generated/exp005_label_review/ (ignored)
+  - docs/confluence/outbox/ (ignored)
+  - docs/confluence/manual-sync-pack.generated.md (ignored)
+  - docs/dashboards/status-snapshot.generated.md (ignored)
+- Rollback note: Revert scripts/open-vego-workbench.ps1, docs/operations/vego-workbench.md, README.md, and memory changes with Git if needed; delete ignored generated dashboard/EXP-005/Confluence outputs if a clean workspace is required. No VEGO AI behavior or baseline output files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 13:11 +03:00 - Codex - Topology report HTML/PDF export
+
+- Files changed:
+  - scripts/export-topology-report.ps1
+  - docs/operations/vego-workbench.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html (ignored)
+  - artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.pdf (ignored)
+- Rollback note: Revert scripts/export-topology-report.ps1, docs/operations/vego-workbench.md, and memory changes with Git if needed; delete ignored artifacts/topology-export/ to remove generated exports. No VEGO-AI behavior or baseline outputs were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 13:15 +03:00 - Codex - Baseline architecture overlay export
+
+- Files changed:
+  - scripts/export-baseline-overlay-report.ps1
+  - docs/operations/vego-workbench.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html (ignored)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored)
+- Rollback note: Revert scripts/export-baseline-overlay-report.ps1, docs/operations/vego-workbench.md, and memory changes with Git if needed; delete ignored artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.* to remove generated exports. No VEGO-AI behavior or baseline outputs were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 13:19 +03:00 - Codex - Publish evidence tooling baseline
+
+- Files changed:
+  - README.md
+  - docs/operations/
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/m4b1-policy-refinement-plan.md
+  - experiments/registry.md
+  - experiments/EXP-004-policy-sensitivity-simulation/
+  - experiments/EXP-005-real-label-accuracy-gate/
+  - scripts/build-exp005-label-review.ps1
+  - scripts/build-policy-sensitivity-simulation.ps1
+  - scripts/exp005_label_review.py
+  - scripts/export-baseline-overlay-report.ps1
+  - scripts/export-topology-report.ps1
+  - scripts/open-vego-workbench.ps1
+  - scripts/policy_sensitivity_simulation.py
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the publish commit if needed; generated artifacts under artifacts/, reports/generated/, VEGO-AI/reports/results_dashboard/, docs/confluence/outbox/, docs/confluence/*.generated.md, and docs/dashboards/*.generated.md remain ignored. No VEGO-AI behavior or baseline outputs were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 13:45 +03:00 - Codex - EXP-005 label collection sprint setup
+
+- Files changed:
+  - reports/generated/exp005_label_review/ (ignored regenerated)
+  - VEGO-AI/reports/results_dashboard/ (ignored regenerated)
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Delete ignored regenerated reports/generated/exp005_label_review/ and VEGO-AI/reports/results_dashboard/ if needed; revert memory log changes with Git if needed. No VEGO-AI behavior or baseline output files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 16:44 +03:00 - Codex - EXP-005 manual labeling and evidence gate setup
+
+- Files changed:
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/ (ignored, opened/current package)
+  - VEGO-AI/reports/results_dashboard/ (ignored, refreshed by workbench)
+- Rollback note: Revert docs/agent-memory/issues.md and the generated memory log entries if needed; delete ignored regenerated dashboard/EXP-005 outputs for a clean local state. No Agent 4, eval_output, baseline output, M4B-2, LLM/API, or embedding files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 16:50 +03:00 - Codex - EXP-005 manual labeling gate rerun attempt
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/ (ignored existing review package opened)
+  - VEGO-AI/reports/results_dashboard/ (ignored existing dashboard opened)
+- Rollback note: Revert generated memory log entries if needed; no tracked VEGO behavior files were changed. Existing ignored dashboard/EXP-005 outputs can be deleted/regenerated if a clean local state is needed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:28 +03:00 - Codex - EXP-005 gate checked; labels still missing
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:38 +03:00 - Codex - EXP-005 label file unlocked and reopened for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:40 +03:00 - Codex - EXP-005 label file unlocked; labels still pending
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:44 +03:00 - Codex - EXP-005 still blocked; review files reopened
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 17:47 +03:00 - Codex - EXP-005 gate closed and reopened; labels still absent
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+  - artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.pdf (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 18:13 +03:00 - Codex - EXP-005 file unlocked; no labels saved
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:29 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:39 +03:00 - Codex - EXP-005 reopen loop stopped; CSV unlocked
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:51 +03:00 - Codex - EXP-005 blind sheet opened again for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:53 +03:00 - Codex - EXP-005 checked; CSV left unlocked with no labels
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:55 +03:00 - Codex - EXP-005 blind sheet opened for manual labeling
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, opened for manual labeling)
+  - reports/generated/exp005_label_review/label_these_first.md (ignored, opened in Notepad)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-21 22:57 +03:00 - Codex - EXP-005 still awaiting saved labels
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 11:19 +03:00 - Codex - EXP-005 still open in Excel; labels not saved
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 13:25 +03:00 - Codex - EXP-005 gate checked; Excel still open
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 13:46 +03:00 - Codex - EXP-005 gate checked; CSV unlocked with no labels
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/exp005_label_review_blind.csv (ignored, inspected only)
+- Rollback note: Revert generated memory log entries if needed. No tracked VEGO behavior files were changed and no labels were fabricated.
+- Git commit: none recorded by script.
+
+## 2026-06-22 13:59 +03:00 - Codex - Strategic review and hardening plan
+
+- Files changed:
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/project-management/risk-register.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+  - docs/dashboards/status-snapshot.generated.md ignored
+  - docs/confluence/outbox/ ignored
+  - docs/confluence/manual-sync-pack.generated.md ignored
+- Rollback note: Revert documentation/memory changes to remove this strategic review. No VEGO-AI behavior files, eval_output, Agent 4 code, M4B-2 code, LLM/API paths, or embeddings were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-22 15:27 +03:00 - Codex - Enhancement coverage implementation
+
+- Files changed:
+  - scripts/exp005_label_review.py
+  - scripts/open-vego-workbench.ps1
+  - docs/operations/vego-workbench.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/publishability-register.md
+  - docs/research/validity-threats.md
+  - docs/dashboards/kpi-register.md
+  - thesis/outline.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - reports/generated/exp005_label_review/* ignored
+  - artifacts/EXP005_LABEL_REVIEW_PACKAGE.md ignored
+  - docs/confluence/outbox/* ignored
+  - docs/confluence/manual-sync-pack.generated.md ignored
+- Rollback note: Revert these docs/scripts changes to remove EXP-005 enhancement coverage. Generated reports/outbox are ignored. No Agent 4, M4B-2, eval_output, framework, eval, LLM/API, embeddings, or baseline-output behavior changed.
+- Git commit: none recorded by script.
+
+## 2026-06-22 15:35 +03:00 - Codex - Enhancement coverage review
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/compiled-memory.md
+- Rollback note: Review-only prompt; no implementation changes beyond memory/session logging.
+- Git commit: none recorded by script.
+
+## 2026-06-22 16:00 +03:00 - Codex - Next steps stabilization and evidence gate
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/kpi-register.md
+  - docs/operations/vego-workbench.md
+  - docs/project-management/risk-register.md
+  - docs/research/accuracy-improvement-plan.md
+  - docs/research/evaluation-report.md
+  - docs/research/expert-labeling-protocol.md
+  - docs/research/publishability-register.md
+  - docs/research/strategic-review-and-hardening-plan.md
+  - docs/research/validity-threats.md
+  - experiments/EXP-005-real-label-accuracy-gate/README.md
+  - experiments/registry.md
+  - scripts/exp005_label_review.py
+  - scripts/open-vego-workbench.ps1
+  - thesis/outline.md
+- Rollback note: Revert the safe docs/scripts commit to remove next-step/evidence-gate stabilization. No Agent 4, M4B-2, eval_output, framework, eval, LLM/API, embeddings, or baseline outputs were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-22 16:02 +03:00 - Codex - EXP-005 stabilization pushed and labeling opened
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert commit 5c4639e and this memory-only follow-up if needed. No VEGO behavior paths were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 10:53 +03:00 - Codex - Project review architecture
+
+- Files changed:
+  - docs/operations/project-review-architecture.md
+  - docs/agent-memory/review-state.md
+  - scripts/run-project-review.ps1
+  - scripts/run-codex-next-step.ps1
+  - scripts/agent-memory-start.ps1
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs/operations/codex-next-step-loop.md
+  - docs/operations/vego-workbench.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert the review architecture by removing scripts/run-project-review.ps1, docs/operations/project-review-architecture.md, docs/agent-memory/review-state.md, and reverting the related instruction/memory edits plus run-codex-next-step.ps1 integration.
+- Git commit: none recorded by script.
+
+## 2026-06-23 11:08 +03:00 - Codex - Automatic review cycle
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the memory-only session/revert log entry if this automatic-cycle record should be removed. No VEGO behavior files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 11:40 +03:00 - Codex - Project review architecture verification
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert this memory-only verification entry if not needed. The review architecture implementation is already in commit 8ac0125 and no VEGO behavior files were changed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 11:45 +03:00 - Codex - Confluence MCP update blocked
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert this memory-only blocked-sync entry if needed. No live Confluence write occurred and no VEGO behavior files changed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 12:00 +03:00 - Codex - Restore VEGO Codex session index entries
+
+- Files changed:
+  - /mnt/c/Users/ahamed/.codex/session_index.jsonl
+  - /mnt/c/Users/ahamed/.codex/session_index.jsonl.bak-20260623-1200
+- Rollback note: Restore /mnt/c/Users/ahamed/.codex/session_index.jsonl from /mnt/c/Users/ahamed/.codex/session_index.jsonl.bak-20260623-1200 to undo the index repair.
+- Git commit: none recorded by script.
+
+## 2026-06-23 12:42 +03:00 - Codex - Progress visualizations added
+
+- Files changed:
+  - .gitignore
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/dashboards/README.md
+  - docs/dashboards/progress-dashboard.md
+  - scripts/build-progress-visualizations.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - docs/dashboards/progress-visualizations.generated.md (ignored)
+  - docs/dashboards/progress-visualizations.generated.html (ignored)
+  - docs/dashboards/status-snapshot.generated.md (ignored)
+  - docs/confluence/outbox/* (ignored)
+  - docs/confluence/manual-sync-pack.generated.md (ignored)
+- Rollback note: Revert the listed tracked files and delete ignored generated progress-visualizations/status/outbox/manual-sync files if the visualization workflow should be removed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 14:24 +03:00 - Codex - Confluence MCP retry still blocked
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert this memory-only blocked retry entry if needed. No Confluence write occurred and no VEGO behavior files changed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 14:26 +03:00 - Codex - Confluence write blocked by MCP and Chrome access
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert this memory-only blocked-write entry if needed. No Confluence write occurred and no VEGO behavior files changed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 14:29 +03:00 - Codex - Confluence live write retry blocked
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Remove the appended Confluence live write retry blocked entries from docs/agent-memory/session-log.md and docs/agent-memory/revert-log.md if needed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 14:31 +03:00 - Codex - Progress update architecture added
+
+- Files changed:
+  - README.md
+  - docs/operations/progress-update-architecture.md
+  - docs/architecture/project-map.md
+  - docs/architecture/README.md
+  - docs/dashboards/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+  - docs/dashboards/progress-visualizations.generated.md (ignored)
+  - docs/dashboards/progress-visualizations.generated.html (ignored)
+  - docs/dashboards/status-snapshot.generated.md (ignored)
+  - docs/confluence/outbox/* (ignored)
+  - docs/confluence/manual-sync-pack.generated.md (ignored)
+  - Codex app automation vego-ai-4-hour-progress-updates
+- Rollback note: Revert the listed tracked docs/scripts and restore the previous heartbeat automation prompt if the progress update architecture should be removed. Generated visualization/wiki files are ignored and can be regenerated or deleted.
+- Git commit: none recorded by script.
+
+## 2026-06-23 14:37 +03:00 - Codex - Confluence connector site mismatch
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Remove the appended Confluence connector site mismatch entries from docs/agent-memory/session-log.md and docs/agent-memory/revert-log.md if needed.
+- Git commit: none recorded by script.
+
+## 2026-06-23 14:39 +03:00 - Codex - Architecture progress update diagram added
+
+- Files changed:
+  - README.md
+  - docs/architecture/progress-update-diagram.md
+  - docs/architecture/README.md
+  - docs/architecture/project-map.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - scripts/build-confluence-wiki.ps1
+  - scripts/research-health.ps1
+  - docs/dashboards/progress-visualizations.generated.md (ignored)
+  - docs/dashboards/progress-visualizations.generated.html (ignored)
+  - docs/dashboards/status-snapshot.generated.md (ignored)
+  - docs/confluence/outbox/* (ignored)
+  - docs/confluence/manual-sync-pack.generated.md (ignored)
+- Rollback note: Revert the listed tracked docs/scripts if the architecture-facing diagram should be removed. Generated visualization/wiki files are ignored and can be regenerated or deleted.
+- Git commit: none recorded by script.
+
+## 2026-06-23 16:00 +03:00 - Codex - HITL resource pack added
+
+- Files changed:
+  - .gitignore
+  - literature/README.md
+  - literature/hitl-resource-pack/README.md
+  - literature/hitl-resource-pack/source-manifest.csv
+  - literature/hitl-resource-pack/bibliography.bib
+  - literature/hitl-resource-pack/tool-fit-matrix.md
+  - scripts/download-hitl-resources.ps1
+  - docs/research/README.md
+  - docs/research/literature-review-taxonomy.md
+  - docs/research/methodology.md
+  - docs/research/accuracy-improvement-plan.md
+  - scripts/research-health.ps1
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Remove literature/hitl-resource-pack/, scripts/download-hitl-resources.ps1, the HITL references in research docs/memory, and the downloads ignore rule if this resource pack should be reverted.
+- Git commit: none recorded by script.
+
+## 2026-06-23 16:16 +03:00 - Codex - HITL resources wired into shared memory
+
+- Files changed:
+  - docs/agent-memory/resource-memory.md
+  - scripts/agent-memory-start.ps1
+  - AGENTS.md
+  - CLAUDE.md
+  - docs/agent-memory/README.md
+  - docs/agent-memory/automation.md
+  - docs/agent-memory/claude-bootstrap-prompt.md
+  - scripts/research-health.ps1
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Remove docs/agent-memory/resource-memory.md and remove its references from scripts/agent-memory-start.ps1, AGENTS.md, CLAUDE.md, docs/agent-memory/README.md, docs/agent-memory/automation.md, docs/agent-memory/claude-bootstrap-prompt.md, and scripts/research-health.ps1 if this wiring should be reverted.
+- Git commit: none recorded by script.
+
+## 2026-06-23 16:30 +03:00 - Codex - E2E progress report and web dashboard
+
+- Files changed:
+  - scripts/build-e2e-progress-report.ps1
+  - scripts/build-confluence-wiki.ps1
+  - scripts/dashboard-health.ps1
+  - scripts/research-health.ps1
+  - scripts/open-vego-workbench.ps1
+  - docs/dashboards/README.md
+  - docs/dashboards/kpi-register.md
+  - docs/dashboards/progress-dashboard.md
+  - docs/operations/progress-update-architecture.md
+  - docs/operations/vego-workbench.md
+  - docs/architecture/progress-update-diagram.md
+  - docs/architecture/project-map.md
+  - README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/dashboards/e2e-dashboard.generated.md (ignored generated)
+  - reports/generated/e2e_dashboard/index.html (ignored generated)
+- Rollback note: Remove scripts/build-e2e-progress-report.ps1, revert the E2E-related sections in the dashboard/docs/wiki/workbench/health scripts, and rerun build-confluence-wiki.ps1 plus dashboard-health.ps1 -RequireOutbox. Generated outputs under docs/dashboards/*.generated.* and reports/generated/e2e_dashboard/ are ignored and can be deleted/rebuilt.
+- Git commit: none recorded by script.
+
+## 2026-06-23 17:10 +03:00 - Codex - MSc thesis framing recorded
+
+- Files changed:
+  - PROJECT_CHARTER.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the MSc-thesis-first wording in PROJECT_CHARTER.md and docs/agent-memory/current-state.md if this framing changes.
+- Git commit: none recorded by script.
+
+## 2026-06-24 12:15 +03:00 - Codex - Filterable E2E progress dashboard
+
+- Files changed:
+  - scripts/build-e2e-progress-report.ps1
+  - docs/dashboards/e2e-dashboard.generated.md (ignored generated)
+  - reports/generated/e2e_dashboard/index.html (ignored generated)
+  - docs/confluence/outbox/ (ignored generated)
+  - docs/confluence/manual-sync-pack.generated.md (ignored generated)
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+- Rollback note: Revert the filter UI, progress table generation, CSS, and JavaScript changes in scripts/build-e2e-progress-report.ps1, then rerun build-confluence-wiki.ps1 and dashboard-health.ps1 -RequireOutbox.
+- Git commit: none recorded by script.
+
+## 2026-06-24 12:33 +03:00 - Codex - Alignment and structure hardening sprint
+
+- Files changed:
+  - docs/operations/alignment-control.md
+  - docs/research/thesis-structure-map.md
+  - scripts/check_evidence_consistency.py
+  - README.md
+  - docs/architecture/project-map.md
+  - docs/research/README.md
+  - docs/agent-memory/resource-memory.md
+  - AGENTS.md
+  - CLAUDE.md
+  - scripts/research-health.ps1
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+- Rollback note: Revert the listed docs/script edits to remove this alignment checkpoint and evidence guard; generated reports are ignored.
+- Git commit: none recorded by script.
+
+## 2026-06-24 12:56 +03:00 - Codex - EXP-005 label collection gate attempted
+
+- Files changed:
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/compiled-memory.md
+- Rollback note: Memory log only; no VEGO behavior files changed.
+- Git commit: none recorded by script.

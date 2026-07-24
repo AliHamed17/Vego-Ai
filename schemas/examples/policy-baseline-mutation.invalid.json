@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "PolicyCandidateRecord-v1",
+  "policyId": "PC-UNSAFE-001",
+  "policyVersion": "0.1",
+  "status": "Proposal — not approved",
+  "createdAt": "2026-07-24T00:00:00+03:00",
+  "developmentPartitionSha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "labelSetSha256": "3333333333333333333333333333333333333333333333333333333333333333",
+  "deterministicRules": [
+    {
+      "ruleId": "R1",
+      "condition": "Any memory disagreement",
+      "parallelProposal": "Overwrite Agent 4",
+      "fallback": "Preserve baseline and request or park human review"
+    }
+  ],
+  "evidenceThresholds": {
+    "minimumDevelopmentErrors": 3,
+    "minimumSettingsRepresented": 2,
+    "conflictFreeRequired": true,
+    "generalizationSafeRequired": true
+  },
+  "allowedOutput": "parallel_proposal_only",
+  "baselineMutationAllowed": true,
+  "protectedRuntimeChangeAllowed": false,
+  "runtimeEffect": "none",
+  "safetyBehavior": {
+    "onMissingEvidence": "Preserve baseline and park or request human review",
+    "onConflict": "Preserve baseline and request human adjudication",
+    "onTimeout": "Preserve baseline and park the item"
+  },
+  "supervisorApproval": {
+    "required": true,
+    "outcome": "Not recorded",
+    "recordId": null
+  },
+  "claimBoundary": "Invalid fixture used to prove the schema rejects mutation."
+}

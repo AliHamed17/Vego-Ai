@@ -1,0 +1,47 @@
+{
+  "fixture_version": "1.0",
+  "synthetic_tag": "SYNTHETIC_NOT_HUMAN",
+  "cases": [
+    {
+      "id": "VERIFY-01-VALID",
+      "expected_outcome": "verified",
+      "sources": {
+        "baseline": {"path":"sources/baseline.json","expected_sha256":"ACTUAL"},
+        "guideline": {"path":"sources/guideline.json","expected_sha256":"ACTUAL"},
+        "review": {"path":"sources/review.json","expected_sha256":"ACTUAL"},
+        "memory": {"path":"sources/memory.json","expected_sha256":"ACTUAL"}
+      }
+    },
+    {
+      "id": "VERIFY-02-MISSING",
+      "expected_outcome": "needs_adjudication",
+      "sources": {
+        "baseline": {"path":"sources/baseline.json","expected_sha256":"ACTUAL"},
+        "guideline": {"path":"sources/guideline.json","expected_sha256":"ACTUAL"},
+        "review": {"path":"sources/review.json","expected_sha256":"ACTUAL"},
+        "memory": {"path":"sources/intentionally-missing.json","expected_sha256":"ACTUAL"}
+      }
+    },
+    {
+      "id": "VERIFY-03-HASH-MISMATCH",
+      "expected_outcome": "needs_adjudication",
+      "sources": {
+        "baseline": {"path":"sources/baseline.json","expected_sha256":"ACTUAL"},
+        "guideline": {"path":"sources/guideline.json","expected_sha256":"0000000000000000000000000000000000000000000000000000000000000000"},
+        "review": {"path":"sources/review.json","expected_sha256":"ACTUAL"},
+        "memory": {"path":"sources/memory.json","expected_sha256":"ACTUAL"}
+      }
+    },
+    {
+      "id": "VERIFY-04-CONFLICT",
+      "expected_outcome": "needs_adjudication",
+      "declared_conflicts": ["fixture source statements disagree"],
+      "sources": {
+        "baseline": {"path":"sources/baseline.json","expected_sha256":"ACTUAL"},
+        "guideline": {"path":"sources/guideline.json","expected_sha256":"ACTUAL"},
+        "review": {"path":"sources/review.json","expected_sha256":"ACTUAL"},
+        "memory": {"path":"sources/memory.json","expected_sha256":"ACTUAL"}
+      }
+    }
+  ]
+}

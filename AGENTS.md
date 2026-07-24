@@ -6,10 +6,11 @@ This project uses shared memory files so Codex and Claude can track prompts, pro
 
 Treat the memory files as project resources. Use them to understand the flow, avoid repeating old work, and make better decisions.
 
-1. Run `.\scripts\agent-memory-start.ps1`.
-2. Read `docs/agent-memory/compiled-memory.md`.
-3. Use the compiled memory to understand current state, the shared state report, progress, issues, decisions, recent prompt history, rollback notes, project architecture, research plan, and experiment registry.
+1. Run `.\scripts\refresh-tracking.ps1 -Pull` (pulls fresh tracking resources; recompiles memory). Codex has no Claude Code hooks, so Codex must run this step manually at the start of every prompt.
+2. Read `docs/agent-memory/compiled-memory.md` and `docs/PROGRESS_TRACKER.md` (executive status).
+3. Use the compiled memory to understand current state, the shared state report, resource memory, progress, issues, decisions, recent prompt history, rollback notes, project architecture, alignment control, research plan, and experiment registry.
 4. Check whether the folder is a Git repository before promising revert support.
+5. Full document + progress architecture: `docs/architecture/thesis-and-progress-architecture.md`.
 
 ## Continue / Next-Step Prompts
 
@@ -26,10 +27,12 @@ Use `reports/generated/next_step_loop/last-run.md` and `reports/generated/projec
 Update the memory files before the final answer whenever the prompt involved analysis, file changes, debugging, planning, or decisions.
 
 - Run `.\scripts\agent-memory-finish.ps1` with a concise summary so `session-log.md`, `revert-log.md`, and `compiled-memory.md` are updated.
+- Run `.\scripts\refresh-tracking.ps1 -Viz` so `docs/PROGRESS_TRACKER.md` AUTO regions + the evidence guard + the **visualization agent** (diagrams/graphs/charts + catalog, see `docs/visualizations/README.md`) refresh as the output of the prompt. Codex must run this manually at the end of every prompt (no hooks on the Codex side); only the `session-log.md` narrative is authored by hand. Codex acts as the **orchestrator** for visualization tasks by writing `reports/generated/visualization_agent/tasks.json` and reading the agent's `report.md`.
 - Update `docs/agent-memory/current-state.md` when the project state changes.
 - Update `docs/agent-memory/progress.md` when milestones, tasks, or next steps change.
 - Update `docs/agent-memory/issues.md` when an issue is found, changed, blocked, or resolved.
 - Update `docs/agent-memory/decisions.md` when a durable decision is made.
+- Update `docs/agent-memory/resource-memory.md` when durable shared research/tool resources are added or deprecated.
 - Update `docs/agent-memory/revert-log.md` for any file changes, including a short rollback note.
 - Update `docs/dashboards/` when progress, KPI values, validated results, or Confluence tracking status changes.
 - Run `.\scripts\build-confluence-wiki.ps1` after memory updates; it refreshes the ignored dashboard runtime snapshot, wiki outbox, and manual Confluence sync pack.
@@ -67,13 +70,16 @@ Future M4B-1 implementation must use branch `feature/memory-informed-comparison`
 
 - `docs/agent-memory/current-state.md`: quick orientation and latest known state.
 - `docs/agent-memory/shared-state-report.md`: high-level Claude/Codex research and governance state report.
+- `docs/agent-memory/resource-memory.md`: compact shared index of reusable research/tool resources, including the HITL resource pack.
 - `docs/agent-memory/review-state.md`: latest structured project review verdict, blockers, allowed claims, and next action.
 - `docs/agent-memory/progress.md`: milestones, active tasks, and next steps.
 - `docs/agent-memory/session-log.md`: chronological prompt history.
 - `docs/agent-memory/issues.md`: open, blocked, and resolved issues.
 - `docs/agent-memory/decisions.md`: durable decisions.
 - `docs/agent-memory/revert-log.md`: change and rollback notes.
+- `docs/agent-memory/revert-log-archive.md`: older rollback notes archived by the finish workflow.
 - `docs/agent-memory/automation.md`: script workflow for prompt start/end.
 - `docs/agent-memory/compiled-memory.md`: generated combined memory file.
 - `docs/dashboards/`: progress, KPI, and results dashboards for local and Confluence tracking.
 - `docs/confluence/wiki-sync.md`: Confluence wiki sync workflow and target configuration rules.
+- `docs/operations/alignment-control.md`: current implementation, evidence, claim-boundary, and validation checkpoint.

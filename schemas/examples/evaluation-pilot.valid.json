@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "EvaluationRunManifest-v2",
+  "runId": "exp020-pilot",
+  "experimentId": "EXP-020",
+  "generatedAt": "2026-07-24T00:00:00+03:00",
+  "sourceRevision": "cccccccccccccccccccccccccccccccccccccccc",
+  "workingTreeState": "clean",
+  "runClass": "development",
+  "baselineHashes": {
+    "agent4": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "inputHashes": {
+    "labels": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "outputHashes": {
+    "pilot": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "labelStats": {
+    "candidateRows": 24,
+    "suppliedLabels": 12,
+    "validLabels": 11,
+    "generalizationSafeLabels": 10,
+    "reviewerCount": 2,
+    "adjudicatedRows": 10
+  },
+  "partition": {
+    "role": "development",
+    "manifestSha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "sealedBeforePolicyFreeze": false
+  },
+  "policy": {
+    "policyId": "memory-informed-classifier-v1",
+    "policySha256": null,
+    "status": "Implemented baseline comparator"
+  },
+  "randomization": {
+    "annotationSeed": 20260721,
+    "partitionSeed": 20260721,
+    "bootstrapSeed": 20260721,
+    "bootstrapReplicates": 10000
+  },
+  "metrics": {
+    "status": "PILOT ONLY",
+    "originalAccuracy": 0.7,
+    "candidateAccuracy": 0.7,
+    "originalMacroF1": 0.62,
+    "candidateMacroF1": 0.62,
+    "netCorrection": 0,
+    "pairedPValue": null
+  },
+  "claimScope": "Pilot-only reporting with explicit small-sample limitations.",
+  "protectedRuntimeChanged": false
+}

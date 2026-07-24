@@ -12,7 +12,9 @@ Default behavior:
 
 - regenerates the results dashboard;
 - regenerates the EXP-005 label-review package;
+- regenerates the E2E progress report and local web dashboard;
 - opens the results dashboard;
+- opens the E2E progress web dashboard;
 - opens the EXP-005 "label these first" summary;
 - opens the EXP-005 blind label sheet;
 - opens the EXP-005 adjudication sheet and evidence verdict when present;

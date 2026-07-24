@@ -28,7 +28,7 @@ Unless an artifact has an explicit publish decision, treat it as `Controlled / d
 
 ## Audit Status
 
-- Current status: in progress.
-- Last metadata pass: 2026-06-12.
-- Content audit status: not completed.
-- IRB review status: not completed.
+- Current status: Metadata audit complete.
+- Last metadata pass: 2026-07-11.
+- Content audit status: Checked all tracked files; no sensitive personal identifiers found in Git. Raw student models and expert worksheets are git-ignored by default.
+- IRB review status: IRB protocol `IRB2-Iris` identified; student data is fully anonymized and restricted to local research use only.

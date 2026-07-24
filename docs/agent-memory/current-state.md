@@ -2,148 +2,107 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-## Last Updated
+**Last Updated:** 2026-07-24 by Codex (thesis evidence-advancement package and review draft)
 
-- 2026-06-23 by Codex.
+---
 
-## Project Goal
+## 1. Quick Status (< 10 lines)
+* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. PR #8 is the sole publication record for the thesis evidence package; live GitHub is authoritative for whether it is draft, open, or merged.
+* Two constraints are active: offline H-layer architecture/experiment hardening and the EXP-005 human-label gate for the parked evaluation track.
+* The machine-derived July 1 meeting record supports a **framework-first** direction pending participant confirmation. M-02 through M-05 have no recorded outcomes.
+* July skills, prompt requirements, and six detailed specifications are **provisional drafts**, not approved interfaces. `allowed-touch-proposal.md` is also unapproved.
+* **Research Loop:** Fourteen iterations (001-014) are accepted. Iterations 001-007 are historical/pre-manifest; 008-014 are manifest-backed. Iteration 014 (`hlayer-20260720T173308Z-d79047f5e2`) is the latest accepted reliability-only coherence snapshot, verdict `NEUTRAL`, normalized `fa3debf25ba705224bfa27748aaee7cd92d72e8f50b6704ccea2ff9f6255651e`. It selects no default. Separate conformance run `HLAYER-CONFORMANCE-8c458da3755870930900` is offline-only and does not authorize a live listener.
+* **MediVARIA draft added (2026-07-04):** a provisional PhD/future-work proposal exists, but it is not supervisor-endorsed clinical work. MSc evidence remains education-only; there is no patient data or clinical-performance evidence in this repo.
+* **Accuracy Verdict:** *Accuracy improvement cannot be evaluated yet* (0 generalization-safe real labels exist). The EXP-005 gate now gates the PARKED evaluation track only - not framework-track doc/spec work.
+* **Thesis evidence package (2026-07-24):** a B0-B5 evidence ladder, canonical evidence snapshot, claim/chapter traceability, EXP-019..027 preregistrations, 87-page review DOCX/PDF, and offline baseline-progress HTML are prepared for review. This improves evaluation rigor; it does not establish an accuracy gain.
 
-- Maintain a shared project memory so every prompt can use prior context, progress, issues, decisions, and rollback notes.
-- Support both Codex and Claude with plain Markdown documentation.
-- Maintain an MSc-thesis-ready and PhD-continuation VEGO-AI research workspace with source, experiments, data governance, papers, thesis work, and reproducibility documentation.
-- Keep reusable human judgment in AI-assisted domain model assessment as the explicit research spine.
+---
 
-## Latest Known State
+## 2. Architecture State
 
-- Workspace root: `c:\Users\ahamed\vego-ai`
-- Git status: repository initialized, safe baseline committed, and pushed to private GitHub repo `AliHamed17/Vego-Ai` on 2026-06-11.
-- Current local branch: `main`, tracking `origin/main`.
-- Current `main` / `origin/main`: includes PR #7 merge `78b261e` plus the follow-up memory/dashboard sync for that merge; use `git log -1` for the exact moving HEAD.
-- Results dashboard is merged on `main` as `cf78d2d`; reproducibility tag `research-state-results-dashboard` exists.
-- M4B-1 deterministic comparison is merged on `main` as `944c922`; reproducibility tag `research-state-m4b1-deterministic-comparison` exists.
-- The `research-state-m4b1-deterministic-comparison` GitHub release contains `vego-ai-M1-M4A-dashboard-M4B1-changes.zip` and `M1-M4A-dashboard-M4B1-manifest.md` for external technical review.
-- The implementation is now treated as complete through M4B-1 for research-evaluation purposes; the next major work is EXP-001/C4B empirical evaluation, not more feature building.
-- Follow-up schema hardening PR #6 is open: `https://github.com/AliHamed17/Vego-Ai/pull/6`.
-- Safe baseline merge commit: `76e7277`.
-- Main visible source files at setup:
-  - `Variability_MAS4MODELS2026_Mar28_IRB2איריס (1).pdf`
-  - `VEGO-AI-20260611T112722Z-3-001.zip`
-- Original source package extracted to `VEGO-AI/`.
-- PhD/research architecture scaffold exists at the repository root.
-- Safe GitHub baseline intentionally excludes root PDF, zip archives, generated outputs, compiled memory, model files, analysis files, eval outputs, visualizer bundled data, generated review queues, bundled executable, and `get-pip.py`.
-- Human-feedback workflow files now include `VEGO-AI/framework/human_feedback_manager.py`, `VEGO-AI/inputs/human_feedback.example.jsonl`, `VEGO-AI/schemas/human_feedback.schema.json`, and feedback attachment/status fields in `VEGO-AI/schemas/human_review_item.schema.json`.
-- Human-feedback manager documentation and tests now exist at `VEGO-AI/docs/human_feedback_manager.md` and `VEGO-AI/tests/test_human_feedback_manager.py`.
-- Milestone 3 Human Judgment Memory is implemented and published on `origin/main` as commit `5e109e5`.
-- M3 remains inert: no Agent 4 wiring, no embeddings, and no visualizer changes.
-- Milestone 4A Human Judgment Memory Advisory Layer was reviewed by Codex in PR #2 and squash-merged to `origin/main` as commit `ecd0972`.
-- M4A retrieves relevant Human Judgment Memory for Agent 4 patterns and emits advisory-only memory advice; it does not change AI classifications.
-- Reproducibility tags now exist on GitHub:
-  - `milestone-m3-human-judgment-memory` -> `5e109e5f9f2073d9cdc2325bcea2823d57c77882`
-  - `milestone-m4a-memory-advisory` -> `ecd097245c463089a5721d68b17d6b22a1005a43`
-  - `research-state-m4a` -> `28289405fc7cb687665f949bf039355a97967c59`
-- Post-merge behavior confirmation exists at `docs/research/m4a-post-merge-confirmation.md`.
-- M4B-1 is implemented and merged as a deterministic, experimental, parallel-comparison layer; it preserves original Agent 4 output, writes only `memory_informed_comparison.json`, sets `ai_behavior_changed_in_baseline=false`, and labels evaluation leakage.
-- M4B-2, Agent 4 `resolve_with_answers`, LLM/API calls, embeddings, visualizer changes, and baseline output overwrites remain not approved.
-- Progress, KPI, and results dashboards exist under `docs/dashboards/`; an ignored runtime snapshot is generated at `docs/dashboards/status-snapshot.generated.md`, checked by `scripts/dashboard-health.ps1`, and embedded in the generated Confluence Progress Dashboard page.
-- A local/offline VEGO-AI results dashboard generator exists on `main` at `VEGO-AI/analysis/build_results_dashboard.py`.
-- The results dashboard reads existing JSON/JSONL outputs only and generates ignored static files under `VEGO-AI/reports/results_dashboard/`.
-- Latest generated dashboard snapshot reported 4 settings, 179 cases, 27 variability patterns, 11 human-review queue items, 4 resolved feedback items, 3 reusable memory entries, 8 memory-advice items, and `ai_classification_changed_count=0`.
-- Results dashboard docs/tests/schema exist at `VEGO-AI/docs/results_dashboard.md`, `VEGO-AI/tests/test_results_dashboard.py`, and `VEGO-AI/schemas/results_dashboard_snapshot.schema.json`.
-- M4B-1 follow-up PR #6 is open and ready for separate review: `https://github.com/AliHamed17/Vego-Ai/pull/6`; it hardens nested schema requirements and tests only and changes no classifier behavior.
-- Visualizer UX refresh PR #7 was real-display validated, marked ready, and squash-merged on 2026-06-14 as commit `78b261e`.
-- Reproducibility tag `research-state-visualizer-ux-clean` points to `78b261e033fc4f3f66170985a884aa5cd0a0cfd2`.
-- PR #7 adds pure visualizer matching helpers, exact `<case_id>_` model/result pairing, stale-model clearing, a persistent Matched/Mismatch/Unknown/No matching model found banner, search/status filters, and read-only research panels for M1/M2/M3/M4A/M4B-1 sidecars.
-- PR #7 is UI/read-only: it does not change Agent 2/3/4, evaluator/orchestrator behavior, baseline outputs, feedback/memory/advice/comparison files, OpenAI/API behavior, M4B-2, or controlled artifacts.
-- Real-display GUI validation passed on 2026-06-14 for mismatch warning, no-match stale-model clearing, auto-load matching model, filters/details, read-only research panels, and graceful diagram failure handling. Screenshots are stored outside the repo at `%TEMP%\vego_gui_validation_20260614_144509`.
-- System validation report generated at `VEGO-AI/reports/system_validation_report.md` on 2026-06-14 and updated after governance cleanup with status `PASS`: 93 pytest tests passed, direct runners passed, schema/CLI/compile/dashboard/visualizer/generated-output smoke checks passed, `project-health`, `research-health`, and `dashboard-health` pass, and the report is tracked as a research validation artifact.
-- Post-merge PR #7 validation on `main` passed: `python -m pytest VEGO-AI\tests -q` (93 passed), `python -m compileall -q VEGO-AI\framework VEGO-AI\eval VEGO-AI\analysis VEGO-AI\vego_visualizer_delivery`, `.\scripts\project-health.ps1`, `.\scripts\research-health.ps1`, and `.\scripts\dashboard-health.ps1 -RequireOutbox`.
-- Latest local execution package uses run ID `20260614-122150`:
-  - Local configs: `VEGO-AI/framework/run_config.local.json`, `VEGO-AI/eval/eval_config.local.json`, smoke configs.
-  - Generated local human outputs: `VEGO-AI/runs/20260614-122150/human/`.
-  - Generated dashboard and run summary: `VEGO-AI/reports/results_dashboard/`.
-  - Live LLM runs were skipped because `OPENAI_API_KEY` was not set.
-  - Generated M4A advice across four settings kept `ai_classification_changed_count=0`.
-  - Generated M4B-1 comparisons across four settings: 27 comparisons, 0 memory-informed differences, 2 human-review-after-memory flags, and 0 baseline behavior changes.
-- The main research question now centers on reusable human judgment in human-AI collaboration for AI-assisted domain modeling and model assessment.
-- Planning artifacts define the literature-review taxonomy, C0-C4B evaluation plan, thesis outline, claim/evidence table, and EXP-001 M4B-1 deterministic comparison contract.
-- `docs/research/evaluation-report.md` now provides the evaluation scaffold for reusable human judgment evidence, leakage policy, dashboard figures, and thesis claims.
-- Initial EXP-001 mechanism/readiness evaluation has been generated locally with `.\scripts\build-exp001-evaluation.ps1`; ignored outputs are under `reports/generated/exp001/`.
-- Initial EXP-001 result: 27 comparisons, 3 expert-labeled rows from same-pattern Human Judgment Memory, 0 generalization-safe expert-labeled rows, 0 memory-informed classification changes, 2 human-review-after-memory flags, and 0 conflicting memory flags. This supports mechanism/readiness only, not accuracy improvement.
-- EXP-002 expert-labeling package has been generated locally with `.\scripts\build-exp002-labeling-package.ps1`; ignored outputs are under `reports/generated/exp002/`.
-- Initial EXP-002 package result: 27 labeling rows across 4 settings, 3 existing expert labels from same-pattern memory, 24 generalization-safe candidate rows, 2 `requires_human_review_after_memory` rows, 0 memory-informed classification changes, and 27 recommended labeling targets. Human/supervisor labeling is still pending.
-- EXP-003 accuracy-improvement evaluation path is implemented as tooling only: full/blind expert-labeling sheets, labeling instructions, error-analysis outputs, accuracy summary, paired comparison, and figures are generated under ignored `reports/generated/exp003/`.
-- Initial EXP-003 result: 27 rows, 24 generalization-safe candidates, 0 independent expert labels, 0 generalization-safe expert-labeled rows, 0 memory-informed classification differences, and strict gate status `Accuracy improvement cannot be evaluated yet.`
-- Accuracy governance docs now define the baseline, expert-labeling protocol, strict evidence thresholds, and blocked policy-refinement boundary. No M4B-1 policy change, M4B-2, Agent 4 change, LLM/API call, embedding path, or baseline overwrite was implemented.
-- A full local results and accuracy report now exists at ignored `artifacts/RESULTS_AND_ACCURACY_FULL_REPORT.md`; `docs/research/evaluation-report.md` links the report and records the strict conclusion that results/prototype quality improved, but classification accuracy improvement is not proven and cannot be evaluated until generalization-safe expert labels exist.
-- A synthetic-only accuracy simulation/policy-sensitivity check now exists at ignored `artifacts/SYNTHETIC_ACCURACY_SIMULATION_REPORT.md` with detailed outputs under ignored `reports/generated/synthetic_accuracy_simulation/`. Current M4B-1 shows 0 synthetic accuracy delta because memory-informed classifications remain identical to original Agent 4; counterfactual policy simulations show possible synthetic deltas only when future, unapproved policies change classifications. Do not treat the synthetic `+16.67 pp` upper-bound as a real result.
-- EXP-004 policy-sensitivity simulation tooling now exists at `scripts/policy_sensitivity_simulation.py`, `scripts/build-policy-sensitivity-simulation.ps1`, and `experiments/EXP-004-policy-sensitivity-simulation/`. Generated ignored outputs live under `reports/generated/policy_sensitivity/` plus ignored `artifacts/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md`. Initial synthetic run: current M4B-1 stays at `+0.00 pp`; aggressive variants can show synthetic gains but also synthetic losses, so no policy implementation or accuracy claim is justified without real EXP-003 labels.
-- EXP-005 real-label accuracy gate tooling now exists at `scripts/exp005_label_review.py`, `scripts/build-exp005-label-review.ps1`, and `experiments/EXP-005-real-label-accuracy-gate/`. Generated ignored outputs live under `reports/generated/exp005_label_review/` plus ignored `artifacts/EXP005_LABEL_REVIEW_PACKAGE.md`. Initial package: 27 rows, 24 generalization-safe candidates, 4 safe memory disagreements, 2 review-after-memory cases, 0 valid expert labels, and strict gate status `Accuracy improvement cannot be evaluated yet.`
-- EXP-005 blind labeling sheet hides original Agent 4 and memory-informed classifications; full sheet preserves audit context. Optional `-FilledLabelsSheet ... -RunDownstream` merges blind labels into the full audit context before rerunning EXP-003 and EXP-004-style generated outputs.
-- EXP-005 now also generates ignored reliability and reproducibility support: `exp005_adjudication_sheet.csv`, `evidence_verdict.md`, `reproducibility_manifest.json`, and `reproducibility_manifest.md`. The current generated verdict is `blocked` because there are 0 supplied labels and 0 generalization-safe valid labels.
-- A synthetic-only EXP-005 trial was run in ignored `reports/generated/exp005_synthetic_trial/` with ignored report `artifacts/SYNTHETIC_EXP005_TRIAL_REPORT.md`. It used reviewer ID `SYNTHETIC_NOT_HUMAN`, produced 27 synthetic labels and 24 synthetic safe rows, and confirmed current M4B-1 still has 0/27 classification changes and 0.00 pp accuracy delta under synthetic labels. Tracked design-only interpretation is in `docs/research/m4b1-synthetic-policy-candidate-review.md`; do not treat it as real evidence.
-- A strategic review and hardening plan now exists at `docs/research/strategic-review-and-hardening-plan.md`. It consolidates the current flow, vulnerabilities, strict evidence gates, and next-step strategy. Current verdict remains: feature work frozen, EXP-005 labels pending, 0 safe expert labels, and no accuracy-improvement claim allowed.
-- A local VEGO workbench launcher now exists at `scripts/open-vego-workbench.ps1` with usage docs at `docs/operations/vego-workbench.md`. It regenerates/opens the dashboard and EXP-005 label-review package, can open the Tkinter visualizer with `-Gui`, can run health checks with `-Health`, and can refresh Confluence outbox with `-Wiki` or `-All`. After labels are entered, use `-SkipGenerate` to avoid regenerating the saved CSV. It does not change Agent 4, M4B-2, `VEGO-AI/eval_output`, baseline outputs, LLM/API behavior, or embeddings.
-- A supervised one-cycle Codex next-step loop now exists at `scripts/run-codex-next-step.ps1` with docs at `docs/operations/codex-next-step-loop.md`. For "continue" prompts, it checks EXP-005 labels, protected diffs, optional wiki/dashboard refresh, and writes ignored `reports/generated/next_step_loop/last-run.md`; it is not a background service.
-- A memory-connected project review architecture now exists at `docs/operations/project-review-architecture.md`, tracked review state lives in `docs/agent-memory/review-state.md`, and `scripts/run-project-review.ps1` writes ignored structured review reports under `reports/generated/project_review/`.
-- A topology/flow export script now exists at `scripts/export-topology-report.ps1`. It generates ignored `artifacts/topology-export/VEGO_TOPOLOGY_FLOW_REPORT.html` and `.pdf` summarizing the VEGO baseline, human judgment memory chain, EXP-001 to EXP-005 evaluation flow, dashboard, visualizer, and wiki topology.
-- A paper-architecture overlay export script now exists at `scripts/export-baseline-overlay-report.ps1`. It generates ignored `artifacts/topology-export/VEGO_BASELINE_OVERLAY_REPORT.html` and `.pdf`, recreating the main paper architecture layout and drawing the M1-M4B-1/EXP-005 human-judgment flow on top of it.
-- Supervisor Zoom preparation package for 2026-06-17 has been generated locally under ignored `artifacts/supervisor_demo_2026-06-17/`.
-- The supervisor package contains a 20-slide Markdown deck, a 20-slide PowerPoint deck generated by local fallback tooling, an HTML deck fallback, one-page brief, demo script, supervisor questions, screenshot checklist, 8 figure pairs (`.svg` + `.mmd`), and evidence tables.
-- The package uses current dashboard/EXP-001/EXP-002 evidence and keeps claims conservative: mechanism readiness, reusable human judgment, non-destructive comparison, and held-out expert labels still needed.
-- Core orientation files exist:
-  - `README.md`
-  - `PROJECT_CHARTER.md`
-  - `docs/architecture/project-map.md`
-  - `docs/research/research-plan.md`
-  - `experiments/registry.md`
-- Shared memory files exist in `docs/agent-memory/`.
-- A high-level shared Claude/Codex state report exists at `docs/agent-memory/shared-state-report.md` and is included in generated compiled memory.
-- Prompt memory automation scripts exist in `scripts/`.
-- Generated compiled memory file is created at `docs/agent-memory/compiled-memory.md` by `scripts/agent-memory-start.ps1`.
-- Compiled memory now includes memory files plus the core project charter, architecture, research plan, and experiment registry.
-- Root agent instruction files exist:
-  - `AGENTS.md`
-  - `CLAUDE.md`
-- A paste-ready Claude startup prompt exists at `docs/agent-memory/claude-bootstrap-prompt.md`.
-- A paste-ready Claude M4B handoff prompt exists at `docs/agent-memory/claude-m4b-handoff-prompt.md`.
-- A GitHub-rendered Mermaid workspace diagram exists at `docs/architecture/workspace-diagram.md`.
-- Research OS registers exist for artifact audit, provenance, and publishability under `docs/research/`.
-- Confluence wiki sync infrastructure exists under `docs/confluence/`; local target config points to `https://alih10j.atlassian.net/wiki`, cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, space `~71202099edcf0e26ec40cea521806deb9e9687`, home page `294914`.
-- `scripts/build-confluence-wiki.ps1` generates ignored curated wiki pages in `docs/confluence/outbox/`, including the progress dashboard.
-- `scripts/build-dashboard-snapshot.ps1` generates the ignored dashboard runtime snapshot used in the Confluence Progress Dashboard.
-- `scripts/build-confluence-manual-sync-pack.ps1` generates ignored `docs/confluence/manual-sync-pack.generated.md` for manual or browser-assisted Confluence publishing when live Rovo access is unavailable.
-- `scripts/dashboard-health.ps1` verifies dashboard sources, KPI rows, Confluence builder wiring, config page slots, and generated outbox readiness.
-- `scripts/research-health.ps1` checks research infrastructure, experiment folders, Confluence config template JSON, dashboard health, generated Confluence pack safety, and forbidden tracked artifacts.
+```text
+Original VEGO-AI Agent 1-4 pipeline (baseline)
+  -> M1 Human Review Queue (routing triggers)
+  -> M2 Human Feedback Manager (structured schema)
+  -> M3 Human Judgment Memory (reusable knowledge storage)
+  -> M4A Memory Advisory Layer (advisory retrieval, no reclassification)
+  -> M4B-1 Deterministic Memory-Informed Comparison (parallel experimental comparison)
+```
+* **Git Repository:** Initialized; baseline pushed to private `AliHamed17/Vego-Ai`.
+* **Git orientation:** PR #8 is the sole publication route and audit record for the thesis package. Run live Git checks for branch, revision, PR state, and cleanliness; durable memory intentionally does not pin volatile values. The visualizer tag `research-state-visualizer-ux-clean` names a historical commit, not current workspace state.
+* **Publication records:** PR #6 covers earlier schema/test hardening; PR #8 covers this thesis evidence package. Their live states are intentionally not duplicated here.
+* **Tags:** `milestone-m3-human-judgment-memory`, `milestone-m4a-memory-advisory`, `research-state-m4a-clean`, `research-state-results-dashboard`, `research-state-m4b1-deterministic-comparison`.
 
-## Working Agreement
+---
 
-- At the start of each meaningful prompt, agents should read the memory files as project resources.
-- Agents should run `.\scripts\agent-memory-start.ps1` at prompt start and read `compiled-memory.md`.
-- Agents should run `.\scripts\agent-memory-finish.ps1` before final response when meaningful work happened.
-- Before final response, agents should update the memory files if the work changed project knowledge, files, progress, issues, decisions, or rollback notes.
-- Do not store secrets, credentials, tokens, or sensitive personal data in memory.
+## 3. Active Blockers
 
-## Active Risk
+| Blocker ID | Severity | Description | Next Step |
+|------------|----------|-------------|-----------|
+| **ISS-005** | Medium | Live Confluence sync blocked (Atlassian Rovo cloud access `724252a1-a5b7-45a5-b6ec-27a8292197ec` pending). | Use manual sync outbox files. |
+| **ISS-006** | Medium | No completed generalization-safe expert labels for EXP-005 (parked evaluation track since 2026-07-04). | Supervisor/experts must label the blind sheet (27 rows; 24 generalization-safe candidates). |
+| **ISS-007** | Medium | Evaluation leakage risk if same-pattern rows are claimed as generalization. | Keep same-pattern rows strictly for mechanism validation. |
+| **ISS-012/013**| Medium | False-accuracy-narrative risk (synthetic vs real accuracy); weak evidence from one-reviewer. | Require κ & adjudication; quote real label status in reports. |
+| **ISS-014** | High | M-01 through M-06 are unrecorded; no architecture/default/live authorization can be inferred. | Record explicit outcomes with Iris and Arnon; silence remains deferred. |
 
-- Real revert support is now available through Git for tracked safe-baseline files.
-- Prompt automation depends on Codex/Claude following the project instructions and scripts; no background service or native runtime hook is configured.
-- Data sensitivity and IRB constraints need an audit before sharing or publishing data/examples.
-- M4B-1 memory-informed parallel comparison is merged and available only as an experimental comparison; do not claim behavior improvement until the controlled C4B experiment is run with leakage status recorded.
-- Strategic review adds two active research risks: synthetic or same-pattern evidence must not be reported as real accuracy improvement, and one-reviewer EXP-005 labels should not be treated as strong evidence without supervisor adjudication or a second reviewer.
-- `scripts/research-health.ps1` now has a narrow allowlist for the intentionally tracked dashboard generator `VEGO-AI/analysis/build_results_dashboard.py`; controlled/generated analysis artifacts remain forbidden.
-- Codex isolation is active for M4B implementation paths on `main`.
-- Local Claude permission state is ignored via `.claude/*.local.json`.
-- Confluence sync currently operates as generated outbox/manual sync pack only because Atlassian Rovo reports target cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec` is not explicitly granted; rechecked 2026-06-14 14:50 +03:00. A Chrome UI fallback was also checked on 2026-06-13 13:50 +03:00, but the extension-backed browser channel was unavailable after retry.
+---
 
-## Next Best Step
+## 4. Next Action
+1. **Human evidence gate:** approve the blind-label protocol, appoint two independent reviewers plus an adjudicator, and calibrate on the three excluded same-pattern rows.
+2. **EXP-020:** collect the 24 generalization-safe labels without exposing the 16/8 development/holdout split to reviewers; supplied labels remain 0 and must never be inferred or prefilled.
+3. **Decision gate:** record M-01..M-06. Until then, keep architecture, dosage, H-Verify, authority, and timeout choices provisional.
+4. **Offline advancement:** preserve iterations 008-014 atomic contracts and metric semantics. Do not create Iteration 15 for documentation or visualization work.
+5. **Policy gate:** perform development-only error analysis before proposing one deterministic candidate; open the sealed eight-row holdout only after the policy and hashes are frozen.
+6. **Phase 4:** remain blocked until M-05 plus a separate exact-file implementation authorization.
 
-- Use `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen` for supervised "review / continue to next step" prompts; use `.\scripts\run-project-review.ps1` for review-only prompts and `.\scripts\open-vego-workbench.ps1` for daily review/demo startup.
-- Use the EXP-005 blind label-review sheet to collect at least 20 generalization-safe expert labels, preferably 30-50 across audited runs, before claiming or attempting accuracy improvement.
-- Use the synthetic EXP-005 policy-candidate review only to prioritize later real-label discussion; it does not justify M4B-1.1, M4B-2, or any Agent 4 behavior change.
-- Add reviewer-2 labels or supervisor adjudication in `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv` before treating results as strong quantitative evidence.
-- After real labels are collected, rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream` so labels are validated, EXP-003 is rerun with full context, and candidate policies are compared using non-synthetic evidence.
-- Freeze the M4B-1 implementation baseline for empirical evaluation; treat PR #6 as schema/governance hardening only, not a new feature direction.
-- Keep the merged PR #7 visualizer UX boundary intact: no silent model/result mismatch, no stale model selection, and research panels remain read-only.
-- Run EXP-001 as the controlled M4B/C4B experiment after selecting audited inputs and documenting the supplied memory advice, memory items, deterministic policy version, and leakage status.
-- Fill the EXP-002 expert-labeling sheet with held-out/cross-setting expert labels, then rerun EXP-001 or the next evaluation pass so expert alignment/generalization can be evaluated.
-- Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`, or enable a working Chrome extension route; then create/update the Confluence child pages using the outbox/manual sync pack, including the Progress Dashboard, and record their IDs locally.
+---
+
+## 5. Working Agreement
+* **Prompt Start:** Run `.\scripts\agent-memory-start.ps1` and read `docs/agent-memory/compiled-memory-t1.md`.
+* **Prompt End:** Run `.\scripts\agent-memory-finish.ps1` with conciseness when file changes or decisions happen.
+* **Guards:** Run `python scripts\check_evidence_consistency.py` before any review/claim update (must PASS).
+* **Boundaries:** Keep Agent 4, M4B-2, LLM/API calls, and baseline output overwrites blocked.
+* **Git:** Record the actual dirty/clean state; never assume cleanliness. Do not stage unrelated local directories or data zones.
+
+---
+
+## 6. Deep Context (Expandable)
+
+<details>
+<summary><b>6.1 Source, Run, and Schema Context</b></summary>
+
+* **Original Package:** Extracted to `VEGO-AI/`.
+* **Framework Code:** `VEGO-AI/framework/human_feedback_manager.py`, `memory_advisor.py`, `build_results_dashboard.py`.
+* **Tests:** Current unsuppressed rerun on 2026-07-24: 94 passed in `VEGO-AI/tests`; 69 passed plus 7 subtests in `scripts/tests`; the integrated H-layer gate passed all 16 checks.
+* **Schemas:** runtime schemas remain unchanged; the evidence package adds document-level schemas for the evidence snapshot, gold labels, policy candidates, and evaluation-run manifests.
+* **Latest Run ID:** `20260614-122150` (27 comparisons, 0 differences, 2 review flags, 0 changes to baseline behavior).
+</details>
+
+<details>
+<summary><b>6.2 Evaluation & Experiment Details (EXP-001...027)</b></summary>
+
+* **EXP-001 (Mechanism):** 27 rows, 3 same-pattern labels, 0 generalization-safe labels.
+* **EXP-002 (Generalization candidates):** 24 safe candidate rows identified for expert labeling.
+* **EXP-003 (Accuracy evaluation):** Tooling/harness ready. Blind sheets generated under `reports/generated/exp003/`.
+* **EXP-004 (Sensitivity):** Synthetic policy screening only (no real evidence).
+* **EXP-005 (Real-label gate):** Tooling generates blind reviews, reliability stats, and kappa metrics. Closed until expert labels are added.
+* **EXP-019..027 (Preregistered next phase):** reviewer calibration, independent labeling, development-only baseline error analysis, routing/retrieval validity, deterministic policy development, one-time sealed holdout, external education replication, human-effort evaluation, and ablation/robustness. They are planned protocols, not completed evidence.
+</details>
+
+<details>
+<summary><b>6.3 Confluence & Dashboard Infrastructure</b></summary>
+
+* **Target URL:** `https://alih10j.atlassian.net/wiki`
+* **Cloud ID:** `724252a1-a5b7-45a5-b6ec-27a8292197ec`
+* **Local outbox:** `docs/confluence/outbox/` containing manual sync files.
+* **Dashboard Snapshots:** Generated by `scripts/build-dashboard-snapshot.ps1`.
+* **E2E Progress Dashboard:** Generated by `scripts/build-e2e-progress-report.ps1`.
+</details>
+
+<details>
+<summary><b>6.4 PhD Research Trajectory (Direct Track)</b></summary>
+
+* **Topic:** Reusable human judgment for governed human-AI co-reasoning in AI-assisted domain model assessment.
+* **Phased Roadmap:** P0 (MSc Gate) -> P1 (Baseline taxonomy) -> P2 (Reuse validity) -> P3 (Policy v1.1 refinement on 16 dev / 8 holdout) -> P4 (Broader medical/class cohorts) -> P5 (Framework synthesis).
+* **Iris Action Items:** (1) Define agent skills mapping (A1-A4), (2) Specify prompt/context requirements, (3) Define interface contracts, (4) Separate framework/evaluation phases.
+</details>

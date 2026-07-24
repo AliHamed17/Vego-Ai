@@ -1,0 +1,21 @@
+flowchart TD
+    E19["EXP-019<br/>Reviewer calibration<br/>3 excluded rows"] --> E20["EXP-020<br/>Two blind reviewers<br/>24 safe rows"]
+    E20 --> GOLD["Adjudicate and freeze<br/>GoldLabelRecord-v2"]
+    GOLD --> E21["EXP-021<br/>Baseline errors<br/>16 development rows"]
+    E21 --> E22["EXP-022<br/>Routing and retrieval audit"]
+    E22 --> DECIDE{"At least 3 correctable errors<br/>across at least 2 settings<br/>and explicit approval?"}
+    DECIDE -- "No" --> STOP["Stop policy work<br/>Report null/negative finding"]
+    DECIDE -- "Yes" --> E23["EXP-023<br/>Freeze PolicyCandidateRecord-v1"]
+    E23 --> E24["EXP-024<br/>Open 8-row holdout once"]
+    E24 --> E25["EXP-025<br/>External education batch<br/>minimum 30, target 48"]
+    E25 --> E27["EXP-027<br/>Post-primary ablation"]
+    GOLD -. "separate ethics approval" .-> E26["EXP-026<br/>Human-effort study"]
+
+    classDef current fill:#d9ead3,stroke:#38761d,color:#1c3514;
+    classDef human fill:#fff2cc,stroke:#bf9000,color:#5f4800;
+    classDef blocked fill:#f4cccc,stroke:#990000,color:#4c0000;
+    classDef decision fill:#d9eaf7,stroke:#2e75b6,color:#17365d;
+    class E19 current;
+    class E20,GOLD human;
+    class E21,E22,E23,E24,E25,E26,E27,STOP blocked;
+    class DECIDE decision;

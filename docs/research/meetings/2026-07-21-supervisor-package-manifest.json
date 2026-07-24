@@ -1,0 +1,229 @@
+{
+  "schemaVersion": "SupervisorPackageManifest-v1",
+  "packageDate": "2026-07-21",
+  "generatedAt": "2026-07-20T19:27:19.752920+00:00",
+  "meeting": {
+    "audience": [
+      "Iris",
+      "Arnon"
+    ],
+    "presentationMinutes": 20,
+    "discussionMinutes": 20
+  },
+  "repository": {
+    "branch": "agent/publish-hlayer-and-supervisor-package",
+    "sourceRevision": "808385a74e41290751b6bf3657e534f7eb4031d8",
+    "dirtyPathsBeforeManifest": []
+  },
+  "acceptedEvidence": {
+    "iteration": 14,
+    "runId": "hlayer-20260720T173308Z-d79047f5e2",
+    "verdict": "NEUTRAL",
+    "iterationKind": "reliability_only",
+    "normalizedSha256": "fa3debf25ba705224bfa27748aaee7cd92d72e8f50b6704ccea2ff9f6255651e",
+    "exp005Candidates": 24,
+    "exp005SuppliedLabels": 0,
+    "exp012Result": "NOT YET COMPUTABLE",
+    "decisionConfirmationStatus": "unconfirmed",
+    "runtimeAuthorization": false
+  },
+  "verification": {
+    "status": "PASS",
+    "tests": {
+      "VEGO-AI/tests": {
+        "passed": 94,
+        "failed": 0,
+        "durationSeconds": 6.41
+      },
+      "scripts/tests": {
+        "passed": 53,
+        "failed": 0,
+        "durationSeconds": 60.43
+      }
+    },
+    "recordedAt": "2026-07-20T19:21:30Z",
+    "command": "python -m pytest <suite> -q",
+    "runtime": "Python 3.13.3 / pytest 8.4.2"
+  },
+  "historicalRecord": {
+    "july15MaterialsPreserved": true,
+    "externalJuly15HtmlSha256": "E96E44E6F5C61BF917B82FE0E1CCA8E40C43DCC9ADCF75A248B7C8076D65E811"
+  },
+  "privacyBoundary": {
+    "rawAudioIncluded": false,
+    "fullAsrIncluded": false,
+    "expertLabelsIncluded": false,
+    "localConfigurationIncluded": false
+  },
+  "outputLocations": {
+    "sourceRepository": "C:\\Users\\ahamed\\vego-ai",
+    "shareDirectory": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package"
+  },
+  "files": [
+    {
+      "id": "interactive_html",
+      "role": "Interactive bilingual explainer",
+      "sourcePath": "VEGO-AI-July1-PointByPoint-EN-HE.html",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\VEGO-AI-July1-PointByPoint-EN-HE.html",
+      "tracked": true,
+      "bytes": 194081,
+      "sha256": "d3d03e19beaa9e03392010ed4c454aa206b3f7ed9fce1c83105578c2cb14b043",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\VEGO-AI-July1-PointByPoint-EN-HE.html",
+      "shareSha256": "d3d03e19beaa9e03392010ed4c454aa206b3f7ed9fce1c83105578c2cb14b043"
+    },
+    {
+      "id": "supervisor_deck",
+      "role": "Editable 23-slide PowerPoint",
+      "sourcePath": "presentations/VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pptx",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\presentations\\VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pptx",
+      "tracked": true,
+      "bytes": 121853,
+      "sha256": "9481286756c2642cb3b344f4e533b56d0f85553a5534f51658997b4a22f75169",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pptx",
+      "shareSha256": "9481286756c2642cb3b344f4e533b56d0f85553a5534f51658997b4a22f75169"
+    },
+    {
+      "id": "deck_pdf",
+      "role": "Rendered 23-page deck PDF",
+      "sourcePath": "output/pdf/VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pdf",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\output\\pdf\\VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pdf",
+      "tracked": false,
+      "bytes": 637843,
+      "sha256": "3a13a707a1c074c2d7529058516c09cf794df5937e8b8750e9c4984b721c7447",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pdf",
+      "shareSha256": "3a13a707a1c074c2d7529058516c09cf794df5937e8b8750e9c4984b721c7447"
+    },
+    {
+      "id": "preread_pdf",
+      "role": "Two-page pre-read and decision worksheet",
+      "sourcePath": "output/pdf/VEGO-AI-Supervisor-PreRead-and-Decision-Worksheet-2026-07-21.pdf",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\output\\pdf\\VEGO-AI-Supervisor-PreRead-and-Decision-Worksheet-2026-07-21.pdf",
+      "tracked": false,
+      "bytes": 7444,
+      "sha256": "db2c811eb22b3e87eb649d337a0095d50ccba68d85f8670db25368f8dbaed3cb",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\VEGO-AI-Supervisor-PreRead-and-Decision-Worksheet-2026-07-21.pdf",
+      "shareSha256": "db2c811eb22b3e87eb649d337a0095d50ccba68d85f8670db25368f8dbaed3cb"
+    },
+    {
+      "id": "package_index",
+      "role": "Package index",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-package.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-package.md",
+      "tracked": true,
+      "bytes": 1773,
+      "sha256": "ae817ed0d9928c2b7f920a874f1b27396e55b83af0614220631e909cd4fd4881",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-package.md",
+      "shareSha256": "ae817ed0d9928c2b7f920a874f1b27396e55b83af0614220631e909cd4fd4881"
+    },
+    {
+      "id": "record_provenance",
+      "role": "July 1 record and provenance",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-record-and-provenance.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-record-and-provenance.md",
+      "tracked": true,
+      "bytes": 4817,
+      "sha256": "57bd9039ed1f0863dcf8ad775e6aa54fe82f7d42b3ff219c49c92474f2bd85e1",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-record-and-provenance.md",
+      "shareSha256": "57bd9039ed1f0863dcf8ad775e6aa54fe82f7d42b3ff219c49c92474f2bd85e1"
+    },
+    {
+      "id": "decision_register",
+      "role": "Decision register",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-decision-register.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-decision-register.md",
+      "tracked": true,
+      "bytes": 3834,
+      "sha256": "4788257287ddf96786427e0c016baf988153b1748c90b10cf148527f1f1a7492",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-decision-register.md",
+      "shareSha256": "4788257287ddf96786427e0c016baf988153b1748c90b10cf148527f1f1a7492"
+    },
+    {
+      "id": "action_register",
+      "role": "Action register",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-action-register.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-action-register.md",
+      "tracked": true,
+      "bytes": 1603,
+      "sha256": "51a7406550dd26c4dfd59e5455b28e4569680a929e6859c67c514b8db6f66a76",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-action-register.md",
+      "shareSha256": "51a7406550dd26c4dfd59e5455b28e4569680a929e6859c67c514b8db6f66a76"
+    },
+    {
+      "id": "followup_annex",
+      "role": "Dated post-July 1 working annex",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-follow-up-annex.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-follow-up-annex.md",
+      "tracked": true,
+      "bytes": 4915,
+      "sha256": "fccf6bdd49bcb530afb4a6211198ded9507f0ccefab19393d0d1f7b88c76e8e3",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-follow-up-annex.md",
+      "shareSha256": "fccf6bdd49bcb530afb4a6211198ded9507f0ccefab19393d0d1f7b88c76e8e3"
+    },
+    {
+      "id": "preread_markdown",
+      "role": "Executive pre-read source",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-executive-pre-read.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-executive-pre-read.md",
+      "tracked": true,
+      "bytes": 2135,
+      "sha256": "e45b44cc1a494f64ad66f0f1de8478af531c6bc9ca62d2630c33b6add86b987c",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-executive-pre-read.md",
+      "shareSha256": "e45b44cc1a494f64ad66f0f1de8478af531c6bc9ca62d2630c33b6add86b987c"
+    },
+    {
+      "id": "presenter_guide",
+      "role": "Presenter guide",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-presenter-guide.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-presenter-guide.md",
+      "tracked": true,
+      "bytes": 1891,
+      "sha256": "91952a017e9b5f1201185751fdaa41b63157683a5b35aa57a6c3c6cd554b0dd7",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-presenter-guide.md",
+      "shareSha256": "91952a017e9b5f1201185751fdaa41b63157683a5b35aa57a6c3c6cd554b0dd7"
+    },
+    {
+      "id": "post_meeting_template",
+      "role": "Post-meeting capture template",
+      "sourcePath": "docs/research/meetings/2026-07-21-post-meeting-capture-template.md",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-post-meeting-capture-template.md",
+      "tracked": true,
+      "bytes": 1090,
+      "sha256": "2443eb7af5f98dfe6250706e085a8f3a376bfcc0a2c173324091cd482bef5901",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-post-meeting-capture-template.md",
+      "shareSha256": "2443eb7af5f98dfe6250706e085a8f3a376bfcc0a2c173324091cd482bef5901"
+    },
+    {
+      "id": "package_data",
+      "role": "AI-readable SupervisorPackageData v3",
+      "sourcePath": "docs/research/meetings/2026-07-21-supervisor-package-data-v3.json",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\meetings\\2026-07-21-supervisor-package-data-v3.json",
+      "tracked": true,
+      "bytes": 105192,
+      "sha256": "460f22fdf48c4a7a3c069713a091e2fb5aae019bef24b3034dd1ce6cb0cebd93",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\2026-07-21-supervisor-package-data-v3.json",
+      "shareSha256": "460f22fdf48c4a7a3c069713a091e2fb5aae019bef24b3034dd1ce6cb0cebd93"
+    },
+    {
+      "id": "program_status",
+      "role": "ProgramStatusSnapshot v1",
+      "sourcePath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\docs\\research\\h-layer\\program-status-snapshot-v1.json",
+      "tracked": true,
+      "bytes": 4483,
+      "sha256": "a6c7a146be36c3d337f94081088720e44a1dda8269848c5c7b71185f7355d008",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\program-status-snapshot-v1.json",
+      "shareSha256": "a6c7a146be36c3d337f94081088720e44a1dda8269848c5c7b71185f7355d008"
+    },
+    {
+      "id": "deck_build_report",
+      "role": "Deck construction and boundary report",
+      "sourcePath": "presentations/VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.build.json",
+      "sourceAbsolutePath": "C:\\Users\\ahamed\\vego-ai\\presentations\\VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.build.json",
+      "tracked": true,
+      "bytes": 707,
+      "sha256": "9ffdded1b17a8bae489b8e5192017582b29731d679e2ef9585c0817b8a228786",
+      "sharePath": "C:\\Users\\ahamed\\Claude\\Projects\\vego-ai\\2026-07-21-supervisor-package\\VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.build.json",
+      "shareSha256": "9ffdded1b17a8bae489b8e5192017582b29731d679e2ef9585c0817b8a228786"
+    }
+  ]
+}

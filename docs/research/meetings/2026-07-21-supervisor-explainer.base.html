@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Bilingual, evidence-safe VEGO-AI July 1 directive-to-progress explainer.">
+<meta name="date" content="2026-07-15">
+<title>VEGO-AI — July 1 Interactive Architecture Puzzle</title>
+<style>
+:root{
+  --bg:#f7fafc;--surface:#ffffff;--surface-2:#eef4f7;--ink:#102a43;--text:#334e68;--muted:#627d98;
+  --line:#d9e2ec;--teal:#0f766e;--teal-soft:#e6fffb;--blue:#2563eb;--blue-soft:#eff6ff;
+  --purple:#7c3aed;--purple-soft:#f5f3ff;--amber:#b45309;--amber-soft:#fffbeb;
+  --green:#15803d;--green-soft:#f0fdf4;--red:#b91c1c;--red-soft:#fef2f2;--gray:#64748b;
+  --shadow:0 12px 30px rgba(16,42,67,.08);--radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;line-height:1.5;overflow-x:hidden}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid rgba(37,99,235,.35);outline-offset:2px}
+[hidden]{display:none!important}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;background:var(--ink);color:#fff;padding:8px 12px;z-index:100;text-decoration:none;border-radius:8px}
+.skip:focus{top:10px}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1220px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font-weight:800;color:var(--ink);margin-inline-end:auto;min-width:250px}
+.control-group{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:999px;padding:7px 12px;font-weight:700;font-size:12px}
+.btn:hover{border-color:var(--teal);color:var(--teal)}
+.btn[aria-pressed="true"],.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn.danger{color:var(--red);border-color:#fecaca}
+.shell{max-width:1220px;margin:auto;padding:20px 20px 80px}
+.hero{margin-bottom:18px}
+.eyebrow{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal);font-weight:800}
+h1{font-size:clamp(26px,4vw,42px);line-height:1.15;color:var(--ink);margin:6px 0 10px}
+h2{font-size:clamp(21px,3vw,29px);line-height:1.2;color:var(--ink);margin:0 0 8px}
+h3{font-size:18px;color:var(--ink);margin:0 0 8px}
+h4{font-size:14px;color:var(--ink);margin:0 0 6px}
+p{margin:6px 0}
+.lead{font-size:16px;max-width:900px}
+.notice{background:var(--amber-soft);border:1px solid #fcd34d;border-inline-start:5px solid var(--amber);padding:12px 14px;border-radius:12px;margin:14px 0;font-size:13px}
+.chronology{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:8px;margin:16px 0}
+.chronology .moment{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;min-height:78px}
+.moment strong{display:block;color:var(--ink)}
+.moment span{font-size:12px;color:var(--muted)}
+.arrow{color:var(--teal);font-size:22px;font-weight:800;text-align:center}
+.section{margin:28px 0;scroll-margin-top:90px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.section-copy{max-width:850px;color:var(--muted)}
+.prov{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;white-space:nowrap}
+.prov.record{background:var(--blue-soft);color:var(--blue)}
+.prov.working{background:var(--purple-soft);color:var(--purple)}
+.prov.offline{background:#ecfeff;color:#0e7490}
+.prov.synthetic{background:var(--red-soft);color:var(--red)}
+.prov.decision{background:var(--green-soft);color:var(--green)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);min-width:0}
+.guided-card{padding:18px}
+.guide-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.step-count{font-weight:800;color:var(--teal);margin-inline-end:auto}
+.puzzle-board{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin:14px 0 18px}
+.puzzle-board:before{content:"";position:absolute;left:4%;right:4%;top:50%;height:3px;background:var(--line);transform:translateY(-50%);z-index:0}
+.puzzle-piece{position:relative;z-index:1;min-height:126px;border:2px dashed var(--line);background:var(--surface-2);color:var(--muted);border-radius:14px;padding:12px 9px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease}
+.puzzle-piece:after{content:"";position:absolute;inset-inline-end:-9px;top:calc(50% - 9px);width:16px;height:16px;border-radius:50%;background:inherit;border:inherit;z-index:-1}
+.puzzle-piece:last-child:after{display:none}
+.puzzle-piece .piece-number{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.puzzle-piece .piece-title{font-size:13px;font-weight:800;margin-top:6px;color:inherit}
+.puzzle-piece.future{opacity:.64}
+.puzzle-piece.complete{background:var(--teal-soft);border:2px solid var(--teal);color:var(--teal)}
+.puzzle-piece.active{background:var(--teal);border:2px solid var(--teal);color:#fff;box-shadow:0 0 0 5px rgba(15,118,110,.14);transform:translateY(-4px)}
+.puzzle-piece.related{box-shadow:0 0 0 4px rgba(124,58,237,.16)}
+.detail-panel{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.5fr);gap:16px;background:linear-gradient(135deg,var(--surface),var(--teal-soft));border:1px solid #99f6e4;border-radius:14px;padding:16px}
+.detail-kicker{font-size:12px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:1px}
+.detail-title{font-size:24px;color:var(--ink);font-weight:800;line-height:1.15;margin:5px 0}
+.detail-status{display:inline-block;border-radius:999px;background:var(--surface);border:1px solid var(--line);padding:3px 9px;font-size:11px;font-weight:800}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.fact{background:rgba(255,255,255,.78);border:1px solid rgba(217,226,236,.9);border-radius:10px;padding:9px 10px}
+.fact strong{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px}
+.fact span{font-size:13px;color:var(--ink)}
+.fact.boundary{border-color:#fecaca;background:rgba(254,242,242,.9)}
+.id-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.id-chip{display:inline-flex;border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:2px 7px;font-family:Consolas,monospace;font-size:11px;color:var(--text)}
+.flow-rail{display:flex;align-items:stretch;gap:5px;flex-wrap:wrap;margin-top:16px}
+.flow-node{flex:1 1 118px;min-height:68px;border:1px dashed var(--line);background:var(--surface-2);border-radius:10px;padding:8px;text-align:center;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--muted)}
+.flow-node.on{border-style:solid;border-color:var(--teal);background:var(--teal-soft);color:var(--teal)}
+.flow-node.blocked{border-color:#fca5a5;background:var(--red-soft);color:var(--red)}
+.flow-arrow{align-self:center;color:var(--teal);font-weight:900}
+.mode-intro{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.legend{display:flex;gap:9px;flex-wrap:wrap}
+.legend span{font-size:11px;font-weight:700}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:4px}
+.explore-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.explore-nav a{text-decoration:none}
+.view-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.compare-column{padding:15px}
+.node-chain{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap}
+.arch-node{flex:1 1 110px;border:1px solid var(--line);border-radius:10px;padding:9px;text-align:center;font-size:12px;font-weight:700;background:var(--surface-2)}
+.arch-node.baseline{background:var(--blue-soft);border-color:#bfdbfe;color:#1d4ed8}
+.arch-node.human{background:var(--teal-soft);border-color:#99f6e4;color:var(--teal)}
+.arch-node.parked{background:var(--amber-soft);border-color:#fcd34d;color:var(--amber);border-style:dashed}
+.lane-map{padding:14px}
+.lane{display:grid;grid-template-columns:160px 1fr;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.lane:last-child{border-bottom:0}
+.lane-label{font-weight:800;color:var(--ink);font-size:12px}
+.lane-nodes{display:flex;gap:6px;flex-wrap:wrap}
+.lane-node{border:1px solid var(--line);border-radius:8px;padding:5px 8px;background:var(--surface-2);font-size:11px;font-weight:700}
+.lane-node.related{background:var(--purple-soft);border-color:#c4b5fd;color:var(--purple)}
+.safety-cross{margin-top:10px;border:2px solid #fecaca;background:var(--red-soft);color:var(--red);border-radius:10px;padding:8px 10px;font-weight:800;text-align:center;font-size:12px}
+.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.time-card{position:relative;padding:12px;border-top:4px solid var(--blue);background:var(--surface);border-radius:0 0 10px 10px}
+.time-card.working{border-color:var(--purple)}
+.time-card.decision{border-color:var(--green)}
+.time-card.pending{border-color:var(--amber)}
+.time-card strong{display:block;color:var(--ink);font-size:12px}
+.time-card span{font-size:11px;color:var(--muted)}
+.table-wrap{max-width:100%;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th,td{text-align:start;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0}
+td strong{color:var(--ink)}
+.matrix-cell{text-align:center;font-weight:800}
+.matrix-hit{color:var(--teal);background:var(--teal-soft)}
+.matrix-related{outline:2px solid var(--purple);outline-offset:-2px}
+.trace-mobile{display:none}
+.directive-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.directive{padding:14px;border-inline-start:5px solid var(--gray)}
+.directive.related{border-color:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+.directive-head{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.directive-id{font-family:Consolas,monospace;font-weight:900;color:#fff;background:var(--teal);border-radius:7px;padding:3px 8px}
+.status{margin-inline-start:auto;border-radius:999px;padding:3px 8px;font-size:10px;font-weight:800}
+.status.proposal{background:var(--purple-soft);color:var(--purple)}
+.status.offline{background:#ecfeff;color:#0e7490}
+.status.blocked{background:var(--red-soft);color:var(--red)}
+.status.parked{background:var(--amber-soft);color:var(--amber)}
+.status.delivered{background:var(--green-soft);color:var(--green)}
+.status.synthetic{background:#ede9fe;color:#6d28d9}
+.path-cell{overflow-wrap:anywhere;word-break:break-word;max-width:360px}
+.directive dl{margin:0;display:grid;grid-template-columns:130px 1fr;gap:6px 10px;font-size:12px}
+.directive dt{color:var(--muted);font-weight:800}
+.directive dd{margin:0;color:var(--ink)}
+.action-list,.decision-list,.experiment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.action,.decision-card,.experiment{padding:14px}
+.action.related,.decision-card.related,.experiment.related{box-shadow:0 0 0 3px rgba(124,58,237,.12);border-color:#c4b5fd}
+.pipeline{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap}
+.pipe-node{flex:1 1 130px;border:1px solid #99f6e4;background:var(--teal-soft);color:var(--teal);border-radius:10px;padding:9px;text-align:center;font-size:11px;font-weight:800}
+.pipe-node small{display:block;color:var(--text);font-weight:500;margin-top:3px}
+.flow-visual{padding:14px}
+.flowline{display:flex;gap:6px;align-items:stretch;flex-wrap:wrap}
+.flowbox{flex:1 1 120px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2);padding:8px;text-align:center;font-size:11px;font-weight:700}
+.flowbox.good{background:var(--green-soft);border-color:#bbf7d0;color:var(--green)}
+.flowbox.warn{background:var(--amber-soft);border-color:#fde68a;color:var(--amber)}
+.flowbox.stop{background:var(--red-soft);border-color:#fecaca;color:var(--red)}
+.event-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.event{border:1px solid #99f6e4;background:var(--teal-soft);border-radius:9px;padding:8px 4px;text-align:center}
+.event strong{display:block;color:var(--teal);font-family:Consolas,monospace}
+.event span{font-size:10px}
+.event.gap{background:var(--surface-2);border-style:dashed;border-color:var(--line)}
+.event.parked{background:var(--amber-soft);border-color:#fcd34d;color:var(--amber)}
+.ladder{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.ladder-step{min-height:92px;border:1px solid var(--line);border-radius:9px;padding:8px;text-align:center;font-size:10px;font-weight:700;background:var(--surface-2)}
+.ladder-step.current{background:var(--teal-soft);border-color:var(--teal);color:var(--teal)}
+.ladder-step.pending{background:var(--amber-soft);border-color:#fcd34d;color:var(--amber)}
+.ladder-step.no{background:var(--red-soft);border-color:#fecaca;color:var(--red)}
+.chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.chart{padding:14px;margin:0}
+.bar-list{display:grid;gap:8px;margin-top:10px}
+.bar-row{display:grid;grid-template-columns:minmax(85px,130px) 1fr 38px;gap:8px;align-items:center;font-size:11px}
+.bar-track{height:18px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;background:var(--teal);border-radius:999px}
+.bar-fill.amber{background:var(--amber)}
+.bar-fill.purple{background:var(--purple)}
+.bar-fill.red{background:var(--red)}
+.chart figcaption{font-size:10px;color:var(--muted);margin-top:9px}
+.plot{width:100%;height:auto;display:block}
+.plot .grid{stroke:var(--line);stroke-width:1}
+.plot .axis{stroke:var(--muted);stroke-width:1.5}
+.plot .guard{stroke:var(--red);stroke-width:1.5;stroke-dasharray:5 4}
+.plot .point{fill:var(--teal);stroke:#fff;stroke-width:2}
+.plot .series-load{fill:none;stroke:var(--amber);stroke-width:2.5}
+.plot .series-coverage{fill:none;stroke:var(--teal);stroke-width:2.5}
+.plot .mark-load{fill:var(--amber);stroke:var(--surface);stroke-width:1.5}
+.plot .mark-coverage{fill:var(--teal);stroke:var(--surface);stroke-width:1.5}
+.plot text{fill:var(--text);font-size:10px}
+.plot .label{font-weight:700}
+.matrix2{display:grid;grid-template-columns:130px repeat(2,1fr);gap:4px;margin-top:10px}
+.matrix2 div{border:1px solid var(--line);padding:8px;text-align:center;font-size:11px;background:var(--surface);min-width:0;overflow-wrap:anywhere}
+.matrix2 .head{background:var(--surface-2);font-weight:800}
+.gate{padding:18px;border:2px solid #fecaca;background:linear-gradient(135deg,var(--red-soft),var(--amber-soft))}
+.gate-flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.gate-stop{border:3px solid var(--red);color:var(--red);border-radius:50%;width:108px;height:108px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;background:#fff}
+.gate-step{flex:1 1 130px;border:1px solid #fcd34d;background:#fff;border-radius:10px;padding:10px;text-align:center;font-size:11px;font-weight:800;color:var(--amber)}
+.gate-go{border:3px solid var(--green);color:var(--green);border-radius:50%;width:108px;height:108px;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;background:#fff}
+.decision-card h3{display:flex;gap:8px;align-items:center}
+.decision-id{font-family:Consolas,monospace;color:var(--blue)}
+.decision-row{font-size:12px;margin:6px 0}
+.decision-row strong{display:block;color:var(--muted);font-size:10px;text-transform:uppercase}
+.capture{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+.capture-outcomes{display:flex;gap:5px;flex-wrap:wrap}
+.outcome{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:800;cursor:pointer}
+.outcome:has(input:checked){background:var(--teal);color:#fff;border-color:var(--teal)}
+.outcome input{margin:0;accent-color:var(--teal)}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:7px}
+.form-grid label{font-size:10px;font-weight:800;color:var(--muted)}
+.form-grid input,.form-grid textarea,.form-grid select{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px;margin-top:3px;color:var(--ink);background:#fff}
+.form-grid textarea{min-height:60px;resize:vertical}
+.form-grid .wide{grid-column:1/-1}
+.ai-panel{padding:16px}
+.ai-panel pre{white-space:pre-wrap;word-break:break-word;max-height:380px;overflow:auto;background:#0f172a;color:#e2e8f0;border-radius:10px;padding:12px;font:11px/1.5 Consolas,monospace}
+.footer{border-top:1px solid var(--line);padding-top:14px;margin-top:34px;color:var(--muted);font-size:11px}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:920px){
+  .puzzle-board{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .puzzle-board:before{display:none}
+  .puzzle-piece:after{display:none}
+  .detail-panel{grid-template-columns:1fr}
+  .event-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .ladder{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .timeline{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .topbar-inner{padding:9px 12px}
+  .brand{min-width:100%;font-size:13px}
+  .shell{padding:14px 12px 60px}
+  .chronology{grid-template-columns:1fr}
+  .chronology .arrow{transform:rotate(90deg)}
+  [dir="rtl"] .chronology .arrow{transform:rotate(90deg)}
+  .puzzle-board{grid-template-columns:1fr;padding-inline-start:18px}
+  .puzzle-board:before{display:block;left:8px;right:auto;top:4%;bottom:4%;width:3px;height:auto;transform:none}
+  [dir="rtl"] .puzzle-board{padding-inline-start:0;padding-inline-end:18px}
+  [dir="rtl"] .puzzle-board:before{left:auto;right:8px}
+  .puzzle-piece{min-height:78px;align-items:flex-start;text-align:start;padding-inline-start:18px}
+  .puzzle-piece:after{display:block;inset-inline-end:auto;inset-inline-start:-16px;top:calc(50% - 8px)}
+  .puzzle-piece:last-child:after{display:block}
+  .detail-grid,.view-grid,.directive-list,.action-list,.decision-list,.experiment-grid,.chart-grid,.form-grid{grid-template-columns:minmax(0,1fr)}
+  .form-grid .wide{grid-column:auto}
+  .form-grid input,.form-grid textarea,.form-grid select{max-width:320px}
+  .flow-rail,.node-chain,.pipeline,.flowline,.gate-flow{flex-direction:column}
+  .flow-arrow,.arrow-inline{transform:rotate(90deg)}
+  [dir="rtl"] .flow-arrow,[dir="rtl"] .arrow-inline{transform:rotate(90deg)}
+  .lane{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr}
+  .event-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ladder{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trace-desktop{display:none}
+  .trace-mobile{display:grid;gap:8px}
+  .directive dl{grid-template-columns:1fr}
+  .directive dt{margin-top:4px}
+  .table-wrap{overflow-x:auto}
+  .matrix2{grid-template-columns:minmax(0,.8fr) repeat(2,minmax(0,1fr))}
+  .bar-row{grid-template-columns:88px 1fr 30px}
+  .gate-stop,.gate-go{width:94px;height:94px;align-self:center}
+  .ai-panel pre{max-height:260px}
+}
+@media(max-width:390px){
+  .control-group{width:100%}
+  .btn{padding:6px 9px;font-size:11px}
+  .event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ladder{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .puzzle-piece{transition:none}
+}
+@media print{
+  @page{size:A4 portrait;margin:10mm 10mm 12mm}
+  body{background:#fff;font-size:10pt}
+  .topbar,.guide-controls,.explore-nav,.capture,.export-controls,.mode-intro{display:none!important}
+  .shell{max-width:none;padding:0}
+  #guidedView,#exploreView,[hidden]{display:block!important}
+  .card{box-shadow:none}
+  .chronology{grid-template-columns:1fr auto 1fr auto 1fr!important}
+  .chronology .arrow,.flow-arrow,.arrow-inline{transform:none!important}
+  .puzzle-board{grid-template-columns:repeat(3,minmax(0,1fr))!important;padding-inline:0!important}
+  .puzzle-board:before,.puzzle-piece:after{display:none!important}
+  .detail-grid,.view-grid,.directive-list,.action-list,.decision-list,.experiment-grid,.chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .lane{grid-template-columns:130px 1fr!important}
+  .timeline{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .event-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  .ladder{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .trace-desktop{display:block!important}
+  .trace-mobile{display:none!important}
+  .table-wrap{overflow:visible!important;break-inside:avoid}
+  .puzzle-piece{background:#fff!important;color:#000!important;border:1px solid #555!important;transform:none!important}
+  .puzzle-board:before{background:#555}
+  .section{break-inside:avoid}
+  .directive,.decision-card,.action,.chart,.experiment{break-inside:avoid}
+  .section-head{break-after:avoid}
+  .ai-panel{display:none}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"CreativeWork",
+  "name":"VEGO-AI July 1 Interactive Architecture Puzzle",
+  "dateModified":"2026-07-21",
+  "inLanguage":["en","he"],
+  "about":["VEGO-AI","human judgment memory","domain-model assessment","supervisor meeting traceability"],
+  "description":"A machine-readable and human-readable record linking July 1 directives to later work, evidence, architecture, and open decisions."
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main" data-ui="skip">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand" data-ui="brand">VEGO-AI · July 1 architecture puzzle</div>
+    <div class="control-group" id="modeControls" aria-label="View mode">
+      <button class="btn primary" type="button" data-mode="guided" aria-pressed="true" data-ui="guided">Guided Puzzle</button>
+      <button class="btn" type="button" data-mode="explore" aria-pressed="false" data-ui="explore">Explore Everything</button>
+    </div>
+    <div class="control-group" id="languageControls" aria-label="Language">
+      <button class="btn primary" id="langEn" type="button" data-lang="en" aria-pressed="true">English</button>
+      <button class="btn" id="langHe" type="button" data-lang="he" aria-pressed="false">עברית</button>
+    </div>
+    <div class="control-group">
+      <button class="btn" type="button" data-action="print" data-ui="print">Print / PDF</button>
+      <button class="btn" type="button" data-action="copy-context" data-ui="copyContext">Copy AI context</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="shell">
+  <section class="hero" aria-labelledby="pageTitle">
+    <div class="eyebrow" data-ui="eyebrow">July 1 record → July 3–20 progress → July 21 decisions</div>
+    <h1 id="pageTitle" data-ui="title">Build the whole VEGO-AI story one connected piece at a time</h1>
+    <p class="lead" data-ui="lead">Each component connects a recorded supervisor requirement to architecture, work produced, evidence, a safety boundary, and the decision still needed.</p>
+    <div class="notice" role="note" data-ui="notice">The July 1 record is machine-derived and paraphrased pending M-01 confirmation. Later work is not attributed to Iris or Arnon. Mechanism and methodology only—no accuracy, generalization, workload-reduction, benchmark, or clinical-performance claim.</div>
+    <div class="chronology" id="chronology"></div>
+  </section>
+
+  <section id="guidedView" class="mode-view" aria-labelledby="guidedTitle">
+    <div class="section-head">
+      <div>
+        <h2 id="guidedTitle" data-ui="guidedTitle">Guided Puzzle</h2>
+        <p class="section-copy" data-ui="guidedCopy">Advance through six pieces. Every new piece remains connected, so the final view becomes the complete governed architecture.</p>
+      </div>
+      <span class="prov working" data-ui="workingDraft">● Working draft</span>
+    </div>
+    <div class="card guided-card">
+      <div class="guide-controls">
+        <span class="step-count" id="stepCount"></span>
+        <button class="btn" type="button" data-action="previous" data-ui="previous">Previous</button>
+        <button class="btn primary" type="button" data-action="next" data-ui="next">Next</button>
+        <button class="btn" type="button" data-action="complete" data-ui="showComplete">Show complete system</button>
+        <button class="btn" type="button" data-action="reset" data-ui="reset">Reset</button>
+      </div>
+      <div id="puzzleBoard" class="puzzle-board" aria-label="Six connected architecture components"></div>
+      <div id="pieceDetail" class="detail-panel" aria-live="polite"></div>
+      <div id="flowRail" class="flow-rail" aria-label="End-to-end architecture flow"></div>
+    </div>
+  </section>
+
+  <section id="exploreView" class="mode-view" hidden aria-labelledby="exploreTitle">
+    <div class="section-head">
+      <div>
+        <h2 id="exploreTitle" data-ui="exploreTitle">Explore Everything</h2>
+        <p class="section-copy" data-ui="exploreCopy">Inspect the complete record, architecture, artifacts, evidence, experiments, and decisions. Selecting a puzzle component highlights every related item.</p>
+      </div>
+      <button class="btn" type="button" data-action="clear-focus" data-ui="clearHighlight">Clear highlight</button>
+    </div>
+    <nav class="explore-nav" aria-label="Explore sections">
+      <a class="btn" href="#architecture" data-ui="architecture">Architecture</a>
+      <a class="btn" href="#traceability" data-ui="traceability">Traceability</a>
+      <a class="btn" href="#directives" data-ui="directives">D1–D12</a>
+      <a class="btn" href="#artifacts" data-ui="artifacts">Artifacts</a>
+      <a class="btn" href="#evidence" data-ui="evidence">Evidence</a>
+      <a class="btn" href="#experiments" data-ui="experiments">Experiments</a>
+      <a class="btn" href="#decisions" data-ui="decisions">Decisions</a>
+    </nav>
+
+    <section class="section" id="architecture">
+      <div class="section-head"><div><h2 data-ui="architectureTitle">How the pieces form one system</h2><p class="section-copy" data-ui="architectureCopy">The baseline, proposed H-layer, implemented advisory chain, and parked evaluation remain visually and operationally separate.</p></div><span class="prov working" data-ui="workingDraft">● Working draft</span></div>
+      <div id="architectureContent"></div>
+    </section>
+
+    <section class="section" id="traceability">
+      <div class="section-head"><div><h2 data-ui="traceTitle">Directive-to-component traceability</h2><p class="section-copy" data-ui="traceCopy">Every recorded point maps to architecture, work, evidence, and an open decision.</p></div><span class="prov record" data-ui="recordProv">● Record</span></div>
+      <div id="traceContent"></div>
+    </section>
+
+    <section class="section" id="directives">
+      <div class="section-head"><div><h2 data-ui="directiveTitle">July 1 point by point</h2><p class="section-copy" data-ui="directiveCopy">Recorded requirement, what was done, current status, next step, and the boundary that remains in force.</p></div><span class="prov record" data-ui="recordProv">● Record</span></div>
+      <div id="directiveContent"></div>
+    </section>
+
+    <section class="section" id="actions">
+      <div class="section-head"><div><h2 data-ui="actionTitle">Recorded action items</h2><p class="section-copy" data-ui="actionCopy">The action record remains provisional until M-01 confirmation.</p></div><span class="prov record" data-ui="recordProv">● Record</span></div>
+      <div id="actionContent"></div>
+    </section>
+
+    <section class="section" id="artifacts">
+      <div class="section-head"><div><h2 data-ui="artifactTitle">What was implemented and how data moves</h2><p class="section-copy" data-ui="artifactCopy">Each transformation adds identity, human rationale, provenance, scope, advice, or a comparison—never a baseline overwrite.</p></div><span class="prov offline" data-ui="offlineProv">● Offline evidence</span></div>
+      <div id="artifactContent"></div>
+    </section>
+
+    <section class="section" id="governance">
+      <div class="section-head"><div><h2 data-ui="governanceTitle">Human authority, verification, and memory</h2><p class="section-copy" data-ui="governanceCopy">Timeout, rejection, missing evidence, and unresolved conflict preserve the baseline and stop automatic action.</p></div><span class="prov working" data-ui="workingDraft">● Working draft</span></div>
+      <div id="governanceContent"></div>
+    </section>
+
+    <section class="section" id="evidence">
+      <div class="section-head"><div><h2 data-ui="evidenceTitle">Evidence in numbers</h2><p class="section-copy" data-ui="evidenceCopy">Descriptive, offline, and synthetic evidence is labelled separately. None of these charts demonstrates accuracy improvement.</p></div><span class="prov offline" data-ui="offlineProv">● Offline evidence</span></div>
+      <div id="evidenceContent"></div>
+    </section>
+
+    <section class="section" id="experiments">
+      <div class="section-head"><div><h2 data-ui="experimentTitle">Experiment and evidence roadmap</h2><p class="section-copy" data-ui="experimentCopy">Mechanism evidence advances while independent-label evaluation remains behind its human gate.</p></div><span class="prov offline" data-ui="offlineProv">● Offline evidence</span></div>
+      <div id="experimentContent"></div>
+    </section>
+
+    <section class="section" id="evaluation">
+      <div class="section-head"><div><h2 data-ui="gateTitle">Evaluation gate</h2><p class="section-copy" data-ui="gateCopy">Zero supplied independent labels means no accuracy computation and no policy tuning.</p></div><span class="prov decision" data-ui="decisionProv">● Decision request</span></div>
+      <div id="gateContent"></div>
+    </section>
+
+    <section class="section" id="decisions">
+      <div class="section-head"><div><h2 data-ui="decisionTitle">Decisions M-01–M-06</h2><p class="section-copy" data-ui="decisionCopy">Capture an explicit outcome, rationale, owner, and due date. Entries remain local until exported.</p></div><span class="prov decision" data-ui="decisionProv">● Decision request</span></div>
+      <div class="export-controls control-group">
+        <button class="btn" type="button" data-action="export-json" data-ui="exportJson">Export decisions JSON</button>
+        <button class="btn" type="button" data-action="export-md" data-ui="exportMd">Export meeting Markdown</button>
+        <button class="btn danger" type="button" data-action="clear-decisions" data-ui="clearDecisions">Clear local decisions</button>
+      </div>
+      <p class="section-copy" data-ui="localOnly">Local browser storage only; this page does not modify project files.</p>
+      <div id="decisionContent"></div>
+    </section>
+
+    <section class="section" id="ai-context">
+      <div class="section-head"><div><h2 data-ui="aiTitle">AI-readable project context</h2><p class="section-copy" data-ui="aiCopy">The same canonical relationships used by the human interface are available as structured context.</p></div><span class="prov working" data-ui="workingDraft">● Working draft</span></div>
+      <div class="card ai-panel">
+        <div class="control-group"><button class="btn primary" type="button" data-action="copy-context" data-ui="copyContext">Copy AI context</button></div>
+        <pre id="aiSummary" aria-label="Machine-readable VEGO-AI project context"></pre>
+      </div>
+    </section>
+  </section>
+
+  <footer class="footer" id="footerText"></footer>
+</main>
+
+<noscript>This interactive explainer requires JavaScript; no network connection is required. · מסביר אינטראקטיבי זה דורש JavaScript; אין צורך בחיבור לרשת.</noscript>
+
+<script type="application/json" id="vego-data">
+{
+  "schemaVersion":"2.0",
+  "generatedAt":"2026-07-15",
+  "claimBoundaries":[
+    "July 1 wording is machine-derived and paraphrased pending M-01.",
+    "Later July work is not attributed to Iris or Arnon.",
+    "No accuracy, generalization, benchmark-superiority, workload-reduction, or clinical-performance claim.",
+    "Agent 4 and baseline eval_output remain read-only.",
+    "EXP-005 has zero supplied independent expert labels.",
+    "Corrections are proposal-only and require explicit human approval."
+  ],
+  "sources":[
+    {"id":"SRC-BASELINE","path":"VEGO-AI/eval_output/<setting>/agentD_variability_classes*.json","evidenceClass":"historical baseline","boundary":"read-only"},
+    {"id":"SRC-REVIEW","path":"VEGO-AI/human_review_output/<setting>/human_review_queue*.jsonl","evidenceClass":"mechanism evidence","boundary":"not an accuracy label source"},
+    {"id":"SRC-MEMORY","path":"VEGO-AI/human_review_output/ucd_ch/memory_advice.json","evidenceClass":"advisory subset","boundary":"advisory_only"},
+    {"id":"SRC-EXP006","path":"reports/generated/exp006/summary.json","evidenceClass":"offline replay","boundary":"heterogeneous lifecycle observations"},
+    {"id":"SRC-EXP007","path":"reports/generated/exp007/summary.json","evidenceClass":"offline dosage replay","boundary":"no default selected"},
+    {"id":"SRC-EXP008","path":"reports/generated/exp008/summary.json","evidenceClass":"offline cap sweep","boundary":"no default selected"},
+    {"id":"SRC-EXP005","path":"experiments/EXP-005-real-label-accuracy-gate","evidenceClass":"evaluation gate","boundary":"0 supplied labels"}
+  ],
+  "skills":[
+    {"id":"S1","group":"H1","name":{"en":"Observe","he":"צפייה"}},
+    {"id":"S2","group":"H1","name":{"en":"Triage","he":"מיון"}},
+    {"id":"S3","group":"H1","name":{"en":"Ask","he":"שאלה"}},
+    {"id":"S4","group":"H2","name":{"en":"Capture","he":"לכידה"}},
+    {"id":"S5","group":"H2","name":{"en":"Verify","he":"אימות"}},
+    {"id":"S6","group":"H3","name":{"en":"Propose","he":"הצעה"}},
+    {"id":"S7","group":"H3","name":{"en":"Remember","he":"זיכרון"}}
+  ],
+  "events":[
+    {"id":"E1–E14","scope":"framework/lifecycle","actionable":"proposal only"},
+    {"id":"E3/E9/E10/E11/E14","scope":"explicit instrumentation gaps","actionable":"no"},
+    {"id":"E15","scope":"evaluation only","actionable":"no"}
+  ],
+  "connections":[
+    {"from":"C1","to":"C2"},{"from":"C2","to":"C3"},{"from":"C3","to":"C4"},{"from":"C4","to":"C5"},{"from":"C5","to":"C6"}
+  ],
+  "chronology":[
+    {"id":"record","date":{"en":"July 1","he":"1 ביולי"},"title":{"en":"Recorded supervisor redirect","he":"תיעוד הכוונת המנחה"},"detail":{"en":"Machine-derived paraphrase; confirm or correct under M-01.","he":"ניסוח מבוסס-מכונה; לאישור או תיקון במסגרת M-01."},"kind":"record"},
+    {"id":"progress","date":{"en":"July 3–14","he":"3–14 ביולי"},"title":{"en":"Implementation and offline evidence","he":"מימוש ועדות offline"},"detail":{"en":"Later author work; not supervisor-approved by default.","he":"עבודת המשך של המחבר; אינה מאושרת כברירת מחדל."},"kind":"working"},
+    {"id":"decisions","date":{"en":"Current meeting","he":"הפגישה הנוכחית"},"title":{"en":"Decisions M-01–M-06","he":"החלטות M-01–M-06"},"detail":{"en":"Record outcome, rationale, owner, and due date.","he":"לתעד תוצאה, נימוק, אחראי ותאריך יעד."},"kind":"decision"}
+  ],
+  "components":[
+    {
+      "id":"C1","order":1,"status":"proposal",
+      "title":{"en":"Baseline and architecture frame","he":"בסיס ומסגרת ארכיטקטורה"},
+      "short":{"en":"Baseline frame","he":"מסגרת בסיס"},
+      "why":{"en":"Start with the original four-agent VEGO-AI pipeline and make the H-layer boundary explicit.","he":"להתחיל מצינור VEGO-AI המקורי בן ארבעת הסוכנים ולהבהיר את גבול שכבת H."},
+      "basis":{"en":"D3 — use H naming and decide agents versus skills.","he":"D3 — להשתמש בשמות H ולהחליט בין סוכנים למיומנויות."},
+      "work":{"en":"Mapped Agents 1–4, H1/H2/H3, S1–S7, and Options A/B/C.","he":"מופו סוכנים 1–4, H1/H2/H3, S1–S7 ואפשרויות A/B/C."},
+      "evidence":{"en":"Architecture and prompt-requirement drafts exist; Option B remains a recommendation.","he":"קיימות טיוטות ארכיטקטורה ודרישות פרומפט; אפשרות B נשארת המלצה."},
+      "boundary":{"en":"No H-layer architecture is approved; Agent 4 remains unchanged.","he":"טרם אושרה ארכיטקטורת שכבת H; Agent 4 נשאר ללא שינוי."},
+      "decision":{"en":"M-02 — choose the H-layer decomposition.","he":"M-02 — לבחור את פירוק שכבת H."},
+      "directives":["D3"],"skills":["H1","H2","H3","S1–S7"],"events":[],"artifacts":["A-ARCH","A-SKILLS","A-PROMPTS"],"experiments":[],"decisionIds":["M-02"]
+    },
+    {
+      "id":"C2","order":2,"status":"offline",
+      "title":{"en":"Observe early and control dosage","he":"לצפות מוקדם ולשלוט במינון"},
+      "short":{"en":"Observe and triage","he":"צפייה ומיון"},
+      "why":{"en":"See artifact and Q&A events before Agent 4, then promote only selected cases to human review.","he":"לראות אירועי תוצרים ושו״ת לפני Agent 4, ואז לקדם רק מקרים נבחרים לסקירה אנושית."},
+      "basis":{"en":"D1, D2, D6 — observe both circles, enter early, and configure human involvement.","he":"D1, D2, D6 — לצפות בשני המעגלים, להיכנס מוקדם ולהגדיר מעורבות אנושית."},
+      "work":{"en":"Created E1–E15 catalog, early-hook map, S1–S3 routing, EXP-006 replay, EXP-007 dosage, and EXP-008 cap sweep.","he":"נוצרו קטלוג E1–E15, מפת hooks מוקדמים, ניתוב S1–S3, replay EXP-006, מינון EXP-007 וסריקת cap EXP-008."},
+      "evidence":{"en":"481 heterogeneous reconstructed events; no tested dosage meets both the coverage and load target.","he":"481 אירועים משוחזרים הטרוגניים; אף מינון שנבדק אינו עומד גם ביעד הכיסוי וגם ביעד העומס."},
+      "boundary":{"en":"Passive observation is proposed; no live hooks or active triggers are authorized.","he":"מוצעת צפייה פסיבית; hooks חיים וטריגרים פעילים אינם מאושרים."},
+      "decision":{"en":"M-03 — observation scope, triggers, pilot dosage, and cap policy.","he":"M-03 — היקף צפייה, טריגרים, מינון פיילוט ומדיניות תקרה."},
+      "directives":["D1","D2","D6"],"skills":["H1","S1","S2","S3"],"events":["E1–E14","E15 parked"],"artifacts":["A-EVENTS","A-HOOKS"],"experiments":["EXP-006","EXP-007","EXP-008"],"decisionIds":["M-03"]
+    },
+    {
+      "id":"C3","order":3,"status":"blocked",
+      "title":{"en":"Ask and capture real human judgment","he":"לשאול וללכוד שיפוט אנושי אמיתי"},
+      "short":{"en":"Human judgment","he":"שיפוט אנושי"},
+      "why":{"en":"Turn selected uncertainty into a structured, traceable exchange with a real reviewer.","he":"להפוך אי-ודאות נבחרת לחילופי מידע מובנים ועקיבים עם בודק אמיתי."},
+      "basis":{"en":"D5, D7 — expert means a real person and the interface must be bidirectional.","he":"D5, D7 — מומחה הוא אדם אמיתי והממשק חייב להיות דו-כיווני."},
+      "work":{"en":"Implemented review queue, stable signatures, structured feedback capture, reviewer roles, and the EXP-005 labeling package.","he":"מומשו תור סקירה, חתימות יציבות, לכידת משוב מובנה, תפקידי בודקים וחבילת התיוג EXP-005."},
+      "evidence":{"en":"11 review items and 3 reusable judgments demonstrate mechanism readiness; independent labels supplied: 0.","he":"11 פריטי סקירה ו-3 שיפוטים רב-שימושיים מדגימים מוכנות מנגנון; תוויות עצמאיות שסופקו: 0."},
+      "boundary":{"en":"No label may be invented or inferred; no live human interface is authorized.","he":"אין להמציא או להסיק תווית; ממשק אנושי חי אינו מאושר."},
+      "decision":{"en":"M-05 — approve protocol, reviewers, roles, and implementation authority.","he":"M-05 — לאשר פרוטוקול, בודקים, תפקידים וסמכות מימוש."},
+      "directives":["D5","D7"],"skills":["H2","S4"],"events":["E9","E10"],"artifacts":["A-QUEUE","A-FEEDBACK","A-LABELS"],"experiments":["EXP-005"],"decisionIds":["M-05"]
+    },
+    {
+      "id":"C4","order":4,"status":"synthetic",
+      "title":{"en":"Challenge feedback and converge","he":"לאתגר משוב ולהתכנס"},
+      "short":{"en":"Verify and converge","he":"אימות והתכנסות"},
+      "why":{"en":"Human feedback is evidence to verify, not an instruction that the system follows automatically.","he":"משוב אנושי הוא ראיה שיש לאמת, לא הוראה שהמערכת מבצעת אוטומטית."},
+      "basis":{"en":"D9, D10 — challenge feedback against sources and bound the interaction.","he":"D9, D10 — לאתגר משוב מול מקורות ולהגביל את האינטראקציה."},
+      "work":{"en":"Designed deterministic-first H-Verify, conflict states, bounded rounds, timeout parking, and human adjudication.","he":"עוצבו H-Verify דטרמיניסטי-תחילה, מצבי קונפליקט, סבבים מוגבלים, חניה ב-timeout והכרעה אנושית."},
+      "evidence":{"en":"EXP-009/010 provide assumption-driven synthetic rule evidence only.","he":"EXP-009/010 מספקים עדות כללים סינתטית מבוססת-הנחות בלבד."},
+      "boundary":{"en":"Conflict, timeout, or missing evidence ends in parking or adjudication—not automatic approval.","he":"קונפליקט, timeout או ראיה חסרה מסתיימים בחניה או הכרעה — לא באישור אוטומטי."},
+      "decision":{"en":"M-04 and M-05 — sources, ordering, round bound, timeout, and authority.","he":"M-04 ו-M-05 — מקורות, סדר, חסם סבבים, timeout וסמכות."},
+      "directives":["D9","D10"],"skills":["H2","S5"],"events":["E10","E11"],"artifacts":["A-VERIFY"],"experiments":["EXP-009","EXP-010","EXP-017"],"decisionIds":["M-04","M-05"]
+    },
+    {
+      "id":"C5","order":5,"status":"delivered",
+      "title":{"en":"Learn and reuse without mutation","he":"ללמוד ולעשות שימוש חוזר ללא שינוי"},
+      "short":{"en":"Memory and advice","he":"זיכרון וייעוץ"},
+      "why":{"en":"Preserve verified human rationale as reusable, scoped, leakage-aware advisory evidence.","he":"לשמר נימוק אנושי מאומת כראיה ייעוצית רב-שימושית, תחומה ומודעת-דליפה."},
+      "basis":{"en":"D8, D11 — learning must exceed save/retrieve, with a skills map and prompt requirements.","he":"D8, D11 — למידה חייבת לעלות על שמירה/שליפה, עם מפת מיומנויות ודרישות פרומפט."},
+      "work":{"en":"Implemented M1, M1.2, M2, M3, M4A, and M4B-1; designed S6 proposal-only corrections and S7 trusted memory.","he":"מומשו M1, M1.2, M2, M3, M4A ו-M4B-1; עוצבו תיקוני S6 כהצעה בלבד וזיכרון מהימן S7."},
+      "evidence":{"en":"Historical package snapshot: 27 comparison rows, 0 classification changes, and 2 post-memory re-review flags.","he":"snapshot היסטורי של החבילה: 27 שורות השוואה, 0 שינויי סיווג ו-2 סימוני סקירה חוזרת לאחר זיכרון."},
+      "boundary":{"en":"Advice is advisory_only; S6 cannot mutate artifacts; trusted memory requires verification or adjudication.","he":"הייעוץ הוא advisory_only; S6 אינו משנה תוצרים; זיכרון מהימן דורש אימות או הכרעה."},
+      "decision":{"en":"M-02 and M-05 — finalize architecture and correction authority.","he":"M-02 ו-M-05 — להשלים ארכיטקטורה וסמכות תיקון."},
+      "directives":["D8","D11"],"skills":["H3","S6","S7","M1–M4B-1"],"events":["E10–E14"],"artifacts":["A-QUEUE","A-FEEDBACK","A-MEMORY","A-ADVICE","A-COMPARE"],"experiments":["EXP-013","EXP-014","EXP-016","EXP-018"],"decisionIds":["M-02","M-05"]
+    },
+    {
+      "id":"C6","order":6,"status":"parked",
+      "title":{"en":"Park evaluation and define future scope","he":"להקפיא הערכה ולהגדיר היקף עתידי"},
+      "short":{"en":"Evaluation boundary","he":"גבול הערכה"},
+      "why":{"en":"Keep framework mechanisms separate from claims that require independent expert evidence.","he":"להפריד מנגנוני מסגרת מטענות הדורשות ראיית מומחה עצמאית."},
+      "basis":{"en":"D4, D12 — park evaluation, continue literature work, and maintain future-study ideas.","he":"D4, D12 — להקפיא הערכה, להמשיך עבודת ספרות ולתחזק רעיונות עתידיים."},
+      "work":{"en":"Routed E15 outside the framework, prepared 24 safe labeling candidates, and documented literature and future-work directions.","he":"E15 נותב מחוץ למסגרת, הוכנו 24 מועמדי תיוג בטוחים ותועדו כיווני ספרות ועבודה עתידית."},
+      "evidence":{"en":"EXP-005 supplied labels: 0; EXP-012 accuracy is not yet computable.","he":"תוויות שסופקו ל-EXP-005: 0; דיוק EXP-012 עדיין אינו ניתן לחישוב."},
+      "boundary":{"en":"No accuracy, generalization, policy tuning, or clinical claim before the evidence gate.","he":"אין טענת דיוק, הכללה, כוונון מדיניות או טענה קלינית לפני שער הראיות."},
+      "decision":{"en":"M-06 — confirm MSc timing, education scope, and future-work boundary.","he":"M-06 — לאשר תזמון MSc, היקף חינוכי וגבול עבודה עתידית."},
+      "directives":["D4","D12"],"skills":["E15","Evaluation"],"events":["E15"],"artifacts":["A-LABELS","A-LITERATURE","A-FUTURE"],"experiments":["EXP-005","EXP-011","EXP-012"],"decisionIds":["M-06"]
+    }
+  ],
+  "directives":[
+    {"id":"D1","componentId":"C2","status":"proposal","requirement":{"en":"Observe both the artifact process and Q&A interactions.","he":"לצפות גם בתהליך התוצרים וגם באינטראקציות השו״ת."},"did":{"en":"Created the E1–E15 catalog, framework diagrams, and EXP-006 observation replay.","he":"נוצרו קטלוג E1–E15, דיאגרמות מסגרת ו-replay תצפית EXP-006."},"current":{"en":"Passive E1–E14 observation is proposed; E15 remains evaluation-only.","he":"מוצעת צפייה פסיבית E1–E14; E15 נשאר הערכה-בלבד."},"next":{"en":"Confirm observation scope and active triggers under M-03.","he":"לאשר היקף צפייה וטריגרים פעילים במסגרת M-03."},"boundary":{"en":"No active triggers yet.","he":"אין עדיין טריגרים פעילים."},"decisionIds":["M-03"]},
+    {"id":"D2","componentId":"C2","status":"offline","requirement":{"en":"Enter the process before Agent 4.","he":"להיכנס לתהליך לפני Agent 4."},"did":{"en":"Identified E1–E4 early events, S2 routing, and possible hook locations.","he":"זוהו אירועי E1–E4 מוקדמים, ניתוב S2 ומיקומי hook אפשריים."},"current":{"en":"Offline reconstruction only.","he":"שחזור offline בלבד."},"next":{"en":"Authorize hook locations only after M-03 and separate implementation approval.","he":"לאשר מיקומי hook רק לאחר M-03 ואישור מימוש נפרד."},"boundary":{"en":"No live hook implementation.","he":"ללא מימוש hook חי."},"decisionIds":["M-03"]},
+    {"id":"D3","componentId":"C1","status":"proposal","requirement":{"en":"Use H-layer naming and decide whether H-elements are agents or skills.","he":"להשתמש בשמות שכבת H ולהחליט אם רכיבי H הם סוכנים או מיומנויות."},"did":{"en":"Created H1/H2/H3, S1–S7, and architecture Options A/B/C.","he":"נוצרו H1/H2/H3, S1–S7 ואפשרויות ארכיטקטורה A/B/C."},"current":{"en":"Observer + Integrator is recommended, not approved.","he":"Observer + Integrator מומלץ, לא מאושר."},"next":{"en":"Choose the H-layer decomposition under M-02.","he":"לבחור את פירוק שכבת H במסגרת M-02."},"boundary":{"en":"No architecture is approved.","he":"אין ארכיטקטורה מאושרת."},"decisionIds":["M-02"]},
+    {"id":"D4","componentId":"C6","status":"parked","requirement":{"en":"Separate evaluation from the operational framework and park it.","he":"להפריד את ההערכה מהמסגרת התפעולית ולהקפיא אותה."},"did":{"en":"Created separate framework/evaluation views and routed E15 outside the framework.","he":"נוצרו תצוגות מסגרת/הערכה נפרדות ו-E15 נותב מחוץ למסגרת."},"current":{"en":"Documented and parked behind evidence gates.","he":"מתועד ומוקפא מאחורי שערי ראיות."},"next":{"en":"Keep evaluation parked until independent labels exist.","he":"להשאיר הערכה מוקפאת עד שיהיו תוויות עצמאיות."},"boundary":{"en":"E15 cannot create a framework action.","he":"E15 אינו יכול ליצור פעולת מסגרת."},"decisionIds":["M-01"]},
+    {"id":"D5","componentId":"C3","status":"blocked","requirement":{"en":"Expert judgment must come from a real person.","he":"שיפוט מומחה חייב להגיע מאדם אמיתי."},"did":{"en":"Defined reviewer roles and prepared the EXP-005 protocol.","he":"הוגדרו תפקידי בודקים והוכן פרוטוקול EXP-005."},"current":{"en":"Reviewer approval and supplied labels remain open.","he":"אישור בודקים ותוויות שסופקו עדיין פתוחים."},"next":{"en":"Approve real reviewers and the blind protocol under M-05.","he":"לאשר בודקים אמיתיים ופרוטוקול עיוור במסגרת M-05."},"boundary":{"en":"No invented, inferred, or AI-generated labels.","he":"אין תוויות מומצאות, מוסקות או מיוצרות-AI."},"decisionIds":["M-05"]},
+    {"id":"D6","componentId":"C2","status":"proposal","requirement":{"en":"Human involvement must be configurable.","he":"מעורבות אנושית חייבת להיות ניתנת להגדרה."},"did":{"en":"Documented intervention modes and ran EXP-007 dosage and EXP-008 cap sweeps.","he":"תועדו מצבי התערבות והורצו סריקות מינון EXP-007 ותקרה EXP-008."},"current":{"en":"No mode or cap is approved.","he":"אין מצב או תקרה מאושרים."},"next":{"en":"Choose a pilot configuration under M-03.","he":"לבחור תצורת פיילוט במסגרת M-03."},"boundary":{"en":"threshold_sev2 and adaptive caps remain candidates.","he":"threshold_sev2 ותקרות אדפטיביות נשארים מועמדים."},"decisionIds":["M-03"]},
+    {"id":"D7","componentId":"C3","status":"offline","requirement":{"en":"The human interface must be bidirectional and thesis-relevant.","he":"הממשק האנושי חייב להיות דו-כיווני ורלוונטי לתזה."},"did":{"en":"Designed S4/S5 human-to-system and system-to-human flows.","he":"עוצבו זרימות S4/S5 מאדם למערכת ומהמערכת לאדם."},"current":{"en":"Interface design exists; no live interface runtime exists.","he":"קיים עיצוב ממשק; אין ממשק חי."},"next":{"en":"Decide roles and any implementation authorization under M-05.","he":"להחליט על תפקידים וכל אישור מימוש במסגרת M-05."},"boundary":{"en":"No live interface implementation is authorized.","he":"מימוש ממשק חי אינו מאושר."},"decisionIds":["M-05"]},
+    {"id":"D8","componentId":"C5","status":"proposal","requirement":{"en":"Learning must exceed simply saving and retrieving feedback.","he":"הלמידה חייבת להיות יותר משמירה ושליפה של משוב."},"did":{"en":"Defined S6 correction proposals and S7 trusted memory with provenance and approval states.","he":"הוגדרו הצעות תיקון S6 וזיכרון מהימן S7 עם מקור ומצבי אישור."},"current":{"en":"Proposal-only; no automatic artifact mutation.","he":"הצעה בלבד; אין שינוי אוטומטי של תוצרים."},"next":{"en":"Approve correction authority under M-05.","he":"לאשר סמכות תיקון במסגרת M-05."},"boundary":{"en":"S6 proposes; a human approves or rejects.","he":"S6 מציע; אדם מאשר או דוחה."},"decisionIds":["M-05"]},
+    {"id":"D9","componentId":"C4","status":"offline","requirement":{"en":"Challenge human feedback against authoritative sources.","he":"לאתגר משוב אנושי מול מקורות סמכותיים."},"did":{"en":"Designed deterministic-first H-Verify and synthetic rule fixtures.","he":"עוצבו H-Verify דטרמיניסטי-תחילה ו-fixtures סינתטיים."},"current":{"en":"Synthetic mechanism evidence only.","he":"עדות מנגנון סינתטית בלבד."},"next":{"en":"Choose source families and ordering under M-04.","he":"לבחור משפחות מקורות וסדר במסגרת M-04."},"boundary":{"en":"Synthetic fixtures are not validation against real expert mistakes.","he":"fixtures סינתטיים אינם אימות מול טעויות מומחה אמיתיות."},"decisionIds":["M-04"]},
+    {"id":"D10","componentId":"C4","status":"proposal","requirement":{"en":"The interaction should converge rather than continue indefinitely.","he":"האינטראקציה צריכה להתכנס ולא להימשך ללא הגבלה."},"did":{"en":"Created a bounded state machine and tested EXP-010 round limits.","he":"נוצרה מכונת מצבים מוגבלת ונבדקו חסמי סבבים EXP-010."},"current":{"en":"A two-round bound is a pilot candidate, not a default.","he":"חסם שני סבבים הוא מועמד פיילוט, לא ברירת מחדל."},"next":{"en":"Approve round, timeout, and adjudication rules under M-04/M-05.","he":"לאשר כללי סבב, timeout והכרעה במסגרת M-04/M-05."},"boundary":{"en":"Timeout parks the item and preserves baseline behavior.","he":"timeout מחנה את הפריט ושומר על התנהגות הבסיס."},"decisionIds":["M-04","M-05"]},
+    {"id":"D11","componentId":"C5","status":"delivered","requirement":{"en":"Deliver a skills map and prompt requirements, not final prompts.","he":"לספק מפת מיומנויות ודרישות פרומפט, לא פרומפטים סופיים."},"did":{"en":"Produced the H-layer skills map, prompt-requirement traceability, and diagrams.","he":"הופקו מפת מיומנויות שכבת H, עקיבות דרישות פרומפט ודיאגרמות."},"current":{"en":"Delivered as provisional drafts.","he":"נמסר כטיוטות ראשוניות."},"next":{"en":"Finalize only after M-02–M-05 decisions.","he":"להשלים רק לאחר החלטות M-02–M-05."},"boundary":{"en":"Detailed prompts remain provisional.","he":"פרומפטים מפורטים נשארים ראשוניים."},"decisionIds":["M-02","M-03","M-04","M-05"]},
+    {"id":"D12","componentId":"C6","status":"delivered","requirement":{"en":"Continue literature work and maintain future-study ideas.","he":"להמשיך עבודת ספרות ולתחזק רעיונות למחקר עתידי."},"did":{"en":"Created a literature taxonomy and future-work/PhD idea log.","he":"נוצרו טקסונומיית ספרות ויומן רעיונות לעבודה עתידית/דוקטורט."},"current":{"en":"Education remains the MSc scope; MediVARIA remains future work.","he":"חינוך נשאר היקף ה-MSc; MediVARIA נשאר עבודה עתידית."},"next":{"en":"Confirm the MSc and future-work boundary under M-06.","he":"לאשר את גבול ה-MSc והעבודה העתידית במסגרת M-06."},"boundary":{"en":"No clinical data or performance claim.","he":"אין נתונים קליניים או טענת ביצועים."},"decisionIds":["M-06"]}
+  ],
+  "actions":[
+    {"id":"J1-A01","componentId":"C5","title":{"en":"Prepare skills map","he":"להכין מפת מיומנויות"},"did":{"en":"Created H1/H2/H3 and S1–S7 mapping.","he":"נוצר מיפוי H1/H2/H3 ו-S1–S7."},"status":{"en":"Delivered — provisional.","he":"נמסר — ראשוני."},"next":{"en":"Finalize after M-02.","he":"להשלים לאחר M-02."}},
+    {"id":"J1-A02","componentId":"C5","title":{"en":"Prepare prompt requirements, not prompts","he":"להכין דרישות פרומפט, לא פרומפטים"},"did":{"en":"Created requirements and traceability documents.","he":"נוצרו מסמכי דרישות ועקיבות."},"status":{"en":"Delivered — provisional.","he":"נמסר — ראשוני."},"next":{"en":"Finalize after architecture decisions.","he":"להשלים לאחר החלטות ארכיטקטורה."}},
+    {"id":"J1-A03","componentId":"C6","title":{"en":"Continue literature survey","he":"להמשיך את סקר הספרות"},"did":{"en":"Created the literature taxonomy and related-work structure.","he":"נוצרו טקסונומיית ספרות ומבנה עבודות קשורות."},"status":{"en":"Started; timing needs confirmation.","he":"החל; התזמון דורש אישור."},"next":{"en":"Confirm course and writing timing.","he":"לאשר תזמון קורס וכתיבה."}},
+    {"id":"J1-A04","componentId":"C6","title":{"en":"Ask Graduate Studies about direct-track rules","he":"לברר כללי מסלול ישיר מול לימודים מתקדמים"},"did":{"en":"No completion evidence found.","he":"לא נמצאה עדות להשלמה."},"status":{"en":"Pending.","he":"ממתין."},"next":{"en":"Complete and document the query.","he":"להשלים ולתעד את הפנייה."}},
+    {"id":"J1-A05","componentId":"C6","title":{"en":"Recorded action: Iris invites Arnon","he":"משימה מתועדת: איריס מזמינה את ארנון"},"did":{"en":"The package targets Iris and Arnon.","he":"החבילה מיועדת לאיריס וארנון."},"status":{"en":"Invitation itself is not evidenced.","he":"ההזמנה עצמה אינה מתועדת."},"next":{"en":"Confirm or correct this action under M-01.","he":"לאשר או לתקן משימה זו במסגרת M-01."}},
+    {"id":"J1-A06","componentId":"C6","title":{"en":"Maintain future-study idea log","he":"לתחזק יומן רעיונות למחקר עתידי"},"did":{"en":"Created the extension/future-work log.","he":"נוצר יומן הרחבה/עבודה עתידית."},"status":{"en":"Delivered — provisional.","he":"נמסר — ראשוני."},"next":{"en":"Continue logging; keep medical work future-only.","he":"להמשיך לתעד; להשאיר עבודה רפואית לעתיד בלבד."}}
+  ],
+  "artifacts":[
+    {"id":"A-BASELINE","componentId":"C1","kind":"runtime","name":"agentD_variability_classes*.json","adds":{"en":"Official Agent 4 classification baseline.","he":"בסיס הסיווג הרשמי של Agent 4."}},
+    {"id":"A-QUEUE","componentId":"C3","kind":"runtime","name":"human_review_queue.jsonl","adds":{"en":"Review identity, trigger, evidence, and pending state.","he":"זהות סקירה, טריגר, ראיה ומצב ממתין."}},
+    {"id":"A-FEEDBACK","componentId":"C3","kind":"runtime","name":"human_review_queue_resolved.jsonl","adds":{"en":"Validated human decision, rationale, confidence, and scope.","he":"החלטת אדם מאומתת, נימוק, ביטחון והיקף."}},
+    {"id":"A-MEMORY","componentId":"C5","kind":"runtime","name":"human_judgment_memory.jsonl","adds":{"en":"Reusable, scoped, append-only human judgment.","he":"שיפוט אנושי רב-שימושי, תחום ותוספתי."}},
+    {"id":"A-ADVICE","componentId":"C5","kind":"runtime","name":"memory_advice.json","adds":{"en":"Match reasons and advisory_only evidence.","he":"סיבות התאמה וראיית advisory_only."}},
+    {"id":"A-COMPARE","componentId":"C5","kind":"runtime","name":"memory_informed_comparison.json","adds":{"en":"Parallel comparison; baseline remains untouched.","he":"השוואה מקבילה; הבסיס נשאר ללא שינוי."}},
+    {"id":"A-EVALUATION","componentId":"C6","kind":"runtime","name":"evaluation reports","adds":{"en":"Held behind independent-label and leakage gates.","he":"מוחזק מאחורי שערי תוויות עצמאיות ודליפה."}},
+    {"id":"A-ARCH","componentId":"C1","kind":"document","name":"architecture options","adds":{"en":"Original, enhanced, and H-layer boundaries.","he":"גבולות ארכיטקטורה מקורית, משופרת ושכבת H."}},
+    {"id":"A-SKILLS","componentId":"C1","kind":"document","name":"H1/H2/H3 · S1–S7 skills map","adds":{"en":"Visible grouping of responsibilities and skills.","he":"קיבוץ גלוי של אחריות ומיומנויות."}},
+    {"id":"A-PROMPTS","componentId":"C1","kind":"document","name":"prompt requirements","adds":{"en":"Provisional requirements, not final prompts.","he":"דרישות ראשוניות, לא פרומפטים סופיים."}},
+    {"id":"A-EVENTS","componentId":"C2","kind":"document","name":"E1–E15 event catalog","adds":{"en":"Observation scope and explicit gaps.","he":"היקף צפייה ופערים מפורשים."}},
+    {"id":"A-HOOKS","componentId":"C2","kind":"document","name":"early-hook catalog","adds":{"en":"Possible hook locations; no authorization.","he":"מיקומי hook אפשריים; ללא אישור."}},
+    {"id":"A-LABELS","componentId":"C3","kind":"document","name":"EXP-005 labeling package","adds":{"en":"Blind protocol and safe candidate rows.","he":"פרוטוקול עיוור ושורות מועמדות בטוחות."}},
+    {"id":"A-VERIFY","componentId":"C4","kind":"document","name":"H-Verify specification","adds":{"en":"Deterministic-first checks and adjudication states.","he":"בדיקות דטרמיניסטיות תחילה ומצבי הכרעה."}},
+    {"id":"A-LITERATURE","componentId":"C6","kind":"document","name":"literature taxonomy","adds":{"en":"Related-work organization for the thesis.","he":"ארגון עבודות קשורות לתזה."}},
+    {"id":"A-FUTURE","componentId":"C6","kind":"document","name":"future-work log","adds":{"en":"MediVARIA and extension ideas remain future-only.","he":"MediVARIA ורעיונות הרחבה נשארים עתידיים בלבד."}}
+  ],
+  "experiments":[
+    {"id":"EXP-005","componentId":"C3","group":"human","status":"blocked","title":{"en":"Independent expert labeling gate","he":"שער תיוג מומחה עצמאי"},"result":{"en":"24 safe candidates prepared; 0 labels supplied.","he":"24 מועמדים בטוחים הוכנו; 0 תוויות סופקו."}},
+    {"id":"EXP-006","componentId":"C2","group":"observe","status":"offline","title":{"en":"H-Listen event replay","he":"Replay אירועי H-Listen"},"result":{"en":"481 heterogeneous records; gaps remain explicit.","he":"481 רשומות הטרוגניות; פערים נשארים גלויים."}},
+    {"id":"EXP-007","componentId":"C2","group":"dosage","status":"offline","title":{"en":"Dosage-mode replay","he":"Replay מצבי מינון"},"result":{"en":"No tested mode meets coverage ≥0.8 and load ≤0.5.","he":"אף מצב שנבדק אינו עומד בכיסוי ≥0.8 ועומס ≤0.5."}},
+    {"id":"EXP-008","componentId":"C2","group":"dosage","status":"offline","title":{"en":"Cap and churn sweep","he":"סריקת תקרה ושינוי"},"result":{"en":"K30/K35/K40 capture 0.75/0.85/0.912; no default selected.","he":"K30/K35/K40 לוכדים 0.75/0.85/0.912; לא נבחרה ברירת מחדל."}},
+    {"id":"EXP-009","componentId":"C4","group":"verify","status":"synthetic","title":{"en":"Deterministic verification rules","he":"כללי אימות דטרמיניסטיים"},"result":{"en":"Assumption-driven synthetic fixtures only.","he":"fixtures סינתטיים מבוססי-הנחות בלבד."}},
+    {"id":"EXP-010","componentId":"C4","group":"verify","status":"synthetic","title":{"en":"Bounded convergence","he":"התכנסות מוגבלת"},"result":{"en":"Synthetic round-bound tests; not real expert validation.","he":"בדיקות חסם סבבים סינתטיות; לא אימות מומחה אמיתי."}},
+    {"id":"EXP-011","componentId":"C6","group":"evaluation","status":"parked","title":{"en":"Held-out policy comparison","he":"השוואת מדיניות held-out"},"result":{"en":"Parked behind architecture approval and real labels.","he":"מוקפא מאחורי אישור ארכיטקטורה ותוויות אמיתיות."}},
+    {"id":"EXP-012","componentId":"C6","group":"evaluation","status":"blocked","title":{"en":"Accuracy evaluation","he":"הערכת דיוק"},"result":{"en":"N=0; not yet computable.","he":"N=0; עדיין לא ניתן לחישוב."}},
+    {"id":"EXP-013","componentId":"C5","group":"conformance","status":"offline","title":{"en":"Event-contract fidelity","he":"נאמנות חוזה אירועים"},"result":{"en":"Offline conformance fixtures only.","he":"fixtures התאמה offline בלבד."}},
+    {"id":"EXP-014","componentId":"C5","group":"conformance","status":"offline","title":{"en":"Replay determinism","he":"דטרמיניזם replay"},"result":{"en":"Offline conformance fixtures only.","he":"fixtures התאמה offline בלבד."}},
+    {"id":"EXP-015","componentId":"C2","group":"conformance","status":"offline","title":{"en":"Workload, bundling, and fairness","he":"עומס, איגוד והוגנות"},"result":{"en":"Offline conformance fixtures only.","he":"fixtures התאמה offline בלבד."}},
+    {"id":"EXP-016","componentId":"C5","group":"safety","status":"offline","title":{"en":"Authority and timeout safety","he":"בטיחות סמכות ו-timeout"},"result":{"en":"Offline safety fixtures only.","he":"fixtures בטיחות offline בלבד."}},
+    {"id":"EXP-017","componentId":"C4","group":"verify","status":"offline","title":{"en":"Verification provenance","he":"מקור אימות"},"result":{"en":"Offline provenance fixtures only.","he":"fixtures מקור offline בלבד."}},
+    {"id":"EXP-018","componentId":"C5","group":"safety","status":"offline","title":{"en":"Correction-proposal dry run","he":"הרצה יבשה של הצעת תיקון"},"result":{"en":"Proposal dry run; zero repository-source modification.","he":"הרצה יבשה של הצעה; אפס שינוי במקור המאגר."}}
+  ],
+  "evidence":{
+    "reviewBySetting":[{"label":"ucd_ch","value":4},{"label":"ucd_pw","value":5},{"label":"cd_ch","value":2},{"label":"cd_pw","value":0}],
+    "classification":[{"label":"Substantial","he":"מהותית","value":9},{"label":"Occasional","he":"מזדמנת","value":18},{"label":"Undetermined","he":"לא נקבע","value":0}],
+    "adviceSubset":[{"label":"strong","he":"חזק","value":2},{"label":"moderate","he":"בינוני","value":1},{"label":"none","he":"ללא","value":5}],
+    "labelReadiness":[{"label":"safe candidates","he":"מועמדים בטוחים","value":24},{"label":"supplied labels","he":"תוויות שסופקו","value":0}],
+    "exp006":[{"label":"total records","he":"סך רשומות","value":481},{"label":"early-stage","he":"שלב מוקדם","value":90},{"label":"uncertainty marked","he":"מסומן אי-ודאות","value":235},{"label":"severity ≥2","he":"חומרה ≥2","value":231}],
+    "exp007":[
+      {"mode":"silent","load":0,"coverage":0,"high":0},
+      {"mode":"sev3","load":0.578,"coverage":0.784,"high":0.726},
+      {"mode":"first_n","load":0.581,"coverage":0.787,"high":0.73},
+      {"mode":"sev2","load":0.799,"coverage":0.981,"high":1},
+      {"mode":"sev1","load":0.889,"coverage":1,"high":1}
+    ],
+    "exp008":[{"label":"K10","value":0.25},{"label":"K20","value":0.5},{"label":"K30","value":0.75},{"label":"K35","value":0.85},{"label":"K40","value":0.912}],
+    "leakage":[{"label":"none","he":"ללא","value":19},{"label":"same pattern","he":"אותו דפוס","value":3},{"label":"cross setting","he":"הגדרה אחרת","value":5}],
+    "historicalSummary":{"cases":179,"patterns":27,"reviewItems":11,"reusableJudgments":3,"comparisonRows":27,"classificationChanges":0,"postMemoryReview":2,"safeCandidates":24,"labels":0}
+  },
+  "decisions":[
+    {"id":"M-01","componentIds":["C1","C2","C3","C4","C5","C6"],"request":{"en":"Accept, correct, qualify, or defer D1–D12 and the attributed actions.","he":"לקבל, לתקן, לסייג או לדחות את D1–D12 והמשימות המיוחסות."},"recommendation":{"en":"Confirm as a paraphrased record with corrections; never alter the raw ASR.","he":"לאשר כרשומה מנוסחת עם תיקונים; לעולם לא לשנות את ה-ASR הגולמי."},"blocked":{"en":"The authoritative framing of every other decision.","he":"המסגור הסמכותי של כל החלטה אחרת."}},
+    {"id":"M-02","componentIds":["C1","C5"],"request":{"en":"Choose three H-agents, Observer + Integrator, or one modular H-agent.","he":"לבחור שלושה סוכני H, Observer + Integrator, או סוכן H מודולרי אחד."},"recommendation":{"en":"Observer + Integrator while retaining visible H1/H2/H3 groupings.","he":"Observer + Integrator תוך שמירת קבוצות H1/H2/H3 גלויות."},"blocked":{"en":"H-layer architecture and final skills/prompt requirements.","he":"ארכיטקטורת שכבת H ודרישות מיומנויות/פרומפט סופיות."}},
+    {"id":"M-03","componentIds":["C2"],"request":{"en":"Choose observation scope, active triggers, dosage, and cap policy.","he":"לבחור היקף צפייה, טריגרים פעילים, מינון ומדיניות תקרה."},"recommendation":{"en":"Passive E1–E14 first; limited triggers; threshold_sev2 as pilot candidate only; cap remains open.","he":"תחילה E1–E14 פסיבי; טריגרים מוגבלים; threshold_sev2 כמועמד פיילוט בלבד; התקרה נשארת פתוחה."},"blocked":{"en":"Active routing, dosage defaults, and early hooks.","he":"ניתוב פעיל, ברירות מחדל למינון ו-hooks מוקדמים."}},
+    {"id":"M-04","componentIds":["C4"],"request":{"en":"Choose H-Verify sources, deterministic/semantic order, round bound, and adjudication.","he":"לבחור מקורות H-Verify, סדר דטרמיניסטי/סמנטי, חסם סבבים והכרעה."},"recommendation":{"en":"Deterministic checks first; source set and two-round bound remain proposals.","he":"בדיקות דטרמיניסטיות תחילה; מערך מקורות וחסם שני סבבים נשארים הצעות."},"blocked":{"en":"Verification validation and convergence policy.","he":"אימות מנגנון האימות ומדיניות ההתכנסות."}},
+    {"id":"M-05","componentIds":["C3","C4","C5"],"request":{"en":"Approve labeling protocol, reviewers, correction authority, timeout, roles, and any implementation authorization.","he":"לאשר פרוטוקול תיוג, בודקים, סמכות תיקון, timeout, תפקידים וכל אישור מימוש."},"recommendation":{"en":"Two independent reviewers; explicit approval; timeout parks; supervisors adjudicate; no live hooks yet.","he":"שני בודקים עצמאיים; אישור מפורש; timeout מחנה; המנחים מכריעים; עדיין אין hooks חיים."},"blocked":{"en":"Independent labels, live interface work, trusted corrections, and runtime hooks.","he":"תוויות עצמאיות, ממשק חי, תיקונים מהימנים ו-hooks בזמן ריצה."}},
+    {"id":"M-06","componentIds":["C6"],"request":{"en":"Confirm MSc research-question timing, education scope, and future-work boundary.","he":"לאשר תזמון שאלת המחקר ל-MSc, היקף חינוכי וגבול עבודה עתידית."},"recommendation":{"en":"Keep education as the MSc empirical scope; MediVARIA remains future work.","he":"לשמור חינוך כהיקף האמפירי של ה-MSc; MediVARIA נשאר עבודה עתידית."},"blocked":{"en":"Final thesis framing and strategic extension language.","he":"מסגור סופי של התזה וניסוח ההרחבה האסטרטגית."}}
+  ],
+  "systemFlow":[
+    {"stage":1,"label":{"en":"Agents 1–4 baseline","he":"בסיס סוכנים 1–4"},"kind":"baseline"},
+    {"stage":2,"label":{"en":"S1–S3 observe · triage · ask","he":"S1–S3 צפייה · מיון · שאלה"},"kind":"hlayer"},
+    {"stage":3,"label":{"en":"Real human + S4 capture","he":"אדם אמיתי + לכידת S4"},"kind":"human"},
+    {"stage":4,"label":{"en":"S5 verify · adjudicate","he":"S5 אימות · הכרעה"},"kind":"verify"},
+    {"stage":5,"label":{"en":"S6 proposal + S7 memory","he":"הצעת S6 + זיכרון S7"},"kind":"memory"},
+    {"stage":5,"label":{"en":"M4A advice + M4B-1 comparison","he":"ייעוץ M4A + השוואת M4B-1"},"kind":"compare"},
+    {"stage":6,"label":{"en":"E15 evaluation parked","he":"הערכת E15 מוקפאת"},"kind":"parked"}
+  ]
+}
+</script>
+
+<script>
+(function(){
+"use strict";
+var DATA=JSON.parse(document.getElementById("vego-data").textContent);
+var UI={
+  en:{
+    skip:"Skip to content",brand:"VEGO-AI · July 1 architecture puzzle",guided:"Guided Puzzle",explore:"Explore Everything",print:"Print / PDF",copyContext:"Copy AI context",
+    eyebrow:"July 1 record → July 3–20 progress → July 21 decisions",title:"Build the whole VEGO-AI story one connected piece at a time",
+    lead:"Each component connects a recorded supervisor requirement to architecture, work produced, evidence, a safety boundary, and the decision still needed.",
+    notice:"The July 1 record is machine-derived and paraphrased pending M-01 confirmation. Later work is not attributed to Iris or Arnon. Mechanism and methodology only—no accuracy, generalization, workload-reduction, benchmark, or clinical-performance claim.",
+    guidedTitle:"Guided Puzzle",guidedCopy:"Advance through six pieces. Every new piece remains connected, so the final view becomes the complete governed architecture.",
+    workingDraft:"● Working draft",recordProv:"● Record",offlineProv:"● Offline evidence",decisionProv:"● Decision request",
+    previous:"Previous",next:"Next",showComplete:"Show complete system",reset:"Reset",step:"Step",of:"of",complete:"Complete system",
+    exploreTitle:"Explore Everything",exploreCopy:"Inspect the complete record, architecture, artifacts, evidence, experiments, and decisions. Selecting a puzzle component highlights every related item.",
+    clearHighlight:"Clear highlight",architecture:"Architecture",traceability:"Traceability",directives:"D1–D12",artifacts:"Artifacts",evidence:"Evidence",experiments:"Experiments",decisions:"Decisions",
+    architectureTitle:"How the pieces form one system",architectureCopy:"The baseline, proposed H-layer, implemented advisory chain, and parked evaluation remain visually and operationally separate.",
+    traceTitle:"Directive-to-component traceability",traceCopy:"Every recorded point maps to architecture, work, evidence, and an open decision.",
+    directiveTitle:"July 1 point by point",directiveCopy:"Recorded requirement, what was done, current status, next step, and the boundary that remains in force.",
+    actionTitle:"Recorded action items",actionCopy:"The action record remains provisional until M-01 confirmation.",
+    artifactTitle:"What was implemented and how data moves",artifactCopy:"Each transformation adds identity, human rationale, provenance, scope, advice, or a comparison—never a baseline overwrite.",
+    governanceTitle:"Human authority, verification, and memory",governanceCopy:"Timeout, rejection, missing evidence, and unresolved conflict preserve the baseline and stop automatic action.",
+    evidenceTitle:"Evidence in numbers",evidenceCopy:"Descriptive, offline, and synthetic evidence is labelled separately. None of these charts demonstrates accuracy improvement.",
+    experimentTitle:"Experiment and evidence roadmap",experimentCopy:"Mechanism evidence advances while independent-label evaluation remains behind its human gate.",
+    gateTitle:"Evaluation gate",gateCopy:"Zero supplied independent labels means no accuracy computation and no policy tuning.",
+    decisionTitle:"Decisions M-01–M-06",decisionCopy:"Capture an explicit outcome, rationale, owner, and due date. Entries remain local until exported.",
+    exportJson:"Export decisions JSON",exportMd:"Export meeting Markdown",clearDecisions:"Clear local decisions",localOnly:"Local browser storage only; this page does not modify project files.",
+    aiTitle:"AI-readable project context",aiCopy:"The same canonical relationships used by the human interface are available as structured context.",
+    why:"Why it exists",basis:"July 1 basis",work:"What was produced",evidenceLabel:"Current evidence",boundary:"Boundary",decision:"Decision needed",
+    relevant:"Relevant identifiers",openDetails:"Open linked details",status:"Status",requirement:"Recorded requirement",did:"What we did",current:"Current status",nextStep:"Next step",
+    baseline:"Original VEGO-AI",enhanced:"Enhanced governed architecture",baselineSafe:"Baseline preserved — never overwritten",chronologyTitle:"Chronology",traceMatrix:"Traceability matrix",
+    action:"Action",result:"Result",artifact:"Artifact",adds:"What it adds",runtimePipeline:"Runtime artifact pipeline",documentDeliverables:"Design and research deliverables",provenanceRegister:"Evidence and provenance register",evidenceClass:"Evidence class",humanAuthority:"Human-authority state machine",verifyLoop:"H-Verify convergence loop",memoryLife:"Memory lifecycle",
+    eventMap:"Event observability map",maturity:"Evidence-maturity ladder",experimentRoadmap:"Experiment roadmap",decisionMap:"Decision dependency",
+    pendingReview:"pending review",feedbackReceived:"feedback received",verified:"verified",approval:"human approval",parked:"timed out / parked",adjudicate:"needs adjudication",
+    sourceChecks:"deterministic source checks",conflict:"conflict?",revise:"revise",roundTwo:"second round",humanDecision:"human adjudication",
+    capture:"capture",validate:"validate",scope:"scope",store:"append-only memory",retrieve:"retrieve",advise:"advise",supersede:"supersede / expire",
+    framework:"Framework E1–E14",evaluationOnly:"E15 evaluation-only",implemented:"Implemented",mechanism:"Mechanism tested",offline:"Offline evidence",synthetic:"Synthetic fixture",ready:"Evaluation-ready",pending:"Pending expert input",notApproved:"Not approved",
+    reviewSetting:"Review items by setting",classDist:"Agent 4 pattern distribution",adviceDist:"M4A advice strength — ucd_ch subset",labelReady:"EXP-005 label readiness",
+    eventProfile:"EXP-006 event profile",workloadCoverage:"EXP-007 workload versus weighted coverage",capSweep:"EXP-008 fixed-cap capture",leakage:"Historical leakage/provenance distribution",
+    paired:"Paired expert comparison",memoryCorrect:"Memory correct",memoryWrong:"Memory wrong",originalCorrect:"Original correct",originalWrong:"Original wrong",notComputable:"Not yet computable without independent expert labels",load:"event load",coverage:"weighted coverage",
+    source:"Source",claim:"Claim boundary",descriptive:"Descriptive mechanism evidence; not an accuracy claim.",overlap:"Categories overlap; 481 heterogeneous lifecycle records, not independent subjects.",
+    reviewCaption:"Observed 2026-07-20 · n=11 review items · Source SRC-REVIEW · Mechanism evidence; not an accuracy claim.",classCaption:"Observed 2026-07-20 · n=27 Agent 4 patterns · Source SRC-BASELINE · Historical baseline; descriptive only.",adviceCaption:"Observed 2026-07-20 · n=8 advice rows in the ucd_ch subset · Source SRC-MEMORY · advisory_only.",labelCaption:"Observed 2026-07-20 · denominator 24 safe candidates; supplied labels 0 · Source SRC-EXP005 · no accuracy computation.",eventCaption:"Observed 2026-07-20 · 481 captured/reconstructed + 20 explicit gaps = 501 contract records · Source SRC-EXP006 · overlapping categories, not independent subjects or correctness evidence.",scatterCaption:"Observed 2026-07-20 · Source SRC-EXP007 · event load uses triageable event items; weighted coverage uses maximum severity by setting + subject · offline Pareto evidence; no default selected.",capCaption:"Observed 2026-07-20 · denominator 160 unstable, never-reviewed guidelines across four settings · Source SRC-EXP008 · offline cap sweep; no default approved.",leakageCaption:"Observed 2026-07-20 · denominator 27 historical comparison rows · packaged provenance snapshot · same-pattern rows are mechanism-only, not generalization evidence.",
+    timestamp:"Transcript timestamp",attribution:"Attribution",verification:"Review status",explicitDerived:"Explicit / derived",iterationTrajectory:"Iteration mechanism-metric trajectory",trajectoryCaption:"Iterations 2–14 · threshold_sev2 offline replay metrics · repeated values show stability or harness changes, not improvement, correctness, or validation.",experimentMatrix:"Experiment status matrix",
+    noDefault:"Replay-based design evidence; no default selected.",historical:"Historical packaged snapshot; not generalization evidence.",
+    stop:"STOP",zeroLabels:"0 / 24 labels",approveProtocol:"Approve blind protocol",twoReviewers:"Two reviewers",agreement:"Agreement + adjudication",go:"GO: leakage-safe evaluation",
+    request:"Exact decision requested",recommendation:"Recommendation — not approved",blockedUntil:"Blocked until decided",meetingOutcome:"Meeting outcome — local only",
+    accepted:"Accepted",acceptedChanges:"Accepted with changes",rejected:"Rejected",deferred:"Deferred",notRecorded:"Not recorded",selectedValue:"Selected value",decisionDate:"Decision date",approver:"Approver",owner:"Owner",due:"Due date",rationale:"Rationale",constraints:"Constraints",affected:"Affected artifacts",confirmationStatus:"Confirmation status",unconfirmed:"Unconfirmed",confirmed:"Confirmed",
+    iterationTimeline:"Iterations 001–014",historicalPreManifest:"Historical / pre-manifest",manifestBacked:"Manifest-backed",clearOne:"Clear this decision",copied:"Copied",copyFailed:"Copy failed; select the text manually.",downloaded:"Export prepared",footer:"VEGO-AI · July 1 record mapping · generated 2026-07-21 · baseline read-only · EXP-005 labels supplied: 0."
+  },
+  he:{
+    skip:"דלג לתוכן",brand:"VEGO-AI · פאזל ארכיטקטורת 1 ביולי",guided:"פאזל מודרך",explore:"חקירת הכול",print:"הדפסה / PDF",copyContext:"העתק הקשר ל-AI",
+    eyebrow:"רשומת 1 ביולי → התקדמות 3–20 ביולי → החלטות 21 ביולי",title:"לבנות את סיפור VEGO-AI כולו, חלק מחובר בכל פעם",
+    lead:"כל רכיב מחבר דרישת מנחה מתועדת לארכיטקטורה, עבודה שהופקה, ראיה, גבול בטיחות והחלטה שעדיין נדרשת.",
+    notice:"רשומת 1 ביולי מבוססת-מכונה ומנוסחת מחדש בהמתנה לאישור M-01. עבודת המשך אינה מיוחסת לאיריס או ארנון. מנגנון ומתודולוגיה בלבד — ללא טענת דיוק, הכללה, הפחתת עומס, benchmark או ביצוע קליני.",
+    guidedTitle:"פאזל מודרך",guidedCopy:"התקדמו דרך שישה חלקים. כל חלק חדש נשאר מחובר, כך שהתצוגה הסופית הופכת לארכיטקטורה המנוהלת המלאה.",
+    workingDraft:"● טיוטת עבודה",recordProv:"● רשומה",offlineProv:"● עדות offline",decisionProv:"● בקשת החלטה",
+    previous:"הקודם",next:"הבא",showComplete:"הצג מערכת מלאה",reset:"איפוס",step:"שלב",of:"מתוך",complete:"מערכת מלאה",
+    exploreTitle:"חקירת הכול",exploreCopy:"בדקו את הרשומה, הארכיטקטורה, התוצרים, הראיות, הניסויים וההחלטות. בחירת רכיב מדגישה כל פריט קשור.",
+    clearHighlight:"נקה הדגשה",architecture:"ארכיטקטורה",traceability:"עקיבות",directives:"D1–D12",artifacts:"תוצרים",evidence:"ראיות",experiments:"ניסויים",decisions:"החלטות",
+    architectureTitle:"כיצד החלקים יוצרים מערכת אחת",architectureCopy:"הבסיס, שכבת H המוצעת, שרשרת הייעוץ הממומשת וההערכה המוקפאת נשארים נפרדים חזותית ותפעולית.",
+    traceTitle:"עקיבות מדרישה לרכיב",traceCopy:"כל נקודה מתועדת ממופה לארכיטקטורה, עבודה, ראיה והחלטה פתוחה.",
+    directiveTitle:"1 ביולי נקודה-נקודה",directiveCopy:"דרישה מתועדת, מה נעשה, סטטוס נוכחי, הצעד הבא והגבול שנשאר בתוקף.",
+    actionTitle:"משימות מתועדות",actionCopy:"רשומת המשימות נשארת ראשונית עד אישור M-01.",
+    artifactTitle:"מה מומש וכיצד הנתונים זורמים",artifactCopy:"כל מעבר מוסיף זהות, נימוק אנושי, מקור, היקף, ייעוץ או השוואה — לעולם לא דריסת בסיס.",
+    governanceTitle:"סמכות אנושית, אימות וזיכרון",governanceCopy:"timeout, דחייה, ראיה חסרה וקונפליקט לא פתור שומרים על הבסיס ועוצרים פעולה אוטומטית.",
+    evidenceTitle:"ראיות במספרים",evidenceCopy:"ראיות תיאוריות, offline וסינתטיות מסומנות בנפרד. אף תרשים אינו מדגים שיפור דיוק.",
+    experimentTitle:"מפת ניסויים וראיות",experimentCopy:"עדות מנגנון מתקדמת בעוד הערכת תוויות עצמאיות נשארת מאחורי שער אנושי.",
+    gateTitle:"שער הערכה",gateCopy:"אפס תוויות עצמאיות שסופקו פירושו שאין חישוב דיוק ואין כוונון מדיניות.",
+    decisionTitle:"החלטות M-01–M-06",decisionCopy:"תעדו תוצאה מפורשת, נימוק, אחראי ותאריך יעד. הרשומות נשארות מקומיות עד לייצוא.",
+    exportJson:"ייצא החלטות JSON",exportMd:"ייצא סיכום Markdown",clearDecisions:"נקה החלטות מקומיות",localOnly:"אחסון דפדפן מקומי בלבד; עמוד זה אינו משנה קבצי פרויקט.",
+    aiTitle:"הקשר פרויקט קריא ל-AI",aiCopy:"אותם קשרים קנוניים המשמשים את הממשק האנושי זמינים כהקשר מובנה.",
+    why:"מדוע הוא קיים",basis:"בסיס מ-1 ביולי",work:"מה הופק",evidenceLabel:"ראיה נוכחית",boundary:"גבול",decision:"החלטה נדרשת",
+    relevant:"מזהים קשורים",openDetails:"פתח פרטים קשורים",status:"סטטוס",requirement:"דרישה מתועדת",did:"מה עשינו",current:"סטטוס נוכחי",nextStep:"הצעד הבא",
+    baseline:"VEGO-AI מקורי",enhanced:"ארכיטקטורה משופרת ומנוהלת",baselineSafe:"הבסיס נשמר — לעולם אינו נדרס",chronologyTitle:"כרונולוגיה",traceMatrix:"מטריצת עקיבות",
+    action:"משימה",result:"תוצאה",artifact:"תוצר",adds:"מה הוא מוסיף",runtimePipeline:"צינור תוצרי זמן-ריצה",documentDeliverables:"תוצרי תכנון ומחקר",provenanceRegister:"מרשם ראיות ומקור",evidenceClass:"סוג ראיה",humanAuthority:"מכונת מצבי סמכות אנושית",verifyLoop:"לולאת התכנסות H-Verify",memoryLife:"מחזור חיי זיכרון",
+    eventMap:"מפת צפיות אירועים",maturity:"סולם בשלות ראיות",experimentRoadmap:"מפת ניסויים",decisionMap:"תלות החלטות",
+    pendingReview:"ממתין לסקירה",feedbackReceived:"משוב התקבל",verified:"מאומת",approval:"אישור אנושי",parked:"timeout / חניה",adjudicate:"דורש הכרעה",
+    sourceChecks:"בדיקות מקור דטרמיניסטיות",conflict:"קונפליקט?",revise:"תיקון",roundTwo:"סבב שני",humanDecision:"הכרעה אנושית",
+    capture:"לכידה",validate:"אימות",scope:"תחימה",store:"זיכרון תוספתי",retrieve:"שליפה",advise:"ייעוץ",supersede:"החלפה / תפוגה",
+    framework:"מסגרת E1–E14",evaluationOnly:"E15 הערכה-בלבד",implemented:"ממומש",mechanism:"מנגנון נבדק",offline:"עדות offline",synthetic:"fixture סינתטי",ready:"מוכן להערכה",pending:"ממתין לקלט מומחה",notApproved:"לא מאושר",
+    reviewSetting:"פריטי סקירה לפי הגדרה",classDist:"התפלגות דפוסי Agent 4",adviceDist:"חוזק ייעוץ M4A — תת-קבוצה ucd_ch",labelReady:"מוכנות תיוג EXP-005",
+    eventProfile:"פרופיל אירועי EXP-006",workloadCoverage:"EXP-007 עומס מול כיסוי משוקלל",capSweep:"לכידת תקרה קבועה EXP-008",leakage:"התפלגות דליפה/מקור היסטורית",
+    paired:"השוואה מזווגת מול מומחה",memoryCorrect:"זיכרון נכון",memoryWrong:"זיכרון שגוי",originalCorrect:"מקור נכון",originalWrong:"מקור שגוי",notComputable:"עדיין לא ניתן לחישוב ללא תוויות מומחה עצמאיות",load:"עומס אירועים",coverage:"כיסוי משוקלל",
+    source:"מקור",claim:"גבול טענה",descriptive:"עדות מנגנון תיאורית; אינה טענת דיוק.",overlap:"הקטגוריות חופפות; 481 רשומות מחזור חיים הטרוגניות, לא נבדקים עצמאיים.",
+    reviewCaption:"נצפה 2026-07-20 · n=11 פריטי סקירה · מקור SRC-REVIEW · עדות מנגנון; לא טענת דיוק.",classCaption:"נצפה 2026-07-20 · n=27 דפוסי Agent 4 · מקור SRC-BASELINE · בסיס היסטורי; תיאורי בלבד.",adviceCaption:"נצפה 2026-07-20 · n=8 שורות ייעוץ בתת-הקבוצה ucd_ch · מקור SRC-MEMORY · advisory_only.",labelCaption:"נצפה 2026-07-20 · מכנה 24 מועמדים בטוחים; 0 תוויות שסופקו · מקור SRC-EXP005 · אין חישוב דיוק.",eventCaption:"נצפה 2026-07-20 · 481 נתפסו/שוחזרו + 20 פערים מפורשים = 501 רשומות חוזה · מקור SRC-EXP006 · קטגוריות חופפות; לא נושאים עצמאיים ולא ראיית נכונות.",scatterCaption:"נצפה 2026-07-20 · מקור SRC-EXP007 · עומס מבוסס פריטי אירוע; כיסוי משוקלל משתמש בחומרה מרבית לפי הגדרה + נושא · עדות Pareto offline; לא נבחרה ברירת מחדל.",capCaption:"נצפה 2026-07-20 · מכנה 160 הנחיות לא יציבות שלא נסקרו בארבע הגדרות · מקור SRC-EXP008 · sweep offline; שום cap לא אושר.",leakageCaption:"נצפה 2026-07-20 · מכנה 27 שורות השוואה היסטוריות · snapshot מקור בחבילה · שורות same-pattern הן מנגנון בלבד, לא עדות להכללה.",
+    timestamp:"חותמת זמן בתמליל",attribution:"ייחוס",verification:"מצב סקירה",explicitDerived:"מפורש / נגזר",iterationTrajectory:"מסלול מדדי מנגנון לפי איטרציה",trajectoryCaption:"איטרציות 2–14 · מדדי replay offline של threshold_sev2 · ערכים חוזרים מציגים יציבות או שינוי harness, לא שיפור, נכונות או אימות.",experimentMatrix:"מטריצת מצב ניסויים",
+    noDefault:"עדות תכנון מבוססת replay; לא נבחרה ברירת מחדל.",historical:"snapshot היסטורי של החבילה; אינו ראיית הכללה.",
+    stop:"עצור",zeroLabels:"0 / 24 תוויות",approveProtocol:"לאשר פרוטוקול עיוור",twoReviewers:"שני בודקים",agreement:"הסכמה + הכרעה",go:"המשך: הערכה בטוחת-דליפה",
+    request:"החלטה מדויקת נדרשת",recommendation:"המלצה — לא מאושרת",blockedUntil:"חסום עד להחלטה",meetingOutcome:"תוצאת פגישה — מקומית בלבד",
+    accepted:"התקבל",acceptedChanges:"התקבל בשינויים",rejected:"נדחה",deferred:"נדחה למועד",notRecorded:"לא תועד",selectedValue:"ערך שנבחר",decisionDate:"תאריך החלטה",approver:"מאשר",owner:"אחראי",due:"תאריך יעד",rationale:"נימוק",constraints:"אילוצים",affected:"תוצרים מושפעים",confirmationStatus:"מצב אישור",unconfirmed:"לא מאושר",confirmed:"מאושר",
+    iterationTimeline:"איטרציות 001–014",historicalPreManifest:"היסטורי / לפני manifest",manifestBacked:"מבוסס manifest",clearOne:"נקה החלטה זו",copied:"הועתק",copyFailed:"ההעתקה נכשלה; בחרו את הטקסט ידנית.",downloaded:"הייצוא הוכן",footer:"VEGO-AI · מיפוי רשומת 1 ביולי · נוצר 2026-07-21 · בסיס לקריאה בלבד · תוויות EXP-005 שסופקו: 0."
+  }
+};
+var state={lang:"en",mode:"guided",step:1,complete:false,focus:"C1"};
+var decisionState={};
+var statusLabels={
+  proposal:{en:"Proposal — not approved",he:"הצעה — לא מאושר"},
+  offline:{en:"Offline evidence/design",he:"עדות/עיצוב offline"},
+  blocked:{en:"Blocked",he:"חסום"},
+  parked:{en:"Documented — parked",he:"מתועד — מוקפא"},
+  delivered:{en:"Delivered — provisional",he:"נמסר — ראשוני"},
+  synthetic:{en:"Synthetic fixture",he:"fixture סינתטי"}
+};
+function tr(v){return v&&typeof v==="object"?(v[state.lang]||v.en||""):String(v==null?"":v)}
+function u(k){return UI[state.lang][k]||UI.en[k]||k}
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]})}
+function component(id){return DATA.components.find(function(x){return x.id===id})}
+function isRelated(id){return state.focus&&id===state.focus}
+function relationClass(id){return isRelated(id)?" related":""}
+function savePrefs(){try{localStorage.setItem("vego-puzzle-lang",state.lang)}catch(e){}}
+function applyHash(){
+  var m=location.hash.match(/^#story-(\d)$/);
+  if(m){state.mode="guided";state.step=Math.max(1,Math.min(6,Number(m[1])));state.focus="C"+state.step;state.complete=false;return true}
+  if(location.hash==="#story-complete"){state.mode="guided";state.step=6;state.focus="C6";state.complete=true;return true}
+  var directive=location.hash.match(/^#directive-(D(?:[1-9]|1[0-2]))$/);
+  if(directive){var d=DATA.directives.find(function(x){return x.id===directive[1]});if(d){state.mode="explore";state.focus=d.componentId;return true}}
+  var decision=location.hash.match(/^#decision-(M-0[1-6])$/);
+  if(decision){var md=DATA.decisions.find(function(x){return x.id===decision[1]});if(md){state.mode="explore";state.focus=md.componentIds[0];return true}}
+  var experiment=location.hash.match(/^#experiment-(EXP-(?:00[0-9]|01[0-8]))$/);
+  if(experiment){var ex=DATA.experiments.find(function(x){return x.id===experiment[1]});if(ex){state.mode="explore";state.focus=ex.componentId;return true}}
+  return false
+}
+function scrollHashTarget(){
+  if(location.hash.indexOf("#story-")===0){window.scrollTo({top:0,left:0});return}
+  if(!location.hash){return}
+  var target=document.querySelector(location.hash);
+  if(target){target.scrollIntoView({block:"start"})}
+}
+function loadState(){
+  try{state.lang=localStorage.getItem("vego-puzzle-lang")||"en"}catch(e){}
+  applyHash();
+  try{decisionState=JSON.parse(localStorage.getItem("vego-decisions-v3")||"{}")}catch(e){decisionState={}}
+}
+function applyStaticText(){
+  document.documentElement.lang=state.lang;
+  document.documentElement.dir=state.lang==="he"?"rtl":"ltr";
+  document.querySelectorAll("[data-ui]").forEach(function(el){el.textContent=u(el.getAttribute("data-ui"))});
+  document.querySelectorAll("[data-lang]").forEach(function(el){el.setAttribute("aria-pressed",String(el.getAttribute("data-lang")===state.lang));el.classList.toggle("primary",el.getAttribute("data-lang")===state.lang)});
+  document.querySelectorAll("[data-mode]").forEach(function(el){el.setAttribute("aria-pressed",String(el.getAttribute("data-mode")===state.mode));el.classList.toggle("primary",el.getAttribute("data-mode")===state.mode)});
+  document.getElementById("modeControls").setAttribute("aria-label",state.lang==="he"?"מצב תצוגה":"View mode");
+  document.getElementById("languageControls").setAttribute("aria-label",state.lang==="he"?"שפה":"Language");
+  document.getElementById("puzzleBoard").setAttribute("aria-label",state.lang==="he"?"שישה רכיבי ארכיטקטורה מחוברים":"Six connected architecture components");
+  document.getElementById("flowRail").setAttribute("aria-label",state.lang==="he"?"זרימת ארכיטקטורה מקצה לקצה":"End-to-end architecture flow");
+  document.getElementById("aiSummary").setAttribute("aria-label",state.lang==="he"?"הקשר פרויקט VEGO-AI קריא למכונה":"Machine-readable VEGO-AI project context");
+}
+function renderChronology(){
+  var html=[];
+  DATA.chronology.forEach(function(x,i){
+    if(i){html.push('<div class="arrow" aria-hidden="true">→</div>')}
+    html.push('<article class="moment"><strong>'+esc(tr(x.date))+' · '+esc(tr(x.title))+'</strong><span>'+esc(tr(x.detail))+'</span></article>')
+  });
+  document.getElementById("chronology").innerHTML=html.join("");
+}
+function renderPuzzle(){
+  var board=[];
+  DATA.components.forEach(function(c){
+    var done=state.complete||c.order<state.step;
+    var active=!state.complete&&c.order===state.step;
+    var cls=active?"active":done?"complete":"future";
+    if(isRelated(c.id)){cls+=" related"}
+    board.push('<button type="button" class="puzzle-piece '+cls+'" data-piece-select="'+c.id+'" aria-pressed="'+String(state.focus===c.id)+'"><span class="piece-number">'+esc(u("step"))+' '+c.order+'</span><span class="piece-title">'+esc(tr(c.short))+'</span></button>')
+  });
+  document.getElementById("puzzleBoard").innerHTML=board.join("");
+  document.getElementById("stepCount").textContent=state.complete?u("complete"):u("step")+" "+state.step+" "+u("of")+" 6";
+  var c=component(state.focus)||DATA.components[state.step-1];
+  var ids=[].concat(c.directives,c.skills,c.events,c.artifacts,c.experiments,c.decisionIds).filter(Boolean);
+  document.getElementById("pieceDetail").innerHTML=
+    '<div><div class="detail-kicker">'+esc(u("step"))+' '+c.order+' · '+esc(tr(c.short))+'</div><div class="detail-title">'+esc(tr(c.title))+'</div><span class="detail-status">'+esc(tr(statusLabels[c.status]||c.status))+'</span><div class="id-row">'+ids.map(function(id){return '<span class="id-chip" dir="ltr">'+esc(id)+'</span>'}).join("")+'</div><p><button class="btn" type="button" data-explore-component="'+c.id+'">'+esc(u("openDetails"))+'</button></p></div>'+
+    '<div class="detail-grid">'+fact("why",c.why)+fact("basis",c.basis)+fact("work",c.work)+fact("evidenceLabel",c.evidence)+fact("decision",c.decision)+fact("boundary",c.boundary,true)+'</div>';
+  var rail=[];
+  DATA.systemFlow.forEach(function(n,i){
+    var on=state.complete||n.stage<=state.step;
+    rail.push('<div class="flow-node '+(on?"on ":"")+(n.kind==="parked"&&!on?"blocked":"")+'">'+esc(tr(n.label))+'</div>');
+    if(i<DATA.systemFlow.length-1){rail.push('<div class="flow-arrow" aria-hidden="true">→</div>')}
+  });
+  document.getElementById("flowRail").innerHTML=rail.join("");
+}
+function fact(key,value,boundary){return '<div class="fact'+(boundary?" boundary":"")+'"><strong>'+esc(u(key))+'</strong><span>'+esc(tr(value))+'</span></div>'}
+function renderArchitecture(){
+  var original=state.lang==="he"?['Agent 1 · שפה','Agent 2 · תחום','Agent 3 · בדיקת מודל','Agent 4 · שונות']:['Agent 1 · Language','Agent 2 · Domain','Agent 3 · Model inspection','Agent 4 · Variability'];
+  var enhanced=state.lang==="he"?['S1–S3 · H1','אדם + S4','S5 · H-Verify','S6/S7 · זיכרון','M4A/M4B-1','E15 · מוקפא']:['S1–S3 · H1','Human + S4','S5 · H-Verify','S6/S7 · Memory','M4A/M4B-1','E15 · parked'];
+  function nodes(items,kind){return items.map(function(x,i){return '<div class="arch-node '+kind+'">'+esc(x)+'</div>'+(i<items.length-1?'<span class="flow-arrow" aria-hidden="true">→</span>':'')}).join("")}
+  var lanes=[
+    {label:state.lang==="he"?"בסיס לקריאה בלבד":"Read-only baseline",nodes:state.lang==="he"?['קלטים','סוכנים 1–4','פלט Agent 4']:['Inputs','Agents 1–4','Agent 4 output'],component:'C1'},
+    {label:state.lang==="he"?"שכבת H מוצעת":"Proposed H-layer",nodes:['H1 · S1–S3','H2 · S4/S5','H3 · S6/S7'],component:'C2'},
+    {label:state.lang==="he"?"שרשרת ממומשת":"Implemented chain",nodes:state.lang==="he"?['תור סקירה','משוב','זיכרון','ייעוץ','השוואה']:['Review queue','Feedback','Memory','Advice','Comparison'],component:'C5'},
+    {label:state.lang==="he"?"הערכה מוקפאת":"Parked evaluation",nodes:state.lang==="he"?['שער EXP-005','E15','EXP-012 N=0']:['EXP-005 gate','E15','EXP-012 N=0'],component:'C6'}
+  ];
+  var laneHtml=lanes.map(function(l){return '<div class="lane"><div class="lane-label">'+esc(l.label)+'</div><div class="lane-nodes">'+l.nodes.map(function(n){return '<span class="lane-node'+relationClass(l.component)+'">'+esc(n)+'</span>'}).join("")+'</div></div>'}).join("");
+  var time=DATA.chronology.map(function(x){return '<article class="time-card '+x.kind+'"><strong>'+esc(tr(x.date))+' · '+esc(tr(x.title))+'</strong><span>'+esc(tr(x.detail))+'</span></article>'}).join("");
+  document.getElementById("architectureContent").innerHTML=
+    '<div class="view-grid"><article class="card compare-column"><h3>'+esc(u("baseline"))+'</h3><div class="node-chain">'+nodes(original,"baseline")+'</div></article>'+
+    '<article class="card compare-column"><h3>'+esc(u("enhanced"))+'</h3><div class="node-chain">'+nodes(enhanced,"human")+'</div></article></div>'+
+    '<article class="card lane-map" style="margin-top:14px"><h3>'+esc(u("architectureTitle"))+'</h3>'+laneHtml+'<div class="safety-cross">✕ '+esc(u("baselineSafe"))+' · ai_classification_changed = false</div></article>'+
+    '<h3 style="margin-top:18px">'+esc(u("chronologyTitle"))+'</h3><div class="timeline">'+time+'</div>';
+}
+function renderTrace(){
+  var headers=DATA.components.map(function(c){return '<th>'+esc(c.id)+'<br>'+esc(tr(c.short))+'</th>'}).join("");
+  var rows=DATA.directives.map(function(d){return '<tr class="'+(isRelated(d.componentId)?"matrix-related":"")+'"><td><strong>'+d.id+'</strong></td>'+DATA.components.map(function(c){var hit=d.componentId===c.id;return '<td class="matrix-cell '+(hit?"matrix-hit":"")+'">'+(hit?"●":"—")+'</td>'}).join("")+'<td>'+esc(d.decisionIds.join(", "))+'</td></tr>'}).join("");
+  var mobile=DATA.directives.map(function(d){return '<article class="card trace-card'+relationClass(d.componentId)+'"><strong>'+d.id+' → '+esc(d.componentId)+' · '+esc(tr(component(d.componentId).short))+'</strong><p>'+esc(tr(d.requirement))+'</p><span class="id-chip">'+esc(d.decisionIds.join(", "))+'</span></article>'}).join("");
+  document.getElementById("traceContent").innerHTML='<div class="table-wrap trace-desktop"><table><thead><tr><th>D</th>'+headers+'<th>M</th></tr></thead><tbody>'+rows+'</tbody></table></div><div class="trace-mobile">'+mobile+'</div>';
+}
+function renderDirectives(){
+  document.getElementById("directiveContent").innerHTML='<div class="directive-list">'+DATA.directives.map(function(d){
+    return '<article class="card directive'+relationClass(d.componentId)+'" id="directive-'+d.id+'" data-component-id="'+d.componentId+'">'+
+      '<div class="directive-head"><span class="directive-id">'+d.id+'</span><span class="id-chip">'+d.componentId+'</span><span class="status '+d.status+'">'+esc(tr(statusLabels[d.status]||d.status))+'</span></div>'+
+      '<div class="id-row"><span class="id-chip" dir="ltr">'+esc(u("timestamp"))+': '+esc(d.timestamp)+'</span><span class="id-chip">'+esc(u("attribution"))+': '+esc(d.speakerAttribution)+' · '+esc(d.attributionConfidence)+'</span><span class="id-chip">'+esc(u("explicitDerived"))+': '+esc(d.explicitDerivedClass)+'</span><span class="id-chip">'+esc(u("verification"))+': '+esc(state.lang==="he"?d.hebrewReviewStatus:d.englishReviewStatus)+'</span></div>'+
+      '<dl><dt>'+esc(u("requirement"))+'</dt><dd>'+esc(tr(d.requirement))+'</dd><dt>'+esc(u("did"))+'</dt><dd>'+esc(tr(d.did))+'</dd><dt>'+esc(u("current"))+'</dt><dd>'+esc(tr(d.current))+'</dd><dt>'+esc(u("nextStep"))+'</dt><dd>'+esc(tr(d.next))+'</dd><dt>'+esc(u("boundary"))+'</dt><dd>'+esc(tr(d.boundary))+'</dd><dt>'+esc(u("decision"))+'</dt><dd>'+esc(d.decisionIds.join(", "))+'</dd></dl>'+
+      '<p><button class="btn" type="button" data-piece-select="'+d.componentId+'">'+esc(tr(component(d.componentId).short))+'</button></p></article>'
+  }).join("")+'</div>';
+}
+function renderActions(){
+  document.getElementById("actionContent").innerHTML='<div class="action-list">'+DATA.actions.map(function(a){return '<article class="card action'+relationClass(a.componentId)+'" id="action-'+a.id+'"><h3><span class="decision-id">'+a.id+'</span> · '+esc(tr(a.title))+'</h3><p><strong>'+esc(u("did"))+':</strong> '+esc(tr(a.did))+'</p><p><strong>'+esc(u("status"))+':</strong> '+esc(tr(a.status))+'</p><p><strong>'+esc(u("nextStep"))+':</strong> '+esc(tr(a.next))+'</p></article>'}).join("")+'</div>';
+}
+function renderArtifacts(){
+  var runtime=DATA.artifacts.filter(function(a){return a.kind==="runtime"});
+  var documents=DATA.artifacts.filter(function(a){return a.kind==="document"});
+  var pipeline=runtime.map(function(a,i){return '<div class="pipe-node'+relationClass(a.componentId)+'"><span dir="ltr">'+esc(a.name)+'</span><small>'+esc(tr(a.adds))+'</small></div>'+(i<runtime.length-1?'<span class="flow-arrow arrow-inline" aria-hidden="true">→</span>':'')}).join("");
+  var documentRows=documents.map(function(a){return '<tr class="'+(isRelated(a.componentId)?"matrix-related":"")+'"><td><strong>'+esc(a.id)+'</strong></td><td dir="ltr">'+esc(a.name)+'</td><td>'+esc(tr(a.adds))+'</td><td>'+esc(a.componentId)+'</td></tr>'}).join("");
+  var sourceRows=DATA.sources.map(function(s){return '<tr><td><strong>'+esc(s.id)+'</strong></td><td class="path-cell" dir="ltr">'+esc(s.path)+'</td><td>'+esc(s.evidenceClass)+'</td><td>'+esc(s.observationDate||"—")+'</td><td class="path-cell" dir="ltr">'+esc(s.sha256||"—")+'</td><td>'+esc(s.boundary)+'</td></tr>'}).join("");
+  document.getElementById("artifactContent").innerHTML='<div class="card flow-visual"><h3>'+esc(u("runtimePipeline"))+'</h3><div class="pipeline">'+pipeline+'</div><div class="safety-cross">✕ '+esc(u("baselineSafe"))+'</div></div><h3 style="margin-top:18px">'+esc(u("documentDeliverables"))+'</h3><div class="table-wrap"><table><thead><tr><th>ID</th><th>'+esc(u("artifact"))+'</th><th>'+esc(u("adds"))+'</th><th>C</th></tr></thead><tbody>'+documentRows+'</tbody></table></div><h3 style="margin-top:18px">'+esc(u("provenanceRegister"))+'</h3><div class="table-wrap"><table><thead><tr><th>ID</th><th>'+esc(u("source"))+'</th><th>'+esc(u("evidenceClass"))+'</th><th>Date</th><th>SHA-256</th><th>'+esc(u("claim"))+'</th></tr></thead><tbody>'+sourceRows+'</tbody></table></div>';
+}
+function boxes(items){return items.map(function(x,i){return '<div class="flowbox '+(x.kind||"")+'">'+esc(x.text)+'</div>'+(i<items.length-1?'<span class="flow-arrow arrow-inline" aria-hidden="true">→</span>':'')}).join("")}
+function renderGovernance(){
+  var authority=[
+    {text:u("pendingReview")},{text:u("feedbackReceived")},{text:u("verified"),kind:"good"},{text:u("approval"),kind:"good"}
+  ];
+  var verify=[{text:u("sourceChecks")},{text:u("conflict"),kind:"warn"},{text:u("revise")},{text:u("roundTwo")},{text:u("humanDecision"),kind:"good"}];
+  var memory=[{text:u("capture")},{text:u("validate")},{text:u("scope")},{text:u("store"),kind:"good"},{text:u("retrieve")},{text:u("advise")},{text:u("supersede")}];
+  var events=[];
+  for(var i=1;i<=15;i++){
+    var gap=[3,9,10,11,14].indexOf(i)>=0;
+    var parked=i===15;
+    events.push('<div class="event '+(gap?"gap ":"")+(parked?"parked":"")+'"><strong>E'+i+'</strong><span>'+esc(parked?u("evaluationOnly"):gap?(state.lang==="he"?"פער מפורש":"explicit gap"):u("framework"))+'</span></div>')
+  }
+  var ladderKeys=["implemented","mechanism","offline","synthetic","ready","pending","notApproved"];
+  document.getElementById("governanceContent").innerHTML=
+    '<div class="view-grid"><article class="card flow-visual"><h3>'+esc(u("humanAuthority"))+'</h3><div class="flowline">'+boxes(authority)+'</div><div class="flowline" style="margin-top:8px"><div class="flowbox stop">'+esc(u("parked"))+'</div><div class="flowbox warn">'+esc(u("adjudicate"))+'</div></div></article>'+
+    '<article class="card flow-visual"><h3>'+esc(u("verifyLoop"))+'</h3><div class="flowline">'+boxes(verify)+'</div><p class="section-copy">EXP-009/010 · '+esc(u("synthetic"))+'</p></article>'+
+    '<article class="card flow-visual"><h3>'+esc(u("memoryLife"))+'</h3><div class="flowline">'+boxes(memory)+'</div><div class="safety-cross">✕ '+esc(state.lang==="he"?"הזיכרון אינו משנה את הבסיס":"memory cannot mutate the baseline")+'</div></article>'+
+    '<article class="card flow-visual"><h3>'+esc(u("eventMap"))+'</h3><div class="event-grid">'+events.join("")+'</div></article></div>'+
+    '<h3 style="margin-top:18px">'+esc(u("maturity"))+'</h3><div class="ladder">'+ladderKeys.map(function(k,i){var cls=i<4?"current":i===5?"pending":i===6?"no":"";return '<div class="ladder-step '+cls+'">'+esc(u(k))+'</div>'}).join("")+'</div>';
+}
+function barChart(title,items,max,caption,colorClass){
+  return '<figure class="card chart" role="img" aria-label="'+esc(title)+'"><h3>'+esc(title)+'</h3><div class="bar-list">'+items.map(function(x){var label=state.lang==="he"?(x.he||x.label):x.label;var pct=max?Math.max(0,Math.min(100,(x.value/max)*100)):0;return '<div class="bar-row"><span>'+esc(label)+'</span><div class="bar-track"><div class="bar-fill '+(colorClass||"")+'" style="width:'+pct.toFixed(1)+'%"></div></div><strong>'+esc(x.value)+'</strong></div>'}).join("")+'</div><figcaption>'+esc(caption)+'</figcaption></figure>'
+}
+function scatterPlot(){
+  var pts=DATA.evidence.exp007;
+  var W=430,H=270,L=48,R=18,T=18,B=42;
+  function x(v){return L+v*(W-L-R)}
+  function y(v){return H-B-v*(H-T-B)}
+  var grid=[0,.25,.5,.75,1].map(function(v){return '<line class="grid" x1="'+L+'" y1="'+y(v)+'" x2="'+(W-R)+'" y2="'+y(v)+'"/><text x="'+(L-8)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v.toFixed(2)+'</text>'}).join("");
+  var labelOffset={silent:[7,-7],sev3:[7,-17],first_n:[7,14],sev2:[7,-8],sev1:[7,-8]};
+  var points=pts.map(function(p){var o=labelOffset[p.mode]||[7,-7];return '<circle class="point" cx="'+x(p.load)+'" cy="'+y(p.coverage)+'" r="6"><title>'+p.mode+': load '+p.load+', coverage '+p.coverage+'</title></circle><text class="label" x="'+(x(p.load)+o[0])+'" y="'+(y(p.coverage)+o[1])+'">'+p.mode+'</text>'}).join("");
+  return '<figure class="card chart"><h3>'+esc(u("workloadCoverage"))+'</h3><svg class="plot" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(u("workloadCoverage"))+'"><title>'+esc(u("workloadCoverage"))+'</title>'+grid+'<line class="axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/><line class="axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'"/><line class="guard" x1="'+x(.5)+'" y1="'+T+'" x2="'+x(.5)+'" y2="'+(H-B)+'"/><line class="guard" x1="'+L+'" y1="'+y(.8)+'" x2="'+(W-R)+'" y2="'+y(.8)+'"/>'+points+'<text x="'+((L+W-R)/2)+'" y="'+(H-9)+'" text-anchor="middle">'+esc(u("load"))+'</text><text transform="translate(12 '+((T+H-B)/2)+') rotate(-90)" text-anchor="middle">'+esc(u("coverage"))+'</text></svg><figcaption>'+esc(u("scatterCaption"))+'</figcaption></figure>'
+}
+function iterationTrajectoryPlot(){
+  var rows=DATA.iterationMetricTrajectory||[];
+  if(!rows.length){return ""}
+  var W=560,H=245,L=46,R=24,T=24,B=42;
+  function x(index){return L+index*((W-L-R)/Math.max(1,rows.length-1))}
+  function y(value){return H-B-Number(value)*(H-T-B)}
+  var grid=[0,.25,.5,.75,1].map(function(v){return '<line class="grid" x1="'+L+'" y1="'+y(v)+'" x2="'+(W-R)+'" y2="'+y(v)+'"/><text x="'+(L-7)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v.toFixed(2)+'</text>'}).join("");
+  var loadPoints=rows.map(function(row,i){return x(i)+','+y(row.event_load)}).join(" ");
+  var coveragePoints=rows.map(function(row,i){return x(i)+','+y(row.weighted_coverage)}).join(" ");
+  var marks=rows.map(function(row,i){var n=String(row.iteration).replace("iter_","");return '<circle class="mark-load" cx="'+x(i)+'" cy="'+y(row.event_load)+'" r="3.5"><title>Iteration '+n+' load '+row.event_load+'</title></circle><circle class="mark-coverage" cx="'+x(i)+'" cy="'+y(row.weighted_coverage)+'" r="3.5"><title>Iteration '+n+' weighted coverage '+row.weighted_coverage+'</title></circle><text x="'+x(i)+'" y="'+(H-18)+'" text-anchor="middle">'+Number(n)+'</text>'}).join("");
+  return '<figure class="card chart" style="margin-top:14px"><h3>'+esc(u("iterationTrajectory"))+'</h3><svg class="plot" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(u("iterationTrajectory"))+'"><title>'+esc(u("iterationTrajectory"))+'</title><desc>'+esc(u("trajectoryCaption"))+'</desc>'+grid+'<line class="axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/><line class="axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(H-B)+'"/><polyline class="series-load" points="'+loadPoints+'"/><polyline class="series-coverage" points="'+coveragePoints+'"/>'+marks+'<text x="'+(L+5)+'" y="14">● '+esc(u("load"))+'</text><text x="'+(L+120)+'" y="14">● '+esc(u("coverage"))+'</text><text x="'+((L+W-R)/2)+'" y="'+(H-3)+'" text-anchor="middle">'+esc(u("iterationTimeline"))+'</text></svg><figcaption>'+esc(u("trajectoryCaption"))+'</figcaption></figure>'
+}
+function renderEvidence(){
+  var e=DATA.evidence;
+  var cards=[];
+  cards.push(barChart(u("reviewSetting"),e.reviewBySetting,5,u("reviewCaption"),""));
+  cards.push(barChart(u("classDist"),e.classification,18,u("classCaption"),"amber"));
+  cards.push(barChart(u("adviceDist"),e.adviceSubset,5,u("adviceCaption"),"purple"));
+  cards.push(barChart(u("labelReady"),e.labelReadiness,24,u("labelCaption"),"red"));
+  cards.push(barChart(u("eventProfile"),e.exp006,481,u("eventCaption"),""));
+  cards.push(scatterPlot());
+  cards.push(barChart(u("capSweep"),e.exp008,1,u("capCaption"),"amber"));
+  cards.push(barChart(u("leakage"),e.leakage,27,u("leakageCaption"),"purple"));
+  var matrix='<figure class="card chart"><h3>'+esc(u("paired"))+'</h3><div class="matrix2"><div></div><div class="head">'+esc(u("memoryCorrect"))+'</div><div class="head">'+esc(u("memoryWrong"))+'</div><div class="head">'+esc(u("originalCorrect"))+'</div><div>'+esc(u("notComputable"))+'</div><div>'+esc(u("notComputable"))+'</div><div class="head">'+esc(u("originalWrong"))+'</div><div>'+esc(u("notComputable"))+'</div><div>'+esc(u("notComputable"))+'</div></div><figcaption>EXP-005 · 0 labels · EXP-012 N=0.</figcaption></figure>';
+  cards.push(matrix);
+  document.getElementById("evidenceContent").innerHTML='<div class="chart-grid">'+cards.join("")+'</div>';
+}
+function renderExperiments(){
+  var timeline='<article class="card"><h3>'+esc(u("iterationTimeline"))+'</h3><div class="timeline">'+(DATA.iterations||[]).map(function(x){return '<div class="flowbox '+(x.manifestBacked?"good":"")+'"><strong>'+esc(x.id)+'</strong><small>'+esc(x.manifestBacked?u("manifestBacked"):u("historicalPreManifest"))+'</small><small>'+esc(x.verdict||"—")+'</small></div>'}).join("")+'</div></article>';
+  var trajectory=iterationTrajectoryPlot();
+  var matrixRows=DATA.experiments.map(function(x){return '<tr><td><strong>'+esc(x.id)+'</strong></td><td>'+esc(tr(x.title))+'</td><td>'+esc(tr(x.statusLabel||statusLabels[x.status]||x.status))+'</td><td>'+esc(x.group)+'</td><td>'+esc(x.componentId)+'</td></tr>'}).join("");
+  var matrix='<article class="card" style="margin-top:14px"><h3>'+esc(u("experimentMatrix"))+'</h3><div class="table-wrap"><table><thead><tr><th>ID</th><th>'+esc(u("result"))+'</th><th>'+esc(u("status"))+'</th><th>Class</th><th>C</th></tr></thead><tbody>'+matrixRows+'</tbody></table></div></article>';
+  document.getElementById("experimentContent").innerHTML=timeline+trajectory+matrix+'<div class="experiment-grid" style="margin-top:14px">'+DATA.experiments.map(function(x){return '<article class="card experiment'+relationClass(x.componentId)+'" id="experiment-'+x.id+'"><h3><span class="decision-id">'+x.id+'</span> · '+esc(tr(x.title))+'</h3><p><span class="status '+x.status+'">'+esc(tr(x.statusLabel||statusLabels[x.status]||x.status))+'</span></p><p>'+esc(tr(x.result))+'</p><div class="id-row"><span class="id-chip">'+x.componentId+'</span><span class="id-chip">'+esc(x.group)+'</span></div></article>'}).join("")+'</div>';
+}
+function renderGate(){
+  document.getElementById("gateContent").innerHTML='<div class="card gate"><div class="gate-flow"><div class="gate-stop"><span>'+esc(u("stop"))+'</span><small>'+esc(u("zeroLabels"))+'</small></div><span class="flow-arrow arrow-inline">→</span><div class="gate-step">'+esc(u("approveProtocol"))+'</div><span class="flow-arrow arrow-inline">→</span><div class="gate-step">'+esc(u("twoReviewers"))+'</div><span class="flow-arrow arrow-inline">→</span><div class="gate-step">'+esc(u("agreement"))+'</div><span class="flow-arrow arrow-inline">→</span><div class="gate-go">'+esc(u("go"))+'</div></div><div class="safety-cross">EXP-012 · N=0 · '+esc(u("notComputable"))+'</div></div>';
+}
+function loadDecision(id){
+  if(!decisionState[id]){decisionState[id]={selectedValue:"",decisionDate:"",outcome:"",rationale:"",approver:"",owner:"",dueDate:"",constraints:"",affectedArtifacts:"",confirmationStatus:"unconfirmed"}}
+  return decisionState[id]
+}
+function saveDecisions(){try{localStorage.setItem("vego-decisions-v3",JSON.stringify(decisionState))}catch(e){}}
+function renderDecisions(){
+  var outcomes=[["accepted","accepted"],["accepted_changes","acceptedChanges"],["rejected","rejected"],["deferred","deferred"]];
+  var dependency='<article class="card lane-map"><h3>'+esc(u("decisionMap"))+'</h3>'+DATA.components.map(function(c){var ids=DATA.decisions.filter(function(d){return d.componentIds.indexOf(c.id)>=0}).map(function(d){return '<span class="lane-node'+relationClass(c.id)+'">'+d.id+'</span>'}).join("");return '<div class="lane"><div class="lane-label">'+c.id+' · '+esc(tr(c.short))+'</div><div class="lane-nodes">'+ids+'</div></div>'}).join("")+'</article>';
+  document.getElementById("decisionContent").innerHTML=dependency+'<div class="decision-list" style="margin-top:14px">'+DATA.decisions.map(function(d){
+    var s=loadDecision(d.id);
+    return '<article class="card decision-card'+(d.componentIds.indexOf(state.focus)>=0?" related":"")+'" id="decision-'+d.id+'"><h3><span class="decision-id">'+d.id+'</span> '+esc(tr(d.request))+'</h3>'+
+      '<div class="decision-row"><strong>'+esc(u("recommendation"))+'</strong>'+esc(tr(d.recommendation))+'</div>'+
+      '<div class="decision-row"><strong>'+esc(u("blockedUntil"))+'</strong>'+esc(tr(d.blocked))+'</div>'+
+      '<div class="id-row">'+d.componentIds.map(function(id){return '<button class="btn" type="button" data-piece-select="'+id+'">'+id+'</button>'}).join("")+'</div>'+
+      '<div class="capture"><strong>'+esc(u("meetingOutcome"))+'</strong><div class="capture-outcomes">'+outcomes.map(function(o){return '<label class="outcome"><input type="radio" name="outcome-'+d.id+'" data-decision-outcome="'+d.id+'" value="'+o[0]+'" '+(s.outcome===o[0]?"checked":"")+'>'+esc(u(o[1]))+'</label>'}).join("")+'</div>'+
+      '<div class="form-grid">'+field(d.id,"selectedValue",u("selectedValue"),s.selectedValue,"text")+field(d.id,"decisionDate",u("decisionDate"),s.decisionDate,"date")+field(d.id,"approver",u("approver"),s.approver,"text")+field(d.id,"owner",u("owner"),s.owner,"text")+field(d.id,"dueDate",u("due"),s.dueDate,"date")+selectField(d.id,"confirmationStatus",u("confirmationStatus"),s.confirmationStatus)+area(d.id,"rationale",u("rationale"),s.rationale)+area(d.id,"constraints",u("constraints"),s.constraints)+area(d.id,"affectedArtifacts",u("affected"),s.affectedArtifacts)+'</div>'+
+      '<p><button class="btn danger" type="button" data-clear-decision="'+d.id+'">'+esc(u("clearOne"))+'</button></p></div></article>'
+  }).join("")+'</div>';
+}
+function field(id,key,label,value,type){return '<label>'+esc(label)+'<input type="'+esc(type||"text")+'" data-decision-field="'+id+'" data-field="'+key+'" value="'+esc(value)+'"></label>'}
+function selectField(id,key,label,value){return '<label>'+esc(label)+'<select data-decision-field="'+id+'" data-field="'+key+'"><option value="unconfirmed" '+(value==="unconfirmed"?"selected":"")+'>'+esc(u("unconfirmed"))+'</option><option value="confirmed" '+(value==="confirmed"?"selected":"")+'>'+esc(u("confirmed"))+'</option></select></label>'}
+function area(id,key,label,value){return '<label class="wide">'+esc(label)+'<textarea data-decision-field="'+id+'" data-field="'+key+'">'+esc(value)+'</textarea></label>'}
+function aiSnapshot(){
+  return {
+    schemaVersion:DATA.schemaVersion,
+    generatedAt:DATA.generatedAt,
+    sources:DATA.sources,
+    skills:DATA.skills,
+    events:DATA.events,
+    connections:DATA.connections,
+    chronology:DATA.chronology,
+    components:DATA.components.map(function(c){return {id:c.id,title:c.title,status:c.status,directives:c.directives,skills:c.skills,events:c.events,artifacts:c.artifacts,experiments:c.experiments,decisions:c.decisionIds,boundary:c.boundary}}),
+    directives:DATA.directives,
+    actions:DATA.actions,
+    artifacts:DATA.artifacts,
+    experiments:DATA.experiments,
+    evidence:DATA.evidence,
+    decisions:DATA.decisions,
+    claimBoundaries:DATA.claimBoundaries,
+    decisionOutcomes:decisionState
+  }
+}
+function renderAI(){document.getElementById("aiSummary").textContent=JSON.stringify(aiSnapshot(),null,2)}
+function renderFooter(){document.getElementById("footerText").textContent=u("footer")}
+function renderAll(){
+  applyStaticText();
+  renderChronology();
+  renderPuzzle();
+  renderArchitecture();
+  renderTrace();
+  renderDirectives();
+  renderActions();
+  renderArtifacts();
+  renderGovernance();
+  renderEvidence();
+  renderExperiments();
+  renderGate();
+  renderDecisions();
+  renderAI();
+  renderFooter();
+  document.getElementById("guidedView").hidden=state.mode!=="guided";
+  document.getElementById("exploreView").hidden=state.mode!=="explore";
+}
+function setMode(mode){
+  state.mode=mode;
+  if(mode==="explore"&&!state.focus){state.focus="C"+state.step}
+  renderAll();
+  if(mode==="explore"){document.getElementById("exploreTitle").scrollIntoView({block:"start"})}
+}
+function setStep(n,complete){
+  state.step=Math.max(1,Math.min(6,n));
+  state.complete=!!complete;
+  state.focus="C"+state.step;
+  history.replaceState(null,"",state.complete?"#story-complete":"#story-"+state.step);
+  renderAll();
+}
+function copyText(text){
+  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(text)}
+  var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
+  var ok=document.execCommand("copy");document.body.removeChild(ta);return ok?Promise.resolve():Promise.reject()
+}
+function notify(text){
+  var old=document.title;document.title=text+" · "+old;setTimeout(function(){document.title=old},1200)
+}
+function download(name,text,type){
+  var blob=new Blob([text],{type:type||"text/plain;charset=utf-8"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},100)
+}
+function outcomeLabel(code){
+  var key={accepted:"accepted",accepted_changes:"acceptedChanges",rejected:"rejected",deferred:"deferred"}[code];
+  return key?u(key):u("notRecorded")
+}
+function canonicalOutcome(code){
+  return {accepted:"Accepted",accepted_changes:"Accepted with changes",rejected:"Rejected",deferred:"Deferred"}[code]||"Deferred"
+}
+function displayCanonicalOutcome(value){
+  var code={"Accepted":"accepted","Accepted with changes":"accepted_changes","Rejected":"rejected","Deferred":"deferred"}[value]||"deferred";
+  return outcomeLabel(code)
+}
+function decisionMarkdown(){
+  var title=state.lang==="he"?"# תיעוד החלטות פגישת VEGO-AI":"# VEGO-AI meeting decision capture";
+  var note=state.lang==="he"?"רשומת 1 ביולי נשארת מבוססת-מכונה עד אישור M-01.":"July 1 record remains machine-derived until M-01 confirmation.";
+  var lines=[title,"",(state.lang==="he"?"נוצר: ":"Generated: ")+new Date().toISOString(),"",note,""];
+  finalizedDecisions().forEach(function(x){lines.push("## "+x.ID,"",tr(DATA.decisions.find(function(d){return d.id===x.ID}).request),"","- "+u("selectedValue")+": "+x.selectedValue,"- "+u("decisionDate")+": "+x.decisionDate,"- "+u("meetingOutcome")+": "+displayCanonicalOutcome(x.outcome),"- "+u("rationale")+": "+x.rationale,"- "+u("approver")+": "+x.approver,"- "+u("owner")+": "+x.owner,"- "+u("due")+": "+x.dueDate,"- "+u("constraints")+": "+x.constraints,"- "+u("affected")+": "+x.affectedArtifacts,"- "+u("confirmationStatus")+": "+x.confirmationStatus,"")});
+  return lines.join("\n")
+}
+function finalizedDecisions(){
+  return DATA.decisions.map(function(d){var s=loadDecision(d.id);var outcome=s.outcome||"deferred";return {ID:d.id,selectedValue:s.selectedValue||"",decisionDate:s.decisionDate||"",outcome:canonicalOutcome(outcome),rationale:s.rationale||"",approver:s.approver||"",owner:s.owner||"",dueDate:s.dueDate||"",constraints:s.constraints||"",affectedArtifacts:s.affectedArtifacts||"",confirmationStatus:s.confirmationStatus||"unconfirmed"}})
+}
+document.addEventListener("click",function(e){
+  var target=e.target.closest("button,a,input");
+  if(!target){return}
+  if(target.matches("[data-lang]")){state.lang=target.getAttribute("data-lang");savePrefs();renderAll();return}
+  if(target.matches("[data-mode]")){setMode(target.getAttribute("data-mode"));return}
+  var act=target.getAttribute("data-action");
+  if(act==="previous"){setStep(state.step-1,false)}
+  if(act==="next"){setStep(state.step+1,false)}
+  if(act==="complete"){setStep(6,true)}
+  if(act==="reset"){setStep(1,false)}
+  if(act==="print"){window.print()}
+  if(act==="clear-focus"){state.focus=null;renderAll()}
+  if(act==="copy-context"){copyText(JSON.stringify(aiSnapshot(),null,2)).then(function(){notify(u("copied"))}).catch(function(){notify(u("copyFailed"))})}
+  if(act==="export-json"){download("vego-ai-meeting-decisions-2026-07-21.json",JSON.stringify({schemaVersion:"MeetingDecisionExport-v1",meetingDate:"2026-07-21",generatedAt:new Date().toISOString(),decisions:finalizedDecisions()},null,2),"application/json")}
+  if(act==="export-md"){download("vego-ai-meeting-decisions-2026-07-21.md",decisionMarkdown(),"text/markdown")}
+  if(act==="clear-decisions"){if(confirm(u("clearDecisions")+"?")){decisionState={};saveDecisions();renderAll()}}
+  if(target.matches("[data-piece-select]")){
+    var id=target.getAttribute("data-piece-select");var c=component(id);state.step=c.order;state.complete=false;state.focus=id;history.replaceState(null,"","#story-"+state.step);renderAll()
+  }
+  if(target.matches("[data-explore-component]")){state.focus=target.getAttribute("data-explore-component");setMode("explore");setTimeout(function(){document.getElementById("traceability").scrollIntoView({block:"start"})},0)}
+  if(target.matches("[data-decision-outcome]")){var did=target.getAttribute("data-decision-outcome");loadDecision(did).outcome=target.value;saveDecisions();renderDecisions();renderAI()}
+  if(target.matches("[data-clear-decision]")){delete decisionState[target.getAttribute("data-clear-decision")];saveDecisions();renderDecisions();renderAI()}
+});
+document.addEventListener("input",function(e){
+  if(e.target.matches("[data-decision-field]")){var id=e.target.getAttribute("data-decision-field");var key=e.target.getAttribute("data-field");loadDecision(id)[key]=e.target.value;saveDecisions();renderAI()}
+});
+document.addEventListener("change",function(e){
+  if(e.target.matches("[data-decision-field]")){var id=e.target.getAttribute("data-decision-field");var key=e.target.getAttribute("data-field");loadDecision(id)[key]=e.target.value;saveDecisions();renderAI()}
+});
+window.addEventListener("beforeprint",function(){state.complete=true;renderPuzzle()});
+window.addEventListener("hashchange",function(){if(applyHash()){renderAll();setTimeout(scrollHashTarget,0)}});
+loadState();
+renderAll();
+setTimeout(scrollHashTarget,0);
+})();
+</script>
+</body>
+</html>

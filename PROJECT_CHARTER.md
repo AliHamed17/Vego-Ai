@@ -6,6 +6,8 @@ VEGO-AI: Reusable Human Judgment in AI-Assisted Domain Model Assessment.
 
 ## Research Purpose
 
+VEGO-AI is the user's MSc thesis project. Treat thesis validity, evidence discipline, reproducibility, and supervisor-facing clarity as first-order requirements.
+
 Develop, evaluate, and document an agentic AI workflow that supports variability exploration in domain models while making human expert judgment selectively triggered, structurally captured, and reusable for later model assessment.
 
 ## Primary Outcomes

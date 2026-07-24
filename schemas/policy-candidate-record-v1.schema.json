@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/policy-candidate-record-v1.schema.json",
+  "title": "PolicyCandidateRecord v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "policyId",
+    "policyVersion",
+    "status",
+    "createdAt",
+    "developmentPartitionSha256",
+    "labelSetSha256",
+    "deterministicRules",
+    "evidenceThresholds",
+    "allowedOutput",
+    "baselineMutationAllowed",
+    "protectedRuntimeChangeAllowed",
+    "runtimeEffect",
+    "safetyBehavior",
+    "supervisorApproval",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "PolicyCandidateRecord-v1"
+    },
+    "policyId": {
+      "type": "string",
+      "pattern": "^PC-[A-Za-z0-9_-]+$"
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "Proposal — not approved",
+        "Frozen for one-time holdout evaluation",
+        "Rejected",
+        "Deferred"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "developmentPartitionSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "labelSetSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "deterministicRules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "condition",
+          "parallelProposal",
+          "fallback"
+        ],
+        "properties": {
+          "ruleId": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string"
+          },
+          "parallelProposal": {
+            "type": "string"
+          },
+          "fallback": {
+            "const": "Preserve baseline and request or park human review"
+          }
+        }
+      }
+    },
+    "evidenceThresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimumDevelopmentErrors",
+        "minimumSettingsRepresented",
+        "conflictFreeRequired",
+        "generalizationSafeRequired"
+      ],
+      "properties": {
+        "minimumDevelopmentErrors": {
+          "type": "integer",
+          "minimum": 3
+        },
+        "minimumSettingsRepresented": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "conflictFreeRequired": {
+          "const": true
+        },
+        "generalizationSafeRequired": {
+          "const": true
+        }
+      }
+    },
+    "allowedOutput": {
+      "const": "parallel_proposal_only"
+    },
+    "baselineMutationAllowed": {
+      "const": false
+    },
+    "protectedRuntimeChangeAllowed": {
+      "const": false
+    },
+    "runtimeEffect": {
+      "const": "none"
+    },
+    "safetyBehavior": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "onMissingEvidence",
+        "onConflict",
+        "onTimeout"
+      ],
+      "properties": {
+        "onMissingEvidence": {
+          "const": "Preserve baseline and park or request human review"
+        },
+        "onConflict": {
+          "const": "Preserve baseline and request human adjudication"
+        },
+        "onTimeout": {
+          "const": "Preserve baseline and park the item"
+        }
+      }
+    },
+    "supervisorApproval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "outcome",
+        "recordId"
+      ],
+      "properties": {
+        "required": {
+          "const": true
+        },
+        "outcome": {
+          "enum": [
+            "Not recorded",
+            "Accepted",
+            "Accepted with changes",
+            "Rejected",
+            "Deferred"
+          ]
+        },
+        "recordId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "claimBoundary": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "Frozen for one-time holdout evaluation"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "supervisorApproval": {
+            "properties": {
+              "outcome": {
+                "enum": [
+                  "Accepted",
+                  "Accepted with changes"
+                ]
+              },
+              "recordId": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

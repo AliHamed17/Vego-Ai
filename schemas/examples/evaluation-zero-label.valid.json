@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "EvaluationRunManifest-v2",
+  "runId": "exp020-zero-label",
+  "experimentId": "EXP-020",
+  "generatedAt": "2026-07-24T00:00:00+03:00",
+  "sourceRevision": "cccccccccccccccccccccccccccccccccccccccc",
+  "workingTreeState": "clean",
+  "runClass": "development",
+  "baselineHashes": {
+    "agent4": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "inputHashes": {
+    "labels": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "outputHashes": {},
+  "labelStats": {
+    "candidateRows": 24,
+    "suppliedLabels": 0,
+    "validLabels": 0,
+    "generalizationSafeLabels": 0,
+    "reviewerCount": 0,
+    "adjudicatedRows": 0
+  },
+  "partition": {
+    "role": "none",
+    "manifestSha256": null,
+    "sealedBeforePolicyFreeze": false
+  },
+  "policy": {
+    "policyId": "memory-informed-classifier-v1",
+    "policySha256": null,
+    "status": "Implemented baseline comparator"
+  },
+  "randomization": {
+    "annotationSeed": 20260721,
+    "partitionSeed": 20260721,
+    "bootstrapSeed": 20260721,
+    "bootstrapReplicates": 10000
+  },
+  "metrics": {
+    "status": "NOT YET COMPUTABLE",
+    "originalAccuracy": null,
+    "candidateAccuracy": null,
+    "originalMacroF1": null,
+    "candidateMacroF1": null,
+    "netCorrection": null,
+    "pairedPValue": null
+  },
+  "claimScope": "Gate validation only; no empirical performance result.",
+  "protectedRuntimeChanged": false
+}

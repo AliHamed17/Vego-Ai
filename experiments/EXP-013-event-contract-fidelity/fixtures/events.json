@@ -1,0 +1,63 @@
+{
+  "fixture_version": "1.0",
+  "run_id": "fixture-run-exp013",
+  "events": [
+    {
+      "event_type": "E1",
+      "setting_id": "ucd_ch",
+      "case_id": null,
+      "producer": "agent1_fixture",
+      "channel": "artifact",
+      "sequence": 1,
+      "capture_status": "observed",
+      "source": "sources/template_created.json",
+      "payload": {"event_name": "template_created", "artifact_version": "fixture-v1"}
+    },
+    {
+      "event_type": "E3",
+      "setting_id": "ucd_ch",
+      "case_id": null,
+      "producer": "qa_fixture",
+      "channel": "qa",
+      "sequence": 2,
+      "capture_status": "unobservable",
+      "source": null,
+      "gap_reason": "Answer logs are absent from the historical fixture; no answer was reconstructed.",
+      "payload": {"event_name": "answer_logged"}
+    },
+    {
+      "event_type": "E9",
+      "setting_id": "ucd_ch",
+      "case_id": "fixture-case-1",
+      "producer": "observer_fixture",
+      "channel": "derived_lifecycle",
+      "sequence": 3,
+      "capture_status": "unobservable",
+      "source": null,
+      "gap_reason": "Recurring ambiguity cannot be derived without persisted answer lineage.",
+      "payload": {"event_name": "recurring_ambiguity"}
+    },
+    {
+      "event_type": "E14",
+      "setting_id": "ucd_ch",
+      "case_id": "fixture-case-1",
+      "producer": "review_fixture",
+      "channel": "review_lifecycle",
+      "sequence": 4,
+      "capture_status": "reconstructed",
+      "source": "sources/review_transition.json",
+      "payload": {"event_name": "review_transition", "state": "pending_review"}
+    },
+    {
+      "event_type": "E15",
+      "setting_id": "ucd_ch",
+      "case_id": "fixture-case-1",
+      "producer": "evaluation_fixture",
+      "channel": "evaluation",
+      "sequence": 5,
+      "capture_status": "observed",
+      "source": "sources/evaluation_signal.json",
+      "payload": {"event_name": "evaluation_signal", "synthetic_tag": "SYNTHETIC_NOT_HUMAN"}
+    }
+  ]
+}

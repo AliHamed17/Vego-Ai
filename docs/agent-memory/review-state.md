@@ -1,10 +1,10 @@
-# Review State
+﻿# Review State
 
 Fast review state for Codex and Claude. Update this after meaningful review cycles so future prompts can continue from the same evidence and governance state.
 
 ## Last Updated
 
-- 2026-06-23 10:52 +03:00 by Codex review runner.
+- 2026-07-12 12:49 +03:00 by Codex review runner.
 
 ## Latest Verdict
 
@@ -24,7 +24,7 @@ Fast review state for Codex and Claude. Update this after meaningful review cycl
 - Supplied labels: 0
 - Complete required rows: 0
 - Generalization-safe complete rows: 0
-- Sheet unlocked: False
+- Sheet unlocked: True
 
 ## Approved Claims
 

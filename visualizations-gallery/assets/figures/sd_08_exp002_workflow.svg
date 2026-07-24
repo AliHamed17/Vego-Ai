@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <style>
+    .bg { fill: #F8FAFC; }
+    .title { font: 700 48px Arial, sans-serif; fill: #0F172A; }
+    .subtitle { font: 400 25px Arial, sans-serif; fill: #475569; }
+    .nodeTitle { font: 700 25px Arial, sans-serif; fill: #0F172A; }
+    .nodeBody { font: 400 21px Arial, sans-serif; fill: #334155; }
+    .footer { font: 400 22px Arial, sans-serif; fill: #64748B; }
+  </style>
+  <rect class="bg" width="1600" height="900"/>
+  <text x="80" y="88" class="title">EXP-002 Supervisor Workflow</text>
+  <text x="80" y="132" class="subtitle">The next research step is expert labeling, not new features</text>
+
+      <g>
+        <path d="M 302 420 L 367.5 420" stroke="#64748B" stroke-width="5" fill="none"/><path d="M 367.5 420 l -18 -12 v 24 z" fill="#64748B"/>
+        <rect x="80" y="345" width="210" height="150" rx="16" fill="#FFFFFF" stroke="#0B7285" stroke-width="4"/>
+        <text x="102" y="393" class="nodeTitle">Select rows</text>
+        <text x="102" y="431" class="nodeBody">27 prepared</text>
+        <text x="102" y="461" class="nodeBody">patterns</text>
+      </g>
+
+      <g>
+        <path d="M 609.5 420 L 675 420" stroke="#64748B" stroke-width="5" fill="none"/><path d="M 675 420 l -18 -12 v 24 z" fill="#64748B"/>
+        <rect x="387.5" y="345" width="210" height="150" rx="16" fill="#FFFFFF" stroke="#2F9E44" stroke-width="4"/>
+        <text x="409.5" y="393" class="nodeTitle">Apply labels</text>
+        <text x="409.5" y="431" class="nodeBody">Substantial /</text>
+        <text x="409.5" y="461" class="nodeBody">Occasional / Review</text>
+      </g>
+
+      <g>
+        <path d="M 917 420 L 982.5 420" stroke="#64748B" stroke-width="5" fill="none"/><path d="M 982.5 420 l -18 -12 v 24 z" fill="#64748B"/>
+        <rect x="695" y="345" width="210" height="150" rx="16" fill="#FFFFFF" stroke="#5F3DC4" stroke-width="4"/>
+        <text x="717" y="393" class="nodeTitle">Exclude leakage</text>
+        <text x="717" y="431" class="nodeBody">hold out</text>
+        <text x="717" y="461" class="nodeBody">same-pattern cases</text>
+      </g>
+
+      <g>
+        <path d="M 1224.5 420 L 1290 420" stroke="#64748B" stroke-width="5" fill="none"/><path d="M 1290 420 l -18 -12 v 24 z" fill="#64748B"/>
+        <rect x="1002.5" y="345" width="210" height="150" rx="16" fill="#FFFFFF" stroke="#C2410C" stroke-width="4"/>
+        <text x="1024.5" y="393" class="nodeTitle">Compare</text>
+        <text x="1024.5" y="431" class="nodeBody">original vs</text>
+        <text x="1024.5" y="461" class="nodeBody">memory-informed</text>
+      </g>
+
+      <g>
+
+        <rect x="1310" y="345" width="210" height="150" rx="16" fill="#FFFFFF" stroke="#0F766E" stroke-width="4"/>
+        <text x="1332" y="393" class="nodeTitle">Decide</text>
+        <text x="1332" y="431" class="nodeBody">M4B-2 gate</text>
+        <text x="1332" y="461" class="nodeBody">after results</text>
+      </g>
+  <text x="80" y="842" class="footer">Recommended next labeling target: minimum 20; preferred 30-50.</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 420' width='720' height='420' role='img' aria-label='Figure 4 - Human-review cases by setting (M1, total 11)'>
+<rect width='720' height='420' fill='#ffffff'/>
+<text x='360.0' y='34' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='22' font-weight='700' fill='#1f2933'>Figure 4 - Human-review cases by setting (M1, total 11)</text>
+<line x1='60' y1='350.0' x2='690' y2='350.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='354.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>0</text>
+<line x1='60' y1='294.0' x2='690' y2='294.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='298.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>1</text>
+<line x1='60' y1='238.0' x2='690' y2='238.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='242.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>2</text>
+<line x1='60' y1='182.0' x2='690' y2='182.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='186.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>3</text>
+<line x1='60' y1='126.0' x2='690' y2='126.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='130.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>4</text>
+<line x1='60' y1='70.0' x2='690' y2='70.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='74.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>5</text>
+<rect x='95.4' y='126.0' width='86.6' height='224.0' rx='4' fill='#2b6cb0'/>
+<text x='138.8' y='118.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1f2933'>4</text>
+<text x='138.8' y='376.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='14' fill='#4a5568'>ucd_ch</text>
+<rect x='252.9' y='70.0' width='86.6' height='280.0' rx='4' fill='#2b6cb0'/>
+<text x='296.2' y='62.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1f2933'>5</text>
+<text x='296.2' y='376.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='14' fill='#4a5568'>ucd_pw</text>
+<rect x='410.4' y='238.0' width='86.6' height='112.0' rx='4' fill='#2b6cb0'/>
+<text x='453.8' y='230.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1f2933'>2</text>
+<text x='453.8' y='376.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='14' fill='#4a5568'>cd_ch</text>
+<rect x='567.9' y='350.0' width='86.6' height='0.0' rx='4' fill='#7b8794'/>
+<text x='611.2' y='342.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1f2933'>0</text>
+<text x='611.2' y='376.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='14' fill='#4a5568'>cd_pw</text>
+</svg>

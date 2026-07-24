@@ -1,0 +1,11 @@
+{
+  "fixture_version": "1.0",
+  "synthetic_tag": "SYNTHETIC_NOT_HUMAN",
+  "target": "target.txt",
+  "replace": {
+    "old": "status: provisional",
+    "new": "status: proposed-change-pending-human-approval"
+  },
+  "evidence_refs": ["fixture:EXP-018", "verification:VERIFY-EXP018-FIXTURE"],
+  "rollback_description": "Discard the disposable working copy and retain the original target hash."
+}

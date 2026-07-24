@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "PolicyCandidateRecord-v1",
+  "policyId": "PC-DEV-001",
+  "policyVersion": "0.1",
+  "status": "Frozen for one-time holdout evaluation",
+  "createdAt": "2026-07-24T00:00:00+03:00",
+  "developmentPartitionSha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "labelSetSha256": "3333333333333333333333333333333333333333333333333333333333333333",
+  "deterministicRules": [
+    {
+      "ruleId": "R1",
+      "condition": "Strong, conflict-free, generalization-safe advice and low baseline confidence",
+      "parallelProposal": "Propose the memory-supported class for explicit human approval",
+      "fallback": "Preserve baseline and request or park human review"
+    }
+  ],
+  "evidenceThresholds": {
+    "minimumDevelopmentErrors": 3,
+    "minimumSettingsRepresented": 2,
+    "conflictFreeRequired": true,
+    "generalizationSafeRequired": true
+  },
+  "allowedOutput": "parallel_proposal_only",
+  "baselineMutationAllowed": false,
+  "protectedRuntimeChangeAllowed": false,
+  "runtimeEffect": "none",
+  "safetyBehavior": {
+    "onMissingEvidence": "Preserve baseline and park or request human review",
+    "onConflict": "Preserve baseline and request human adjudication",
+    "onTimeout": "Preserve baseline and park the item"
+  },
+  "supervisorApproval": {
+    "required": true,
+    "outcome": "Accepted",
+    "recordId": "M-05-2026-07-24"
+  },
+  "claimBoundary": "Frozen development policy for a one-time pilot; no runtime or formal performance claim."
+}

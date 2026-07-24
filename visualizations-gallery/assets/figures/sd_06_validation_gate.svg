@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <style>
+    .bg { fill: #F8FAFC; }
+    .title { font: 700 48px Arial, sans-serif; fill: #0F172A; }
+    .subtitle { font: 400 25px Arial, sans-serif; fill: #475569; }
+    .cardTitle { font: 700 26px Arial, sans-serif; fill: #0F172A; }
+    .cardBody { font: 400 22px Arial, sans-serif; fill: #334155; }
+    .footer { font: 400 22px Arial, sans-serif; fill: #64748B; }
+  </style>
+  <rect class="bg" width="1600" height="900"/>
+  <text x="90" y="88" class="title">Validation Gate</text>
+  <text x="90" y="132" class="subtitle">Engineering readiness before the supervisor meeting</text>
+
+      <g transform="translate(90, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#0B7285"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">pytest</text>
+<text x="0" y="30" class="cardBody">93 passed</text></g>
+      </g>
+
+      <g transform="translate(452, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#2F9E44"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">compileall</text>
+<text x="0" y="30" class="cardBody">framework/eval/analysis/visualizer passed</text></g>
+      </g>
+
+      <g transform="translate(814, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#5F3DC4"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">project-health</text>
+<text x="0" y="30" class="cardBody">passed</text></g>
+      </g>
+
+      <g transform="translate(1176, 190)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#C2410C"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">research-health</text>
+<text x="0" y="30" class="cardBody">passed</text></g>
+      </g>
+
+      <g transform="translate(90, 408)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#0F766E"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">dashboard-health</text>
+<text x="0" y="30" class="cardBody">passed with outbox</text></g>
+      </g>
+
+      <g transform="translate(452, 408)">
+        <rect width="334" height="190" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+        <rect width="334" height="10" rx="5" fill="#7C2D12"/>
+        <g transform="translate(26, 48)"><text x="0" y="0" class="cardTitle">baseline</text>
+<text x="0" y="30" class="cardBody">outputs unchanged</text></g>
+      </g>
+  <text x="90" y="842" class="footer">No new model behavior was implemented for this package.</text>
+</svg>

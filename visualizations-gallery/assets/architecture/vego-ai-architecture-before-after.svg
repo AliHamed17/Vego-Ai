@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1780" height="840" viewBox="0 0 1780 840">
+<defs>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="glowSm" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+  </filter>
+  <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#0A0A12"/>
+    <stop offset="50%" stop-color="#0E0E1A"/>
+    <stop offset="100%" stop-color="#0A0A12"/>
+  </linearGradient>
+  <radialGradient id="orb1" cx="15%" cy="20%">
+    <stop offset="0%" stop-color="#A855F7" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="orb2" cx="85%" cy="80%">
+    <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="neonArrow" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#10B981"/>
+    <stop offset="100%" stop-color="#06B6D4"/>
+  </linearGradient>
+</defs>
+<rect width="1780" height="840" fill="url(#bgGrad)"/>
+<rect width="1780" height="840" fill="url(#orb1)"/>
+<rect width="1780" height="840" fill="url(#orb2)"/>
+<text x="40" y="48" font-family="Arial,sans-serif" font-size="28" fill="#E2E8F0" font-weight="bold">VEGO-AI Architecture — Evolution (Before → After)</text>
+<text x="40" y="76" font-family="Arial,sans-serif" font-size="13.5" fill="#94A3B8">What the research enhancement added to the original co-reasoning pipeline   (Ahmed et al., 2026)</text>
+<rect x="40" y="100" width="140" height="24" rx="12" fill="#64748B" fill-opacity="0.15" stroke="#64748B" stroke-width="1"/>
+<text x="110" y="116" font-family="Arial,sans-serif" font-size="10.5" fill="#64748B" font-weight="bold" text-anchor="middle" letter-spacing="0.5">BEFORE  ·  v1</text>
+<rect x="70" y="140" width="180" height="100" rx="10" fill="#14141F" fill-opacity="0.3" stroke="#64748B" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="160" y="174" font-family="Arial,sans-serif" font-size="15" fill="#94A3B8" font-weight="bold" text-anchor="middle">Inputs</text>
+<text x="160" y="198" font-family="Arial,sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Lang. manual + definition</text>
+<text x="160" y="216" font-family="Arial,sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Domain desc. · Case model</text>
+<rect x="310" y="140" width="330" height="100" rx="10" fill="#14141F" fill-opacity="0.3" stroke="#64748B" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="475" y="170" font-family="Arial,sans-serif" font-size="14" fill="#94A3B8" font-weight="bold" text-anchor="middle">Co-Reasoning Core</text>
+<circle cx="370" cy="204" r="14" fill="#3B82F680" stroke="#3B82F680" stroke-width="1"/>
+<text x="370" y="209" font-family="Arial,sans-serif" font-size="14" fill="#94A3B8" font-weight="bold" text-anchor="middle">1</text>
+<line x1="384" y1="204" x2="426" y2="204" stroke="#64748B" stroke-width="1.2" stroke-dasharray="3 4"/>
+<circle cx="440" cy="204" r="14" fill="#10B98180" stroke="#10B98180" stroke-width="1"/>
+<text x="440" y="209" font-family="Arial,sans-serif" font-size="14" fill="#94A3B8" font-weight="bold" text-anchor="middle">2</text>
+<line x1="454" y1="204" x2="496" y2="204" stroke="#64748B" stroke-width="1.2" stroke-dasharray="3 4"/>
+<circle cx="510" cy="204" r="14" fill="#A855F780" stroke="#A855F780" stroke-width="1"/>
+<text x="510" y="209" font-family="Arial,sans-serif" font-size="14" fill="#94A3B8" font-weight="bold" text-anchor="middle">3</text>
+<line x1="524" y1="204" x2="566" y2="204" stroke="#64748B" stroke-width="1.2" stroke-dasharray="3 4"/>
+<circle cx="580" cy="204" r="14" fill="#F59E0B80" stroke="#F59E0B80" stroke-width="1"/>
+<text x="580" y="209" font-family="Arial,sans-serif" font-size="14" fill="#94A3B8" font-weight="bold" text-anchor="middle">4</text>
+<text x="475" y="232" font-family="Arial,sans-serif" font-size="10.5" fill="#64748B" text-anchor="middle">Agents 1–4 · Q&amp;A + artifact hand-offs</text>
+<rect x="700" y="140" width="240" height="100" rx="10" fill="#14141F" fill-opacity="0.3" stroke="#64748B" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="820" y="174" font-family="Arial,sans-serif" font-size="15" fill="#94A3B8" font-weight="bold" text-anchor="middle">Outputs</text>
+<text x="820" y="198" font-family="Arial,sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Variability Patterns</text>
+<text x="820" y="216" font-family="Arial,sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Case Feedback</text>
+<line x1="250" y1="190" x2="308" y2="190" stroke="#64748B" stroke-width="2"/><polygon points="308,190 296,196 296,184" fill="#64748B"/>
+<line x1="640" y1="190" x2="698" y2="190" stroke="#64748B" stroke-width="2"/><polygon points="698,190 686,196 686,184" fill="#64748B"/>
+<text x="970" y="194" font-family="Arial,sans-serif" font-size="12" fill="#64748B" font-style="italic">— no validation / no gating —</text>
+<rect x="40" y="290" width="140" height="24" rx="12" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
+<text x="110" y="306" font-family="Arial,sans-serif" font-size="10.5" fill="#A855F7" font-weight="bold" text-anchor="middle" letter-spacing="0.5">AFTER  ·  v2</text>
+<rect x="70" y="330" width="180" height="100" rx="10" fill="#14141F" fill-opacity="0.5" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="160" y="364" font-family="Arial,sans-serif" font-size="15" fill="#E2E8F0" font-weight="bold" text-anchor="middle">Inputs</text>
+<text x="160" y="388" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Lang. manual + definition</text>
+<text x="160" y="406" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Domain desc. · Case model</text>
+<rect x="310" y="330" width="330" height="100" rx="10" fill="#14141F" fill-opacity="0.5" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="475" y="360" font-family="Arial,sans-serif" font-size="14" fill="#E2E8F0" font-weight="bold" text-anchor="middle">Co-Reasoning Core</text>
+<circle cx="370" cy="394" r="14" fill="#3B82F6" fill-opacity="0.3" stroke="#3B82F6" stroke-width="1.5"/>
+<text x="370" y="399" font-family="Arial,sans-serif" font-size="14" fill="#3B82F6" font-weight="bold" text-anchor="middle">1</text>
+<line x1="384" y1="394" x2="426" y2="394" stroke="#10B981" stroke-width="1.8" filter="url(#glowSm)"/>
+<circle cx="440" cy="394" r="14" fill="#10B981" fill-opacity="0.3" stroke="#10B981" stroke-width="1.5"/>
+<text x="440" y="399" font-family="Arial,sans-serif" font-size="14" fill="#10B981" font-weight="bold" text-anchor="middle">2</text>
+<line x1="454" y1="394" x2="496" y2="394" stroke="#10B981" stroke-width="1.8" filter="url(#glowSm)"/>
+<circle cx="510" cy="394" r="14" fill="#A855F7" fill-opacity="0.3" stroke="#A855F7" stroke-width="1.5"/>
+<text x="510" y="399" font-family="Arial,sans-serif" font-size="14" fill="#A855F7" font-weight="bold" text-anchor="middle">3</text>
+<line x1="524" y1="394" x2="566" y2="394" stroke="#10B981" stroke-width="1.8" filter="url(#glowSm)"/>
+<circle cx="580" cy="394" r="14" fill="#F59E0B" fill-opacity="0.3" stroke="#F59E0B" stroke-width="1.5"/>
+<text x="580" y="399" font-family="Arial,sans-serif" font-size="14" fill="#F59E0B" font-weight="bold" text-anchor="middle">4</text>
+<text x="475" y="424" font-family="Arial,sans-serif" font-size="10.5" fill="#94A3B8" text-anchor="middle">Agents 1–4 · ordered hand-offs (1–5)</text>
+<rect x="700" y="330" width="260" height="100" rx="10" fill="#14141F" fill-opacity="0.5" stroke="#6366F1" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="900" y="320" width="52" height="24" rx="12" fill="#6366F1" fill-opacity="0.15" stroke="#6366F1" stroke-width="1"/>
+<text x="926" y="336" font-family="Arial,sans-serif" font-size="10.5" fill="#6366F1" font-weight="bold" text-anchor="middle" letter-spacing="0.5">NEW</text>
+<text x="830" y="364" font-family="Arial,sans-serif" font-size="15" fill="#6366F1" font-weight="bold" text-anchor="middle">AI Review Loop</text>
+<text x="830" y="388" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">8 validators · 3 groups</text>
+<text x="830" y="406" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">structural · consistency · guards</text>
+<path d="M715,365 a10,10 0 1 1 3,7" stroke="#6366F1" stroke-width="2" fill="none" filter="url(#glowSm)"/>
+<polygon points="712,370 717,362 721,370" fill="#6366F1"/>
+<rect x="1020" y="330" width="260" height="100" rx="10" fill="#14141F" fill-opacity="0.5" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+<rect x="1220" y="320" width="52" height="24" rx="12" fill="#EF4444" fill-opacity="0.15" stroke="#EF4444" stroke-width="1"/>
+<text x="1246" y="336" font-family="Arial,sans-serif" font-size="10.5" fill="#EF4444" font-weight="bold" text-anchor="middle" letter-spacing="0.5">NEW</text>
+<text x="1150" y="364" font-family="Arial,sans-serif" font-size="15" fill="#EF4444" font-weight="bold" text-anchor="middle">Evidence Gate</text>
+<text x="1150" y="388" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">human-gated · 0 / 24</text>
+<text x="1150" y="406" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">gates 'Occasional Variability'</text>
+<rect x="1028" y="365" width="16" height="12" rx="3" fill="#EF4444" fill-opacity="0.5"/>
+<path d="M1031,365 v-4 a5,5 0 0 1 10,0 v4" stroke="#EF4444" stroke-width="1.8" fill="none"/>
+<rect x="1340" y="330" width="240" height="100" rx="10" fill="#14141F" fill-opacity="0.5" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<text x="1460" y="364" font-family="Arial,sans-serif" font-size="15" fill="#E2E8F0" font-weight="bold" text-anchor="middle">Outputs</text>
+<text x="1460" y="388" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Variability Patterns</text>
+<text x="1460" y="406" font-family="Arial,sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Case Feedback</text>
+<line x1="250" y1="380" x2="308" y2="380" stroke="#C084FC" stroke-width="2" filter="url(#glowSm)"/><polygon points="308,380 296,386 296,374" fill="#C084FC"/>
+<line x1="640" y1="380" x2="698" y2="380" stroke="#C084FC" stroke-width="2" filter="url(#glowSm)"/><polygon points="698,380 686,386 686,374" fill="#C084FC"/>
+<line x1="960" y1="380" x2="1018" y2="380" stroke="#C084FC" stroke-width="2" filter="url(#glowSm)"/><polygon points="1018,380 1006,386 1006,374" fill="#C084FC"/>
+<line x1="1280" y1="380" x2="1338" y2="380" stroke="#C084FC" stroke-width="2" filter="url(#glowSm)"/><polygon points="1338,380 1326,386 1326,374" fill="#C084FC"/>
+<path d="M830,430 C830,464 475,464 475,430" fill="none" stroke="#6366F1" stroke-width="2" stroke-dasharray="6 4" filter="url(#glowSm)"/>
+<polygon points="475,430 481,442 469,442" fill="#6366F1"/>
+<text x="652" y="460" font-family="Arial,sans-serif" font-size="11" fill="#6366F1" font-weight="bold" text-anchor="middle">revise &amp; re-reason on failure</text>
+<line x1="160" y1="240" x2="160" y2="330" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4 5"/>
+<line x1="475" y1="240" x2="475" y2="330" stroke="#64748B" stroke-width="1.2" stroke-dasharray="4 5"/>
+<rect x="278.5" y="266" width="79" height="20" rx="10" fill="#14141F" fill-opacity="0.8" stroke="#64748B" stroke-width="0.8"/>
+<text x="318" y="280" font-family="Arial,sans-serif" font-size="10.5" fill="#64748B" text-anchor="middle">unchanged</text>
+<text x="40" y="530" font-family="Arial,sans-serif" font-size="14" fill="#E2E8F0" font-weight="bold" letter-spacing="1.5">WHAT CHANGED</text>
+<text x="220" y="530" font-family="Arial,sans-serif" font-size="13" fill="#94A3B8">— three additions from the research enhancement</text>
+<rect x="40" y="550" width="540" height="210" rx="14" fill="#14141F" fill-opacity="0.4" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="74" cy="596" r="17" fill="#E2E8F0" fill-opacity="0.15" stroke="#E2E8F0" stroke-width="1.5"/>
+<text x="74" y="601" font-family="Arial,sans-serif" font-size="15" fill="#E2E8F0" font-weight="bold" text-anchor="middle">1</text>
+<text x="106" y="602" font-family="Arial,sans-serif" font-size="16" fill="#1F2430" font-weight="bold">Numbered artifact chain</text>
+<text x="74" y="642" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">Co-reasoning hand-offs made explicit:</text>
+<text x="74" y="666" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">1) Language Template  →  2) Ref. Guidelines</text>
+<text x="74" y="690" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">3) Identified  /  4) Observed Variability</text>
+<text x="74" y="714" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">5) Variability Patterns.</text>
+<rect x="620" y="550" width="540" height="210" rx="14" fill="#14141F" fill-opacity="0.4" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="654" cy="596" r="17" fill="#6366F1" fill-opacity="0.15" stroke="#6366F1" stroke-width="1.5"/>
+<text x="654" y="601" font-family="Arial,sans-serif" font-size="15" fill="#6366F1" font-weight="bold" text-anchor="middle">2</text>
+<text x="686" y="602" font-family="Arial,sans-serif" font-size="16" fill="#6366F1" font-weight="bold">AI review loop  (NEW)</text>
+<text x="654" y="642" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">8 automated validators in 3 groups —</text>
+<text x="654" y="666" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">structural, consistency, and evidence/claim</text>
+<text x="654" y="690" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">guards — check every draft output.</text>
+<text x="654" y="714" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">Failures route back to re-reason.</text>
+<rect x="1200" y="550" width="540" height="210" rx="14" fill="#14141F" fill-opacity="0.4" stroke="#9333EA" stroke-width="1.5" filter="url(#shadow)"/>
+<circle cx="1234" cy="596" r="17" fill="#EF4444" fill-opacity="0.15" stroke="#EF4444" stroke-width="1.5"/>
+<text x="1234" y="601" font-family="Arial,sans-serif" font-size="15" fill="#EF4444" font-weight="bold" text-anchor="middle">3</text>
+<text x="1266" y="602" font-family="Arial,sans-serif" font-size="16" fill="#EF4444" font-weight="bold">Human-gated evidence  (NEW)</text>
+<text x="1234" y="642" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">Final outputs gated by expert review;</text>
+<text x="1234" y="666" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">labels remain human-confirmed (0 / 24).</text>
+<text x="1234" y="690" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">The gate governs the binding</text>
+<text x="1234" y="714" font-family="Arial,sans-serif" font-size="12.5" fill="#94A3B8">'Occasional Variability' decision.</text>
+</svg>

@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/gold-label-record-v2.schema.json",
+  "title": "GoldLabelRecord v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "recordType",
+    "recordId",
+    "anonymousItemId",
+    "partition",
+    "reviewerId",
+    "reviewerRole",
+    "expertLabel",
+    "expertRationale",
+    "confidence",
+    "reviewDate",
+    "leakageClass",
+    "generalizationSafe",
+    "sourceSheetSha256",
+    "annotationProtocolVersion",
+    "adjudicationStatus",
+    "immutable"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "GoldLabelRecord-v2"
+    },
+    "recordType": {
+      "enum": [
+        "raw_review",
+        "adjudicated_gold"
+      ]
+    },
+    "recordId": {
+      "type": "string",
+      "pattern": "^GLR-[A-Za-z0-9_-]+$"
+    },
+    "anonymousItemId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "partition": {
+      "enum": [
+        "calibration",
+        "development",
+        "sealed_holdout",
+        "external"
+      ]
+    },
+    "reviewerId": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "const": "SYNTHETIC_NOT_HUMAN"
+      }
+    },
+    "reviewerRole": {
+      "enum": [
+        "reviewer_1",
+        "reviewer_2",
+        "adjudicator"
+      ]
+    },
+    "expertLabel": {
+      "enum": [
+        "Substantial Variability",
+        "Occasional Variability",
+        "Undetermined / Needs Review"
+      ]
+    },
+    "expertRationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "enum": [
+        "Low",
+        "Medium",
+        "High"
+      ]
+    },
+    "reviewDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "leakageClass": {
+      "enum": [
+        "none",
+        "cross_setting_memory_used",
+        "same_setting_memory_used",
+        "same_pattern_memory_used",
+        "unknown"
+      ]
+    },
+    "generalizationSafe": {
+      "type": "boolean"
+    },
+    "sourceSheetSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "annotationProtocolVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adjudicationStatus": {
+      "enum": [
+        "not_required",
+        "pending",
+        "adjudicated"
+      ]
+    },
+    "immutable": {
+      "const": true
+    },
+    "rawReviewRecordIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^GLR-[A-Za-z0-9_-]+$"
+      }
+    },
+    "adjudicationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "supersedesRecordId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "leakageClass": {
+            "const": "same_pattern_memory_used"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "generalizationSafe": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "leakageClass": {
+            "enum": [
+              "unknown",
+              "same_pattern_memory_used"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "partition": {
+            "enum": [
+              "calibration"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "recordType": {
+            "const": "raw_review"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "reviewerRole": {
+            "enum": [
+              "reviewer_1",
+              "reviewer_2"
+            ]
+          },
+          "adjudicationStatus": {
+            "enum": [
+              "not_required",
+              "pending"
+            ]
+          }
+        },
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "rawReviewRecordIds"
+              ]
+            },
+            {
+              "required": [
+                "adjudicationDate"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "recordType": {
+            "const": "adjudicated_gold"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "rawReviewRecordIds",
+          "adjudicationDate"
+        ],
+        "properties": {
+          "reviewerRole": {
+            "const": "adjudicator"
+          },
+          "adjudicationStatus": {
+            "const": "adjudicated"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 420' width='720' height='420' role='img' aria-label='Figure 6 - EXP-002 expert-label readiness (27 rows)'>
+<rect width='720' height='420' fill='#ffffff'/>
+<text x='360.0' y='34' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='22' font-weight='700' fill='#1f2933'>Figure 6 - EXP-002 expert-label readiness (27 rows)</text>
+<line x1='60' y1='350.0' x2='690' y2='350.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='354.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>0</text>
+<line x1='60' y1='294.0' x2='690' y2='294.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='298.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>5</text>
+<line x1='60' y1='238.0' x2='690' y2='238.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='242.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>11</text>
+<line x1='60' y1='182.0' x2='690' y2='182.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='186.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>16</text>
+<line x1='60' y1='126.0' x2='690' y2='126.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='130.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>22</text>
+<line x1='60' y1='70.0' x2='690' y2='70.0' stroke='#e4e7eb' stroke-width='1'/>
+<text x='50' y='74.0' text-anchor='end' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='13' fill='#7b8794'>27</text>
+<rect x='107.2' y='318.9' width='115.5' height='31.1' rx='4' fill='#b7791f'/>
+<text x='165.0' y='310.9' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1f2933'>3</text>
+<text x='165.0' y='376.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='14' fill='#4a5568'>existing
+(same-pattern)</text>
+<rect x='317.2' y='101.1' width='115.5' height='248.9' rx='4' fill='#2f855a'/>
+<text x='375.0' y='93.1' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1f2933'>24</text>
+<text x='375.0' y='376.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='14' fill='#4a5568'>safe candidates</text>
+<rect x='527.2' y='70.0' width='115.5' height='280.0' rx='4' fill='#2b6cb0'/>
+<text x='585.0' y='62.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='16' font-weight='700' fill='#1f2933'>27</text>
+<text x='585.0' y='376.0' text-anchor='middle' font-family='Segoe UI, Helvetica, Arial, sans-serif' font-size='14' fill='#4a5568'>recommended</text>
+</svg>

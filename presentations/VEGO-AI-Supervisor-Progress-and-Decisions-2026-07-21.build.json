@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "SupervisorDeckBuildReport-v1",
+  "generatedFor": "2026-07-21",
+  "sourceStarterSha256": "e031fb8e8db2bed71ea4a6a9fdb42ac79f9a8c7c124e448f1b6cff4100cf107c",
+  "outputSha256": "9481286756c2642cb3b344f4e533b56d0f85553a5534f51658997b4a22f75169",
+  "slideCount": 23,
+  "coreSlides": 12,
+  "appendixSlides": 11,
+  "appliedEdits": 71,
+  "speakerNotesUpdated": 23,
+  "boundaries": [
+    "Agent 4 and the baseline remain unchanged.",
+    "EXP-005 has 24 candidates and 0 supplied labels.",
+    "EXP-012 remains NOT YET COMPUTABLE.",
+    "M-01 through M-06 are unrecorded.",
+    "No accuracy, generalization, benchmark-superiority, reduced-effort-at-scale, or clinical-performance claim."
+  ]
+}
