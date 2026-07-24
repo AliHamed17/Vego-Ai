@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "GoldLabelRecord-v2",
+  "recordType": "adjudicated_gold",
+  "recordId": "GLR-A01-GOLD",
+  "anonymousItemId": "A01",
+  "partition": "development",
+  "reviewerId": "adjudicator-1",
+  "reviewerRole": "adjudicator",
+  "expertLabel": "Occasional Variability",
+  "expertRationale": "The adjudicator accepted the limited-variation interpretation after reviewing both rationales.",
+  "confidence": "High",
+  "reviewDate": "2026-07-25",
+  "leakageClass": "none",
+  "generalizationSafe": true,
+  "sourceSheetSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "annotationProtocolVersion": "1.0",
+  "adjudicationStatus": "adjudicated",
+  "immutable": true,
+  "rawReviewRecordIds": [
+    "GLR-A01-R1",
+    "GLR-A01-R2"
+  ],
+  "adjudicationDate": "2026-07-25"
+}

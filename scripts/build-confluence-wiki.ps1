@@ -223,6 +223,22 @@ Write-WikiPage -FileName "vego-ai-progress-dashboard.md" -Body $dashboard
 Write-WikiPage -FileName "vego-ai-update-changelog.md" -Body $updates
 Write-WikiPage -FileName "vego-ai-research-operations.md" -Body $ops
 
+# H-layer program overview page (E7, 2026-07-24): sourced from the generated
+# unified overview when present; Read-RepoText degrades to a "missing" note so
+# the wiki build never depends on the overview having been regenerated first.
+$hlayerOverview = Read-RepoText "reports/generated/hlayer_program_overview/program_overview.md"
+$hlayerOverviewPage = @"
+# VEGO-AI H-Layer Program Overview
+
+This page mirrors the generated unified program overview (replay suite, conformance suite,
+program validation, EXP-005 gate, decision snapshot, accepted iterations, and metric
+trajectories). Regenerate locally with ``python scripts/build_hlayer_program_overview.py``;
+an interactive HTML version with trajectory charts sits next to the source file.
+
+$hlayerOverview
+"@
+Write-WikiPage -FileName "vego-ai-hlayer-program-overview.md" -Body $hlayerOverviewPage
+
 $snapshotScript = Join-Path $PSScriptRoot "build-dashboard-snapshot.ps1"
 if (Test-Path -LiteralPath $snapshotScript) {
     & $snapshotScript -OutputPath "docs\dashboards\status-snapshot.generated.md" -OutboxDir $OutputDir | Out-Host

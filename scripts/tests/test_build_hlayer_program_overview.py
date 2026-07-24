@@ -155,6 +155,26 @@ def test_markdown_carries_gate_and_boundary(tmp_path, monkeypatch) -> None:
     assert "| iter_002 | reliability_only | NEUTRAL |" in text
 
 
+def test_html_chart_self_contained_with_gaps_and_table(tmp_path, monkeypatch) -> None:
+    out = run_main(tmp_path, monkeypatch)
+    html = (out / "program_overview.html").read_text(encoding="utf-8")
+    # self-contained: no external scripts/stylesheets/CDNs
+    assert "http://" not in html and "https://" not in html
+    assert "<script src" not in html and "<link" not in html
+    # gate + claim boundary carried
+    assert "EXP-005 has 0 validated generalization-safe expert labels" in html
+    assert "creates no evidence" in html
+    # one panel per metric that has data; event_load has data in both iterations
+    assert "<figcaption>event_load</figcaption>" in html
+    # bundled_load exists only in iter_002 -> single point, still a panel with a dot
+    assert "<figcaption>bundled_load</figcaption>" in html
+    # accessibility: data table view present with both iterations
+    assert "iter_001" in html and "iter_002" in html
+    assert "<table>" in html
+    # dark-mode variables declared per the documented pattern
+    assert "prefers-color-scheme: dark" in html
+
+
 def test_missing_sections_reported_not_fatal(tmp_path, monkeypatch) -> None:
     root = tmp_path / "generated"
     (root / "hlayer_iterations").mkdir(parents=True)

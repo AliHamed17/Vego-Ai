@@ -38,6 +38,7 @@ outputs/**
 !outputs/README.md
 reports/generated/**
 !reports/generated/README.md
+tmp/
 
 # Data zones: keep structure and documentation, not bulk data
 data/raw/**

@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/evaluation-run-manifest-v2.schema.json",
+  "title": "EvaluationRunManifest v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "experimentId",
+    "generatedAt",
+    "sourceRevision",
+    "workingTreeState",
+    "runClass",
+    "baselineHashes",
+    "inputHashes",
+    "outputHashes",
+    "labelStats",
+    "partition",
+    "policy",
+    "randomization",
+    "metrics",
+    "claimScope",
+    "protectedRuntimeChanged"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "EvaluationRunManifest-v2"
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "experimentId": {
+      "pattern": "^EXP-[0-9]{3}$"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sourceRevision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "workingTreeState": {
+      "enum": [
+        "clean",
+        "dirty-recorded"
+      ]
+    },
+    "runClass": {
+      "enum": [
+        "mechanism",
+        "calibration",
+        "development",
+        "sealed_holdout",
+        "external_replication",
+        "ablation",
+        "human_effort"
+      ]
+    },
+    "baselineHashes": {
+      "$ref": "#/$defs/hashMap"
+    },
+    "inputHashes": {
+      "$ref": "#/$defs/hashMap"
+    },
+    "outputHashes": {
+      "$ref": "#/$defs/hashMap"
+    },
+    "labelStats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateRows",
+        "suppliedLabels",
+        "validLabels",
+        "generalizationSafeLabels",
+        "reviewerCount",
+        "adjudicatedRows"
+      ],
+      "properties": {
+        "candidateRows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "suppliedLabels": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "validLabels": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generalizationSafeLabels": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reviewerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "adjudicatedRows": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "partition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "manifestSha256",
+        "sealedBeforePolicyFreeze"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "none",
+            "calibration",
+            "development",
+            "sealed_holdout",
+            "external"
+          ]
+        },
+        "manifestSha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "sealedBeforePolicyFreeze": {
+          "type": "boolean"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "policySha256",
+        "status"
+      ],
+      "properties": {
+        "policyId": {
+          "type": "string"
+        },
+        "policySha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "status": {
+          "enum": [
+            "Implemented baseline comparator",
+            "Proposal — not approved",
+            "Frozen for one-time holdout evaluation",
+            "Rejected",
+            "Deferred"
+          ]
+        }
+      }
+    },
+    "randomization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "annotationSeed",
+        "partitionSeed",
+        "bootstrapSeed",
+        "bootstrapReplicates"
+      ],
+      "properties": {
+        "annotationSeed": {
+          "type": "integer"
+        },
+        "partitionSeed": {
+          "type": "integer"
+        },
+        "bootstrapSeed": {
+          "const": 20260721
+        },
+        "bootstrapReplicates": {
+          "const": 10000
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "originalAccuracy",
+        "candidateAccuracy",
+        "originalMacroF1",
+        "candidateMacroF1",
+        "netCorrection",
+        "pairedPValue"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NOT YET COMPUTABLE",
+            "PILOT ONLY",
+            "COMPUTED"
+          ]
+        },
+        "originalAccuracy": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "candidateAccuracy": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "originalMacroF1": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "candidateMacroF1": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "netCorrection": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "pairedPValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "claimScope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protectedRuntimeChanged": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "hashMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "labelStats": {
+            "properties": {
+              "generalizationSafeLabels": {
+                "const": 0
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "metrics": {
+            "properties": {
+              "status": {
+                "const": "NOT YET COMPUTABLE"
+              },
+              "originalAccuracy": {
+                "const": null
+              },
+              "candidateAccuracy": {
+                "const": null
+              },
+              "originalMacroF1": {
+                "const": null
+              },
+              "candidateMacroF1": {
+                "const": null
+              },
+              "netCorrection": {
+                "const": null
+              },
+              "pairedPValue": {
+                "const": null
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "labelStats": {
+            "properties": {
+              "generalizationSafeLabels": {
+                "minimum": 1,
+                "maximum": 19
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "metrics": {
+            "properties": {
+              "status": {
+                "const": "PILOT ONLY"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "labelStats": {
+            "properties": {
+              "generalizationSafeLabels": {
+                "minimum": 20
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "metrics": {
+            "properties": {
+              "status": {
+                "const": "COMPUTED"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "partition": {
+            "properties": {
+              "role": {
+                "const": "sealed_holdout"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "partition": {
+            "properties": {
+              "manifestSha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "sealedBeforePolicyFreeze": {
+                "const": true
+              }
+            }
+          },
+          "policy": {
+            "properties": {
+              "policySha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "status": {
+                "const": "Frozen for one-time holdout evaluation"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

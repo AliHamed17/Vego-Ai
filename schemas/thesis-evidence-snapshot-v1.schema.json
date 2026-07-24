@@ -1,0 +1,926 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/thesis-evidence-snapshot-v1.schema.json",
+  "title": "ThesisEvidenceSnapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "sourceRevision",
+    "sourceTreeHash",
+    "canonicalSourcesDirty",
+    "programSnapshot",
+    "researchFrame",
+    "baselines",
+    "evidence",
+    "labelGate",
+    "experiments",
+    "decisionDependencies",
+    "riskGates",
+    "metrics",
+    "statisticalProtocol",
+    "claimGates",
+    "chapterTraceability",
+    "sourceHashes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "ThesisEvidenceSnapshot-v1"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sourceRevision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sourceTreeHash": {
+      "$ref": "#/$defs/sha256"
+    },
+    "canonicalSourcesDirty": {
+      "const": false
+    },
+    "programSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "latestAcceptedIteration",
+        "latestAcceptedRunId",
+        "verdict",
+        "claimScope",
+        "verification"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "latestAcceptedIteration": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "latestAcceptedRunId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verdict": {
+          "enum": [
+            "POSITIVE",
+            "NEUTRAL",
+            "NEGATIVE"
+          ]
+        },
+        "claimScope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "recordedAt",
+            "vegoTestsPassed",
+            "scriptTestsPassed"
+          ],
+          "properties": {
+            "status": {
+              "const": "PASS"
+            },
+            "recordedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "vegoTestsPassed": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "scriptTestsPassed": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "researchFrame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mainContribution",
+        "evaluationResearchQuestions",
+        "hypotheses",
+        "traceability"
+      ],
+      "properties": {
+        "mainContribution": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evaluationResearchQuestions": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "$ref": "#/$defs/researchQuestion"
+          }
+        },
+        "hypotheses": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "$ref": "#/$defs/hypothesis"
+          }
+        },
+        "traceability": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "$ref": "#/$defs/researchTrace"
+          }
+        }
+      }
+    },
+    "baselines": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "#/$defs/baseline"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "studentModels",
+        "agent4Patterns",
+        "substantialPatterns",
+        "occasionalPatterns",
+        "undeterminedPatterns",
+        "reviewItems",
+        "reusableJudgments",
+        "memoryAdviceItems",
+        "comparisonRows",
+        "memoryInformedChanges",
+        "reviewAfterMemory",
+        "latestIteration"
+      ],
+      "properties": {
+        "studentModels": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "agent4Patterns": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "substantialPatterns": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "occasionalPatterns": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "undeterminedPatterns": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "reviewItems": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "reusableJudgments": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "memoryAdviceItems": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "comparisonRows": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "memoryInformedChanges": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "reviewAfterMemory": {
+          "$ref": "#/$defs/evidenceValue"
+        },
+        "latestIteration": {
+          "$ref": "#/$defs/evidenceValue"
+        }
+      }
+    },
+    "labelGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateRows",
+        "suppliedLabels",
+        "validLabels",
+        "generalizationSafeLabels",
+        "samePatternCalibrationRows",
+        "quantitativeMinimum",
+        "externalMinimum",
+        "externalTarget",
+        "developmentRows",
+        "sealedHoldoutRows",
+        "status",
+        "accuracyStatus",
+        "humanActionRequired"
+      ],
+      "properties": {
+        "candidateRows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "suppliedLabels": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "validLabels": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generalizationSafeLabels": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "samePatternCalibrationRows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "quantitativeMinimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "externalMinimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "externalTarget": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "developmentRows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sealedHoldoutRows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "accuracyStatus": {
+          "enum": [
+            "NOT YET COMPUTABLE",
+            "PILOT ONLY",
+            "QUANTITATIVE WITH LIMITATIONS",
+            "EXTERNAL CLAIM GATE ELIGIBLE"
+          ]
+        },
+        "humanActionRequired": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "$ref": "#/$defs/experiment"
+      }
+    },
+    "decisionDependencies": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "$ref": "#/$defs/decisionDependency"
+      }
+    },
+    "riskGates": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/riskGate"
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "secondary",
+        "safety",
+        "currentResults"
+      ],
+      "properties": {
+        "primary": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "secondary": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "safety": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "currentResults": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "originalAccuracy",
+            "candidateAccuracy",
+            "originalMacroF1",
+            "candidateMacroF1",
+            "netCorrection",
+            "pairedPValue",
+            "status"
+          ],
+          "properties": {
+            "originalAccuracy": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "candidateAccuracy": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "originalMacroF1": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "candidateMacroF1": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "netCorrection": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "pairedPValue": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "NOT YET COMPUTABLE",
+                "PILOT ONLY",
+                "COMPUTED"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "statisticalProtocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "confidenceLevel",
+        "proportionInterval",
+        "pairedBootstrapReplicates",
+        "pairedBootstrapSeed",
+        "pairedTest",
+        "formalImprovementGate"
+      ],
+      "properties": {
+        "confidenceLevel": {
+          "const": 0.95
+        },
+        "proportionInterval": {
+          "const": "Wilson"
+        },
+        "pairedBootstrapReplicates": {
+          "const": 10000
+        },
+        "pairedBootstrapSeed": {
+          "const": 20260721
+        },
+        "pairedTest": {
+          "const": "Exact McNemar on the external set"
+        },
+        "formalImprovementGate": {
+          "type": "array",
+          "minItems": 6,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "claimGates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "safeNow",
+        "conditionalAfterLabels",
+        "formalImprovement",
+        "notAllowed"
+      ],
+      "properties": {
+        "safeNow": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "conditionalAfterLabels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "formalImprovement": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "notAllowed": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "chapterTraceability": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "$ref": "#/$defs/chapter"
+      }
+    },
+    "sourceHashes": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/sha256"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "enum": [
+        "Implemented",
+        "Delivered — provisional",
+        "Documented — parked",
+        "Offline design",
+        "Offline evidence",
+        "Synthetic fixture",
+        "Evaluation-ready",
+        "Pending expert input",
+        "Proposal — not approved",
+        "Blocked",
+        "Confirmed outcome"
+      ]
+    },
+    "researchQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "question",
+        "evidenceRequired",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "pattern": "^E-RQ[1-3]$"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceRequired": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        }
+      }
+    },
+    "hypothesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement",
+        "status",
+        "test"
+      ],
+      "properties": {
+        "id": {
+          "pattern": "^H[1-4]$"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "test": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "status",
+        "purpose",
+        "data",
+        "policy",
+        "evaluationGate",
+        "allowedClaim",
+        "behaviorChanged"
+        ,
+        "experimentIds",
+        "chapterIds",
+        "decisionIds",
+        "claimLevel"
+      ],
+      "properties": {
+        "id": {
+          "pattern": "^B[0-5]$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evaluationGate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowedClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "behaviorChanged": {
+          "type": "boolean"
+        },
+        "experimentIds": {
+          "type": "array",
+          "items": {
+            "pattern": "^EXP-\\d{3}$"
+          }
+        },
+        "chapterIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "decisionIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "pattern": "^M-0[1-6]$"
+          }
+        },
+        "claimLevel": {
+          "enum": [
+            "safe_now",
+            "conditional",
+            "formal_gate",
+            "proposal_only"
+          ]
+        }
+      }
+    },
+    "evidenceValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "unit",
+        "source",
+        "evidenceClass",
+        "claimBoundary"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "integer",
+            "number",
+            "string"
+          ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "evidenceClass": {
+          "$ref": "#/$defs/status"
+        },
+        "claimBoundary": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "status",
+        "question",
+        "inputs",
+        "outputs",
+        "acceptance",
+        "dependencies",
+        "claimBoundary"
+      ],
+      "properties": {
+        "id": {
+          "pattern": "^EXP-0(19|2[0-7])$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "acceptance": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "claimBoundary": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "researchTrace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "experimentIds",
+        "chapterIds",
+        "decisionIds",
+        "metricOrGate",
+        "evidenceState"
+      ],
+      "properties": {
+        "id": {
+          "pattern": "^(E-RQ[1-3]|H[1-4])$"
+        },
+        "kind": {
+          "enum": [
+            "research_question",
+            "hypothesis"
+          ]
+        },
+        "experimentIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "pattern": "^EXP-0(19|2[0-7])$"
+          }
+        },
+        "chapterIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "decisionIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "pattern": "^M-0[1-6]$"
+          }
+        },
+        "metricOrGate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceState": {
+          "$ref": "#/$defs/status"
+        }
+      }
+    },
+    "decisionDependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "outcome",
+        "confirmationStatus",
+        "experimentIds",
+        "baselineIds",
+        "unlock"
+      ],
+      "properties": {
+        "id": {
+          "pattern": "^M-0[1-6]$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outcome": {
+          "enum": [
+            "Accepted",
+            "Accepted with changes",
+            "Rejected",
+            "Deferred"
+          ]
+        },
+        "confirmationStatus": {
+          "enum": [
+            "confirmed",
+            "unconfirmed"
+          ]
+        },
+        "experimentIds": {
+          "type": "array",
+          "items": {
+            "pattern": "^EXP-0(19|2[0-7])$"
+          }
+        },
+        "baselineIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "pattern": "^B[0-5]$"
+          }
+        },
+        "unlock": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "riskGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "risk",
+        "status",
+        "mitigation",
+        "blockedClaim",
+        "experimentIds"
+      ],
+      "properties": {
+        "id": {
+          "pattern": "^RISK-[A-Z0-9-]+$"
+        },
+        "risk": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "mitigation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blockedClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "experimentIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "pattern": "^EXP-0(19|2[0-7])$"
+          }
+        }
+      }
+    },
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chapter",
+        "file",
+        "evidence",
+        "experiments",
+        "claimStatus"
+      ],
+      "properties": {
+        "chapter": {
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "experiments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "claimStatus": {
+          "$ref": "#/$defs/status"
+        }
+      }
+    }
+  }
+}

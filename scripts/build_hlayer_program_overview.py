@@ -183,6 +183,148 @@ def fmt(value: Any) -> str:
     return "-" if value in (None, "") else str(value)
 
 
+# ---------------------------------------------------------------------------
+# E8: self-contained offline HTML chart (small multiples, one metric/panel,
+# single series threshold_sev2). Palette = reference slot-1 blue, validated
+# for light+dark surfaces (see dataviz method); no external libraries.
+# ---------------------------------------------------------------------------
+
+CHART_MODE = "threshold_sev2"
+PANEL_W, PANEL_H = 320, 170
+PLOT = {"left": 46, "right": 10, "top": 14, "bottom": 30}
+
+
+def _nice_domain(values: list[float]) -> tuple[float, float]:
+    lo, hi = min(values), max(values)
+    if lo == hi:
+        pad = max(abs(hi) * 0.1, 0.05)
+        return lo - pad, hi + pad
+    pad = (hi - lo) * 0.12
+    return lo - pad, hi + pad
+
+
+def _panel_svg(metric: str, points: list[tuple[str, float | None]]) -> str:
+    present = [(i, v) for i, (_, v) in enumerate(points) if isinstance(v, (int, float))]
+    if not present:
+        return ""
+    y0, y1 = _nice_domain([v for _, v in present])
+    x_lo, x_hi = PLOT["left"], PANEL_W - PLOT["right"]
+    y_lo, y_hi = PANEL_H - PLOT["bottom"], PLOT["top"]
+    n = len(points)
+
+    def sx(index: int) -> float:
+        return x_lo if n == 1 else x_lo + (x_hi - x_lo) * index / (n - 1)
+
+    def sy(value: float) -> float:
+        return y_lo + (y_hi - y_lo) * (value - y0) / (y1 - y0)
+
+    # Polyline segments with gaps where a schema-era lacks the metric.
+    segments: list[list[str]] = [[]]
+    for index, (_, value) in enumerate(points):
+        if isinstance(value, (int, float)):
+            segments[-1].append(f"{sx(index):.1f},{sy(value):.1f}")
+        elif segments[-1]:
+            segments.append([])
+    path_lines = "".join(
+        f'<polyline points="{" ".join(seg)}" fill="none" stroke="var(--series-1)" '
+        'stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
+        for seg in segments
+        if len(seg) >= 2
+    )
+
+    gridlines, ylabels = [], []
+    for t in (y0, (y0 + y1) / 2, y1):
+        gy = sy(t)
+        gridlines.append(
+            f'<line x1="{x_lo}" y1="{gy:.1f}" x2="{x_hi}" y2="{gy:.1f}" '
+            'stroke="var(--grid)" stroke-width="1"/>'
+        )
+        ylabels.append(
+            f'<text x="{x_lo - 6}" y="{gy + 3.5:.1f}" text-anchor="end" class="tick">{t:.2f}</text>'
+        )
+    xlabels = [
+        f'<text x="{sx(i):.1f}" y="{PANEL_H - 10}" text-anchor="middle" class="tick">'
+        f"{label.replace('iter_0', '')}</text>"
+        for i, (label, _) in enumerate(points)
+        if i % 2 == 0 or i == n - 1
+    ]
+    dots = "".join(
+        f'<g class="pt"><circle cx="{sx(i):.1f}" cy="{sy(v):.1f}" r="3" fill="var(--series-1)"/>'
+        f'<circle cx="{sx(i):.1f}" cy="{sy(v):.1f}" r="10" fill="transparent">'
+        f"<title>{points[i][0]} - {metric} = {v}</title></circle></g>"
+        for i, v in present
+    )
+    return (
+        f'<figure><figcaption>{metric}</figcaption>'
+        f'<svg viewBox="0 0 {PANEL_W} {PANEL_H}" role="img" aria-label="{metric} across iterations">'
+        f"{''.join(gridlines)}{''.join(ylabels)}{''.join(xlabels)}{path_lines}{dots}</svg></figure>"
+    )
+
+
+def build_html(overview: dict[str, Any], trajectories: list[dict[str, Any]]) -> str:
+    ordered = [row for row in trajectories if row["mode"] == CHART_MODE]
+    iterations = sorted({row["iteration"] for row in ordered})
+    panels = []
+    for metric in TRAJECTORY_METRICS:
+        by_iter = {row["iteration"]: row.get(metric) for row in ordered}
+        points = [
+            (it, by_iter.get(it) if isinstance(by_iter.get(it), (int, float)) else None)
+            for it in iterations
+        ]
+        svg = _panel_svg(metric, points)
+        if svg:
+            panels.append(svg)
+
+    table_head = "".join(f"<th>{metric}</th>" for metric in TRAJECTORY_METRICS)
+    table_rows = "".join(
+        "<tr><td>{}</td>{}</tr>".format(
+            row["iteration"],
+            "".join(f"<td>{fmt(row.get(metric))}</td>" for metric in TRAJECTORY_METRICS),
+        )
+        for row in ordered
+    )
+    gate = overview["gate_sentence"]
+    return f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H-Layer Program Overview - Metric Trajectories</title>
+<style>
+.viz-root {{ color-scheme: light; --surface-1:#fcfcfb; --text-primary:#0b0b0b;
+  --text-secondary:#52514e; --series-1:#2a78d6; --grid:#e4e3df;
+  background:var(--surface-1); color:var(--text-primary);
+  font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  max-width:1080px; margin:0 auto; padding:24px; }}
+@media (prefers-color-scheme: dark) {{
+  :root:where(:not([data-theme="light"])) .viz-root {{ color-scheme: dark;
+    --surface-1:#1a1a19; --text-primary:#ffffff; --text-secondary:#c3c2b7;
+    --series-1:#3987e5; --grid:#3a3936; }} }}
+h1 {{ font-size:1.3rem; margin:0 0 4px; }}
+p.sub {{ color:var(--text-secondary); margin:0 0 20px; }}
+.panels {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px; }}
+figure {{ margin:0; }} figcaption {{ font-weight:600; margin-bottom:2px; }}
+svg {{ width:100%; height:auto; display:block; }}
+.tick {{ font-size:10px; fill:var(--text-secondary); }}
+.pt:hover circle:first-child {{ r:5; }}
+table {{ border-collapse:collapse; margin-top:8px; font-size:12px; }}
+td,th {{ border:1px solid var(--grid); padding:3px 8px; text-align:right; }}
+th:first-child,td:first-child {{ text-align:left; }}
+details {{ margin-top:24px; }}
+.boundary {{ border-left:3px solid var(--series-1); padding:6px 10px; margin:16px 0;
+  color:var(--text-secondary); }}
+</style></head>
+<body class="viz-root">
+<h1>H-Layer Metric Trajectories - mode {CHART_MODE}</h1>
+<p class="sub">Pooled ALL-settings values per accepted iteration. Generated {overview["generated_at"]}
+by scripts/build_hlayer_program_overview.py. Gaps mean the metric did not exist in that iteration's schema.</p>
+<div class="boundary">{gate} {CLAIM}</div>
+<div class="panels">{''.join(panels)}</div>
+<details><summary>Data table ({len(ordered)} rows)</summary>
+<table><thead><tr><th>Iteration</th>{table_head}</tr></thead><tbody>{table_rows}</tbody></table>
+</details>
+</body></html>
+"""
+
+
 def build_markdown(overview: dict[str, Any], trajectories: list[dict[str, Any]]) -> str:
     suite = overview["replay_suite"]
     conf = overview["conformance_suite"]
@@ -290,6 +432,7 @@ def main() -> int:
         writer.writeheader()
         writer.writerows(trajectories)
     (OUT / "program_overview.md").write_text(build_markdown(overview, trajectories), encoding="utf-8")
+    (OUT / "program_overview.html").write_text(build_html(overview, trajectories), encoding="utf-8")
 
     print(
         f"program overview: {len(overview['iterations'])} iterations, "

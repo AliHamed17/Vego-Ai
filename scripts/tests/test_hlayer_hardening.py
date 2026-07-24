@@ -10,6 +10,8 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
+import pytest
+
 REPO = Path(__file__).resolve().parents[2]
 SCRIPTS = REPO / "scripts"
 sys.path.insert(0, str(SCRIPTS))
@@ -542,6 +544,7 @@ class Exp012BoundaryTests(unittest.TestCase):
         self.assertEqual(local["memory_informed_accuracy"], 0.5)
 
 
+@pytest.mark.slow  # full-suite subprocess replays (~1min); deselect with -m "not slow"
 class EvidenceGuardIntegrationTests(unittest.TestCase):
     def test_second_protected_path_guard_failure_prevents_promotion(self) -> None:
         shell = shutil.which("powershell") or shutil.which("pwsh")

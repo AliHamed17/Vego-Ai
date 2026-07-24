@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "GoldLabelRecord-v2",
+  "recordType": "raw_review",
+  "recordId": "GLR-A01-R1",
+  "anonymousItemId": "A01",
+  "partition": "development",
+  "reviewerId": "reviewer-1",
+  "reviewerRole": "reviewer_1",
+  "expertLabel": "Occasional Variability",
+  "expertRationale": "The model variation is valid but limited to a minority of cases.",
+  "confidence": "Medium",
+  "reviewDate": "2026-07-24",
+  "leakageClass": "none",
+  "generalizationSafe": true,
+  "sourceSheetSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "annotationProtocolVersion": "1.0",
+  "adjudicationStatus": "pending",
+  "immutable": true
+}
