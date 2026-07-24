@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -14,7 +15,13 @@ ROOT = Path(__file__).resolve().parents[1]
 GALLERY = ROOT / "visualizations-gallery"
 GALLERY_OUTPUT = GALLERY / "index.html"
 HUB_OUTPUT = ROOT / "VEGO-AI-Research-Hub.html"
-DATE = "2026-07-21"
+THESIS_SNAPSHOT = (
+    ROOT / "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json"
+)
+
+
+def thesis_data() -> dict:
+    return json.loads(THESIS_SNAPSHOT.read_text(encoding="utf-8"))
 
 
 def sha256(path: Path) -> str:
@@ -77,6 +84,11 @@ footer{border-top:1px solid var(--line);color:var(--muted);padding:28px 0;margin
 
 
 def build_gallery() -> str:
+    data = thesis_data()
+    gate = data["labelGate"]
+    date = data["generatedAt"][:10]
+    latest_experiment = data["experiments"][-1]["id"]
+    latest_iteration = data["programSnapshot"]["latestAcceptedIteration"]
     tracked = tracked_paths()
     architecture = [
         ("assets/architecture/vego-ai-architecture-enhanced.svg", "Enhanced architecture", "Historical architecture illustration; verify current decisions in the July 21 explainer."),
@@ -109,14 +121,15 @@ def build_gallery() -> str:
         if f"visualizations-gallery/assets/deck/deck-{index:02d}.jpg" in tracked
     )
     body = f"""<header class="hero">
-  <div class="eyebrow">VEGO-AI · offline visualization index · {DATE}</div>
+  <div class="eyebrow">VEGO-AI · offline visualization index · {date}</div>
   <h1>See the governed system, then inspect the evidence</h1>
-  <p class="lead">The July 21 bilingual explainer is the current presentation entry point. Older diagrams remain available as dated historical illustrations—not as current evidence or supervisor approval.</p>
-  <div class="boundary"><strong>Claim boundary:</strong> EXP-005 has 24 candidates and 0 supplied labels; EXP-012 is not computable. Agent 4 and the baseline remain unchanged. M-01–M-06 are unrecorded.</div>
-  <div class="status"><span class="pill"><strong>14</strong> accepted iterations</span><span class="pill"><strong>19</strong> experiments represented</span><span class="pill"><strong>0/24</strong> supplied labels</span><span class="pill"><strong>Offline</strong> no external runtime</span></div>
+  <p class="lead">Use the thesis evidence visual for the B0–B5 research progression and the July 21 bilingual explainer for the supervisor decision record. Older diagrams remain dated historical illustrations—not current evidence or approval.</p>
+  <div class="boundary"><strong>Claim boundary:</strong> EXP-005 has {gate["candidateRows"]} candidates and {gate["suppliedLabels"]} supplied labels; EXP-012 is {html.escape(gate["accuracyStatus"])}. Agent 4 and the baseline remain unchanged. M-01–M-06 are deferred and unconfirmed.</div>
+  <div class="status"><span class="pill"><strong>{latest_iteration}</strong> accepted iterations</span><span class="pill"><strong>EXP-000–{latest_experiment.removeprefix("EXP-")}</strong> registered</span><span class="pill"><strong>{gate["suppliedLabels"]}/{gate["candidateRows"]}</strong> supplied labels</span><span class="pill"><strong>Offline</strong> no external runtime</span></div>
 </header>
 <nav><a href="#current">Current package</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence figures</a><a href="#archive">Historical archive</a></nav>
 <section id="current"><h2>Current decision package</h2><p class="section-copy">Use these files for the Iris and Arnon follow-up.</p><div class="grid">
+{card("../VEGO-AI-Thesis-Baseline-Progress.html", "Thesis evidence baseline", "Interactive B0–B5 ladder, mechanism flow, current plots, EXP-019–027 roadmap, blank safe-N=0 matrix, and formal claim gate.", "Featured · thesis")}
 {card("../VEGO-AI-July1-PointByPoint-EN-HE.html", "Interactive EN/HE architecture puzzle", "Six guided pieces plus the complete D1–D12, EXP-000–018, iteration, evidence, and decision reference.", "Featured · July 21")}
 {card("../presentations/VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pptx", "23-slide supervisor deck", "Twelve core decision slides and eleven evidence appendices.", "Current deck")}
 {card("../docs/research/meetings/2026-07-21-supervisor-package.md", "Auditable package index", "Canonical Markdown entry point for record, decisions, actions, annex, and post-meeting capture.", "Tracked record")}
@@ -132,17 +145,23 @@ def build_gallery() -> str:
 <details><summary>Historical 38-slide image archive</summary><div class="archive-list">{deck_links}</div></details>
 <details><summary>Historical motion asset</summary><p class="section-copy">Controls are user-operated; no autoplay.</p><video controls preload="none" style="max-width:100%;height:auto"><source src="assets/motion/vego-ai-agent-flow.mp4" type="video/mp4">Motion preview unavailable.</video></details>
 </section>
-<footer>Generated {DATE} from curated repository paths · self-contained runtime · current authority: SupervisorPackageData v3 and ProgramStatusSnapshot v1.</footer>"""
+<footer>Generated {date} from curated repository paths · self-contained runtime · current authorities: ThesisEvidenceSnapshot v1, SupervisorPackageData v3, and ProgramStatusSnapshot v1.</footer>"""
     return SHELL.replace("__TITLE__", "VEGO-AI — Visualization Gallery").replace("__BODY__", body)
 
 
 def build_hub() -> str:
+    data = thesis_data()
+    gate = data["labelGate"]
+    date = data["generatedAt"][:10]
+    latest_experiment = data["experiments"][-1]["id"]
+    latest_iteration = data["programSnapshot"]["latestAcceptedIteration"]
+    verdict = data["programSnapshot"]["verdict"]
     body = f"""<header class="hero">
-  <div class="eyebrow">VEGO-AI research hub · {DATE}</div>
+  <div class="eyebrow">VEGO-AI research hub · {date}</div>
   <h1>One current route through the research</h1>
-  <p class="lead">Start with the July 21 decision package. The framework and offline experiment program are evidence-ready; independent-label evaluation remains stopped.</p>
-  <div class="boundary"><strong>Current stop/go state:</strong> 24 generalization-safe candidates, 0 supplied labels, EXP-012 not computable, M-01–M-06 unrecorded, live listener unauthorized, baseline unchanged.</div>
-  <div class="status"><span class="pill"><strong>ITER-014</strong> latest accepted</span><span class="pill"><strong>NEUTRAL</strong> reliability-only</span><span class="pill"><strong>EXP-000–018</strong> represented</span><span class="pill"><strong>Draft PR #8</strong> review route</span></div>
+  <p class="lead">Start with the thesis evidence baseline for B0–B5 research progress, then use the July 21 package for the supervisor decision record. Independent-label evaluation remains stopped.</p>
+  <div class="boundary"><strong>Current stop/go state:</strong> {gate["candidateRows"]} generalization-safe candidates, {gate["suppliedLabels"]} supplied labels, EXP-012 {html.escape(gate["accuracyStatus"])}, M-01–M-06 deferred and unconfirmed, live listener unauthorized, baseline unchanged.</div>
+  <div class="status"><span class="pill"><strong>ITER-{latest_iteration:03d}</strong> latest accepted</span><span class="pill"><strong>{html.escape(verdict)}</strong> reliability-only</span><span class="pill"><strong>EXP-000–{latest_experiment.removeprefix("EXP-")}</strong> registered</span><span class="pill"><strong>Draft PR #8</strong> review route</span></div>
 </header>
 <nav><a href="#meeting">Supervisor meeting</a><a href="#research">Research truth</a><a href="#evaluation">Evaluation gate</a><a href="#archive">Historical material</a></nav>
 <section id="meeting"><h2>July 21 supervisor package</h2><p class="section-copy">The common source for Iris and Arnon.</p><div class="grid">
@@ -152,12 +171,15 @@ def build_hub() -> str:
 {card("docs/research/meetings/2026-07-21-supervisor-package.md", "Package index", "Record, registers, annex, presenter guide, and capture template.", "Audit trail")}
 </div></section>
 <section id="research"><h2>Research truth</h2><div class="grid">
+{card("VEGO-AI-Thesis-Baseline-Progress.html", "Interactive thesis evidence baseline", "B0–B5 progress, current evidence plots, gated experiment roadmap, and explicit claim boundary.", "Featured")}
+{card("docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json", "ThesisEvidenceSnapshot v1", "Canonical baseline ladder, labels, EXP-019–027, statistics, claim gates, and chapter traceability.", "Canonical thesis status")}
 {card("docs/research/h-layer/program-status-snapshot-v1.json", "ProgramStatusSnapshot v1", "Manifest-backed iteration, experiment, decision, gate, protected-path, and hash state.", "Canonical status")}
 {card("docs/research/h-layer/experiment-iteration-ledger.md", "Iteration ledger", "Iterations 1–7 historical/pre-manifest and 8–14 manifest-backed.", "Ledger")}
-{card("experiments/registry.md", "Experiment registry", "EXP-000–018 status and evidence classes.", "Registry")}
+{card("experiments/registry.md", "Experiment registry", "EXP-000–027 status, dependencies, and evidence classes.", "Registry")}
 {card("docs/dashboards/results-dashboard.md", "Results dashboard record", "Descriptive and mechanism state with claim boundaries.", "Dashboard source")}
 </div></section>
 <section id="evaluation"><h2>Evaluation gate</h2><div class="grid">
+{card("docs/research/thesis-evidence/PREREGISTRATION_EXP019_027.md", "EXP-019–027 preregistration", "Reviewer calibration, 16/8 split, paired net correction, external N≥30 gate, and stopping rules.", "Protocol draft")}
 {card("docs/research/meetings/2026-07-21-supervisor-decision-register.md", "M-01–M-06 register", "No blank response becomes approval; incomplete entries finalize Deferred/unconfirmed.", "Human decision gate")}
 {card("experiments/EXP-005-real-label-accuracy-gate/README.md", "EXP-005 human-label gate", "Independent human input is required; labels are never invented or prefilled.", "0 supplied labels")}
 {card("docs/research/meetings/2026-07-21-post-meeting-capture-template.md", "Post-meeting capture", "Outcome, rationale, approver, owner, date, constraints, and affected artifacts.", "Within 24 hours")}
@@ -166,7 +188,7 @@ def build_hub() -> str:
 {card("visualizations-gallery/index.html", "Visualization gallery", "Compact offline index with current and archived visuals clearly separated.", "Offline")}
 {card("docs/research/meetings/2026-07-15-supervisor-meeting-package.md", "July 15 package", "Historical package retained without implying that its decisions were recorded.", "Historical")}
 </div></section>
-<footer>VEGO-AI Research Hub · generated {DATE} · education remains the MSc empirical scope · MediVARIA remains future-work proposal only.</footer>"""
+<footer>VEGO-AI Research Hub · generated {date} · education remains the MSc empirical scope · MediVARIA remains future-work proposal only.</footer>"""
     return SHELL.replace("__TITLE__", "VEGO-AI — Research Hub").replace("__BODY__", body)
 
 

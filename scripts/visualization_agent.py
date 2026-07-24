@@ -53,26 +53,47 @@ def run(cmd, timeout=300):
         return 1, str(e)[:160]
 
 
-def build_catalog():
+def tracked_visual_paths() -> list[str]:
+    result = subprocess.run(
+        ["git", "ls-files"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    prefixes = tuple(f"{directory}/" for directory in CATALOG_DIRS)
+    return sorted(
+        path.replace("\\", "/")
+        for path in result.stdout.splitlines()
+        if path.replace("\\", "/").startswith(prefixes)
+        and Path(path).suffix.casefold() in {".mmd", ".svg", ".html"}
+    )
+
+
+def catalog_content() -> tuple[str, dict[str, int], int]:
     counts = {"mmd": 0, "svg": 0, "html": 0}
-    items = []
-    for d in CATALOG_DIRS:
-        base = ROOT / d
-        if not base.exists():
-            continue
-        for ext in counts:
-            for p in base.rglob(f"*.{ext}"):
-                counts[ext] += 1
-                items.append(str(p.relative_to(ROOT)).replace("\\", "/"))
-    CATALOG.parent.mkdir(parents=True, exist_ok=True)
+    items = tracked_visual_paths()
+    for item in items:
+        counts[Path(item).suffix.casefold().lstrip(".")] += 1
     lines = ["# Visualization Catalog (generated)", "",
-             f"Generated: {datetime.now(timezone.utc).isoformat()}", "",
+             "Generated deterministically from Git-tracked shareable files.", "",
              f"Totals: **{counts['mmd']}** Mermaid · **{counts['svg']}** SVG · **{counts['html']}** HTML.", "",
              "<details><summary>All diagram/graph files</summary>", ""]
-    lines += [f"- `{i}`" for i in sorted(items)]
-    lines += ["", "</details>"]
-    CATALOG.write_text("\n".join(lines), encoding="utf-8")
-    return counts, len(items)
+    lines += [f"- `{item}`" for item in items]
+    lines += ["", "</details>", ""]
+    return "\n".join(lines), counts, len(items)
+
+
+def build_catalog(check: bool = False):
+    content, counts, item_count = catalog_content()
+    if check:
+        if not CATALOG.is_file() or CATALOG.read_text(encoding="utf-8") != content:
+            raise RuntimeError(f"stale visualization catalog: {CATALOG.relative_to(ROOT)}")
+    else:
+        CATALOG.parent.mkdir(parents=True, exist_ok=True)
+        CATALOG.write_text(content, encoding="utf-8", newline="\n")
+    return counts, item_count
 
 
 def load_tasks(path, full):
@@ -100,7 +121,24 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--full", action="store_true", help="also run heavy generators (dashboard, progress viz)")
     ap.add_argument("--tasks", default=None)
+    ap.add_argument(
+        "--check",
+        action="store_true",
+        help="validate the deterministic Git-tracked catalog without writing",
+    )
     args = ap.parse_args(argv)
+    if args.check:
+        try:
+            counts, count = build_catalog(check=True)
+        except RuntimeError as exc:
+            print(f"[viz-agent] FAIL: {exc}", file=sys.stderr)
+            return 1
+        print(
+            "[viz-agent] catalog PASS: "
+            f"{count} files (mmd {counts['mmd']}, "
+            f"svg {counts['svg']}, html {counts['html']})"
+        )
+        return 0
     VDIR.mkdir(parents=True, exist_ok=True)
 
     task_ids = load_tasks(args.tasks, args.full)

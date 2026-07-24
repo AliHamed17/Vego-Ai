@@ -43,6 +43,7 @@ jobs:
           python scripts/build_thesis_progress_visual.py --check
           python scripts/build_thesis_review_manifest.py --check
           python visualizations-gallery/build_gallery.py --check
+          python scripts/visualization_agent.py --check
           python scripts/check_repository_privacy.py
 
       - name: Validate deterministic thesis DOCX

@@ -36,6 +36,8 @@ CANONICAL_SOURCE_PATHS = [
     Path("scripts/build_thesis_review_manifest.py"),
     Path("scripts/validate_thesis_review_document.py"),
     Path("scripts/inspect_thesis_render.py"),
+    Path("scripts/visualization_agent.py"),
+    Path("visualizations-gallery/build_gallery.py"),
     Path("schemas/thesis-evidence-snapshot-v1.schema.json"),
     Path("schemas/gold-label-record-v2.schema.json"),
     Path("schemas/evaluation-run-manifest-v2.schema.json"),
