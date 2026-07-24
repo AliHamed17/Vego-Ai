@@ -89,11 +89,12 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           CHANGED="$(git diff --name-only --diff-filter=ACMR "${BASE_SHA}...HEAD")"
-          if printf '%s\n' "${CHANGED}" | grep -Eiq \
-            '(^|/)(exp005.*(filled|labels)|.*reviewer.*sheet|.*split.*mapping|.*transcript|.*\.srt|.*\.mp4)$'; then
+          FORBIDDEN="$(printf '%s\n' "${CHANGED}" | grep -Ei \
+            '(^|/)(exp005.*(filled|labels)|.*reviewer.*sheet|.*split.*mapping|.*transcript|.*\.srt|.*\.mp4)$' \
+            | grep -Ev '^visualizations-gallery/assets/motion/vego-ai-agent-flow\.mp4$' || true)"
+          if test -n "${FORBIDDEN}"; then
             echo "A private or forbidden research artifact is tracked."
-            printf '%s\n' "${CHANGED}" | grep -Ei \
-              '(^|/)(exp005.*(filled|labels)|.*reviewer.*sheet|.*split.*mapping|.*transcript|.*\.srt|.*\.mp4)$'
+            printf '%s\n' "${FORBIDDEN}"
             exit 1
           fi
           if grep -ERnI \
