@@ -6,7 +6,9 @@ Recommended flow:
 
 1. Maintain `outline.md`.
 2. Link every chapter claim to experiments or literature notes.
-3. Keep generated figures in `outputs/` or `reports/`, then reference them here.
+3. Keep reviewed thesis figure assets in `figures/evidence-ready/`. Their
+   manifest binds exact PNG hashes to the canonical evidence values, and the
+   DOCX builder validates the binding without re-rasterizing fonts.
 4. Record supervisor feedback in meeting notes.
 
 ## Evidence package
@@ -44,3 +46,14 @@ python scripts/validate_thesis_review_document.py `
   --pdf output/pdf/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.pdf
 python scripts/build_thesis_review_manifest.py --check
 ```
+
+Refresh the reviewed figure assets only when their canonical data or renderer
+changes:
+
+```powershell
+python scripts/build_thesis_review_document.py --refresh-figures
+```
+
+Inspect all four refreshed images before committing them. Normal Windows and
+Linux builds consume the reviewed bytes and therefore produce the same DOCX
+hash.

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "ThesisReviewFigureAssets-v1",
+  "sourceSnapshot": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+  "figureDataHash": "199c41ac023083bdb2bb0121a533c938b826df64fb7deaa7e6d678faaf5804b4",
+  "rendererHash": "95b917228c0205c6da21cafc50be1f2ea402251a655d99a54d713993edab99b6",
+  "files": {
+    "architecture": {
+      "path": "thesis/figures/evidence-ready/human-judgment-architecture.png",
+      "sha256": "4cfb6b286a3ac03eb70ecd53d622b3ddee24a12e210df28d6a4ee3aa50accfa7"
+    },
+    "evidence": {
+      "path": "thesis/figures/evidence-ready/current-evidence-profile.png",
+      "sha256": "6867a43c3dcad9c6ae09b1f4dd99ebd227cd8a46b6c6ef349847340cb188e6e5"
+    },
+    "ladder": {
+      "path": "thesis/figures/evidence-ready/b0-b5-evidence-ladder.png",
+      "sha256": "accfedea99c1ea4b06cdfaa58197a986870e7e9f776bd2b93d3e000663ee1a42"
+    },
+    "roadmap": {
+      "path": "thesis/figures/evidence-ready/exp019-027-roadmap.png",
+      "sha256": "95c0d6bf7a99f88c9c48d1f989cd1b5845368478aeefba7629c29cbe8bfd011d"
+    }
+  },
+  "claimBoundary": "These reviewed figures visualize mechanism and gate state only. They do not establish accuracy, generalization, reduced effort, or benchmark superiority."
+}

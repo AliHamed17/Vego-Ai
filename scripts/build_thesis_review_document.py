@@ -36,7 +36,8 @@ SNAPSHOT_PATH = (
 )
 OUTPUT_DIR = ROOT / "thesis/output"
 DEFAULT_PACKAGE_DATE = "2026-07-24"
-FIGURE_DIR = ROOT / "reports/generated/thesis_review/figures"
+FIGURE_DIR = ROOT / "thesis/figures/evidence-ready"
+FIGURE_MANIFEST = FIGURE_DIR / "figure-assets-v1.json"
 
 CHAPTERS = [
     ROOT / "thesis/chapters/00-abstract.md",
@@ -80,6 +81,16 @@ def sha256_file(path: Path) -> str:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def canonical_json_hash(value: object) -> str:
+    payload = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def normalize_docx_package(path: Path) -> None:
@@ -579,9 +590,63 @@ def add_markdown(
     flush_paragraph()
 
 
+FIGURE_FILES = {
+    "ladder": "b0-b5-evidence-ladder.png",
+    "architecture": "human-judgment-architecture.png",
+    "evidence": "current-evidence-profile.png",
+    "roadmap": "exp019-027-roadmap.png",
+}
+
+
+def figure_payload(data: dict) -> dict:
+    """Return only the canonical data rendered inside tracked figure assets."""
+    evidence_keys = [
+        "agent4Patterns",
+        "substantialPatterns",
+        "occasionalPatterns",
+        "undeterminedPatterns",
+        "reviewItems",
+        "reusableJudgments",
+        "memoryAdviceItems",
+        "comparisonRows",
+        "memoryInformedChanges",
+    ]
+    return {
+        "baselines": [
+            {
+                key: item[key]
+                for key in ("id", "name", "status", "evaluationGate", "data")
+            }
+            for item in data["baselines"]
+        ],
+        "experiments": [
+            {key: item[key] for key in ("id", "title", "status")}
+            for item in data["experiments"]
+        ],
+        "evidence": {
+            key: {
+                field: data["evidence"][key][field]
+                for field in ("value", "unit", "evidenceClass", "claimBoundary")
+            }
+            for key in evidence_keys
+        },
+        "labelGate": {
+            key: data["labelGate"][key]
+            for key in (
+                "candidateRows",
+                "suppliedLabels",
+                "generalizationSafeLabels",
+                "quantitativeMinimum",
+                "status",
+                "accuracyStatus",
+            )
+        },
+    }
+
+
 def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
-    # The pinned Pillow wheel carries this face, so figures render identically
-    # without depending on Windows-only fonts.
+    # Figure refreshes are intentional review actions. The reviewed PNG bytes
+    # are tracked and hash-verified so DOCX builds do not re-rasterize fonts.
     del bold
     return ImageFont.load_default(size=size)
 
@@ -610,8 +675,14 @@ def draw_text_block(draw, xy, text, width, face, fill, spacing=6):
     return y
 
 
-def create_figures(data: dict) -> dict[str, Path]:
+def render_figure_assets(data: dict) -> dict[str, Path]:
     FIGURE_DIR.mkdir(parents=True, exist_ok=True)
+    evidence = data["evidence"]
+    gate = data["labelGate"]
+
+    def value(key: str) -> int | float | str:
+        return evidence[key]["value"]
+
     bg = "#07111f"
     panel = "#11243a"
     ink = "#edf4ff"
@@ -642,12 +713,20 @@ def create_figures(data: dict) -> dict[str, Path]:
     draw = ImageDraw.Draw(image)
     draw.text((70, 45), "Reusable human judgment around a frozen baseline", font=font(42, True), fill=ink)
     nodes = [
-        ("Agent 4 baseline", "27 frozen classifications", "#55a7ff"),
-        ("M1-M2 review", "11 queue items and structured feedback", "#f6c85f"),
-        ("M3 memory", "3 reusable same-pattern records", "#b59cff"),
-        ("M4A advice", "8 candidate advice items", "#b59cff"),
-        ("M4B-1 comparison", "27 rows; 0 changes", "#68d391"),
-        ("Expert evaluation", "0/24 safe labels; blocked", "#f6c85f"),
+        ("Agent 4 baseline", f"{value('agent4Patterns')} frozen classifications", "#55a7ff"),
+        ("M1-M2 review", f"{value('reviewItems')} queue items and structured feedback", "#f6c85f"),
+        ("M3 memory", f"{value('reusableJudgments')} reusable same-pattern records", "#b59cff"),
+        ("M4A advice", f"{value('memoryAdviceItems')} candidate advice items", "#b59cff"),
+        (
+            "M4B-1 comparison",
+            f"{value('comparisonRows')} rows; {value('memoryInformedChanges')} changes",
+            "#68d391",
+        ),
+        (
+            "Expert evaluation",
+            f"{gate['generalizationSafeLabels']}/{gate['candidateRows']} safe labels; blocked",
+            "#f6c85f",
+        ),
     ]
     for index, (title, subtitle, color) in enumerate(nodes):
         row, col = divmod(index, 3)
@@ -670,8 +749,27 @@ def create_figures(data: dict) -> dict[str, Path]:
     draw.text((70, 45), "Current evidence profile", font=font(42, True), fill=ink)
     draw.text((70, 100), "Different units are separated; blank performance fields remain blank.", font=font(23), fill=muted)
     charts = [
-        ("Agent 4 output classes", [("Substantial", 9), ("Occasional", 18), ("Undetermined", 0)], 27, ["#56d6d1", "#f6c85f", "#b59cff"]),
-        ("Mechanism counts (not additive)", [("Review queue", 11), ("Memory", 3), ("Advice", 8), ("Comparison", 27)], 27, ["#f6c85f", "#b59cff", "#56d6d1", "#55a7ff"]),
+        (
+            "Agent 4 output classes",
+            [
+                ("Substantial", value("substantialPatterns")),
+                ("Occasional", value("occasionalPatterns")),
+                ("Undetermined", value("undeterminedPatterns")),
+            ],
+            value("agent4Patterns"),
+            ["#56d6d1", "#f6c85f", "#b59cff"],
+        ),
+        (
+            "Mechanism counts (not additive)",
+            [
+                ("Review queue", value("reviewItems")),
+                ("Memory", value("reusableJudgments")),
+                ("Advice", value("memoryAdviceItems")),
+                ("Comparison", value("comparisonRows")),
+            ],
+            value("comparisonRows"),
+            ["#f6c85f", "#b59cff", "#56d6d1", "#55a7ff"],
+        ),
     ]
     for chart_index, (title, values, maximum, palette) in enumerate(charts):
         x = 70 + chart_index * 865
@@ -685,8 +783,18 @@ def create_figures(data: dict) -> dict[str, Path]:
             draw.rounded_rectangle((x + 247, y + 4, x + 247 + width, y + 27), 10, fill=color)
             draw.text((x + 710, y - 3), str(value), font=font(22, True), fill=ink)
     draw.rounded_rectangle((70, 700, 1660, 840), 18, fill=panel, outline="#f6c85f", width=4)
-    draw.text((105, 730), "0 / 24 safe expert labels", font=font(38, True), fill="#f6c85f")
-    draw.text((680, 733), "Accuracy, macro-F1, net correction, and p-value: NOT YET COMPUTABLE", font=font(24, True), fill=ink)
+    draw.text(
+        (105, 730),
+        f"{gate['generalizationSafeLabels']} / {gate['candidateRows']} safe expert labels",
+        font=font(38, True),
+        fill="#f6c85f",
+    )
+    draw.text(
+        (680, 733),
+        f"Accuracy, macro-F1, net correction, and p-value: {gate['accuracyStatus']}",
+        font=font(24, True),
+        fill=ink,
+    )
     draw.text((105, 790), "Next: reviewer calibration -> two blind reviews -> adjudication -> development-only error analysis", font=font(22), fill=muted)
     path = FIGURE_DIR / "current-evidence-profile.png"
     image.save(path, format="PNG", optimize=False, compress_level=9)
@@ -711,6 +819,73 @@ def create_figures(data: dict) -> dict[str, Path]:
     path = FIGURE_DIR / "exp019-027-roadmap.png"
     image.save(path, format="PNG", optimize=False, compress_level=9)
     paths["roadmap"] = path
+    return paths
+
+
+def write_figure_manifest(data: dict, paths: dict[str, Path]) -> Path:
+    manifest = {
+        "schemaVersion": "ThesisReviewFigureAssets-v1",
+        "sourceSnapshot": SNAPSHOT_PATH.relative_to(ROOT).as_posix(),
+        "figureDataHash": canonical_json_hash(figure_payload(data)),
+        "rendererHash": sha256_file(Path(__file__).resolve()),
+        "files": {
+            key: {
+                "path": path.relative_to(ROOT).as_posix(),
+                "sha256": sha256_file(path),
+            }
+            for key, path in sorted(paths.items())
+        },
+        "claimBoundary": (
+            "These reviewed figures visualize mechanism and gate state only. "
+            "They do not establish accuracy, generalization, reduced effort, "
+            "or benchmark superiority."
+        ),
+    }
+    FIGURE_MANIFEST.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    return FIGURE_MANIFEST
+
+
+def refresh_figure_assets(data: dict) -> Path:
+    paths = render_figure_assets(data)
+    return write_figure_manifest(data, paths)
+
+
+def load_figure_assets(data: dict) -> dict[str, Path]:
+    if not FIGURE_MANIFEST.is_file():
+        raise FileNotFoundError(
+            f"missing reviewed figure manifest: {FIGURE_MANIFEST}; "
+            "run with --refresh-figures after reviewing the canonical snapshot"
+        )
+    manifest = json.loads(FIGURE_MANIFEST.read_text(encoding="utf-8"))
+    if manifest.get("schemaVersion") != "ThesisReviewFigureAssets-v1":
+        raise ValueError("unsupported thesis review figure manifest")
+    expected_data_hash = canonical_json_hash(figure_payload(data))
+    if manifest.get("figureDataHash") != expected_data_hash:
+        raise ValueError(
+            "reviewed figures do not match the canonical evidence snapshot; "
+            "refresh and review them before rebuilding the DOCX"
+        )
+    if manifest.get("rendererHash") != sha256_file(Path(__file__).resolve()):
+        raise ValueError(
+            "the figure renderer changed after the reviewed assets were created; "
+            "refresh and review the figures"
+        )
+    records = manifest.get("files")
+    if not isinstance(records, dict) or set(records) != set(FIGURE_FILES):
+        raise ValueError("figure manifest must contain exactly the four reviewed assets")
+    paths: dict[str, Path] = {}
+    for key, expected_name in FIGURE_FILES.items():
+        record = records[key]
+        path = ROOT / record["path"]
+        if path.name != expected_name or not path.is_file():
+            raise FileNotFoundError(f"missing reviewed thesis figure: {path}")
+        if sha256_file(path) != record.get("sha256"):
+            raise ValueError(f"reviewed thesis figure hash mismatch: {path}")
+        paths[key] = path
     return paths
 
 
@@ -844,7 +1019,7 @@ def build(
         raise ValueError(
             "requested source revision differs from ThesisEvidenceSnapshot-v1"
         )
-    figures = create_figures(data)
+    figures = load_figure_assets(data)
     doc = Document()
     setup_document(doc, revision, data["generatedAt"])
     add_cover(doc, data, revision)
@@ -870,11 +1045,24 @@ def main() -> int:
     parser.add_argument("--package-date", default=DEFAULT_PACKAGE_DATE)
     parser.add_argument("--source-revision")
     parser.add_argument(
+        "--refresh-figures",
+        action="store_true",
+        help=(
+            "Regenerate the tracked figure assets and their hash manifest from "
+            "the canonical snapshot. Review the resulting images before commit."
+        ),
+    )
+    parser.add_argument(
         "--check",
         action="store_true",
         help="Build to temporary storage and require byte equality with --output.",
     )
     args = parser.parse_args()
+    if args.refresh_figures:
+        data = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+        manifest = refresh_figure_assets(data)
+        print(manifest)
+        return 0
     output = (
         args.output
         or OUTPUT_DIR
