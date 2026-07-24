@@ -95,3 +95,16 @@ The thesis quality assurance process uses an automated review loop with eight va
 | Verify evidence consistency | `python scripts/check_evidence_consistency.py` | 18/18 checks pass |
 | Run test suite | `python -m pytest VEGO-AI/tests -q` | 94 tests pass |
 | Build results dashboard | `python VEGO-AI/analysis/build_results_dashboard.py` | Dashboard with milestone summaries |
+
+## A.7 RQ and hypothesis traceability
+
+This table is a design-time traceability register. EXP-019 through EXP-027 are
+registered protocols, not completed empirical results.
+
+| Research item | Experiment path | Primary measure | Gate | Thesis location | Current evidence state |
+| --- | --- | --- | --- | --- | --- |
+| E-RQ1 / H1 | EXP-019, EXP-020, EXP-021 | Reviewer agreement, baseline error taxonomy | Two independent reviews and adjudicated labels; at least 20 safe rows for quantitative reporting | Chapters 3, 6, 7 | Pending expert input |
+| E-RQ2 / H2 | EXP-021, EXP-022 | Routing precision/recall; retrieval relevance, scope, and conflict rate | Development labels only; same-pattern rows excluded from generalization-safe measures | Chapters 3, 5, 6, 7 | Blocked by EXP-020 |
+| E-RQ3 / H3 | EXP-023, EXP-024, EXP-025 | Net correction, macro-F1 non-decline, exact McNemar test | One approved frozen policy; one-time eight-row holdout; external N >= 30 for a formal claim gate | Chapters 3, 6, 8, 9, 10 | Proposal - not approved |
+| H4 | EXP-026 | Review time, repeated-question rate, and escalation quality | Ethics/consent approval and controlled reviewer study | Chapters 3, 6, 8, 9 | Proposal - not approved |
+| Robustness | EXP-027 | Predeclared ablation and subgroup safety measures | Primary external analysis completed without policy retuning | Chapters 6, 8, 9 | Proposal - not approved |

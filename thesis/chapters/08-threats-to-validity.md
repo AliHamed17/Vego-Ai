@@ -18,6 +18,20 @@ Construct validity concerns whether the measures and operationalizations used in
 
 **The classification task is inherently interpretive.** The distinction between substantial variability (valid alternative) and occasional variability (error) is not a binary fact but an expert judgment call. Reasonable domain experts may disagree about whether a specific deviation is a valid alternative or a mistake, particularly for borderline cases. *Mitigation:* the annotation protocol accounts for this by providing a third label (`Undetermined / Needs Review`), requiring written rationales, using two independent reviewers, computing Cohen's κ to measure agreement, and adjudicating disagreements through a third expert. The inter-rater agreement score will be reported alongside the accuracy metrics, so the reader can judge the reliability of the ground truth itself.
 
+**Reviewer-role ambiguity.** A reviewer who also designed the policy may
+unintentionally interpret ambiguous items in a way that supports the design.
+*Mitigation:* two reviewers label independently before adjudication; raw returns
+remain immutable; policy development uses only adjudicated development labels;
+and the adjudication role is recorded separately in `GoldLabelRecord-v2`.
+
+**Class prevalence and missing classes.** The frozen Agent 4 distribution is
+9 Substantial, 18 Occasional, and 0 Undetermined. This is an output prevalence,
+not the true class distribution. Accuracy may appear high under an imbalanced
+gold set, while the Undetermined class may be impossible to estimate reliably.
+*Mitigation:* report the adjudicated class distribution, macro-F1, per-class
+precision/recall, confusion matrices, and Wilson intervals. Do not interpret a
+missing class as perfect performance.
+
 ## 8.3 Internal validity (are observed effects real?)
 
 Internal validity concerns whether the observed relationship between the intervention (the reusable human-judgment layer) and the outcome (classification quality) is genuine or an artifact of confounding factors.
@@ -28,6 +42,15 @@ Internal validity concerns whether the observed relationship between the interve
 
 **Optimistic tuning.** If the M4B-1 policy is designed using the same rows on which it is evaluated, the policy is optimized to perform well on those specific cases, inflating results beyond what would hold on unseen data. *Mitigation:* a sealed 16-development / 8-holdout split is defined before any labels are inspected. Policy design and error analysis use the 16 development rows only. The 8 holdout labels are sealed until the refined policy is frozen and are evaluated exactly once (§6.7).
 
+**Researcher degrees of freedom.** A small development set permits many
+post-hoc trigger combinations, thresholds, subgroups, and definitions. Trying
+several variants and reporting the most favorable one would overfit even if the
+holdout remained technically sealed. *Mitigation:* EXP-023 permits at most one
+approved deterministic candidate, requires at least three potentially
+correctable development errors across two settings, freezes the rules and
+hashes, and records deviations. Exploratory analyses are labeled exploratory
+and cannot replace the preregistered primary analysis.
+
 **Synthetic results mistaken for evidence.** Synthetic trials (EXP-004) exist for pipeline exercise and policy-risk screening only. They use rule-generated labels with a reviewer ID of `SYNTHETIC_NOT_HUMAN`. *Mitigation:* synthetic outputs are stored in isolated folders, explicitly labeled as non-evidence, and excluded from all claims. The evidence-consistency guard checks for the presence of synthetic artifacts in any claim-level reporting.
 
 ## 8.4 Conclusion validity (is the statistical basis adequate?)
@@ -35,6 +58,18 @@ Internal validity concerns whether the observed relationship between the interve
 Conclusion validity concerns whether the study has sufficient statistical power to detect real effects and whether the statistical methods are appropriate.
 
 **Very small sample.** Only 27 variability patterns exist; at most 24 are generalization-safe; currently zero are labeled. Even with a full labeling, the sample is small enough that standard statistical tests may lack power, and point estimates may have wide confidence intervals. *Mitigation:* the evidence gates (§6.8) are explicit — 0 labels means not evaluable, 1–19 means pilot only with explicit small-sample threats, and ≥20 permits quantitative reporting with stated limitations. The thesis will not claim statistical significance from an 8-row holdout; it will report the results as a pilot with appropriate caveats.
+
+**Paired benefit can hide paired harm.** Two systems can have similar aggregate
+accuracy while a candidate corrects some baseline errors and breaks other
+correct decisions. *Mitigation:* net correction
+(`changed-and-correct - changed-and-wrong`) is the primary estimand, supported by
+the full paired correctness matrix. Accuracy and macro-F1 are secondary.
+
+**Unstable inference at small N.** Asymptotic intervals and tests can be
+misleading with sparse classes and few discordant pairs. *Mitigation:* use
+Wilson proportion intervals, a 10,000-replicate paired bootstrap with fixed seed
+`20260721`, and describe the eight-row holdout only as a pilot. Exact McNemar is
+reserved for the external set.
 
 **No current delta is possible.** The current deterministic policy (`memory-informed-classifier-v1`) changes zero of 27 classifications. This means that, by construction, original and memory-informed accuracy are identical — no labeling can produce a difference under the current policy. *Mitigation:* this is reported as a structural fact, not as a negative result. The conservative policy reflects a deliberate design choice: the first version of the comparison should change nothing, to establish that the mechanism works without introducing any behavioral risk. Only a future, holdout-validated M4B-1.1 could change the comparison result.
 
@@ -50,6 +85,20 @@ External validity concerns whether the findings generalize beyond the specific c
 
 **Memory sparsity.** The judgment memory contains only three entries, all from the Cheers UCD setting. Cross-setting reuse (using a memory from Cheers UCD to inform a ParkWise CD classification) is untested for correctness, and the retrieval matching may not be robust to domain or diagram-type differences. *Mitigation:* the leakage discipline (§6.5) separates cross-setting reuse from same-pattern reuse. Cross-setting correctness is deferred to the labeled evaluation, and the thesis does not claim that the current memory supports cross-domain generalization.
 
+**Internal holdout is not external validation.** The sealed eight rows come from
+the same overall artifact and educational context as the development rows. Even
+a favorable holdout result would not establish transfer to a new cohort or
+context. *Mitigation:* B4 is explicitly pilot-only. A formal improvement claim
+requires EXP-025 on a new education-domain batch with at least 30 and preferably
+48 independently adjudicated rows, a policy frozen before data inspection, and
+all statistical and subgroup-safety gates.
+
+**External replication may still be narrow.** A new education batch improves
+temporal or cohort separation but does not automatically establish transfer to
+other institutions, model types, languages, or clinical settings. *Mitigation:*
+the formal claim remains scoped to the sampled education context. Clinical
+performance and cross-domain transfer remain out of scope.
+
 ## 8.6 Ethical and data-governance threats
 
 **Human-subject considerations.** The expert annotators who label the blind sheets are human participants providing professional judgments. Depending on institutional requirements, this may require ethics review or IRB approval. *Mitigation:* the protocol requires that reviewer consent, anonymity, and any IRB documentation needs are confirmed with the supervisor before outreach. Reviewer identities are not disclosed in the thesis; labels are attributed to anonymized reviewer IDs.
@@ -64,4 +113,10 @@ The conservative policy (§8.4) interacts with both the small sample and the con
 
 ## 8.8 Summary
 
-The dominant threats are the small, leakage-heavy evidence base and the absence of an independent benchmark — both addressed by the annotation protocol. The structural fact that the current conservative policy admits no accuracy delta is a deliberate design choice, not a limitation. The methodology is designed so that, even with positive future results, claims remain bounded by the evidence gates and the sealed-holdout discipline. The threats identified here are not reasons to doubt the mechanism contribution — the artifact works as designed — but they are reasons to be cautious about the strength and generality of any empirical claims that follow from the eventual labeling.
+The dominant threats are the small, leakage-heavy evidence base, missing
+independent labels, unstable class prevalence, and the risk of optimistic policy
+selection. The calibration, two-reviewer workflow, fixed 16/8 split,
+development-suitability gate, paired estimand, one-time holdout, and external
+replication form a chain of partial mitigations. None guarantees a positive
+result. They ensure that positive, null, mixed, or harmful outcomes can be
+interpreted without changing the evidence rules after the fact.

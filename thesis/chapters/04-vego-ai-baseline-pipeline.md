@@ -92,6 +92,13 @@ The study spans **four settings** defined by the crossing of two factors:
 
 Across the four settings, the pipeline processes **179 student models** aggregated into **27 recurring variability patterns** (9 classified as Substantial, 18 as Occasional, 0 as Undetermined). These committed outputs (`eval_output/<setting>/agentD_variability_classes*.json`) constitute the **C0 baseline** used throughout the evaluation.
 
+The same artifact is called **B0** in the evidence-maturity ladder introduced in
+Chapter 6. C0 describes the architectural condition; B0 describes its role as
+the frozen empirical comparator. The class counts above are Agent 4 output
+prevalence. They do not establish the true expert-label prevalence, and the
+absence of Undetermined outputs cannot be interpreted as correct rejection of
+that class.
+
 ## 4.6 Baseline outputs and the read-only contract
 
 Each evaluation run writes per-setting JSON artifacts — language templates, domain guidelines, model compliance vectors, and variability classifications — plus an `interaction_log.jsonl` recording all cross-agent Q&A exchanges. For this thesis, the baseline is treated as **immutable**: no experiment overwrites `eval_output/`, no extension modifies Agent 1–4, and no LLM or API call is introduced into the human-judgment extension.
@@ -99,3 +106,8 @@ Each evaluation run writes per-setting JSON artifacts — language templates, do
 A critical, easily-missed point that governs the entire evaluation: the repository contains **no independent benchmark**. The author-reviewed classification files `analysis/agentD_variability_classes_*.json` are **byte-identical** to the Agent 4 output for all 27 patterns — every field, including the textual justification, matches exactly. They therefore record author *agreement* with Agent 4, not an independent label set. Using them as ground truth would be grading Agent 4 against itself. This finding, documented in §6.2, means that the only admissible ground truth for evaluating the artifact's effect on classification accuracy is **newly collected, independent expert labels** — the subject of the annotation protocol defined in Chapter 6.
 
 The baseline's role in this thesis is to be preserved, reproduced, and compared against — never to be edited or treated as ground truth for itself. This read-only contract is enforced by the evidence-consistency guard (`scripts/check_evidence_consistency.py`), which verifies at every prompt that the baseline outputs remain unmodified, that `ai_classification_changed` remains zero, and that no extension has overwritten controlled artifacts.
+
+The baseline is identified by tag `official-vego-ai-baseline` and commit
+`2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf`. Every later evaluation manifest
+records the relevant baseline hashes. A mismatch stops the evaluation rather
+than silently redefining B0.

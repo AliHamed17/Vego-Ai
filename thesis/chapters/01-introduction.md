@@ -23,10 +23,15 @@ VEGO-AI exhibits this gap concretely: it already explains to humans and anticipa
 
 This thesis extends VEGO-AI from an automated agentic pipeline into a staged **human–AI co-reasoning** system. The central contribution is to **transform human judgment into structured, reusable knowledge for AI-assisted domain-model assessment**. The implemented artifact proceeds in five layers:
 
-1. **Selective review (M1):** a pure-Python intervention policy identifies cases where human judgment is most needed, based on the AI's own uncertainty signals, and produces a persistent review queue.
+1. **Selective review (M1):** a pure-Python intervention policy identifies
+   cases that satisfy explicit uncertainty and governance triggers and produces
+   a persistent review queue. Whether those triggers capture the most important
+   expert-confirmed errors is an evaluation question.
 2. **Structured feedback (M2):** expert decisions are captured in a schema-validated format, linked to specific AI decisions by a deterministic signature, and attached to the review queue without overwriting it.
 3. **Reusable judgment memory (M3):** approved, reusable feedback is promoted to a provenance-tracked memory store with conflict detection, explainable retrieval, and human-readable match reasons — without embeddings or LLM calls.
-4. **Advisory retrieval (M4A):** relevant past judgments are surfaced as graded advisory evidence alongside each Agent 4 pattern, while preserving the original AI classification verbatim.
+4. **Advisory retrieval (M4A):** candidate past judgments are surfaced through
+   deterministic match reasons as graded advisory evidence alongside each Agent
+   4 pattern, while preserving the original AI classification verbatim.
 5. **Non-destructive comparison (M4B-1):** a deterministic, parallel comparison evaluates whether the memory-informed assessment would differ from the original, writing to a separate artifact and never overwriting the baseline.
 
 The contribution is not a single "add a human step" intervention but a *complete lifecycle* for human judgment: from selective trigger through structured capture, provenance-tracked storage, advisory retrieval, and controlled comparison — each layer additive and non-destructive.
@@ -35,7 +40,22 @@ The contribution is not a single "add a human step" intervention but a *complete
 
 The thesis claims, and demonstrates, **mechanism validity**: the reusable human-judgment loop exists, is reproducible, preserves the baseline, and produces controlled artifacts for evaluating its effect. It also contributes a **bias- and leakage-controlled evaluation methodology** with an independent expert-annotation protocol that makes the artifact's empirical effect measurable.
 
-The thesis explicitly makes **no accuracy-improvement claim**. The reason is methodological and is treated honestly throughout: there is no independent benchmark in the data (the author-reviewed labels duplicate the AI's own output byte-for-byte), and the only existing expert labels are same-pattern (leakage), giving zero generalization-safe labels. Furthermore, the current deterministic comparison policy changes zero of 27 classifications, so original and memory-informed results are identical by construction. The demonstrated value at this stage is reusable human judgment, traceability, provenance, and safer escalation; a quantitative accuracy claim awaits the independent expert annotation defined in Chapter 6.
+The thesis explicitly makes **no accuracy-improvement claim**. The reason is
+methodological and is treated honestly throughout: there is no independent
+benchmark in the data (the author-reviewed labels duplicate the AI's own output
+byte-for-byte), and the only existing human-memory labels are same-pattern
+(leakage), giving zero generalization-safe labels. Furthermore, the current
+deterministic comparison policy changes zero of 27 classifications, so original
+and memory-informed results are identical by construction.
+
+The evidence plan uses a B0–B5 ladder: frozen baseline, implemented mechanism,
+independent expert-labeled baseline, one development-only deterministic
+candidate, an eight-row sealed holdout pilot, and a new external education
+batch. Progress through this ladder improves evidence quality; it does not
+guarantee a positive accuracy result. The demonstrated value at this stage is
+reusable human judgment, traceability, provenance, and escalation. A formal
+improvement statement remains conditional on external paired evidence and all
+preregistered safety gates.
 
 ## 1.5 Thesis structure
 
@@ -43,13 +63,17 @@ The remainder of this thesis is organized as follows.
 
 **Chapter 2** surveys related work across LLM-assisted domain modeling, AI-assisted model assessment, human–AI collaboration patterns, explainability and expert feedback, and design-science methodology. It identifies the gap that motivates this work: human judgment is treated as transient correction rather than reusable knowledge.
 
-**Chapter 3** defines the research problem and formulates the research question and five sub-questions, framed within a design-science methodology.
+**Chapter 3** defines the research problem, the main research question and five
+design sub-questions, plus three empirical evaluation questions and four
+explicitly testable hypotheses.
 
 **Chapter 4** describes the original, unmodified VEGO-AI baseline pipeline (C0), including its four-agent architecture, evaluation pipeline, datasets, and the latent human-review affordances that motivate the thesis contribution.
 
 **Chapter 5** presents the human–AI co-reasoning artifact (M1–M4B-1), detailing the design rationale, implementation, and schema decisions for each layer.
 
-**Chapter 6** defines the evaluation methodology, including the conditions, metrics, leakage discipline, independent expert-annotation protocol, sealed development/holdout split, and evidence gates.
+**Chapter 6** defines the evaluation methodology, including the B0–B5 ladder,
+paired net-correction metric, reviewer calibration, independent annotation,
+sealed development/holdout split, external replication, and evidence gates.
 
 **Chapter 7** reports the experimental results available at the time of writing — mechanism evidence and prototype-scale evidence — and identifies the pending empirical results that require expert labels.
 

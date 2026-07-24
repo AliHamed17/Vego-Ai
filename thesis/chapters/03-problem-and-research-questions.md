@@ -35,7 +35,42 @@ The research question decomposes into five sub-questions, each addressing a dist
 
 **SQ5 — The MDE-assessment gap.** What gap remains specifically for interpreting *model variability*, and where does VEGO-AI sit within it? This question positions the contribution against the broader model-assessment literature and is addressed in Chapter 2 (§2.3, §2.4, §2.8).
 
-## 3.4 Design-science framing
+## 3.4 Evaluation research questions and hypotheses
+
+The main RQ and SQ1–SQ5 govern the literature synthesis and artifact design. A
+separate set of empirical questions governs the accuracy-evidence phase. Keeping
+these sets distinct prevents the absence of performance labels from obscuring
+what the design-science work has already established.
+
+> **E-RQ1 — Baseline errors.** Where, and in which error categories, does the
+> frozen Agent 4 baseline disagree with independent expert judgment?
+
+> **E-RQ2 — Targeting and retrieval.** Do selective review and memory retrieval
+> focus attention on expert-identified baseline problems with relevant,
+> scope-correct, traceable evidence?
+
+> **E-RQ3 — Unseen paired effect.** Does a frozen deterministic parallel policy
+> produce positive net correction on unseen, leakage-safe data while preserving
+> baseline safety?
+
+These questions are operationalized by four hypotheses. Their status is part of
+the research result, not an implementation target that must be made positive.
+
+| ID | Hypothesis | Current status | Decisive evidence |
+| --- | --- | --- | --- |
+| H1 | Selective review contains a meaningful share of expert-confirmed baseline errors. | Unproven | EXP-021 and EXP-022 |
+| H2 | Human Judgment Memory retrieves relevant, scope-correct prior judgments. | Unproven | EXP-022 |
+| H3 | A frozen deterministic parallel policy yields positive net correction on unseen data. | Unproven and blocked | EXP-024 pilot, then EXP-025 external replication |
+| H4 | Reusable memory reduces repeated review effort without reducing escalation quality. | Unproven and not approved | EXP-026 controlled human-effort study |
+
+The primary empirical estimand for H3 is **net correction**:
+`changed-and-correct - changed-and-wrong`. This paired measure makes benefit and
+harm visible. Accuracy and macro-F1 are secondary measures. A positive H3 claim
+requires a separate external education-domain set with at least 30 adjudicated
+generalization-safe rows and all preregistered statistical and safety criteria
+to pass; the current 24-row set cannot supply that formal claim.
+
+## 3.5 Design-science framing
 
 The study follows a design-science research methodology (Hevner et al., 2004; Peffers et al., 2007; Gregor & Hevner, 2013). The cycle proceeds through five phases:
 
@@ -51,7 +86,7 @@ The study follows a design-science research methodology (Hevner et al., 2004; Pe
 
 The artifact's novelty is not "a human step" but **turning human judgment into a reusable knowledge asset** for variability assessment. Contribution types are kept distinct: a literature-review contribution (taxonomy and gap), a design contribution (the co-reasoning architecture, feedback schema, and judgment-memory concept), a technical prototype (the implemented and tested M1–M4B-1 pipeline), and a planned empirical contribution (the leakage-aware evaluation).
 
-## 3.5 Scope and boundaries
+## 3.6 Scope and boundaries
 
 **In scope:** selective human review triggered by AI uncertainty signals; structured, schema-validated feedback capture with signature verification; reusable judgment memory with provenance tracking, conflict detection, and explainable retrieval; advisory evidence retrieval that preserves original AI output; and a deterministic, non-destructive comparison between original and memory-informed classifications.
 
@@ -68,3 +103,6 @@ The following table maps the research questions to the thesis structure:
 | SQ3 Role of judgment | Ch 2 §2.6/§2.8, Ch 5 §5.4 | M3 Judgment Memory | Ch 7 §7.3–7.4 |
 | SQ4 Structure & reuse | Ch 5 §5.3–5.6 | M2–M4B-1 | Ch 6, Ch 7 |
 | SQ5 MDE-assessment gap | Ch 2 §2.3/§2.4/§2.8 | — (positioning) | Ch 9 §9.1 |
+| E-RQ1 Baseline errors | Ch 6 §6.10 | B0/B2 | EXP-020/021 |
+| E-RQ2 Targeting & retrieval | Ch 6 §6.10 | M1/M3/M4A | EXP-022 |
+| E-RQ3 Unseen paired effect | Ch 6 §6.10 | B3–B5 | EXP-023–025 |

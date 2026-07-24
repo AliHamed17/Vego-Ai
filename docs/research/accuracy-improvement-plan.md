@@ -1,8 +1,27 @@
 # Accuracy Improvement Plan
 
-Last updated: 2026-06-22 by Codex.
+Last updated: 2026-07-24 by Codex.
 
-Status: evaluation-first path defined; EXP-005 real-label gate added; no accuracy-improvement claim is allowed yet.
+Status: evaluation-first path defined; EXP-005 remains at 0/24 safe labels;
+EXP-019–EXP-027 are preregistered specifications; no accuracy-improvement claim
+is allowed yet.
+
+Canonical interface:
+`docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json`.
+
+## B0–B5 Evidence Ladder
+
+| ID | Baseline | Current state | Gate |
+| --- | --- | --- | --- |
+| B0 | Frozen Agent 4 output | Implemented | Baseline hashes remain unchanged |
+| B1 | Current reusable-human-judgment mechanism | Implemented; 0/27 classification changes | Mechanism and safety evidence only |
+| B2 | Independent expert-labeled baseline | Pending expert input; 0/24 | EXP-019 calibration and EXP-020 adjudicated labels |
+| B3 | Development-only deterministic candidate | Proposal — not approved | At least 3 correctable errors across 2 settings plus explicit approval |
+| B4 | One-time 8-row sealed holdout | Blocked | Freeze B3 before opening |
+| B5 | New external education batch | Proposal — not approved | Minimum 30, target 48, and every preregistered formal-claim criterion |
+
+The ladder represents increasing evidence independence, not guaranteed accuracy
+improvement.
 
 ## Baseline
 
@@ -37,10 +56,13 @@ Current baseline summary from the strict evaluation:
 
 Primary metric:
 
-- Accuracy and macro-F1 of variability classification against independent expert labels.
+- Paired net correction:
+  `changed-and-correct - changed-and-wrong`.
 
 Secondary metrics:
 
+- accuracy and macro-F1 against independent expert labels
+- per-class precision and recall
 - changed-and-correct
 - changed-and-wrong
 - requires-human-review-after-memory
@@ -54,6 +76,17 @@ Reporting gate:
 - `1-19` generalization-safe expert labels: report pilot evidence only.
 - `20+` generalization-safe expert labels: report quantitative results, still with validity threats.
 - Preferred target: 30-50 labels across audited runs.
+
+Formal improvement claim:
+
+- external generalization-safe adjudicated N ≥ 30;
+- candidate policy frozen before external data inspection;
+- 10,000-replicate paired-bootstrap 95% net-correction interval excludes zero
+  with seed `20260721`;
+- exact McNemar `p < 0.05`;
+- macro-F1 does not decline;
+- no predefined class or setting subgroup shows material harm;
+- baseline and protected-path hashes remain unchanged.
 
 ## Evaluation Path
 
@@ -166,7 +199,27 @@ The strategic review in `docs/research/strategic-review-and-hardening-plan.md` k
 - Same-pattern labels remain mechanism validation only.
 - Add a second reviewer or supervisor adjudication before treating EXP-005 results as strong evidence.
 
-No policy refinement is allowed until real EXP-005 labels identify baseline errors that memory would correct without unacceptable false changes.
+No policy refinement is allowed until real EXP-005/EXP-020 labels identify at
+least three potentially correctable development errors across at least two
+settings, EXP-022 confirms relevant and safe advice, and the supervisors approve
+one specific `PolicyCandidateRecord-v1`.
+
+## EXP-019–EXP-027
+
+The evidence path is now split into:
+
+1. EXP-019 reviewer calibration using three excluded same-pattern rows.
+2. EXP-020 two-reviewer labeling and adjudication of the 24 safe rows.
+3. EXP-021 baseline error analysis on 16 development rows.
+4. EXP-022 routing and retrieval validity.
+5. EXP-023 one deterministic policy candidate, only if the entry gate passes.
+6. EXP-024 one-time evaluation on eight sealed rows.
+7. EXP-025 external education-domain replication, minimum 30 and target 48.
+8. EXP-026 controlled human-effort study.
+9. EXP-027 post-primary ablation and robustness.
+
+Detailed rules:
+`docs/research/thesis-evidence/PREREGISTRATION_EXP019_027.md`.
 
 ## Evidence Rerun Manifest
 

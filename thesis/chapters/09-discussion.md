@@ -57,13 +57,21 @@ The artifact instantiates a set of transferable design principles that could inf
 
 **DP3 — Reusable human judgment.** Every approved human decision becomes durable, recallable knowledge with provenance (who decided, when, on what case, with what rationale). The judgment is indexed by domain, diagram type, guideline, and keyword, and can be retrieved for future similar cases. This is the central design principle of the thesis.
 
-**DP4 — Selective intervention.** The system asks the human only where the AI's own uncertainty signals indicate that intervention is likely to matter. This conserves expert time and avoids the fatigue of reviewing confident, unambiguous cases. The intervention criteria are explicit and configurable.
+**DP4 — Selective intervention.** The system asks the human where explicit AI
+uncertainty and governance signals satisfy the routing policy. This makes the
+intervention criteria inspectable and configurable. Whether the policy
+concentrates expert-confirmed errors or saves time is not assumed from queue
+counts; EXP-022 and EXP-026 are designed to test those effects.
 
 **DP5 — Human authority over the rubric.** Guideline changes require human approval. The AI may flag a pattern for guideline update (`flag_for_guidelines_update = true`), but it cannot unilaterally rewrite the assessment criteria. This preserves the human's role as the authority on evaluation standards.
 
 **DP6 — Preserve separation of concerns.** The extension keeps language, domain, and pedagogical judgments distinct, mirroring the four-agent architecture of the baseline. Memory entries are scoped by domain and diagram type, and retrieval respects these scopes.
 
-**DP7 — Future-proofing.** The human-judgment asset retains value even as base LLMs improve, because it encodes institution-specific norms, pedagogical intent, and precedent that no general model contains. A better LLM might reduce some classification errors, but it cannot replicate the accumulated judgment of an institution's experts.
+**DP7 — Model-independent judgment assets.** The human-judgment record is
+separable from a particular base-model response and therefore can be reevaluated
+when the model changes. This design creates the *possibility* of longitudinal
+value; whether the asset remains useful as base models improve requires a future
+multi-version study.
 
 ## 9.6 Comparison with related work
 
@@ -79,7 +87,12 @@ Mosqueira-Rey et al.'s (2023) HITL survey identifies patterns such as active lea
 
 ## 9.7 Implications
 
-**For practice.** The artifact offers educators and assessment practitioners a way to concentrate scarce expert attention on the cases where it matters most, and to accumulate an institutional judgment asset rather than re-deciding the same modeling questions year after year. In a university setting where the same domain-modeling exercises are used across semesters, the judgment memory could preserve and apply the expertise of experienced instructors, reducing the burden on new teaching assistants while ensuring consistency.
+**For practice.** The artifact offers educators and assessment practitioners a
+traceable way to route selected cases and accumulate an institutional judgment
+record rather than leaving decisions in informal channels. It may support future
+reuse across semesters, but the current evidence does not show that the routing
+selects the most important errors, reduces teaching-assistant workload, or
+improves consistency. Those are empirical questions, not assumed benefits.
 
 **For evaluation methodology.** The no-benchmark finding — that author-reviewed labels duplicate the AI output byte-for-byte — is a caution for any study that uses researcher-agreed labels as ground truth. Agreement-with-AI artifacts are easy to mistake for independent benchmarks, and leakage-aware evaluation designs (per-row leakage tags, blind labeling, sealed holdouts) should be standard practice in human–AI assessment studies.
 
@@ -100,6 +113,23 @@ The design principles of §9.5 are not only a practitioner checklist; abstracted
 
 This propositional framing is what separates the contribution from a single situated artifact: it renders the design knowledge falsifiable and transferable beyond VEGO-AI, positioning the work as a Level-2 design-theory contribution. The form-and-function principles (DP1–DP7) are demonstrated now; the effect propositions (P1–P4) await the gated evaluation — precisely the boundary the next section makes explicit.
 
-## 9.9 Limitations
+## 9.9 Conditional interpretation of empirical outcomes
+
+The evaluation is not structured around obtaining a positive result. Four
+outcome families lead to different conclusions:
+
+| Outcome | Evidence pattern | Interpretation | Action |
+| --- | --- | --- | --- |
+| Mechanism only | B1 passes; no independent labels | Reusable judgment is implemented and governed; performance is unknown | Complete EXP-019/020 |
+| Baseline errors but no safe candidate | B2 finds errors; EXP-022 finds no reliable correction rule | Human review may remain valuable, but automatic parallel correction is not justified | Strengthen escalation, not classification |
+| Positive holdout pilot | B4 net correction is positive on 8 rows | Promising pilot only; uncertainty remains high | Seek EXP-025, keep policy frozen |
+| Null or harmful holdout | Net correction is zero/negative or changed-and-wrong appears | Candidate is unsupported or unsafe for the tested rows | Reject/defer candidate; preserve baseline |
+| Positive external gate | N≥30 and every preregistered criterion passes | Scoped formal improvement may be reported for the sampled education context | Publish with validity limits |
+| Mixed external outcome | Aggregate improvement but macro-F1/subgroup/safety gate fails | No formal improvement claim | Report trade-offs and stop deployment |
+
+This matrix prevents a favorable point estimate from overriding reviewer
+reliability, paired harm, class balance, subgroup safety, or provenance.
+
+## 9.10 Limitations
 
 The evidence base is small (27 patterns, at most 24 generalization-safe, currently 0 labeled), the scope is narrow (two domains, two diagram types, one institution, one LLM), and the policy is deliberately conservative (zero classification changes). These limitations bound every claim and are analyzed in detail in Chapter 8. The central remaining question — whether reusable human judgment actually improves classification accuracy — is well-posed, methodologically prepared for, but not yet answerable. The thesis contributions (mechanism, design, methodology) stand independently of the eventual accuracy result, but the empirical contribution awaits the labels.

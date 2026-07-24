@@ -1,6 +1,6 @@
 # Supervisor EXP-005 Label Approval Pack
 
-Last updated: 2026-06-29 by Codex.
+Last updated: 2026-07-24 by Codex.
 
 Purpose: give the supervisor one compact approval page for the MSc thesis evidence gate before any external
 expert labeling begins. This pack does not contain copied CSV rows. It points to the generated local sheets
@@ -36,6 +36,9 @@ It must not report classification-accuracy improvement or generalization.
 | Ethics and consent | Confirm reviewer consent/anonymity handling and whether existing IRB documentation is sufficient. |
 | Minimum evidence target | Confirm that at least 20 generalization-safe labels are required before quantitative reporting. |
 | Immediate label set | Confirm that the current 24 generalization-safe candidates are the immediate labeling target. |
+| Reviewer calibration | Confirm that the 3 excluded same-pattern rows are used only for EXP-019 protocol calibration. |
+| Sealed split | Confirm 16 development and 8 holdout rows; holdout opened once after policy freeze. |
+| External evidence | Confirm minimum 30 and target 48 new education-domain rows before a formal improvement claim. |
 | Claim boundary | Confirm no accuracy/generalization claim before the EXP-005 downstream gate passes. |
 | Future policy gate | Confirm that M4B-1.1 or M4B-2 remains blocked unless real-label error analysis justifies it. |
 
@@ -85,17 +88,23 @@ Optional notes are allowed for ambiguity, uncertainty, or protocol concerns.
 
 1. Supervisor reviews this approval pack and the generated instructions/sheets.
 2. Supervisor confirms protocol, reviewer plan, ethics/consent handling, and claim boundary.
-3. Reviewer 1 fills the blind sheet.
-4. Reviewer 2 independently fills the second blind sheet, or the supervisor fills/adjudicates using the adjudication sheet.
-5. Disagreements are adjudicated into `gold_labels.csv`.
-6. The downstream gate is rerun with real labels:
+3. Reviewers independently complete EXP-019 using only the 3 excluded
+   same-pattern calibration rows; discussion may clarify the instructions but no
+   calibration label enters the evaluation.
+4. Reviewer 1 fills the 24-row blind sheet.
+5. Reviewer 2 independently fills the second 24-row blind sheet.
+6. Disagreements are adjudicated into `gold_labels.csv`; raw reviewer returns
+   remain unchanged.
+7. The downstream gate is rerun with real labels:
 
 ```powershell
 .\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream
 ```
 
-7. Chapter 7 is updated only after the rerun produces real-label accuracy, macro-F1, paired-correctness,
-and reliability outputs.
+8. Chapter 7 is updated only after the rerun produces real-label paired
+   correctness, net correction, accuracy, macro-F1, and reliability outputs.
+9. Only the 16 development rows may inform error analysis or policy design. The
+   8 holdout rows remain sealed until a policy is frozen.
 
 ## 6. Claim Boundary
 
@@ -113,6 +122,16 @@ With at least 20 generalization-safe real labels:
 
 - Allowed: quantitative original-vs-memory-informed-vs-expert reporting with limitations.
 - Still required: leakage filtering, reliability/adjudication discussion, and evidence-consistency guard.
+
+With the eight-row sealed holdout:
+
+- Allowed: one-time pilot reporting only.
+- Not allowed: a formal improvement or generalization claim.
+
+With at least 30 newly collected external education-domain labels:
+
+- A formal improvement claim is eligible only if every preregistered statistical
+  and safety condition passes; the preferred target is 48.
 
 With reviewer-2 or supervisor adjudication:
 

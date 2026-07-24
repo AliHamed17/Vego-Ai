@@ -39,11 +39,42 @@ The study compares six conditions that correspond to the progressive layers of t
 
 Conditions C0 through C4A are fully implemented and can be evaluated for mechanism validity now. Condition C4B is the controlled experiment whose empirical results depend on independent expert labels.
 
+### 6.3.1 B0–B5 evidence ladder
+
+The C0–C4B conditions describe which artifact layer is present. A second ladder
+defines the maturity of the empirical comparison and prevents a development
+result from being mistaken for external evidence.
+
+| Baseline | Meaning | Current state | Claim boundary |
+| --- | --- | --- | --- |
+| B0 | Frozen original Agent 4 output | Implemented | Immutable comparator, not ground truth |
+| B1 | Current reusable-human-judgment mechanism | Implemented | Mechanism, traceability, escalation, and baseline safety |
+| B2 | B0 measured against independent adjudicated labels | Pending expert input (0/24) | No accuracy result while safe N=0 |
+| B3 | One deterministic candidate developed from 16 rows | Proposal — not approved | Design rationale only |
+| B4 | One-time test on 8 sealed rows | Blocked | Pilot evidence only |
+| B5 | Frozen-policy replication on a new education batch | Proposal — not approved | Formal improvement only if every preregistered gate passes |
+
+B0 and B1 are available now. B2 requires the human annotation gate. B3 is
+considered only if development evidence identifies at least three potentially
+correctable errors across at least two settings and the supervisors approve a
+specific policy record. B4 cannot be opened before B3 is frozen. B5 requires at
+least 30, with a target of 48, newly collected generalization-safe adjudicated
+rows. None of B2–B5 changes Agent 4 or overwrites the baseline.
+
 ## 6.4 Metrics
 
 The evaluation uses two tiers of metrics, reflecting the distinction between mechanism validity and empirical effect.
 
-**Primary metrics (C4B, against expert labels, generalization-safe rows only):** accuracy and macro-F1 of the substantial/occasional/undetermined classification, computed separately for the original Agent 4 labels and the memory-informed labels, both compared against the independent expert gold labels.
+**Primary metric (C4B, against expert labels, generalization-safe paired rows
+only):** net correction, defined as
+`changed-and-correct - changed-and-wrong`. This measure directly expresses the
+benefit and harm of changing a baseline classification. A candidate that changes
+zero rows has net correction zero by construction.
+
+**Secondary performance metrics:** accuracy and macro-F1 of the
+substantial/occasional/undetermined classification, computed separately for the
+original Agent 4 labels and the memory-informed candidate, plus per-class
+precision, recall, and confusion matrices.
 
 **Secondary metrics, organized by condition:**
 
@@ -56,6 +87,27 @@ The evaluation uses two tiers of metrics, reflecting the distinction between mec
 *Comparison (C4B):* the count of `memory_informed_differs_from_original`; a paired correctness table (changed-and-correct, changed-and-wrong, unchanged-correct, unchanged-wrong); a McNemar-style test where sample size permits; and escalation precision/recall — the proportion of `requires_human_review_after_memory` flags that correspond to actual baseline errors.
 
 *Reliability:* inter-rater agreement (Cohen's κ) between the two independent reviewers; the proportion of items requiring adjudication; and the agreement between individual reviewer labels and the adjudicated gold labels.
+
+### 6.4.1 Statistical analysis
+
+All confirmatory rules are fixed before the relevant outcomes are inspected.
+Proportion intervals use Wilson 95% intervals. Net correction uses a paired
+bootstrap with 10,000 replicates and fixed seed `20260721`. The eight-row holdout
+is descriptive pilot evidence and is not subjected to a formal improvement
+claim. The external EXP-025 analysis uses an exact McNemar test.
+
+A formal improvement statement is permitted only if all of the following hold:
+
+1. At least 30 externally collected, generalization-safe, adjudicated labels.
+2. The policy was frozen before the external data were inspected.
+3. The paired-bootstrap 95% confidence interval for net correction excludes zero.
+4. Exact McNemar `p < 0.05`.
+5. Macro-F1 does not decline.
+6. No predefined class or setting subgroup shows material harm.
+7. Baseline and protected-path hashes remain unchanged.
+
+Failure of any criterion is retained as a null, mixed, or harmful result; the
+policy is not tuned on the external set.
 
 ### Running example: how the "Customer as actor" row would be evaluated
 
@@ -87,6 +139,13 @@ To obtain admissible ground truth, an independent annotation study is defined, w
 
 **Two reviewers plus adjudicator.** Two independent modeling experts label all 24 generalization-safe rows. A third expert adjudicates disagreements, informed by both reviewers' labels and rationales plus the audit-sheet context. Cohen's κ is computed from the two independent reviewers' labels before adjudication. Raw reviewer returns are preserved unchanged; the final adjudicated labels are frozen in a distinct gold-label file that becomes the sole ground truth for all subsequent analysis.
 
+**Calibration without leakage.** Before seeing the 24 evaluation rows, both
+reviewers complete EXP-019 on the three same-pattern rows already excluded from
+generalization metrics. Their independent calibration responses are frozen,
+disagreements are used to clarify the instructions, and no calibration label is
+copied into the evaluation gold set. This checks vocabulary and rationale
+interpretation without consuming the evaluation sample.
+
 **Ethics gate.** Reviewer consent, anonymity, and any IRB documentation requirements are confirmed with the supervisor before outreach. The data contain no personal student information — student models are pseudonymous and identified only by case number within their setting.
 
 **Panel selection.** Qualified, *available* modeling experts are prioritized over prominence. Reviewers should have experience with UML use-case and class diagrams and with the concept of valid modeling alternatives. A human–AI specialist may review the interaction protocol but is not the sole UML annotator.
@@ -107,7 +166,9 @@ The evaluation defines explicit gates that link the available evidence to the pe
 | --- | --- |
 | 0 (current) | "Accuracy improvement cannot be evaluated yet." Mechanism, traceability, and escalation evidence only. |
 | 1–19 | Pilot/exploratory results only, with explicit small-sample threats and no strong quantitative claim. |
-| ≥20 | Quantitative original-vs-memory-informed-vs-expert results, with stated limitations (narrow scope, conservative policy, small sample). |
+| 20–24 | Quantitative MSc pilot, with stated limitations (narrow scope, conservative policy, small sample). |
+| 8 sealed holdout rows | One-time pilot only; never a formal improvement claim. |
+| ≥30 new external rows | Formal-claim gate is eligible, but only if every preregistered statistical and safety criterion passes. |
 | +2nd reviewer / adjudication | Strengthened label reliability (κ reported); stronger claims about expert-label validity. |
 
 These gates serve a dual purpose. For the thesis, they define what claims the current evidence supports. For the reader, they make the evidence boundary transparent — there is no ambiguity about what has and has not been shown.
@@ -118,7 +179,24 @@ All evaluation runs are deterministic and offline — no API or LLM calls are ne
 
 Cross-report numeric invariants and the frozen baseline/policy are checked by `scripts/check_evidence_consistency.py`, which runs at the start and end of every agent prompt. The guard verifies 18 consistency checks, including: baseline outputs unchanged, `ai_classification_changed = 0`, no forbidden tracked artifacts, and no claim-language violations.
 
-Every result maps to a registered experiment ID (EXP-001 through EXP-005), a specific git commit, and gitignored generated outputs under `reports/generated/`. The experiment registry (`experiments/registry.md`) documents each experiment's purpose, inputs, outputs, and current status.
+Every result maps to a registered experiment ID (EXP-001 through EXP-027), a
+specific git commit, and controlled generated outputs under `reports/generated/`.
+The experiment registry (`experiments/registry.md`) documents each experiment's
+purpose, inputs, outputs, and current status. Four document-level interfaces
+reduce ambiguity across runs:
+
+- `ThesisEvidenceSnapshot-v1` records B0–B5, gates, current evidence, planned
+  experiments, claim boundaries, and chapter traceability.
+- `GoldLabelRecord-v2` records human label provenance, partition, leakage class,
+  rationale, confidence, and adjudication state.
+- `PolicyCandidateRecord-v1` freezes deterministic rules, development evidence,
+  hashes, fallback, approval, and the non-destructive output boundary.
+- `EvaluationRunManifest-v2` records source revision, dirty state, hashes,
+  partition seal, label statistics, metrics, and claim scope.
+
+If safe N is zero, the evaluation manifest requires accuracy, macro-F1, net
+correction, and paired p-values to remain null with status
+`NOT YET COMPUTABLE`.
 
 Reproduction commands:
 
@@ -136,8 +214,35 @@ python scripts/check_evidence_consistency.py
 python -m pytest VEGO-AI/tests -q
 ```
 
-## 6.10 Summary
+## 6.10 EXP-019–EXP-027 execution sequence
 
-The methodology cleanly separates *mechanism validity* (established by the implemented pipeline, its 94 passing tests, and its generated artifacts) from *empirical effect* (pending independent expert labels). It defines a bias- and leakage-controlled annotation study to obtain admissible ground truth, pre-commits to a sealed development/holdout discipline so that any future policy refinement is evaluated honestly, and establishes explicit evidence gates that link label counts to permitted claims.
+The preregistered extension separates reviewer preparation, evidence collection,
+development analysis, policy design, holdout evaluation, external replication,
+effort, and robustness:
+
+| Experiment | Role | Entry gate | Result status before execution |
+| --- | --- | --- | --- |
+| EXP-019 | Reviewer calibration on 3 excluded rows | Protocol approval and two reviewers | Evaluation-ready |
+| EXP-020 | Independent labeling of 24 safe rows | EXP-019 complete | Pending expert input |
+| EXP-021 | Baseline error analysis on 16 development rows | At least 20 adjudicated safe labels | Blocked |
+| EXP-022 | Routing and retrieval validity | EXP-021 complete | Blocked |
+| EXP-023 | Freeze one deterministic candidate | ≥3 correctable errors across ≥2 settings plus approval | Proposal — not approved |
+| EXP-024 | Open 8-row holdout once | Frozen approved EXP-023 policy | Blocked |
+| EXP-025 | New external education batch | Holdout complete; minimum N=30, target 48 | Proposal — not approved |
+| EXP-026 | Controlled human-effort study | Ethics and consent approval | Proposal — not approved |
+| EXP-027 | Ablation and robustness | Primary EXP-025 analysis complete | Proposal — not approved |
+
+This sequence has legitimate stop outcomes. If reviewers cannot apply the
+protocol consistently, EXP-020 pauses. If the baseline shows fewer than three
+potentially correctable development errors across two settings, policy work
+stops. If the holdout is null or harmful, the outcome is reported without
+revision. If the external gate fails, no formal improvement claim is made.
+
+> **Figure 6.2.** Preregistered experiment and stopping sequence. See
+> `thesis/figures/fig-6-2-experiment-roadmap.mmd`.
+
+## 6.11 Summary
+
+The methodology cleanly separates *mechanism validity* (established by the implemented pipeline, the passing verification suites recorded in the dated manifest, and its generated artifacts) from *empirical effect* (pending independent expert labels). It defines a bias- and leakage-controlled annotation study to obtain admissible ground truth, pre-commits to a sealed development/holdout discipline so that any future policy refinement is evaluated honestly, and establishes explicit evidence gates that link label counts to permitted claims.
 
 Under the current evidence, the only supportable claims concern reusable human judgment, traceability, and escalation — not classification accuracy. The methodology itself is a contribution: it identifies a subtle but important evaluation pitfall (the byte-identical baseline labels) and designs a protocol that avoids it, providing a template for evaluating similar human–AI collaboration artifacts in the future.

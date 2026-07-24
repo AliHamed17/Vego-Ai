@@ -48,7 +48,7 @@ A pattern is routed to the human review queue if any of the following conditions
 
 **M1.2** adds a deterministic, order-independent `review_signature` computed over stable fields (setting, pattern ID, classification, and justification hash), plus a `source_pattern_id` that links back to the Agent 4 output. The signature serves two purposes: it allows later feedback (M2) to join safely even if the queue is regenerated from a different run order, and it provides a tamper-detection mechanism — if the AI's output changes between queue generation and feedback attachment, the signature mismatch is detected and recorded.
 
-*Contribution to SQ1:* VEGO-AI can now identify and persist where human judgment is needed, instead of leaving the signal unused. The selective policy reduces the review burden from 27 patterns to 11, focusing expert attention where it is most likely to matter.
+*Contribution to SQ1:* VEGO-AI can now identify and persist where human judgment is requested, instead of leaving the signal unused. The current policy routes 11 of 27 patterns rather than routing every pattern. Whether this selection captures the cases that matter most or reduces reviewer effort without harmful misses remains an empirical question for EXP-021, EXP-022, and EXP-026.
 
 ## 5.3 M2 — Human Feedback Manager
 
@@ -181,11 +181,36 @@ Two inspection surfaces support analysis of the artifact chain: an offline **res
 
 ## 5.8 Implementation summary
 
-The entire co-reasoning artifact is implemented in pure Python with no LLM or API dependencies. The implementation comprises six framework modules (selective intervention policy, human review queue, human feedback manager, human judgment memory, memory advisor, and memory-informed classifier), six JSON schema files, comprehensive documentation, and a test suite of 94 passing tests that verify schema compliance, signature integrity, retrieval correctness, policy table behavior, and non-destruction invariants.
+The entire co-reasoning artifact is implemented in pure Python with no LLM or
+API dependencies. The implementation comprises six framework modules (selective
+intervention policy, human review queue, human feedback manager, human judgment
+memory, memory advisor, and memory-informed classifier), six runtime schema
+files, and comprehensive documentation. The accepted verification record
+reports the VEGO-AI suite passing for schema compliance, signature integrity,
+deterministic match behavior, policy-table behavior, and non-destruction; exact
+counts remain attached to that dated record. Independent human relevance of retrieved advice is a later
+EXP-022 question, not established by the unit tests.
 
 The decision to avoid LLM calls and embeddings in the extension is deliberate. It ensures that the artifact is fully deterministic and reproducible: given the same baseline outputs and the same human feedback, the same comparison artifact is produced every time, regardless of API availability, LLM version, or network conditions. This reproducibility is essential for the evaluation methodology (Chapter 6), which requires that differences between conditions can be attributed to the human-judgment layer rather than to LLM stochasticity.
 
-## 5.9 Boundaries
+## 5.9 Component-to-evidence traceability
+
+Each component has an invariant, a foreseeable failure mode, and a corresponding
+evaluation:
+
+| Component | Invariant | Main failure mode | Evidence or planned test |
+| --- | --- | --- | --- |
+| M1 Review queue | Every item traces to one baseline pattern and trigger | Important baseline error not queued; unnecessary queue item | Current schema/count evidence; EXP-021/022 precision and recall |
+| M2 Feedback manager | Signature and required rationale fields validate | Feedback attaches to the wrong or stale item | Signature tests; reviewer protocol |
+| M3 Judgment memory | Only explicitly reusable, provenance-complete records enter memory | Over-broad scope or unresolved conflict | Current provenance checks; EXP-022 scope/conflict audit |
+| M4A Advisory layer | Advice cannot change the AI classification | Irrelevant or same-pattern advice appears persuasive | `ai_classification_changed=false`; EXP-022 blind relevance/leakage audit |
+| M4B-1 Comparison | Baseline remains visible and unchanged | Candidate harm is hidden by aggregate accuracy | Current 0/27 change record; EXP-024/025 paired matrix and net correction |
+| Evaluation gate | Missing evidence remains null, not zero or inferred | Synthetic, blank, or leaked labels enter a claim | EXP-005/012 gates; `GoldLabelRecord-v2`; `EvaluationRunManifest-v2` |
+
+This traceability links architecture to evaluation without assuming that an
+implemented mechanism has an empirically beneficial effect.
+
+## 5.10 Boundaries
 
 Across all layers: no Agent 1–4 prompt or logic change; no LLM or API calls in the extension; no embeddings; no visualizer write-back; baseline `eval_output/` is read-only. **M4B-2** (optional LLM/Agent 4 `resolve_with_answers` reclassification) is designed-only and **blocked** — it would require LLM calls, introduce stochasticity, and change Agent 4's behavior, all of which are explicitly excluded from this thesis.
 

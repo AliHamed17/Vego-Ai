@@ -12,7 +12,12 @@ This thesis extended VEGO-AI from an automated agentic model-assessment pipeline
 
 **A design comprising selective review, structured feedback, and provenance-tracked judgment memory.** The co-reasoning artifact (Chapter 5) introduces seven transferable design principles — bidirectional explainability, structured feedback, reusable human judgment, selective intervention, human authority over the rubric, separation of concerns, and future-proofing — that can inform similar human–AI collaboration systems in other domains.
 
-**A working, non-destructive technical prototype (M1–M4B-1)** with dashboard and visualizer inspection surfaces, 94 passing tests, and full deterministic reproducibility. The prototype demonstrates the mechanism at a concrete scale (179 models, 27 patterns, 11 review items, 3 reusable memories) and preserves the original baseline throughout.
+**A working, non-destructive technical prototype (M1–M4B-1)** with dashboard
+and visualizer inspection surfaces and deterministic verification. The accepted
+verification record reports both the VEGO-AI and research-script suites passing;
+exact counts remain attached to that dated record. The prototype demonstrates the mechanism at a
+concrete scale (179 models, 27 patterns, 11 review items, 3 reusable memories)
+and preserves the original baseline throughout.
 
 **A bias- and leakage-controlled evaluation methodology** that makes the artifact's empirical effect measurable. The methodology (Chapter 6) identifies the byte-identical baseline labels as unusable ground truth, defines a blind annotation protocol with anonymization, randomization, and two-reviewer adjudication, establishes a sealed development/holdout split for policy refinement, and pre-commits to explicit evidence gates. The methodology itself is a contribution: it provides a template for evaluating human–AI collaboration artifacts where conventional benchmarks are unavailable or unreliable.
 
@@ -32,25 +37,53 @@ This thesis extended VEGO-AI from an automated agentic model-assessment pipeline
 
 ## 10.3 Honest status
 
-The build and validation phase is complete. The artifact is implemented, tested (94 passing tests), merged, tagged, and governed by evidence-consistency guards that verify 18 invariants at every prompt. The evaluation methodology is designed, the annotation package is prepared with blind sheets and leakage controls, and the evaluation harness is implemented.
+The mechanism build is complete through M4B-1. The artifact is implemented,
+historically merged and tagged, and governed by evidence-consistency and
+protected-path checks. The evaluation methodology is designed, the annotation
+package is prepared with blind sheets and leakage controls, and the
+EXP-019–EXP-027 evidence sequence is preregistered.
 
 The empirical phase is not complete: there are zero generalization-safe expert labels, and the current deterministic policy changes zero classifications. The supportable claim at this stage is that the system enables structured, reusable human judgment with traceability, provenance, and safer escalation — not that it improves accuracy. This is an acceptable intermediate state for a design-science thesis because the artifact and methodology contributions stand on their own merits (Hevner et al., 2004; Peffers et al., 2007; Gregor & Hevner, 2013), and the remaining work is clearly defined and human-gated.
 
 ## 10.4 Immediate next work (unblocks the empirical claim)
 
-Three steps complete the empirical phase, and all are human-gated — they require supervisor approval and expert participation, not further implementation:
+The empirical phase advances through the following gates. The first three are
+human-gated; later policy work is conditional rather than assumed:
 
-1. **Execute the expert-annotation protocol.** Two independent modeling experts label the 24 generalization-safe patterns using the blind sheets, following the anonymization, randomization, and neutrality controls defined in §6.6. Cohen's κ is computed from their independent labels, and a third expert adjudicates disagreements to produce frozen gold labels.
+1. **Calibrate reviewers without consuming the evaluation set.** Two reviewers
+   complete EXP-019 on the three excluded same-pattern rows and freeze the
+   instruction version.
 
-2. **Measure baseline accuracy.** The evaluation harness computes the Agent 4 baseline accuracy against the gold labels and performs error analysis on the 16 development rows, identifying which patterns the AI classifies incorrectly and whether the memory layer has relevant evidence for those errors.
+2. **Execute independent annotation.** Two modeling experts label the 24 safe
+   rows blind. Cohen's κ is computed before a third role adjudicates
+   disagreements into a frozen gold-label set.
 
-3. **Conditional policy refinement.** Only if the error analysis suggests that memory-informed evidence could correct specific errors, design a deterministic M4B-1.1 refinement on the 16 development rows and evaluate it **once** on the sealed 8-row holdout — never tuning and evaluating on the same rows.
+3. **Characterize the frozen baseline.** Open only the 16 development rows for
+   EXP-021/022, identifying baseline errors and auditing review/retrieval
+   validity while eight holdout rows remain sealed.
+
+4. **Conditional policy decision.** Proceed to EXP-023 only if at least three
+   potentially correctable development errors span at least two settings and a
+   specific deterministic policy record is approved.
+
+5. **Evaluate once, then replicate externally.** Open the eight-row holdout once.
+   Treat it as a pilot. A formal improvement claim requires a separate new
+   education-domain batch with at least 30 and preferably 48 adjudicated safe
+   rows and every preregistered statistical and safety gate.
+
+The evidence ladder is therefore B0 frozen baseline → B1 implemented mechanism
+→ B2 independent labels → B3 approved frozen candidate → B4 sealed pilot → B5
+external replication. Progress along the ladder is progress in evidence quality,
+not guaranteed progress in accuracy.
 
 ## 10.5 PhD continuation directions
 
 The MSc thesis establishes the mechanism and methodology; several directions extend the work toward a fuller understanding of reusable human judgment in AI-assisted assessment.
 
-**M4B-2 — LLM-assisted reclassification.** An optional, strictly experimental mode that uses Agent 4's `resolve_with_answers` skill to produce LLM-informed reclassifications based on memory evidence. This introduces LLM calls and stochasticity, requiring the same non-destructive, comparison-only guarantees and separate evaluation.
+**M4B-2 — LLM-assisted reclassification.** A possible future research question,
+not an approved implementation. Any later study would require a separate plan,
+authorization, stochastic-evaluation protocol, and the same non-destructive
+comparison boundary.
 
 **M5 — Human-approved guideline refinement.** Studying the loop where substantial-variability judgments inform updates to the assessment rubric, under human authority. This extends the co-reasoning from classification to the assessment framework itself, addressing DP5 (human authority over the rubric) in a more ambitious form.
 
@@ -63,3 +96,10 @@ The MSc thesis establishes the mechanism and methodology; several directions ext
 ## 10.6 Closing statement
 
 This thesis moved VEGO-AI from "automated variability assessment" to "variability assessment with reusable human judgment." The artifact demonstrates that expert reasoning about model variability can be captured structurally, stored with provenance, retrieved as advisory evidence, and evaluated non-destructively against the original AI pipeline. Its lasting idea is methodological as much as technical: human judgment should be captured as structured, reusable, accountable knowledge — and its effect should be claimed only on the strength of leakage-aware, independently labeled evidence.
+
+The safe claim now is feasibility and governance of the reusable-human-judgment
+mechanism. A conditional pilot claim may be made after adjudicated labels and a
+sealed evaluation. A formal improvement claim is allowed only after the external
+EXP-025 gate passes. Accuracy improvement, generalization, reduced human effort,
+benchmark superiority, and clinical performance are not established by the
+current evidence.
