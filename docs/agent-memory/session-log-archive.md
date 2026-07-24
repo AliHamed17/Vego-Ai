@@ -3623,3 +3623,257 @@ Historical entries.
 - Status: completed
 - Next steps: Bring the capture-vs-load trade-off (H4) and the review-item-granularity question (H5) to Iris on 2026-07-15; rerun EXP-012 the moment any EXP-005 label batch lands for the real generalization-safe baseline; continue the loop with .\scripts\run-hlayer-iteration.ps1 as the design evolves.
 
+## 2026-07-07 12:49 +03:00 - Claude - PhD Alignment Audit
+
+- Request: make sure we have srong aligment to phd
+- Actions taken:
+  - Verified evidence consistency
+  - Checked literature review taxonomy and study plans
+  - Ran project health checks
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - python scripts/check_evidence_consistency.py
+  - .\scripts\research-health.ps1
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+  - python -m pytest VEGO-AI/tests -q
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-07 12:57 +03:00 - Claude - PhD Review and Alignment Playbook Implementation
+
+- Request: do huge plan for reviewing and being aligned
+- Actions taken:
+  - Created review-alignment-playbook.md detailing step-by-step loops, codebase branch controls, evaluation real-label gates, clinical data governance (MediVARIA), and Confluence outbox checks
+  - Integrated playbook into root README.md
+  - Executed full project/research/dashboard health check validation suite
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - python scripts/check_evidence_consistency.py
+  - .\scripts\project-health.ps1
+  - .\scripts\research-health.ps1
+  - .\scripts\refresh-tracking.ps1 -Viz
+  - .\scripts\build-confluence-wiki.ps1
+  - .\scripts\dashboard-health.ps1 -RequireOutbox
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-07 13:04 +03:00 - Claude - Supervised Next-Step Loop Run
+
+- Request: Review loop iteration
+- Actions taken:
+  - Ran the next-step loop cycle via run-codex-next-step.ps1
+  - Verified that the loop remains blocked on the EXP-005 real-label gate (0 labels)
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-07 14:57 +03:00 - Claude - Supervised Next-Step Loop Run
+
+- Request: Review loop iteration
+- Actions taken:
+  - Ran the next-step loop cycle via run-codex-next-step.ps1
+  - Verified that the loop remains blocked on the EXP-005 real-label gate (0 labels)
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - .\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 12:05 +03:00 - Codex - Enhancement Plan Proposal
+
+- Request: make guge plan to enhanse
+- Actions taken:
+  - Analyzed current repository state and redirect directives
+  - Created detailed H-layer framework enhancement implementation plan
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - refresh-tracking -Pull
+  - run-codex-next-step
+  - git status
+- Status: completed
+- Next steps: Obtain user approval on the implementation plan, then draft H-layer specs and prototype scaffold
+
+## 2026-07-10 12:07 +03:00 - Codex - H-Layer Phase P2 Detailed Specifications and Prototyping
+
+- Request: make guge plan to enhanse
+- Actions taken:
+  - Created six detailed specification files for H-layer skills S1-S7 under docs/research/h-layer/
+  - Updated research index README.md
+  - Implemented dry-run prototype scaffold scripts/hlayer_prototype/hlayer-prototype-scaffold.py to simulate listening, triage, case bundling, and H-Verify anti-sycophancy warnings
+  - Ran and verified dry-run and conflict dialogue scenarios successfully
+  - Updated task.md, walkthrough.md, progress.md, revert-log.md, and current-state.md
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - python -m compileall
+  - python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --dry-run
+  - python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --test-conflict
+  - check_evidence_consistency.py
+  - project-health.ps1
+  - research-health.ps1
+  - dashboard-health.ps1
+- Status: completed
+- Next steps: Present specs and prototype at the 2026-07-15 meeting, capture supervisor decisions, and prepare to implement the prototype hooks on a feature branch after approval.
+
+## 2026-07-10 14:33 +03:00 - Codex - H-Layer Prompt Requirements Expansion
+
+- Request: make huge plan for requirements
+- Actions taken:
+  - Expanded prompt-requirements.md to detail serialization and reasoning.
+- Files changed:
+  - docs/research/h-layer/prompt-requirements.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 14:39 +03:00 - Codex - Meeting Package Update
+
+- Request: proceed and enhance
+- Actions taken:
+  - Updated meeting package index and results dashboard with Iteration 6 metrics.
+- Files changed:
+  - docs/research/meetings/2026-07-15-meeting-package.md
+  - docs/dashboards/results-dashboard.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 14:42 +03:00 - Codex - Research Loop Iteration 7
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Implemented and integrated EXP-009 seeded conflict dry run and EXP-010 convergence bound sweeps.
+- Files changed:
+  - experiments/registry.md
+  - scripts/build-hlayer-experiments.ps1
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 19:36 +03:00 - Codex - Research Loop Iteration 8
+
+- Request: continue doing expermints and evaluate them
+- Actions taken:
+  - Integrated EXP-004 policy sensitivity simulation into the loop runner and snapshot copying of all 7 suite experiments.
+- Files changed:
+  - experiments/EXP-009-hverify-seeded-conflict-dry-run/README.md
+  - experiments/EXP-010-convergence-bound-sweep/README.md
+  - scripts/build-hlayer-experiments.ps1
+  - scripts/run-hlayer-iteration.ps1
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 21:38 +03:00 - Codex - Research Loop Iteration 10
+
+- Request: do extensive plan
+- Actions taken:
+  - Upgraded prototype script to support real data-driven interactive review queues and dialogue rounds.
+- Files changed:
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 21:54 +03:00 - Codex - Feedback Learning Plan
+
+- Request: do extensive plan
+- Actions taken:
+  - Authored feedback learning and RLHF optimization plan in docs/research/h-layer/feedback-learning-rlhf-plan.md.
+- Files changed:
+  - docs/research/h-layer/feedback-learning-rlhf-plan.md
+  - docs/research/README.md
+  - docs/research/h-layer/experiment-iteration-ledger.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 22:22 +03:00 - Codex - Prompt Architecture Specification
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Authored H-Layer prompt architecture specifications in docs/research/h-layer/prompt-architecture-guide.md.
+- Files changed:
+  - docs/research/h-layer/prompt-architecture-guide.md
+  - docs/research/README.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 22:58 +03:00 - Codex - Handoff Briefing Prompt
+
+- Request: give extensive prompt to codex for nextstep
+- Actions taken:
+  - Created Codex next-step briefing handoff prompt at docs/agent-memory/codex-nextstep-handoff-prompt.md.
+- Files changed:
+  - docs/agent-memory/codex-nextstep-handoff-prompt.md
+  - docs/agent-memory/README.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-10 23:48 +03:00 - Codex - Reconcile Iteration 10 and implement gated feedback flow
+
+- Request: Continue from the Codex next-step handoff while preserving the EXP-005 and M-02 through M-05 gates.
+- Actions taken:
+  - Verified iteration 010 and canonical suite membership against manifests.
+  - Reconciled the handoff, registry, ledger, dashboards, progress memory, and feedback-learning documents.
+  - Implemented a deterministic offline feedback generalizer that emits proposal-only artifacts and zero current candidates.
+  - Hardened the supervisor demo with isolated outputs, adjudication separation, deterministic-only checks, provenance, and protected-path guards.
+  - Added the July 15 demo runbook and refreshed validation coverage.
+- Files changed:
+  - scripts/feedback_generalizer.py and scripts/tests/test_feedback_generalizer.py
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py and scripts/validate_hlayer_program.py
+  - docs/research/h-layer/* status, prompt, learning, iteration, and demo-runbook files
+  - experiments/registry.md and docs/dashboards/*
+  - docs/agent-memory current-state, progress, issues, decisions, resource-memory, review-state, README, and handoff
+- Commands/checks:
+  - python -m pytest scripts/tests/test_feedback_generalizer.py -q -> 11 passed
+  - python scripts/validate_hlayer_program.py -> PASS, 8 checks
+  - python scripts/validate_hlayer_offline.py -> PASS, 19 checks
+  - python scripts/check_evidence_consistency.py -> PASS 18/18
+  - project-health.ps1, research-health.ps1, dashboard-health.ps1 -RequireOutbox -> PASS
+  - demo dry-run, deterministic conflict check, and temp mock session -> PASS with legacy outputs hash-unchanged
+- Status: completed
+- Next steps: Use the isolated July 15 demo to record M-01 through M-06. Keep LLM synthesis, trusted-memory reuse, Agent B context delivery, iteration 011, live listener work, and quantitative evaluation blocked until their explicit gates clear.
+
+## 2026-07-10 23:59 +03:00 - Codex - Close final feedback-flow safety findings
+
+- Request: Address final P1/P2 review findings before handoff.
+- Actions taken:
+  - Required trusted-memory eligibility plus allowlisted human/trusted-export origin and rejected demo, synthetic, adjudication, and pending-override records.
+  - Rejected input/output aliases and staged the full generalizer package before promotion.
+  - Made demo JSON writes atomic and rejected symlink, reparse-point, and multi-link destinations.
+  - Corrected current branch, HEAD, and active PR metadata in status surfaces.
+- Files changed:
+  - scripts/feedback_generalizer.py and scripts/tests/test_feedback_generalizer.py
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py and scripts/validate_hlayer_program.py
+  - H-layer eligibility docs and shared current-state/decision/issue memory
+- Commands/checks:
+  - python -m pytest scripts/tests/test_feedback_generalizer.py -q -> 13 passed
+  - python -m ruff check targeted scripts -> PASS
+  - python scripts/validate_hlayer_program.py -> PASS, linked-output guard included
+  - python scripts/feedback_generalizer.py -> BLOCKED_NO_VERIFIED_FEEDBACK, 0 candidates
+- Status: completed
+- Next steps: Record M-decisions and obtain real verified/adjudicated feedback before synthesis; no LLM or Agent B integration.
+

@@ -2,18 +2,19 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-20 by Codex (Iteration 14 and July 21 supervisor-package reconciliation)
+**Last Updated:** 2026-07-24 by Codex (thesis evidence-advancement package and review draft)
 
 ---
 
 ## 1. Quick Status (< 10 lines)
-* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. The current feature-branch worktree is dirty and is not a clean, merged, or finalized package state.
+* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. PR #8 is the sole publication record for the thesis evidence package; live GitHub is authoritative for whether it is draft, open, or merged.
 * Two constraints are active: offline H-layer architecture/experiment hardening and the EXP-005 human-label gate for the parked evaluation track.
 * The machine-derived July 1 meeting record supports a **framework-first** direction pending participant confirmation. M-02 through M-05 have no recorded outcomes.
 * July skills, prompt requirements, and six detailed specifications are **provisional drafts**, not approved interfaces. `allowed-touch-proposal.md` is also unapproved.
 * **Research Loop:** Fourteen iterations (001-014) are accepted. Iterations 001-007 are historical/pre-manifest; 008-014 are manifest-backed. Iteration 014 (`hlayer-20260720T173308Z-d79047f5e2`) is the latest accepted reliability-only coherence snapshot, verdict `NEUTRAL`, normalized `fa3debf25ba705224bfa27748aaee7cd92d72e8f50b6704ccea2ff9f6255651e`. It selects no default. Separate conformance run `HLAYER-CONFORMANCE-8c458da3755870930900` is offline-only and does not authorize a live listener.
 * **MediVARIA draft added (2026-07-04):** a provisional PhD/future-work proposal exists, but it is not supervisor-endorsed clinical work. MSc evidence remains education-only; there is no patient data or clinical-performance evidence in this repo.
 * **Accuracy Verdict:** *Accuracy improvement cannot be evaluated yet* (0 generalization-safe real labels exist). The EXP-005 gate now gates the PARKED evaluation track only - not framework-track doc/spec work.
+* **Thesis evidence package (2026-07-24):** a B0-B5 evidence ladder, canonical evidence snapshot, claim/chapter traceability, EXP-019..027 preregistrations, 87-page review DOCX/PDF, and offline baseline-progress HTML are prepared for review. This improves evaluation rigor; it does not establish an accuracy gain.
 
 ---
 
@@ -28,8 +29,8 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
   -> M4B-1 Deterministic Memory-Informed Comparison (parallel experimental comparison)
 ```
 * **Git Repository:** Initialized; baseline pushed to private `AliHamed17/Vego-Ai`.
-* **Current Branch:** `agent/publish-hlayer-and-supervisor-package` at `af191f0`, with a dirty worktree. Draft PR #8 is the review route. The visualizer tag `research-state-visualizer-ux-clean` names a historical commit; it does not describe current workspace cleanliness.
-* **Active PRs:** PR #6 open (schema/tests hardening, no behavior changes); draft PR #8 tracks `agent/publish-hlayer-and-supervisor-package`.
+* **Git orientation:** PR #8 is the sole publication route and audit record for the thesis package. Run live Git checks for branch, revision, PR state, and cleanliness; durable memory intentionally does not pin volatile values. The visualizer tag `research-state-visualizer-ux-clean` names a historical commit, not current workspace state.
+* **Publication records:** PR #6 covers earlier schema/test hardening; PR #8 covers this thesis evidence package. Their live states are intentionally not duplicated here.
 * **Tags:** `milestone-m3-human-judgment-memory`, `milestone-m4a-memory-advisory`, `research-state-m4a-clean`, `research-state-results-dashboard`, `research-state-m4b1-deterministic-comparison`.
 
 ---
@@ -47,11 +48,12 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 ---
 
 ## 4. Next Action
-1. **July 21 package:** publish one evidence-honest HTML/PPTX/PDF decision package while preserving July 15 outputs as history.
-2. **Decision gate:** record M-01..M-06. Until then, keep architecture, dosage, H-Verify, authority, and timeout choices provisional.
-3. **Offline advancement:** preserve iterations 008-014 atomic contracts and metric semantics. Do not create Iteration 15 for documentation or visualization work.
-4. **Phase 4:** remain blocked until M-05 plus a separate exact-file implementation authorization.
-5. **EXP-005:** obtain protocol approval and schedule two human reviewers; supplied generalization-safe real labels remain 0 and must never be inferred or prefilled.
+1. **Human evidence gate:** approve the blind-label protocol, appoint two independent reviewers plus an adjudicator, and calibrate on the three excluded same-pattern rows.
+2. **EXP-020:** collect the 24 generalization-safe labels without exposing the 16/8 development/holdout split to reviewers; supplied labels remain 0 and must never be inferred or prefilled.
+3. **Decision gate:** record M-01..M-06. Until then, keep architecture, dosage, H-Verify, authority, and timeout choices provisional.
+4. **Offline advancement:** preserve iterations 008-014 atomic contracts and metric semantics. Do not create Iteration 15 for documentation or visualization work.
+5. **Policy gate:** perform development-only error analysis before proposing one deterministic candidate; open the sealed eight-row holdout only after the policy and hashes are frozen.
+6. **Phase 4:** remain blocked until M-05 plus a separate exact-file implementation authorization.
 
 ---
 
@@ -71,19 +73,20 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 
 * **Original Package:** Extracted to `VEGO-AI/`.
 * **Framework Code:** `VEGO-AI/framework/human_feedback_manager.py`, `memory_advisor.py`, `build_results_dashboard.py`.
-* **Tests:** Current unsuppressed rerun on 2026-07-20: 94 passed in `VEGO-AI/tests` and 53 passed in `scripts/tests` (Python 3.13.3, pytest 8.4.2).
-* **Schemas:** `human_feedback.schema.json`, `human_review_item.schema.json`, `memory_advice.schema.json`, `results_dashboard_snapshot.schema.json`.
+* **Tests:** Current unsuppressed rerun on 2026-07-24: 94 passed in `VEGO-AI/tests`; 69 passed plus 7 subtests in `scripts/tests`; the integrated H-layer gate passed all 16 checks.
+* **Schemas:** runtime schemas remain unchanged; the evidence package adds document-level schemas for the evidence snapshot, gold labels, policy candidates, and evaluation-run manifests.
 * **Latest Run ID:** `20260614-122150` (27 comparisons, 0 differences, 2 review flags, 0 changes to baseline behavior).
 </details>
 
 <details>
-<summary><b>6.2 Evaluation & Experiment Details (EXP-001...005)</b></summary>
+<summary><b>6.2 Evaluation & Experiment Details (EXP-001...027)</b></summary>
 
 * **EXP-001 (Mechanism):** 27 rows, 3 same-pattern labels, 0 generalization-safe labels.
 * **EXP-002 (Generalization candidates):** 24 safe candidate rows identified for expert labeling.
 * **EXP-003 (Accuracy evaluation):** Tooling/harness ready. Blind sheets generated under `reports/generated/exp003/`.
 * **EXP-004 (Sensitivity):** Synthetic policy screening only (no real evidence).
 * **EXP-005 (Real-label gate):** Tooling generates blind reviews, reliability stats, and kappa metrics. Closed until expert labels are added.
+* **EXP-019..027 (Preregistered next phase):** reviewer calibration, independent labeling, development-only baseline error analysis, routing/retrieval validity, deterministic policy development, one-time sealed holdout, external education replication, human-effort evaluation, and ablation/robustness. They are planned protocols, not completed evidence.
 </details>
 
 <details>

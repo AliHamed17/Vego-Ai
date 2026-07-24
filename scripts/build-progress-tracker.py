@@ -66,6 +66,18 @@ def replace_region(text, name, body):
     return new, n
 
 
+def recent_activity_lines(log_path: Path, limit: int = 6) -> list[str]:
+    """Return the newest retained session headings first."""
+    if not log_path.exists():
+        return []
+    headings = [
+        line[3:].strip()
+        for line in log_path.read_text(encoding="utf-8", errors="ignore").splitlines()
+        if line.startswith("## ")
+    ]
+    return [f"- {heading}" for heading in reversed(headings[-limit:])]
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-tests", action="store_true", help="run pytest for an exact pass count")
@@ -180,13 +192,7 @@ def main(argv=None):
 
     # recent activity from session log
     slog = (ROOT / "docs" / "agent-memory" / "session-log.md")
-    acts = []
-    if slog.exists():
-        for line in slog.read_text(encoding="utf-8", errors="ignore").splitlines():
-            if line.startswith("## "):
-                acts.append("- " + line[3:].strip())
-                if len(acts) >= 6:
-                    break
+    acts = recent_activity_lines(slog)
     activity = "\n".join(acts) if acts else "- _(no session-log entries found)_"
 
     # ---- apply ---------------------------------------------------------------
