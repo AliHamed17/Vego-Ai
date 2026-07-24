@@ -2,27 +2,27 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-24T19:23:58+00:00",
   "packageDate": "2026-07-24",
-  "sourceRevision": "f19ccb69884992ad4bfc270d1d912917d96fbfb6",
-  "packageRevision": "12a445ebf2b9d29fe4adefc0eafe778441e0d02a",
-  "sourceTreeHash": "284ab55ad5e1975e4d519c8570c8cda292649ab81c2bc91bee7e00eb42792f76",
+  "sourceRevision": "adc56a3ccfec4ccc21a9ed2abb04b116c72a7693",
+  "packageRevision": "8e72a67badb9ef24dee211e1aefaa673d92e8405",
+  "sourceTreeHash": "0b0c086fd5986e38883debf88c8ba2c9316bb13aa252f1eeec7bfc80f3dcd1ed",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "f83aba1b87f4976fae0a1b290bfbfe2edf3503553167a04ebfd4b0a429793b7c",
+    "sha256": "239987803bf3994068560aa9874311f49e9c20a2e1a3a9d5654f6408d614b65f",
     "bytes": 41402,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx",
-      "sha256": "96a0894e841bb7627c64e5ea457db323f2e80b47010cadd02590cd84cc48afdf",
+      "sha256": "8036ea86f444198a0074427762f253ce12da7ecb96c35e9ba954e81cf68da9a8",
       "bytes": 1770724,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "d644e2663557df63afb4879132695e3aeaee8649c1390e9933c85d1b0a4db68d",
+      "sha256": "d40099a8782fff8347732bb1f18c220a750b55e038b3375b4d199c00a983da65",
       "bytes": 70129,
       "tracked": true
     }
@@ -33,15 +33,15 @@
       "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": "ac10376ded658be0a11277aeb9bc66e70ffafb15bfa70cfb00a242d393e5a53e",
-      "bytes": 1185124
+      "sha256": "82b261845fda17ba43436b64c738010c50c23bec4e0fcbcee0a82f7ccf016be7",
+      "bytes": 1388545
     },
     "renderVerification": {
       "status": "PASS",
       "pdfPageCount": 87,
       "renderedPageCount": 87,
       "sheetCount": 22,
-      "qaReportSha256": "e9c351ec277d7589182d5b38209a52fe54ff181fc60b328062e920d1f720687c"
+      "qaReportSha256": "501a293e7eca10b96a3a9246ca02c5be93e2222784dcc5ce4b1781efdb7c58b4"
     }
   },
   "sourceFiles": [
@@ -131,7 +131,7 @@
     },
     {
       "path": "scripts/build_thesis_review_document.py",
-      "sha256": "dee66692137cf0e0eabbfb70ae9b8b2b9be7fb768f1c28985c0380c6ccf38b4d"
+      "sha256": "95b917228c0205c6da21cafc50be1f2ea402251a655d99a54d713993edab99b6"
     },
     {
       "path": "scripts/build_thesis_review_manifest.py",
@@ -231,7 +231,7 @@
     }
   ],
   "toolVersions": {
-    "python": "3.12.13",
+    "python": "3.13.3",
     "jsonschema": "4.26.0"
   },
   "protectedRuntimeChanged": false,
