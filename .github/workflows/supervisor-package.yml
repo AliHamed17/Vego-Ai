@@ -29,6 +29,7 @@ jobs:
           VEGO-AI/tests
           scripts/tests/test_build_hlayer_decision_snapshot.py
           scripts/tests/test_build_hlayer_program_overview.py
+          scripts/tests/test_build_progress_tracker.py
           scripts/tests/test_thesis_evidence_package.py
           --deselect=VEGO-AI/tests/test_visualizer_helpers.py::test_extract_case_id_examples
           -q
