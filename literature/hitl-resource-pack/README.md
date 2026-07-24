@@ -48,4 +48,3 @@ Download open resources and update the manifest hashes:
 ```powershell
 .\scripts\download-hitl-resources.ps1
 ```
-

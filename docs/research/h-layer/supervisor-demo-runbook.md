@@ -2,8 +2,8 @@
 
 Status: **PROVISIONAL OFFLINE DEMO.** This runbook demonstrates interaction design and deterministic safety checks. It does not create trusted memory, apply a correction, modify a VEGO-AI prompt, validate a policy, or support an accuracy/generalization claim.
 
-Audience: Iris and Arnon  
-Timebox: 20-minute walkthrough + 20-minute decision discussion  
+Audience: Iris and Arnon
+Timebox: 20-minute walkthrough + 20-minute decision discussion
 Output: isolated demo records only; adjudication candidates remain pending
 
 ## Preflight

@@ -447,4 +447,3 @@ Return a concise implementation summary with:
   - ask Sigal about direct-track PhD credits/requirements.
 
 Do not include a long transcript excerpt in the final response.
-

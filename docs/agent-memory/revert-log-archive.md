@@ -1395,4 +1395,3 @@ Historical entries.
   - docs/agent-memory/compiled-memory.md
 - Rollback note: Memory log only; no VEGO behavior files changed.
 - Git commit: none recorded by script.
-

@@ -51,24 +51,24 @@ function Optimize-LogFile {
 
     if (-not (Test-Path -LiteralPath $LogPath)) { return }
     $content = Get-Content -Raw -LiteralPath $LogPath
-    
+
     # Headers like "## 2026-06-24" or "## 2026-06-24 12:34"
     $matches = [regex]::Matches($content, '(?m)^##\s+(\d{4}-\d{2}-\d{2})')
     if ($matches.Count -eq 0) { return }
-    
+
     $preamble = $content.Substring(0, $matches[0].Index)
-    
+
     $keepEntries = [System.Collections.Generic.List[string]]::new()
     $archiveEntries = [System.Collections.Generic.List[string]]::new()
     $cutoffDate = (Get-Date).AddDays(-$KeepDays)
-    
+
     for ($i = 0; $i -lt $matches.Count; $i++) {
         $startIdx = $matches[$i].Index
         $endIdx = if ($i + 1 -lt $matches.Count) { $matches[$i + 1].Index } else { $content.Length }
         $entryContent = $content.Substring($startIdx, $endIdx - $startIdx).Trim()
-        
+
         $dateStr = $matches[$i].Groups[1].Value
-        
+
         try {
             $entryDate = [DateTime]::ParseExact($dateStr, "yyyy-MM-dd", $null)
             if ($entryDate -lt $cutoffDate) {
@@ -82,14 +82,14 @@ function Optimize-LogFile {
             $keepEntries.Add($entryContent)
         }
     }
-    
+
     if ($archiveEntries.Count -gt 0) {
         Write-Host "Archiving $($archiveEntries.Count) entries from $LogName..."
-        
+
         # Write keep entries back to LogPath
         $newLogContent = $preamble.TrimEnd() + [Environment]::NewLine + [Environment]::NewLine + ($keepEntries -join ([Environment]::NewLine + [Environment]::NewLine)) + [Environment]::NewLine
         Set-Content -LiteralPath $LogPath -Value $newLogContent -Encoding UTF8
-        
+
         # Archive entries to ArchivePath
         $archivePreamble = "# $LogName Archive" + [Environment]::NewLine + [Environment]::NewLine + "Historical entries." + [Environment]::NewLine + [Environment]::NewLine
         $existingArchive = ""
@@ -99,7 +99,7 @@ function Optimize-LogFile {
                 $archivePreamble = ""
             }
         }
-        
+
         $newArchiveContent = $existingArchive.TrimEnd() + [Environment]::NewLine + [Environment]::NewLine + $archivePreamble + ($archiveEntries -join ([Environment]::NewLine + [Environment]::NewLine)) + [Environment]::NewLine
         $newArchiveContent = $newArchiveContent.TrimStart()
         Set-Content -LiteralPath $ArchivePath -Value $newArchiveContent -Encoding UTF8
@@ -167,4 +167,3 @@ if (-not $NoPull) {
 }
 
 Write-Host "Agent memory updated."
-

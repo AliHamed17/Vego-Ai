@@ -3876,4 +3876,3 @@ Historical entries.
   - python scripts/feedback_generalizer.py -> BLOCKED_NO_VERIFIED_FEEDBACK, 0 candidates
 - Status: completed
 - Next steps: Record M-decisions and obtain real verified/adjudicated feedback before synthesis; no LLM or Agent B integration.
-

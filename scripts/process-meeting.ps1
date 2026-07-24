@@ -49,11 +49,11 @@ if (-not (Test-Path -LiteralPath $transcriptTxt) -or $ReTranscribe) {
         throw "Transcribe script not found: $transcribeScript"
     }
     Write-Host "Transcript not found or Retranscribe flag set. Invoking Whisper transcription script..."
-    
+
     # Run the transcription python script
     $env:PYTHONIOENCODING = "utf-8"
     & python $transcribeScript $videoAbs
-    
+
     if (-not (Test-Path -LiteralPath $transcriptTxt)) {
         throw "Whisper transcription failed to produce output file."
     }
@@ -67,7 +67,7 @@ $notesPath = Join-Path $meetingNotesDir "$dateStr`-$videoName.md"
 
 if (-not (Test-Path -LiteralPath $notesPath)) {
     Write-Host "Generating draft meeting notes at: $notesPath"
-    
+
     $notesTemplate = @"
 # Supervisor/Collaborator Meeting - $dateStr
 
@@ -108,12 +108,12 @@ $resourceMemoryPath = Join-Path $memoryDir "resource-memory.md"
 if (Test-Path -LiteralPath $resourceMemoryPath) {
     Write-Host "Verifying entry in resource-memory.md..."
     $resourceContent = Get-Content -Raw -LiteralPath $resourceMemoryPath
-    
+
     $relNotes = $notesPath.Replace($repoRoot, "").TrimStart("\").Replace("\", "/")
     $relVideo = $VideoPath.Replace("\", "/")
     $relTxt = $transcriptTxt.Replace($repoRoot, "").TrimStart("\").Replace("\", "/")
     $relSrt = $transcriptSrt.Replace($repoRoot, "").TrimStart("\").Replace("\", "/")
-    
+
     if ($resourceContent -notmatch $videoName) {
         Write-Host "Adding entries to resource-memory.md..."
         # Locate the "## Presentations & Meetings" section to insert
@@ -132,20 +132,20 @@ if (Test-Path -LiteralPath $resourceMemoryPath) {
             }
             $idStr1 = "PRES-" + ($nextIdNum).ToString("D3")
             $idStr2 = "PRES-" + ($nextIdNum + 1).ToString("D3")
-            
+
             # Construct lines to insert
             $newRows = "| $idStr1 | Meeting Video: $videoName | $relVideo | Unprocessed |`r`n| $idStr2 | Meeting Notes: $videoName | $relNotes | Extracted |"
-            
+
             # Find insertion point after the header row of the table
             # We look for the first table after ## Presentations & Meetings
             $pattern = "(?s)(## Presentations & Meetings.*?\|\s*---.*?\|)(.*?)(`r?`n`r?`n)"
             if ($resourceContent -match $pattern) {
                 $matchedTable = $Matches[1]
                 $matchedRows = $Matches[2].TrimEnd()
-                
+
                 $updatedRows = $matchedRows + "`r`n" + $newRows
                 $replacement = $matchedTable + "`r`n" + $updatedRows + "`r`n`r`n"
-                
+
                 $resourceContent = $resourceContent -replace [regex]::Escape($Matches[0]), $replacement
                 Set-Content -LiteralPath $resourceMemoryPath -Value $resourceContent -Encoding UTF8
                 Write-Host "Registered new resources $idStr1 and $idStr2 in resource-memory.md."

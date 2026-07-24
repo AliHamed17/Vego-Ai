@@ -86,7 +86,7 @@ if (Test-Path -LiteralPath $currentStatePath) {
 if ((Test-Path -LiteralPath $currentStatePath) -and (Test-Path -LiteralPath (Join-Path $memoryDir "issues.md"))) {
     $stateContent = Get-Content -Raw -LiteralPath $currentStatePath
     $issuesContent = Get-Content -Raw -LiteralPath (Join-Path $memoryDir "issues.md")
-    
+
     # Extract ISS-XXX references from current-state
     $matches = [regex]::Matches($stateContent, 'ISS-\d{3}')
     foreach ($m in $matches) {

@@ -1,7 +1,7 @@
 # 2026-07-15 Supervisor Decision Package Index
 
-Audience: Iris and Arnon  
-Meeting format: 20-minute presentation followed by 20 minutes of decision discussion  
+Audience: Iris and Arnon
+Meeting format: 20-minute presentation followed by 20 minutes of decision discussion
 Status: **Working package. No decision or deliverable is approved until an explicit outcome and approver are recorded.**
 
 ## Purpose

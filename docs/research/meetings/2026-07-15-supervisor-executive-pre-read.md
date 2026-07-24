@@ -59,6 +59,6 @@ This Markdown source now reflects accepted offline iteration 011, which snapshot
 
 Before ending, read back M-01 through M-06 and assign every accepted action. A blank or ambiguous outcome is recorded as `Deferred`, never inferred as approval. Within 24 hours, issue corrected minutes for confirmation, update the registers, revise only the provisional documents affected by accepted decisions, and regenerate the shareable package with new hashes.
 
-**Decision source:** `2026-07-15-supervisor-decision-register.md`  
-**Action source:** `2026-07-15-supervisor-action-register.md`  
+**Decision source:** `2026-07-15-supervisor-decision-register.md`
+**Action source:** `2026-07-15-supervisor-action-register.md`
 **Provenance detail:** `2026-07-15-supervisor-follow-up-annex.md`

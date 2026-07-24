@@ -90,7 +90,7 @@ ROW 2 — BASELINE AGENTS (horizontal band, connected)
   │  ① Agent 1      │  │  ② Agent 2      │
   │  Language Advisor│  │  Domain Advisor  │
   └────────┬────────┘  └───────┬─────────┘
-           │         Q&A ↕     │ 
+           │         Q&A ↕     │
            └──────┐  ┌────────┘
                   ▼  ▼
            ┌──────────────┐

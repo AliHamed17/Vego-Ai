@@ -14,4 +14,3 @@ This matrix assesses tools as support resources for VEGO-AI research. It is not 
 For the next supervisor session, stay with the existing EXP-005 blind CSV and adjudication sheet. The immediate bottleneck is real labels, not tooling.
 
 If labeling scales beyond the current 24 safe candidates, the first tool to pilot should be Label Studio or Argilla, because both support human review workflows directly. modAL and cleanlab are analysis tools for later stages, after real labels exist.
-

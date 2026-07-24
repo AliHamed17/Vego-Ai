@@ -99,4 +99,3 @@ Write-Host "- metadata-only: $metadataOnly"
 Write-Host "- skipped: $skipped"
 Write-Host ""
 Write-Host "Downloaded files are expected to remain ignored under literature/hitl-resource-pack/downloads/."
-
