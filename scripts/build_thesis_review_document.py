@@ -467,11 +467,17 @@ def parse_table(lines: list[str], index: int) -> tuple[list[list[str]], int]:
     return rows, index
 
 
-def add_markdown(doc: Document, path: Path, first_source: bool = False) -> None:
+def add_markdown(
+    doc: Document,
+    path: Path,
+    first_source: bool = False,
+    page_break_before: bool = False,
+) -> None:
     lines = path.read_text(encoding="utf-8").splitlines()
     paragraph_buffer: list[str] = []
     in_code = False
     code_lines: list[str] = []
+    first_level_one_heading = True
 
     def flush_paragraph() -> None:
         nonlocal paragraph_buffer
@@ -515,6 +521,9 @@ def add_markdown(doc: Document, path: Path, first_source: bool = False) -> None:
             flush_paragraph()
             level = len(heading.group(1))
             paragraph = doc.add_paragraph(style=f"Heading {level}")
+            if level == 1 and first_level_one_heading:
+                paragraph.paragraph_format.page_break_before = page_break_before
+                first_level_one_heading = False
             add_inline(paragraph, heading.group(2))
             index += 1
             continue
@@ -842,9 +851,12 @@ def build(
     add_review_front_matter(doc, data, figures)
 
     for index, chapter in enumerate(CHAPTERS):
-        if index > 0:
-            doc.add_page_break()
-        add_markdown(doc, chapter, first_source=index == 0)
+        add_markdown(
+            doc,
+            chapter,
+            first_source=index == 0,
+            page_break_before=index > 0,
+        )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(output_path)

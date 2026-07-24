@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 import jsonschema
+from docx import Document
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,6 +17,10 @@ SNAPSHOT_PATH = (
 SCHEMA_DIR = ROOT / "schemas"
 MANIFEST_PATH = (
     ROOT / "docs/research/thesis-evidence/THESIS_REVIEW_PACKAGE_MANIFEST.json"
+)
+THESIS_DOCX_PATH = (
+    ROOT
+    / "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx"
 )
 
 
@@ -310,3 +315,19 @@ def test_registry_contains_each_new_experiment_once() -> None:
     registry = (ROOT / "experiments/registry.md").read_text(encoding="utf-8")
     for number in range(19, 28):
         assert registry.count(f"| EXP-{number:03d} |") == 1
+
+
+def test_chapter_transitions_use_page_break_before_without_blank_break_paragraphs() -> None:
+    document = Document(THESIS_DOCX_PATH)
+    chapter_headings = [
+        paragraph
+        for paragraph in document.paragraphs
+        if paragraph.style.name == "Heading 1"
+        and paragraph.text.startswith("Chapter ")
+    ]
+    assert len(chapter_headings) == 11
+    assert chapter_headings[0].paragraph_format.page_break_before in (None, False)
+    assert all(
+        heading.paragraph_format.page_break_before is True
+        for heading in chapter_headings[1:]
+    )
