@@ -415,3 +415,15 @@ Record file changes and rollback notes here.
   - thesis evidence HTML, DOCX, manifests, and appendix
 - Rollback note: Revert the final focused commits in reverse order; baseline Agent 4 outputs were never modified.
 - Git commit: none recorded by script.
+
+## 2026-07-25 22:53 +03:00 - Codex - Close exact-head unified runtime review gaps
+
+- Files changed:
+  - VEGO-AI/framework/hlayer_architecture.py and focused regression test
+  - src/vego_hlayer/runtime.py and offline parity regression
+  - scripts/security_audit.py and history regression
+  - configs/protected-change-authorization-v1.json
+  - thesis evidence HTML, figures, DOCX, and manifests
+  - docs/agent-memory current state, progress, issues, session and revert logs
+- Rollback note: Revert commits after f704239 in reverse order; tracked package and runtime hardening roll back together. Local ignored PDF, page renders, and share copies may be removed separately. Agent 4 and baseline outputs were never changed.
+- Git commit: none recorded by script.

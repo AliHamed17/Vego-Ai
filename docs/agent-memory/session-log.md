@@ -245,3 +245,31 @@ Chronological prompt history for Codex and Claude.
   - GitHub exact-head review follow-up pending after push.
 - Status: completed_with_external_merge_gates_pending
 - Next steps: Push the final head, resolve review threads, request a fresh exact-head review, wait for green CI, then merge only after branch protection and one separate collaborator approval are confirmed.
+
+## 2026-07-25 22:53 +03:00 - Codex - Close exact-head unified runtime review gaps
+
+- Request: Continue PR #10 hardening, repair remaining review findings, rebuild and verify the thesis package, and merge only if every governance gate passes.
+- Actions taken:
+  - Made artifact and manifest publication transactional with rollback and no stale official manifest
+  - Made parity type-safe through canonical JSON comparison
+  - Enumerated historical archive tree entries so renamed ZIP-family blobs remain auditable
+  - Regenerated source-bound HTML, figures, DOCX, PDF, QA, hardening manifest, and portable package provenance
+  - Passed the complete controlled, source, security, browser, document, and release gates
+  - Kept EXP-005 at 0/24, M4B-1 at 0/27 changes, Agent 4 unchanged, and merge governance unbypassed
+- Files changed:
+  - VEGO-AI/framework/hlayer_architecture.py and focused regression test
+  - src/vego_hlayer/runtime.py and offline parity regression
+  - scripts/security_audit.py and history regression
+  - configs/protected-change-authorization-v1.json
+  - thesis evidence HTML, figures, DOCX, and manifests
+  - docs/agent-memory current state, progress, issues, session and revert logs
+- Commands/checks:
+  - 33 focused regressions passed
+  - 108 VEGO-AI tests passed
+  - 92 research tests plus 7 subtests passed
+  - 41 offline H-layer tests passed
+  - 18/18 evidence checks passed
+  - verify-release.ps1 -Check passed
+  - 91-page PDF and 23 QA sheets passed with zero structural errors
+- Status: implementation and local verification complete; PR publication pending exact-head review and governance gates
+- Next steps: Push the final commits to PR #10, resolve and rerun exact-head review, wait for CI, then merge only after enforceable main protection and one separate collaborator approval are confirmed.
