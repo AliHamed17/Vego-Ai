@@ -24,7 +24,7 @@ SECRET_PATTERNS = {
     ),
     "aws_access_key": re.compile(rb"\bAKIA[0-9A-Z]{16}\b"),
 }
-HISTORY_SECRET_EXPRESSION = (
+HISTORY_SCAN_EXPRESSION = (
     r"sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,}|"
     r"gh[pousr]_[A-Za-z0-9]{20,}|"
     r"AKIA[0-9A-Z]{16}|"
@@ -186,7 +186,7 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
                 "--pretty=format:%H",
                 "--name-only",
                 "-G",
-                HISTORY_SECRET_EXPRESSION,
+                HISTORY_SCAN_EXPRESSION,
             ],
             cwd=ROOT,
             capture_output=True,

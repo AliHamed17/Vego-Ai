@@ -44,6 +44,6 @@ def test_encrypted_pkcs8_private_keys_are_detected_in_content_and_history() -> N
     encrypted_header = b"-----BEGIN ENCRYPTED " + b"PRIVATE KEY-----"
     assert "private_key" in module._secret_labels(encrypted_header)
     assert re.search(
-        module.HISTORY_SECRET_EXPRESSION,
+        module.HISTORY_SCAN_EXPRESSION,
         encrypted_header.decode("ascii"),
     )
