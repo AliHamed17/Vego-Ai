@@ -443,3 +443,18 @@ Record file changes and rollback notes here.
   - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
 - Rollback note: Revert commits 0c2fcbb, e301ef0, and 7a65266 to remove this final review wave and its regenerated package metadata; ignored PDF and share copies can be deleted independently.
 - Git commit: none recorded by script.
+
+## 2026-07-25 23:35 +03:00 - Codex - Bind external authorization trust and transactional CLI publication
+
+- Files changed:
+  - .github/workflows/supervisor-package.yml
+  - scripts/check_hlayer_change_authorization.py
+  - scripts/run_hlayer_architecture.py
+  - scripts/tests/test_change_authorization.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - docs/research/thesis-evidence/*
+  - docs/research/hardening/release-manifest-v3.json
+  - VEGO-AI-Thesis-Baseline-Progress.html
+  - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
+- Rollback note: Revert commits 78c7442, bc9522f, and 951c68d; unset local Git config vego.hlayerAuthorizationSha256 and repository variable H_LAYER_AUTHORIZATION_SHA256 if abandoning this authorization trust mechanism.
+- Git commit: none recorded by script.

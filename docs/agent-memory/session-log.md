@@ -302,3 +302,30 @@ Chronological prompt history for Codex and Claude.
   - PDF structural QA: 91 pages, 23 sheets, zero errors
 - Status: implementation complete; publication gates pending
 - Next steps: Push exact head to PR #10, resolve the three review threads, request exact-head automated review, then merge only after green exact-head CI, enforceable branch protection, and one separate collaborator approval.
+
+## 2026-07-25 23:35 +03:00 - Codex - Bind external authorization trust and transactional CLI publication
+
+- Request: Continue PR #10 review hardening until the exact head is clean and merge gates can be audited.
+- Actions taken:
+  - Bound protected-change authorization to an externally stored SHA-256 in local Git configuration and a GitHub Actions repository variable.
+  - Made authorization self-edits fail closed and added negative tests.
+  - Made the standalone unified-runtime CLI stage, reserve, publish, and roll back the artifact/manifest pair transactionally.
+  - Made the targeted CLI test import-independent.
+  - Rebuilt and re-rendered the thesis package from the new source revision; 91-page PDF QA passed with zero errors.
+- Files changed:
+  - .github/workflows/supervisor-package.yml
+  - scripts/check_hlayer_change_authorization.py
+  - scripts/run_hlayer_architecture.py
+  - scripts/tests/test_change_authorization.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - docs/research/thesis-evidence/*
+  - docs/research/hardening/release-manifest-v3.json
+  - VEGO-AI-Thesis-Baseline-Progress.html
+  - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
+- Commands/checks:
+  - Focused authorization and CLI tests: 7 passed
+  - Ruff focused gate: PASS
+  - Protected-change authorization gate: PASS from external SHA-256
+  - PDF structural QA: 91 pages, 23 sheets, zero errors
+- Status: implementation complete; final exact-head release verification and GitHub review pending
+- Next steps: Run the full clean release gate, push the exact head, resolve all five review threads, request a fresh automated review, and merge only after exact-head CI, protection, and independent approval gates pass.
