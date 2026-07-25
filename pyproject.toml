@@ -5,6 +5,7 @@ description = "PhD research workspace for VEGO-AI agentic variability exploratio
 requires-python = ">=3.10"
 dependencies = [
     "chardet==7.4.3",
+    "jsonschema==4.26.0",
     "openai==1.109.1",
     "tomli==2.2.1; python_version < '3.11'",
 ]
@@ -16,7 +17,6 @@ dev = [
     "ruff==0.15.16",
 ]
 thesis = [
-    "jsonschema==4.26.0",
     "Pillow==12.3.0",
     "pypdf==6.14.2",
     "python-docx==1.2.0",

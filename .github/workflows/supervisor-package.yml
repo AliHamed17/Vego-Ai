@@ -99,7 +99,7 @@ jobs:
       - name: Validate deterministic thesis DOCX
         run: |
           uv run python scripts/validate_thesis_review_document.py \
-            thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx
+            thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
           uv run python scripts/build_thesis_review_document.py --check
           mkdir -p "${RUNNER_TEMP}/thesis-a" "${RUNNER_TEMP}/thesis-b"
           uv run python scripts/build_thesis_review_document.py \
@@ -132,7 +132,11 @@ jobs:
           node scripts/tests/thesis_progress_browser_smoke.mjs
 
       - name: Check diff and line-ending hygiene
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
+          BASE="${PR_BASE_SHA:-HEAD^}"
+          git diff --check "${BASE}...HEAD"
           git diff --check
           test -z "$(git ls-files --eol '*.html' | grep -v 'i/lf' || true)"
 

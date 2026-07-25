@@ -1,6 +1,8 @@
 {
   "schema_version": "1.0",
+  "authorization_scope": "PR #10 unified-runtime-security-hardening-v1",
   "authorization_date": "2026-07-25",
+  "authorization_expires_on": "2026-08-31",
   "authorization_source": "User-approved unified runtime hardening plan",
   "merge_requires_independent_approval": true,
   "forbidden_paths": [
@@ -9,7 +11,14 @@
     "VEGO-AI/framework/agent3_model_inspector.py",
     "VEGO-AI/framework/agent4_variability_explorer.py",
     "VEGO-AI/framework/orchestrator.py",
-    "VEGO-AI/eval",
+    "VEGO-AI/eval/agentA_language_evaluator.py",
+    "VEGO-AI/eval/agentB_domain_evaluator.py",
+    "VEGO-AI/eval/agentC_case_scorer.py",
+    "VEGO-AI/eval/agentD_variability_evaluator.py",
+    "VEGO-AI/eval/eval_config.json",
+    "VEGO-AI/eval/eval_config.local.json",
+    "VEGO-AI/eval/eval_config.smoke.json",
+    "VEGO-AI/eval/evaluator.py",
     "VEGO-AI/eval_output",
     "VEGO-AI/inputs"
   ],
@@ -23,6 +32,7 @@
     "VEGO-AI/framework/memory_informed_classifier.py",
     "VEGO-AI/framework/README.md",
     "VEGO-AI/framework/requirements.txt",
+    "VEGO-AI/eval/README_EVALUATOR.md",
     "VEGO-AI/schemas/memory_informed_comparison.schema.json",
     "VEGO-AI/tests/test_human_feedback_manager.py",
     "VEGO-AI/tests/test_human_judgment_memory.py",
@@ -31,5 +41,25 @@
     "VEGO-AI/tests/test_memory_advisor.py",
     "VEGO-AI/tests/test_memory_informed_classifier.py",
     "VEGO-AI/tests/test_visualizer_helpers.py"
-  ]
+  ],
+  "authorized_content_sha256": {
+    "VEGO-AI/eval/README_EVALUATOR.md": "eea1faae35daee60a1d7af34769f8523374d56b48bb9c896eddb297ee238474f",
+    "VEGO-AI/framework/README.md": "20de6761bceedbbf81785e632c9ac2a713a6ab6b0b1ecd9c3765bcbf63fb20a5",
+    "VEGO-AI/framework/hlayer_architecture.py": "1bddf81e2683b7bde4bdf0ea8c3ecbd3dc2c75e94205bd69ccddb8aae5c14e48",
+    "VEGO-AI/framework/human_feedback_manager.py": "e4bd9a54673ba924cb35e0b0ca6d6a04e168a1646c1003069bba256c7747fa83",
+    "VEGO-AI/framework/human_judgment_memory.py": "883d7d5c67ad92fd3d36195238c626b964b59f4c0a5b00bbf1f874d75a0539e2",
+    "VEGO-AI/framework/human_review_queue.py": "19adc18eeb339e536c77cc8a5a4b3f9c59aa41db4bb57817b39914e9e9f2bc8e",
+    "VEGO-AI/framework/llm_client.py": "8e47292de86fd204427c54edc7166f8a61052a1c96d8a529fe3ff0fe080e8a84",
+    "VEGO-AI/framework/memory_advisor.py": "8abefa53b34e0e700bf093631cad54ec6d67315d7a3d784aeb4739e6f3a9c2fd",
+    "VEGO-AI/framework/memory_informed_classifier.py": "c3c1451d8e5362a6b322e6d8c2a849a65aa13fadbfac8d6ab015daf1f5fe5f41",
+    "VEGO-AI/framework/requirements.txt": "04f5965d2b72485f6c4fcc1c3a8e1fc1c3f5dae6641fb53e73fc04533b82c3cd",
+    "VEGO-AI/schemas/memory_informed_comparison.schema.json": "d14af2b67940ec4f40957ddafad30dad2134355cd6f0ec94a6fe0b82f9069ade",
+    "VEGO-AI/tests/test_human_feedback_manager.py": "e1a835a4f9a6b26797840ed557ef995c55b7ad564632dfbb4a7c6f5f2f05d18c",
+    "VEGO-AI/tests/test_human_judgment_memory.py": "5f28d27c567984ef0d196ec5b2d58d3dc2158a4db4539cd4cdfefee3c990f7ee",
+    "VEGO-AI/tests/test_human_review_queue.py": "3800258f6665f30cfda615547030040bffb83012b95fb2733bef6f9e848214fa",
+    "VEGO-AI/tests/test_llm_client_security.py": "7ed5e648acb71bf727839f2d7d808293bd4fdd3d7e7fae984d2766cec21aefeb",
+    "VEGO-AI/tests/test_memory_advisor.py": "6dbb6609cf10f45ebbf344e8b5448fe0eb3019c71c0aea5d7845d05053782745",
+    "VEGO-AI/tests/test_memory_informed_classifier.py": "43fe33344b6abba5df24f74532768745a0df0aa2d6b5e2bb0267d1c0bc41020d",
+    "VEGO-AI/tests/test_visualizer_helpers.py": "d0ca91f1b175d1af843f7ea4e77b907530e029454ad3df75d619893289eb34c0"
+  }
 }

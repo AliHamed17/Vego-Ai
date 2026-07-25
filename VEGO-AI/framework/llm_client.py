@@ -47,9 +47,42 @@ DEFAULT_INTERACTION_LOG_MODE = "metadata_only"
 DEFAULT_LOG_MAX_BYTES = 5 * 1024 * 1024
 DEFAULT_LOG_BACKUPS = 3
 DEFAULT_LOG_RETENTION_DAYS = 30
-_SECRET_RE = re.compile(
-    r"\b(?:(?:sk|sess)-[A-Za-z0-9_-]{12,}|gh[opsu]_[A-Za-z0-9]{12,})\b"
+DEFAULT_RUNTIME_CONFIG = (
+    Path(__file__).resolve().parents[2] / "configs" / "hlayer-runtime.json"
 )
+_SECRET_RES = (
+    re.compile(r"\b(?:(?:sk|sess)-[A-Za-z0-9_-]{12,}|gh[opsu]_[A-Za-z0-9]{12,})\b"),
+    re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
+    re.compile(
+        r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
+        r"[\s\S]*?"
+        r"-----END (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
+    ),
+    re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
+)
+
+
+def _load_interaction_log_policy() -> dict[str, Any]:
+    configured = os.getenv("VEGO_HLAYER_RUNTIME_CONFIG")
+    path = Path(configured).expanduser() if configured else DEFAULT_RUNTIME_CONFIG
+    if not path.is_file():
+        if configured:
+            raise ValueError(f"VEGO_HLAYER_RUNTIME_CONFIG does not exist: {path}")
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"invalid H-layer runtime configuration: {path}") from exc
+    h_layer = payload.get("h_layer")
+    if not isinstance(h_layer, dict):
+        raise ValueError("H-layer runtime configuration must contain an h_layer object")
+    interaction_log = h_layer.get("interaction_log") or {}
+    if not isinstance(interaction_log, dict):
+        raise ValueError("h_layer.interaction_log must be an object")
+    return {
+        "mode": h_layer.get("interaction_log_mode"),
+        **interaction_log,
+    }
 
 
 class LLMClient:
@@ -61,21 +94,38 @@ class LLMClient:
         model: str = MODEL,
         interaction_log: Path | None = None,
         interaction_log_mode: str | None = None,
-        interaction_log_max_bytes: int = DEFAULT_LOG_MAX_BYTES,
-        interaction_log_backups: int = DEFAULT_LOG_BACKUPS,
-        interaction_log_retention_days: int = DEFAULT_LOG_RETENTION_DAYS,
+        interaction_log_max_bytes: int | None = None,
+        interaction_log_backups: int | None = None,
+        interaction_log_retention_days: int | None = None,
     ) -> None:
         if api_key:
             raise ValueError(
                 "Plaintext API keys are not accepted; use OPENAI_API_KEY or a project secret."
             )
+        policy = _load_interaction_log_policy()
         self._client = AsyncOpenAI(api_key=None)
         self.model = model
         self._log_path = interaction_log
         self._log_mode = (
             interaction_log_mode
             or os.getenv("VEGO_INTERACTION_LOG_MODE")
+            or policy.get("mode")
             or DEFAULT_INTERACTION_LOG_MODE
+        )
+        interaction_log_max_bytes = (
+            interaction_log_max_bytes
+            if interaction_log_max_bytes is not None
+            else policy.get("max_bytes", DEFAULT_LOG_MAX_BYTES)
+        )
+        interaction_log_backups = (
+            interaction_log_backups
+            if interaction_log_backups is not None
+            else policy.get("backups", DEFAULT_LOG_BACKUPS)
+        )
+        interaction_log_retention_days = (
+            interaction_log_retention_days
+            if interaction_log_retention_days is not None
+            else policy.get("retention_days", DEFAULT_LOG_RETENTION_DAYS)
         )
         if self._log_mode not in INTERACTION_LOG_MODES:
             raise ValueError(
@@ -93,6 +143,11 @@ class LLMClient:
         self._log_max_bytes = interaction_log_max_bytes
         self._log_backups = interaction_log_backups
         self._log_retention_days = interaction_log_retention_days
+        if self._log_mode == "full_content":
+            if policy.get("redaction_enabled", True) is not True:
+                raise ValueError("full-content interaction logging requires redaction")
+            if policy.get("full_content_local_only", True) is not True:
+                raise ValueError("full-content interaction logging must remain local-only")
         if interaction_log:
             if str(interaction_log).startswith(("\\\\", "//")):
                 raise ValueError("interaction logs must use local storage")
@@ -296,7 +351,9 @@ class LLMClient:
 
     @staticmethod
     def _redact(value: str) -> str:
-        return _SECRET_RE.sub("[REDACTED_SECRET]", value)
+        for pattern in _SECRET_RES:
+            value = pattern.sub("[REDACTED_SECRET]", value)
+        return value
 
     @classmethod
     def _redact_value(cls, value: Any) -> Any:
@@ -317,6 +374,9 @@ class LLMClient:
             if backup.exists() and backup.stat().st_mtime < cutoff:
                 backup.unlink()
         if not self._log_path.exists():
+            return
+        if self._log_path.stat().st_mtime < cutoff:
+            self._log_path.unlink()
             return
         if self._log_path.stat().st_size < self._log_max_bytes:
             return

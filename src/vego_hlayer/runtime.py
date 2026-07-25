@@ -43,11 +43,17 @@ def _normalize(value: Any) -> Any:
 
 def _safe_manifest_path(path: str | Path) -> Path:
     target = Path(path)
+    if not target.is_absolute():
+        target = Path.cwd() / target
+    cursor = target
+    while cursor != cursor.parent:
+        if cursor.exists() and cursor.is_symlink():
+            raise ValidationError("architecture manifest paths cannot contain symbolic links")
+        cursor = cursor.parent
+    target = target.resolve(strict=False)
     lowered = {part.lower() for part in target.parts}
     if lowered & {"eval_output", ".git"}:
         raise ValidationError("architecture manifests cannot be written into protected outputs")
-    if target.is_symlink():
-        raise ValidationError("architecture manifests cannot target symbolic links")
     return target
 
 

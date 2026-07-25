@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 PROTECTED_PREFIXES = (
@@ -43,9 +45,15 @@ def _matches_prefix(path: str, prefixes: list[str]) -> bool:
     )
 
 
+def _portable_sha256(path: Path) -> str:
+    data = path.read_bytes().replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
+
+
 def inspect(repo: Path, authorization: Path, base: str) -> dict:
     config = json.loads(authorization.read_text(encoding="utf-8"))
     allowed = set(config.get("allowed_paths") or [])
+    authorized_hashes = config.get("authorized_content_sha256") or {}
     forbidden = list(config.get("forbidden_paths") or [])
     merge_base = _git(repo, "merge-base", base, "HEAD").strip()
     committed = set(
@@ -72,6 +80,37 @@ def inspect(repo: Path, authorization: Path, base: str) -> dict:
         path for path in changed if _matches_prefix(path, forbidden)
     )
     missing_review_gate = not bool(config.get("merge_requires_independent_approval"))
+    hash_authorization_errors: list[str] = []
+    authorization_expired = False
+    if protected:
+        if not isinstance(authorized_hashes, dict):
+            hash_authorization_errors.append("authorized_content_sha256 must be an object")
+            authorized_hashes = {}
+        missing_hashes = sorted(path for path in allowed if path not in authorized_hashes)
+        if missing_hashes:
+            hash_authorization_errors.append(
+                f"allowed paths missing content authorization: {', '.join(missing_hashes)}"
+            )
+        for path in protected:
+            expected = authorized_hashes.get(path)
+            target = repo / path
+            if not isinstance(expected, str) or len(expected) != 64:
+                hash_authorization_errors.append(
+                    f"protected path lacks a valid authorized hash: {path}"
+                )
+            elif not target.is_file():
+                hash_authorization_errors.append(f"authorized protected path is missing: {path}")
+            elif _portable_sha256(target) != expected:
+                hash_authorization_errors.append(
+                    f"protected path content differs from authorization: {path}"
+                )
+        expiry = config.get("authorization_expires_on")
+        try:
+            authorization_expired = date.today() > date.fromisoformat(expiry)
+        except (TypeError, ValueError):
+            hash_authorization_errors.append(
+                "authorization_expires_on must be an ISO date"
+            )
     failures = []
     if unauthorized:
         failures.append(f"unauthorized protected changes: {', '.join(unauthorized)}")
@@ -79,6 +118,9 @@ def inspect(repo: Path, authorization: Path, base: str) -> dict:
         failures.append(f"forbidden changes: {', '.join(forbidden_changes)}")
     if missing_review_gate:
         failures.append("authorization must require independent approval")
+    failures.extend(hash_authorization_errors)
+    if authorization_expired:
+        failures.append("protected-change authorization has expired")
     return {
         "schema_version": "1.0",
         "base": base,
@@ -87,6 +129,8 @@ def inspect(repo: Path, authorization: Path, base: str) -> dict:
         "protected_changes": protected,
         "unauthorized_changes": unauthorized,
         "forbidden_changes": forbidden_changes,
+        "hash_authorization_errors": hash_authorization_errors,
+        "authorization_expired": authorization_expired,
         "status": "PASS" if not failures else "FAIL",
         "failures": failures,
     }

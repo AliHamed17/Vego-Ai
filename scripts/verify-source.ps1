@@ -42,8 +42,8 @@ Invoke-Gate "H-layer change authorization" {
 Invoke-Gate "strict quality and security ratchet" {
     uv run python scripts/check_quality_ratchet.py
 }
-Invoke-Gate "tracked secret, privacy, and binary audit" {
-    uv run python scripts/security_audit.py
+Invoke-Gate "tracked and historical secret, privacy, and binary audit" {
+    uv run python scripts/security_audit.py --history
 }
 Invoke-Gate "VEGO-AI tests" {
     uv run python -m pytest VEGO-AI/tests -q -p no:cacheprovider

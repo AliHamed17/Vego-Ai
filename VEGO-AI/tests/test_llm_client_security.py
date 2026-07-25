@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -19,6 +20,12 @@ from llm_client import LLMClient  # noqa: E402
 FAKE_API_KEY = "sk" + "-proj-fixture-not-a-real-key"
 FAKE_LONG_TOKEN = "sk" + "-proj-" + "fixtureabcdefghijklmnopqrstuvwxyz123456"
 FAKE_GITHUB_TOKEN = "gh" + "o_fixtureabcdefghijklmnopqrstuvwxyz123456"
+FAKE_AWS_KEY = "AK" + "IA" + "ABCDEFGHIJKLMNOP"
+FAKE_PRIVATE_KEY = (
+    "-----BEGIN "
+    + "PRIVATE KEY-----\nfixture-private-material\n-----END "
+    + "PRIVATE KEY-----"
+)
 
 
 def _response():
@@ -77,10 +84,10 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
         label="agent1/test",
         prompt={
             "system": "system",
-            "user": f"token {FAKE_LONG_TOKEN}",
+            "user": f"tokens {FAKE_LONG_TOKEN} {FAKE_AWS_KEY}",
         },
-        raw=json.dumps({"token": FAKE_GITHUB_TOKEN}),
-        parsed={"ok": True},
+        raw=json.dumps({"token": FAKE_GITHUB_TOKEN, "pem": FAKE_PRIVATE_KEY}),
+        parsed={"pem": FAKE_PRIVATE_KEY},
         parse_error=None,
         response=_response(),
         attempt=1,
@@ -89,6 +96,8 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
     assert "REDACTED_SECRET" in text
     assert FAKE_LONG_TOKEN not in text
     assert FAKE_GITHUB_TOKEN not in text
+    assert FAKE_AWS_KEY not in text
+    assert "fixture-private-material" not in text
 
 
 def test_off_mode_writes_nothing(tmp_path, monkeypatch) -> None:
@@ -120,3 +129,55 @@ def test_interaction_log_retention_is_bounded(tmp_path, monkeypatch) -> None:
             interaction_log=tmp_path / "interaction.jsonl",
             interaction_log_retention_days=0,
         )
+
+
+def test_expired_active_interaction_log_is_removed_before_append(tmp_path, monkeypatch) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
+    path = tmp_path / "interaction.jsonl"
+    path.write_text("expired private content\n", encoding="utf-8")
+    os.utime(path, (1, 1))
+    client = LLMClient(
+        interaction_log=path,
+        interaction_log_mode="metadata_only",
+        interaction_log_retention_days=1,
+    )
+    client._write_interaction(
+        label="agent1/test",
+        prompt={"system": "system", "user": "user"},
+        raw="{}",
+        parsed={},
+        parse_error=None,
+        response=_response(),
+        attempt=1,
+    )
+    text = path.read_text(encoding="utf-8")
+    assert "expired private content" not in text
+    assert json.loads(text)["schema_version"] == "model-execution-manifest-v1"
+
+
+def test_runtime_config_controls_production_log_policy(tmp_path, monkeypatch) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
+    policy = tmp_path / "hlayer-runtime.json"
+    policy.write_text(
+        json.dumps(
+            {
+                "h_layer": {
+                    "interaction_log_mode": "off",
+                    "interaction_log": {
+                        "retention_days": 7,
+                        "max_bytes": 4096,
+                        "backups": 2,
+                        "redaction_enabled": True,
+                        "full_content_local_only": True,
+                    },
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("VEGO_HLAYER_RUNTIME_CONFIG", str(policy))
+    client = LLMClient(interaction_log=tmp_path / "interaction.jsonl")
+    assert client._log_mode == "off"
+    assert client._log_retention_days == 7
+    assert client._log_max_bytes == 4096
+    assert client._log_backups == 2

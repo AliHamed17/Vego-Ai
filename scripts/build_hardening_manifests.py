@@ -55,7 +55,7 @@ CURRENT_RUNTIME_LOCKS = {
         "c185879270a318a2b7c3920f4a9c49c6be6ae807afe33eddb4d4577fd9603794"
     ),
     "VEGO-AI/eval/README_EVALUATOR.md": (
-        "5445c7b39227c5b8b135a2ba4f45929bf1ec35bfc5095ff8ddb1c418f5ac61c9"
+        "eea1faae35daee60a1d7af34769f8523374d56b48bb9c896eddb297ee238474f"
     ),
     "VEGO-AI/eval/agentA_language_evaluator.py": (
         "de412e3ab42dc783c3fdd94dc6e42969c84d565b687277e2c359c2a0299a28cf"

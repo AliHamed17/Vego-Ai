@@ -205,7 +205,7 @@ class FeedbackRecord(ContractMixin):
     schema_version: str = CONTRACT_SCHEMA_VERSION
 
     def __post_init__(self) -> None:
-        for name in ("feedback_id", "review_id", "expert_id", "rationale"):
+        for name in ("feedback_id", "review_id", "expert_id"):
             _require_text(name, getattr(self, name))
         if not HRQ_RE.fullmatch(self.review_id):
             raise ValidationError("review_id must match the existing HRQ pattern ^HRQ-.+-P[0-9]+$")
@@ -213,6 +213,12 @@ class FeedbackRecord(ContractMixin):
             raise ValidationError("review_signature must be 16 lowercase hex characters")
         _require_iso8601("timestamp", self.timestamp)
         _require_mapping("human_decision", self.human_decision, nonempty=True)
+        decision_type = self.human_decision.get("decision_type")
+        _require_text("human_decision.decision_type", decision_type)
+        if not isinstance(self.rationale, str):
+            raise ValidationError("rationale must be a string")
+        if decision_type != "approve_ai_decision":
+            _require_text("rationale", self.rationale)
         _require_mapping("reuse_scope", self.reuse_scope)
         _require_sequence("evidence_refs", self.evidence_refs, nonempty=True)
         if self.confidence not in {"High", "Medium", "Low"}:

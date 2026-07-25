@@ -23,14 +23,192 @@ STAGES = frozenset(
 
 @dataclass(frozen=True)
 class AdapterResult:
-    """Canonical view plus an exact, non-mutating legacy round trip."""
+    """Canonical view plus a deterministic, non-mutating legacy round trip."""
 
     stage: str
     records: tuple[dict[str, Any], ...]
     _legacy_payload: Any
 
     def to_legacy(self) -> Any:
-        return copy.deepcopy(self._legacy_payload)
+        return serialize_canonical_artifact(
+            self.stage,
+            self.records,
+            self._legacy_payload,
+        )
+
+
+def _serialize_review(record: dict[str, Any]) -> dict[str, Any]:
+    """Rebuild a review item from the canonical evidence snapshot and identity."""
+
+    snapshot = record.get("evidence_snapshot")
+    if not isinstance(snapshot, dict):
+        raise ValidationError("ReviewItem evidence_snapshot must be an object")
+    item = copy.deepcopy(snapshot)
+    item["review_id"] = record.get("review_id")
+    item["review_signature"] = record.get("deduplication_key")
+    return item
+
+
+def _serialize_feedback(
+    template: dict[str, Any],
+    record: dict[str, Any],
+) -> dict[str, Any]:
+    """Overlay every represented feedback field from the canonical record."""
+
+    item = copy.deepcopy(template)
+    item["feedback_id"] = record.get("feedback_id")
+    item["review_id"] = record.get("review_id")
+    item["review_signature"] = record.get("review_signature")
+    item["expert_id"] = record.get("expert_id")
+    item["timestamp"] = record.get("timestamp")
+    item["human_decision"] = copy.deepcopy(record.get("human_decision") or {})
+    if "reusable" in item:
+        item["reusable"] = bool(record.get("reusable", False))
+    if "reuse_scope" in item:
+        item["reuse_scope"] = copy.deepcopy(record.get("reuse_scope") or {})
+    if "notes" in item:
+        item["notes"] = record.get("rationale", "")
+    return item
+
+
+def _serialize_memory(
+    template: dict[str, Any],
+    record: dict[str, Any],
+) -> dict[str, Any]:
+    item = copy.deepcopy(template)
+    item["memory_id"] = record.get("memory_id")
+    verification_id = str(record.get("verification_id") or "")
+    if "source_feedback_id" in item and not verification_id.startswith("legacy:"):
+        item["source_feedback_id"] = verification_id
+    if "reuse_scope" in item:
+        item["reuse_scope"] = copy.deepcopy(record.get("validity_scope") or {})
+    if "conflicting_memory_ids" in item:
+        item["conflicting_memory_ids"] = list(record.get("conflicts") or [])
+    if "provenance" in item:
+        item["provenance"] = copy.deepcopy(record.get("provenance") or {})
+    return item
+
+
+def _serialize_advice(
+    template: dict[str, Any],
+    record: dict[str, Any],
+) -> dict[str, Any]:
+    item = copy.deepcopy(template)
+    mapped = {
+        "setting_id": record.get("setting_id"),
+        "pattern_id": record.get("pattern_id"),
+        "advice_strength": record.get("advice_strength"),
+        "has_conflicting_memory": bool(record.get("has_conflicting_memory", False)),
+        "advice_mode": record.get("advice_mode"),
+        "ai_classification_changed": bool(
+            record.get("ai_classification_changed", False)
+        ),
+    }
+    for key, value in mapped.items():
+        if key in item:
+            item[key] = value
+    matches = item.get("memory_matches") or []
+    memory_ids = list(record.get("memory_match_ids") or [])
+    if len(matches) != len(memory_ids):
+        raise ValidationError("AdviceRecord memory match count changed during serialization")
+    for match, memory_id in zip(matches, memory_ids, strict=True):
+        if not isinstance(match, dict):
+            raise ValidationError("legacy advice memory matches must be objects")
+        match["memory_id"] = memory_id
+    return item
+
+
+def _serialize_comparison(
+    template: dict[str, Any],
+    record: dict[str, Any],
+) -> dict[str, Any]:
+    item = copy.deepcopy(template)
+    mapped = {
+        "comparison_id": record.get("comparison_id"),
+        "setting_id": record.get("setting_id"),
+        "pattern_id": record.get("pattern_id"),
+        "memory_informed_differs_from_original": bool(
+            record.get("differs_from_original", False)
+        ),
+        "requires_human_review_after_memory": bool(
+            record.get("requires_human_review", False)
+        ),
+        "human_memory_used": list(record.get("memory_match_ids") or []),
+        "evaluation_leakage_status": record.get("leakage_status"),
+        "rule_applied": record.get("rule_applied"),
+        "decision_trace": list(record.get("decision_trace") or []),
+        "mode": record.get("mode"),
+        "ai_behavior_changed_in_baseline": bool(
+            record.get("ai_behavior_changed_in_baseline", False)
+        ),
+    }
+    for key, value in mapped.items():
+        if key in item:
+            item[key] = value
+    original = item.get("original_agent4_classification")
+    if isinstance(original, dict) and "classification" in original:
+        original["classification"] = record.get("original_classification")
+    parallel = item.get("memory_informed_classification")
+    if isinstance(parallel, dict):
+        if "classification" in parallel:
+            parallel["classification"] = record.get("parallel_classification")
+        if "source" in parallel:
+            parallel["source"] = record.get("parallel_source")
+    return item
+
+
+def serialize_canonical_artifact(
+    stage: str,
+    records: tuple[dict[str, Any], ...],
+    legacy_template: Any,
+) -> Any:
+    """Serialize canonical records back to the public legacy artifact shape.
+
+    Unrepresented legacy fields are retained as a shape template, while every
+    field represented by a canonical contract is written back from that
+    contract. A mapping or serializer defect therefore changes the unified
+    output and is caught by parity instead of being hidden by an untouched copy.
+    """
+
+    templates, _ = _items_and_provenance(stage, legacy_template)
+    if len(templates) != len(records):
+        raise ValidationError("canonical record count differs from the legacy artifact")
+    serialized: list[dict[str, Any]] = []
+    for template, record in zip(templates, records, strict=True):
+        if not isinstance(template, dict):
+            raise ValidationError(f"{stage} records must be objects")
+        contract = record.get("contract")
+        if stage == "review" or (stage == "resolved" and contract == "ReviewItem"):
+            item = _serialize_review(record)
+        elif stage == "feedback":
+            item = _serialize_feedback(template, record)
+        elif stage == "resolved" and contract == "FeedbackRecord":
+            item = copy.deepcopy(template)
+            feedback_template = item.get("human_feedback")
+            if not isinstance(feedback_template, dict):
+                raise ValidationError("resolved feedback template is missing")
+            item["human_feedback"] = _serialize_feedback(feedback_template, record)
+            item["feedback_id"] = record.get("feedback_id")
+            item["review_id"] = record.get("review_id")
+            item["review_signature"] = record.get("review_signature")
+        elif stage == "memory":
+            item = _serialize_memory(template, record)
+        elif stage == "advice":
+            item = _serialize_advice(template, record)
+        elif stage == "comparison":
+            item = _serialize_comparison(template, record)
+        else:
+            raise ValidationError(f"unsupported canonical record for {stage}: {contract!r}")
+        serialized.append(item)
+
+    if stage in {"review", "feedback", "resolved", "memory"}:
+        return serialized
+    envelope = copy.deepcopy(legacy_template)
+    key = "advice" if stage == "advice" else "comparisons"
+    envelope[key] = serialized
+    if "provenance" in envelope and records:
+        envelope["provenance"] = copy.deepcopy(records[0].get("provenance") or {})
+    return envelope
 
 
 def _items_and_provenance(stage: str, payload: Any) -> tuple[list[dict], dict]:

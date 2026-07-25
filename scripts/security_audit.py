@@ -44,6 +44,10 @@ MAGIC = {
     ".xlsx": (b"PK\x03\x04",),
 }
 ZIP_SUFFIXES = frozenset({".zip", ".docx", ".pptx", ".xlsx"})
+MAX_ARCHIVE_MEMBERS = 10_000
+MAX_ARCHIVE_MEMBER_BYTES = 25 * 1024 * 1024
+MAX_ARCHIVE_SCAN_BYTES = 100 * 1024 * 1024
+MAX_ARCHIVE_EXPANDED_BYTES = 500 * 1024 * 1024
 GIT = shutil.which("git")
 
 
@@ -76,27 +80,66 @@ def _is_text(data: bytes) -> bool:
     return b"\0" not in data[:8192]
 
 
+def _secret_labels(data: bytes) -> list[str]:
+    labels: list[str] = []
+    for label, pattern in SECRET_PATTERNS.items():
+        matches = [
+            match.group(0)
+            for match in pattern.finditer(data)
+            if b"fixture" not in match.group(0).lower()
+        ]
+        if matches:
+            labels.append(label)
+    return labels
+
+
 def _zip_findings(path: Path) -> list[str]:
     findings: list[str] = []
+    relative = path.relative_to(ROOT).as_posix()
     try:
         with zipfile.ZipFile(path) as archive:
+            members = archive.infolist()
+            if len(members) > MAX_ARCHIVE_MEMBERS:
+                return [f"{relative}: archive member count exceeds {MAX_ARCHIVE_MEMBERS}"]
             total = 0
-            for info in archive.infolist():
+            scanned = 0
+            for info in members:
                 name = info.filename.replace("\\", "/")
                 pure = PurePosixPath(name)
                 if pure.is_absolute() or ".." in pure.parts:
-                    findings.append(f"{path.relative_to(ROOT).as_posix()}: unsafe archive path")
+                    findings.append(f"{relative}: unsafe archive path: {name}")
+                if info.is_dir():
+                    continue
                 total += info.file_size
                 if info.compress_size and info.file_size / info.compress_size > 1000:
                     findings.append(
-                        f"{path.relative_to(ROOT).as_posix()}: compression ratio exceeds 1000"
+                        f"{relative}: compression ratio exceeds 1000: {name}"
                     )
-            if total > 500 * 1024 * 1024:
+                    continue
+                if info.file_size > MAX_ARCHIVE_MEMBER_BYTES:
+                    findings.append(
+                        f"{relative}: archive member exceeds "
+                        f"{MAX_ARCHIVE_MEMBER_BYTES} bytes: {name}"
+                    )
+                    continue
+                if scanned + info.file_size > MAX_ARCHIVE_SCAN_BYTES:
+                    findings.append(
+                        f"{relative}: archive content scan exceeds "
+                        f"{MAX_ARCHIVE_SCAN_BYTES} bytes"
+                    )
+                    break
+                data = archive.read(info)
+                scanned += len(data)
+                for label in _secret_labels(data):
+                    findings.append(f"{relative}: {label} in archive member {name}")
+                if relative.startswith(CURRENT_SHAREABLE) and PERSONAL_PATH_RE.search(data):
+                    findings.append(f"{relative}: personal absolute path in archive member {name}")
+            if total > MAX_ARCHIVE_EXPANDED_BYTES:
                 findings.append(
-                    f"{path.relative_to(ROOT).as_posix()}: archive expands beyond 500 MiB"
+                    f"{relative}: archive expands beyond 500 MiB"
                 )
-    except (OSError, zipfile.BadZipFile) as exc:
-        findings.append(f"{path.relative_to(ROOT).as_posix()}: invalid archive: {exc}")
+    except (OSError, RuntimeError, zipfile.BadZipFile) as exc:
+        findings.append(f"{relative}: invalid archive: {exc}")
     return findings
 
 
@@ -110,14 +153,8 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
         if not path.is_file():
             continue
         data = path.read_bytes()
-        for label, pattern in SECRET_PATTERNS.items():
-            matches = [
-                match.group(0)
-                for match in pattern.finditer(data)
-                if b"fixture" not in match.group(0).lower()
-            ]
-            if matches:
-                secret_findings.append(f"{relative}: {label}")
+        for label in _secret_labels(data):
+            secret_findings.append(f"{relative}: {label}")
         if relative.startswith(CURRENT_SHAREABLE) and PERSONAL_PATH_RE.search(data):
             privacy_findings.append(f"{relative}: personal absolute path")
         suffix = path.suffix.lower()
@@ -136,6 +173,7 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
         expression = (
             r"sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,}|"
             r"gh[pousr]_[A-Za-z0-9]{20,}|"
+            r"AKIA[0-9A-Z]{16}|"
             r"BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY"
         )
         result = subprocess.run(  # noqa: S603 - fixed read-only Git history scan

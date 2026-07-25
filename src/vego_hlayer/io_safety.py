@@ -60,6 +60,11 @@ def validate_output_file(
     candidate = Path(path)
     if not candidate.is_absolute():
         candidate = root / candidate
+    cursor = candidate
+    while cursor != cursor.parent:
+        if cursor.exists() and cursor.is_symlink():
+            raise ValidationError("symbolic-link output parents are not accepted")
+        cursor = cursor.parent
     resolved = candidate.resolve(strict=False)
     lowered = {part.lower() for part in resolved.parts}
     if lowered & FORBIDDEN_PARTS:
@@ -75,13 +80,6 @@ def validate_output_file(
     if not any(_within(resolved, allowed) for allowed in resolved_roots):
         raise ValidationError("output path is outside the approved output roots")
 
-    cursor = resolved.parent
-    while cursor != cursor.parent:
-        if cursor.exists() and cursor.is_symlink():
-            raise ValidationError("symbolic-link output parents are not accepted")
-        if cursor == root or any(cursor == item for item in resolved_roots):
-            break
-        cursor = cursor.parent
     if resolved.exists():
         if resolved.is_symlink() or not resolved.is_file():
             raise ValidationError("existing output is not a regular file")

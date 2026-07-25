@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -7,6 +8,7 @@ from pathlib import Path
 import pytest
 from jsonschema import Draft202012Validator
 
+from vego_hlayer.adapters import AdapterResult, adapt_legacy_artifact
 from vego_hlayer.contracts import MemoryRecord, ValidationError, contract_catalog
 from vego_hlayer.runtime import apply_architecture_mode
 from vego_hlayer.state_machine import TrustedMemoryStore
@@ -92,6 +94,37 @@ def test_parity_mismatch_fails_closed_to_legacy(monkeypatch) -> None:
     assert result.manifest.parity_status == "mismatch"
     assert result.output == payload
     assert result.manifest.failure_state == "normalized_output_mismatch"
+
+
+def test_unified_serializer_rebuilds_mapped_fields_from_canonical_records() -> None:
+    payload = [_review_item()]
+    adapted = adapt_legacy_artifact("review", payload)
+    changed = copy.deepcopy(adapted.records[0])
+    changed["deduplication_key"] = "fedcba9876543210"
+    rebuilt = AdapterResult(
+        stage="review",
+        records=(changed,),
+        _legacy_payload=payload,
+    ).to_legacy()
+    assert rebuilt[0]["review_signature"] == "fedcba9876543210"
+    assert rebuilt != payload
+
+
+def test_manifest_rejects_a_symlinked_parent(tmp_path: Path) -> None:
+    protected = tmp_path / "eval_output"
+    protected.mkdir()
+    alias = tmp_path / "alias"
+    try:
+        alias.symlink_to(protected, target_is_directory=True)
+    except OSError:
+        pytest.skip("symbolic links are unavailable on this host")
+    with pytest.raises(ValidationError, match="symbolic links"):
+        apply_architecture_mode(
+            "review",
+            [_review_item()],
+            architecture_mode="parity",
+            manifest_path=alias / "manifest.json",
+        )
 
 
 def test_legacy_memory_is_valid_advisory_evidence_but_not_trusted_memory() -> None:

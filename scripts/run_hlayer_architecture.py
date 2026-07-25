@@ -22,7 +22,11 @@ from vego_hlayer.io_safety import (  # noqa: E402
     validate_input_file,
     validate_output_file,
 )
-from vego_hlayer.runtime import ARCHITECTURE_MODES, apply_architecture_mode  # noqa: E402
+from vego_hlayer.runtime import (  # noqa: E402
+    ARCHITECTURE_MODES,
+    apply_architecture_mode,
+    write_manifest,
+)
 
 JSONL_STAGES = frozenset({"review", "feedback", "resolved", "memory"})
 
@@ -92,14 +96,12 @@ def _execute_isolated(
     stage: str,
     payload: Any,
     mode: str,
-    manifest: Path,
 ):
     if mode != "parity":
         return apply_architecture_mode(
             stage,
             payload,
             architecture_mode=mode,
-            manifest_path=manifest,
         )
     suffix = ".jsonl" if stage in JSONL_STAGES else ".json"
     with tempfile.TemporaryDirectory(prefix="vego-hlayer-parity-") as temporary:
@@ -114,7 +116,6 @@ def _execute_isolated(
             stage,
             payload,
             architecture_mode="parity",
-            manifest_path=manifest,
         )
 
 
@@ -139,13 +140,15 @@ def main(argv: list[str] | None = None) -> int:
         payload = _load(args.input, args.stage)
         safe_manifest = _safe_output(args.manifest)
         safe_output = _safe_output(args.output)
+        if safe_manifest == safe_output:
+            raise ValidationError("output and manifest must use different paths")
         execution = _execute_isolated(
             args.stage,
             payload,
             mode,
-            safe_manifest,
         )
         _write(safe_output, args.stage, execution.output)
+        write_manifest(execution.manifest, safe_manifest)
     except (OSError, ValueError, ValidationError, json.JSONDecodeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
