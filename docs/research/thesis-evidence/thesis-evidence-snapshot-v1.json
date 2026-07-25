@@ -1,21 +1,21 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
   "generatedAt": "2026-07-25T18:41:52+00:00",
-  "sourceRevision": "3a810ddd3577c4c314c9ab432fa9334c81aa4470",
-  "sourceTreeHash": "e23df8a858af7872deb329e05d84f0fb52acf756588a9bcb30ff8f97e1ab490d",
+  "sourceRevision": "d07e106c2a361dc1441627d2a61029ca9fc94162",
+  "sourceTreeHash": "0046a0a9e5846ab2f07ae703e3b85431d5ba9c9738d13192f7c821682ecb07ec",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-    "sha256": "5ac4bd4ef114a8c59f81621aea9c82cc2e0eb37f2d891af2f9c4f567a35955a8",
+    "sha256": "3ea0508a6c5865455b026b511d29d6c866165f54f6fb878c2b3840fcbb67128c",
     "latestAcceptedIteration": 15,
     "latestAcceptedRunId": "HLAYER-UNIFIED-HARDENING-V1",
     "verdict": "NEUTRAL",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim.",
     "verification": {
       "status": "PASS",
-      "recordedAt": "2026-07-25T21:22:18Z",
+      "recordedAt": "2026-07-25T21:43:18Z",
       "vegoTestsPassed": 108,
-      "scriptTestsPassed": 96
+      "scriptTestsPassed": 101
     }
   },
   "runtimeHardening": {
@@ -1208,18 +1208,18 @@
     "schemas/security-posture-snapshot-v1.schema.json": "326daafe746cbbe0d184739fd4fae5ed1fa814406e744fccbb640a5afd4ca770",
     "configs/hlayer-runtime.json": "0e8c03d4297b74cf04020c244be6a09441555b595b63434a3c83c86cdaf993e2",
     "configs/protected-change-authorization-v1.json": "8cf369ef03977a59490f43223404b244d0a42c59c0c85b127a447f3db3b19078",
-    "scripts/build_hardening_manifests.py": "3ed7157c78c9d526966909d2c8d51c3f297e56b1123bdcd55e8af648a8a204dd",
-    "scripts/run_hlayer_architecture.py": "1a8965d5decb1111be1325545b6eaf9edab04742bdca6e55bd79cf522e4b7623",
+    "scripts/build_hardening_manifests.py": "9c90e4ffa705b24baa55108310948db038c978711d417977471286beb36e5513",
+    "scripts/run_hlayer_architecture.py": "559dd30181753dd6d12d925c78ab9ff3410b252c520b5d1d62e23927313f9ce9",
     "scripts/verify-source.ps1": "d22dddf754e87e6ae6cf5c4899aecfeb6aac5b73fa8c820e14a3574e1d400f87",
     "scripts/verify-controlled.ps1": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239",
     "scripts/verify-release.ps1": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5",
     "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
-    "src/vego_hlayer/adapters.py": "222ffc451bc72f92d84033843ef41698476205d0f0ef11f5e18d1469b2edd9c7",
+    "src/vego_hlayer/adapters.py": "62d81d25964c409583d192bb219918fddd7833f3879c072e7e71f333bf2e2478",
     "src/vego_hlayer/contracts.py": "c5241dc907cfb5d8a574cbaf63ea118f34da287d98f7743a6711245e2f2eb62b",
     "src/vego_hlayer/io_safety.py": "c7ee7eab05c0c79b8e4196de51f345bcef72a81da4de667fddfefb304089b1cb",
     "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "5ac4bd4ef114a8c59f81621aea9c82cc2e0eb37f2d891af2f9c4f567a35955a8",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "3ea0508a6c5865455b026b511d29d6c866165f54f6fb878c2b3840fcbb67128c",
     "docs/research/hardening/README.md": "447401334f40a123eb0bb67e5759f477b15cb134df442c3d7140135a5269d2e3",
     "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md": "7fb96ba31fa0aa9a0726479e901e7fd6f3d09047af9a43dea14348c00c7e7c3f",
     "docs/research/hardening/THREAT_MODEL.md": "9904a0a517506e1fd8459ffbe5a9ceddbd615f768fff607ca7e4974baa0a700b",
@@ -1253,6 +1253,6 @@
     "thesis/chapters/10-conclusion-and-phd-continuation.md": "dccbe777a471b7fa9a0c0b1b985520209bd55bb54a534f0bcf6be1f0f0555e95",
     "thesis/chapters/11-references.md": "c59f8bc09f1ed0ca53d78942bae7085cb63f21490f6f628c1eeb9c34e1df0dc8",
     "thesis/chapters/design-theory-governed-reuse.md": "c50671af7cbe01db801b8831c0a43a7dd022563edd5793734436d8d9c73009a0",
-    "thesis/chapters/appendix-a-supplementary.md": "9979577366308585ac4ed1576904ab74fec45148f3f2e3edb333d3f530306b63"
+    "thesis/chapters/appendix-a-supplementary.md": "c98cc5c59a1fd8a37d8396ac079c8b60b88a265799c8c87fe278fbd5d803dd74"
   }
 }
