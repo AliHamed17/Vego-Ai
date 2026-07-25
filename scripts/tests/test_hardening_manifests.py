@@ -76,6 +76,9 @@ def test_portable_text_hash_normalizes_checkout_line_endings(tmp_path: Path) -> 
 
 def test_baseline_lock_preserves_agent4_and_model_boundary() -> None:
     payload = json.loads((OUTPUT / "baseline-lock-manifest-v2.json").read_text(encoding="utf-8"))
+    assert payload["officialTagCommit"] == (
+        "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf"
+    )
     assert payload["requestedModel"] == "gpt-4o"
     assert payload["servedSnapshotKnown"] is False
     assert len(payload["agent4Outputs"]["files"]) == 4

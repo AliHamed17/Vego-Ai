@@ -34,6 +34,7 @@ SBOM_PATH = OUTPUT_ROOT / "sbom.cdx.json"
 RELEASE_PATH = OUTPUT_ROOT / "release-manifest-v3.json"
 ITERATION_PATH = OUTPUT_ROOT / "iteration-015-manifest.json"
 OFFICIAL_TAG = "official-vego-ai-baseline"
+OFFICIAL_TAG_COMMIT = "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf"
 GIT = shutil.which("git")
 CURRENT_BASELINE_BYTE_HASHES = {
     "cd_ch": "b056e22d196a0fe8dabe275f3d8a2fcb8acc0eae4bf64a080076fef8ac65629f",
@@ -206,6 +207,10 @@ def mapped_tree(tag_paths: Iterable[str], current_paths: Iterable[str]) -> dict[
 
 def build_baseline(require_controlled: bool) -> dict[str, Any]:
     tag_commit = str(git("rev-list", "-n", "1", OFFICIAL_TAG)).strip()
+    if tag_commit != OFFICIAL_TAG_COMMIT:
+        raise ValueError(
+            f"{OFFICIAL_TAG} resolves to {tag_commit}, expected {OFFICIAL_TAG_COMMIT}"
+        )
     agent_paths = tuple(
         f"framework/agent{number}_{name}.py"
         for number, name in (

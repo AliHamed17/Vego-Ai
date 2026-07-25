@@ -207,3 +207,5 @@ def test_verify_source_bootstraps_locked_dependencies_before_doctor() -> None:
     assert script.index("uv sync --frozen --all-groups") < doctor
     assert script.index("npm ci --ignore-scripts --no-audit") < doctor
     assert "npx --no-install playwright install chromium" in script
+    assert "refs/tags/${tag}:refs/tags/${tag}" in script
+    assert "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf" in script

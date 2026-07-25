@@ -54,6 +54,32 @@ function Initialize-AuthorizationTrust {
     Write-Host "[verify-source] authorization trust loaded from GitHub repository variable"
 }
 
+function Initialize-OfficialBaselineTag {
+    $tag = "official-vego-ai-baseline"
+    $expectedCommit = "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf"
+    $actualCommit = git rev-parse "$tag^{commit}" 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not $actualCommit) {
+        $origin = git remote get-url origin 2>$null
+        if ($LASTEXITCODE -ne 0 -or -not $origin) {
+            throw (
+                "The pinned official baseline tag is unavailable and no origin " +
+                "remote can supply it."
+            )
+        }
+        git fetch --no-tags origin "refs/tags/${tag}:refs/tags/${tag}"
+        if ($LASTEXITCODE -ne 0) {
+            throw "Could not fetch the pinned official baseline tag from origin."
+        }
+        $actualCommit = git rev-parse "$tag^{commit}" 2>$null
+    }
+    if (-not $actualCommit -or $actualCommit.Trim() -ne $expectedCommit) {
+        throw (
+            "The official baseline tag does not resolve to the pinned commit " +
+            "$expectedCommit."
+        )
+    }
+}
+
 function Invoke-Gate {
     param([string]$Name, [scriptblock]$Body)
     Write-Host "[verify-source] $Name"
@@ -64,6 +90,7 @@ function Invoke-Gate {
 }
 
 Initialize-AuthorizationTrust
+Initialize-OfficialBaselineTag
 
 Invoke-Gate "locked dependency definition" { uv lock --check }
 Invoke-Gate "frozen Python environment" { uv sync --frozen --all-groups }
