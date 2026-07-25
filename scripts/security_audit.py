@@ -151,6 +151,10 @@ def _secret_labels(data: bytes) -> list[str]:
     return labels
 
 
+def _is_zip_data(data: bytes) -> bool:
+    return any(data.startswith(prefix) for prefix in MAGIC[".zip"])
+
+
 def _zip_data_findings(
     data: bytes,
     display_path: str,
@@ -203,10 +207,7 @@ def _zip_data_findings(
                     findings.append(
                         f"{display_path}: personal absolute path in archive member {name}"
                     )
-                if any(
-                    member_data.startswith(prefix)
-                    for prefix in MAGIC[".zip"]
-                ):
+                if _is_zip_data(member_data):
                     nested_display = f"{display_path}!{name}"
                     if nesting_depth >= MAX_ARCHIVE_NESTING_DEPTH:
                         findings.append(
@@ -362,10 +363,11 @@ def _historical_blob_findings() -> list[str]:
         archive_paths = [
             path for path in paths if Path(path).suffix.lower() in ZIP_SUFFIXES
         ]
-        if archive_paths:
+        if archive_paths or _is_zip_data(data):
+            representative = sorted(archive_paths)[0] if archive_paths else paths[0]
             archive_display = (
                 f"history archive {object_id[:12]}:"
-                f"{_display_git_path(sorted(archive_paths)[0])}"
+                f"{_display_git_path(representative)}"
             )
             findings.extend(
                 _zip_data_findings(
@@ -397,8 +399,14 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
                 binary_findings.append(f"{relative}: invalid MP4 signature")
         elif suffix in MAGIC and not any(data.startswith(prefix) for prefix in MAGIC[suffix]):
             binary_findings.append(f"{relative}: extension/magic mismatch")
-        if suffix in ZIP_SUFFIXES:
-            binary_findings.extend(_zip_findings(path))
+        if suffix in ZIP_SUFFIXES or _is_zip_data(data):
+            binary_findings.extend(
+                _zip_data_findings(
+                    data,
+                    relative,
+                    check_personal_paths=relative.startswith(CURRENT_SHAREABLE),
+                )
+            )
 
     history_findings: list[str] = []
     if include_history:

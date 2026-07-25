@@ -20,6 +20,30 @@ from .contracts import (
 STAGES = frozenset(
     {"review", "feedback", "resolved", "memory", "advice", "comparison"}
 )
+ENVELOPE_FIELDS = {
+    "advice": frozenset(
+        {
+            "schema_version",
+            "setting_id",
+            "advice_mode",
+            "generated_at",
+            "provenance",
+            "advice",
+        }
+    ),
+    "comparison": frozenset(
+        {
+            "schema_version",
+            "setting_id",
+            "mode",
+            "policy_version",
+            "ai_behavior_changed_in_baseline",
+            "generated_at",
+            "provenance",
+            "comparisons",
+        }
+    ),
+}
 
 
 @dataclass(frozen=True)
@@ -212,6 +236,101 @@ def serialize_canonical_artifact(
     return envelope
 
 
+def _require_exact_fields(
+    value: Mapping[str, Any],
+    required: frozenset[str],
+    context: str,
+) -> None:
+    missing = sorted(required - set(value))
+    if missing:
+        raise ValidationError(
+            f"{context} missing required fields: {', '.join(missing)}"
+        )
+    unexpected = sorted(set(value) - required)
+    if unexpected:
+        raise ValidationError(
+            f"{context} has unexpected fields: {', '.join(unexpected)}"
+        )
+
+
+def _require_nonempty_text(value: Mapping[str, Any], key: str, context: str) -> None:
+    if not isinstance(value.get(key), str) or not value[key]:
+        raise ValidationError(f"{context} {key} must be a non-empty string")
+
+
+def _validate_envelope(stage: str, payload: dict[str, Any]) -> dict[str, Any]:
+    fields = ENVELOPE_FIELDS[stage]
+    _require_exact_fields(payload, fields, f"{stage} envelope")
+    for key in ("schema_version", "setting_id", "generated_at"):
+        _require_nonempty_text(payload, key, f"{stage} envelope")
+
+    provenance = payload["provenance"]
+    if not isinstance(provenance, Mapping):
+        raise ValidationError(f"{stage} provenance must be an object")
+    if stage == "advice":
+        if payload["advice_mode"] != "advisory_only":
+            raise ValidationError("advice envelope must remain advisory_only")
+        provenance_fields = frozenset(
+            {"source_memory_file", "source_agent4_files"}
+        )
+        _require_exact_fields(
+            provenance,
+            provenance_fields,
+            "advice provenance",
+        )
+        _require_nonempty_text(
+            provenance,
+            "source_memory_file",
+            "advice provenance",
+        )
+        source_agent4 = provenance["source_agent4_files"]
+        if not isinstance(source_agent4, Mapping):
+            raise ValidationError(
+                "advice provenance source_agent4_files must be an object"
+            )
+        _require_exact_fields(
+            source_agent4,
+            frozenset({"deviation_patterns", "variability_classes"}),
+            "advice provenance source_agent4_files",
+        )
+        for key, value in source_agent4.items():
+            if value is not None and not isinstance(value, str):
+                raise ValidationError(
+                    "advice provenance source_agent4_files "
+                    f"{key} must be a string or null"
+                )
+    else:
+        if payload["mode"] != "experimental":
+            raise ValidationError("comparison envelope mode must be experimental")
+        _require_nonempty_text(
+            payload,
+            "policy_version",
+            "comparison envelope",
+        )
+        if payload["ai_behavior_changed_in_baseline"] is not False:
+            raise ValidationError(
+                "comparison envelope cannot change baseline AI behavior"
+            )
+        provenance_fields = frozenset(
+            {
+                "source_variability_classes",
+                "source_memory_advice",
+                "source_memory",
+            }
+        )
+        _require_exact_fields(
+            provenance,
+            provenance_fields,
+            "comparison provenance",
+        )
+        for key, value in provenance.items():
+            if value is not None and not isinstance(value, str):
+                raise ValidationError(
+                    f"comparison provenance {key} must be a string or null"
+                )
+    return dict(provenance)
+
+
 def _items_and_provenance(stage: str, payload: Any) -> tuple[list[dict], dict]:
     if stage in {"review", "feedback", "resolved", "memory"}:
         if not isinstance(payload, list):
@@ -219,13 +338,11 @@ def _items_and_provenance(stage: str, payload: Any) -> tuple[list[dict], dict]:
         return payload, {"source": f"legacy_{stage}_artifact"}
     if not isinstance(payload, dict):
         raise ValidationError(f"{stage} payload must be an object")
+    provenance = _validate_envelope(stage, payload)
     key = "advice" if stage == "advice" else "comparisons"
     items = payload.get(key)
     if not isinstance(items, list):
         raise ValidationError(f"{stage} payload must contain a {key} list")
-    provenance = payload.get("provenance") or {"source": f"legacy_{stage}_artifact"}
-    if not isinstance(provenance, dict):
-        raise ValidationError(f"{stage} provenance must be an object")
     return items, provenance
 
 

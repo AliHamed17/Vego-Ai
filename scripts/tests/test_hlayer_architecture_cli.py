@@ -174,6 +174,12 @@ def test_comparison_cli_reports_nested_shape_errors_without_traceback(
     tmp_path: Path,
 ) -> None:
     payload = {
+        "schema_version": "1.0",
+        "setting_id": "ucd_ch",
+        "mode": "experimental",
+        "policy_version": "memory-informed-classifier-v1",
+        "ai_behavior_changed_in_baseline": False,
+        "generated_at": "2026-07-25T00:00:00Z",
         "comparisons": [
             {
                 "comparison_id": "CMP-ucd_ch-P1",
@@ -194,7 +200,11 @@ def test_comparison_cli_reports_nested_shape_errors_without_traceback(
                 "ai_behavior_changed_in_baseline": False,
             }
         ],
-        "provenance": {"source": "fixture"},
+        "provenance": {
+            "source_variability_classes": "fixture-classes.json",
+            "source_memory_advice": "fixture-advice.json",
+            "source_memory": "fixture-memory.jsonl",
+        },
     }
     source = tmp_path / "comparison.json"
     source.write_text(json.dumps(payload), encoding="utf-8")
@@ -300,6 +310,10 @@ def test_cli_reports_decision_shape_errors_without_traceback(
 
 def test_advice_cli_rejects_non_array_memory_matches(tmp_path: Path) -> None:
     payload = {
+        "schema_version": "1.0",
+        "setting_id": "ucd_ch",
+        "advice_mode": "advisory_only",
+        "generated_at": "2026-07-25T00:00:00Z",
         "advice": [
             {
                 "setting_id": "ucd_ch",
@@ -311,7 +325,13 @@ def test_advice_cli_rejects_non_array_memory_matches(tmp_path: Path) -> None:
                 "ai_classification_changed": False,
             }
         ],
-        "provenance": {"source": "fixture"},
+        "provenance": {
+            "source_memory_file": "fixture-memory.jsonl",
+            "source_agent4_files": {
+                "deviation_patterns": "fixture-patterns.json",
+                "variability_classes": "fixture-classes.json",
+            },
+        },
     }
     source = tmp_path / "advice.json"
     source.write_text(json.dumps(payload), encoding="utf-8")
@@ -340,6 +360,59 @@ def test_advice_cli_rejects_non_array_memory_matches(tmp_path: Path) -> None:
     )
     assert result.returncode == 2
     assert "memory_matches must be an array" in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+@pytest.mark.parametrize(
+    ("stage", "payload", "expected"),
+    [
+        (
+            "advice",
+            {"advice": []},
+            "advice envelope missing required fields",
+        ),
+        (
+            "comparison",
+            {"comparisons": []},
+            "comparison envelope missing required fields",
+        ),
+    ],
+)
+def test_cli_rejects_incomplete_empty_envelopes(
+    tmp_path: Path,
+    stage: str,
+    payload: dict,
+    expected: str,
+) -> None:
+    source = tmp_path / f"{stage}.json"
+    source.write_text(json.dumps(payload), encoding="utf-8")
+    output = tmp_path / "published.json"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            stage,
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "unified",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert expected in result.stderr
     assert "Traceback" not in result.stderr
     assert not output.exists()
     assert not manifest.exists()

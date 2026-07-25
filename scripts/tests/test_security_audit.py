@@ -68,6 +68,55 @@ def test_archive_limits_fail_closed(tmp_path: Path) -> None:
     assert any("archive nesting exceeds 0" in item for item in nested_findings)
 
 
+def test_disguised_archives_are_scanned_by_magic_in_current_and_history(
+    tmp_path: Path,
+) -> None:
+    module = load_module()
+    module.ROOT = tmp_path
+
+    def git(*args: str) -> None:
+        subprocess.run(
+            ["git", *args],
+            cwd=tmp_path,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+
+    git("init", "-b", "main")
+    git("config", "user.name", "Fixture")
+    git("config", "user.email", "fixture@example.invalid")
+    secret = "AKIA" + "ABCDEFGHIJKLMNOP"
+    disguised = tmp_path / "payload.bin"
+    with zipfile.ZipFile(
+        disguised,
+        "w",
+        compression=zipfile.ZIP_DEFLATED,
+    ) as archive:
+        archive.writestr("secret.txt", secret)
+
+    current = module.inspect(include_history=False)
+    assert current["status"] == "FAIL"
+    assert any(
+        "payload.bin" in finding
+        and "aws_access_key in archive member secret.txt" in finding
+        for finding in current["binary_findings"]
+    )
+
+    git("add", "payload.bin")
+    git("commit", "-m", "disguised archive fixture")
+    disguised.unlink()
+    git("add", "-u")
+    git("commit", "-m", "remove disguised archive fixture")
+    historical = module.inspect(include_history=True)
+    assert any(
+        "payload.bin" in finding
+        and "aws_access_key in archive member secret.txt" in finding
+        for finding in historical["history_findings"]
+    )
+
+
 def test_encrypted_pkcs8_private_keys_are_detected_in_content_and_history() -> None:
     module = load_module()
     encrypted_header = b"-----BEGIN ENCRYPTED " + b"PRIVATE KEY-----"
