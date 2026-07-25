@@ -107,6 +107,9 @@ Invoke-Gate "environment doctor" { uv run python scripts/vego_doctor.py }
 Invoke-Gate "canonical manifest freshness" {
     uv run python scripts/build_hardening_manifests.py --check
 }
+Invoke-Gate "progress tracker freshness" {
+    uv run python scripts/build-progress-tracker.py --check
+}
 Invoke-Gate "research record schemas" {
     uv run python scripts/validate_research_records.py schemas/examples
 }

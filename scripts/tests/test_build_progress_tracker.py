@@ -33,3 +33,22 @@ def test_recent_activity_returns_latest_entries_newest_first(tmp_path: Path) -> 
         "- 2026-07-04 - Entry 4",
         "- 2026-07-03 - Entry 3",
     ]
+    status = {
+        "generatedAt": "2026-07-26T02:27:30+03:00",
+        "iterationHistory": {
+            "acceptedCount": 15,
+            "historicalPreManifest": list(range(1, 8)),
+            "manifestBacked": list(range(8, 16)),
+        },
+        "latestAcceptedIteration": {
+            "iteration": 15,
+            "verdict": "NEUTRAL",
+            "iterationKind": "reliability_only",
+        },
+    }
+    snapshot = builder.snapshot_lines(status)
+    assert "15 H-layer iterations are accepted" in snapshot
+    assert "001-007" in snapshot
+    assert "008-015" in snapshot
+    assert "Iteration 015" in snapshot
+    assert builder.snapshot_generated_at(status) == "2026-07-25 23:27 UTC"
