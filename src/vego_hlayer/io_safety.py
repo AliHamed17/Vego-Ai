@@ -34,8 +34,16 @@ def validate_input_file(
     """Return a resolved regular input file or fail safely."""
 
     candidate = Path(path)
-    if candidate.is_symlink():
-        raise ValidationError("symbolic-link inputs are not accepted")
+    if not candidate.is_absolute():
+        candidate = Path.cwd() / candidate
+    candidate = Path(os.path.abspath(candidate))
+    cursor = candidate
+    while cursor != cursor.parent:
+        if cursor.is_symlink():
+            raise ValidationError(
+                "symbolic-link inputs and parent directories are not accepted"
+            )
+        cursor = cursor.parent
     try:
         resolved = candidate.resolve(strict=True)
     except OSError as exc:

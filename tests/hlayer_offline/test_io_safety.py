@@ -39,3 +39,14 @@ def test_input_rejects_oversized_file(tmp_path: Path) -> None:
     path.write_bytes(b"1234")
     with pytest.raises(ValidationError, match="exceeds"):
         validate_input_file(path, max_bytes=3)
+
+    real = tmp_path / "real"
+    real.mkdir()
+    (real / "input.json").write_text("{}", encoding="utf-8")
+    alias = tmp_path / "alias"
+    try:
+        alias.symlink_to(real, target_is_directory=True)
+    except OSError:
+        return
+    with pytest.raises(ValidationError, match="parent directories"):
+        validate_input_file(alias / "input.json")

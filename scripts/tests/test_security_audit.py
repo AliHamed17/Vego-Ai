@@ -83,10 +83,22 @@ def test_history_scan_uses_a_git_compatible_expression(tmp_path: Path) -> None:
     secret = "github" + "_pat_" + "sample_abcdefghijklmnopqrstuvwxyz1234567890"
     (tmp_path / "record.txt").write_text(secret + "\n", encoding="utf-8")
     git("commit", "-am", "fixture secret")
+    archive_path = tmp_path / "historical.docx"
+    with zipfile.ZipFile(archive_path, "w") as archive:
+        archive.writestr("word/document.xml", f"<w:t>{secret}</w:t>")
+    git("add", "historical.docx")
+    git("commit", "-m", "archive fixture secret")
+    archive_path.unlink()
+    git("add", "-u")
+    git("commit", "-m", "remove archive fixture")
 
     result = module.inspect(include_history=True)
     assert result["history_findings"]
     assert any("record.txt" in finding for finding in result["history_findings"])
+    assert any(
+        "historical.docx" in finding and "archive member" in finding
+        for finding in result["history_findings"]
+    )
 
 
 def test_history_scan_command_failure_is_release_blocking(monkeypatch) -> None:

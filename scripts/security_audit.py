@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import re
 import shutil
@@ -74,6 +75,17 @@ def _git(*args: str) -> str:
     ).stdout
 
 
+def _git_bytes(*args: str) -> bytes:
+    if not GIT:
+        raise OSError("git executable not found")
+    return subprocess.run(  # noqa: S603 - executable and arguments are controlled
+        [GIT, *args],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    ).stdout
+
+
 def _candidate_files() -> list[str]:
     return sorted(
         {
@@ -103,54 +115,110 @@ def _secret_labels(data: bytes) -> list[str]:
     return labels
 
 
-def _zip_findings(path: Path) -> list[str]:
+def _zip_data_findings(
+    data: bytes,
+    display_path: str,
+    *,
+    check_personal_paths: bool,
+) -> list[str]:
     findings: list[str] = []
-    relative = path.relative_to(ROOT).as_posix()
     try:
-        with zipfile.ZipFile(path) as archive:
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
             members = archive.infolist()
             if len(members) > MAX_ARCHIVE_MEMBERS:
-                return [f"{relative}: archive member count exceeds {MAX_ARCHIVE_MEMBERS}"]
+                return [
+                    f"{display_path}: archive member count exceeds {MAX_ARCHIVE_MEMBERS}"
+                ]
             total = 0
             scanned = 0
             for info in members:
                 name = info.filename.replace("\\", "/")
                 pure = PurePosixPath(name)
                 if pure.is_absolute() or ".." in pure.parts:
-                    findings.append(f"{relative}: unsafe archive path: {name}")
+                    findings.append(f"{display_path}: unsafe archive path: {name}")
                 if info.is_dir():
                     continue
                 total += info.file_size
                 if info.compress_size and info.file_size / info.compress_size > 1000:
                     findings.append(
-                        f"{relative}: compression ratio exceeds 1000: {name}"
+                        f"{display_path}: compression ratio exceeds 1000: {name}"
                     )
                     continue
                 if info.file_size > MAX_ARCHIVE_MEMBER_BYTES:
                     findings.append(
-                        f"{relative}: archive member exceeds "
+                        f"{display_path}: archive member exceeds "
                         f"{MAX_ARCHIVE_MEMBER_BYTES} bytes: {name}"
                     )
                     continue
                 if scanned + info.file_size > MAX_ARCHIVE_SCAN_BYTES:
                     findings.append(
-                        f"{relative}: archive content scan exceeds "
+                        f"{display_path}: archive content scan exceeds "
                         f"{MAX_ARCHIVE_SCAN_BYTES} bytes"
                     )
                     break
-                data = archive.read(info)
-                scanned += len(data)
-                for label in _secret_labels(data):
-                    findings.append(f"{relative}: {label} in archive member {name}")
-                if relative.startswith(CURRENT_SHAREABLE) and PERSONAL_PATH_RE.search(data):
-                    findings.append(f"{relative}: personal absolute path in archive member {name}")
+                member_data = archive.read(info)
+                scanned += len(member_data)
+                for label in _secret_labels(member_data):
+                    findings.append(
+                        f"{display_path}: {label} in archive member {name}"
+                    )
+                if check_personal_paths and PERSONAL_PATH_RE.search(member_data):
+                    findings.append(
+                        f"{display_path}: personal absolute path in archive member {name}"
+                    )
             if total > MAX_ARCHIVE_EXPANDED_BYTES:
                 findings.append(
-                    f"{relative}: archive expands beyond 500 MiB"
+                    f"{display_path}: archive expands beyond 500 MiB"
                 )
     except (OSError, RuntimeError, zipfile.BadZipFile) as exc:
-        findings.append(f"{relative}: invalid archive: {exc}")
+        findings.append(f"{display_path}: invalid archive: {exc}")
     return findings
+
+
+def _zip_findings(path: Path) -> list[str]:
+    relative = path.relative_to(ROOT).as_posix()
+    return _zip_data_findings(
+        path.read_bytes(),
+        relative,
+        check_personal_paths=relative.startswith(CURRENT_SHAREABLE),
+    )
+
+
+def _historical_archive_findings() -> list[str]:
+    """Inspect every reachable historical ZIP-family blob with bounded expansion."""
+
+    findings: list[str] = []
+    seen_blobs: set[str] = set()
+    for line in _git("rev-list", "--objects", "--all").splitlines():
+        parts = line.split(maxsplit=1)
+        if len(parts) != 2:
+            continue
+        object_id, relative = parts
+        if Path(relative).suffix.lower() not in ZIP_SUFFIXES:
+            continue
+        if object_id in seen_blobs:
+            continue
+        seen_blobs.add(object_id)
+        if _git("cat-file", "-t", object_id).strip() != "blob":
+            continue
+        display = f"history archive {object_id[:12]}:{relative}"
+        try:
+            size = int(_git("cat-file", "-s", object_id).strip())
+        except ValueError as exc:
+            raise OSError(f"invalid Git object size for {object_id}") from exc
+        if size > MAX_ARCHIVE_SCAN_BYTES:
+            findings.append(
+                f"{display}: archive blob exceeds {MAX_ARCHIVE_SCAN_BYTES} bytes"
+            )
+            continue
+        findings.extend(
+            _zip_data_findings(
+                _git_bytes("cat-file", "blob", object_id),
+                display,
+                check_personal_paths=False,
+            )
+        )
+    return sorted(set(findings))
 
 
 def inspect(include_history: bool = False) -> dict[str, Any]:
@@ -189,6 +257,8 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
         history_findings = sorted(
             set(line for line in history_output.splitlines() if line)
         )
+        history_findings.extend(_historical_archive_findings())
+        history_findings = sorted(set(history_findings))
 
     failures = secret_findings + privacy_findings + binary_findings + history_findings
     return {
