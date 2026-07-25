@@ -198,3 +198,28 @@ Chronological prompt history for Codex and Claude.
   - verify-hlayer-all full gate + push + PR + merge (after this entry)
 - Status: completed
 - Next steps: Push the branch, open the PR, merge to main (merge commit to preserve provenance-referenced revisions), close superseded PR #9, sync local main.
+
+## 2026-07-25 16:08 +03:00 - Codex - Unified runtime, security hardening, and thesis release
+
+- Request: Complete the unified runtime, cybersecurity, baseline, model, infrastructure, thesis, PR, and governance-gated merge plan.
+- Actions taken:
+  - Implemented canonical unified H-layer contracts, legacy/unified/parity modes, and fail-closed parity publication.
+  - Hardened dependency locking, credential/log privacy, output-path safety, archive scanning, provenance, and GitHub CI.
+  - Reconciled Iteration 15 as NEUTRAL reliability-only while preserving EXP-005 at 0/24 and M4B-1 at 0/27 changes.
+  - Built and visually verified the 91-page thesis review package and offline evidence view.
+  - Addressed all identified automated PR review findings without changing Agent 1-4 or baseline outputs.
+- Files changed:
+  - src/vego_hlayer/**
+  - VEGO-AI/framework human-review M1-M4B-1 files only
+  - scripts/** hardening, validation, manifest, and document tooling
+  - docs/research/** and docs/agent-memory/**
+  - thesis/**, VEGO-AI-Thesis-Baseline-Progress.html, .github/workflows/**
+- Commands/checks:
+  - 105 VEGO-AI tests passed
+  - 82 research-infrastructure tests plus 7 subtests passed
+  - 39 offline H-layer tests passed
+  - 18/18 evidence guard passed
+  - 91-page PDF rendered and inspected with zero structural errors
+  - security, privacy, dependency, browser, document, and provenance checks passed
+- Status: implementation-complete; publication pending final CI and human governance gates
+- Next steps: Push PR #10, resolve review threads, wait for CI, then obtain one independent human approval and plan-enabled main protection before squash merge.

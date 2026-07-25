@@ -393,3 +393,14 @@ Record file changes and rollback notes here.
   - docs/agent-memory/**, docs/PROGRESS_TRACKER.md, and .gitignore
 - Rollback note: Revert the focused branch commits or the final squash commit to remove the thesis evidence package. Local ignored PDF, page renders, delivery manifest, and share copies may be deleted separately. No protected runtime, Agent 4, baseline output, or expert-label file was changed.
 - Git commit: none recorded by script.
+
+## 2026-07-25 16:08 +03:00 - Codex - Unified runtime, security hardening, and thesis release
+
+- Files changed:
+  - src/vego_hlayer/**
+  - VEGO-AI/framework human-review M1-M4B-1 files only
+  - scripts/** hardening, validation, manifest, and document tooling
+  - docs/research/** and docs/agent-memory/**
+  - thesis/**, VEGO-AI-Thesis-Baseline-Progress.html, .github/workflows/**
+- Rollback note: Revert the focused commits from the feature branch; legacy remains the default and baseline artifacts are unchanged.
+- Git commit: none recorded by script.
