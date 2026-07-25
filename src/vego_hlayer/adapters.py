@@ -370,8 +370,15 @@ def adapt_legacy_artifact(stage: str, payload: Any) -> AdapterResult:
         elif stage == "feedback":
             record = _feedback_record(item)
         elif stage == "resolved":
-            feedback = item.get("human_feedback")
-            record = _feedback_record(feedback) if feedback else _review_record(item)
+            if "human_feedback" in item:
+                feedback = item["human_feedback"]
+                if not isinstance(feedback, Mapping):
+                    raise ValidationError(
+                        "resolved human_feedback must be an object"
+                    )
+                record = _feedback_record(feedback)
+            else:
+                record = _review_record(item)
         elif stage == "memory":
             record = _memory_record(item)
         elif stage == "advice":

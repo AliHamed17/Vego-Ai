@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import io
 import re
 import subprocess
 import zipfile
@@ -30,6 +31,20 @@ def test_archive_member_contents_are_scanned_for_secrets(tmp_path: Path) -> None
     findings = module._zip_findings(archive_path)
     assert any("openai_key in archive member word/document.xml" in item for item in findings)
 
+    inner_bytes = io.BytesIO()
+    github_key = "github" + "_pat_" + "sample_abcdefghijklmnopqrstuvwxyz1234567890"
+    with zipfile.ZipFile(inner_bytes, "w") as inner:
+        inner.writestr("token.txt", github_key)
+    nested_path = tmp_path / "nested.zip"
+    with zipfile.ZipFile(nested_path, "w") as outer:
+        outer.writestr("inner.zip", inner_bytes.getvalue())
+    nested_findings = module._zip_findings(nested_path)
+    assert any(
+        "nested.zip!inner.zip" in item
+        and "github_token in archive member token.txt" in item
+        for item in nested_findings
+    )
+
 
 def test_archive_limits_fail_closed(tmp_path: Path) -> None:
     module = load_module()
@@ -40,6 +55,17 @@ def test_archive_limits_fail_closed(tmp_path: Path) -> None:
         archive.writestr("large.txt", "12345")
     findings = module._zip_findings(archive_path)
     assert any("archive member exceeds 4 bytes" in item for item in findings)
+
+    module.MAX_ARCHIVE_MEMBER_BYTES = 25 * 1024 * 1024
+    module.MAX_ARCHIVE_NESTING_DEPTH = 0
+    inner_bytes = io.BytesIO()
+    with zipfile.ZipFile(inner_bytes, "w") as inner:
+        inner.writestr("record.txt", "safe")
+    nested_path = tmp_path / "bounded.zip"
+    with zipfile.ZipFile(nested_path, "w") as outer:
+        outer.writestr("inner.zip", inner_bytes.getvalue())
+    nested_findings = module._zip_findings(nested_path)
+    assert any("archive nesting exceeds 0" in item for item in nested_findings)
 
 
 def test_encrypted_pkcs8_private_keys_are_detected_in_content_and_history() -> None:

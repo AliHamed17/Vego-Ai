@@ -1,11 +1,16 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import pytest
 
 from vego_hlayer.contracts import ValidationError
-from vego_hlayer.io_safety import validate_input_file, validate_output_file
+from vego_hlayer.io_safety import (
+    atomic_write_text,
+    validate_input_file,
+    validate_output_file,
+)
 
 
 def test_output_rejects_protected_and_outside_paths(tmp_path: Path) -> None:
@@ -32,6 +37,18 @@ def test_output_rejects_overwrite(tmp_path: Path) -> None:
     output.write_text("existing", encoding="utf-8")
     with pytest.raises(ValidationError, match="overwrite"):
         validate_output_file(output, repo_root=repo)
+
+    target = tmp_path / "atomic-result.json"
+    external = tmp_path / "external-target.json"
+    predictable = target.with_name(f".{target.name}.{os.getpid()}.tmp")
+    try:
+        predictable.symlink_to(external)
+    except OSError:
+        return
+    atomic_write_text(target, '{"status":"safe"}\n')
+    assert target.read_text(encoding="utf-8") == '{"status":"safe"}\n'
+    assert not external.exists()
+    assert predictable.is_symlink()
 
 
 def test_input_rejects_oversized_file(tmp_path: Path) -> None:

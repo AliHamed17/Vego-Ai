@@ -59,6 +59,7 @@ MAX_ARCHIVE_MEMBERS = 10_000
 MAX_ARCHIVE_MEMBER_BYTES = 25 * 1024 * 1024
 MAX_ARCHIVE_SCAN_BYTES = 100 * 1024 * 1024
 MAX_ARCHIVE_EXPANDED_BYTES = 500 * 1024 * 1024
+MAX_ARCHIVE_NESTING_DEPTH = 3
 GIT = shutil.which("git")
 
 
@@ -120,6 +121,7 @@ def _zip_data_findings(
     display_path: str,
     *,
     check_personal_paths: bool,
+    nesting_depth: int = 0,
 ) -> list[str]:
     findings: list[str] = []
     try:
@@ -166,6 +168,25 @@ def _zip_data_findings(
                     findings.append(
                         f"{display_path}: personal absolute path in archive member {name}"
                     )
+                if any(
+                    member_data.startswith(prefix)
+                    for prefix in MAGIC[".zip"]
+                ):
+                    nested_display = f"{display_path}!{name}"
+                    if nesting_depth >= MAX_ARCHIVE_NESTING_DEPTH:
+                        findings.append(
+                            f"{nested_display}: archive nesting exceeds "
+                            f"{MAX_ARCHIVE_NESTING_DEPTH}"
+                        )
+                    else:
+                        findings.extend(
+                            _zip_data_findings(
+                                member_data,
+                                nested_display,
+                                check_personal_paths=check_personal_paths,
+                                nesting_depth=nesting_depth + 1,
+                            )
+                        )
             if total > MAX_ARCHIVE_EXPANDED_BYTES:
                 findings.append(
                     f"{display_path}: archive expands beyond 500 MiB"

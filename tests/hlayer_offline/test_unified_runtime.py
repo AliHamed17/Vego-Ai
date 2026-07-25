@@ -142,6 +142,15 @@ def test_unified_serializer_rebuilds_mapped_fields_from_canonical_records() -> N
     assert rebuilt[0]["review_signature"] == "fedcba9876543210"
     assert rebuilt != payload
 
+    for invalid_feedback in ("invalid", [], None, 0):
+        malformed = [_review_item()]
+        malformed[0]["human_feedback"] = invalid_feedback
+        with pytest.raises(
+            ValidationError,
+            match="resolved human_feedback must be an object",
+        ):
+            adapt_legacy_artifact("resolved", malformed)
+
 
 @pytest.mark.parametrize(
     ("field", "value"),
