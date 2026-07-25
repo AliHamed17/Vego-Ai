@@ -346,3 +346,30 @@ Chronological prompt history for Codex and Claude.
   - build_hardening_manifests.py --check --require-controlled: PASS
 - Status: CI regression fixed locally; exact-head release verification and rerun pending
 - Next steps: Run verify-release on the final clean head, push, wait for exact-head CI, request exact-head review, then audit independent approval and branch protection before merge.
+
+## 2026-07-26 00:31 +03:00 - Codex - Exact-head security review and release verification
+
+- Request: Continue unified runtime, security, evidence, package, PR, and merge work without bypassing governance gates.
+- Actions taken:
+  - Fixed newline-safe Git path parsing for protected-change and security scans.
+  - Added bounded all-history blob secret inspection including deleted binary files.
+  - Added structured validation for malformed ai_decision and human_decision values.
+  - Reconciled Iteration 15 to 108 VEGO tests, 96 research tests plus 7 subtests, and 41 offline tests.
+  - Rebuilt the deterministic thesis HTML/DOCX/PDF package and verified all 91 PDF pages.
+  - Ran the clean exact-head release gate successfully.
+- Files changed:
+  - scripts/security_audit.py
+  - scripts/check_hlayer_change_authorization.py
+  - src/vego_hlayer/adapters.py
+  - scripts/tests/
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Commands/checks:
+  - python -m pytest targeted security/authorization/architecture tests: 16 passed
+  - scripts/verify-release.ps1 -Check: PASS
+  - PDF structural QA: 91 pages, 23 sheets, 0 errors
+- Status: completed; publication governance pending
+- Next steps: Push exact head, resolve review threads, obtain fresh exact-head review and green CI, then wait for enforceable main protection and one separate collaborator approval before squash merge.

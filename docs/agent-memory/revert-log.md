@@ -466,3 +466,18 @@ Record file changes and rollback notes here.
   - docs/research/hardening/release-manifest-v3.json
 - Rollback note: Revert commits 4b46b2e and d9f0c44 to remove the clone-safe test fixture and its release hash refresh.
 - Git commit: none recorded by script.
+
+## 2026-07-26 00:31 +03:00 - Codex - Exact-head security review and release verification
+
+- Files changed:
+  - scripts/security_audit.py
+  - scripts/check_hlayer_change_authorization.py
+  - src/vego_hlayer/adapters.py
+  - scripts/tests/
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Rollback note: Revert commits 14ec374 through d7646f2 in reverse order to remove this final review-fix cycle; local ignored PDF, QA pages, and dated share folders can be removed separately. Agent 4 outputs and expert labels were not changed.
+- Git commit: none recorded by script.
