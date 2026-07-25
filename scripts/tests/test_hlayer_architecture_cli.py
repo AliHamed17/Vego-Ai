@@ -6,12 +6,19 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-import run_hlayer_architecture as architecture_cli
+SCRIPTS = Path(__file__).resolve().parents[1]
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+import run_hlayer_architecture as architecture_cli  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_parity_cli_publishes_legacy_shape_and_manifest(tmp_path: Path) -> None:
+def test_parity_cli_publishes_legacy_shape_and_manifest(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
     payload = [
         {
             "review_id": "HRQ-ucd_ch-P1",
@@ -58,6 +65,64 @@ def test_parity_cli_publishes_legacy_shape_and_manifest(tmp_path: Path) -> None:
     record = json.loads(manifest.read_text(encoding="utf-8"))
     assert record["parity_status"] == "match"
     assert record["baseline_preserved"] is True
+
+    failed_output = tmp_path / "failed-output.jsonl"
+    failed_manifest = tmp_path / "failed-manifest.json"
+    with monkeypatch.context() as scoped:
+        def fail_manifest(_manifest, _path):
+            raise OSError("fixture manifest staging failure")
+
+        scoped.setattr(architecture_cli, "write_manifest", fail_manifest)
+        exit_code = architecture_cli.main(
+            [
+                "--stage",
+                "review",
+                "--input",
+                str(source),
+                "--output",
+                str(failed_output),
+                "--manifest",
+                str(failed_manifest),
+                "--mode",
+                "parity",
+            ]
+        )
+    assert exit_code == 2
+    assert not failed_output.exists()
+    assert not failed_manifest.exists()
+
+    failed_output = tmp_path / "replace-failed-output.jsonl"
+    failed_manifest = tmp_path / "replace-failed-manifest.json"
+    real_replace = architecture_cli.os.replace
+    publication_replacements = 0
+
+    def fail_second_publication(source_path, destination_path):
+        nonlocal publication_replacements
+        if Path(destination_path) in {failed_output, failed_manifest}:
+            publication_replacements += 1
+            if publication_replacements == 2:
+                raise OSError("fixture manifest publication failure")
+        return real_replace(source_path, destination_path)
+
+    with monkeypatch.context() as scoped:
+        scoped.setattr(architecture_cli.os, "replace", fail_second_publication)
+        exit_code = architecture_cli.main(
+            [
+                "--stage",
+                "review",
+                "--input",
+                str(source),
+                "--output",
+                str(failed_output),
+                "--manifest",
+                str(failed_manifest),
+                "--mode",
+                "parity",
+            ]
+        )
+    assert exit_code == 2
+    assert not failed_output.exists()
+    assert not failed_manifest.exists()
 
 
 def test_cli_rejects_shared_output_and_manifest_before_publishing(tmp_path: Path) -> None:

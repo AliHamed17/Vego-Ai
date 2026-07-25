@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import tempfile
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -73,6 +75,70 @@ def _write(path: Path, stage: str, value: Any) -> None:
         target,
         json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
     )
+
+
+def _transaction_path(target: Path, role: str, token: str) -> Path:
+    return target.with_name(f".{target.name}.{os.getpid()}.{token}.{role}")
+
+
+def _reserve_publication_path(path: Path) -> None:
+    flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY
+    if hasattr(os, "O_BINARY"):
+        flags |= os.O_BINARY
+    try:
+        descriptor = os.open(path, flags, 0o600)
+    except FileExistsError as exc:
+        raise ValidationError(
+            f"publication target appeared during transaction: {path}"
+        ) from exc
+    else:
+        os.close(descriptor)
+
+
+def _publish_artifact_and_manifest(
+    *,
+    output: Path,
+    stage: str,
+    value: Any,
+    manifest: Path,
+    execution,
+) -> None:
+    """Stage and publish a new artifact/manifest pair or leave neither."""
+
+    token = uuid4().hex
+    staged_output = _transaction_path(output, "output-stage", token)
+    staged_manifest = _transaction_path(manifest, "manifest-stage", token)
+    output_reserved = False
+    manifest_reserved = False
+    output_published = False
+    manifest_published = False
+    try:
+        _write(staged_output, stage, value)
+        write_manifest(execution.manifest, staged_manifest)
+        _reserve_publication_path(output)
+        output_reserved = True
+        _reserve_publication_path(manifest)
+        manifest_reserved = True
+        os.replace(staged_output, output)
+        output_published = True
+        output_reserved = False
+        os.replace(staged_manifest, manifest)
+        manifest_published = True
+        manifest_reserved = False
+    except BaseException:
+        if manifest_published and manifest.is_file():
+            manifest.unlink()
+        elif manifest_reserved and manifest.is_file():
+            manifest.unlink()
+        if output_published and output.is_file():
+            output.unlink()
+        elif output_reserved and output.is_file():
+            output.unlink()
+        raise
+    finally:
+        for staged in (staged_output, staged_manifest):
+            if staged.exists() or staged.is_symlink():
+                staged.unlink()
 
 
 def _config_mode(path: Path) -> str:
@@ -156,8 +222,13 @@ def main(argv: list[str] | None = None) -> int:
             payload,
             mode,
         )
-        _write(safe_output, args.stage, execution.output)
-        write_manifest(execution.manifest, safe_manifest)
+        _publish_artifact_and_manifest(
+            output=safe_output,
+            stage=args.stage,
+            value=execution.output,
+            manifest=safe_manifest,
+            execution=execution,
+        )
     except (OSError, ValueError, ValidationError, json.JSONDecodeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2

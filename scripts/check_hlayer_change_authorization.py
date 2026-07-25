@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -21,6 +22,8 @@ PROTECTED_PREFIXES = (
     "VEGO-AI/inputs/",
 )
 GIT = shutil.which("git")
+TRUSTED_HASH_ENV = "H_LAYER_AUTHORIZATION_SHA256"
+TRUSTED_HASH_GIT_CONFIG = "vego.hlayerAuthorizationSha256"
 
 
 def _git(repo: Path, *args: str) -> str:
@@ -50,8 +53,53 @@ def _portable_sha256(path: Path) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def inspect(repo: Path, authorization: Path, base: str) -> dict:
-    config = json.loads(authorization.read_text(encoding="utf-8"))
+def _trusted_authorization_sha256(
+    repo: Path,
+    explicit: str | None = None,
+) -> str | None:
+    candidate = explicit or os.environ.get(TRUSTED_HASH_ENV)
+    if not candidate and GIT:
+        result = subprocess.run(  # noqa: S603 - executable and arguments are controlled
+            [GIT, "config", "--local", "--get", TRUSTED_HASH_GIT_CONFIG],
+            cwd=repo,
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+        if result.returncode == 0:
+            candidate = result.stdout.strip()
+    if not candidate:
+        return None
+    normalized = candidate.strip().lower()
+    if len(normalized) != 64 or any(
+        character not in "0123456789abcdef" for character in normalized
+    ):
+        raise ValueError("trusted authorization SHA-256 must be 64 lowercase hex digits")
+    return normalized
+
+
+def inspect(
+    repo: Path,
+    authorization: Path,
+    base: str,
+    *,
+    trusted_authorization_sha256: str | None = None,
+) -> dict:
+    actual_authorization_sha256 = _portable_sha256(authorization)
+    trusted_authorization_sha256 = _trusted_authorization_sha256(
+        repo,
+        trusted_authorization_sha256,
+    )
+    authorization_trusted = (
+        trusted_authorization_sha256 is not None
+        and actual_authorization_sha256 == trusted_authorization_sha256
+    )
+    config = (
+        json.loads(authorization.read_text(encoding="utf-8"))
+        if authorization_trusted
+        else {}
+    )
     allowed = set(config.get("allowed_paths") or [])
     authorized_hashes = config.get("authorized_content_sha256") or {}
     forbidden = list(config.get("forbidden_paths") or [])
@@ -124,6 +172,14 @@ def inspect(repo: Path, authorization: Path, base: str) -> dict:
                 "authorization_expires_on must be an ISO date"
             )
     failures = []
+    if trusted_authorization_sha256 is None:
+        failures.append(
+            "trusted authorization SHA-256 is not configured outside the candidate tree"
+        )
+    elif not authorization_trusted:
+        failures.append(
+            "authorization record differs from the trusted authorization SHA-256"
+        )
     if unauthorized:
         failures.append(f"unauthorized protected changes: {', '.join(unauthorized)}")
     if forbidden_changes:
@@ -138,6 +194,9 @@ def inspect(repo: Path, authorization: Path, base: str) -> dict:
         "base": base,
         "merge_base": merge_base,
         "authorization": authorization.relative_to(repo).as_posix(),
+        "authorization_sha256": actual_authorization_sha256,
+        "trusted_authorization_sha256": trusted_authorization_sha256,
+        "authorization_trusted": authorization_trusted,
         "protected_changes": protected,
         "unauthorized_changes": unauthorized,
         "forbidden_changes": forbidden_changes,
@@ -156,6 +215,15 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         default=Path("configs/protected-change-authorization-v1.json"),
     )
+    parser.add_argument(
+        "--trusted-authorization-sha256",
+        default=None,
+        help=(
+            "Expected portable SHA-256 from an external trust source. Defaults "
+            f"to ${TRUSTED_HASH_ENV}, then local Git config "
+            f"{TRUSTED_HASH_GIT_CONFIG}."
+        ),
+    )
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
     repo = Path(__file__).resolve().parents[1]
@@ -165,7 +233,12 @@ def main(argv: list[str] | None = None) -> int:
         else repo / args.authorization
     )
     try:
-        result = inspect(repo, authorization, args.base)
+        result = inspect(
+            repo,
+            authorization,
+            args.base,
+            trusted_authorization_sha256=args.trusted_authorization_sha256,
+        )
     except (OSError, ValueError, subprocess.CalledProcessError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2

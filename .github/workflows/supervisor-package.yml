@@ -113,6 +113,7 @@ jobs:
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PUSH_BEFORE_SHA: ${{ github.event.before }}
+          H_LAYER_AUTHORIZATION_SHA256: ${{ vars.H_LAYER_AUTHORIZATION_SHA256 }}
         run: |
           BASE="${PR_BASE_SHA:-${PUSH_BEFORE_SHA:-origin/main}}"
           if [[ "${BASE}" =~ ^0+$ ]]; then BASE="origin/main"; fi

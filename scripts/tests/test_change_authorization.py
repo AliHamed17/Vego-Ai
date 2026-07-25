@@ -52,12 +52,50 @@ def test_authorized_protected_content_is_hash_bound(tmp_path: Path) -> None:
         "authorization_expires_on": "2099-12-31",
     }
     authorization.write_text(json.dumps(config), encoding="utf-8")
-    assert module.inspect(tmp_path, authorization, "HEAD")["status"] == "PASS"
+    trusted_hash = module._portable_sha256(authorization)
+    untrusted_result = module.inspect(tmp_path, authorization, "HEAD")
+    assert untrusted_result["status"] == "FAIL"
+    assert untrusted_result["authorization_trusted"] is False
+    assert any(
+        "not configured outside the candidate tree" in item
+        for item in untrusted_result["failures"]
+    )
+    assert (
+        module.inspect(
+            tmp_path,
+            authorization,
+            "HEAD",
+            trusted_authorization_sha256=trusted_hash,
+        )["status"]
+        == "PASS"
+    )
 
     protected.write_text("later unreviewed change\n", encoding="utf-8")
-    result = module.inspect(tmp_path, authorization, "HEAD")
+    result = module.inspect(
+        tmp_path,
+        authorization,
+        "HEAD",
+        trusted_authorization_sha256=trusted_hash,
+    )
     assert result["status"] == "FAIL"
     assert any("content differs" in item for item in result["failures"])
+
+    config["authorized_content_sha256"][
+        "VEGO-AI/framework/llm_client.py"
+    ] = module._portable_sha256(protected)
+    authorization.write_text(json.dumps(config), encoding="utf-8")
+    result = module.inspect(
+        tmp_path,
+        authorization,
+        "HEAD",
+        trusted_authorization_sha256=trusted_hash,
+    )
+    assert result["status"] == "FAIL"
+    assert result["authorization_trusted"] is False
+    assert any(
+        "differs from the trusted authorization" in item
+        for item in result["failures"]
+    )
 
 
 def test_protected_rename_reports_the_source_path(tmp_path: Path) -> None:
@@ -95,7 +133,12 @@ def test_protected_rename_reports_the_source_path(tmp_path: Path) -> None:
         encoding="utf-8",
     )
 
-    result = module.inspect(tmp_path, authorization, "HEAD^")
+    result = module.inspect(
+        tmp_path,
+        authorization,
+        "HEAD^",
+        trusted_authorization_sha256=module._portable_sha256(authorization),
+    )
     assert result["status"] == "FAIL"
     assert "VEGO-AI/framework/agent4_variability_explorer.py" in result[
         "forbidden_changes"
@@ -104,6 +147,10 @@ def test_protected_rename_reports_the_source_path(tmp_path: Path) -> None:
 
 def test_push_workflow_uses_the_pre_push_revision() -> None:
     workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert (
+        "H_LAYER_AUTHORIZATION_SHA256: "
+        "${{ vars.H_LAYER_AUTHORIZATION_SHA256 }}" in workflow
+    )
     assert "PUSH_BEFORE_SHA: ${{ github.event.before }}" in workflow
     assert 'BASE="${PR_BASE_SHA:-${PUSH_BEFORE_SHA:-origin/main}}"' in workflow
     assert 'BASE="${PR_BASE_SHA:-${PUSH_BEFORE_SHA:-HEAD^}}"' in workflow
