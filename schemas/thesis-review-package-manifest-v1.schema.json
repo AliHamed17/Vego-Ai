@@ -37,11 +37,13 @@
     },
     "sourceRevision": {
       "type": "string",
-      "pattern": "^[0-9a-f]{40}$"
+      "pattern": "^[0-9a-f]{40}$",
+      "description": "Historical source-build commit; current source hashes remain authoritative when squash merge removes branch ancestry."
     },
     "packageRevision": {
       "type": "string",
-      "pattern": "^[0-9a-f]{40}$"
+      "pattern": "^[0-9a-f]{40}$",
+      "description": "Historical package-build commit; tracked artifact hashes remain authoritative when squash merge removes branch ancestry."
     },
     "sourceTreeHash": {
       "$ref": "#/$defs/sha256"

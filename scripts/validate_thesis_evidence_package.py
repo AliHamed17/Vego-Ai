@@ -23,13 +23,22 @@ PROGRAM_STATUS = ROOT / "docs/research/h-layer/program-status-snapshot-v1.json"
 SCHEMA = ROOT / "schemas/thesis-evidence-snapshot-v1.schema.json"
 
 
-def git(*args: str) -> str:
-    return subprocess.run(
-        ["git", "-C", str(ROOT), *args],
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
+def revision_available(revision: str) -> bool:
+    return (
+        subprocess.run(
+            [
+                "git",
+                "-C",
+                str(ROOT),
+                "cat-file",
+                "-e",
+                f"{revision}^{{commit}}",
+            ],
+            check=False,
+            capture_output=True,
+        ).returncode
+        == 0
+    )
 
 
 def find_duplicates(values: list[str]) -> list[str]:
@@ -64,20 +73,7 @@ def validate() -> list[str]:
     if data.get("schemaVersion") != "ThesisEvidenceSnapshot-v1":
         errors.append("unexpected schemaVersion")
     source_revision = data.get("sourceRevision", "")
-    ancestor = subprocess.run(
-        [
-            "git",
-            "-C",
-            str(ROOT),
-            "merge-base",
-            "--is-ancestor",
-            source_revision,
-            "HEAD",
-        ],
-        check=False,
-    )
-    if ancestor.returncode != 0:
-        errors.append("sourceRevision is not an ancestor of current HEAD")
+    inspect_source_revision = revision_available(source_revision)
     current_hashes: dict[str, str] = {}
     for relative_path, recorded_hash in data.get("sourceHashes", {}).items():
         path = ROOT / relative_path
@@ -88,25 +84,26 @@ def validate() -> list[str]:
         current_hashes[relative_path] = digest
         if digest != recorded_hash:
             errors.append(f"source hash drift: {relative_path}")
-        committed = subprocess.run(
-            [
-                "git",
-                "-C",
-                str(ROOT),
-                "show",
-                f"{source_revision}:{relative_path}",
-            ],
-            check=False,
-            capture_output=True,
-        )
-        if committed.returncode != 0:
-            errors.append(
-                f"source file is missing from sourceRevision: {relative_path}"
+        if inspect_source_revision:
+            committed = subprocess.run(
+                [
+                    "git",
+                    "-C",
+                    str(ROOT),
+                    "show",
+                    f"{source_revision}:{relative_path}",
+                ],
+                check=False,
+                capture_output=True,
             )
-        elif sha256_portable_text_bytes(committed.stdout) != recorded_hash:
-            errors.append(
-                f"sourceRevision hash differs: {relative_path}"
-            )
+            if committed.returncode != 0:
+                errors.append(
+                    f"source file is missing from sourceRevision: {relative_path}"
+                )
+            elif sha256_portable_text_bytes(committed.stdout) != recorded_hash:
+                errors.append(
+                    f"sourceRevision hash differs: {relative_path}"
+                )
     tree_digest = hashlib.sha256()
     for relative_path, digest in sorted(current_hashes.items()):
         tree_digest.update(relative_path.encode("utf-8"))

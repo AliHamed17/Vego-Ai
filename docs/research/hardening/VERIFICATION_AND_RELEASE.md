@@ -29,6 +29,9 @@ rule, or if no separate collaborator has approved it. Administrators are not a
 bypass. The intended final operation is a squash merge followed by tag
 `research-state-unified-hardening-v1`.
 
-Release identity uses source/package/artifact hashes in
-`ReleaseManifest-v3`. The post-merge SHA belongs in GitHub PR and tag metadata,
-not in a self-invalidating tracked manifest.
+Release identity uses source-tree, per-source, package-tree, and artifact hashes
+in the release and thesis manifests. Historical source/package build commits
+remain audit context, but validation does not depend on feature-branch ancestry;
+therefore a squash merge and a clean clone of `main` preserve valid provenance.
+The post-merge SHA belongs in GitHub PR and tag metadata, not in a
+self-invalidating tracked manifest.

@@ -35,7 +35,8 @@
     },
     "sourceRevision": {
       "type": "string",
-      "pattern": "^[0-9a-f]{40}$"
+      "pattern": "^[0-9a-f]{40}$",
+      "description": "Historical source-build commit. Source hashes and sourceTreeHash are the portable trust anchors after squash merge."
     },
     "sourceTreeHash": {
       "$ref": "#/$defs/sha256"

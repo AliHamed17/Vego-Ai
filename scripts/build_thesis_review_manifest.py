@@ -61,10 +61,10 @@ def git(*args: str, binary: bool = False) -> str | bytes:
     return result if binary else result.decode("utf-8").strip()
 
 
-def is_ancestor(revision: str) -> bool:
+def revision_available(revision: str) -> bool:
     return (
         subprocess.run(
-            ["git", "merge-base", "--is-ancestor", revision, "HEAD"],
+            ["git", "cat-file", "-e", f"{revision}^{{commit}}"],
             cwd=ROOT,
             capture_output=True,
         ).returncode
@@ -124,13 +124,6 @@ def tracked_manifest(
         raise SystemExit(
             "source revision differs from the canonical evidence snapshot"
         )
-    for name, revision in (
-        ("sourceRevision", source_revision),
-        ("packageRevision", package_revision),
-    ):
-        if not is_ancestor(revision):
-            raise SystemExit(f"{name} is not an ancestor of HEAD: {revision}")
-
     qa, qa_hash = load_qa(qa_report)
     pdf_metadata: dict[str, Any] = {
         "logicalDeliveryId": "thesis-review-pdf-local",
@@ -258,14 +251,13 @@ def validate_manifest() -> list[str]:
 
     if WINDOWS_ABSOLUTE.search(MANIFEST.read_text(encoding="utf-8")):
         errors.append("tracked manifest contains a personal absolute Windows path")
-    for name in ("sourceRevision", "packageRevision"):
-        if not is_ancestor(payload[name]):
-            errors.append(f"{name} is not an ancestor of HEAD")
     snapshot = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
     if payload["sourceRevision"] != snapshot.get("sourceRevision"):
         errors.append("manifest sourceRevision differs from snapshot")
     if payload["sourceTreeHash"] != snapshot.get("sourceTreeHash"):
         errors.append("manifest sourceTreeHash differs from snapshot")
+    source_revision_available = revision_available(payload["sourceRevision"])
+    package_revision_available = revision_available(payload["packageRevision"])
 
     artifact_items = [
         payload["evidenceSnapshot"],
@@ -284,38 +276,40 @@ def validate_manifest() -> list[str]:
             errors.append(f"tracked path is missing: {item['path']}")
         elif sha256_portable_text(path) != item["sha256"]:
             errors.append(f"tracked path hash drift: {item['path']}")
-        try:
-            source_bytes = git(
-                "show",
-                f"{payload['sourceRevision']}:{item['path']}",
-                binary=True,
-            )
-        except subprocess.CalledProcessError:
-            errors.append(
-                f"source file missing from sourceRevision: {item['path']}"
-            )
-            continue
-        if sha256_portable_text_bytes(source_bytes) != item["sha256"]:
-            errors.append(
-                f"sourceRevision does not contain recorded hash: {item['path']}"
-            )
+        if source_revision_available:
+            try:
+                source_bytes = git(
+                    "show",
+                    f"{payload['sourceRevision']}:{item['path']}",
+                    binary=True,
+                )
+            except subprocess.CalledProcessError:
+                errors.append(
+                    f"source file missing from sourceRevision: {item['path']}"
+                )
+                continue
+            if sha256_portable_text_bytes(source_bytes) != item["sha256"]:
+                errors.append(
+                    f"sourceRevision does not contain recorded hash: {item['path']}"
+                )
 
-    for item in payload["trackedOutputs"].values():
-        try:
-            package_bytes = git(
-                "show",
-                f"{payload['packageRevision']}:{item['path']}",
-                binary=True,
-            )
-        except subprocess.CalledProcessError:
-            errors.append(
-                f"tracked output missing from packageRevision: {item['path']}"
-            )
-            continue
-        if sha256_bytes(package_bytes) != item["sha256"]:
-            errors.append(
-                f"packageRevision does not contain recorded hash: {item['path']}"
-            )
+    if package_revision_available:
+        for item in payload["trackedOutputs"].values():
+            try:
+                package_bytes = git(
+                    "show",
+                    f"{payload['packageRevision']}:{item['path']}",
+                    binary=True,
+                )
+            except subprocess.CalledProcessError:
+                errors.append(
+                    f"tracked output missing from packageRevision: {item['path']}"
+                )
+                continue
+            if sha256_bytes(package_bytes) != item["sha256"]:
+                errors.append(
+                    f"packageRevision does not contain recorded hash: {item['path']}"
+                )
     return errors
 
 

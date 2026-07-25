@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
@@ -138,8 +139,11 @@ def resolve_source_revision(explicit: str | None) -> str:
         try:
             prior = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
             prior_revision = prior.get("sourceRevision")
-            if isinstance(prior_revision, str) and prior_revision:
-                return git("rev-parse", prior_revision)
+            if isinstance(prior_revision, str):
+                if re.fullmatch(r"[0-9a-f]{40}", prior_revision):
+                    return prior_revision
+                if prior_revision:
+                    return git("rev-parse", prior_revision)
         except (OSError, json.JSONDecodeError, subprocess.CalledProcessError):
             pass
     return git("rev-parse", "HEAD")
@@ -167,10 +171,10 @@ def source_tree_hash(source_hashes: dict[str, str]) -> str:
     return digest.hexdigest()
 
 
-def canonical_sources_dirty(source_revision: str) -> bool:
+def canonical_sources_dirty() -> bool:
     paths = [path.as_posix() for path in CANONICAL_SOURCE_PATHS]
     diff = subprocess.run(
-        ["git", "-C", str(ROOT), "diff", "--quiet", source_revision, "--", *paths],
+        ["git", "-C", str(ROOT), "diff", "--quiet", "HEAD", "--", *paths],
         check=False,
     )
     untracked = git("ls-files", "--others", "--exclude-standard", "--", *paths)
@@ -458,7 +462,7 @@ def build_snapshot(
         "generatedAt": generated_at(refresh_timestamp),
         "sourceRevision": revision,
         "sourceTreeHash": source_tree_hash(source_hashes),
-        "canonicalSourcesDirty": canonical_sources_dirty(revision),
+        "canonicalSourcesDirty": canonical_sources_dirty(),
         "programSnapshot": {
             "path": PROGRAM_STATUS.relative_to(ROOT).as_posix(),
             "sha256": sha256_file(PROGRAM_STATUS),
@@ -1364,8 +1368,8 @@ def main() -> int:
     parser.add_argument(
         "--source-revision",
         help=(
-            "Canonical source commit. Generated outputs may be committed later; "
-            "the recorded revision must contain every canonical source file."
+            "Historical source-build commit. Generated outputs may be committed later; "
+            "portable source hashes remain the validation anchor after squash merge."
         ),
     )
     args = parser.parse_args()
