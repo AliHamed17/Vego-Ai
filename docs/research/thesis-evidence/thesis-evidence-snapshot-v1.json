@@ -1,21 +1,21 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
-  "generatedAt": "2026-07-24T22:33:12+00:00",
-  "sourceRevision": "1e8c0412d49efe3c9fda7bcf6bf942e25b5a1ea1",
-  "sourceTreeHash": "6116ed43817609cccbd54bbc3c8cab903edb6e18655670f33e15dd36030601b6",
+  "generatedAt": "2026-07-25T12:02:14+00:00",
+  "sourceRevision": "145b2e6cea147a9dac05f1572867aad35c4d6325",
+  "sourceTreeHash": "8701a726af01004a5ba6a61c9cb9e90b85d67cf75f268d94cc1b50659178c82e",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-    "sha256": "b9bd6c0b25411c7654f20b615985cfc7a69ead7924e4189f0626241ddc08f1ee",
+    "sha256": "ba31f5928031ae003889cb46beb07b1b102029373aa3caf350e7bd9101931d36",
     "latestAcceptedIteration": 15,
     "latestAcceptedRunId": "HLAYER-UNIFIED-HARDENING-V1",
     "verdict": "NEUTRAL",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim.",
     "verification": {
       "status": "PASS",
-      "recordedAt": "2026-07-24T22:12:30Z",
-      "vegoTestsPassed": 102,
-      "scriptTestsPassed": 76
+      "recordedAt": "2026-07-25T12:00:01Z",
+      "vegoTestsPassed": 105,
+      "scriptTestsPassed": 82
     }
   },
   "runtimeHardening": {
@@ -1183,7 +1183,7 @@
     }
   ],
   "sourceHashes": {
-    "requirements-thesis.txt": "bafc7e696ee9ee41c820eb2e1f2e6ef213e28b821363b610525bca99ccf8a825",
+    "requirements-thesis.txt": "508afc2fd4d4751973918868df3d03762dd7b969c3d6140e2e9d85cafa88cd60",
     "scripts/build_thesis_evidence_package.py": "ad287be310d2c3797e2655bfd445050f40b19899e7b74d1b953910b1d0b98ef8",
     "scripts/validate_thesis_evidence_package.py": "ad7c42128094c31799c661c34d3df44a27238ba4a0e14e3093020983a3caef96",
     "scripts/validate_research_records.py": "7367006c821215049cb7dea2a2441f83fc09898690a5421044b7d2836df0a930",
@@ -1207,19 +1207,19 @@
     "schemas/model-execution-manifest-v1.schema.json": "9029b613a21c9a3555e469e3e4ff86476737548d4964814efdaf0b7507531910",
     "schemas/security-posture-snapshot-v1.schema.json": "326daafe746cbbe0d184739fd4fae5ed1fa814406e744fccbb640a5afd4ca770",
     "configs/hlayer-runtime.json": "0e8c03d4297b74cf04020c244be6a09441555b595b63434a3c83c86cdaf993e2",
-    "configs/protected-change-authorization-v1.json": "bcff333a0fd9a75fd72421168aac684a91d51faa639149b120c10a419529a89c",
-    "scripts/build_hardening_manifests.py": "ac7f46932c6f9fefd5c5c66ff7d52b496372d8690cccdcc3a3efcff30edb612a",
-    "scripts/run_hlayer_architecture.py": "7fe1f20083be4a812ecf62fb103a478253d30a2cf49646e0ab17d54ea3ca5e2d",
-    "scripts/verify-source.ps1": "42889cf67f6fb380069f775fd3c6f105fbf58da678e9d72bbe6397d4ce4e2110",
+    "configs/protected-change-authorization-v1.json": "ad04b40524622649b68570ec3c2521ea84035a09d5998c2a4e2db2e1f368772b",
+    "scripts/build_hardening_manifests.py": "9566ef1171d1c9debd691bd1ba3fddedb82a9f802d5cecc91b0e2ef5d717ab35",
+    "scripts/run_hlayer_architecture.py": "947731c4327b7a9c6301fa7f169aa9da284c2a99c7d546585ce08f70d3b658a6",
+    "scripts/verify-source.ps1": "d22dddf754e87e6ae6cf5c4899aecfeb6aac5b73fa8c820e14a3574e1d400f87",
     "scripts/verify-controlled.ps1": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239",
     "scripts/verify-release.ps1": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5",
     "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
-    "src/vego_hlayer/adapters.py": "3ec8f9ab28fb979178167f7f5c7388c83ed49d8a4b3bf3afb0de95f9dc84cea3",
-    "src/vego_hlayer/contracts.py": "1de923c5682822d9cd0f3d6d342712dc43a1e747e287150f77a2aa8d5819bacd",
-    "src/vego_hlayer/io_safety.py": "5d246bce833103a54642c3eb80d3855b8bc5330a3337e9caf6a975dc0d822a82",
-    "src/vego_hlayer/runtime.py": "d33ccbab226c12f68926e0a6a8f1dc07fb613d0a891e785c47472f1ce68eba2b",
+    "src/vego_hlayer/adapters.py": "4a0d424c996a36af1892c251fc728705250730273ca3673fcfa2bd4737f7db27",
+    "src/vego_hlayer/contracts.py": "6fd5a4e41633309e8269af07ca0078c3446f760ae429ec2cfda28704aacf68fa",
+    "src/vego_hlayer/io_safety.py": "842a63ddd9cf3a28ac521b40338dede55f9ee82533a9a0f2db464805951fa86d",
+    "src/vego_hlayer/runtime.py": "3109449672bded5219dc6e18ddb9bfd841d159b4c8d88e850411d58e13688aa3",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "b9bd6c0b25411c7654f20b615985cfc7a69ead7924e4189f0626241ddc08f1ee",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "ba31f5928031ae003889cb46beb07b1b102029373aa3caf350e7bd9101931d36",
     "docs/research/hardening/README.md": "447401334f40a123eb0bb67e5759f477b15cb134df442c3d7140135a5269d2e3",
     "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md": "7fb96ba31fa0aa9a0726479e901e7fd6f3d09047af9a43dea14348c00c7e7c3f",
     "docs/research/hardening/THREAT_MODEL.md": "9904a0a517506e1fd8459ffbe5a9ceddbd615f768fff607ca7e4974baa0a700b",
@@ -1253,6 +1253,6 @@
     "thesis/chapters/10-conclusion-and-phd-continuation.md": "dccbe777a471b7fa9a0c0b1b985520209bd55bb54a534f0bcf6be1f0f0555e95",
     "thesis/chapters/11-references.md": "c59f8bc09f1ed0ca53d78942bae7085cb63f21490f6f628c1eeb9c34e1df0dc8",
     "thesis/chapters/design-theory-governed-reuse.md": "c50671af7cbe01db801b8831c0a43a7dd022563edd5793734436d8d9c73009a0",
-    "thesis/chapters/appendix-a-supplementary.md": "fd49caa000665d8c78a556c88511d270a7a8587818efaabef1243766015cef90"
+    "thesis/chapters/appendix-a-supplementary.md": "2d94d54ddecee97c41d49dd4f1b6af2c910c756ef198b94d5a5c263e5d030bf8"
   }
 }
