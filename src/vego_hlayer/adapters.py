@@ -3,9 +3,14 @@
 from __future__ import annotations
 
 import copy
+import json
 from collections.abc import Mapping
 from dataclasses import dataclass
+from functools import cache
+from pathlib import Path
 from typing import Any
+
+import jsonschema
 
 from .contracts import (
     AdviceRecord,
@@ -43,6 +48,15 @@ ENVELOPE_FIELDS = {
             "comparisons",
         }
     ),
+}
+REPO_ROOT = Path(__file__).resolve().parents[2]
+LEGACY_SCHEMA_FILES = {
+    "review": "human_review_item.schema.json",
+    "feedback": "human_feedback.schema.json",
+    "resolved": "human_review_item.schema.json",
+    "memory": "human_judgment.schema.json",
+    "advice": "memory_advice.schema.json",
+    "comparison": "memory_informed_comparison.schema.json",
 }
 
 
@@ -256,6 +270,62 @@ def _require_exact_fields(
 def _require_nonempty_text(value: Mapping[str, Any], key: str, context: str) -> None:
     if not isinstance(value.get(key), str) or not value[key]:
         raise ValidationError(f"{context} {key} must be a non-empty string")
+
+
+@cache
+def _legacy_validator(stage: str) -> jsonschema.Draft7Validator:
+    schema_name = LEGACY_SCHEMA_FILES[stage]
+    schema_path = REPO_ROOT / "VEGO-AI" / "schemas" / schema_name
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    return jsonschema.Draft7Validator(
+        schema,
+        format_checker=jsonschema.FormatChecker(),
+    )
+
+
+def _validate_schema_instance(
+    stage: str,
+    value: Any,
+    *,
+    context: str,
+) -> None:
+    errors = sorted(
+        _legacy_validator(stage).iter_errors(value),
+        key=lambda error: tuple(str(part) for part in error.absolute_path),
+    )
+    if not errors:
+        return
+    error = errors[0]
+    location = ".".join(str(part) for part in error.absolute_path)
+    suffix = f" at {location}" if location else ""
+    raise ValidationError(
+        f"{context} violates {LEGACY_SCHEMA_FILES[stage]}{suffix}: {error.message}"
+    )
+
+
+def _validate_legacy_artifact(stage: str, payload: Any) -> None:
+    """Validate complete public legacy records before canonical adaptation."""
+
+    if stage in {"advice", "comparison"}:
+        _validate_schema_instance(stage, payload, context=f"{stage} payload")
+        return
+    if not isinstance(payload, list):
+        raise ValidationError(f"{stage} payload must be a list")
+    for index, item in enumerate(payload):
+        schema_stage = "review" if stage == "resolved" else stage
+        _validate_schema_instance(
+            schema_stage,
+            item,
+            context=f"{stage} record {index}",
+        )
+        if stage == "resolved" and isinstance(item, Mapping):
+            feedback = item.get("human_feedback")
+            if feedback is not None:
+                _validate_schema_instance(
+                    "feedback",
+                    feedback,
+                    context=f"resolved record {index} human_feedback",
+                )
 
 
 def _validate_envelope(stage: str, payload: dict[str, Any]) -> dict[str, Any]:
@@ -495,6 +565,7 @@ def adapt_legacy_artifact(stage: str, payload: Any) -> AdapterResult:
     if stage not in STAGES:
         raise ValidationError(f"unsupported legacy stage {stage!r}")
     legacy = copy.deepcopy(payload)
+    _validate_legacy_artifact(stage, legacy)
     items, provenance = _items_and_provenance(stage, legacy)
     records: list[dict[str, Any]] = []
     for item in items:

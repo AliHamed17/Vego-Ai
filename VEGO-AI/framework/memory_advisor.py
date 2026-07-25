@@ -44,19 +44,21 @@ try:  # reuse M3 retrieval and M1 helpers
     from human_review_queue import derive_domain_and_diagram
 except Exception:  # pragma: no cover
     from .human_judgment_memory import load_memory, search_memory  # type: ignore
-    from .human_review_queue import derive_domain_and_diagram      # type: ignore
+    from .human_review_queue import derive_domain_and_diagram  # type: ignore
 
 try:
     from hlayer_architecture import (
         add_architecture_arguments,
         apply_stage_architecture,
         publish_stage_output,
+        require_cli_parity_success,
     )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
         publish_stage_output,
+        require_cli_parity_success,
     )
 
 logger = logging.getLogger(__name__)
@@ -319,6 +321,7 @@ def main(argv: list[str] | None = None) -> None:
         architecture_mode=args.architecture_mode,
         architecture_manifest=args.architecture_manifest,
     )
+    require_cli_parity_success(execution)
     report = execution.output
 
     by_strength: dict[str, int] = {}

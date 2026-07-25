@@ -151,6 +151,96 @@ def test_protected_rename_reports_the_source_path(tmp_path: Path) -> None:
     ]
 
 
+def test_canonical_runtime_paths_are_protected(tmp_path: Path) -> None:
+    module = load_module()
+    runtime = tmp_path / "src" / "vego_hlayer" / "runtime.py"
+    runtime.parent.mkdir(parents=True)
+    runtime.write_text("baseline\n", encoding="utf-8")
+    run_git(tmp_path, "init", "-b", "main")
+    run_git(tmp_path, "config", "user.email", "fixture@example.invalid")
+    run_git(tmp_path, "config", "user.name", "Fixture")
+    run_git(tmp_path, "add", "src/vego_hlayer/runtime.py")
+    run_git(tmp_path, "commit", "-m", "baseline")
+    runtime.write_text("unreviewed\n", encoding="utf-8")
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(
+        json.dumps(
+            {
+                "allowed_paths": [],
+                "authorized_content_sha256": {},
+                "forbidden_paths": [],
+                "merge_requires_independent_approval": True,
+                "authorization_expires_on": "2099-12-31",
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = module.inspect(
+        tmp_path,
+        authorization,
+        "HEAD",
+        trusted_authorization_sha256=module._portable_sha256(authorization),
+    )
+    assert result["status"] == "FAIL"
+    assert result["unauthorized_changes"] == ["src/vego_hlayer/runtime.py"]
+
+
+def test_git_symlink_mode_cannot_reuse_an_authorized_hash(tmp_path: Path) -> None:
+    module = load_module()
+    protected = tmp_path / "src" / "vego_hlayer" / "runtime.py"
+    protected.parent.mkdir(parents=True)
+    protected.write_text("baseline\n", encoding="utf-8")
+    run_git(tmp_path, "init", "-b", "main")
+    run_git(tmp_path, "config", "user.email", "fixture@example.invalid")
+    run_git(tmp_path, "config", "user.name", "Fixture")
+    run_git(tmp_path, "add", "src/vego_hlayer/runtime.py")
+    run_git(tmp_path, "commit", "-m", "baseline")
+
+    protected.write_text("authorized\n", encoding="utf-8")
+    blob = subprocess.run(
+        ["git", "hash-object", "-w", "--stdin"],
+        cwd=tmp_path,
+        input="authorized\n",
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    ).stdout.strip()
+    run_git(
+        tmp_path,
+        "update-index",
+        "--add",
+        "--cacheinfo",
+        f"120000,{blob},src/vego_hlayer/runtime.py",
+    )
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(
+        json.dumps(
+            {
+                "allowed_paths": ["src/vego_hlayer/runtime.py"],
+                "authorized_content_sha256": {
+                    "src/vego_hlayer/runtime.py": module._portable_sha256(protected)
+                },
+                "forbidden_paths": [],
+                "merge_requires_independent_approval": True,
+                "authorization_expires_on": "2099-12-31",
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = module.inspect(
+        tmp_path,
+        authorization,
+        "HEAD",
+        trusted_authorization_sha256=module._portable_sha256(authorization),
+    )
+    assert result["status"] == "FAIL"
+    assert any(
+        "cannot be a symbolic link or reparse point" in item
+        for item in result["failures"]
+    )
+
+
 def test_default_base_falls_back_to_local_main_without_remote(
     monkeypatch,
     tmp_path: Path,

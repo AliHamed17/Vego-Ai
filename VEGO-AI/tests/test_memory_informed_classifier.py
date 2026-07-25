@@ -236,6 +236,8 @@ def test_schema_rejects_missing_nested_memory_advice_fields():
     from jsonschema import Draft7Validator
     from jsonschema.exceptions import ValidationError
 
+    from vego_hlayer.contracts import ValidationError as ContractValidationError
+
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     item = _one(_classes([_entry()]), _advice(strength="none", matches=[]), [])
     item["memory_advice"].pop("advice_strength")
@@ -244,10 +246,10 @@ def test_schema_rejects_missing_nested_memory_advice_fields():
         "source_memory_advice": "adv.json",
         "source_memory": "mem.jsonl",
     }
-    report = mic.generate_report([item], "ucd_ch", prov)
     try:
+        report = mic.generate_report([item], "ucd_ch", prov)
         Draft7Validator(schema).validate(report)
-    except ValidationError:
+    except (ValidationError, ContractValidationError):
         return
     raise AssertionError("schema accepted memory_advice without advice_strength")
 
@@ -255,6 +257,7 @@ def test_schema_rejects_missing_nested_memory_advice_fields():
 def test_schema_rejects_missing_nested_parallel_classification_fields():
     from jsonschema import Draft7Validator
     from jsonschema.exceptions import ValidationError
+
     from vego_hlayer.contracts import ValidationError as ContractValidationError
 
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))

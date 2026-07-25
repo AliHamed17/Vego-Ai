@@ -54,12 +54,14 @@ try:
         add_architecture_arguments,
         apply_stage_architecture,
         publish_stage_output,
+        require_cli_parity_success,
     )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
         publish_stage_output,
+        require_cli_parity_success,
     )
 
 logger = logging.getLogger(__name__)
@@ -273,6 +275,7 @@ def main(argv: list[str] | None = None) -> None:
         architecture_mode=args.architecture_mode,
         architecture_manifest=args.architecture_manifest,
     )
+    require_cli_parity_success(execution)
     items = execution.output
 
     print("\n=== Feedback attachment summary ===")

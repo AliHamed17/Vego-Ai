@@ -38,25 +38,27 @@ from pathlib import Path
 
 try:  # allow both flat-module use and package use
     from selective_intervention_policy import (
-        should_request_human_review,
         POLICY_VERSION,
+        should_request_human_review,
     )
 except ImportError:  # pragma: no cover - fallback when imported as a package
     from .selective_intervention_policy import (  # type: ignore
-        should_request_human_review,
         POLICY_VERSION,
+        should_request_human_review,
     )
 try:
     from hlayer_architecture import (
         add_architecture_arguments,
         apply_stage_architecture,
         publish_stage_output,
+        require_cli_parity_success,
     )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
         publish_stage_output,
+        require_cli_parity_success,
     )
 
 logger = logging.getLogger(__name__)
@@ -437,6 +439,7 @@ def _run_for_eval_dir(
         architecture_mode=architecture_mode,
         architecture_manifest=architecture_manifest,
     )
+    require_cli_parity_success(execution)
     items = execution.output
     print(f"{setting_id}: {len(items)} review item(s) -> "
           f"{output_path}")

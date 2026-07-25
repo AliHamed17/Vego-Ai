@@ -58,6 +58,8 @@ def test_builder_is_deterministic_with_or_without_controlled_check() -> None:
 
 def test_release_source_hash_includes_every_controlled_validator() -> None:
     builder = load_builder()
+    assert "scripts/hlayer_offline/" in builder.SOURCE_PREFIXES
+    assert "scripts/validate_hlayer_offline.py" in builder.SOURCE_EXTRA
     assert "scripts/validate_hlayer_program.py" in builder.SOURCE_EXTRA
     assert "scripts/verify_hlayer_controlled_parity.py" in builder.SOURCE_EXTRA
     assert "scripts/verify-controlled.ps1" in builder.SOURCE_EXTRA

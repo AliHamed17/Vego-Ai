@@ -17,7 +17,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "2ba5b32ccb877152c9deedb20771c7685fffa3160513b2c51ec9808542e9f543",
+  "packageTreeSha256": "76468c470bdcb72da991b19bdad0cdfa3379b302853baac50fd32b7bfaa7d2e4",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -90,6 +90,19 @@
     "scripts/check_evidence_consistency.py",
     "scripts/check_hlayer_change_authorization.py",
     "scripts/check_quality_ratchet.py",
+    "scripts/hlayer_offline/__init__.py",
+    "scripts/hlayer_offline/common.py",
+    "scripts/hlayer_offline/contracts.py",
+    "scripts/hlayer_offline/exp013.py",
+    "scripts/hlayer_offline/exp014.py",
+    "scripts/hlayer_offline/exp015.py",
+    "scripts/hlayer_offline/exp016.py",
+    "scripts/hlayer_offline/exp017.py",
+    "scripts/hlayer_offline/exp018.py",
+    "scripts/hlayer_offline/legacy_replay_adapter.py",
+    "scripts/hlayer_offline/state_machine.py",
+    "scripts/hlayer_offline/suite.py",
+    "scripts/hlayer_offline/validator.py",
     "scripts/run_hlayer_architecture.py",
     "scripts/security_audit.py",
     "scripts/tests/fixtures/exp009_seeds.v1.json",
@@ -109,6 +122,7 @@
     "scripts/tests/test_thesis_evidence_package.py",
     "scripts/tests/test_validate_hlayer_program_portability.py",
     "scripts/tests/thesis_progress_browser_smoke.mjs",
+    "scripts/validate_hlayer_offline.py",
     "scripts/validate_hlayer_program.py",
     "scripts/vego_doctor.py",
     "scripts/verify-controlled.ps1",
@@ -130,7 +144,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "f0bf7c09c168eb9b3bb8e339655a6d5a007eb53c2988a4069adc18e4b989a143",
+  "sourceTreeSha256": "19680af4256352b4d458c3382bc5210707560c601219ce6dae88c792e6fa6376",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
@@ -140,9 +154,9 @@
   },
   "trackedArtifacts": {
     "VEGO-AI-Thesis-Baseline-Progress.html": "56291b56eafc9b88749cc2010f02f82be03766efbcae59ffdc728b79d43b3dea",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "b06d495a994e74553ef7d384dc4023b013eb1c1a6871f2da27e2ce9696fbd118",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "8e1cf13112745c8e8413b360a0194b3195a02fbb0a358cb567a837fc499f0d8c",
     "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
-    "docs/research/hardening/iteration-015-manifest.json": "5ae7aa571ee58b9915e915facdce5124753f95a2992a47926685ed71e4427007",
+    "docs/research/hardening/iteration-015-manifest.json": "bf86933721750c51f38e8909cf974bd38c3a6785ecab0807f9f22d3f0b170395",
     "docs/research/hardening/sbom.cdx.json": "9e26667891c31211a285c14fb5970353174d263b23e8b7112fe232f6f9b97d43",
     "docs/research/hardening/security-posture-snapshot-v1.json": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }

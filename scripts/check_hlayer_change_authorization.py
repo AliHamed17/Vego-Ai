@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 import shutil
+import stat
 import subprocess
 import sys
 from datetime import date
@@ -20,6 +21,9 @@ PROTECTED_PREFIXES = (
     "VEGO-AI/eval/",
     "VEGO-AI/eval_output/",
     "VEGO-AI/inputs/",
+    "scripts/hlayer_offline/",
+    "src/vego_hlayer/",
+    "tests/hlayer_offline/",
 )
 GIT = shutil.which("git")
 TRUSTED_HASH_ENV = "H_LAYER_AUTHORIZATION_SHA256"
@@ -67,6 +71,47 @@ def _matches_prefix(path: str, prefixes: list[str]) -> bool:
 def _portable_sha256(path: Path) -> str:
     data = path.read_bytes().replace(b"\r\n", b"\n")
     return hashlib.sha256(data).hexdigest()
+
+
+def _is_link_or_reparse_point(path: Path) -> bool:
+    try:
+        metadata = os.lstat(path)
+    except FileNotFoundError:
+        return False
+    if stat.S_ISLNK(metadata.st_mode):
+        return True
+    attributes = getattr(metadata, "st_file_attributes", 0)
+    reparse_flag = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0)
+    return bool(reparse_flag and attributes & reparse_flag)
+
+
+def _path_contains_link(path: Path) -> bool:
+    absolute = path if path.is_absolute() else Path.cwd() / path
+    cursor = Path(absolute.anchor)
+    for part in absolute.parts[1:]:
+        if part in {"", "."}:
+            continue
+        if part == "..":
+            cursor = cursor.parent
+            continue
+        cursor /= part
+        if _is_link_or_reparse_point(cursor):
+            return True
+    return False
+
+
+def _git_index_path_is_symlink(repo: Path, path: str) -> bool:
+    if not GIT:
+        raise OSError("git executable not found")
+    result = subprocess.run(  # noqa: S603 - executable and arguments are controlled
+        [GIT, "ls-files", "--stage", "--", path],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    return any(line.split(maxsplit=1)[0] == "120000" for line in result.stdout.splitlines())
 
 
 def resolve_comparison_base(repo: Path, requested_base: str | None = None) -> str:
@@ -149,6 +194,7 @@ def inspect(
     trusted_authorization_sha256: str | None = None,
 ) -> dict:
     base = resolve_comparison_base(repo, base)
+    authorization_has_link = _path_contains_link(authorization)
     actual_authorization_sha256 = _portable_sha256(authorization)
     trusted_authorization_sha256 = _trusted_authorization_sha256(
         repo,
@@ -157,6 +203,7 @@ def inspect(
     authorization_trusted = (
         trusted_authorization_sha256 is not None
         and actual_authorization_sha256 == trusted_authorization_sha256
+        and not authorization_has_link
     )
     config = (
         json.loads(authorization.read_text(encoding="utf-8"))
@@ -213,9 +260,18 @@ def inspect(
         for path in protected:
             expected = authorized_hashes.get(path)
             target = repo / path
+            target_has_link = _path_contains_link(target) or _git_index_path_is_symlink(
+                repo,
+                path,
+            )
             if not isinstance(expected, str) or len(expected) != 64:
                 hash_authorization_errors.append(
                     f"protected path lacks a valid authorized hash: {path}"
+                )
+            elif target_has_link:
+                hash_authorization_errors.append(
+                    f"authorized protected path cannot be a symbolic link "
+                    f"or reparse point: {path}"
                 )
             elif not target.is_file():
                 hash_authorization_errors.append(f"authorized protected path is missing: {path}")
@@ -231,7 +287,11 @@ def inspect(
                 "authorization_expires_on must be an ISO date"
             )
     failures = []
-    if trusted_authorization_sha256 is None:
+    if authorization_has_link:
+        failures.append(
+            "authorization record cannot be a symbolic link or reparse point"
+        )
+    elif trusted_authorization_sha256 is None:
         failures.append(
             "trusted authorization SHA-256 is not configured outside the candidate tree"
         )
@@ -256,6 +316,7 @@ def inspect(
         "authorization_sha256": actual_authorization_sha256,
         "trusted_authorization_sha256": trusted_authorization_sha256,
         "authorization_trusted": authorization_trusted,
+        "authorization_has_link": authorization_has_link,
         "protected_changes": protected,
         "unauthorized_changes": unauthorized,
         "forbidden_changes": forbidden_changes,

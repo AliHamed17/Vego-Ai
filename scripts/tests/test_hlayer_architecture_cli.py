@@ -17,23 +17,35 @@ import run_hlayer_architecture as architecture_cli  # noqa: E402
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def _review_item() -> dict:
+    return {
+        "review_id": "HRQ-ucd_ch-P1",
+        "review_signature": "0123456789abcdef",
+        "schema_version": "1.2.0",
+        "provenance": {
+            "source_system": "VEGO-AI",
+            "policy_version": "selective-intervention-v1",
+            "source_setting": "ucd_ch",
+        },
+        "setting_id": "ucd_ch",
+        "status": "pending",
+        "pattern_id": "P1",
+        "pipeline_stage": "agent4_classify_variability",
+        "ai_decision": {
+            "classification": "Occasional Variability",
+            "confidence": "Medium",
+            "flag_for_guidelines_update": False,
+            "requires_human_review": True,
+        },
+        "trigger_reasons": ["medium_confidence"],
+    }
+
+
 def test_parity_cli_publishes_legacy_shape_and_manifest(
     tmp_path: Path,
     monkeypatch,
 ) -> None:
-    payload = [
-        {
-            "review_id": "HRQ-ucd_ch-P1",
-            "review_signature": "0123456789abcdef",
-            "status": "pending",
-            "pattern_id": "P1",
-            "provenance": {"source": "fixture"},
-            "ai_decision": {
-                "classification": "Occasional Variability",
-                "confidence": "Medium",
-            },
-        }
-    ]
+    payload = [_review_item()]
     source = tmp_path / "review.jsonl"
     source.write_text(
         "".join(json.dumps(item) + "\n" for item in payload),
@@ -128,19 +140,7 @@ def test_parity_cli_publishes_legacy_shape_and_manifest(
 
 
 def test_cli_rejects_shared_output_and_manifest_before_publishing(tmp_path: Path) -> None:
-    payload = [
-        {
-            "review_id": "HRQ-ucd_ch-P1",
-            "review_signature": "0123456789abcdef",
-            "status": "pending",
-            "pattern_id": "P1",
-            "provenance": {"source": "fixture"},
-            "ai_decision": {
-                "classification": "Occasional Variability",
-                "confidence": "Medium",
-            },
-        }
-    ]
+    payload = [_review_item()]
     source = tmp_path / "review.jsonl"
     source.write_text(json.dumps(payload[0]) + "\n", encoding="utf-8")
     shared = tmp_path / "shared.json"
@@ -232,10 +232,7 @@ def test_comparison_cli_reports_nested_shape_errors_without_traceback(
         timeout=30,
     )
     assert result.returncode == 2
-    assert (
-        "original_agent4_classification must be an object"
-        in result.stderr
-    )
+    assert "memory_informed_comparison.schema.json" in result.stderr
     assert "Traceback" not in result.stderr
     assert not output.exists()
     assert not manifest.exists()
@@ -254,7 +251,7 @@ def test_comparison_cli_reports_nested_shape_errors_without_traceback(
                 "provenance": {"source": "fixture"},
                 "ai_decision": [],
             },
-            "ai_decision must be an object",
+            "human_review_item.schema.json",
         ),
         (
             "feedback",
@@ -266,7 +263,7 @@ def test_comparison_cli_reports_nested_shape_errors_without_traceback(
                 "timestamp": "2026-07-25T00:00:00Z",
                 "human_decision": [],
             },
-            "human_decision must be an object",
+            "human_feedback.schema.json",
         ),
     ],
 )
@@ -359,7 +356,7 @@ def test_advice_cli_rejects_non_array_memory_matches(tmp_path: Path) -> None:
         timeout=30,
     )
     assert result.returncode == 2
-    assert "memory_matches must be an array" in result.stderr
+    assert "memory_advice.schema.json" in result.stderr
     assert "Traceback" not in result.stderr
     assert not output.exists()
     assert not manifest.exists()
@@ -371,12 +368,12 @@ def test_advice_cli_rejects_non_array_memory_matches(tmp_path: Path) -> None:
         (
             "advice",
             {"advice": []},
-            "advice envelope missing required fields",
+            "memory_advice.schema.json",
         ),
         (
             "comparison",
             {"comparisons": []},
-            "comparison envelope missing required fields",
+            "memory_informed_comparison.schema.json",
         ),
     ],
 )
@@ -499,19 +496,7 @@ def test_cli_reports_missing_config_without_traceback(tmp_path: Path) -> None:
 
 
 def test_parity_cli_path_preserves_legacy_when_adapter_drifts(monkeypatch) -> None:
-    payload = [
-        {
-            "review_id": "HRQ-ucd_ch-P1",
-            "review_signature": "0123456789abcdef",
-            "status": "pending",
-            "pattern_id": "P1",
-            "provenance": {"source": "fixture"},
-            "ai_decision": {
-                "classification": "Occasional Variability",
-                "confidence": "Medium",
-            },
-        }
-    ]
+    payload = [_review_item()]
 
     @dataclass(frozen=True)
     class ChangedAdapter:
@@ -531,3 +516,16 @@ def test_parity_cli_path_preserves_legacy_when_adapter_drifts(monkeypatch) -> No
     assert execution.output == payload
     assert execution.legacy_output == payload
     assert execution.unified_output != payload
+
+
+def test_all_compatibility_clis_propagate_parity_mismatches() -> None:
+    framework = ROOT / "VEGO-AI" / "framework"
+    for name in (
+        "human_review_queue.py",
+        "human_feedback_manager.py",
+        "human_judgment_memory.py",
+        "memory_advisor.py",
+        "memory_informed_classifier.py",
+    ):
+        source = (framework / name).read_text(encoding="utf-8")
+        assert "require_cli_parity_success(execution)" in source, name

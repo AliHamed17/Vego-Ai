@@ -147,7 +147,15 @@ def _secret_labels(data: bytes) -> list[str]:
 
 
 def _is_zip_data(data: bytes) -> bool:
-    return any(data.startswith(prefix) for prefix in MAGIC[".zip"])
+    if any(data.startswith(prefix) for prefix in MAGIC[".zip"]):
+        return True
+    # ``zipfile`` recognizes self-extracting/preamble archives by locating the
+    # central directory. This closes the magic-at-byte-zero evasion while
+    # retaining the same bounded, in-memory inspection path.
+    try:
+        return zipfile.is_zipfile(io.BytesIO(data))
+    except (OSError, ValueError):
+        return False
 
 
 def _zip_data_findings(

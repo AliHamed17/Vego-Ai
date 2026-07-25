@@ -18,12 +18,175 @@ def _review_item() -> dict:
     return {
         "review_id": "HRQ-ucd_ch-P1",
         "review_signature": "0123456789abcdef",
+        "schema_version": "1.2.0",
+        "provenance": {
+            "source_system": "VEGO-AI",
+            "policy_version": "selective-intervention-v1",
+            "source_setting": "ucd_ch",
+        },
+        "setting_id": "ucd_ch",
         "status": "pending",
         "pattern_id": "P1",
-        "provenance": {"source": "fixture"},
+        "pipeline_stage": "agent4_classify_variability",
         "ai_decision": {
             "classification": "Occasional Variability",
             "confidence": "Medium",
+            "flag_for_guidelines_update": False,
+            "requires_human_review": True,
+        },
+        "trigger_reasons": ["medium_confidence"],
+    }
+
+
+def _feedback_item() -> dict:
+    return {
+        "feedback_id": "HF-ucd_ch-P1-001",
+        "review_id": "HRQ-ucd_ch-P1",
+        "review_signature": "0123456789abcdef",
+        "expert_id": "reviewer-1",
+        "timestamp": "2026-07-25T00:00:00Z",
+        "human_decision": {
+            "decision_type": "approve_ai_decision",
+            "confidence": "High",
+        },
+        "reusable": False,
+        "reuse_scope": {},
+        "notes": "",
+    }
+
+
+def _memory_item() -> dict:
+    return {
+        "memory_id": "HJM-ucd_ch-P1",
+        "memory_signature": "0123456789abcdef",
+        "schema_version": "1.0.0",
+        "created_at": "2026-07-25T00:00:00Z",
+        "status": "active",
+        "conflict_status": "none",
+        "conflicting_memory_ids": [],
+        "source_review_id": "HRQ-ucd_ch-P1",
+        "source_review_signature": "0123456789abcdef",
+        "source_feedback_id": "HF-ucd_ch-P1-001",
+        "domain": "cheers",
+        "diagram_type": "UCD",
+        "related_guideline_id": None,
+        "target_fragment": "fixture pattern",
+        "decision_type": "approve_ai_decision",
+        "human_decision": {
+            "decision_type": "approve_ai_decision",
+            "confidence": "High",
+        },
+        "rationale": "Reviewed mechanism fixture.",
+        "reuse_scope": {
+            "domain": "cheers",
+            "diagram_type": "UCD",
+            "applies_to_future_models": False,
+            "limitations": "Fixture only.",
+        },
+        "provenance": {
+            "source_system": "VEGO-AI",
+            "source_setting": "ucd_ch",
+            "source_pattern_id": "P1",
+            "source_schema_versions": {
+                "review_item_schema": "1.2.0",
+                "feedback_schema": "1.0.0",
+                "judgment_schema": "1.0.0",
+            },
+        },
+    }
+
+
+def _advice_payload() -> dict:
+    provenance = {
+        "source_memory_file": "fixture-memory.jsonl",
+        "source_agent4_files": {
+            "deviation_patterns": "fixture-patterns.json",
+            "variability_classes": "fixture-classes.json",
+        },
+    }
+    return {
+        "schema_version": "1.0.0",
+        "setting_id": "ucd_ch",
+        "advice_mode": "advisory_only",
+        "generated_at": "2026-07-25T00:00:00Z",
+        "provenance": provenance,
+        "advice": [
+            {
+                "schema_version": "1.0.0",
+                "advice_id": "MADV-ucd_ch-P1",
+                "setting_id": "ucd_ch",
+                "pattern_id": "P1",
+                "advice_mode": "advisory_only",
+                "ai_classification_changed": False,
+                "original_ai_classification": {
+                    "classification": "Occasional Variability",
+                    "confidence": "Medium",
+                    "requires_human_review": True,
+                    "flag_for_guidelines_update": False,
+                },
+                "query": {
+                    "domain": "cheers",
+                    "diagram_type": "UCD",
+                    "related_guideline_id": None,
+                    "keywords": [],
+                },
+                "advice_strength": "none",
+                "advice_summary": "No reusable match.",
+                "memory_matches": [],
+                "has_conflicting_memory": False,
+                "conflict_note": None,
+                "recommended_use": "Advisory evidence only.",
+                "provenance": provenance,
+            }
+        ],
+    }
+
+
+def _comparison_payload() -> dict:
+    return {
+        "schema_version": "1.0.0",
+        "setting_id": "ucd_ch",
+        "mode": "experimental",
+        "policy_version": "memory-informed-classifier-v1",
+        "ai_behavior_changed_in_baseline": False,
+        "generated_at": "2026-07-25T00:00:00Z",
+        "comparisons": [
+            {
+                "comparison_id": "MINF-ucd_ch-P1",
+                "setting_id": "ucd_ch",
+                "pattern_id": "P1",
+                "mode": "experimental",
+                "policy_version": "memory-informed-classifier-v1",
+                "ai_behavior_changed_in_baseline": False,
+                "original_agent4_classification": {
+                    "classification": "Occasional Variability",
+                    "confidence": "Medium",
+                    "requires_human_review": True,
+                    "flag_for_guidelines_update": False,
+                },
+                "memory_advice": {
+                    "advice_strength": "none",
+                    "memory_match_ids": [],
+                    "has_conflicting_memory": False,
+                },
+                "memory_informed_classification": {
+                    "classification": "Occasional Variability",
+                    "confidence": "Medium",
+                    "source": "original_agent4",
+                },
+                "memory_informed_differs_from_original": False,
+                "classification_changed_meaning": "No change.",
+                "requires_human_review_after_memory": True,
+                "human_memory_used": [],
+                "evaluation_leakage_status": "none",
+                "rule_applied": "preserve_original",
+                "decision_trace": ["baseline preserved"],
+            }
+        ],
+        "provenance": {
+            "source_variability_classes": "fixture-classes.json",
+            "source_memory_advice": "fixture-advice.json",
+            "source_memory": "fixture-memory.jsonl",
         },
     }
 
@@ -147,7 +310,7 @@ def test_unified_serializer_rebuilds_mapped_fields_from_canonical_records() -> N
         malformed[0]["human_feedback"] = invalid_feedback
         with pytest.raises(
             ValidationError,
-            match="resolved human_feedback must be an object",
+            match="human_review_item.schema.json|resolved human_feedback",
         ):
             adapt_legacy_artifact("resolved", malformed)
 
@@ -163,44 +326,43 @@ def test_comparison_adapter_rejects_nonobject_nested_classifications(
     field: str,
     value: object,
 ) -> None:
-    payload = {
-        "schema_version": "1.0",
-        "setting_id": "ucd_ch",
-        "mode": "experimental",
-        "policy_version": "memory-informed-classifier-v1",
-        "ai_behavior_changed_in_baseline": False,
-        "generated_at": "2026-07-25T00:00:00Z",
-        "comparisons": [
-            {
-                "comparison_id": "CMP-ucd_ch-P1",
-                "setting_id": "ucd_ch",
-                "pattern_id": "P1",
-                "original_agent4_classification": {
-                    "classification": "Occasional Variability",
-                },
-                "memory_informed_classification": {
-                    "classification": "Occasional Variability",
-                    "source": "original_agent4",
-                },
-                "memory_informed_differs_from_original": False,
-                "requires_human_review_after_memory": False,
-                "human_memory_used": [],
-                "evaluation_leakage_status": "none",
-                "rule_applied": "preserve_original",
-                "decision_trace": ["baseline preserved"],
-                "mode": "experimental",
-                "ai_behavior_changed_in_baseline": False,
-            }
-        ],
-        "provenance": {
-            "source_variability_classes": "fixture-classes.json",
-            "source_memory_advice": "fixture-advice.json",
-            "source_memory": "fixture-memory.jsonl",
-        },
-    }
+    payload = _comparison_payload()
     payload["comparisons"][0][field] = value
-    with pytest.raises(ValidationError, match=rf"{field} must be an object"):
+    with pytest.raises(ValidationError, match=rf"{field}"):
         adapt_legacy_artifact("comparison", payload)
+
+
+@pytest.mark.parametrize(
+    ("stage", "payload"),
+    [
+        ("review", [{"review_id": "HRQ-ucd_ch-P1"}]),
+        ("memory", [{"memory_id": "HJM-ucd_ch-P1"}]),
+        (
+            "advice",
+            {
+                **_advice_payload(),
+                "advice": [{"advice_id": "MADV-ucd_ch-P1"}],
+            },
+        ),
+        (
+            "comparison",
+            {
+                **_comparison_payload(),
+                "comparisons": [{"comparison_id": "MINF-ucd_ch-P1"}],
+            },
+        ),
+    ],
+)
+def test_adapters_reject_sparse_public_records(stage: str, payload: object) -> None:
+    with pytest.raises(ValidationError, match="missing|required"):
+        adapt_legacy_artifact(stage, payload)
+
+
+def test_feedback_decision_type_uses_the_legacy_nine_value_enum() -> None:
+    payload = _feedback_item()
+    payload["human_decision"]["decision_type"] = "invented_decision"
+    with pytest.raises(ValidationError, match="decision_type"):
+        adapt_legacy_artifact("feedback", [payload])
 
 
 def test_manifest_rejects_a_symlinked_parent(tmp_path: Path) -> None:

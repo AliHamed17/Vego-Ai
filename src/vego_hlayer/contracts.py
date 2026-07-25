@@ -22,6 +22,19 @@ CAPTURE_STATUSES = frozenset({"observed", "reconstructed", "unobservable"})
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 HEX16_RE = re.compile(r"^[0-9a-f]{16}$")
 HRQ_RE = re.compile(r"^HRQ-.+-P[0-9]+$")
+HUMAN_DECISION_TYPES = frozenset(
+    {
+        "approve_ai_decision",
+        "reject_ai_decision",
+        "correct_classification",
+        "valid_alternative",
+        "modeling_error",
+        "domain_specific",
+        "pedagogical_issue",
+        "ambiguous",
+        "needs_guideline_update",
+    }
+)
 
 
 class ValidationError(ValueError):
@@ -216,6 +229,11 @@ class FeedbackRecord(ContractMixin):
         _require_mapping("human_decision", self.human_decision, nonempty=True)
         decision_type = self.human_decision.get("decision_type")
         _require_text("human_decision.decision_type", decision_type)
+        if decision_type not in HUMAN_DECISION_TYPES:
+            raise ValidationError(
+                "human_decision.decision_type must match the existing "
+                "human_feedback schema"
+            )
         if not isinstance(self.rationale, str):
             raise ValidationError("rationale must be a string")
         if decision_type != "approve_ai_decision":

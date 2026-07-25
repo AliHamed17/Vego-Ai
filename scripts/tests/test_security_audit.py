@@ -117,6 +117,50 @@ def test_disguised_archives_are_scanned_by_magic_in_current_and_history(
     )
 
 
+def test_preamble_zip_is_scanned_in_current_tree_and_history(tmp_path: Path) -> None:
+    module = load_module()
+    module.ROOT = tmp_path
+
+    def git(*args: str) -> None:
+        subprocess.run(
+            ["git", *args],
+            cwd=tmp_path,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+
+    git("init", "-b", "main")
+    git("config", "user.name", "Fixture")
+    git("config", "user.email", "fixture@example.invalid")
+    archive_bytes = io.BytesIO()
+    secret = "AKIA" + "ABCDEFGHIJKLMNOP"
+    with zipfile.ZipFile(archive_bytes, "w") as archive:
+        archive.writestr("secret.txt", secret)
+    disguised = tmp_path / "launcher.bin"
+    disguised.write_bytes(b"MZ launcher preamble" + archive_bytes.getvalue())
+
+    current = module.inspect(include_history=False)
+    assert any(
+        "launcher.bin" in finding
+        and "aws_access_key in archive member secret.txt" in finding
+        for finding in current["binary_findings"]
+    )
+
+    git("add", "launcher.bin")
+    git("commit", "-m", "preamble archive")
+    disguised.unlink()
+    git("add", "-u")
+    git("commit", "-m", "remove preamble archive")
+    historical = module.inspect(include_history=True)
+    assert any(
+        "launcher.bin" in finding
+        and "aws_access_key in archive member secret.txt" in finding
+        for finding in historical["history_findings"]
+    )
+
+
 def test_encrypted_pkcs8_private_keys_are_detected_in_content_and_history() -> None:
     module = load_module()
     encrypted_header = b"-----BEGIN ENCRYPTED " + b"PRIVATE KEY-----"

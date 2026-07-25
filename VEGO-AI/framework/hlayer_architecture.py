@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import stat
 import sys
 from collections.abc import Callable
 from pathlib import Path
@@ -60,16 +61,47 @@ def apply_stage_architecture(
     )
 
 
-def _resolved_destination(path: str | Path) -> Path:
+def _is_link_or_reparse_point(path: Path) -> bool:
+    try:
+        metadata = os.lstat(path)
+    except FileNotFoundError:
+        return False
+    if stat.S_ISLNK(metadata.st_mode):
+        return True
+    attributes = getattr(metadata, "st_file_attributes", 0)
+    reparse_flag = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0)
+    return bool(reparse_flag and attributes & reparse_flag)
+
+
+def _reject_lexical_link_components(path: Path, label: str) -> None:
+    """Reject links before resolution so aliases cannot disappear from checks."""
+
+    absolute = path if path.is_absolute() else Path.cwd() / path
+    cursor = Path(absolute.anchor)
+    for part in absolute.parts[1:]:
+        if part in {"", "."}:
+            continue
+        if part == "..":
+            cursor = cursor.parent
+            continue
+        cursor /= part
+        if _is_link_or_reparse_point(cursor):
+            raise ValidationError(
+                f"{label} paths cannot contain symbolic links or reparse points"
+            )
+
+
+def _resolved_destination(path: str | Path, label: str) -> Path:
     target = Path(path)
+    _reject_lexical_link_components(target, label)
     if not target.is_absolute():
         target = Path.cwd() / target
     return target.resolve(strict=False)
 
 
 def _destinations_collide(output_path: str | Path, manifest_path: str | Path) -> bool:
-    output = _resolved_destination(output_path)
-    manifest = _resolved_destination(manifest_path)
+    output = _resolved_destination(output_path, "artifact output")
+    manifest = _resolved_destination(manifest_path, "architecture manifest")
     if output == manifest:
         return True
     try:
@@ -83,8 +115,9 @@ def _transaction_path(target: Path, role: str, token: str) -> Path:
 
 
 def _validate_transaction_destination(target: Path, label: str) -> None:
-    if target.is_symlink():
-        raise ValidationError(f"{label} cannot be a symbolic link")
+    _reject_lexical_link_components(target, label)
+    if _is_link_or_reparse_point(target):
+        raise ValidationError(f"{label} cannot be a symbolic link or reparse point")
     if target.exists() and not target.is_file():
         raise ValidationError(f"{label} must be a regular file")
 
@@ -176,11 +209,16 @@ def publish_stage_output(
         architecture_mode=architecture_mode,
     )
     if architecture_manifest is None:
-        writer(execution.output, output_path)
+        output = _resolved_destination(output_path, "artifact output")
+        _validate_transaction_destination(output, "artifact output")
+        writer(execution.output, output)
         return execution
 
-    output = _resolved_destination(output_path)
-    manifest = _resolved_destination(architecture_manifest)
+    output = _resolved_destination(output_path, "artifact output")
+    manifest = _resolved_destination(
+        architecture_manifest,
+        "architecture manifest",
+    )
     _validate_transaction_destination(output, "artifact output")
     _validate_transaction_destination(manifest, "architecture manifest")
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -208,10 +246,23 @@ def publish_stage_output(
     return execution
 
 
+def require_cli_parity_success(execution: ArchitectureExecution) -> None:
+    """Exit nonzero after fail-closed publication when parity detects drift."""
+
+    if execution.manifest.parity_status != "mismatch":
+        return
+    print(
+        "ERROR: unified/legacy parity mismatch; legacy output was preserved",
+        file=sys.stderr,
+    )
+    raise SystemExit(1)
+
+
 __all__ = [
     "ARCHITECTURE_MODES",
     "ArchitectureExecution",
     "add_architecture_arguments",
     "apply_stage_architecture",
     "publish_stage_output",
+    "require_cli_parity_success",
 ]

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T22:48:10+00:00",
+  "generatedAt": "2026-07-25T23:27:30+00:00",
   "sourceRevision": "1ff9f724ffc70e12886f6a4576f24cf662956809",
   "latestAcceptedIteration": {
     "iteration": 15,
@@ -9,7 +9,7 @@
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "c85b7f2b126967a9ae26352be769d8c045256e0367dff019b7aaf1e24c1055d4",
+    "normalizedSha256": "626c6d9966540a8dd0768c12a372c67bd85306c5c069128b10a6e2b11bb2a674",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -133,9 +133,24 @@
       "VEGO-AI/framework/memory_informed_classifier.py",
       "VEGO-AI/framework/requirements.txt",
       "VEGO-AI/tests/test_human_feedback_manager.py",
+      "VEGO-AI/tests/test_human_review_queue.py",
       "VEGO-AI/tests/test_llm_client_security.py",
       "VEGO-AI/tests/test_memory_informed_classifier.py",
-      "VEGO-AI/tests/test_visualizer_helpers.py"
+      "VEGO-AI/tests/test_visualizer_helpers.py",
+      "scripts/hlayer_offline/__init__.py",
+      "scripts/hlayer_offline/contracts.py",
+      "scripts/hlayer_offline/state_machine.py",
+      "scripts/hlayer_offline/validator.py",
+      "src/vego_hlayer/__init__.py",
+      "src/vego_hlayer/adapters.py",
+      "src/vego_hlayer/contracts.py",
+      "src/vego_hlayer/io_safety.py",
+      "src/vego_hlayer/runtime.py",
+      "src/vego_hlayer/state_machine.py",
+      "tests/hlayer_offline/test_contracts_and_state.py",
+      "tests/hlayer_offline/test_io_safety.py",
+      "tests/hlayer_offline/test_unified_runtime.py",
+      "tests/hlayer_offline/test_validator.py"
     ],
     "unauthorizedDiff": [],
     "forbiddenDiff": [],
@@ -146,23 +161,23 @@
     "status": "PASS",
     "tests": {
       "VEGO-AI/tests": {
-        "passed": 111,
+        "passed": 113,
         "failed": 0,
-        "durationSeconds": 5.21
+        "durationSeconds": 6.75
       },
       "scripts/tests": {
-        "passed": 109,
+        "passed": 113,
         "failed": 0,
         "subtestsPassed": 7,
         "durationSeconds": null
       },
       "tests/hlayer_offline": {
-        "passed": 41,
+        "passed": 46,
         "failed": 0,
-        "durationSeconds": 5.2
+        "durationSeconds": 4.55
       }
     },
-    "recordedAt": "2026-07-25T22:48:10Z",
+    "recordedAt": "2026-07-25T23:27:30Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -172,7 +187,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "5ae7aa571ee58b9915e915facdce5124753f95a2992a47926685ed71e4427007",
+    "iteration15Manifest": "bf86933721750c51f38e8909cf974bd38c3a6785ecab0807f9f22d3f0b170395",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }

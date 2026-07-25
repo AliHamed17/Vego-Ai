@@ -15,12 +15,13 @@ import json
 import sys
 import tempfile
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "framework"))
 
 import hlayer_architecture as architecture_bridge  # noqa: E402
-import human_review_queue as hrq            # noqa: E402
+import human_review_queue as hrq  # noqa: E402
 import selective_intervention_policy as sip  # noqa: E402
 
 SCHEMA_PATH = ROOT / "schemas" / "human_review_item.schema.json"
@@ -329,6 +330,58 @@ def test_write_queue_idempotent_and_dedups(monkeypatch):
         assert second_manifest["published_output_sha256"] != (
             first_manifest["published_output_sha256"]
         )
+
+
+def test_publication_rejects_symlinked_output_before_resolution():
+    vc = _vc([
+        {
+            "pattern_id": "P4",
+            "classification": "Substantial Variability",
+            "confidence": "High",
+            "evidence": "G16 -- x",
+            "flag_for_guidelines_update": True,
+            "requires_human_review": False,
+        },
+    ])
+    items = hrq.build_review_items(vc, _dp(), "ucd_ch")
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        actual = root / "actual.jsonl"
+        actual.write_text("preserve\n", encoding="utf-8")
+        alias = root / "alias.jsonl"
+        try:
+            alias.symlink_to(actual)
+        except OSError:
+            return
+        try:
+            hrq.publish_stage_output(
+                "review",
+                items,
+                output_path=alias,
+                writer=hrq.write_queue,
+            )
+        except ValueError as exc:
+            assert "symbolic links or reparse points" in str(exc)
+        else:
+            raise AssertionError("symlinked output must fail before publication")
+        assert actual.read_text(encoding="utf-8") == "preserve\n"
+
+
+def test_compatibility_cli_reports_parity_mismatch_as_failure():
+    mismatch = SimpleNamespace(
+        manifest=SimpleNamespace(parity_status="mismatch"),
+    )
+    try:
+        architecture_bridge.require_cli_parity_success(mismatch)
+    except SystemExit as exc:
+        assert exc.code == 1
+    else:
+        raise AssertionError("a parity mismatch must produce a nonzero CLI exit")
+
+    matching = SimpleNamespace(
+        manifest=SimpleNamespace(parity_status="match"),
+    )
+    assert architecture_bridge.require_cli_parity_success(matching) is None
 
 
 # ---------------------------------------------------------------------------
