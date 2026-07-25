@@ -1,7 +1,7 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T21:55:38+00:00",
-  "sourceRevision": "a6c2b42a175d51bd209e7e9adddc6d94c2aff872",
+  "generatedAt": "2026-07-25T22:09:58+00:00",
+  "sourceRevision": "1ff9f724ffc70e12886f6a4576f24cf662956809",
   "latestAcceptedIteration": {
     "iteration": 15,
     "directory": "docs/research/hardening",
@@ -9,7 +9,7 @@
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "9debfdcaa9365581746aff4bf18df3ed53e253b913ad567e9a56896a4615222f",
+    "normalizedSha256": "0a2cdc3428c7372f007c3bae9299be547becd1061a74af8e0cd8048138e2488d",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -151,10 +151,10 @@
         "durationSeconds": 5.9
       },
       "scripts/tests": {
-        "passed": 102,
+        "passed": 105,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 56.73
+        "durationSeconds": null
       },
       "tests/hlayer_offline": {
         "passed": 41,
@@ -162,7 +162,7 @@
         "durationSeconds": 5.2
       }
     },
-    "recordedAt": "2026-07-25T21:54:47Z",
+    "recordedAt": "2026-07-25T22:09:58Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -172,7 +172,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "56f3698e802f88abb99d806c7d81ee0f6762ef30a941f042947dab66089d1ae1",
+    "iteration15Manifest": "ce8541276570063c180d9e188beda13abff413ab5f58e08dec2b3e5d2b7187d2",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
