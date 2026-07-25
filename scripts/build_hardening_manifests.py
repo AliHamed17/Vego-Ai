@@ -421,7 +421,7 @@ def build_iteration() -> dict[str, Any]:
         "runId": "HLAYER-UNIFIED-HARDENING-V1",
         "date": "2026-07-25",
         "generatedAt": "2026-07-25T12:00:01+00:00",
-        "sourceRevision": "a6c2b42a175d51bd209e7e9adddc6d94c2aff872",
+        "sourceRevision": "1ff9f724ffc70e12886f6a4576f24cf662956809",
         "iterationKind": "reliability_only",
         "verdict": "NEUTRAL",
         "hypothesis": (
@@ -441,7 +441,7 @@ def build_iteration() -> dict[str, Any]:
         },
         "results": {
             "vegoTestsPassed": 108,
-            "scriptTestsPassed": 102,
+            "scriptTestsPassed": 105,
             "scriptSubtestsPassed": 7,
             "offlineTestsPassed": 41,
             "controlledComparisonRows": 27,
