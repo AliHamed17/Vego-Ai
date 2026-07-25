@@ -1,7 +1,7 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T16:07:01+00:00",
-  "sourceRevision": "fb6598b16d544163d42ff66e2bfdbe41a211b82b",
+  "generatedAt": "2026-07-25T16:29:15+00:00",
+  "sourceRevision": "4905d9de5308cffa7f2ab1e681e9f02143844eba",
   "latestAcceptedIteration": {
     "iteration": 15,
     "directory": "docs/research/hardening",
@@ -9,7 +9,7 @@
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "1f0ef3d80807cf612fdd0c401b20c7e7378d938913ef22bf34a76391b512c6aa",
+    "normalizedSha256": "a3a2fcd3fd056a9361a32de983bb3583156272d92f2da7e5354be33a18d75d2e",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -148,21 +148,21 @@
       "VEGO-AI/tests": {
         "passed": 106,
         "failed": 0,
-        "durationSeconds": 5.43
+        "durationSeconds": 6.04
       },
       "scripts/tests": {
-        "passed": 85,
+        "passed": 86,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 41.18
+        "durationSeconds": 46.91
       },
       "tests/hlayer_offline": {
         "passed": 39,
         "failed": 0,
-        "durationSeconds": 4.87
+        "durationSeconds": 5.86
       }
     },
-    "recordedAt": "2026-07-25T15:00:39Z",
+    "recordedAt": "2026-07-25T16:29:15Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -172,7 +172,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "5f17dcff4cf85faee6ecba19e8d447de0efa8e26c3cbdda016d10e88e978dbc9",
+    "iteration15Manifest": "ac5d5e2f227845d34c3e67202c296ac2e429c8df9e210b26c202bf7cab21c34d",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
