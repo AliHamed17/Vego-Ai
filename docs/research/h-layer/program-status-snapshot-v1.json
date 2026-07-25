@@ -1,7 +1,7 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T14:02:48+00:00",
-  "sourceRevision": "32d393ec0566e052d103e1d375e10a35d9dd3931",
+  "generatedAt": "2026-07-25T14:38:36+00:00",
+  "sourceRevision": "13a1c0b1d0636c4b3d13d238b2c0a3548d308acc",
   "latestAcceptedIteration": {
     "iteration": 15,
     "directory": "docs/research/hardening",
@@ -9,7 +9,7 @@
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "b2b129cdd9069e2f6be9a71ffa1ac829570ac095e7fad09b8f25fe01b8b944e1",
+    "normalizedSha256": "7438af3e767824eea7377db9e56d1f83595cf8812eb17206e92f03f88254574b",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -148,13 +148,13 @@
       "VEGO-AI/tests": {
         "passed": 106,
         "failed": 0,
-        "durationSeconds": 7.02
+        "durationSeconds": 7.57
       },
       "scripts/tests": {
-        "passed": 82,
+        "passed": 84,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 48.98
+        "durationSeconds": 42.11
       },
       "tests/hlayer_offline": {
         "passed": 39,
@@ -162,7 +162,7 @@
         "durationSeconds": 4.62
       }
     },
-    "recordedAt": "2026-07-25T14:02:48Z",
+    "recordedAt": "2026-07-25T14:38:36Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -172,7 +172,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "fd22e450298050e2a1738677cc69fa99d454994c17cff371c6765726bae10af7",
+    "iteration15Manifest": "d07e33396f9e32a87d5dd8d949364950f5ff5bb5082609fcfefce9fb2b14ff6f",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }

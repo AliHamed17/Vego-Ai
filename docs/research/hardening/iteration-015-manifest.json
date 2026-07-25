@@ -14,7 +14,7 @@
   "hypothesis": "A versioned unified contract path can reproduce legacy M1-M4B-1 artifacts while strengthening security and provenance.",
   "iteration": 15,
   "iterationKind": "reliability_only",
-  "normalizedSha256": "b2b129cdd9069e2f6be9a71ffa1ac829570ac095e7fad09b8f25fe01b8b944e1",
+  "normalizedSha256": "7438af3e767824eea7377db9e56d1f83595cf8812eb17206e92f03f88254574b",
   "results": {
     "controlledComparisonRows": 27,
     "controlledParity": "PASS",
@@ -22,7 +22,7 @@
     "offlineTestsPassed": 39,
     "pythonDependencyAudit": "PASS",
     "scriptSubtestsPassed": 7,
-    "scriptTestsPassed": 82,
+    "scriptTestsPassed": 84,
     "securityAudit": "PASS",
     "vegoTestsPassed": 106
   },
