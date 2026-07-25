@@ -1,28 +1,28 @@
 {
   "schemaVersion": "ThesisReviewPackageManifest-v1",
-  "generatedAt": "2026-07-25T16:02:51+00:00",
+  "generatedAt": "2026-07-25T16:08:35+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "806998c56bf754e149ed1cc595e740afb2a7c34e",
-  "packageRevision": "272370fa84289d9b63c13c57e6ca8ad94f840a82",
-  "sourceTreeHash": "6769797a9fac22289248723e31389dc45fe9e8fd8c426822190e7e24343f37ed",
+  "sourceRevision": "0dd685ceb58c95336e164d66bf0474cb90249887",
+  "packageRevision": "91acf4c9cbb97ae63d49cb0f7a81256cc878a07f",
+  "sourceTreeHash": "ae0643b0988c77dd6060504c44dfbc3ba8fc6894ef3d6ce694323c55e98864ed",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "cf90780f4f887cb71b81e90dde664ebf19966fb2438c56366a97574b6f158310",
+    "sha256": "ac412b5dcce8216d93c6ec9a4d7aae4e14672641d7f30d61a9ea1a0368efff85",
     "bytes": 48266,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "909d111dce18304b1733fcfdb0aac12fa7dc4d2b23392c00bc867bffeb8cde6f",
+      "sha256": "9fc2e56e5f2e6945ee8da957855e706adb48e86ab21c8cb226ec531bd09279d9",
       "bytes": 1809593,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "3235c1afa14ea4de6667e47e9f9dfb529fc223c21a9674cbf204deb86c453506",
+      "sha256": "ea71f31d34efe166e35a8756100b5dfe58e5f17a12dbb8d75e79fd408f3ebdc3",
       "bytes": 81861,
       "tracked": true
     }
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-      "sha256": "5705466a1adfc9b17e506df50ec86ca3a2aed2bdd5333c646d3028387f2c5f6e"
+      "sha256": "e9e968885a7e01381e0e11e1cf3bf43c1d4dbe0e80339024a30418ab3875fd10"
     },
     {
       "path": "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md",
