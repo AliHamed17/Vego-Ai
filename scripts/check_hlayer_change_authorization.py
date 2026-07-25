@@ -58,12 +58,24 @@ def inspect(repo: Path, authorization: Path, base: str) -> dict:
     merge_base = _git(repo, "merge-base", base, "HEAD").strip()
     committed = set(
         line
-        for line in _git(repo, "diff", "--name-only", f"{merge_base}...HEAD").splitlines()
+        for line in _git(
+            repo,
+            "diff",
+            "--no-renames",
+            "--name-only",
+            f"{merge_base}...HEAD",
+        ).splitlines()
         if line
     )
     working = set(
         line
-        for line in _git(repo, "diff", "--name-only", "HEAD").splitlines()
+        for line in _git(
+            repo,
+            "diff",
+            "--no-renames",
+            "--name-only",
+            "HEAD",
+        ).splitlines()
         if line
     )
     untracked = set(

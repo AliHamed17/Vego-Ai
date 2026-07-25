@@ -20,6 +20,7 @@ from llm_client import LLMClient  # noqa: E402
 FAKE_API_KEY = "sk" + "-proj-fixture-not-a-real-key"
 FAKE_LONG_TOKEN = "sk" + "-proj-" + "fixtureabcdefghijklmnopqrstuvwxyz123456"
 FAKE_GITHUB_TOKEN = "gh" + "o_fixtureabcdefghijklmnopqrstuvwxyz123456"
+FAKE_GITHUB_REFRESH_TOKEN = "gh" + "r_fixtureabcdefghijklmnopqrstuvwxyz123456"
 FAKE_AWS_KEY = "AK" + "IA" + "ABCDEFGHIJKLMNOP"
 FAKE_PRIVATE_KEY = (
     "-----BEGIN "
@@ -86,7 +87,13 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
             "system": "system",
             "user": f"tokens {FAKE_LONG_TOKEN} {FAKE_AWS_KEY}",
         },
-        raw=json.dumps({"token": FAKE_GITHUB_TOKEN, "pem": FAKE_PRIVATE_KEY}),
+        raw=json.dumps(
+            {
+                "token": FAKE_GITHUB_TOKEN,
+                "refresh": FAKE_GITHUB_REFRESH_TOKEN,
+                "pem": FAKE_PRIVATE_KEY,
+            }
+        ),
         parsed={
             FAKE_LONG_TOKEN: "secret-shaped key",
             "pem": FAKE_PRIVATE_KEY,
@@ -99,6 +106,7 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
     assert "REDACTED_SECRET" in text
     assert FAKE_LONG_TOKEN not in text
     assert FAKE_GITHUB_TOKEN not in text
+    assert FAKE_GITHUB_REFRESH_TOKEN not in text
     assert FAKE_AWS_KEY not in text
     assert "fixture-private-material" not in text
     entry = json.loads(text)

@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "scripts" / "check_hlayer_change_authorization.py"
+WORKFLOW = ROOT / ".github" / "workflows" / "supervisor-package.yml"
 
 
 def load_module():
@@ -57,3 +58,52 @@ def test_authorized_protected_content_is_hash_bound(tmp_path: Path) -> None:
     result = module.inspect(tmp_path, authorization, "HEAD")
     assert result["status"] == "FAIL"
     assert any("content differs" in item for item in result["failures"])
+
+
+def test_protected_rename_reports_the_source_path(tmp_path: Path) -> None:
+    module = load_module()
+    protected = tmp_path / "VEGO-AI" / "framework" / "agent4_variability_explorer.py"
+    protected.parent.mkdir(parents=True)
+    protected.write_text("protected baseline\n", encoding="utf-8")
+    run_git(tmp_path, "init")
+    run_git(tmp_path, "config", "user.email", "fixture@example.invalid")
+    run_git(tmp_path, "config", "user.name", "Fixture")
+    run_git(tmp_path, "add", "VEGO-AI/framework/agent4_variability_explorer.py")
+    run_git(tmp_path, "commit", "-m", "baseline")
+
+    destination = tmp_path / "relocated_agent4.py"
+    run_git(
+        tmp_path,
+        "mv",
+        "VEGO-AI/framework/agent4_variability_explorer.py",
+        destination.name,
+    )
+    run_git(tmp_path, "commit", "-m", "attempt protected relocation")
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(
+        json.dumps(
+            {
+                "allowed_paths": [],
+                "authorized_content_sha256": {},
+                "forbidden_paths": [
+                    "VEGO-AI/framework/agent4_variability_explorer.py"
+                ],
+                "merge_requires_independent_approval": True,
+                "authorization_expires_on": "2099-12-31",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    result = module.inspect(tmp_path, authorization, "HEAD^")
+    assert result["status"] == "FAIL"
+    assert "VEGO-AI/framework/agent4_variability_explorer.py" in result[
+        "forbidden_changes"
+    ]
+
+
+def test_push_workflow_uses_the_pre_push_revision() -> None:
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    assert "PUSH_BEFORE_SHA: ${{ github.event.before }}" in workflow
+    assert 'BASE="${PR_BASE_SHA:-${PUSH_BEFORE_SHA:-origin/main}}"' in workflow
+    assert 'BASE="${PR_BASE_SHA:-${PUSH_BEFORE_SHA:-HEAD^}}"' in workflow
