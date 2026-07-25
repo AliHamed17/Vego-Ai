@@ -1,28 +1,28 @@
 {
   "schemaVersion": "ThesisReviewPackageManifest-v1",
-  "generatedAt": "2026-07-25T22:13:13+00:00",
+  "generatedAt": "2026-07-25T22:39:05+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "37fb17664d3705895c5e6b72fb33f44416c6e0d0",
-  "packageRevision": "aab1a4aa8fa40b5e71de1312204cfaab1756d92c",
-  "sourceTreeHash": "255e7fe4c5532800159638a299e5d479b276be6d4e09951521a11a61ae25d782",
+  "sourceRevision": "7c90827659a5b76e99f68817cd0dece8954d10d0",
+  "packageRevision": "9326f3a06db378a0a4399509754198c097684ec1",
+  "sourceTreeHash": "8e741d0cfddd33c43db7c04d6ec15e3541f02855db1a6ccc9f9e87598e9cab94",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "c527110dca93630f76f135a4dff21ef883cb1d35c4b74952b6bdde02d74cf859",
+    "sha256": "4dff08eb5978b1547fbe8592e460040916648eafa97955c038bca798bc9facf7",
     "bytes": 48267,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "9463c24c47793923adcb1b2f593194d022fbb583f573ff1b55a913f7d67c708b",
+      "sha256": "c7eabfc55f2231e61807b08dd3ad23557cfae3dbf0737ce2a2e12b6ded756c1f",
       "bytes": 1809595,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "9ff011466c6265a1306850c651f6e281d781140087cd005266448605bade9e60",
+      "sha256": "c15fe84920641906e9edeca24dcefc11beae259da6eebcb1cdf0283564f774bb",
       "bytes": 81862,
       "tracked": true
     }
@@ -33,15 +33,15 @@
       "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": "7493022fa71da7443beae33d4bc4a7d3a8aab45ee922dfbaf2cee1081f35ae3c",
-      "bytes": 1401932
+      "sha256": "239eae243ca9094186d6efa4092e39dd1eca2b10317161943b1348e20d02b896",
+      "bytes": 1401583
     },
     "renderVerification": {
       "status": "PASS",
       "pdfPageCount": 91,
       "renderedPageCount": 91,
       "sheetCount": 23,
-      "qaReportSha256": "e4b641b1f67610a75c7faa617b946e03f9a17d878d8658e2492e054fb3a8e50f"
+      "qaReportSha256": "7bea789fc798f42d792e93ab4b7ace1b854fca29a96a5905687aa7f26c3c8ece"
     }
   },
   "sourceFiles": [
@@ -51,7 +51,7 @@
     },
     {
       "path": "configs/protected-change-authorization-v1.json",
-      "sha256": "8cf369ef03977a59490f43223404b244d0a42c59c0c85b127a447f3db3b19078"
+      "sha256": "67a542a94c517d1859b7c7f0ad7138c7b7eba9ed1040ccd421bcc0030607a2c0"
     },
     {
       "path": "docs/research/accuracy-improvement-plan.md",
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-      "sha256": "a2d9679223ff0bd6a278f245a644ef6e21f099b8c6f037a0c92a0bcffe5d3395"
+      "sha256": "480df9134c92215b08a3ed044972fa3a713dc9fbadc523db5d5f88d7b3242cac"
     },
     {
       "path": "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md",
@@ -179,7 +179,7 @@
     },
     {
       "path": "scripts/build_hardening_manifests.py",
-      "sha256": "5f44b6e6d5b1245eee034c76eab0cf66c813517eda7fdce203587984fecd7448"
+      "sha256": "d1c4b0c039880fe9aaecee33b3370916cbbe8fe89757aecefe3dbc732a64b896"
     },
     {
       "path": "scripts/build_thesis_evidence_package.py",
@@ -235,7 +235,7 @@
     },
     {
       "path": "scripts/verify-source.ps1",
-      "sha256": "d22dddf754e87e6ae6cf5c4899aecfeb6aac5b73fa8c820e14a3574e1d400f87"
+      "sha256": "d46166278abae1429d0ef93b9803df1a80c0313998f0c83527eaba4467ad4712"
     },
     {
       "path": "scripts/visualization_agent.py",
@@ -315,7 +315,7 @@
     },
     {
       "path": "thesis/chapters/appendix-a-supplementary.md",
-      "sha256": "f929af38fc9ee07fa723f44f25ceebd954f119fe1f91f2c0ff185d52e3bbb1d4"
+      "sha256": "7b34fdd979b1f65b617a06b3c688a412fbae1d816d44910f56127f351fc5a327"
     },
     {
       "path": "thesis/chapters/design-theory-governed-reuse.md",
