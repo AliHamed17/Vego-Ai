@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import zipfile
 from pathlib import Path
 
@@ -36,3 +37,13 @@ def test_archive_limits_fail_closed(tmp_path: Path) -> None:
         archive.writestr("large.txt", "12345")
     findings = module._zip_findings(archive_path)
     assert any("archive member exceeds 4 bytes" in item for item in findings)
+
+
+def test_encrypted_pkcs8_private_keys_are_detected_in_content_and_history() -> None:
+    module = load_module()
+    encrypted_header = b"-----BEGIN ENCRYPTED " + b"PRIVATE KEY-----"
+    assert "private_key" in module._secret_labels(encrypted_header)
+    assert re.search(
+        module.HISTORY_SECRET_EXPRESSION,
+        encrypted_header.decode("ascii"),
+    )

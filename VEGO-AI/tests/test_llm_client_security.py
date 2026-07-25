@@ -27,6 +27,11 @@ FAKE_PRIVATE_KEY = (
     + "PRIVATE KEY-----\nfixture-private-material\n-----END "
     + "PRIVATE KEY-----"
 )
+FAKE_ENCRYPTED_PRIVATE_KEY = (
+    "-----BEGIN ENCRYPTED "
+    + "PRIVATE KEY-----\nfixture-encrypted-private-material\n-----END ENCRYPTED "
+    + "PRIVATE KEY-----"
+)
 
 
 def _response():
@@ -92,6 +97,7 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
                 "token": FAKE_GITHUB_TOKEN,
                 "refresh": FAKE_GITHUB_REFRESH_TOKEN,
                 "pem": FAKE_PRIVATE_KEY,
+                "encrypted_pem": FAKE_ENCRYPTED_PRIVATE_KEY,
             }
         ),
         parsed={
@@ -109,6 +115,7 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
     assert FAKE_GITHUB_REFRESH_TOKEN not in text
     assert FAKE_AWS_KEY not in text
     assert "fixture-private-material" not in text
+    assert "fixture-encrypted-private-material" not in text
     entry = json.loads(text)
     assert "[REDACTED_SECRET]" in entry["response_parsed_content"]
 

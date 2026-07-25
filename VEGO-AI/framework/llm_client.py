@@ -54,11 +54,13 @@ _SECRET_RES = (
     re.compile(r"\b(?:(?:sk|sess)-[A-Za-z0-9_-]{12,}|gh[pousr]_[A-Za-z0-9]{12,})\b"),
     re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
     re.compile(
-        r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
+        r"-----BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY-----"
         r"[\s\S]*?"
-        r"-----END (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"
+        r"-----END (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY-----"
     ),
-    re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
+    re.compile(
+        r"-----BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY-----"
+    ),
 )
 
 

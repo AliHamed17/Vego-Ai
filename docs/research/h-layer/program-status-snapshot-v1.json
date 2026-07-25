@@ -148,21 +148,21 @@
       "VEGO-AI/tests": {
         "passed": 106,
         "failed": 0,
-        "durationSeconds": 7.57
+        "durationSeconds": 5.43
       },
       "scripts/tests": {
-        "passed": 84,
+        "passed": 85,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 42.11
+        "durationSeconds": 41.18
       },
       "tests/hlayer_offline": {
         "passed": 39,
         "failed": 0,
-        "durationSeconds": 4.62
+        "durationSeconds": 4.87
       }
     },
-    "recordedAt": "2026-07-25T14:38:36Z",
+    "recordedAt": "2026-07-25T15:00:39Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },

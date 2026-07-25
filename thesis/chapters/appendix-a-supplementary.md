@@ -70,7 +70,7 @@ The guard (`scripts/check_evidence_consistency.py`) verifies 18 invariants at ev
 13. Leakage status tags present on all comparison records
 14. Generalization-safe label count matches reported value
 15. No synthetic labels in real-evidence reporting paths
-16. Current verified inventory passes (106 VEGO-AI tests, 84 research-infrastructure tests plus 7 subtests, and 39 offline H-layer tests)
+16. Current verified inventory passes (106 VEGO-AI tests, 85 research-infrastructure tests plus 7 subtests, and 39 offline H-layer tests)
 17. No M4B-1.1 or M4B-2 code in the active codebase
 18. Dashboard figures consistent with source data
 
@@ -93,7 +93,7 @@ The thesis quality assurance process uses an automated review loop with eight va
 | Build M4B-1 comparison | `python -m VEGO-AI.framework.memory_informed_classifier` | 27 comparison records, 0 differ from original |
 | Run evaluation harness | `python VEGO-AI/analysis/evaluate_accuracy_improvement.py --labels <gold_labels.csv>` | Requires labels CSV; refuses to assert improvement with <20 labels |
 | Verify evidence consistency | `python scripts/check_evidence_consistency.py` | 18/18 checks pass |
-| Run test inventories | `python -m pytest VEGO-AI/tests scripts/tests tests/hlayer_offline -q` | 106 VEGO-AI tests, 84 research-infrastructure tests plus 7 subtests, and 39 offline H-layer tests pass |
+| Run test inventories | `python -m pytest VEGO-AI/tests scripts/tests tests/hlayer_offline -q` | 106 VEGO-AI tests, 85 research-infrastructure tests plus 7 subtests, and 39 offline H-layer tests pass |
 | Build results dashboard | `python VEGO-AI/analysis/build_results_dashboard.py` | Dashboard with milestone summaries |
 
 ## A.7 RQ and hypothesis traceability

@@ -19,9 +19,17 @@ SECRET_PATTERNS = {
         rb"\b(?:sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,})\b"
     ),
     "github_token": re.compile(rb"\bgh[pousr]_[A-Za-z0-9]{20,}\b"),
-    "private_key": re.compile(rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
+    "private_key": re.compile(
+        rb"-----BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY-----"
+    ),
     "aws_access_key": re.compile(rb"\bAKIA[0-9A-Z]{16}\b"),
 }
+HISTORY_SECRET_EXPRESSION = (
+    r"sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,}|"
+    r"gh[pousr]_[A-Za-z0-9]{20,}|"
+    r"AKIA[0-9A-Z]{16}|"
+    r"BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY"
+)
 PERSONAL_PATH_RE = re.compile(
     rb"(?:[A-Za-z]:[\\/](?:Users|home)[\\/]|file:///)", re.IGNORECASE
 )
@@ -170,14 +178,16 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
     if include_history:
         if not GIT:
             raise OSError("git executable not found")
-        expression = (
-            r"sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,}|"
-            r"gh[pousr]_[A-Za-z0-9]{20,}|"
-            r"AKIA[0-9A-Z]{16}|"
-            r"BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY"
-        )
         result = subprocess.run(  # noqa: S603 - fixed read-only Git history scan
-            [GIT, "log", "--all", "--pretty=format:%H", "--name-only", "-G", expression],
+            [
+                GIT,
+                "log",
+                "--all",
+                "--pretty=format:%H",
+                "--name-only",
+                "-G",
+                HISTORY_SECRET_EXPRESSION,
+            ],
             cwd=ROOT,
             capture_output=True,
             text=True,
