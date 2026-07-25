@@ -1,21 +1,21 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
-  "generatedAt": "2026-07-25T14:04:30+00:00",
-  "sourceRevision": "304e6596c1a8214a7238f9692423cd59e22808b8",
-  "sourceTreeHash": "61bf33f4d4c64196380808dc75381d9773cc703f54e5b22d66cadddee0819675",
+  "generatedAt": "2026-07-25T14:39:53+00:00",
+  "sourceRevision": "20dd84a5022c0f41e62d22f31423003c61cf70e0",
+  "sourceTreeHash": "e46f7158e98e2947d92114e053afd12ff67e9737677d3f196c30e3a0bb49d658",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-    "sha256": "67317aa48eb9fd8577111f4d1af144af3b3dce3a5d3fe2ae0406fbbcd47a5066",
+    "sha256": "5d951d43b5a352d1473fe0d3dcab8b9e60bd1b70f8df2b32bf25b99ed9b252e6",
     "latestAcceptedIteration": 15,
     "latestAcceptedRunId": "HLAYER-UNIFIED-HARDENING-V1",
     "verdict": "NEUTRAL",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim.",
     "verification": {
       "status": "PASS",
-      "recordedAt": "2026-07-25T14:02:48Z",
+      "recordedAt": "2026-07-25T14:38:36Z",
       "vegoTestsPassed": 106,
-      "scriptTestsPassed": 82
+      "scriptTestsPassed": 84
     }
   },
   "runtimeHardening": {
@@ -1207,8 +1207,8 @@
     "schemas/model-execution-manifest-v1.schema.json": "9029b613a21c9a3555e469e3e4ff86476737548d4964814efdaf0b7507531910",
     "schemas/security-posture-snapshot-v1.schema.json": "326daafe746cbbe0d184739fd4fae5ed1fa814406e744fccbb640a5afd4ca770",
     "configs/hlayer-runtime.json": "0e8c03d4297b74cf04020c244be6a09441555b595b63434a3c83c86cdaf993e2",
-    "configs/protected-change-authorization-v1.json": "18f6ba0d9737271af105d75b57822099c703f7f47e6aa7fc696c78c0042dfcd7",
-    "scripts/build_hardening_manifests.py": "aff366aa9f807062c0753e463b6d9bd49dba18adee445a468e08501e56e41fe0",
+    "configs/protected-change-authorization-v1.json": "de2ccfc4555f2652422dfb83d25ddfab2843c10835399880463fb6e45b963f49",
+    "scripts/build_hardening_manifests.py": "1dd854a64091953a931f6927c9e86df6fb6ab82760a1d6b43b8e9fc952b047ec",
     "scripts/run_hlayer_architecture.py": "947731c4327b7a9c6301fa7f169aa9da284c2a99c7d546585ce08f70d3b658a6",
     "scripts/verify-source.ps1": "d22dddf754e87e6ae6cf5c4899aecfeb6aac5b73fa8c820e14a3574e1d400f87",
     "scripts/verify-controlled.ps1": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239",
@@ -1219,7 +1219,7 @@
     "src/vego_hlayer/io_safety.py": "842a63ddd9cf3a28ac521b40338dede55f9ee82533a9a0f2db464805951fa86d",
     "src/vego_hlayer/runtime.py": "3109449672bded5219dc6e18ddb9bfd841d159b4c8d88e850411d58e13688aa3",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "67317aa48eb9fd8577111f4d1af144af3b3dce3a5d3fe2ae0406fbbcd47a5066",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "5d951d43b5a352d1473fe0d3dcab8b9e60bd1b70f8df2b32bf25b99ed9b252e6",
     "docs/research/hardening/README.md": "447401334f40a123eb0bb67e5759f477b15cb134df442c3d7140135a5269d2e3",
     "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md": "7fb96ba31fa0aa9a0726479e901e7fd6f3d09047af9a43dea14348c00c7e7c3f",
     "docs/research/hardening/THREAT_MODEL.md": "9904a0a517506e1fd8459ffbe5a9ceddbd615f768fff607ca7e4974baa0a700b",
@@ -1253,6 +1253,6 @@
     "thesis/chapters/10-conclusion-and-phd-continuation.md": "dccbe777a471b7fa9a0c0b1b985520209bd55bb54a534f0bcf6be1f0f0555e95",
     "thesis/chapters/11-references.md": "c59f8bc09f1ed0ca53d78942bae7085cb63f21490f6f628c1eeb9c34e1df0dc8",
     "thesis/chapters/design-theory-governed-reuse.md": "c50671af7cbe01db801b8831c0a43a7dd022563edd5793734436d8d9c73009a0",
-    "thesis/chapters/appendix-a-supplementary.md": "6895d74cb98c93fc6244ac4d6e390857bb4996057892643db6958a71ac9f2aeb"
+    "thesis/chapters/appendix-a-supplementary.md": "8a3de9196154c9789fe20e68959d690ead1d463d1f19018f6229f3701e320d46"
   }
 }
