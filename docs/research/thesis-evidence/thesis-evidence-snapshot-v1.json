@@ -1,8 +1,8 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
-  "generatedAt": "2026-07-25T18:27:18+00:00",
-  "sourceRevision": "62b31b92119c4ad78ef5120bf5271f9a6ae6609f",
-  "sourceTreeHash": "b8b45f413c0427d3c024c5edfc8b0ecebb6901e6dcbe735697e40a7d64f0c888",
+  "generatedAt": "2026-07-25T18:41:52+00:00",
+  "sourceRevision": "b8d68338ce56668a8c5bffb4f5cba86b5febe5f7",
+  "sourceTreeHash": "9af3529dad23520f7e4bdcec85c52b30fa86f5877b6dc1c1738f811a5e960e2b",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
@@ -1216,7 +1216,7 @@
     "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
     "src/vego_hlayer/adapters.py": "a771753ec9da751050b70c573e4c917ff87722f25b4e4db65363eaed66e44598",
     "src/vego_hlayer/contracts.py": "c5241dc907cfb5d8a574cbaf63ea118f34da287d98f7743a6711245e2f2eb62b",
-    "src/vego_hlayer/io_safety.py": "842a63ddd9cf3a28ac521b40338dede55f9ee82533a9a0f2db464805951fa86d",
+    "src/vego_hlayer/io_safety.py": "79ed888d312c1848e61faa7f0f70cda936c1b8e863e9aee45e10aad557a71024",
     "src/vego_hlayer/runtime.py": "13d39ac917acbff52c12f2aef450f50bef02f5f30b29801217d10c6182c83ede",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
     "docs/research/h-layer/program-status-snapshot-v1.json": "a60e1d202e59e002fd06db9a898a4e21af7b5a0333ca6d1e32cbb1d3aa6de6f9",
