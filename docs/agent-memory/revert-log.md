@@ -427,3 +427,19 @@ Record file changes and rollback notes here.
   - docs/agent-memory current state, progress, issues, session and revert logs
 - Rollback note: Revert commits after f704239 in reverse order; tracked package and runtime hardening roll back together. Local ignored PDF, page renders, and share copies may be removed separately. Agent 4 and baseline outputs were never changed.
 - Git commit: none recorded by script.
+
+## 2026-07-25 23:17 +03:00 - Codex - Close final PR review gaps and republish verified thesis package
+
+- Files changed:
+  - src/vego_hlayer/io_safety.py
+  - src/vego_hlayer/adapters.py
+  - scripts/security_audit.py
+  - scripts/tests/test_security_audit.py
+  - tests/hlayer_offline/test_io_safety.py
+  - tests/hlayer_offline/test_unified_runtime.py
+  - docs/research/thesis-evidence/*
+  - docs/research/hardening/release-manifest-v3.json
+  - VEGO-AI-Thesis-Baseline-Progress.html
+  - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
+- Rollback note: Revert commits 0c2fcbb, e301ef0, and 7a65266 to remove this final review wave and its regenerated package metadata; ignored PDF and share copies can be deleted independently.
+- Git commit: none recorded by script.

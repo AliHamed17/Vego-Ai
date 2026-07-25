@@ -273,3 +273,32 @@ Chronological prompt history for Codex and Claude.
   - 91-page PDF and 23 QA sheets passed with zero structural errors
 - Status: implementation and local verification complete; PR publication pending exact-head review and governance gates
 - Next steps: Push the final commits to PR #10, resolve and rerun exact-head review, wait for CI, then merge only after enforceable main protection and one separate collaborator approval are confirmed.
+
+## 2026-07-25 23:17 +03:00 - Codex - Close final PR review gaps and republish verified thesis package
+
+- Request: Continue unified runtime security hardening, fix all remaining review findings, verify the full release, and publish through PR #10 without bypassing governance gates.
+- Actions taken:
+  - Replaced predictable atomic temporary output with exclusive system-created temporary files and durable replacement.
+  - Rejected malformed resolved-feedback payloads before canonical adaptation.
+  - Added bounded recursive scanning of nested archives and tests for nested secrets and depth limits.
+  - Rebuilt the canonical thesis evidence snapshot, HTML, DOCX, local PDF, QA report, portable release manifest, and review provenance.
+  - Passed controlled parity, evidence, security, dependency, browser, document, and all test inventories.
+- Files changed:
+  - src/vego_hlayer/io_safety.py
+  - src/vego_hlayer/adapters.py
+  - scripts/security_audit.py
+  - scripts/tests/test_security_audit.py
+  - tests/hlayer_offline/test_io_safety.py
+  - tests/hlayer_offline/test_unified_runtime.py
+  - docs/research/thesis-evidence/*
+  - docs/research/hardening/release-manifest-v3.json
+  - VEGO-AI-Thesis-Baseline-Progress.html
+  - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
+- Commands/checks:
+  - uv run python -m pytest VEGO-AI/tests -q: 108 passed
+  - uv run python -m pytest scripts/tests -q: 92 passed plus 7 subtests
+  - uv run python -m pytest tests/hlayer_offline -q: 41 passed
+  - .\scripts\verify-release.ps1 -Check: PASS
+  - PDF structural QA: 91 pages, 23 sheets, zero errors
+- Status: implementation complete; publication gates pending
+- Next steps: Push exact head to PR #10, resolve the three review threads, request exact-head automated review, then merge only after green exact-head CI, enforceable branch protection, and one separate collaborator approval.
