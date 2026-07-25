@@ -1,21 +1,21 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
   "generatedAt": "2026-07-25T18:41:52+00:00",
-  "sourceRevision": "5d9b8139cf65f377815b671afe4812f2da0fe039",
-  "sourceTreeHash": "e84fbc69f47607aee4df98e48995905ef2aadf877d906ca44a4f503529f61fd8",
+  "sourceRevision": "462321dc15d6f2d865a3c7f804bbea289e04cf6d",
+  "sourceTreeHash": "93eb3ac8db2d94cb8e4380cef24d343617a99c0eacbb3dfab3177122b7e3c495",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-    "sha256": "a60e1d202e59e002fd06db9a898a4e21af7b5a0333ca6d1e32cbb1d3aa6de6f9",
+    "sha256": "18566ce721da0f6a96a12438997f31f3d1b0e301fef64dc9909a778676e82c7c",
     "latestAcceptedIteration": 15,
     "latestAcceptedRunId": "HLAYER-UNIFIED-HARDENING-V1",
     "verdict": "NEUTRAL",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim.",
     "verification": {
       "status": "PASS",
-      "recordedAt": "2026-07-25T18:05:01Z",
-      "vegoTestsPassed": 106,
-      "scriptTestsPassed": 91
+      "recordedAt": "2026-07-25T19:10:00Z",
+      "vegoTestsPassed": 108,
+      "scriptTestsPassed": 92
     }
   },
   "runtimeHardening": {
@@ -1219,7 +1219,7 @@
     "src/vego_hlayer/io_safety.py": "79ed888d312c1848e61faa7f0f70cda936c1b8e863e9aee45e10aad557a71024",
     "src/vego_hlayer/runtime.py": "13d39ac917acbff52c12f2aef450f50bef02f5f30b29801217d10c6182c83ede",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "a60e1d202e59e002fd06db9a898a4e21af7b5a0333ca6d1e32cbb1d3aa6de6f9",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "18566ce721da0f6a96a12438997f31f3d1b0e301fef64dc9909a778676e82c7c",
     "docs/research/hardening/README.md": "447401334f40a123eb0bb67e5759f477b15cb134df442c3d7140135a5269d2e3",
     "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md": "7fb96ba31fa0aa9a0726479e901e7fd6f3d09047af9a43dea14348c00c7e7c3f",
     "docs/research/hardening/THREAT_MODEL.md": "9904a0a517506e1fd8459ffbe5a9ceddbd615f768fff607ca7e4974baa0a700b",
@@ -1253,6 +1253,6 @@
     "thesis/chapters/10-conclusion-and-phd-continuation.md": "dccbe777a471b7fa9a0c0b1b985520209bd55bb54a534f0bcf6be1f0f0555e95",
     "thesis/chapters/11-references.md": "c59f8bc09f1ed0ca53d78942bae7085cb63f21490f6f628c1eeb9c34e1df0dc8",
     "thesis/chapters/design-theory-governed-reuse.md": "c50671af7cbe01db801b8831c0a43a7dd022563edd5793734436d8d9c73009a0",
-    "thesis/chapters/appendix-a-supplementary.md": "1c18db3a5627eeafbf8ec0b3a2ed2a4454ceaddfc20dec98088fd4dc2622007f"
+    "thesis/chapters/appendix-a-supplementary.md": "7722e42b44fde963dfb5bfd99f5dfef668c61488d42e73d620c1024c11c4db9d"
   }
 }
