@@ -458,3 +458,11 @@ Record file changes and rollback notes here.
   - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
 - Rollback note: Revert commits 78c7442, bc9522f, and 951c68d; unset local Git config vego.hlayerAuthorizationSha256 and repository variable H_LAYER_AUTHORIZATION_SHA256 if abandoning this authorization trust mechanism.
 - Git commit: none recorded by script.
+
+## 2026-07-25 23:50 +03:00 - Codex - Repair clone-safe authorization integration tests
+
+- Files changed:
+  - scripts/tests/test_hlayer_hardening.py
+  - docs/research/hardening/release-manifest-v3.json
+- Rollback note: Revert commits 4b46b2e and d9f0c44 to remove the clone-safe test fixture and its release hash refresh.
+- Git commit: none recorded by script.

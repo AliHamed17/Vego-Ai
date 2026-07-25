@@ -329,3 +329,20 @@ Chronological prompt history for Codex and Claude.
   - PDF structural QA: 91 pages, 23 sheets, zero errors
 - Status: implementation complete; final exact-head release verification and GitHub review pending
 - Next steps: Run the full clean release gate, push the exact head, resolve all five review threads, request a fresh automated review, and merge only after exact-head CI, protection, and independent approval gates pass.
+
+## 2026-07-25 23:50 +03:00 - Codex - Repair clone-safe authorization integration tests
+
+- Request: Continue PR #10 until exact-head local and GitHub CI gates are green.
+- Actions taken:
+  - Diagnosed all four Linux Python matrix failures as missing external trust injection in two negative subprocess integration tests.
+  - Added a test-only environment helper that passes the portable authorization hash to those subprocesses without weakening the production gate.
+  - Verified the complete 92-test research suite plus 7 subtests with the developer local trust setting removed.
+  - Refreshed the portable release manifest source-tree hash.
+- Files changed:
+  - scripts/tests/test_hlayer_hardening.py
+  - docs/research/hardening/release-manifest-v3.json
+- Commands/checks:
+  - uv run python -m pytest scripts/tests -q with local trust unset: 92 passed plus 7 subtests
+  - build_hardening_manifests.py --check --require-controlled: PASS
+- Status: CI regression fixed locally; exact-head release verification and rerun pending
+- Next steps: Run verify-release on the final clean head, push, wait for exact-head CI, request exact-head review, then audit independent approval and branch protection before merge.
