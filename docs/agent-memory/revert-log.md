@@ -481,3 +481,19 @@ Record file changes and rollback notes here.
   - VEGO-AI-Thesis-Baseline-Progress.html
 - Rollback note: Revert commits 14ec374 through d7646f2 in reverse order to remove this final review-fix cycle; local ignored PDF, QA pages, and dated share folders can be removed separately. Agent 4 outputs and expert labels were not changed.
 - Git commit: none recorded by script.
+
+## 2026-07-26 01:00 +03:00 - Codex - Close final validation and provenance review findings
+
+- Files changed:
+  - src/vego_hlayer/adapters.py
+  - scripts/run_hlayer_architecture.py
+  - scripts/check_hlayer_change_authorization.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - scripts/tests/test_change_authorization.py
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Rollback note: Revert commits a6c2b42 through 9995804 in reverse order to remove this final review-fix and republishing cycle; ignored PDF, QA, and dated share folders can be removed independently. Agent 4 outputs and expert labels were not changed.
+- Git commit: none recorded by script.

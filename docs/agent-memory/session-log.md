@@ -373,3 +373,32 @@ Chronological prompt history for Codex and Claude.
   - PDF structural QA: 91 pages, 23 sheets, 0 errors
 - Status: completed; publication governance pending
 - Next steps: Push exact head, resolve review threads, obtain fresh exact-head review and green CI, then wait for enforceable main protection and one separate collaborator approval before squash merge.
+
+## 2026-07-26 01:00 +03:00 - Codex - Close final validation and provenance review findings
+
+- Request: Continue PR #10 through exact-head validation, publication, review, and merge gates.
+- Actions taken:
+  - Rejected malformed memory_matches before parity serialization
+  - Made protected-change base resolution clone-safe without weakening explicit invalid-base failure
+  - Converted missing and malformed runtime configuration into structured no-publication errors
+  - Corrected the final verified inventory to 108 VEGO tests, 102 research tests plus 7 subtests, and 41 offline tests
+  - Rebuilt and visually verified the 91-page thesis package with evidence gates intact
+- Files changed:
+  - src/vego_hlayer/adapters.py
+  - scripts/run_hlayer_architecture.py
+  - scripts/check_hlayer_change_authorization.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - scripts/tests/test_change_authorization.py
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Commands/checks:
+  - Focused validation tests: 16 passed
+  - scripts/verify-release.ps1 -Check: PASS
+  - Evidence consistency: 18/18
+  - Controlled parity: 27 rows, 0 classification changes
+  - PDF QA: 91 pages, 23 sheets, 0 errors
+- Status: implementation and local verification complete; GitHub governance pending
+- Next steps: Push exact head, resolve all review threads, request exact-head review, wait for exact-head CI, and merge only if branch protection and independent approval are enforced and satisfied.
