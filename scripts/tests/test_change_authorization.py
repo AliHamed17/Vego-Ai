@@ -146,6 +146,29 @@ def test_protected_rename_reports_the_source_path(tmp_path: Path) -> None:
     ]
 
 
+def test_default_base_falls_back_to_local_main_without_remote(
+    monkeypatch,
+    tmp_path: Path,
+) -> None:
+    module = load_module()
+    monkeypatch.delenv("PR_BASE_SHA", raising=False)
+    monkeypatch.delenv("H_LAYER_CHANGE_BASE", raising=False)
+    monkeypatch.delenv("GITHUB_BASE_REF", raising=False)
+    run_git(tmp_path, "init", "-b", "main")
+    run_git(tmp_path, "config", "user.email", "fixture@example.invalid")
+    run_git(tmp_path, "config", "user.name", "Fixture")
+    marker = tmp_path / "marker.txt"
+    marker.write_text("baseline\n", encoding="utf-8")
+    run_git(tmp_path, "add", "marker.txt")
+    run_git(tmp_path, "commit", "-m", "baseline")
+    run_git(tmp_path, "checkout", "-b", "feature")
+    marker.write_text("feature\n", encoding="utf-8")
+    run_git(tmp_path, "commit", "-am", "feature")
+
+    assert module.resolve_comparison_base(tmp_path) == "main"
+    assert module.resolve_comparison_base(tmp_path, "origin/main") == "main"
+
+
 def test_git_path_reader_preserves_newlines(monkeypatch, tmp_path: Path) -> None:
     module = load_module()
     raw_path = b"VEGO-AI/framework/review\nhook.py\0"

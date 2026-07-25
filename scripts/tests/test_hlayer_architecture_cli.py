@@ -298,6 +298,133 @@ def test_cli_reports_decision_shape_errors_without_traceback(
     assert not manifest.exists()
 
 
+def test_advice_cli_rejects_non_array_memory_matches(tmp_path: Path) -> None:
+    payload = {
+        "advice": [
+            {
+                "setting_id": "ucd_ch",
+                "pattern_id": "P1",
+                "advice_strength": "none",
+                "memory_matches": {},
+                "has_conflicting_memory": False,
+                "advice_mode": "advisory_only",
+                "ai_classification_changed": False,
+            }
+        ],
+        "provenance": {"source": "fixture"},
+    }
+    source = tmp_path / "advice.json"
+    source.write_text(json.dumps(payload), encoding="utf-8")
+    output = tmp_path / "published.json"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "advice",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "parity",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert "memory_matches must be an array" in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+@pytest.mark.parametrize(
+    ("config_content", "expected"),
+    [
+        ("{not-json", "Expecting property name"),
+        ("[]", "H-layer runtime config must be an object"),
+        ('{"h_layer":[]}', "h_layer config must be an object"),
+    ],
+)
+def test_cli_reports_config_errors_without_traceback(
+    tmp_path: Path,
+    config_content: str,
+    expected: str,
+) -> None:
+    source = tmp_path / "review.jsonl"
+    source.write_text("{}\n", encoding="utf-8")
+    config = tmp_path / "runtime.json"
+    config.write_text(config_content, encoding="utf-8")
+    output = tmp_path / "published.jsonl"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "review",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--config",
+            str(config),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert expected in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+def test_cli_reports_missing_config_without_traceback(tmp_path: Path) -> None:
+    source = tmp_path / "review.jsonl"
+    source.write_text("{}\n", encoding="utf-8")
+    output = tmp_path / "published.jsonl"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "review",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--config",
+            str(tmp_path / "missing.json"),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert "ERROR:" in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
 def test_parity_cli_path_preserves_legacy_when_adapter_drifts(monkeypatch) -> None:
     payload = [
         {

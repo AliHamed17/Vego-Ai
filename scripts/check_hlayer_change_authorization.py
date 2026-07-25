@@ -69,6 +69,52 @@ def _portable_sha256(path: Path) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def resolve_comparison_base(repo: Path, requested_base: str | None = None) -> str:
+    """Resolve a usable comparison base without requiring an ``origin`` remote.
+
+    An explicit non-default base remains fail-closed. The normal default may
+    fall back to CI-provided revisions, a local main branch, or a parent commit
+    so source archives and locally initialized repositories remain verifiable.
+    """
+
+    default_request = requested_base in {None, "", "origin/main"}
+    candidates: list[str | None] = []
+    if requested_base:
+        candidates.append(requested_base)
+    if default_request:
+        candidates.extend(
+            (
+                os.environ.get("PR_BASE_SHA"),
+                os.environ.get("H_LAYER_CHANGE_BASE"),
+            )
+        )
+        github_base = os.environ.get("GITHUB_BASE_REF")
+        if github_base:
+            candidates.extend((f"origin/{github_base}", github_base))
+        candidates.extend(("origin/main", "main", "HEAD^", "HEAD"))
+
+    seen: set[str] = set()
+    for candidate in candidates:
+        if not candidate or candidate in seen:
+            continue
+        seen.add(candidate)
+        result = subprocess.run(  # noqa: S603 - Git ref is an argument, not shell input
+            [GIT or "git", "rev-parse", "--verify", f"{candidate}^{{commit}}"],
+            cwd=repo,
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+        if result.returncode == 0:
+            return candidate
+    if requested_base and not default_request:
+        raise ValueError(f"Git comparison base does not resolve: {requested_base}")
+    raise ValueError(
+        "no usable Git comparison base; set PR_BASE_SHA or H_LAYER_CHANGE_BASE"
+    )
+
+
 def _trusted_authorization_sha256(
     repo: Path,
     explicit: str | None = None,
@@ -102,6 +148,7 @@ def inspect(
     *,
     trusted_authorization_sha256: str | None = None,
 ) -> dict:
+    base = resolve_comparison_base(repo, base)
     actual_authorization_sha256 = _portable_sha256(authorization)
     trusted_authorization_sha256 = _trusted_authorization_sha256(
         repo,
@@ -221,7 +268,7 @@ def inspect(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--base", default="origin/main")
+    parser.add_argument("--base", default=None)
     parser.add_argument(
         "--authorization",
         type=Path,

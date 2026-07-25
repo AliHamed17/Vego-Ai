@@ -108,7 +108,7 @@ def _serialize_advice(
     for key, value in mapped.items():
         if key in item:
             item[key] = value
-    matches = item.get("memory_matches") or []
+    matches = _record_list(item, "memory_matches")
     memory_ids = list(record.get("memory_match_ids") or [])
     if len(matches) != len(memory_ids):
         raise ValidationError("AdviceRecord memory match count changed during serialization")
@@ -238,6 +238,15 @@ def _record_mapping(item: Mapping[str, Any], key: str) -> Mapping[str, Any]:
     return value
 
 
+def _record_list(item: Mapping[str, Any], key: str) -> list[Any]:
+    if key not in item:
+        return []
+    value = item[key]
+    if not isinstance(value, list):
+        raise ValidationError(f"{key} must be an array")
+    return value
+
+
 def _review_record(item: dict) -> ReviewItem:
     review_id = item.get("review_id", "")
     signature = item.get("review_signature", "")
@@ -305,7 +314,7 @@ def _memory_record(item: dict) -> MemoryRecord:
 def _advice_record(item: dict, provenance: dict) -> AdviceRecord:
     pattern_id = item.get("pattern_id", "")
     setting_id = item.get("setting_id", "")
-    matches = item.get("memory_matches") or []
+    matches = _record_list(item, "memory_matches")
     memory_ids = tuple(
         match.get("memory_id", "")
         for match in matches

@@ -143,7 +143,13 @@ def _publish_artifact_and_manifest(
 
 def _config_mode(path: Path) -> str:
     config = json.loads(path.read_text(encoding="utf-8"))
-    h_layer = config.get("h_layer") or {}
+    if not isinstance(config, dict):
+        raise ValueError("H-layer runtime config must be an object")
+    h_layer = config.get("h_layer")
+    if h_layer is None:
+        h_layer = {}
+    if not isinstance(h_layer, dict):
+        raise ValueError("h_layer config must be an object")
     mode = h_layer.get("architecture_mode", "legacy")
     if mode not in ARCHITECTURE_MODES:
         raise ValueError(f"invalid architecture_mode {mode!r}")
@@ -210,8 +216,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--manifest", required=True, type=Path)
     args = parser.parse_args(argv)
 
-    mode = args.mode or _config_mode(args.config)
     try:
+        mode = args.mode or _config_mode(args.config)
         payload = _load(args.input, args.stage)
         safe_manifest = _safe_output(args.manifest)
         safe_output = _safe_output(args.output)
