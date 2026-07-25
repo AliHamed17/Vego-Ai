@@ -103,20 +103,29 @@ def _execute_isolated(
             payload,
             architecture_mode=mode,
         )
+    # Run parity first because it is the operation that owns fail-closed
+    # publication. Calling unified mode independently would raise on the
+    # semantic drift that parity is specifically required to report.
+    execution = apply_architecture_mode(
+        stage,
+        payload,
+        architecture_mode="parity",
+    )
     suffix = ".jsonl" if stage in JSONL_STAGES else ".json"
     with tempfile.TemporaryDirectory(prefix="vego-hlayer-parity-") as temporary:
         isolation_root = Path(temporary)
-        legacy = apply_architecture_mode(stage, payload, architecture_mode="legacy")
-        unified = apply_architecture_mode(stage, payload, architecture_mode="unified")
-        _write(isolation_root / "legacy" / f"artifact{suffix}", stage, legacy.output)
-        _write(isolation_root / "unified" / f"artifact{suffix}", stage, unified.output)
-        # The final parity execution owns the fail-closed publication decision
-        # and manifest. Temporary outputs disappear after comparison.
-        return apply_architecture_mode(
+        _write(
+            isolation_root / "legacy" / f"artifact{suffix}",
             stage,
-            payload,
-            architecture_mode="parity",
+            execution.legacy_output,
         )
+        _write(
+            isolation_root / "unified" / f"artifact{suffix}",
+            stage,
+            execution.unified_output,
+        )
+        # Temporary outputs disappear after their isolated serialization check.
+        return execution
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -19,6 +19,8 @@ NORMALIZED_KEYS = frozenset({"created_at", "generated_at", "run_id"})
 @dataclass(frozen=True)
 class ArchitectureExecution:
     output: Any
+    legacy_output: Any
+    unified_output: Any
     canonical_records: tuple[dict[str, Any], ...]
     manifest: ArchitectureRunManifest
 
@@ -133,6 +135,8 @@ def apply_architecture_mode(
         write_manifest(manifest, manifest_path)
     return ArchitectureExecution(
         output=published,
+        legacy_output=legacy,
+        unified_output=unified,
         canonical_records=adapted.records,
         manifest=manifest,
     )
