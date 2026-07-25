@@ -1,7 +1,7 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T16:29:15+00:00",
-  "sourceRevision": "4905d9de5308cffa7f2ab1e681e9f02143844eba",
+  "generatedAt": "2026-07-25T19:10:00+00:00",
+  "sourceRevision": "5d9b8139cf65f377815b671afe4812f2da0fe039",
   "latestAcceptedIteration": {
     "iteration": 15,
     "directory": "docs/research/hardening",
@@ -146,23 +146,23 @@
     "status": "PASS",
     "tests": {
       "VEGO-AI/tests": {
-        "passed": 106,
+        "passed": 108,
         "failed": 0,
-        "durationSeconds": 8.46
+        "durationSeconds": 6.72
       },
       "scripts/tests": {
-        "passed": 91,
+        "passed": 92,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 57.74
+        "durationSeconds": 58.75
       },
       "tests/hlayer_offline": {
-        "passed": 39,
+        "passed": 41,
         "failed": 0,
-        "durationSeconds": 5.65
+        "durationSeconds": 5.98
       }
     },
-    "recordedAt": "2026-07-25T18:05:01Z",
+    "recordedAt": "2026-07-25T19:10:00Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
