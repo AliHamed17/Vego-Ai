@@ -164,6 +164,12 @@ def test_comparison_adapter_rejects_nonobject_nested_classifications(
     value: object,
 ) -> None:
     payload = {
+        "schema_version": "1.0",
+        "setting_id": "ucd_ch",
+        "mode": "experimental",
+        "policy_version": "memory-informed-classifier-v1",
+        "ai_behavior_changed_in_baseline": False,
+        "generated_at": "2026-07-25T00:00:00Z",
         "comparisons": [
             {
                 "comparison_id": "CMP-ucd_ch-P1",
@@ -186,7 +192,11 @@ def test_comparison_adapter_rejects_nonobject_nested_classifications(
                 "ai_behavior_changed_in_baseline": False,
             }
         ],
-        "provenance": {"source": "fixture"},
+        "provenance": {
+            "source_variability_classes": "fixture-classes.json",
+            "source_memory_advice": "fixture-advice.json",
+            "source_memory": "fixture-memory.jsonl",
+        },
     }
     payload["comparisons"][0][field] = value
     with pytest.raises(ValidationError, match=rf"{field} must be an object"):
