@@ -61,6 +61,12 @@ _CD_MARKERS = (
 )
 
 
+def _portable_name(path_or_name: str | os.PathLike[str]) -> str:
+    """Return a filename for either POSIX- or Windows-formatted input paths."""
+
+    return str(path_or_name).replace("\\", "/").rsplit("/", 1)[-1].strip()
+
+
 def extract_case_id_from_filename(path_or_name: str | os.PathLike[str] | None) -> str | None:
     """Return the pipeline case id from a model-like filename.
 
@@ -71,7 +77,7 @@ def extract_case_id_from_filename(path_or_name: str | os.PathLike[str] | None) -
 
     if not path_or_name:
         return None
-    stem = Path(str(path_or_name)).name
+    stem = _portable_name(path_or_name)
     if not stem:
         return None
     stem = Path(stem).stem.strip()
@@ -91,7 +97,7 @@ def extract_case_id_from_agentc_filename(path_or_name: str | os.PathLike[str] | 
 
     if not path_or_name:
         return None
-    name = Path(str(path_or_name)).name.strip()
+    name = _portable_name(path_or_name)
     match = _AGENTC_CASE_RE.match(name)
     return match.group(1) if match else None
 

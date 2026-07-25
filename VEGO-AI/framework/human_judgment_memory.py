@@ -56,6 +56,14 @@ except Exception:  # pragma: no cover - fallback if import path differs
     def source_commit() -> str:  # type: ignore
         return "unknown"
 
+try:
+    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+except ImportError:  # pragma: no cover - package import fallback
+    from .hlayer_architecture import (  # type: ignore
+        add_architecture_arguments,
+        apply_stage_architecture,
+    )
+
 logger = logging.getLogger(__name__)
 
 JUDGMENT_SCHEMA_VERSION = "1.0.0"
@@ -212,7 +220,12 @@ def build_memory_item(resolved_item: dict) -> dict:
 # Ingestion
 # ---------------------------------------------------------------------------
 
-def ingest_judgments(resolved_items: list[dict]) -> tuple[list[dict], dict]:
+def ingest_judgments(
+    resolved_items: list[dict],
+    *,
+    architecture_mode: str = "legacy",
+    architecture_manifest: str | Path | None = None,
+) -> tuple[list[dict], dict]:
     """
     Build memory items from a resolved queue, applying the ingest guardrails.
 
@@ -257,6 +270,12 @@ def ingest_judgments(resolved_items: list[dict]) -> tuple[list[dict], dict]:
         "skipped_by_reason": by_reason,
         "conflicts": sum(1 for m in memory if m["conflict_status"] == "needs_adjudication"),
     }
+    memory = apply_stage_architecture(
+        "memory",
+        memory,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
+    ).output
     return memory, report
 
 
@@ -381,6 +400,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--query-guideline", default=None)
     parser.add_argument("--keywords", default=None)
     parser.add_argument("--include-conflicts", action="store_true")
+    add_architecture_arguments(parser)
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
@@ -389,7 +409,11 @@ def main(argv: list[str] | None = None) -> None:
         if not args.out:
             parser.error("--resolved requires --out")
         resolved = load_resolved_queue(args.resolved)
-        memory, report = ingest_judgments(resolved)
+        memory, report = ingest_judgments(
+            resolved,
+            architecture_mode=args.architecture_mode,
+            architecture_manifest=args.architecture_manifest,
+        )
         write_memory(memory, args.out)
         print("\n=== Ingest summary ===")
         print(f"resolved items : {report['total_items']}")

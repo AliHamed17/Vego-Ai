@@ -1,0 +1,105 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "name": "chardet",
+      "purl": "pkg:pypi/chardet@7.4.3",
+      "type": "library",
+      "version": "7.4.3"
+    },
+    {
+      "name": "jsonschema",
+      "purl": "pkg:pypi/jsonschema@4.26.0",
+      "type": "library",
+      "version": "4.26.0"
+    },
+    {
+      "name": "openai",
+      "purl": "pkg:pypi/openai@1.109.1",
+      "type": "library",
+      "version": "1.109.1"
+    },
+    {
+      "name": "Pillow",
+      "purl": "pkg:pypi/pillow@12.3.0",
+      "type": "library",
+      "version": "12.3.0"
+    },
+    {
+      "name": "pip-audit",
+      "purl": "pkg:pypi/pip-audit@2.10.1",
+      "type": "library",
+      "version": "2.10.1"
+    },
+    {
+      "name": "pypdf",
+      "purl": "pkg:pypi/pypdf@6.14.2",
+      "type": "library",
+      "version": "6.14.2"
+    },
+    {
+      "name": "pytest",
+      "purl": "pkg:pypi/pytest@9.0.3",
+      "type": "library",
+      "version": "9.0.3"
+    },
+    {
+      "name": "python-docx",
+      "purl": "pkg:pypi/python-docx@1.2.0",
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "name": "ruff",
+      "purl": "pkg:pypi/ruff@0.15.16",
+      "type": "library",
+      "version": "0.15.16"
+    },
+    {
+      "name": "tomli",
+      "properties": [
+        {
+          "name": "vego-ai:environment-marker",
+          "value": "python_version < '3.11'"
+        }
+      ],
+      "purl": "pkg:pypi/tomli@2.2.1",
+      "type": "library",
+      "version": "2.2.1"
+    },
+    {
+      "name": "fsevents",
+      "purl": "pkg:npm/fsevents@2.3.2",
+      "type": "library",
+      "version": "2.3.2"
+    },
+    {
+      "name": "playwright",
+      "purl": "pkg:npm/playwright@1.61.1",
+      "type": "library",
+      "version": "1.61.1"
+    },
+    {
+      "name": "playwright-core",
+      "purl": "pkg:npm/playwright-core@1.61.1",
+      "type": "library",
+      "version": "1.61.1"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "name": "vego-ai-unified-runtime-security-hardening",
+      "type": "application",
+      "version": "1.0"
+    },
+    "properties": [
+      {
+        "name": "vego-ai:scope",
+        "value": "Direct locked Python groups and locked Node test runtime"
+      }
+    ]
+  },
+  "serialNumber": "urn:uuid:00000000-0000-4000-8000-000000000015",
+  "specVersion": "1.5",
+  "version": 1
+}

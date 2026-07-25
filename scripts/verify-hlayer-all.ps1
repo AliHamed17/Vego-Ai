@@ -62,25 +62,11 @@ function Invoke-Check {
     }
 }
 
-Invoke-Check "protected paths (VEGO-AI hash guard)" { python scripts\check_hlayer_protected_paths.py }
+Invoke-Check "protected changes (reviewed allowlist)" { python scripts\check_hlayer_change_authorization.py }
 Invoke-Check "git: VEGO-AI unmodified" {
-    $protected = @(
-        "VEGO-AI/framework",
-        "VEGO-AI/schemas",
-        "VEGO-AI/tests",
-        "VEGO-AI/eval",
-        "VEGO-AI/inputs"
-    )
-    $diff = @(git status --porcelain -- $protected)
-    if ($LASTEXITCODE -ne 0) {
-        throw "Unable to inspect protected paths."
-    }
-    if ($diff.Count -gt 0) {
-        $diff
-        throw "Protected VEGO-AI paths have working-tree changes."
-    }
+    python scripts\check_hlayer_change_authorization.py
 }
-Invoke-Check "evidence consistency" { python scripts\check_evidence_consistency.py } -RefreshesIgnoredOutputs
+Invoke-Check "evidence consistency" { python scripts\check_evidence_consistency.py --check }
 Invoke-Check "offline package validator" { python scripts\validate_hlayer_offline.py }
 Invoke-Check "program validator (manifests, gates, boundary)" { python scripts\validate_hlayer_program.py }
 Invoke-Check "conformance suite (EXP-013..018)" { python scripts\run_hlayer_conformance_suite.py } -RefreshesIgnoredOutputs

@@ -7,11 +7,11 @@ This generated register connects each thesis chapter to its evidence state and p
 | 1 | `thesis/chapters/01-introduction.md` | B0-B5 ladder; Safe current claim | EXP-019, EXP-020, EXP-025 | Delivered — provisional |
 | 2 | `thesis/chapters/02-background-and-related-work.md` | Human oversight; Selective prediction; Design science | Literature only | Delivered — provisional |
 | 3 | `thesis/chapters/03-problem-and-research-questions.md` | E-RQ1-E-RQ3; H1-H4 | EXP-021, EXP-022, EXP-024, EXP-026 | Delivered — provisional |
-| 4 | `thesis/chapters/04-vego-ai-baseline-pipeline.md` | Frozen B0 baseline; 27-pattern distribution | EXP-000, EXP-021 | Offline evidence |
-| 5 | `thesis/chapters/05-human-ai-co-reasoning-artifact.md` | B1 mechanism; Non-destructive boundary | EXP-001, EXP-022 | Implemented |
-| 6 | `thesis/chapters/06-evaluation-methodology.md` | Preregistered metrics; 16/8 split; External gate | EXP-019, EXP-020, EXP-021, EXP-022, EXP-023, EXP-024, EXP-025, EXP-026, EXP-027 | Evaluation-ready |
+| 4 | `thesis/chapters/04-vego-ai-baseline-pipeline.md` | Frozen B0 baseline; 27-pattern distribution; Historical GPT-4o alias limitation | EXP-000, EXP-021, EXP-028 | Offline evidence |
+| 5 | `thesis/chapters/05-human-ai-co-reasoning-artifact.md` | B1 mechanism; Legacy/unified/parity contracts; Non-destructive boundary | EXP-001, EXP-022 | Implemented |
+| 6 | `thesis/chapters/06-evaluation-methodology.md` | Preregistered metrics; 16/8 split; External gate | EXP-019, EXP-020, EXP-021, EXP-022, EXP-023, EXP-024, EXP-025, EXP-026, EXP-027, EXP-028, EXP-029 | Evaluation-ready |
 | 7 | `thesis/chapters/07-experimental-results.md` | Current mechanism counts; Zero-label gate; Blank accuracy panels | EXP-001, EXP-005, EXP-012, EXP-019, EXP-020 | Pending expert input |
-| 8 | `thesis/chapters/08-threats-to-validity.md` | Leakage; Class prevalence; Reviewer roles; External replication | EXP-019, EXP-020, EXP-025, EXP-027 | Delivered — provisional |
+| 8 | `thesis/chapters/08-threats-to-validity.md` | Leakage; Class prevalence; Reviewer roles; External replication; Model drift and served-snapshot limitation | EXP-019, EXP-020, EXP-025, EXP-027, EXP-028, EXP-029 | Delivered — provisional |
 | 9 | `thesis/chapters/09-discussion.md` | Conditional outcome matrix; Mechanism versus performance | EXP-021, EXP-022, EXP-024, EXP-025, EXP-026 | Delivered — provisional |
 | 10 | `thesis/chapters/10-conclusion-and-phd-continuation.md` | Safe claim now; Conditional claim; Not allowed yet | EXP-020, EXP-024, EXP-025 | Pending expert input |
 
@@ -20,6 +20,7 @@ This generated register connects each thesis chapter to its evidence state and p
 ### Safe now
 
 - VEGO-AI has a reusable human-judgment mechanism supporting selective review, structured feedback, provenance-aware memory, advisory retrieval, and non-destructive comparison.
+- The legacy and unified M1-M4B-1 paths pass controlled fail-closed parity with 27 comparison rows and zero classification changes.
 - The current implementation preserves original Agent 4 classifications and baseline artifacts.
 - The project is evaluation-ready but remains blocked on independent expert input.
 

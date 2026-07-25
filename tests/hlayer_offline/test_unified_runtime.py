@@ -1,0 +1,109 @@
+from __future__ import annotations
+
+import json
+from dataclasses import dataclass
+from pathlib import Path
+
+import pytest
+from jsonschema import Draft202012Validator
+
+from vego_hlayer.contracts import MemoryRecord, ValidationError, contract_catalog
+from vego_hlayer.runtime import apply_architecture_mode
+from vego_hlayer.state_machine import TrustedMemoryStore
+
+
+def _review_item() -> dict:
+    return {
+        "review_id": "HRQ-ucd_ch-P1",
+        "review_signature": "0123456789abcdef",
+        "status": "pending",
+        "pattern_id": "P1",
+        "provenance": {"source": "fixture"},
+        "ai_decision": {
+            "classification": "Occasional Variability",
+            "confidence": "Medium",
+        },
+    }
+
+
+def test_legacy_unified_and_parity_round_trip_without_semantic_change(tmp_path) -> None:
+    payload = [_review_item()]
+    legacy = apply_architecture_mode("review", payload, architecture_mode="legacy")
+    unified = apply_architecture_mode("review", payload, architecture_mode="unified")
+    manifest_path = tmp_path / "manifest.json"
+    parity = apply_architecture_mode(
+        "review",
+        payload,
+        architecture_mode="parity",
+        manifest_path=manifest_path,
+    )
+    assert legacy.output == unified.output == parity.output == payload
+    assert parity.manifest.parity_status == "match"
+    assert parity.manifest.baseline_preserved is True
+    persisted = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assert persisted["published_output_sha256"] == persisted["legacy_output_sha256"]
+
+
+def test_architecture_manifest_validates_against_schema() -> None:
+    payload = [_review_item()]
+    result = apply_architecture_mode("review", payload, architecture_mode="parity")
+    repo_root = Path(__file__).resolve().parents[2]
+    schema = json.loads(
+        (repo_root / "schemas" / "architecture-run-manifest-v1.schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    Draft202012Validator(schema).validate(result.manifest.to_dict())
+
+
+def test_contract_catalog_has_versioned_architecture_identity() -> None:
+    catalog = contract_catalog()
+    assert catalog["catalog"] == "ArchitectureContractCatalog-v1"
+    assert catalog["schema_version"] == "1.0"
+    assert {
+        "ObservationRecord",
+        "ReviewItem",
+        "FeedbackRecord",
+        "VerificationRecord",
+        "MemoryRecord",
+        "AdviceRecord",
+        "ComparisonRecord",
+        "ArchitectureRunManifest",
+    } <= set(catalog["contracts"])
+
+
+def test_parity_mismatch_fails_closed_to_legacy(monkeypatch) -> None:
+    payload = [_review_item()]
+
+    @dataclass(frozen=True)
+    class ChangedAdapter:
+        records: tuple[dict, ...] = ()
+
+        def to_legacy(self):
+            changed = [_review_item()]
+            changed[0]["status"] = "resolved"
+            return changed
+
+    monkeypatch.setattr(
+        "vego_hlayer.runtime.adapt_legacy_artifact",
+        lambda stage, value: ChangedAdapter(),
+    )
+    result = apply_architecture_mode("review", payload, architecture_mode="parity")
+    assert result.manifest.parity_status == "mismatch"
+    assert result.output == payload
+    assert result.manifest.failure_state == "normalized_output_mismatch"
+
+
+def test_legacy_memory_is_valid_advisory_evidence_but_not_trusted_memory() -> None:
+    record = MemoryRecord(
+        memory_id="HJM-ucd_ch-P1",
+        verification_id="legacy:HF-1",
+        source_outcome="legacy_mechanism_memory",
+        validity_scope={"domain": "cheers"},
+        conflicts=(),
+        provenance={"source": "fixture"},
+        leakage_classification="unknown",
+    )
+    assert record.trusted is False
+    with pytest.raises(ValidationError, match="advisory evidence"):
+        TrustedMemoryStore().append(record)

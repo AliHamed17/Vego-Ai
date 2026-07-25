@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/model-execution-manifest-v1.schema.json",
+  "title": "ModelExecutionManifest-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "timestamp",
+    "agent",
+    "skill",
+    "label",
+    "requested_model",
+    "returned_model",
+    "endpoint",
+    "sdk_version",
+    "attempt",
+    "retry_count",
+    "config_sha256",
+    "parameters",
+    "prompt_system_sha256",
+    "prompt_system_chars",
+    "prompt_user_sha256",
+    "prompt_user_chars",
+    "response_sha256",
+    "response_chars",
+    "response_parsed",
+    "parse_error",
+    "api_error",
+    "token_usage"
+  ],
+  "properties": {
+    "schema_version": {"const": "model-execution-manifest-v1"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "agent": {"type": "string"},
+    "skill": {"type": "string"},
+    "label": {"type": "string"},
+    "requested_model": {"type": "string", "minLength": 1},
+    "returned_model": {"type": ["string", "null"]},
+    "endpoint": {"const": "chat.completions"},
+    "sdk_version": {"type": "string", "minLength": 1},
+    "system_fingerprint": {"type": ["string", "null"]},
+    "attempt": {"type": "integer", "minimum": 1},
+    "retry_count": {"type": "integer", "minimum": 0},
+    "config_sha256": {"$ref": "#/$defs/sha256"},
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_tokens"],
+      "properties": {
+        "max_tokens": {"type": "integer", "minimum": 1}
+      }
+    },
+    "prompt_system_sha256": {"$ref": "#/$defs/sha256"},
+    "prompt_system_chars": {"type": "integer", "minimum": 0},
+    "prompt_user_sha256": {"$ref": "#/$defs/sha256"},
+    "prompt_user_chars": {"type": "integer", "minimum": 0},
+    "response_sha256": {"$ref": "#/$defs/sha256"},
+    "response_chars": {"type": "integer", "minimum": 0},
+    "response_parsed": {"type": "boolean"},
+    "parse_error": {"type": ["string", "null"]},
+    "api_error": {"type": ["string", "null"]},
+    "token_usage": {
+      "type": "object",
+      "required": ["prompt_tokens", "completion_tokens", "total_tokens"],
+      "properties": {
+        "prompt_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "completion_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "total_tokens": {"type": ["integer", "null"], "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "prompt_system": {"type": "string"},
+    "prompt_user": {"type": "string"},
+    "response_raw": {"type": "string"},
+    "response_parsed_content": {}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

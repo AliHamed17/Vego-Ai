@@ -1,6 +1,6 @@
 # Thesis Evidence Baseline
 
-Generated from revision `279646cb1ba45fe4856e0bb3aa79aeb34e843b00` and accepted Iteration 14 (`hlayer-20260720T173308Z-d79047f5e2`).
+Generated from revision `da239a1a819b4fd7da8519c765ece1272638103e` and accepted Iteration 15 (`HLAYER-UNIFIED-HARDENING-V1`).
 
 > **Current verdict:** accuracy is **NOT YET COMPUTABLE** because the project has 0 of 24 generalization-safe expert labels. This file records a research baseline, not an accuracy result.
 
@@ -9,7 +9,7 @@ Generated from revision `279646cb1ba45fe4856e0bb3aa79aeb34e843b00` and accepted 
 | ID | Baseline | Status | Evaluation gate | Allowed claim |
 | --- | --- | --- | --- | --- |
 | B0 | Frozen original VEGO-AI baseline | Implemented | Byte and provenance integrity checks must pass. | The original baseline is preserved and reproducibly identifiable. |
-| B1 | Current reusable-human-judgment mechanism | Implemented | Mechanism and safety checks only. | Mechanism readiness, traceability, escalation, and baseline protection. |
+| B1 | Legacy and unified human-judgment mechanism | Implemented | Contract, parity, mechanism, security, and safety checks only. | Mechanism readiness, compatibility, traceability, escalation, and baseline protection. |
 | B2 | Independent expert-labeled baseline | Pending expert input | At least 20 safe labels for quantitative reporting; 16 development and 8 sealed holdout. | No accuracy result until the gate opens. |
 | B3 | Frozen deterministic candidate policy | Proposal — not approved | At least three correctable development errors across at least two settings plus supervisor approval. | Policy design rationale only; no performance claim. |
 | B4 | Sealed holdout pilot | Blocked | One-time run, no post-hoc policy revision. | Pilot evidence only, regardless of direction. |
@@ -30,7 +30,7 @@ Generated from revision `279646cb1ba45fe4856e0bb3aa79aeb34e843b00` and accepted 
 | comparisonRows | 27 comparison rows | Offline evidence | Parallel comparison coverage only. |
 | memory-informed Changes | 0 changed classifications | Offline evidence | Current policy cannot produce an accuracy delta because it changes no classifications. |
 | review-after-Memory | 2 review flags | Offline evidence | Escalation mechanism evidence; precision and recall await expert labels. |
-| latestIteration | 14 accepted iteration | Offline evidence | Reliability-only NEUTRAL snapshot; no performance default or accuracy claim. |
+| latestIteration | 15 accepted iteration | Offline evidence | Reliability-only NEUTRAL snapshot; no performance default or accuracy claim. |
 
 ## Immediate human gate
 

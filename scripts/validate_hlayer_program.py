@@ -4,8 +4,10 @@
 This validator bridges the historical replay-suite manifest and the versioned
 contract/conformance manifest without changing either runtime API.  It verifies
 their canonical hashes, the EXP-006 -> EXP-007 ObservationRecord boundary,
-decision/EXP-005 gates, the latest accepted iteration, protected paths, and the
-offline demonstration safety boundary.
+decision/EXP-005 gates, the latest accepted iteration, authorized protected
+changes, and the offline demonstration safety boundary. The original Phase 0
+fingerprints remain visible as historical evidence, but approved allowlisted
+M1-M4B-1 hardening changes are governed by the current authorization record.
 """
 
 from __future__ import annotations
@@ -29,6 +31,7 @@ if str(SCRIPTS) not in sys.path:
 
 import hlayer_harness as harness  # noqa: E402
 from build_hlayer_decision_snapshot import build_snapshot  # noqa: E402
+from check_hlayer_change_authorization import inspect as inspect_authorization  # noqa: E402
 from check_hlayer_protected_paths import check_boundary  # noqa: E402
 from hlayer_offline.common import _decision_snapshot as conformance_decision_snapshot  # noqa: E402
 from hlayer_offline.suite import DEFAULT_RUNNERS, validate_suite_stage  # noqa: E402
@@ -376,7 +379,19 @@ def run_checks() -> dict[str, Any]:
             details[name] = check()
         except Exception as exc:  # collect all independent acceptance failures
             failures.append(f"{name}: {exc}")
-    protected = check_boundary(REPO, REPO / "docs/research/h-layer/phase-0-boundary-record.md")
+    historical_boundary = check_boundary(
+        REPO, REPO / "docs/research/h-layer/phase-0-boundary-record.md"
+    )
+    historical_boundary["enforcement_status"] = "HISTORICAL_ONLY"
+    historical_boundary["current_governor"] = (
+        "configs/protected-change-authorization-v1.json"
+    )
+    details["historical_phase0_boundary"] = historical_boundary
+    protected = inspect_authorization(
+        REPO,
+        REPO / "configs/protected-change-authorization-v1.json",
+        "origin/main",
+    )
     details["protected_paths"] = protected
     if protected["status"] != "PASS":
         failures.extend(f"protected_paths: {failure}" for failure in protected["failures"])

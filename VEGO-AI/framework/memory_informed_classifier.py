@@ -49,6 +49,14 @@ import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
+try:
+    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+except ImportError:  # pragma: no cover - package import fallback
+    from .hlayer_architecture import (  # type: ignore
+        add_architecture_arguments,
+        apply_stage_architecture,
+    )
+
 logger = logging.getLogger(__name__)
 
 SCHEMA_VERSION = "1.0.0"
@@ -253,8 +261,15 @@ def build_comparison_items(variability_classes: dict, memory_advice: dict,
     return items
 
 
-def generate_report(items: list[dict], setting_id: str, provenance: dict) -> dict:
-    return {
+def generate_report(
+    items: list[dict],
+    setting_id: str,
+    provenance: dict,
+    *,
+    architecture_mode: str = "legacy",
+    architecture_manifest: str | Path | None = None,
+) -> dict:
+    report = {
         "schema_version": SCHEMA_VERSION,
         "setting_id": setting_id,
         "mode": MODE,
@@ -264,6 +279,12 @@ def generate_report(items: list[dict], setting_id: str, provenance: dict) -> dic
         "provenance": provenance,
         "comparisons": items,
     }
+    return apply_stage_architecture(
+        "comparison",
+        report,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
+    ).output
 
 
 def write_report(report: dict, path: str | Path) -> int:
@@ -289,6 +310,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--memory", required=True, help="human_judgment_memory.jsonl (M3)")
     parser.add_argument("--out", required=True, help="output memory_informed_comparison.json")
     parser.add_argument("--setting", default=None, help="setting_id (default: from --out dir)")
+    add_architecture_arguments(parser)
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
@@ -304,7 +326,13 @@ def main(argv: list[str] | None = None) -> None:
         "source_memory": str(args.memory),
     }
     items = build_comparison_items(variability_classes, memory_advice, memory, setting_id)
-    report = generate_report(items, setting_id, provenance)
+    report = generate_report(
+        items,
+        setting_id,
+        provenance,
+        architecture_mode=args.architecture_mode,
+        architecture_manifest=args.architecture_manifest,
+    )
     write_report(report, args.out)
 
     by_rule: dict[str, int] = {}

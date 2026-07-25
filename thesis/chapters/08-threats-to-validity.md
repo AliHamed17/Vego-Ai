@@ -111,7 +111,48 @@ Several threats interact in ways that compound their effects. The small sample (
 
 The conservative policy (§8.4) interacts with both the small sample and the construct validity: because the current policy changes zero classifications, the evaluation will initially measure only the *baseline's* accuracy against expert labels, not the artifact's effect on accuracy. This means that even with full labeling, the first evaluation cycle may show no difference between original and memory-informed classifications — a result that is by design, not a failure of the artifact.
 
-## 8.8 Summary
+## 8.8 Runtime, cybersecurity, and model-provenance threats
+
+**Implementation divergence.** Maintaining legacy and unified paths can create
+silent semantic drift. *Mitigation:* parity mode runs both paths from the same
+immutable inputs in separate temporary directories and compares all
+decision-relevant fields after normalizing only timestamps and run identifiers.
+Any mismatch publishes the legacy result and fails the parity gate. Controlled
+parity is compatibility evidence only; it does not validate classification
+quality.
+
+**Unsafe files and output paths.** Malformed JSON/CSV/ZIP inputs, archive
+traversal, symlinks, oversized records, or an unauthorized output root could
+corrupt evidence or expose local data. *Mitigation:* the unified I/O boundary
+validates schemas, magic bytes, archive members, path containment, overwrite
+policy, file size, and record count before atomic publication. Baseline output
+directories are never allowed as unified destinations.
+
+**Credential and interaction-log exposure.** API keys, raw prompts, model
+responses, student data, feedback, or supervisor material could enter tracked
+configuration or logs. *Mitigation:* plaintext keys in project/runtime
+configuration are rejected; credentials come from environment or project
+secret stores. Interaction logging defaults to `metadata_only`; full content is
+an explicit local-only opt-in with redaction, rotation, size limits, and
+retention. CI is API-free and scans the tree, candidate artifacts, and history
+for prohibited material.
+
+**Dependency and supply-chain drift.** A reproducibility claim can fail if
+dependency resolution changes or third-party automation is mutable.
+*Mitigation:* Python and Node environments are locked, legacy requirement files
+are generated and freshness-checked, direct dependencies are audited, release
+SBOMs are generated, and GitHub Actions are pinned to full commit identifiers.
+Passing scans describe the checked revision; they are not a guarantee against
+future vulnerabilities.
+
+**Model alias drift.** The historical baseline requested `gpt-4o`, but the
+served dated snapshot was not retained. A later call to the same alias may not
+behave identically. *Mitigation:* preserve the committed Agent 4 output as B0,
+record all available model metadata in future manifests, and keep EXP-029
+blocked behind independent labels, a sealed comparison protocol, supervisor
+approval, and a cost limit. No candidate model is promoted by Iteration 15.
+
+## 8.9 Summary
 
 The dominant threats are the small, leakage-heavy evidence base, missing
 independent labels, unstable class prevalence, and the risk of optimistic policy

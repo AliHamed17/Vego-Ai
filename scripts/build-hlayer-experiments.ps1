@@ -6,30 +6,49 @@ param(
     [string]$EvidenceGuardScript = "",
     [string]$ProtectedPathGuardScript = "",
     [ValidateSet("", "exp006", "exp007", "exp008", "exp009", "exp010", "exp012")]
-    [string]$TestFailExperiment = ""
+    [string]$TestFailExperiment = "",
+    [string]$GeneratedOutputRoot = ""
 )
 
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
-$generatedRoot = Join-Path $repoRoot "reports\generated"
+$requestedGeneratedRoot = if ($GeneratedOutputRoot) {
+    $GeneratedOutputRoot
+} elseif ($env:HLAYER_GENERATED_ROOT) {
+    $env:HLAYER_GENERATED_ROOT
+} else {
+    # Nested Join-Path: the 3-argument form needs PowerShell 6+, and this
+    # script also runs under Windows PowerShell 5.1 in integration tests.
+    Join-Path (Join-Path $repoRoot "reports") "generated"
+}
+$generatedRoot = if ([System.IO.Path]::IsPathRooted($requestedGeneratedRoot)) {
+    [System.IO.Path]::GetFullPath($requestedGeneratedRoot)
+} else {
+    [System.IO.Path]::GetFullPath((Join-Path $repoRoot $requestedGeneratedRoot))
+}
 $evidenceGuard = if ($EvidenceGuardScript) {
     (Resolve-Path -LiteralPath $EvidenceGuardScript).Path
 } else {
-    Join-Path $repoRoot "scripts\check_evidence_consistency.py"
+    Join-Path $repoRoot "scripts/check_evidence_consistency.py"
 }
 $protectedPathGuard = if ($ProtectedPathGuardScript) {
     (Resolve-Path -LiteralPath $ProtectedPathGuardScript).Path
 } else {
-    Join-Path $repoRoot "scripts\check_hlayer_protected_paths.py"
+    # Unified-runtime hardening is explicitly authorized for a narrow set of
+    # M1-M4B-1 files. The branch-aware checker rejects every protected change
+    # outside that allowlist while preserving the historical test seam.
+    Join-Path $repoRoot "scripts/check_hlayer_change_authorization.py"
 }
 $experimentNames = @("exp006", "exp007", "exp008", "exp009", "exp010", "exp012")
+# Forward slashes so the same list resolves under PowerShell on Windows and on
+# Linux CI runners; a literal backslash is not a separator on Linux.
 $experimentScripts = @(
-    "scripts\exp006_event_replay.py",
-    "scripts\exp007_dosage_replay.py",
-    "scripts\exp008_trigger_mining.py",
-    "scripts\exp009_seeded_conflict.py",
-    "scripts\exp010_convergence_sweep.py",
-    "scripts\exp012_accuracy_baseline.py"
+    "scripts/exp006_event_replay.py",
+    "scripts/exp007_dosage_replay.py",
+    "scripts/exp008_trigger_mining.py",
+    "scripts/exp009_seeded_conflict.py",
+    "scripts/exp010_convergence_sweep.py",
+    "scripts/exp012_accuracy_baseline.py"
 )
 $runId = "hlayer-{0}-{1}" -f (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssZ"), ([guid]::NewGuid().ToString("N").Substring(0, 10))
 $generatedAt = (Get-Date).ToUniversalTime().ToString("o")
@@ -67,7 +86,7 @@ try {
     }
 
     Invoke-CheckedPython -Arguments @(
-        "scripts\hlayer_harness.py", "snapshot-gate", "--output", (Join-Path $stageRoot "exp005-gate.json")
+        "scripts/hlayer_harness.py", "snapshot-gate", "--output", (Join-Path $stageRoot "exp005-gate.json")
     ) -Label "snapshotting validated EXP-005 gate"
 
     $combinedPath = Join-Path $stageRoot "hlayer_experiments_summary.md"
@@ -83,7 +102,7 @@ try {
     $parts.Add("EXP-005 validated generalization-safe label count: $safeLabels.")
     $parts.Add("")
     foreach ($experiment in $experimentNames) {
-        $summary = Join-Path $stageRoot "$experiment\summary.md"
+        $summary = Join-Path (Join-Path $stageRoot $experiment) "summary.md"
         if (-not (Test-Path -LiteralPath $summary -PathType Leaf)) {
             throw "Fresh summary is missing: $summary"
         }
@@ -93,7 +112,7 @@ try {
     $parts -join "`n" | Set-Content -LiteralPath $combinedPath -Encoding utf8
 
     $suiteManifestArgs = @(
-        "scripts\hlayer_harness.py", "suite-manifest",
+        "scripts/hlayer_harness.py", "suite-manifest",
         "--output-root", $stageRoot,
         "--output", (Join-Path $stageRoot "hlayer_suite_manifest.json"),
         "--experiments"
@@ -102,7 +121,7 @@ try {
 
     foreach ($experiment in $experimentNames) {
         foreach ($required in @("summary.json", "summary.md", "manifest.json")) {
-            $path = Join-Path $stageRoot "$experiment\$required"
+            $path = Join-Path (Join-Path $stageRoot $experiment) $required
             if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
                 throw "Fresh staged output is incomplete: $path"
             }
@@ -111,12 +130,12 @@ try {
 
     # This check refreshes ignored evidence-consistency snapshots. Its nonzero
     # exit code is a hard suite failure and prevents any experiment promotion.
-    Invoke-CheckedPython -Arguments @($evidenceGuard) -Label "running evidence-consistency guard (refreshes ignored snapshots)"
+    Invoke-CheckedPython -Arguments @($evidenceGuard, "--refresh") -Label "running evidence-consistency guard (refreshes ignored snapshots)"
     Invoke-CheckedPython -Arguments @($protectedPathGuard) -Label "rechecking protected-path hashes before promotion"
 
     $directories = $experimentNames
     $promoteArgs = @(
-        "scripts\hlayer_harness.py", "promote",
+        "scripts/hlayer_harness.py", "promote",
         "--stage-root", $stageRoot,
         "--target-root", $generatedRoot,
         "--directories"

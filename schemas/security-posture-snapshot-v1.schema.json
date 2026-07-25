@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/security-posture-snapshot-v1.schema.json",
+  "title": "SecurityPostureSnapshot-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "inputHashes",
+    "dependencyAudit",
+    "secretScan",
+    "staticAnalysis",
+    "binaryAudit",
+    "privacy",
+    "exceptions"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "SecurityPostureSnapshot-v1"},
+    "inputHashes": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/sha256"},
+      "minProperties": 2
+    },
+    "dependencyAudit": {"$ref": "#/$defs/check"},
+    "secretScan": {"$ref": "#/$defs/check"},
+    "staticAnalysis": {"$ref": "#/$defs/check"},
+    "binaryAudit": {"$ref": "#/$defs/check"},
+    "privacy": {"$ref": "#/$defs/check"},
+    "exceptions": {"type": "array"}
+  },
+  "$defs": {
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "BLOCKED"]},
+        "evidence": {"type": "string", "minLength": 1},
+        "details": {"type": "object"}
+      }
+    },
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

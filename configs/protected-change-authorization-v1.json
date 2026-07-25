@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "authorization_date": "2026-07-25",
+  "authorization_source": "User-approved unified runtime hardening plan",
+  "merge_requires_independent_approval": true,
+  "forbidden_paths": [
+    "VEGO-AI/framework/agent1_language_advisor.py",
+    "VEGO-AI/framework/agent2_domain_advisor.py",
+    "VEGO-AI/framework/agent3_model_inspector.py",
+    "VEGO-AI/framework/agent4_variability_explorer.py",
+    "VEGO-AI/framework/orchestrator.py",
+    "VEGO-AI/eval",
+    "VEGO-AI/eval_output",
+    "VEGO-AI/inputs"
+  ],
+  "allowed_paths": [
+    "VEGO-AI/framework/hlayer_architecture.py",
+    "VEGO-AI/framework/human_feedback_manager.py",
+    "VEGO-AI/framework/human_judgment_memory.py",
+    "VEGO-AI/framework/human_review_queue.py",
+    "VEGO-AI/framework/llm_client.py",
+    "VEGO-AI/framework/memory_advisor.py",
+    "VEGO-AI/framework/memory_informed_classifier.py",
+    "VEGO-AI/framework/README.md",
+    "VEGO-AI/framework/requirements.txt",
+    "VEGO-AI/schemas/memory_informed_comparison.schema.json",
+    "VEGO-AI/tests/test_human_feedback_manager.py",
+    "VEGO-AI/tests/test_human_judgment_memory.py",
+    "VEGO-AI/tests/test_human_review_queue.py",
+    "VEGO-AI/tests/test_llm_client_security.py",
+    "VEGO-AI/tests/test_memory_advisor.py",
+    "VEGO-AI/tests/test_memory_informed_classifier.py",
+    "VEGO-AI/tests/test_visualizer_helpers.py"
+  ]
+}

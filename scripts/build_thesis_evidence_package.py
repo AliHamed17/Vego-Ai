@@ -16,7 +16,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAM_STATUS = ROOT / "docs/research/h-layer/program-status-snapshot-v1.json"
 OUTPUT_DIR = ROOT / "docs/research/thesis-evidence"
@@ -43,7 +42,30 @@ CANONICAL_SOURCE_PATHS = [
     Path("schemas/evaluation-run-manifest-v2.schema.json"),
     Path("schemas/policy-candidate-record-v1.schema.json"),
     Path("schemas/thesis-review-package-manifest-v1.schema.json"),
+    Path("schemas/architecture-run-manifest-v1.schema.json"),
+    Path("schemas/baseline-lock-manifest-v2.schema.json"),
+    Path("schemas/hlayer-runtime-config-v1.schema.json"),
+    Path("schemas/model-execution-manifest-v1.schema.json"),
+    Path("schemas/security-posture-snapshot-v1.schema.json"),
+    Path("configs/hlayer-runtime.json"),
+    Path("configs/protected-change-authorization-v1.json"),
+    Path("scripts/build_hardening_manifests.py"),
+    Path("scripts/run_hlayer_architecture.py"),
+    Path("scripts/verify-source.ps1"),
+    Path("scripts/verify-controlled.ps1"),
+    Path("scripts/verify-release.ps1"),
+    Path("src/vego_hlayer/__init__.py"),
+    Path("src/vego_hlayer/adapters.py"),
+    Path("src/vego_hlayer/contracts.py"),
+    Path("src/vego_hlayer/io_safety.py"),
+    Path("src/vego_hlayer/runtime.py"),
+    Path("src/vego_hlayer/state_machine.py"),
     Path("docs/research/h-layer/program-status-snapshot-v1.json"),
+    Path("docs/research/hardening/README.md"),
+    Path("docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md"),
+    Path("docs/research/hardening/THREAT_MODEL.md"),
+    Path("docs/research/hardening/UNIFIED_RUNTIME_ARCHITECTURE.md"),
+    Path("docs/research/hardening/VERIFICATION_AND_RELEASE.md"),
     Path("docs/research/accuracy-improvement-plan.md"),
     Path("docs/research/supervisor-label-approval-pack.md"),
     Path("experiments/registry.md"),
@@ -61,6 +83,8 @@ CANONICAL_SOURCE_PATHS = [
             (27, "ablation-robustness"),
         ]
     ],
+    Path("experiments/EXP-028-model-execution-reproducibility/README.md"),
+    Path("experiments/EXP-029-frozen-candidate-model-comparison/README.md"),
     Path("thesis/outline.md"),
     Path("thesis/chapters/00-abstract.md"),
     Path("thesis/chapters/01-introduction.md"),
@@ -85,6 +109,16 @@ def sha256_file(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def sha256_portable_text_bytes(value: bytes) -> str:
+    text = value.decode("utf-8-sig")
+    normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def sha256_portable_text_file(path: Path) -> str:
+    return sha256_portable_text_bytes(path.read_bytes())
 
 
 def git(*args: str) -> str:
@@ -118,7 +152,7 @@ def canonical_source_hashes() -> dict[str, str]:
             "missing canonical thesis sources: " + ", ".join(missing)
         )
     return {
-        path.as_posix(): sha256_file(ROOT / path)
+        path.as_posix(): sha256_portable_text_file(ROOT / path)
         for path in CANONICAL_SOURCE_PATHS
     }
 
@@ -443,6 +477,113 @@ def build_snapshot(
                 ]["passed"],
             },
         },
+        "runtimeHardening": {
+            "contractVersion": "1.0",
+            "defaultMode": "legacy",
+            "modes": [
+                {
+                    "id": "legacy",
+                    "status": "Implemented",
+                    "purpose": (
+                        "Preserve the existing M1-M4B-1 implementation and public "
+                        "artifacts as the publication reference."
+                    ),
+                    "failureBehavior": "Existing fail-safe behavior is preserved.",
+                },
+                {
+                    "id": "unified",
+                    "status": "Implemented",
+                    "purpose": (
+                        "Run M1-M4B-1 through versioned canonical contracts and "
+                        "deterministic legacy adapters."
+                    ),
+                    "failureBehavior": (
+                        "Invalid contracts, unauthorized paths, or unsafe outputs fail "
+                        "without changing the baseline."
+                    ),
+                },
+                {
+                    "id": "parity",
+                    "status": "Implemented",
+                    "purpose": (
+                        "Run legacy and unified paths from the same immutable inputs in "
+                        "separate temporary directories."
+                    ),
+                    "failureBehavior": (
+                        "Any normalized mismatch publishes only the legacy result and "
+                        "records a structured difference."
+                    ),
+                },
+            ],
+            "parityEvidence": {
+                "status": "PASS",
+                "artifactCount": 14,
+                "reviewItemCount": 11,
+                "legacyMemoryRecordCount": 3,
+                "comparisonRowCount": 27,
+                "classificationChangeCount": 0,
+                "claimBoundary": (
+                    "Controlled compatibility evidence only; it is not an accuracy or "
+                    "generalization result."
+                ),
+            },
+            "authorityBoundary": {
+                "supervisorDecisionState": "Deferred",
+                "liveListenerAuthorized": False,
+                "automaticCorrectionAuthorized": False,
+                "trustedMemoryRule": (
+                    "Only independently verified or human-adjudicated records may use "
+                    "verified or adjudicated trust states."
+                ),
+                "timeoutBehavior": "Preserve the baseline and park the item.",
+            },
+            "securityBoundary": {
+                "status": "PASS",
+                "interactionLogDefault": "metadata_only",
+                "pythonDependencyAudit": "PASS",
+                "nodeDependencyAudit": "PASS",
+                "secretAndPrivacyScan": "PASS",
+                "baselineLock": "PASS",
+                "claimBoundary": (
+                    "The snapshot records reproducible controls and passing local scans; "
+                    "it is not a guarantee that no future vulnerability exists."
+                ),
+            },
+            "modelBoundary": {
+                "defaultModel": "gpt-4o",
+                "servedSnapshotKnown": False,
+                "executionManifest": "ModelExecutionManifest-v1",
+                "protocols": [
+                    {
+                        "id": "EXP-028",
+                        "title": "Model execution reproducibility and drift",
+                        "status": "Proposal — not approved",
+                        "gate": (
+                            "Record request/response provenance without changing prompts, "
+                            "parameters, classifications, or the default model."
+                        ),
+                        "claimBoundary": "Protocol only; no model-comparison result.",
+                        "chapterIds": ["4", "6", "8"],
+                        "decisionIds": ["M-05", "M-06"],
+                    },
+                    {
+                        "id": "EXP-029",
+                        "title": "Frozen candidate-model comparison",
+                        "status": "Blocked",
+                        "gate": (
+                            "At least 20 safe labels, completed reviewer agreement and "
+                            "adjudication, frozen policy/prompt, supervisor approval, "
+                            "sealed holdout, and recorded cost limit."
+                        ),
+                        "claimBoundary": (
+                            "No candidate model becomes a default through Iteration 15."
+                        ),
+                        "chapterIds": ["6", "7", "8", "9"],
+                        "decisionIds": ["M-05", "M-06"],
+                    },
+                ],
+            },
+        },
         "researchFrame": {
             "mainContribution": (
                 "Reusable, traceable, leakage-aware human judgment for AI-assisted "
@@ -612,13 +753,28 @@ def build_snapshot(
             },
             {
                 "id": "B1",
-                "name": "Current reusable-human-judgment mechanism",
+                "name": "Legacy and unified human-judgment mechanism",
                 "status": "Implemented",
-                "purpose": "Demonstrate selective review, structured feedback, memory, advice, and comparison.",
-                "data": "11 review items, 3 reusable judgments, 8 advice items, and 27 comparison rows.",
-                "policy": "memory-informed-classifier-v1, advisory and non-destructive",
-                "evaluationGate": "Mechanism and safety checks only.",
-                "allowedClaim": "Mechanism readiness, traceability, escalation, and baseline protection.",
+                "purpose": (
+                    "Demonstrate selective review, structured feedback, memory, "
+                    "advice, and comparison through compatible legacy and canonical "
+                    "contract paths."
+                ),
+                "data": (
+                    "Controlled parity covered 14 artifacts, 11 review items, 3 "
+                    "legacy mechanism-memory records, and 27 comparison rows."
+                ),
+                "policy": (
+                    "Legacy remains default; unified is explicit; parity fails closed "
+                    "to the legacy result on every mismatch."
+                ),
+                "evaluationGate": (
+                    "Contract, parity, mechanism, security, and safety checks only."
+                ),
+                "allowedClaim": (
+                    "Mechanism readiness, compatibility, traceability, escalation, "
+                    "and baseline protection."
+                ),
                 "behaviorChanged": False,
                 "experimentIds": ["EXP-022"],
                 "chapterIds": ["5", "7"],
@@ -923,7 +1079,7 @@ def build_snapshot(
             ],
             "safety": [
                 "Baseline files changed: must remain zero",
-                "Protected runtime paths changed: must remain false",
+                "Unauthorized or forbidden protected-path changes: must remain zero",
                 "Unknown or same-pattern leakage in primary metrics: must remain zero",
                 "Automatic correction applications: must remain zero",
                 "Post-hoc holdout policy revisions: must remain zero",
@@ -957,6 +1113,7 @@ def build_snapshot(
         "claimGates": {
             "safeNow": [
                 "VEGO-AI has a reusable human-judgment mechanism supporting selective review, structured feedback, provenance-aware memory, advisory retrieval, and non-destructive comparison.",
+                "The legacy and unified M1-M4B-1 paths pass controlled fail-closed parity with 27 comparison rows and zero classification changes.",
                 "The current implementation preserves original Agent 4 classifications and baseline artifacts.",
                 "The project is evaluation-ready but remains blocked on independent expert input.",
             ],
@@ -1001,14 +1158,22 @@ def build_snapshot(
             {
                 "chapter": "4",
                 "file": "thesis/chapters/04-vego-ai-baseline-pipeline.md",
-                "evidence": ["Frozen B0 baseline", "27-pattern distribution"],
-                "experiments": ["EXP-000", "EXP-021"],
+                "evidence": [
+                    "Frozen B0 baseline",
+                    "27-pattern distribution",
+                    "Historical GPT-4o alias limitation",
+                ],
+                "experiments": ["EXP-000", "EXP-021", "EXP-028"],
                 "claimStatus": "Offline evidence",
             },
             {
                 "chapter": "5",
                 "file": "thesis/chapters/05-human-ai-co-reasoning-artifact.md",
-                "evidence": ["B1 mechanism", "Non-destructive boundary"],
+                "evidence": [
+                    "B1 mechanism",
+                    "Legacy/unified/parity contracts",
+                    "Non-destructive boundary",
+                ],
                 "experiments": ["EXP-001", "EXP-022"],
                 "claimStatus": "Implemented",
             },
@@ -1016,7 +1181,7 @@ def build_snapshot(
                 "chapter": "6",
                 "file": "thesis/chapters/06-evaluation-methodology.md",
                 "evidence": ["Preregistered metrics", "16/8 split", "External gate"],
-                "experiments": [f"EXP-{number:03d}" for number in range(19, 28)],
+                "experiments": [f"EXP-{number:03d}" for number in range(19, 30)],
                 "claimStatus": "Evaluation-ready",
             },
             {
@@ -1029,8 +1194,21 @@ def build_snapshot(
             {
                 "chapter": "8",
                 "file": "thesis/chapters/08-threats-to-validity.md",
-                "evidence": ["Leakage", "Class prevalence", "Reviewer roles", "External replication"],
-                "experiments": ["EXP-019", "EXP-020", "EXP-025", "EXP-027"],
+                "evidence": [
+                    "Leakage",
+                    "Class prevalence",
+                    "Reviewer roles",
+                    "External replication",
+                    "Model drift and served-snapshot limitation",
+                ],
+                "experiments": [
+                    "EXP-019",
+                    "EXP-020",
+                    "EXP-025",
+                    "EXP-027",
+                    "EXP-028",
+                    "EXP-029",
+                ],
                 "claimStatus": "Delivered — provisional",
             },
             {

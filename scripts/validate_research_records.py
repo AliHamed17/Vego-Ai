@@ -19,6 +19,17 @@ SCHEMAS = {
     / "schemas/evaluation-run-manifest-v2.schema.json",
     "PolicyCandidateRecord-v1": ROOT
     / "schemas/policy-candidate-record-v1.schema.json",
+    "ArchitectureRunManifest": ROOT
+    / "schemas/architecture-run-manifest-v1.schema.json",
+    "BaselineLockManifest-v2": ROOT
+    / "schemas/baseline-lock-manifest-v2.schema.json",
+    "model-execution-manifest-v1": ROOT
+    / "schemas/model-execution-manifest-v1.schema.json",
+    "ReleaseManifest-v3": ROOT / "schemas/release-manifest-v3.schema.json",
+    "SecurityPostureSnapshot-v1": ROOT
+    / "schemas/security-posture-snapshot-v1.schema.json",
+    "HLayerIterationManifest-v1": ROOT
+    / "schemas/hlayer-iteration-manifest-v1.schema.json",
 }
 
 
@@ -56,7 +67,11 @@ def semantic_errors(record: dict[str, Any]) -> list[str]:
 
 
 def validate_record(record: dict[str, Any]) -> list[str]:
-    version = record.get("schemaVersion")
+    version = (
+        record.get("schemaVersion")
+        or record.get("contract")
+        or record.get("schema_version")
+    )
     schema_path = SCHEMAS.get(version)
     if schema_path is None:
         return [f"unsupported schemaVersion: {version!r}"]

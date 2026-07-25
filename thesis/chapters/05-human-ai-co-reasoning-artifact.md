@@ -210,7 +210,39 @@ evaluation:
 This traceability links architecture to evaluation without assuming that an
 implemented mechanism has an empirically beneficial effect.
 
-## 5.10 Boundaries
+## 5.10 Unified contracts and fail-closed parity
+
+Iteration 15 preserves the implementation described above as the `legacy`
+runtime mode and adds a parallel `unified` mode under `src/vego_hlayer`. The
+unified package defines versioned records for observation, triage, review,
+feedback, verification, memory, advice, correction proposals, comparisons, and
+run manifests. Deterministic adapters translate between these records and the
+existing M1–M4B-1 file formats, so public filenames, review identifiers,
+signatures, status fields, and evaluation interfaces remain compatible.
+
+Three explicit modes prevent an implicit migration:
+
+| Mode | Purpose | Publication rule |
+| --- | --- | --- |
+| `legacy` | Execute the existing implementation | Default and reference path |
+| `unified` | Execute the canonical contract-driven path | Explicit selection only |
+| `parity` | Execute both paths from the same immutable input in isolated temporary directories | Publish legacy only if every normalized field matches; otherwise publish legacy and record the difference |
+
+Parity normalization is limited to run identifiers and timestamps. It compares
+review IDs, signatures, statuses, memory matches, advice, classifications,
+escalation flags, safety fields, and row counts. The controlled Iteration 15
+check covered 14 artifacts, 11 review items, three historical mechanism-memory
+records, and 27 comparison rows, with zero classification changes. This is
+compatibility evidence, not evidence that either path is more accurate.
+
+The canonical trust state also prevents historical reinterpretation. Existing
+M3 records are `legacy_mechanism_memory`; they are not retroactively described
+as S5-verified. Only independently verified or human-adjudicated records may
+enter trusted memory with `verified` or `adjudicated` status. Timeout, missing
+evidence, conflict, rejection, or an invalid output path preserves the baseline
+and produces no trusted-memory write.
+
+## 5.11 Boundaries
 
 Across all layers: no Agent 1–4 prompt or logic change; no LLM or API calls in the extension; no embeddings; no visualizer write-back; baseline `eval_output/` is read-only. **M4B-2** (optional LLM/Agent 4 `resolve_with_answers` reclassification) is designed-only and **blocked** — it would require LLM calls, introduce stochasticity, and change Agent 4's behavior, all of which are explicitly excluded from this thesis.
 

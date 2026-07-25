@@ -22,9 +22,8 @@ from typing import Any
 import jsonschema
 from pypdf import PdfReader
 
-
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PACKAGE_DATE = "2026-07-24"
+DEFAULT_PACKAGE_DATE = "2026-07-25"
 MANIFEST = ROOT / "docs/research/thesis-evidence/THESIS_REVIEW_PACKAGE_MANIFEST.json"
 LOCAL_DELIVERY = (
     ROOT / "reports/generated/thesis_review/local-delivery-manifest.json"
@@ -37,6 +36,16 @@ WINDOWS_ABSOLUTE = re.compile(r"(?i)\b[a-z]:[\\/]")
 
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def sha256_portable_text_bytes(data: bytes) -> str:
+    text = data.decode("utf-8-sig")
+    normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+    return sha256_bytes(normalized.encode("utf-8"))
+
+
+def sha256_portable_text(path: Path) -> str:
+    return sha256_portable_text_bytes(path.read_bytes())
 
 
 def sha256(path: Path) -> str:
@@ -261,7 +270,6 @@ def validate_manifest() -> list[str]:
     artifact_items = [
         payload["evidenceSnapshot"],
         *payload["trackedOutputs"].values(),
-        *payload["sourceFiles"],
     ]
     for item in artifact_items:
         path = ROOT / item["path"]
@@ -271,6 +279,11 @@ def validate_manifest() -> list[str]:
             errors.append(f"tracked path hash drift: {item['path']}")
 
     for item in payload["sourceFiles"]:
+        path = ROOT / item["path"]
+        if not path.is_file():
+            errors.append(f"tracked path is missing: {item['path']}")
+        elif sha256_portable_text(path) != item["sha256"]:
+            errors.append(f"tracked path hash drift: {item['path']}")
         try:
             source_bytes = git(
                 "show",
@@ -282,7 +295,7 @@ def validate_manifest() -> list[str]:
                 f"source file missing from sourceRevision: {item['path']}"
             )
             continue
-        if sha256_bytes(source_bytes) != item["sha256"]:
+        if sha256_portable_text_bytes(source_bytes) != item["sha256"]:
             errors.append(
                 f"sourceRevision does not contain recorded hash: {item['path']}"
             )

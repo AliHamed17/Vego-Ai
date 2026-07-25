@@ -19,7 +19,12 @@ from visualizer_utils import (  # noqa: E402
 def test_extract_case_id_examples():
     assert extract_case_id_from_filename("70233_ex1_CD_FINAL_2026_NoaMeitar.txt") == "70233"
     assert extract_case_id_from_filename(r"C:\models\68064_ex1_UCD_FINAL.txt") == "68064"
+    assert extract_case_id_from_filename("/models/68065_ex1_UCD_FINAL.txt") == "68065"
     assert extract_case_id_from_agentc_filename("agentC_case_68064.json") == "68064"
+    assert (
+        extract_case_id_from_agentc_filename(r"C:\results\agentC_case_68065.json")
+        == "68065"
+    )
     assert extract_case_id_from_agentc_filename("not_agent_c_68064.json") is None
     assert extract_case_id_from_json({"case_id": 70234}) == "70234"
     assert extract_case_id_from_json({"metadata": {"case_id": "68059"}}) == "68059"

@@ -1,0 +1,162 @@
+{
+  "agent4Outputs": {
+    "controlledDataRequired": true,
+    "files": [
+      {
+        "canonicalJsonSha256": "afeba08c2ade9569cd48c2b544dd9543fc3fcd0ab6cbe2bf22462a138f0921c0",
+        "currentLockedByteSha256": "b056e22d196a0fe8dabe275f3d8a2fcb8acc0eae4bf64a080076fef8ac65629f",
+        "currentPath": "VEGO-AI/eval_output/cd_ch/agentD_variability_classes__cd_ch.json",
+        "matchesOfficialSemantics": true,
+        "officialTagByteSha256": "60afa4badbda1124617824a94479456b7c09e598a9a9403699b4397febd28e80",
+        "setting": "cd_ch",
+        "tagPath": "eval_output/cd_ch/agentD_variability_classes__cd_ch.json"
+      },
+      {
+        "canonicalJsonSha256": "31ef679162107015ae32a2a1cf9acca1ba8739767b07aeb717f8e30cb9a4be99",
+        "currentLockedByteSha256": "20b36f740e3152866257e721c9f2901a2fb39b167834ff5a5980d8f2a02c5cd2",
+        "currentPath": "VEGO-AI/eval_output/cd_pw/agentD_variability_classes.json",
+        "matchesOfficialSemantics": true,
+        "officialTagByteSha256": "8e1bfe040ba74d9b85a90c03b13faf647e2557ea328e2317ffeea641b1b40a78",
+        "setting": "cd_pw",
+        "tagPath": "eval_output/cd_pw/agentD_variability_classes.json"
+      },
+      {
+        "canonicalJsonSha256": "dd9907c477d52a047f007dfb7b64592f39da7f22aa40a72feddfb79cda5251ac",
+        "currentLockedByteSha256": "e42e5199d393c706863f531737d06ff8484790a1f5c2308e9acea027e07f4809",
+        "currentPath": "VEGO-AI/eval_output/ucd_ch/agentD_variability_classes.json",
+        "matchesOfficialSemantics": true,
+        "officialTagByteSha256": "4fdaad24eb751e12d68257997e20482a38fac404d5ddca29ea0aea2a2b9d5551",
+        "setting": "ucd_ch",
+        "tagPath": "eval_output/ucd_ch/agentD_variability_classes.json"
+      },
+      {
+        "canonicalJsonSha256": "3077eb048211c8b84f9a3e802c04c3fc3c23aea04a00ae64110269b8e1f475b3",
+        "currentLockedByteSha256": "35a97ca7d5486343f0b7c3894fd925b6dc58980334e217d95eacbd46594f8e6e",
+        "currentPath": "VEGO-AI/eval_output/ucd_pw/agentD_variability_classes_ucd_pw.json",
+        "matchesOfficialSemantics": true,
+        "officialTagByteSha256": "639e7bbbaea499acd30a21b1d73c4c401bbd179583871357e809af46bba8a858",
+        "setting": "ucd_pw",
+        "tagPath": "eval_output/ucd_pw/agentD_variability_classes_ucd_pw.json"
+      }
+    ]
+  },
+  "claimBoundary": "This manifest identifies and protects the historical baseline. It does not establish model reproducibility, accuracy, generalization, or superiority.",
+  "currentRuntimeLocks": {
+    "VEGO-AI/eval/README_EVALUATOR.md": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "5445c7b39227c5b8b135a2ba4f45929bf1ec35bfc5095ff8ddb1c418f5ac61c9"
+    },
+    "VEGO-AI/eval/agentA_language_evaluator.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "de412e3ab42dc783c3fdd94dc6e42969c84d565b687277e2c359c2a0299a28cf"
+    },
+    "VEGO-AI/eval/agentB_domain_evaluator.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "26b299587fc54cd2a19bc0841aba6f9e322c253e3e0523ebc4f06c8f697feb8e"
+    },
+    "VEGO-AI/eval/agentC_case_scorer.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "27011d8569736601bc2f60a5510354024b7ff27a7aba350119c824a4adbaf2e8"
+    },
+    "VEGO-AI/eval/agentD_variability_evaluator.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "53b2cc4aae3a3cb4a903872359bbf60c060e7c62d03a15b3834b8f7db7503c14"
+    },
+    "VEGO-AI/eval/eval_config.json": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "87f35c96b5b67f4785ac0abd4d24cf100d5b499ba562f0683e5b644c90bc3f5e"
+    },
+    "VEGO-AI/eval/evaluator.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "ac5c5062e0275546154b9d526ab431a4a90cb68480c60f7d2060c14dd8a80b23"
+    },
+    "VEGO-AI/framework/orchestrator.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "fca4b885ee07381db0f02e558b1aebf25bdc7c27da1c471fd3103d7e0e2d5b88"
+    },
+    "VEGO-AI/framework/qa_registry.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "ab189d3fd954ea03ba891f5746b36eff8889baeff73d7594f820e68f8762ad5f"
+    },
+    "VEGO-AI/framework/run_config.json": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "c185879270a318a2b7c3920f4a9c49c6be6ae807afe33eddb4d4577fd9603794"
+    },
+    "VEGO-AI/framework/state.py": {
+      "basis": "pre-hardening-current-baseline",
+      "sha256": "d8492a623804065b86905d6183979c322d6f83376bf91026e718c615eea1730d"
+    }
+  },
+  "historicalModelLimitation": "The baseline requested the gpt-4o alias. Historical API metadata does not identify the exact served snapshot, so exact model-side replay is not claimed.",
+  "officialTag": "official-vego-ai-baseline",
+  "officialTagCommit": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+  "pathMappings": [
+    {
+      "currentPath": "VEGO-AI/framework/",
+      "tagPath": "framework/"
+    },
+    {
+      "currentPath": "VEGO-AI/eval/",
+      "tagPath": "eval/"
+    },
+    {
+      "currentPath": "VEGO-AI/eval_output/",
+      "tagPath": "eval_output/"
+    },
+    {
+      "currentPath": "VEGO-AI/inputs/",
+      "tagPath": "inputs/"
+    }
+  ],
+  "protectedTrees": {
+    "agentModules1to4": {
+      "currentPaths": [
+        "VEGO-AI/framework/agent1_language_advisor.py",
+        "VEGO-AI/framework/agent2_domain_advisor.py",
+        "VEGO-AI/framework/agent3_model_inspector.py",
+        "VEGO-AI/framework/agent4_variability_explorer.py"
+      ],
+      "currentSha256": "84656478a84c1e654a920a431107b38b1974ff67eeb60408dbb30fe96b22ad81",
+      "hashMode": "normalized_text_lf",
+      "matchesOfficialTag": true,
+      "officialTagSha256": "84656478a84c1e654a920a431107b38b1974ff67eeb60408dbb30fe96b22ad81",
+      "tagPaths": [
+        "framework/agent1_language_advisor.py",
+        "framework/agent2_domain_advisor.py",
+        "framework/agent3_model_inspector.py",
+        "framework/agent4_variability_explorer.py"
+      ]
+    },
+    "inputs": {
+      "currentPaths": [
+        "VEGO-AI/inputs/ch/domain_description.txt",
+        "VEGO-AI/inputs/ch/domain_description_cd.txt",
+        "VEGO-AI/inputs/ch/domain_description_ucd.txt",
+        "VEGO-AI/inputs/language_base_cd.txt",
+        "VEGO-AI/inputs/language_base_ucd.txt",
+        "VEGO-AI/inputs/pw/domain_base_cd.txt",
+        "VEGO-AI/inputs/pw/domain_base_ucd.txt",
+        "VEGO-AI/inputs/pw/domain_description.txt",
+        "VEGO-AI/inputs/scoring_schema.txt"
+      ],
+      "currentSha256": "921ae4099b75fed9df3999f85d8ffdc1b840931e6d236121a670e141b1a37381",
+      "hashMode": "normalized_text_lf",
+      "matchesOfficialTag": true,
+      "officialTagSha256": "921ae4099b75fed9df3999f85d8ffdc1b840931e6d236121a670e141b1a37381",
+      "tagPaths": [
+        "inputs/ch/domain_description.txt",
+        "inputs/ch/domain_description_cd.txt",
+        "inputs/ch/domain_description_ucd.txt",
+        "inputs/language_base_cd.txt",
+        "inputs/language_base_ucd.txt",
+        "inputs/pw/domain_base_cd.txt",
+        "inputs/pw/domain_base_ucd.txt",
+        "inputs/pw/domain_description.txt",
+        "inputs/scoring_schema.txt"
+      ]
+    }
+  },
+  "requestedModel": "gpt-4o",
+  "schemaVersion": "BaselineLockManifest-v2",
+  "servedSnapshotKnown": false
+}

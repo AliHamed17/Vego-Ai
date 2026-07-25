@@ -1,57 +1,85 @@
 {
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-24T19:23:58+00:00",
-  "packageDate": "2026-07-24",
-  "sourceRevision": "279646cb1ba45fe4856e0bb3aa79aeb34e843b00",
-  "packageRevision": "b5234358787b0f7dae582995a9c946dcd18bf0bf",
-  "sourceTreeHash": "0b0c086fd5986e38883debf88c8ba2c9316bb13aa252f1eeec7bfc80f3dcd1ed",
+  "packageDate": "2026-07-25",
+  "sourceRevision": "da239a1a819b4fd7da8519c765ece1272638103e",
+  "packageRevision": "4272b2768d28119a8e096c007ccecff826dc7384",
+  "sourceTreeHash": "6116ed43817609cccbd54bbc3c8cab903edb6e18655670f33e15dd36030601b6",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "f85e975f2699a706cb05c80d707021d88438741aa5de9b915475a39cc3f07b94",
-    "bytes": 41402,
+    "sha256": "87103520998a842033f8b833f972e88c70bcf801eaadf1014fb7ec8af1e4bf4d",
+    "bytes": 48266,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
-      "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx",
-      "sha256": "7a87b022a19e4ef867d5a8bc79a4c6fef500c98378dbab1a71405f9c663ecd16",
-      "bytes": 1770724,
+      "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
+      "sha256": "de3ea6d4de278e475f17260bf22ae15b71b048dcf1d1ba4e881019880a86aebd",
+      "bytes": 1801326,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "2b3638bcdb141b6aa313fdbfdbd7798f31f64480c7208ad95295aa2a1e986aae",
-      "bytes": 70129,
+      "sha256": "4bf2c3785739bdec5eec31a6936186916e27ee3a56c6adbda2b2bdf89b0bd4c3",
+      "bytes": 81861,
       "tracked": true
     }
   },
   "localArtifacts": {
     "pdf": {
       "logicalDeliveryId": "thesis-review-pdf-local",
-      "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.pdf",
+      "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": "caf387f6919e501c593c9b698029561b32730bc7f37d9cbd89a72933ded8398c",
-      "bytes": 1388413
+      "sha256": "a6f2fa1e6a487a3700d2d42131e4147fc7ec9aabc1a7b3c6d8ea343ac6a898c4",
+      "bytes": 1212713
     },
     "renderVerification": {
       "status": "PASS",
-      "pdfPageCount": 87,
-      "renderedPageCount": 87,
-      "sheetCount": 22,
-      "qaReportSha256": "d82be30f047a5327827b514b039254b3ef29af57def7e3f1cdcce9f63b2475dd"
+      "pdfPageCount": 91,
+      "renderedPageCount": 91,
+      "sheetCount": 23,
+      "qaReportSha256": "0b0d714debc32dc65d6534eb5581c3960510abb0ce02bed83776abe98ea64386"
     }
   },
   "sourceFiles": [
+    {
+      "path": "configs/hlayer-runtime.json",
+      "sha256": "0e8c03d4297b74cf04020c244be6a09441555b595b63434a3c83c86cdaf993e2"
+    },
+    {
+      "path": "configs/protected-change-authorization-v1.json",
+      "sha256": "bcff333a0fd9a75fd72421168aac684a91d51faa639149b120c10a419529a89c"
+    },
     {
       "path": "docs/research/accuracy-improvement-plan.md",
       "sha256": "4df5b7c6a01ca2fcaa9e878ee9099705c6f61e561281913915e441639e3ccb60"
     },
     {
       "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-      "sha256": "a6c7a146be36c3d337f94081088720e44a1dda8269848c5c7b71185f7355d008"
+      "sha256": "b9bd6c0b25411c7654f20b615985cfc7a69ead7924e4189f0626241ddc08f1ee"
+    },
+    {
+      "path": "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md",
+      "sha256": "7fb96ba31fa0aa9a0726479e901e7fd6f3d09047af9a43dea14348c00c7e7c3f"
+    },
+    {
+      "path": "docs/research/hardening/README.md",
+      "sha256": "447401334f40a123eb0bb67e5759f477b15cb134df442c3d7140135a5269d2e3"
+    },
+    {
+      "path": "docs/research/hardening/THREAT_MODEL.md",
+      "sha256": "9904a0a517506e1fd8459ffbe5a9ceddbd615f768fff607ca7e4974baa0a700b"
+    },
+    {
+      "path": "docs/research/hardening/UNIFIED_RUNTIME_ARCHITECTURE.md",
+      "sha256": "b8ab35e8a3a2b14db687de4b38de1fb782ef2b74cd1d2fb50fd832220ee08171"
+    },
+    {
+      "path": "docs/research/hardening/VERIFICATION_AND_RELEASE.md",
+      "sha256": "9b308e1c8b7ccd35a59f3e3389d436b91a4398bb2b9c8d717a6bd5b3fb457526"
     },
     {
       "path": "docs/research/supervisor-label-approval-pack.md",
@@ -94,12 +122,28 @@
       "sha256": "9783c8e4ec605b2cd168ff0e8676ca09fef56e93345855d6ad13e78d6b5a3a4e"
     },
     {
+      "path": "experiments/EXP-028-model-execution-reproducibility/README.md",
+      "sha256": "355cdf3c89dcf37ea729d6e16750f404e1a986848eb675ac1bb040aff33190bc"
+    },
+    {
+      "path": "experiments/EXP-029-frozen-candidate-model-comparison/README.md",
+      "sha256": "aa18f1c75c34497bd7b63a2cc3b22722091088ab16cafbdc6d27540603b45dbb"
+    },
+    {
       "path": "experiments/registry.md",
-      "sha256": "a69e3ae40fc198e5f1feca268947f3db4e75a5f9676d479f7983a4c3ee4b5bdc"
+      "sha256": "220fe30ce36238a23a0820972a750ffc72967458ce4982b7b1172d4b7fc37385"
     },
     {
       "path": "requirements-thesis.txt",
-      "sha256": "d862b7c68fe38fb8735cfba5f709309e379ad134e3739aab3c2642a38ef8851d"
+      "sha256": "bafc7e696ee9ee41c820eb2e1f2e6ef213e28b821363b610525bca99ccf8a825"
+    },
+    {
+      "path": "schemas/architecture-run-manifest-v1.schema.json",
+      "sha256": "40a41bafa54d09caba7f4081f8e0cfec1a3a5d2761733fde4e229ad0ed3402c1"
+    },
+    {
+      "path": "schemas/baseline-lock-manifest-v2.schema.json",
+      "sha256": "227e617dd82f023eb2ed74016296a6b45a2cb05e77579fc31f84a9a0e9426af6"
     },
     {
       "path": "schemas/evaluation-run-manifest-v2.schema.json",
@@ -110,32 +154,48 @@
       "sha256": "030b3b2d8071f81a5a4e3ef475dcb050983940365ef976e91dd0d0bb08ceb23b"
     },
     {
+      "path": "schemas/hlayer-runtime-config-v1.schema.json",
+      "sha256": "96557ed35de602136dcd1b91c6994c541f56912bc9fe2742414b51d9049de6d1"
+    },
+    {
+      "path": "schemas/model-execution-manifest-v1.schema.json",
+      "sha256": "9029b613a21c9a3555e469e3e4ff86476737548d4964814efdaf0b7507531910"
+    },
+    {
       "path": "schemas/policy-candidate-record-v1.schema.json",
       "sha256": "100d04c73252967c8205db3f3a86b43e348e22f2cbb7fdbb8b730ef3652cfe54"
     },
     {
+      "path": "schemas/security-posture-snapshot-v1.schema.json",
+      "sha256": "326daafe746cbbe0d184739fd4fae5ed1fa814406e744fccbb640a5afd4ca770"
+    },
+    {
       "path": "schemas/thesis-evidence-snapshot-v1.schema.json",
-      "sha256": "05f3c65f20e9bbbbf06dbea4b1a61cb22bbf2ae952b0e30603451fd61d1bbd07"
+      "sha256": "6e8419f12f73bcd8dffc60c636e015fad36ec6d465e623b23b471fd657971941"
     },
     {
       "path": "schemas/thesis-review-package-manifest-v1.schema.json",
       "sha256": "5150f1c6a7ac0e62a60c3eecbe6856021041d21a8830710b6b799e72af582c8e"
     },
     {
+      "path": "scripts/build_hardening_manifests.py",
+      "sha256": "ac7f46932c6f9fefd5c5c66ff7d52b496372d8690cccdcc3a3efcff30edb612a"
+    },
+    {
       "path": "scripts/build_thesis_evidence_package.py",
-      "sha256": "9aa3dbc4a78fbcde3e227524ea3a181bf209bca91462f70a0a43d61c32696a30"
+      "sha256": "ad287be310d2c3797e2655bfd445050f40b19899e7b74d1b953910b1d0b98ef8"
     },
     {
       "path": "scripts/build_thesis_progress_visual.py",
-      "sha256": "208405c7d59cde37aa8d502ea2d4b7965a4b731e56785e2ffc6c9b5c5f539d8a"
+      "sha256": "9115ce4a16e4556cfd1c3858fcba23bc5ff9e68774c548cea7b7172d559181c6"
     },
     {
       "path": "scripts/build_thesis_review_document.py",
-      "sha256": "95b917228c0205c6da21cafc50be1f2ea402251a655d99a54d713993edab99b6"
+      "sha256": "55662af20847be33a2e8ba06564160ca15ccde2a118ef97dfe27648fc2f53318"
     },
     {
       "path": "scripts/build_thesis_review_manifest.py",
-      "sha256": "1469ebd6909f8a943b542cd846ce842a44b075054ee56cbdd24881119c7192d0"
+      "sha256": "5c65c92a0149576ca702dad1246b5b04f1ac1ba923debb8deaacd2f45edd1b69"
     },
     {
       "path": "scripts/check_thesis_citations.py",
@@ -146,8 +206,12 @@
       "sha256": "a1cda7af18fe47c98c516b4205e12c172d326b36fe976fd36bf16dfb14ae880a"
     },
     {
+      "path": "scripts/run_hlayer_architecture.py",
+      "sha256": "7fe1f20083be4a812ecf62fb103a478253d30a2cf49646e0ab17d54ea3ca5e2d"
+    },
+    {
       "path": "scripts/validate_research_records.py",
-      "sha256": "25ed4e899f4d9102701d095cc67eb55fd21cec7500c0450593474eb7bf467f47"
+      "sha256": "7367006c821215049cb7dea2a2441f83fc09898690a5421044b7d2836df0a930"
     },
     {
       "path": "scripts/validate_thesis_content.py",
@@ -155,15 +219,51 @@
     },
     {
       "path": "scripts/validate_thesis_evidence_package.py",
-      "sha256": "c8e8c6c896f5848504eba29a693fb8ee9d8d4f33987f1e9d6d3016c68341f311"
+      "sha256": "ad7c42128094c31799c661c34d3df44a27238ba4a0e14e3093020983a3caef96"
     },
     {
       "path": "scripts/validate_thesis_review_document.py",
       "sha256": "779a43dbc460f589412841ff2befaa79c9de2bec2d79a2ae9dac0f42a409a2ff"
     },
     {
+      "path": "scripts/verify-controlled.ps1",
+      "sha256": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239"
+    },
+    {
+      "path": "scripts/verify-release.ps1",
+      "sha256": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5"
+    },
+    {
+      "path": "scripts/verify-source.ps1",
+      "sha256": "42889cf67f6fb380069f775fd3c6f105fbf58da678e9d72bbe6397d4ce4e2110"
+    },
+    {
       "path": "scripts/visualization_agent.py",
       "sha256": "5262c5ff2a373a47729f7c28ef38944b5acbdb7bb2d3599ad81c051a86a0244c"
+    },
+    {
+      "path": "src/vego_hlayer/__init__.py",
+      "sha256": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f"
+    },
+    {
+      "path": "src/vego_hlayer/adapters.py",
+      "sha256": "3ec8f9ab28fb979178167f7f5c7388c83ed49d8a4b3bf3afb0de95f9dc84cea3"
+    },
+    {
+      "path": "src/vego_hlayer/contracts.py",
+      "sha256": "1de923c5682822d9cd0f3d6d342712dc43a1e747e287150f77a2aa8d5819bacd"
+    },
+    {
+      "path": "src/vego_hlayer/io_safety.py",
+      "sha256": "5d246bce833103a54642c3eb80d3855b8bc5330a3337e9caf6a975dc0d822a82"
+    },
+    {
+      "path": "src/vego_hlayer/runtime.py",
+      "sha256": "d33ccbab226c12f68926e0a6a8f1dc07fb613d0a891e785c47472f1ce68eba2b"
+    },
+    {
+      "path": "src/vego_hlayer/state_machine.py",
+      "sha256": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
     },
     {
       "path": "thesis/chapters/00-abstract.md",
@@ -183,15 +283,15 @@
     },
     {
       "path": "thesis/chapters/04-vego-ai-baseline-pipeline.md",
-      "sha256": "80730e03d786f8f2483f4d49a22d8619feac2416aecc110cd11e83d912b43ca6"
+      "sha256": "8f77318e820d42e73061a3d023fe2f7dbbd603d1c09bafacd90c689c06a7f7ea"
     },
     {
       "path": "thesis/chapters/05-human-ai-co-reasoning-artifact.md",
-      "sha256": "4e73044a8b9f4c5131b4172da759f879c7f566a61fef1a28d769132ddbb48cc9"
+      "sha256": "de9cc1034f932b793a184fc970d8ce857b17dc48c3d066599083cc1ae684fcba"
     },
     {
       "path": "thesis/chapters/06-evaluation-methodology.md",
-      "sha256": "f7f1982ffc86e1137c0d9249ea976c4df8fa8d97a0fcc20519af7343347d5f7a"
+      "sha256": "c07941cc15fdc919672c19f9a5bb80756bfdc7504349ae01822e6b5084dbe40c"
     },
     {
       "path": "thesis/chapters/07-experimental-results.md",
@@ -199,7 +299,7 @@
     },
     {
       "path": "thesis/chapters/08-threats-to-validity.md",
-      "sha256": "9695800abd284f622e1202c1894353446c7ef16c92dfc3962251b364484c383a"
+      "sha256": "ea64453e975c578129b8d8c4ed56113ac231bbfe8fba3f9e5d1f00e83efc0fc2"
     },
     {
       "path": "thesis/chapters/09-discussion.md",
@@ -231,7 +331,7 @@
     }
   ],
   "toolVersions": {
-    "python": "3.13.3",
+    "python": "3.10.0",
     "jsonschema": "4.26.0"
   },
   "protectedRuntimeChanged": false,

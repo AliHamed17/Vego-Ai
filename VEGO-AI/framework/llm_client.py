@@ -4,41 +4,52 @@ llm_client.py — thin async wrapper around the OpenAI SDK.
 All agent skill modules return {"system": str, "user": str} dicts.
 Pass them directly to `call()`.
 
-API key: set OPENAI_API_KEY environment variable, or pass api_key=
-to LLMClient(). Keys start with sk-proj-...
+API key: set OPENAI_API_KEY in the environment. Plaintext keys passed through
+configuration are rejected.
 
 Interaction log
 ---------------
-Every LLM call is recorded in a JSONL file (one JSON object per line).
-Pass `interaction_log` (a Path) to the constructor to enable it.
-Each entry contains:
+When an interaction log path is supplied, metadata-only logging is the default.
+Full prompt/response logging requires an explicit ``full_content`` mode.
+Metadata entries contain:
   timestamp     ISO-8601 UTC
   agent         e.g. "agent1", "agentA"   (derived from the label prefix)
   skill         e.g. "build_language_template"  (rest of the label)
-  prompt_system full system prompt text
-  prompt_user   user message text
-  response_raw  raw model output (before JSON parsing)
-  response_parsed  parsed JSON dict (or null on parse error)
-  model         model name used
+  prompt hashes and lengths (never prompt text)
+  response hash and length (never response text)
+  requested and returned model identifiers
+  token usage, retry, parse status, and system fingerprint when available
   label         full label string as passed by the caller
 """
 
 from __future__ import annotations
 
+import importlib.metadata
 import json
 import logging
+import os
 import re
+import time
 from datetime import datetime, timezone
+from hashlib import sha256
 from pathlib import Path
 from typing import Any
 
-from openai import AsyncOpenAI
+from openai import AsyncOpenAI, OpenAIError
 
 logger = logging.getLogger(__name__)
 
 MODEL = "gpt-4o"
 MAX_TOKENS = 16384
 MAX_PARSE_RETRIES = 2   # total attempts = 1 + MAX_PARSE_RETRIES
+INTERACTION_LOG_MODES = frozenset({"off", "metadata_only", "full_content"})
+DEFAULT_INTERACTION_LOG_MODE = "metadata_only"
+DEFAULT_LOG_MAX_BYTES = 5 * 1024 * 1024
+DEFAULT_LOG_BACKUPS = 3
+DEFAULT_LOG_RETENTION_DAYS = 30
+_SECRET_RE = re.compile(
+    r"\b(?:(?:sk|sess)-[A-Za-z0-9_-]{12,}|gh[opsu]_[A-Za-z0-9]{12,})\b"
+)
 
 
 class LLMClient:
@@ -49,13 +60,54 @@ class LLMClient:
         api_key: str | None = None,
         model: str = MODEL,
         interaction_log: Path | None = None,
+        interaction_log_mode: str | None = None,
+        interaction_log_max_bytes: int = DEFAULT_LOG_MAX_BYTES,
+        interaction_log_backups: int = DEFAULT_LOG_BACKUPS,
+        interaction_log_retention_days: int = DEFAULT_LOG_RETENTION_DAYS,
     ) -> None:
-        self._client = AsyncOpenAI(api_key=api_key)  # None → reads OPENAI_API_KEY env var
+        if api_key:
+            raise ValueError(
+                "Plaintext API keys are not accepted; use OPENAI_API_KEY or a project secret."
+            )
+        self._client = AsyncOpenAI(api_key=None)
         self.model = model
         self._log_path = interaction_log
+        self._log_mode = (
+            interaction_log_mode
+            or os.getenv("VEGO_INTERACTION_LOG_MODE")
+            or DEFAULT_INTERACTION_LOG_MODE
+        )
+        if self._log_mode not in INTERACTION_LOG_MODES:
+            raise ValueError(
+                f"interaction_log_mode must be one of {sorted(INTERACTION_LOG_MODES)}"
+            )
+        if not isinstance(interaction_log_max_bytes, int) or interaction_log_max_bytes < 1:
+            raise ValueError("interaction_log_max_bytes must be a positive integer")
+        if not isinstance(interaction_log_backups, int) or interaction_log_backups < 1:
+            raise ValueError("interaction_log_backups must be a positive integer")
+        if (
+            not isinstance(interaction_log_retention_days, int)
+            or not 1 <= interaction_log_retention_days <= 365
+        ):
+            raise ValueError("interaction_log_retention_days must be between 1 and 365")
+        self._log_max_bytes = interaction_log_max_bytes
+        self._log_backups = interaction_log_backups
+        self._log_retention_days = interaction_log_retention_days
         if interaction_log:
+            if str(interaction_log).startswith(("\\\\", "//")):
+                raise ValueError("interaction logs must use local storage")
             interaction_log.parent.mkdir(parents=True, exist_ok=True)
-            logger.info("Interaction log → %s", interaction_log)
+            try:
+                interaction_log.parent.chmod(0o700)
+            except OSError:
+                logger.debug("Could not restrict interaction-log directory permissions.")
+            logger.info("Interaction log (%s) → %s", self._log_mode, interaction_log)
+            if self._log_mode == "full_content":
+                logger.warning(
+                    "Full-content interaction logging is enabled explicitly. "
+                    "Redaction is best effort; retain locally for at most %d days.",
+                    self._log_retention_days,
+                )
 
     async def call(
         self,
@@ -90,14 +142,28 @@ class LLMClient:
         for attempt in range(1, total_attempts + 1):
             logger.info("%sCalling %s (attempt %d/%d)…", tag, self.model, attempt, total_attempts)
 
-            response = await self._client.chat.completions.create(
-                model=self.model,
-                max_tokens=max_tokens,
-                messages=[
-                    {"role": "system", "content": prompt["system"]},
-                    {"role": "user",   "content": prompt["user"]},
-                ],
-            )
+            try:
+                response = await self._client.chat.completions.create(
+                    model=self.model,
+                    max_tokens=max_tokens,
+                    messages=[
+                        {"role": "system", "content": prompt["system"]},
+                        {"role": "user",   "content": prompt["user"]},
+                    ],
+                )
+            except OpenAIError as exc:
+                self._write_interaction(
+                    label=label,
+                    prompt=prompt,
+                    raw="",
+                    parsed=None,
+                    parse_error=None,
+                    api_error=type(exc).__name__,
+                    response=None,
+                    attempt=attempt,
+                    max_tokens=max_tokens,
+                )
+                raise
 
             raw = response.choices[0].message.content or ""
             logger.debug("%sRaw response (%d chars)", tag, len(raw))
@@ -115,6 +181,10 @@ class LLMClient:
                     raw=raw,
                     parsed=None,
                     parse_error=parse_error,
+                    api_error=None,
+                    response=response,
+                    attempt=attempt,
+                    max_tokens=max_tokens,
                 )
                 if attempt < total_attempts:
                     logger.warning(
@@ -130,6 +200,10 @@ class LLMClient:
                     raw=raw,
                     parsed=parsed,
                     parse_error=None,
+                    api_error=None,
+                    response=response,
+                    attempt=attempt,
+                    max_tokens=max_tokens,
                 )
                 return parsed
 
@@ -148,9 +222,13 @@ class LLMClient:
         raw: str,
         parsed: dict | None,
         parse_error: str | None,
+        api_error: str | None = None,
+        response: Any,
+        attempt: int,
+        max_tokens: int = MAX_TOKENS,
     ) -> None:
         """Append one JSONL entry to the interaction log (if enabled)."""
-        if not self._log_path:
+        if not self._log_path or self._log_mode == "off":
             return
 
         # Derive agent and skill from label: "agent1/build_template" → agent1, build_template
@@ -159,24 +237,102 @@ class LLMClient:
         agent = parts[0] if parts else ""
         skill = parts[1] if len(parts) > 1 else ""
 
-        entry = {
+        usage = getattr(response, "usage", None) if response is not None else None
+        config = {"model": self.model, "max_tokens": max_tokens}
+        entry: dict[str, Any] = {
+            "schema_version": "model-execution-manifest-v1",
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "agent":     agent,
             "skill":     skill,
             "label":     label,
-            "model":     self.model,
-            "prompt_system":   prompt.get("system", ""),
-            "prompt_user":     prompt.get("user", ""),
-            "response_raw":    raw,
-            "response_parsed": parsed,
+            "requested_model": self.model,
+            "returned_model": getattr(response, "model", None) if response else None,
+            "endpoint": "chat.completions",
+            "sdk_version": importlib.metadata.version("openai"),
+            "system_fingerprint": (
+                getattr(response, "system_fingerprint", None) if response else None
+            ),
+            "attempt": attempt,
+            "retry_count": attempt - 1,
+            "config_sha256": self._text_hash(
+                json.dumps(config, sort_keys=True, separators=(",", ":"))
+            ),
+            "parameters": {"max_tokens": max_tokens},
+            "prompt_system_sha256": self._text_hash(prompt.get("system", "")),
+            "prompt_system_chars": len(prompt.get("system", "")),
+            "prompt_user_sha256": self._text_hash(prompt.get("user", "")),
+            "prompt_user_chars": len(prompt.get("user", "")),
+            "response_sha256": self._text_hash(raw),
+            "response_chars": len(raw),
+            "response_parsed": parsed is not None,
             "parse_error":     parse_error,
+            "api_error": api_error,
+            "token_usage": {
+                "prompt_tokens": getattr(usage, "prompt_tokens", None),
+                "completion_tokens": getattr(usage, "completion_tokens", None),
+                "total_tokens": getattr(usage, "total_tokens", None),
+            },
         }
+        if self._log_mode == "full_content":
+            entry["prompt_system"] = self._redact(prompt.get("system", ""))
+            entry["prompt_user"] = self._redact(prompt.get("user", ""))
+            entry["response_raw"] = self._redact(raw)
+            entry["response_parsed_content"] = self._redact_value(parsed)
 
         try:
+            self._rotate_interaction_log()
             with open(self._log_path, "a", encoding="utf-8") as fh:
                 fh.write(json.dumps(entry, ensure_ascii=False) + "\n")
+            try:
+                self._log_path.chmod(0o600)
+            except OSError:
+                logger.debug("Could not restrict interaction-log file permissions.")
         except OSError as exc:
             logger.warning("Could not write to interaction log: %s", exc)
+
+    @staticmethod
+    def _text_hash(value: str) -> str:
+        return sha256(value.encode("utf-8")).hexdigest()
+
+    @staticmethod
+    def _redact(value: str) -> str:
+        return _SECRET_RE.sub("[REDACTED_SECRET]", value)
+
+    @classmethod
+    def _redact_value(cls, value: Any) -> Any:
+        if isinstance(value, str):
+            return cls._redact(value)
+        if isinstance(value, dict):
+            return {key: cls._redact_value(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [cls._redact_value(item) for item in value]
+        return value
+
+    def _rotate_interaction_log(self) -> None:
+        if not self._log_path:
+            return
+        cutoff = time.time() - (self._log_retention_days * 24 * 60 * 60)
+        for index in range(1, self._log_backups + 1):
+            backup = self._log_path.with_suffix(f"{self._log_path.suffix}.{index}")
+            if backup.exists() and backup.stat().st_mtime < cutoff:
+                backup.unlink()
+        if not self._log_path.exists():
+            return
+        if self._log_path.stat().st_size < self._log_max_bytes:
+            return
+        oldest = self._log_path.with_suffix(
+            f"{self._log_path.suffix}.{self._log_backups}"
+        )
+        if oldest.exists():
+            oldest.unlink()
+        for index in range(self._log_backups - 1, 0, -1):
+            source = self._log_path.with_suffix(f"{self._log_path.suffix}.{index}")
+            target = self._log_path.with_suffix(f"{self._log_path.suffix}.{index + 1}")
+            if source.exists():
+                source.replace(target)
+        self._log_path.replace(
+            self._log_path.with_suffix(f"{self._log_path.suffix}.1")
+        )
 
     # ------------------------------------------------------------------
     # JSON parsing

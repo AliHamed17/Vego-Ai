@@ -46,6 +46,13 @@ except ImportError:  # pragma: no cover - fallback when imported as a package
         should_request_human_review,
         POLICY_VERSION,
     )
+try:
+    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+except ImportError:  # pragma: no cover - package import fallback
+    from .hlayer_architecture import (  # type: ignore
+        add_architecture_arguments,
+        apply_stage_architecture,
+    )
 
 logger = logging.getLogger(__name__)
 
@@ -231,6 +238,8 @@ def build_review_items(
     setting_id: str,
     *,
     include_medium: bool = True,
+    architecture_mode: str = "legacy",
+    architecture_manifest: str | Path | None = None,
 ) -> list[dict]:
     """
     Produce schema-valid review items for classifications that need human review.
@@ -314,7 +323,12 @@ def build_review_items(
                 "feedback_id": None,
             }
         )
-    return items
+    return apply_stage_architecture(
+        "review",
+        items,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
+    ).output
 
 
 def write_queue(items: list[dict], path: Path) -> int:
@@ -345,11 +359,15 @@ def build_and_write_for_setting(
     output_dir: Path,
     *,
     include_medium: bool = True,
+    architecture_mode: str = "legacy",
+    architecture_manifest: str | Path | None = None,
 ) -> list[dict]:
     """Convenience used by the pipeline hooks: build + write in one call."""
     items = build_review_items(
         variability_classes, deviation_patterns, setting_id,
         include_medium=include_medium,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
     )
     write_queue(items, Path(output_dir) / QUEUE_FILENAME)
     return items
@@ -382,6 +400,8 @@ def _run_for_eval_dir(
     include_medium: bool,
     out_dir: Path,
     in_place: bool,
+    architecture_mode: str,
+    architecture_manifest: str | Path | None,
 ) -> int:
     """Read agentD_*.json from one eval_output/<setting> dir and write the queue."""
     setting_id = eval_dir.name
@@ -395,6 +415,8 @@ def _run_for_eval_dir(
     items = build_review_items(
         variability_classes, deviation_patterns, setting_id,
         include_medium=include_medium,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
     )
     target_dir = eval_dir if in_place else (out_dir / setting_id)
     write_queue(items, target_dir / QUEUE_FILENAME)
@@ -426,6 +448,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--no-include-medium", action="store_true",
                         help="Strict policy: escalate only Low / Undetermined / "
                              "guideline-update / explicit human-review cases.")
+    add_architecture_arguments(parser)
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
@@ -437,12 +460,33 @@ def main(argv: list[str] | None = None) -> None:
     total = 0
     if args.from_eval_output:
         total = _run_for_eval_dir(
-            Path(args.from_eval_output), include_medium, out_dir, args.in_place
+            Path(args.from_eval_output),
+            include_medium,
+            out_dir,
+            args.in_place,
+            args.architecture_mode,
+            args.architecture_manifest,
         )
     else:
         root = Path(args.all_settings)
-        for sub in sorted(p for p in root.iterdir() if p.is_dir()):
-            total += _run_for_eval_dir(sub, include_medium, out_dir, args.in_place)
+        subdirs = sorted(p for p in root.iterdir() if p.is_dir())
+        for sub in subdirs:
+            manifest = args.architecture_manifest
+            if manifest and len(subdirs) > 1:
+                manifest_path = Path(manifest)
+                manifest = str(
+                    manifest_path.with_name(
+                        f"{manifest_path.stem}-{sub.name}{manifest_path.suffix or '.json'}"
+                    )
+                )
+            total += _run_for_eval_dir(
+                sub,
+                include_medium,
+                out_dir,
+                args.in_place,
+                args.architecture_mode,
+                manifest,
+            )
 
     policy = "broad (include_medium)" if include_medium else "strict"
     print(f"\nPolicy: {policy}   Total review items: {total}")

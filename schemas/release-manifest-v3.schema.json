@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/release-manifest-v3.schema.json",
+  "title": "ReleaseManifest-v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseId",
+    "sourceTreeSha256",
+    "packageTreeSha256",
+    "sourceTreePaths",
+    "packageTreePaths",
+    "trackedArtifacts",
+    "sbom",
+    "toolVersions",
+    "sourceChecks",
+    "controlledChecks",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ReleaseManifest-v3"},
+    "releaseId": {"const": "unified-runtime-security-hardening-v1"},
+    "sourceTreeSha256": {"$ref": "#/$defs/sha256"},
+    "packageTreeSha256": {"$ref": "#/$defs/sha256"},
+    "sourceTreePaths": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "packageTreePaths": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "trackedArtifacts": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/sha256"}
+    },
+    "sbom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "path", "sha256"],
+      "properties": {
+        "format": {"const": "CycloneDX-1.5"},
+        "path": {"type": "string"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "toolVersions": {"type": "object"},
+    "sourceChecks": {"type": "object"},
+    "controlledChecks": {"type": "object"},
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

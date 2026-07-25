@@ -1,16 +1,16 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-20T17:45:15.704174+00:00",
-  "sourceRevision": "af191f07849a0bb883750eba135ede0cec908abb",
+  "generatedAt": "2026-07-24T22:12:30+00:00",
+  "sourceRevision": "7a9101fc45f6bf30b394be044c7c8fe3dd98894d",
   "latestAcceptedIteration": {
-    "iteration": 14,
-    "directory": "reports/generated/hlayer_iterations/iter_014",
-    "generatedAt": "2026-07-20T17:33:19.2210349Z",
-    "runId": "hlayer-20260720T173308Z-d79047f5e2",
+    "iteration": 15,
+    "directory": "docs/research/hardening",
+    "generatedAt": "2026-07-24T22:12:30+00:00",
+    "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "fa3debf25ba705224bfa27748aaee7cd92d72e8f50b6704ccea2ff9f6255651e",
-    "claimScope": "Offline mechanism and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
+    "normalizedSha256": "f8de360cb3c7a6939d17bc76ae8f6493c81d8d7d1f34c598abb0bd970a6a4a11",
+    "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
     "runId": "hlayer-20260720T173308Z-d79047f5e2",
@@ -41,7 +41,7 @@
     "status": "Offline evidence"
   },
   "iterationHistory": {
-    "acceptedCount": 14,
+    "acceptedCount": 15,
     "historicalPreManifest": [
       1,
       2,
@@ -58,7 +58,8 @@
       11,
       12,
       13,
-      14
+      14,
+      15
     ]
   },
   "experimentStates": {
@@ -80,7 +81,18 @@
     "EXP-015": "Offline evidence",
     "EXP-016": "Offline evidence",
     "EXP-017": "Offline evidence",
-    "EXP-018": "Offline evidence"
+    "EXP-018": "Offline evidence",
+    "EXP-019": "Evaluation-ready",
+    "EXP-020": "Pending expert input",
+    "EXP-021": "Blocked",
+    "EXP-022": "Blocked",
+    "EXP-023": "Proposal — not approved",
+    "EXP-024": "Blocked",
+    "EXP-025": "Proposal — not approved",
+    "EXP-026": "Proposal — not approved",
+    "EXP-027": "Proposal — not approved",
+    "EXP-028": "Proposal — not approved",
+    "EXP-029": "Blocked"
   },
   "exp005Gate": {
     "candidateRows": 24,
@@ -108,38 +120,59 @@
   },
   "protectedPathState": {
     "status": "PASS",
-    "protectedDiff": [],
-    "paths": {
-      "VEGO-AI/framework": "de4749aa39aef4e0ea02b3e24f8ec8174ed46ec0806e92c5778f980077cde8df",
-      "VEGO-AI/schemas": "7dfdea2552ac1f12ea0370263151056e01b5c18c1cd1a2890188fb48efa43455",
-      "VEGO-AI/tests": "1766a596d0c54c94ed83e72693884301d5ba98e973947b4fde1cc777ff032a2c",
-      "VEGO-AI/eval": "f62c34f9f30558269eaa8fdb7b3f96e656f91a5fffc7ee79990234ec4d48e3ec",
-      "VEGO-AI/inputs": "ce6baead0fb775ca926f2fdfe6578aafcc3d603db1785ea8cb2ca6b7d2d3f356"
-    }
+    "boundaryMode": "reviewed_allowlist",
+    "protectedDiff": [
+      "VEGO-AI/framework/README.md",
+      "VEGO-AI/framework/hlayer_architecture.py",
+      "VEGO-AI/framework/human_feedback_manager.py",
+      "VEGO-AI/framework/human_judgment_memory.py",
+      "VEGO-AI/framework/human_review_queue.py",
+      "VEGO-AI/framework/llm_client.py",
+      "VEGO-AI/framework/memory_advisor.py",
+      "VEGO-AI/framework/memory_informed_classifier.py",
+      "VEGO-AI/framework/requirements.txt",
+      "VEGO-AI/schemas/memory_informed_comparison.schema.json",
+      "VEGO-AI/tests/test_llm_client_security.py",
+      "VEGO-AI/tests/test_memory_informed_classifier.py",
+      "VEGO-AI/tests/test_visualizer_helpers.py"
+    ],
+    "unauthorizedDiff": [],
+    "forbiddenDiff": [],
+    "authorization": "configs/protected-change-authorization-v1.json",
+    "baselineLockManifest": "docs/research/hardening/baseline-lock-manifest-v2.json"
   },
   "verificationRecord": {
     "status": "PASS",
     "tests": {
       "VEGO-AI/tests": {
-        "passed": 94,
+        "passed": 102,
         "failed": 0,
-        "durationSeconds": 6.41
+        "durationSeconds": 7.43
       },
       "scripts/tests": {
-        "passed": 53,
+        "passed": 76,
         "failed": 0,
-        "durationSeconds": 60.43
+        "subtestsPassed": 7,
+        "durationSeconds": 54.85
+      },
+      "tests/hlayer_offline": {
+        "passed": 37,
+        "failed": 0,
+        "durationSeconds": 5.77
       }
     },
-    "recordedAt": "2026-07-20T19:21:30Z",
-    "command": "python -m pytest <suite> -q",
-    "runtime": "Python 3.13.3 / pytest 8.4.2"
+    "recordedAt": "2026-07-24T22:12:30Z",
+    "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
+    "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
   "sourceHashes": {
     "iteration14Manifest": "d99740517a0c87feeffb8c71bd643f18371144f9463615820f3c3b3a402f99c0",
     "replaySuiteManifest": "339a7eb2cc8a2b848f3581547f4af2cef4dc20b80497dd83d9c70d75156fa7a6",
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
-    "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88"
+    "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
+    "iteration15Manifest": "74327d260541e06449d5247c74766296096493381b85bf733999f32529907ee7",
+    "baselineLockManifest": "aa3544db95c49af104cbe9bdbeac7b68d33b4d5478caa5afa15f0172d7a1389d",
+    "securityPostureSnapshot": "e5ff1eed3eb77192cf28a4aa48bc97d06c795e3c38143e9b35f6821973c09429"
   }
 }

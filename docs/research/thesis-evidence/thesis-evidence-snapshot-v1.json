@@ -1,21 +1,110 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
-  "generatedAt": "2026-07-24T19:02:10+00:00",
-  "sourceRevision": "279646cb1ba45fe4856e0bb3aa79aeb34e843b00",
-  "sourceTreeHash": "0b0c086fd5986e38883debf88c8ba2c9316bb13aa252f1eeec7bfc80f3dcd1ed",
+  "generatedAt": "2026-07-24T22:33:12+00:00",
+  "sourceRevision": "da239a1a819b4fd7da8519c765ece1272638103e",
+  "sourceTreeHash": "6116ed43817609cccbd54bbc3c8cab903edb6e18655670f33e15dd36030601b6",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-    "sha256": "a6c7a146be36c3d337f94081088720e44a1dda8269848c5c7b71185f7355d008",
-    "latestAcceptedIteration": 14,
-    "latestAcceptedRunId": "hlayer-20260720T173308Z-d79047f5e2",
+    "sha256": "b9bd6c0b25411c7654f20b615985cfc7a69ead7924e4189f0626241ddc08f1ee",
+    "latestAcceptedIteration": 15,
+    "latestAcceptedRunId": "HLAYER-UNIFIED-HARDENING-V1",
     "verdict": "NEUTRAL",
-    "claimScope": "Offline mechanism and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim.",
+    "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim.",
     "verification": {
       "status": "PASS",
-      "recordedAt": "2026-07-20T19:21:30Z",
-      "vegoTestsPassed": 94,
-      "scriptTestsPassed": 53
+      "recordedAt": "2026-07-24T22:12:30Z",
+      "vegoTestsPassed": 102,
+      "scriptTestsPassed": 76
+    }
+  },
+  "runtimeHardening": {
+    "contractVersion": "1.0",
+    "defaultMode": "legacy",
+    "modes": [
+      {
+        "id": "legacy",
+        "status": "Implemented",
+        "purpose": "Preserve the existing M1-M4B-1 implementation and public artifacts as the publication reference.",
+        "failureBehavior": "Existing fail-safe behavior is preserved."
+      },
+      {
+        "id": "unified",
+        "status": "Implemented",
+        "purpose": "Run M1-M4B-1 through versioned canonical contracts and deterministic legacy adapters.",
+        "failureBehavior": "Invalid contracts, unauthorized paths, or unsafe outputs fail without changing the baseline."
+      },
+      {
+        "id": "parity",
+        "status": "Implemented",
+        "purpose": "Run legacy and unified paths from the same immutable inputs in separate temporary directories.",
+        "failureBehavior": "Any normalized mismatch publishes only the legacy result and records a structured difference."
+      }
+    ],
+    "parityEvidence": {
+      "status": "PASS",
+      "artifactCount": 14,
+      "reviewItemCount": 11,
+      "legacyMemoryRecordCount": 3,
+      "comparisonRowCount": 27,
+      "classificationChangeCount": 0,
+      "claimBoundary": "Controlled compatibility evidence only; it is not an accuracy or generalization result."
+    },
+    "authorityBoundary": {
+      "supervisorDecisionState": "Deferred",
+      "liveListenerAuthorized": false,
+      "automaticCorrectionAuthorized": false,
+      "trustedMemoryRule": "Only independently verified or human-adjudicated records may use verified or adjudicated trust states.",
+      "timeoutBehavior": "Preserve the baseline and park the item."
+    },
+    "securityBoundary": {
+      "status": "PASS",
+      "interactionLogDefault": "metadata_only",
+      "pythonDependencyAudit": "PASS",
+      "nodeDependencyAudit": "PASS",
+      "secretAndPrivacyScan": "PASS",
+      "baselineLock": "PASS",
+      "claimBoundary": "The snapshot records reproducible controls and passing local scans; it is not a guarantee that no future vulnerability exists."
+    },
+    "modelBoundary": {
+      "defaultModel": "gpt-4o",
+      "servedSnapshotKnown": false,
+      "executionManifest": "ModelExecutionManifest-v1",
+      "protocols": [
+        {
+          "id": "EXP-028",
+          "title": "Model execution reproducibility and drift",
+          "status": "Proposal — not approved",
+          "gate": "Record request/response provenance without changing prompts, parameters, classifications, or the default model.",
+          "claimBoundary": "Protocol only; no model-comparison result.",
+          "chapterIds": [
+            "4",
+            "6",
+            "8"
+          ],
+          "decisionIds": [
+            "M-05",
+            "M-06"
+          ]
+        },
+        {
+          "id": "EXP-029",
+          "title": "Frozen candidate-model comparison",
+          "status": "Blocked",
+          "gate": "At least 20 safe labels, completed reviewer agreement and adjudication, frozen policy/prompt, supervisor approval, sealed holdout, and recorded cost limit.",
+          "claimBoundary": "No candidate model becomes a default through Iteration 15.",
+          "chapterIds": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "decisionIds": [
+            "M-05",
+            "M-06"
+          ]
+        }
+      ]
     }
   },
   "researchFrame": {
@@ -251,13 +340,13 @@
     },
     {
       "id": "B1",
-      "name": "Current reusable-human-judgment mechanism",
+      "name": "Legacy and unified human-judgment mechanism",
       "status": "Implemented",
-      "purpose": "Demonstrate selective review, structured feedback, memory, advice, and comparison.",
-      "data": "11 review items, 3 reusable judgments, 8 advice items, and 27 comparison rows.",
-      "policy": "memory-informed-classifier-v1, advisory and non-destructive",
-      "evaluationGate": "Mechanism and safety checks only.",
-      "allowedClaim": "Mechanism readiness, traceability, escalation, and baseline protection.",
+      "purpose": "Demonstrate selective review, structured feedback, memory, advice, and comparison through compatible legacy and canonical contract paths.",
+      "data": "Controlled parity covered 14 artifacts, 11 review items, 3 legacy mechanism-memory records, and 27 comparison rows.",
+      "policy": "Legacy remains default; unified is explicit; parity fails closed to the legacy result on every mismatch.",
+      "evaluationGate": "Contract, parity, mechanism, security, and safety checks only.",
+      "allowedClaim": "Mechanism readiness, compatibility, traceability, escalation, and baseline protection.",
       "behaviorChanged": false,
       "experimentIds": [
         "EXP-022"
@@ -455,7 +544,7 @@
       "claimBoundary": "Escalation mechanism evidence; precision and recall await expert labels."
     },
     "latestIteration": {
-      "value": 14,
+      "value": 15,
       "unit": "accepted iteration",
       "source": "docs/research/h-layer/program-status-snapshot-v1.json",
       "evidenceClass": "Offline evidence",
@@ -877,7 +966,7 @@
     ],
     "safety": [
       "Baseline files changed: must remain zero",
-      "Protected runtime paths changed: must remain false",
+      "Unauthorized or forbidden protected-path changes: must remain zero",
       "Unknown or same-pattern leakage in primary metrics: must remain zero",
       "Automatic correction applications: must remain zero",
       "Post-hoc holdout policy revisions: must remain zero"
@@ -911,6 +1000,7 @@
   "claimGates": {
     "safeNow": [
       "VEGO-AI has a reusable human-judgment mechanism supporting selective review, structured feedback, provenance-aware memory, advisory retrieval, and non-destructive comparison.",
+      "The legacy and unified M1-M4B-1 paths pass controlled fail-closed parity with 27 comparison rows and zero classification changes.",
       "The current implementation preserves original Agent 4 classifications and baseline artifacts.",
       "The project is evaluation-ready but remains blocked on independent expert input."
     ],
@@ -976,11 +1066,13 @@
       "file": "thesis/chapters/04-vego-ai-baseline-pipeline.md",
       "evidence": [
         "Frozen B0 baseline",
-        "27-pattern distribution"
+        "27-pattern distribution",
+        "Historical GPT-4o alias limitation"
       ],
       "experiments": [
         "EXP-000",
-        "EXP-021"
+        "EXP-021",
+        "EXP-028"
       ],
       "claimStatus": "Offline evidence"
     },
@@ -989,6 +1081,7 @@
       "file": "thesis/chapters/05-human-ai-co-reasoning-artifact.md",
       "evidence": [
         "B1 mechanism",
+        "Legacy/unified/parity contracts",
         "Non-destructive boundary"
       ],
       "experiments": [
@@ -1014,7 +1107,9 @@
         "EXP-024",
         "EXP-025",
         "EXP-026",
-        "EXP-027"
+        "EXP-027",
+        "EXP-028",
+        "EXP-029"
       ],
       "claimStatus": "Evaluation-ready"
     },
@@ -1042,13 +1137,16 @@
         "Leakage",
         "Class prevalence",
         "Reviewer roles",
-        "External replication"
+        "External replication",
+        "Model drift and served-snapshot limitation"
       ],
       "experiments": [
         "EXP-019",
         "EXP-020",
         "EXP-025",
-        "EXP-027"
+        "EXP-027",
+        "EXP-028",
+        "EXP-029"
       ],
       "claimStatus": "Delivered — provisional"
     },
@@ -1085,28 +1183,51 @@
     }
   ],
   "sourceHashes": {
-    "requirements-thesis.txt": "d862b7c68fe38fb8735cfba5f709309e379ad134e3739aab3c2642a38ef8851d",
-    "scripts/build_thesis_evidence_package.py": "9aa3dbc4a78fbcde3e227524ea3a181bf209bca91462f70a0a43d61c32696a30",
-    "scripts/validate_thesis_evidence_package.py": "c8e8c6c896f5848504eba29a693fb8ee9d8d4f33987f1e9d6d3016c68341f311",
-    "scripts/validate_research_records.py": "25ed4e899f4d9102701d095cc67eb55fd21cec7500c0450593474eb7bf467f47",
+    "requirements-thesis.txt": "bafc7e696ee9ee41c820eb2e1f2e6ef213e28b821363b610525bca99ccf8a825",
+    "scripts/build_thesis_evidence_package.py": "ad287be310d2c3797e2655bfd445050f40b19899e7b74d1b953910b1d0b98ef8",
+    "scripts/validate_thesis_evidence_package.py": "ad7c42128094c31799c661c34d3df44a27238ba4a0e14e3093020983a3caef96",
+    "scripts/validate_research_records.py": "7367006c821215049cb7dea2a2441f83fc09898690a5421044b7d2836df0a930",
     "scripts/check_thesis_citations.py": "03946deee5e93f188e2cdb21abe0d247a7c4d69648fe2ca048a535c9d676666b",
     "scripts/validate_thesis_content.py": "8e3e4d08bb651d044a5aa63c7cff95e376d7f1c0a99fc0f615c561a482f83f39",
-    "scripts/build_thesis_progress_visual.py": "208405c7d59cde37aa8d502ea2d4b7965a4b731e56785e2ffc6c9b5c5f539d8a",
-    "scripts/build_thesis_review_document.py": "95b917228c0205c6da21cafc50be1f2ea402251a655d99a54d713993edab99b6",
-    "scripts/build_thesis_review_manifest.py": "1469ebd6909f8a943b542cd846ce842a44b075054ee56cbdd24881119c7192d0",
+    "scripts/build_thesis_progress_visual.py": "9115ce4a16e4556cfd1c3858fcba23bc5ff9e68774c548cea7b7172d559181c6",
+    "scripts/build_thesis_review_document.py": "55662af20847be33a2e8ba06564160ca15ccde2a118ef97dfe27648fc2f53318",
+    "scripts/build_thesis_review_manifest.py": "5c65c92a0149576ca702dad1246b5b04f1ac1ba923debb8deaacd2f45edd1b69",
     "scripts/validate_thesis_review_document.py": "779a43dbc460f589412841ff2befaa79c9de2bec2d79a2ae9dac0f42a409a2ff",
     "scripts/inspect_thesis_render.py": "a1cda7af18fe47c98c516b4205e12c172d326b36fe976fd36bf16dfb14ae880a",
     "scripts/visualization_agent.py": "5262c5ff2a373a47729f7c28ef38944b5acbdb7bb2d3599ad81c051a86a0244c",
     "visualizations-gallery/build_gallery.py": "abf847e1197532bea8fa757c32d75c1f3b10703d257cfa7c3c2197fdba921f33",
-    "schemas/thesis-evidence-snapshot-v1.schema.json": "05f3c65f20e9bbbbf06dbea4b1a61cb22bbf2ae952b0e30603451fd61d1bbd07",
+    "schemas/thesis-evidence-snapshot-v1.schema.json": "6e8419f12f73bcd8dffc60c636e015fad36ec6d465e623b23b471fd657971941",
     "schemas/gold-label-record-v2.schema.json": "030b3b2d8071f81a5a4e3ef475dcb050983940365ef976e91dd0d0bb08ceb23b",
     "schemas/evaluation-run-manifest-v2.schema.json": "bf768769a097843e9659d44bb587b936987ef64c33c44f1c8a1ad130db15585f",
     "schemas/policy-candidate-record-v1.schema.json": "100d04c73252967c8205db3f3a86b43e348e22f2cbb7fdbb8b730ef3652cfe54",
     "schemas/thesis-review-package-manifest-v1.schema.json": "5150f1c6a7ac0e62a60c3eecbe6856021041d21a8830710b6b799e72af582c8e",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "a6c7a146be36c3d337f94081088720e44a1dda8269848c5c7b71185f7355d008",
+    "schemas/architecture-run-manifest-v1.schema.json": "40a41bafa54d09caba7f4081f8e0cfec1a3a5d2761733fde4e229ad0ed3402c1",
+    "schemas/baseline-lock-manifest-v2.schema.json": "227e617dd82f023eb2ed74016296a6b45a2cb05e77579fc31f84a9a0e9426af6",
+    "schemas/hlayer-runtime-config-v1.schema.json": "96557ed35de602136dcd1b91c6994c541f56912bc9fe2742414b51d9049de6d1",
+    "schemas/model-execution-manifest-v1.schema.json": "9029b613a21c9a3555e469e3e4ff86476737548d4964814efdaf0b7507531910",
+    "schemas/security-posture-snapshot-v1.schema.json": "326daafe746cbbe0d184739fd4fae5ed1fa814406e744fccbb640a5afd4ca770",
+    "configs/hlayer-runtime.json": "0e8c03d4297b74cf04020c244be6a09441555b595b63434a3c83c86cdaf993e2",
+    "configs/protected-change-authorization-v1.json": "bcff333a0fd9a75fd72421168aac684a91d51faa639149b120c10a419529a89c",
+    "scripts/build_hardening_manifests.py": "ac7f46932c6f9fefd5c5c66ff7d52b496372d8690cccdcc3a3efcff30edb612a",
+    "scripts/run_hlayer_architecture.py": "7fe1f20083be4a812ecf62fb103a478253d30a2cf49646e0ab17d54ea3ca5e2d",
+    "scripts/verify-source.ps1": "42889cf67f6fb380069f775fd3c6f105fbf58da678e9d72bbe6397d4ce4e2110",
+    "scripts/verify-controlled.ps1": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239",
+    "scripts/verify-release.ps1": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5",
+    "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
+    "src/vego_hlayer/adapters.py": "3ec8f9ab28fb979178167f7f5c7388c83ed49d8a4b3bf3afb0de95f9dc84cea3",
+    "src/vego_hlayer/contracts.py": "1de923c5682822d9cd0f3d6d342712dc43a1e747e287150f77a2aa8d5819bacd",
+    "src/vego_hlayer/io_safety.py": "5d246bce833103a54642c3eb80d3855b8bc5330a3337e9caf6a975dc0d822a82",
+    "src/vego_hlayer/runtime.py": "d33ccbab226c12f68926e0a6a8f1dc07fb613d0a891e785c47472f1ce68eba2b",
+    "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "b9bd6c0b25411c7654f20b615985cfc7a69ead7924e4189f0626241ddc08f1ee",
+    "docs/research/hardening/README.md": "447401334f40a123eb0bb67e5759f477b15cb134df442c3d7140135a5269d2e3",
+    "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md": "7fb96ba31fa0aa9a0726479e901e7fd6f3d09047af9a43dea14348c00c7e7c3f",
+    "docs/research/hardening/THREAT_MODEL.md": "9904a0a517506e1fd8459ffbe5a9ceddbd615f768fff607ca7e4974baa0a700b",
+    "docs/research/hardening/UNIFIED_RUNTIME_ARCHITECTURE.md": "b8ab35e8a3a2b14db687de4b38de1fb782ef2b74cd1d2fb50fd832220ee08171",
+    "docs/research/hardening/VERIFICATION_AND_RELEASE.md": "9b308e1c8b7ccd35a59f3e3389d436b91a4398bb2b9c8d717a6bd5b3fb457526",
     "docs/research/accuracy-improvement-plan.md": "4df5b7c6a01ca2fcaa9e878ee9099705c6f61e561281913915e441639e3ccb60",
     "docs/research/supervisor-label-approval-pack.md": "8165442fdff772de3415c1778f007071127f9e9a42eeef37d2254b320ccf7b74",
-    "experiments/registry.md": "a69e3ae40fc198e5f1feca268947f3db4e75a5f9676d479f7983a4c3ee4b5bdc",
+    "experiments/registry.md": "220fe30ce36238a23a0820972a750ffc72967458ce4982b7b1172d4b7fc37385",
     "experiments/EXP-019-reviewer-calibration/README.md": "ad22627ca7f4c10a9fa117b48e39fb5ee7c99c3bf9433cdd276ec3b8cfbb8a06",
     "experiments/EXP-020-independent-expert-labeling/README.md": "c626d94c0a0fa4aff67e6ac8df8feda0d21fe7945b6be664def093ecf82f45a5",
     "experiments/EXP-021-development-baseline-error-analysis/README.md": "6121e00ba7bed66a1e152d4445cf882b3ed965511eb816d79d21137b99fc6cce",
@@ -1116,16 +1237,18 @@
     "experiments/EXP-025-external-education-replication/README.md": "c94350b1ebfb287bca1e79baf6951dd08410afe3c6726802acd6225c24d41684",
     "experiments/EXP-026-human-effort-study/README.md": "b320dd50b2734c8c72c9a195c23ce3d69c4b14cefdfaf7321009887dfe4b2f0c",
     "experiments/EXP-027-ablation-robustness/README.md": "9783c8e4ec605b2cd168ff0e8676ca09fef56e93345855d6ad13e78d6b5a3a4e",
+    "experiments/EXP-028-model-execution-reproducibility/README.md": "355cdf3c89dcf37ea729d6e16750f404e1a986848eb675ac1bb040aff33190bc",
+    "experiments/EXP-029-frozen-candidate-model-comparison/README.md": "aa18f1c75c34497bd7b63a2cc3b22722091088ab16cafbdc6d27540603b45dbb",
     "thesis/outline.md": "ec0e29ae0782ff1dd1df0d102d42dc1908fe51b7253550e34d63aba3fb79bff2",
     "thesis/chapters/00-abstract.md": "bb44091a57bfe9a4a1578921ea55565b304f50576f03f99ff0f5e94764edffbf",
     "thesis/chapters/01-introduction.md": "2c30795c9e388343bf85bd4d19e0135dc07130b0632aea74fb74bd6a2fa1b9ca",
     "thesis/chapters/02-background-and-related-work.md": "0362d2f2216f93fde6c6c7c9df34345bd151f7d35bc702e076aa34e87132171e",
     "thesis/chapters/03-problem-and-research-questions.md": "cd8b27b2b9b8276d46a67688a05269bbf0e722914b3ca3263e266c0c332c57e7",
-    "thesis/chapters/04-vego-ai-baseline-pipeline.md": "80730e03d786f8f2483f4d49a22d8619feac2416aecc110cd11e83d912b43ca6",
-    "thesis/chapters/05-human-ai-co-reasoning-artifact.md": "4e73044a8b9f4c5131b4172da759f879c7f566a61fef1a28d769132ddbb48cc9",
-    "thesis/chapters/06-evaluation-methodology.md": "f7f1982ffc86e1137c0d9249ea976c4df8fa8d97a0fcc20519af7343347d5f7a",
+    "thesis/chapters/04-vego-ai-baseline-pipeline.md": "8f77318e820d42e73061a3d023fe2f7dbbd603d1c09bafacd90c689c06a7f7ea",
+    "thesis/chapters/05-human-ai-co-reasoning-artifact.md": "de9cc1034f932b793a184fc970d8ce857b17dc48c3d066599083cc1ae684fcba",
+    "thesis/chapters/06-evaluation-methodology.md": "c07941cc15fdc919672c19f9a5bb80756bfdc7504349ae01822e6b5084dbe40c",
     "thesis/chapters/07-experimental-results.md": "0f3cf3b4b0c780a7e27f2dd0ad6f5471787491dc683a97c208f5725949a4b533",
-    "thesis/chapters/08-threats-to-validity.md": "9695800abd284f622e1202c1894353446c7ef16c92dfc3962251b364484c383a",
+    "thesis/chapters/08-threats-to-validity.md": "ea64453e975c578129b8d8c4ed56113ac231bbfe8fba3f9e5d1f00e83efc0fc2",
     "thesis/chapters/09-discussion.md": "2d4aef3ad19f1a23eedd384229186b4f466757870d842dc46b65cb9ad390abb5",
     "thesis/chapters/10-conclusion-and-phd-continuation.md": "dccbe777a471b7fa9a0c0b1b985520209bd55bb54a534f0bcf6be1f0f0555e95",
     "thesis/chapters/11-references.md": "c59f8bc09f1ed0ca53d78942bae7085cb63f21490f6f628c1eeb9c34e1df0dc8",

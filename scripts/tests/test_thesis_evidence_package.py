@@ -4,10 +4,9 @@ import importlib.util
 import json
 from pathlib import Path
 
-import pytest
 import jsonschema
+import pytest
 from docx import Document
-
 
 ROOT = Path(__file__).resolve().parents[2]
 BUILDER_PATH = ROOT / "scripts/build_thesis_evidence_package.py"
@@ -20,7 +19,7 @@ MANIFEST_PATH = (
 )
 THESIS_DOCX_PATH = (
     ROOT
-    / "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx"
+    / "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx"
 )
 
 
@@ -55,6 +54,20 @@ def test_snapshot_has_fixed_baseline_and_experiment_ladders() -> None:
     assert [item["id"] for item in data["experiments"]] == [
         f"EXP-{number:03d}" for number in range(19, 28)
     ]
+    assert [item["id"] for item in data["runtimeHardening"]["modes"]] == [
+        "legacy",
+        "unified",
+        "parity",
+    ]
+    assert data["runtimeHardening"]["defaultMode"] == "legacy"
+    assert [
+        item["id"]
+        for item in data["runtimeHardening"]["modelBoundary"]["protocols"]
+    ] == ["EXP-028", "EXP-029"]
+    assert (
+        data["runtimeHardening"]["parityEvidence"]["classificationChangeCount"]
+        == 0
+    )
     assert all(item["behaviorChanged"] is False for item in data["baselines"])
 
 
@@ -99,6 +112,19 @@ def test_builder_is_byte_deterministic_without_timestamp_refresh() -> None:
     assert json.dumps(first, ensure_ascii=False, sort_keys=True) == json.dumps(
         second, ensure_ascii=False, sort_keys=True
     )
+
+
+def test_canonical_source_hash_normalizes_checkout_line_endings(
+    tmp_path: Path,
+) -> None:
+    builder = load_builder()
+    lf = tmp_path / "lf.ps1"
+    crlf = tmp_path / "crlf.ps1"
+    lf.write_bytes(b"Write-Output 'ok'\n")
+    crlf.write_bytes(b"Write-Output 'ok'\r\n")
+    assert builder.sha256_portable_text_file(
+        lf
+    ) == builder.sha256_portable_text_file(crlf)
 
 
 def test_gold_label_schema_rejects_synthetic_reviewer() -> None:
@@ -313,7 +339,7 @@ def test_policy_semantics_reject_duplicate_rule_ids() -> None:
 
 def test_registry_contains_each_new_experiment_once() -> None:
     registry = (ROOT / "experiments/registry.md").read_text(encoding="utf-8")
-    for number in range(19, 28):
+    for number in range(19, 30):
         assert registry.count(f"| EXP-{number:03d} |") == 1
 
 

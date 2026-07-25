@@ -64,7 +64,7 @@ This is the **only place** that needs editing to point at a different dataset.
 
 ## Step 2 — Python environment
 
-Requires **Python 3.9+** (3.11+ recommended).
+Requires **Python 3.10+**. The locked CI matrix covers Python 3.10–3.13.
 
 **macOS / Linux**
 ```bash

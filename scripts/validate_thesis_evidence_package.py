@@ -4,11 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
 import sys
-import hashlib
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +34,12 @@ def git(*args: str) -> str:
 
 def find_duplicates(values: list[str]) -> list[str]:
     return sorted({value for value in values if values.count(value) > 1})
+
+
+def sha256_portable_text_bytes(value: bytes) -> str:
+    text = value.decode("utf-8-sig")
+    normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 
 def validate_json_schema(data: dict[str, Any], errors: list[str]) -> None:
@@ -78,7 +84,7 @@ def validate() -> list[str]:
         if not path.is_file():
             errors.append(f"source hash points to missing file: {relative_path}")
             continue
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        digest = sha256_portable_text_bytes(path.read_bytes())
         current_hashes[relative_path] = digest
         if digest != recorded_hash:
             errors.append(f"source hash drift: {relative_path}")
@@ -97,7 +103,7 @@ def validate() -> list[str]:
             errors.append(
                 f"source file is missing from sourceRevision: {relative_path}"
             )
-        elif hashlib.sha256(committed.stdout).hexdigest() != recorded_hash:
+        elif sha256_portable_text_bytes(committed.stdout) != recorded_hash:
             errors.append(
                 f"sourceRevision hash differs: {relative_path}"
             )
@@ -177,6 +183,30 @@ def validate() -> list[str]:
     if data["baselines"][3]["status"] != "Proposal — not approved":
         errors.append("B3 candidate policy must remain Proposal — not approved")
 
+    hardening = data["runtimeHardening"]
+    if [item["id"] for item in hardening["modes"]] != [
+        "legacy",
+        "unified",
+        "parity",
+    ]:
+        errors.append("runtime modes must be legacy, unified, parity in order")
+    if hardening["defaultMode"] != "legacy":
+        errors.append("legacy must remain the default runtime mode")
+    if hardening["parityEvidence"]["classificationChangeCount"] != 0:
+        errors.append("controlled parity must retain zero classification changes")
+    authority = hardening["authorityBoundary"]
+    if authority["liveListenerAuthorized"] or authority[
+        "automaticCorrectionAuthorized"
+    ]:
+        errors.append("live listeners and automatic correction must remain unauthorized")
+    model = hardening["modelBoundary"]
+    if model["defaultModel"] != "gpt-4o":
+        errors.append("gpt-4o must remain the frozen default model")
+    if [item["id"] for item in model["protocols"]] != ["EXP-028", "EXP-029"]:
+        errors.append("model protocols must be EXP-028 and EXP-029 in order")
+    if model["protocols"][1]["status"] != "Blocked":
+        errors.append("EXP-029 must remain blocked")
+
     experiment_ids = [item["id"] for item in data["experiments"]]
     expected_experiments = [f"EXP-{number:03d}" for number in range(19, 28)]
     if experiment_ids != expected_experiments:
@@ -221,8 +251,14 @@ def validate() -> list[str]:
             errors.append(f"chapter trace points to missing file: {chapter['file']}")
 
     protected = status["protectedPathState"]
-    if protected["status"] != "PASS" or protected["protectedDiff"]:
-        errors.append("protected path state is not PASS/empty")
+    if protected["status"] != "PASS":
+        errors.append("protected path state is not PASS")
+    if protected.get("unauthorizedDiff") or protected.get("forbiddenDiff"):
+        errors.append("protected path state contains unauthorized or forbidden changes")
+    if protected.get("protectedDiff") and protected.get("boundaryMode") != (
+        "reviewed_allowlist"
+    ):
+        errors.append("protected changes are not governed by the reviewed allowlist")
     if status["decisionState"]["runtimeAuthorization"]:
         errors.append("runtime authorization unexpectedly true")
 

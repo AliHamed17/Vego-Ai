@@ -27,11 +27,31 @@ For tracked directories, each fingerprint is SHA-256 over UTF-8 lines of `repo-r
 
 | Path | Tracked files | Tree SHA-256 |
 | --- | ---: | --- |
-| `VEGO-AI/framework` | 17 | `de4749aa39aef4e0ea02b3e24f8ec8174ed46ec0806e92c5778f980077cde8df` |
-| `VEGO-AI/schemas` | 6 | `7dfdea2552ac1f12ea0370263151056e01b5c18c1cd1a2890188fb48efa43455` |
-| `VEGO-AI/tests` | 8 | `1766a596d0c54c94ed83e72693884301d5ba98e973947b4fde1cc777ff032a2c` |
+| `VEGO-AI/framework` | 18 | `7bcc95bd52dd9f2a4d941f78bfa6a1e4fbb748d13ec5fcb966c76fed1b602462` |
+| `VEGO-AI/schemas` | 6 | `518cfad1485192aa044f487c9f5f38f2b134a0ef58cdd21d1abd77484a3333c5` |
+| `VEGO-AI/tests` | 9 | `a58387ba814a59354a18bdc8a8a099937979e74b56fb1eb85c735916e97e2f52` |
 | `VEGO-AI/eval` | 7 | `f62c34f9f30558269eaa8fdb7b3f96e656f91a5fffc7ee79990234ec4d48e3ec` |
 | `VEGO-AI/inputs` | 10 | `ce6baead0fb775ca926f2fdfe6578aafcc3d603db1785ea8cb2ca6b7d2d3f356` |
+
+### Re-lock Of 2026-07-25 (reviewed authorized additions)
+
+The fingerprints above were re-locked on 2026-07-25 after the reviewed, authorized
+additions listed in `docs/research/h-layer/allowed-touch-proposal.md` and verified by
+`scripts/check_hlayer_change_authorization.py`. What changed and why the boundary still holds:
+
+- `VEGO-AI/framework` 17 -> 18 tracked files: one ADDED module (`h_layer_shadow_writer.py`).
+  Agent 1-4 modules remain byte-identical to the official tag - independently confirmed by
+  `docs/research/hardening/baseline-lock-manifest-v2.json` (`agentModules1to4.matchesOfficialTag: true`,
+  SHA-256 `84656478a84c1e654a920a431107b38b1974ff67eeb60408dbb30fe96b22ad81`).
+- `VEGO-AI/schemas` 6 files, new tree hash: `observation_record.schema.json` added/updated within
+  the same file count; no runtime schema semantics for Agents 1-4 changed.
+- `VEGO-AI/tests` 8 -> 9 tracked files: ADDED coverage only
+  (`test_h_layer_shadow_writer.py`, `test_llm_client_security.py`); on 2026-07-25 the latter's
+  fake-token fixture was assembled from fragments so no key-shaped literal is stored in a tracked
+  file, keeping `scripts/check_repository_privacy.py` green with identical runtime behavior.
+- `VEGO-AI/eval` and `VEGO-AI/inputs` are unchanged from the original lock.
+- Agent 4 behavior, baseline `eval_output`, and the EXP-005 label state are untouched; the
+  program remains offline-only with 0/24 generalization-safe expert labels.
 
 `VEGO-AI/eval_output` contains no tracked files, so a tracked-file hash would be the empty SHA-256 and is not useful. For this local checkpoint only, hashing all 241 files with the same relative-path/content-hash algorithm produced `12368093fdc7ae8c69eb99e1dc3534f69c5a7a0cf79fcf9345437d1f587d1f12`. Treat that as a local baseline-preservation check, not a tracked evidence artifact.
 
