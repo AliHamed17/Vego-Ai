@@ -91,8 +91,10 @@ SOURCE_PREFIXES = (
     ".github/workflows/",
     "configs/",
     "schemas/",
+    "scripts/tests/",
     "src/vego_hlayer/",
     "tests/hlayer_offline/",
+    "VEGO-AI/tests/",
 )
 SOURCE_EXTRA = (
     "scripts/build-hlayer-experiments.ps1",
@@ -117,6 +119,7 @@ SOURCE_EXTRA = (
     "VEGO-AI/framework/memory_informed_classifier.py",
     "VEGO-AI/framework/README.md",
     "VEGO-AI/framework/requirements.txt",
+    "VEGO-AI/eval/README_EVALUATOR.md",
     "VEGO-AI/schemas/memory_informed_comparison.schema.json",
     "VEGO-AI/tests/test_llm_client_security.py",
     "VEGO-AI/tests/test_memory_informed_classifier.py",
