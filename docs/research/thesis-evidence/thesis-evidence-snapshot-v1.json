@@ -1,19 +1,19 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
   "generatedAt": "2026-07-25T18:41:52+00:00",
-  "sourceRevision": "d1d9c8eb8942f1974669696f97be9147841e2d2f",
-  "sourceTreeHash": "113b464e9fa5b0b3f66a0a66c3139896155dcb8d9ea6478632345cdb697d1fb3",
+  "sourceRevision": "3a810ddd3577c4c314c9ab432fa9334c81aa4470",
+  "sourceTreeHash": "e23df8a858af7872deb329e05d84f0fb52acf756588a9bcb30ff8f97e1ab490d",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-    "sha256": "945a49ff583f110e755fc6adda545f5de4820e3f88aeae9f8c0e2ae2d07e8cbe",
+    "sha256": "5ac4bd4ef114a8c59f81621aea9c82cc2e0eb37f2d891af2f9c4f567a35955a8",
     "latestAcceptedIteration": 15,
     "latestAcceptedRunId": "HLAYER-UNIFIED-HARDENING-V1",
     "verdict": "NEUTRAL",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim.",
     "verification": {
       "status": "PASS",
-      "recordedAt": "2026-07-25T21:06:01Z",
+      "recordedAt": "2026-07-25T21:22:18Z",
       "vegoTestsPassed": 108,
       "scriptTestsPassed": 96
     }
@@ -1219,7 +1219,7 @@
     "src/vego_hlayer/io_safety.py": "c7ee7eab05c0c79b8e4196de51f345bcef72a81da4de667fddfefb304089b1cb",
     "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "945a49ff583f110e755fc6adda545f5de4820e3f88aeae9f8c0e2ae2d07e8cbe",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "5ac4bd4ef114a8c59f81621aea9c82cc2e0eb37f2d891af2f9c4f567a35955a8",
     "docs/research/hardening/README.md": "447401334f40a123eb0bb67e5759f477b15cb134df442c3d7140135a5269d2e3",
     "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md": "7fb96ba31fa0aa9a0726479e901e7fd6f3d09047af9a43dea14348c00c7e7c3f",
     "docs/research/hardening/THREAT_MODEL.md": "9904a0a517506e1fd8459ffbe5a9ceddbd615f768fff607ca7e4974baa0a700b",
