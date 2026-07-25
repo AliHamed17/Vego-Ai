@@ -1,6 +1,6 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T21:43:18+00:00",
+  "generatedAt": "2026-07-25T21:55:38+00:00",
   "sourceRevision": "a6c2b42a175d51bd209e7e9adddc6d94c2aff872",
   "latestAcceptedIteration": {
     "iteration": 15,
@@ -9,7 +9,7 @@
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "756355255624368b1a8601df3f7899702b77e6bcce3f8c70e04e6d506ec3fd78",
+    "normalizedSha256": "9debfdcaa9365581746aff4bf18df3ed53e253b913ad567e9a56896a4615222f",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -151,10 +151,10 @@
         "durationSeconds": 5.9
       },
       "scripts/tests": {
-        "passed": 101,
+        "passed": 102,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 54.18
+        "durationSeconds": 56.73
       },
       "tests/hlayer_offline": {
         "passed": 41,
@@ -162,7 +162,7 @@
         "durationSeconds": 5.2
       }
     },
-    "recordedAt": "2026-07-25T21:43:18Z",
+    "recordedAt": "2026-07-25T21:54:47Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -172,7 +172,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "d2e8dfd587e246f21d13f803e07031b625a35f87a7a1eaabb86f88bb4f39957b",
+    "iteration15Manifest": "56f3698e802f88abb99d806c7d81ee0f6762ef30a941f042947dab66089d1ae1",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
