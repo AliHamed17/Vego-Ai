@@ -17,7 +17,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "13bb1ac241a0745b337a5d0d52d339ea0a1d50fda6fd3eef3649236c73e7e789",
+  "packageTreeSha256": "fb0b33edb97e0f70d38c5e22c1390b7f6e8dc2510cb97fce37a026a1b5ef2e3c",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -107,6 +107,7 @@
     "scripts/tests/test_hlayer_hardening.py",
     "scripts/tests/test_security_audit.py",
     "scripts/tests/test_thesis_evidence_package.py",
+    "scripts/tests/test_validate_hlayer_program_portability.py",
     "scripts/tests/thesis_progress_browser_smoke.mjs",
     "scripts/vego_doctor.py",
     "scripts/verify-controlled.ps1",
@@ -128,7 +129,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "472fe95e4950e1211559878aa5b681422e19c2077e6e026db856299d4f2bab7e",
+  "sourceTreeSha256": "d7181420731c07aa3d747fae895fa05fa4dcc946563b4ad7852f3fa0f8279185",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
@@ -137,7 +138,7 @@
     "ruff": "0.15.16"
   },
   "trackedArtifacts": {
-    "VEGO-AI-Thesis-Baseline-Progress.html": "ce0e591ad354e73dde8af84b441ee175fe031dfc28c750f1e160e5a0c1ac1f8e",
+    "VEGO-AI-Thesis-Baseline-Progress.html": "5a342b35ef7391e981e330123317f1f078ec1bdd1aee80f182649e25de868d1d",
     "docs/research/h-layer/program-status-snapshot-v1.json": "e275657d49752380a61843e87fe9918ecf747b2309ce7c00da112c153da84103",
     "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "docs/research/hardening/iteration-015-manifest.json": "ac5d5e2f227845d34c3e67202c296ac2e429c8df9e210b26c202bf7cab21c34d",
