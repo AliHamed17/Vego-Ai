@@ -135,6 +135,16 @@ def test_encrypted_pkcs8_private_keys_are_detected_in_content_and_history() -> N
     )
 
 
+def test_fixture_substring_does_not_exempt_a_credential() -> None:
+    module = load_module()
+    credential = (
+        b"sk"
+        b"-proj-"
+        b"productionfixtureabcdefghijklmnopqrstuvwxyz123456"
+    )
+    assert module._secret_labels(credential) == ["openai_key"]
+
+
 def test_history_scan_uses_a_git_compatible_expression(tmp_path: Path) -> None:
     module = load_module()
     module.ROOT = tmp_path

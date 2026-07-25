@@ -167,6 +167,70 @@ def test_interaction_log_rejects_network_path(monkeypatch) -> None:
         LLMClient(interaction_log=Path("//server/share/interaction.jsonl"))
 
 
+def test_interaction_log_rejects_existing_symbolic_link(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
+    victim = tmp_path / "victim.txt"
+    victim.write_text("private target\n", encoding="utf-8")
+    log_path = tmp_path / "interaction.jsonl"
+    try:
+        log_path.symlink_to(victim)
+    except OSError:
+        pytest.skip("symbolic-link creation is unavailable on this platform")
+
+    with pytest.raises(OSError, match="symbolic link or reparse point"):
+        LLMClient(interaction_log=log_path, interaction_log_mode="full_content")
+    assert victim.read_text(encoding="utf-8") == "private target\n"
+
+
+def test_interaction_log_rechecks_link_before_each_write(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
+    log_path = tmp_path / "interaction.jsonl"
+    client = LLMClient(interaction_log=log_path, interaction_log_mode="full_content")
+    victim = tmp_path / "victim.txt"
+    victim.write_text("private target\n", encoding="utf-8")
+    try:
+        log_path.symlink_to(victim)
+    except OSError:
+        pytest.skip("symbolic-link creation is unavailable on this platform")
+
+    client._write_interaction(
+        label="agent1/test",
+        prompt={"system": "private system", "user": "private user"},
+        raw='{"ok":true}',
+        parsed={"ok": True},
+        parse_error=None,
+        response=_response(),
+        attempt=1,
+    )
+    assert victim.read_text(encoding="utf-8") == "private target\n"
+
+
+def test_interaction_log_rejects_symbolic_link_parent(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
+    real_directory = tmp_path / "real"
+    real_directory.mkdir()
+    linked_directory = tmp_path / "linked"
+    try:
+        linked_directory.symlink_to(real_directory, target_is_directory=True)
+    except OSError:
+        pytest.skip("symbolic-link creation is unavailable on this platform")
+
+    with pytest.raises(OSError, match="symbolic link or reparse point"):
+        LLMClient(
+            interaction_log=linked_directory / "interaction.jsonl",
+            interaction_log_mode="metadata_only",
+        )
+
+
 def test_interaction_log_retention_is_bounded(tmp_path, monkeypatch) -> None:
     monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
     with pytest.raises(ValueError, match="between 1 and 365"):

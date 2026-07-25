@@ -4,7 +4,8 @@ param(
     [switch]$Check,
     [switch]$Refresh,
     [switch]$SkipBrowser,
-    [switch]$SkipNetworkAudit
+    [switch]$SkipNetworkAudit,
+    [string]$TrustedAuthorizationSha256
 )
 
 $ErrorActionPreference = "Stop"
@@ -16,6 +17,43 @@ Set-Location $repoRoot
 $env:PYTHONUTF8 = "1"
 $env:PYTHONDONTWRITEBYTECODE = "1"
 
+function Initialize-AuthorizationTrust {
+    if ($TrustedAuthorizationSha256) {
+        if ($TrustedAuthorizationSha256 -notmatch '^[0-9a-fA-F]{64}$') {
+            throw "TrustedAuthorizationSha256 must contain 64 hexadecimal characters."
+        }
+        $env:H_LAYER_AUTHORIZATION_SHA256 = $TrustedAuthorizationSha256.ToLowerInvariant()
+        return
+    }
+    if ($env:H_LAYER_AUTHORIZATION_SHA256) {
+        return
+    }
+    $configured = git config --local --get vego.hlayerAuthorizationSha256 2>$null
+    if ($LASTEXITCODE -eq 0 -and $configured) {
+        return
+    }
+    if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
+        throw (
+            "H-layer authorization trust is not configured. Supply " +
+            "-TrustedAuthorizationSha256, set H_LAYER_AUTHORIZATION_SHA256, " +
+            "or install and authenticate GitHub CLI."
+        )
+    }
+    $repository = gh repo view --json nameWithOwner --jq ".nameWithOwner" 2>$null
+    if ($LASTEXITCODE -ne 0 -or -not $repository) {
+        throw "Could not identify the GitHub repository for authorization trust."
+    }
+    $trusted = gh variable get H_LAYER_AUTHORIZATION_SHA256 --repo $repository 2>$null
+    if ($LASTEXITCODE -ne 0 -or $trusted -notmatch '^[0-9a-fA-F]{64}$') {
+        throw (
+            "Could not load H_LAYER_AUTHORIZATION_SHA256 from the GitHub " +
+            "repository. Supply -TrustedAuthorizationSha256 explicitly."
+        )
+    }
+    $env:H_LAYER_AUTHORIZATION_SHA256 = $trusted.ToLowerInvariant()
+    Write-Host "[verify-source] authorization trust loaded from GitHub repository variable"
+}
+
 function Invoke-Gate {
     param([string]$Name, [scriptblock]$Body)
     Write-Host "[verify-source] $Name"
@@ -24,6 +62,8 @@ function Invoke-Gate {
         throw "$Name failed with exit code $LASTEXITCODE"
     }
 }
+
+Initialize-AuthorizationTrust
 
 Invoke-Gate "locked dependency definition" { uv lock --check }
 Invoke-Gate "legacy requirement projection freshness" {

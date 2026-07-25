@@ -79,7 +79,7 @@ Stable tags: `official-vego-ai-baseline` · `research-state-m4a-clean` · `resea
 <!-- AUTO:invariants:start -->
 | Invariant | Value | Checked by |
 | --- | --- | --- |
-| Tests passing | **108 passed _(dated verification record)_** | `pytest VEGO-AI/tests` |
+| Tests passing | **111 passed _(dated verification record)_** | `pytest VEGO-AI/tests` |
 | `ai_classification_changed` | **0** | dashboard / guard |
 | baseline `eval_output` modified | **false** | guard |
 | memory-informed differs from original | **0 / 27** | guard |

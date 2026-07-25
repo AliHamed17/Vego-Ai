@@ -141,12 +141,7 @@ def _is_text(data: bytes) -> bool:
 def _secret_labels(data: bytes) -> list[str]:
     labels: list[str] = []
     for label, pattern in SECRET_PATTERNS.items():
-        matches = [
-            match.group(0)
-            for match in pattern.finditer(data)
-            if b"fixture" not in match.group(0).lower()
-        ]
-        if matches:
+        if pattern.search(data):
             labels.append(label)
     return labels
 

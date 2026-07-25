@@ -29,6 +29,7 @@ import json
 import logging
 import os
 import re
+import stat
 import time
 from datetime import datetime, timezone
 from hashlib import sha256
@@ -66,6 +67,33 @@ _SECRET_RES = (
         r"-----BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY-----"
     ),
 )
+
+
+def _is_link_or_reparse_point(path: Path) -> bool:
+    """Return True for symbolic links and Windows reparse points."""
+
+    try:
+        info = os.lstat(path)
+    except FileNotFoundError:
+        return False
+    reparse_flag = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0)
+    file_attributes = getattr(info, "st_file_attributes", 0)
+    return stat.S_ISLNK(info.st_mode) or bool(
+        reparse_flag and file_attributes & reparse_flag
+    )
+
+
+def _assert_link_free_path(path: Path) -> None:
+    """Reject a log path when any existing component redirects elsewhere."""
+
+    absolute = Path(os.path.abspath(os.fspath(path)))
+    components = [absolute, *absolute.parents]
+    for component in reversed(components):
+        if os.path.lexists(component) and _is_link_or_reparse_point(component):
+            raise OSError(
+                "interaction log path contains a symbolic link or reparse point: "
+                f"{component}"
+            )
 
 
 def _load_interaction_log_policy() -> dict[str, Any]:
@@ -157,8 +185,10 @@ class LLMClient:
         if interaction_log:
             if str(interaction_log).startswith(("\\\\", "//")):
                 raise ValueError("interaction logs must use local storage")
+            _assert_link_free_path(interaction_log.parent)
             log_directory_created = not interaction_log.parent.exists()
             interaction_log.parent.mkdir(parents=True, exist_ok=True)
+            _assert_link_free_path(interaction_log)
             if log_directory_created:
                 try:
                     interaction_log.parent.chmod(0o700)
@@ -356,13 +386,11 @@ class LLMClient:
         serialized_entry = json.dumps(entry, ensure_ascii=False) + "\n"
         pending_bytes = len(serialized_entry.encode("utf-8"))
         try:
+            _assert_link_free_path(self._log_path)
             self._rotate_interaction_log(pending_bytes=pending_bytes)
-            with open(self._log_path, "a", encoding="utf-8") as fh:
+            descriptor = self._open_interaction_log()
+            with os.fdopen(descriptor, "a", encoding="utf-8") as fh:
                 fh.write(serialized_entry)
-            try:
-                self._log_path.chmod(0o600)
-            except OSError:
-                logger.debug("Could not restrict interaction-log file permissions.")
         except OSError as exc:
             logger.warning("Could not write to interaction log: %s", exc)
 
@@ -391,9 +419,38 @@ class LLMClient:
             return [cls._redact_value(item) for item in value]
         return value
 
+    def _open_interaction_log(self) -> int:
+        """Open the log for append without following a substituted final link."""
+
+        if not self._log_path:
+            raise OSError("interaction log path is not configured")
+        _assert_link_free_path(self._log_path)
+        flags = os.O_WRONLY | os.O_APPEND | os.O_CREAT
+        flags |= getattr(os, "O_NOFOLLOW", 0)
+        descriptor = os.open(self._log_path, flags, 0o600)
+        try:
+            # Recheck after opening for platforms without O_NOFOLLOW and detect
+            # a path swap before any content is written.
+            _assert_link_free_path(self._log_path)
+            path_info = os.stat(self._log_path, follow_symlinks=False)
+            descriptor_info = os.fstat(descriptor)
+            if not stat.S_ISREG(descriptor_info.st_mode):
+                raise OSError("interaction log target must be a regular file")
+            if not os.path.samestat(path_info, descriptor_info):
+                raise OSError("interaction log target changed while opening")
+            try:
+                os.fchmod(descriptor, 0o600)
+            except (AttributeError, OSError):
+                logger.debug("Could not restrict interaction-log file permissions.")
+        except BaseException:
+            os.close(descriptor)
+            raise
+        return descriptor
+
     def _rotate_interaction_log(self, *, pending_bytes: int = 0) -> None:
         if not self._log_path:
             return
+        _assert_link_free_path(self._log_path)
         cutoff = time.time() - (self._log_retention_days * 24 * 60 * 60)
         backup_prefix = f"{self._log_path.name}."
         for backup in self._log_path.parent.glob(f"{self._log_path.name}.*"):
@@ -401,7 +458,7 @@ class LLMClient:
             if not index_text.isdecimal():
                 continue
             index = int(index_text)
-            if backup.is_symlink():
+            if _is_link_or_reparse_point(backup):
                 backup.unlink()
                 continue
             if not backup.is_file():

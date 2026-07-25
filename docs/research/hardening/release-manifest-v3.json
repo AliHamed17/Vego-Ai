@@ -17,7 +17,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "29f576cf7177b3bb5bce86b5d1d8fbf776874c725659c91fc85eda8dd87daf10",
+  "packageTreeSha256": "eb33a360490c59bd57fda5eb3ba76c461ebbaea5cca513b734f83df36bf296cb",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -109,6 +109,7 @@
     "scripts/tests/test_thesis_evidence_package.py",
     "scripts/tests/test_validate_hlayer_program_portability.py",
     "scripts/tests/thesis_progress_browser_smoke.mjs",
+    "scripts/validate_hlayer_program.py",
     "scripts/vego_doctor.py",
     "scripts/verify-controlled.ps1",
     "scripts/verify-release.ps1",
@@ -129,7 +130,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "896f8c416173f8283c2044ba945d0100e36ce2ccf25b97a58c7ed87f55fcc530",
+  "sourceTreeSha256": "7b280eab98126d91d09eb131b093187924d9bbaebe1af56bbbe1e2f9bc6f5a3c",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
@@ -139,9 +140,9 @@
   },
   "trackedArtifacts": {
     "VEGO-AI-Thesis-Baseline-Progress.html": "9ff011466c6265a1306850c651f6e281d781140087cd005266448605bade9e60",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "a2d9679223ff0bd6a278f245a644ef6e21f099b8c6f037a0c92a0bcffe5d3395",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "480df9134c92215b08a3ed044972fa3a713dc9fbadc523db5d5f88d7b3242cac",
     "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
-    "docs/research/hardening/iteration-015-manifest.json": "ce8541276570063c180d9e188beda13abff413ab5f58e08dec2b3e5d2b7187d2",
+    "docs/research/hardening/iteration-015-manifest.json": "8583ede66f66a8ca31d755174570de201b432ced879d050857cc7b8a74fc24b5",
     "docs/research/hardening/sbom.cdx.json": "9e26667891c31211a285c14fb5970353174d263b23e8b7112fe232f6f9b97d43",
     "docs/research/hardening/security-posture-snapshot-v1.json": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }

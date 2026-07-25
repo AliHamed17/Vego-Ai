@@ -9,6 +9,7 @@ from types import SimpleNamespace
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "scripts" / "check_hlayer_change_authorization.py"
 WORKFLOW = ROOT / ".github" / "workflows" / "supervisor-package.yml"
+VERIFY_SOURCE = ROOT / "scripts" / "verify-source.ps1"
 
 
 def load_module():
@@ -191,3 +192,10 @@ def test_push_workflow_uses_the_pre_push_revision() -> None:
     assert "PUSH_BEFORE_SHA: ${{ github.event.before }}" in workflow
     assert 'BASE="${PR_BASE_SHA:-${PUSH_BEFORE_SHA:-origin/main}}"' in workflow
     assert 'BASE="${PR_BASE_SHA:-${PUSH_BEFORE_SHA:-HEAD^}}"' in workflow
+
+
+def test_verify_source_bootstraps_authorization_from_external_trust() -> None:
+    script = VERIFY_SOURCE.read_text(encoding="utf-8")
+    assert "[string]$TrustedAuthorizationSha256" in script
+    assert "gh variable get H_LAYER_AUTHORIZATION_SHA256 --repo $repository" in script
+    assert "$env:H_LAYER_AUTHORIZATION_SHA256 = $trusted.ToLowerInvariant()" in script

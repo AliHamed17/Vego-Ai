@@ -105,6 +105,7 @@ SOURCE_EXTRA = (
     "scripts/check_evidence_consistency.py",
     "scripts/run_hlayer_architecture.py",
     "scripts/security_audit.py",
+    "scripts/validate_hlayer_program.py",
     "scripts/vego_doctor.py",
     "scripts/verify_hlayer_controlled_parity.py",
     "scripts/verify-controlled.ps1",
@@ -440,8 +441,8 @@ def build_iteration() -> dict[str, Any]:
             "accuracyClaimAllowed": False,
         },
         "results": {
-            "vegoTestsPassed": 108,
-            "scriptTestsPassed": 105,
+            "vegoTestsPassed": 111,
+            "scriptTestsPassed": 108,
             "scriptSubtestsPassed": 7,
             "offlineTestsPassed": 41,
             "controlledComparisonRows": 27,

@@ -56,6 +56,13 @@ def test_builder_is_deterministic_with_or_without_controlled_check() -> None:
             builder.build_all(True)
 
 
+def test_release_source_hash_includes_every_controlled_validator() -> None:
+    builder = load_builder()
+    assert "scripts/validate_hlayer_program.py" in builder.SOURCE_EXTRA
+    assert "scripts/verify_hlayer_controlled_parity.py" in builder.SOURCE_EXTRA
+    assert "scripts/verify-controlled.ps1" in builder.SOURCE_EXTRA
+
+
 def test_portable_text_hash_normalizes_checkout_line_endings(tmp_path: Path) -> None:
     builder = load_builder()
     lf = tmp_path / "lf.txt"
