@@ -73,7 +73,7 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 
 * **Original Package:** Extracted to `VEGO-AI/`.
 * **Framework Code:** `VEGO-AI/framework/human_feedback_manager.py`, `memory_advisor.py`, `build_results_dashboard.py`.
-* **Tests:** Current unsuppressed rerun on 2026-07-25: 111 passed in `VEGO-AI/tests`; 108 passed plus 7 subtests in `scripts/tests`; 41 passed in `tests/hlayer_offline`; the complete controlled/source/release gate passed.
+* **Tests:** Current unsuppressed rerun on 2026-07-25: 111 passed in `VEGO-AI/tests`; 109 passed plus 7 subtests in `scripts/tests`; 41 passed in `tests/hlayer_offline`; the complete controlled/source/release gate passed.
 * **Schemas:** runtime schemas remain unchanged; the evidence package adds document-level schemas for the evidence snapshot, gold labels, policy candidates, and evaluation-run manifests.
 * **Latest Run ID:** `20260614-122150` (27 comparisons, 0 differences, 2 review flags, 0 changes to baseline behavior).
 </details>

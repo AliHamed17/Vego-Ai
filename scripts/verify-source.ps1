@@ -66,6 +66,13 @@ function Invoke-Gate {
 Initialize-AuthorizationTrust
 
 Invoke-Gate "locked dependency definition" { uv lock --check }
+Invoke-Gate "frozen Python environment" { uv sync --frozen --all-groups }
+Invoke-Gate "locked Node environment" { npm ci --ignore-scripts --no-audit }
+if (-not $SkipBrowser) {
+    Invoke-Gate "Playwright browser runtime" {
+        npx --no-install playwright install chromium
+    }
+}
 Invoke-Gate "legacy requirement projection freshness" {
     uv run python scripts/check_dependency_lock.py --check
 }

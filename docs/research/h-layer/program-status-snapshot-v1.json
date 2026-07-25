@@ -1,6 +1,6 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T22:31:39+00:00",
+  "generatedAt": "2026-07-25T22:48:10+00:00",
   "sourceRevision": "1ff9f724ffc70e12886f6a4576f24cf662956809",
   "latestAcceptedIteration": {
     "iteration": 15,
@@ -9,7 +9,7 @@
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "cec73e4796737edeec8283323e156385745cbb96b2aa1ad9a5cb0b173795a17f",
+    "normalizedSha256": "c85b7f2b126967a9ae26352be769d8c045256e0367dff019b7aaf1e24c1055d4",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -151,7 +151,7 @@
         "durationSeconds": 5.21
       },
       "scripts/tests": {
-        "passed": 108,
+        "passed": 109,
         "failed": 0,
         "subtestsPassed": 7,
         "durationSeconds": null
@@ -162,7 +162,7 @@
         "durationSeconds": 5.2
       }
     },
-    "recordedAt": "2026-07-25T22:31:39Z",
+    "recordedAt": "2026-07-25T22:48:10Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -172,7 +172,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "8583ede66f66a8ca31d755174570de201b432ced879d050857cc7b8a74fc24b5",
+    "iteration15Manifest": "5ae7aa571ee58b9915e915facdce5124753f95a2992a47926685ed71e4427007",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }

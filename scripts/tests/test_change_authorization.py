@@ -199,3 +199,11 @@ def test_verify_source_bootstraps_authorization_from_external_trust() -> None:
     assert "[string]$TrustedAuthorizationSha256" in script
     assert "gh variable get H_LAYER_AUTHORIZATION_SHA256 --repo $repository" in script
     assert "$env:H_LAYER_AUTHORIZATION_SHA256 = $trusted.ToLowerInvariant()" in script
+
+
+def test_verify_source_bootstraps_locked_dependencies_before_doctor() -> None:
+    script = VERIFY_SOURCE.read_text(encoding="utf-8")
+    doctor = script.index("uv run python scripts/vego_doctor.py")
+    assert script.index("uv sync --frozen --all-groups") < doctor
+    assert script.index("npm ci --ignore-scripts --no-audit") < doctor
+    assert "npx --no-install playwright install chromium" in script

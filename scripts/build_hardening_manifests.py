@@ -442,7 +442,7 @@ def build_iteration() -> dict[str, Any]:
         },
         "results": {
             "vegoTestsPassed": 111,
-            "scriptTestsPassed": 108,
+            "scriptTestsPassed": 109,
             "scriptSubtestsPassed": 7,
             "offlineTestsPassed": 41,
             "controlledComparisonRows": 27,
