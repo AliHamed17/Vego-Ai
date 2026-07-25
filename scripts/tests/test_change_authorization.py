@@ -31,8 +31,12 @@ def run_git(repo: Path, *args: str) -> None:
     )
 
 
-def test_authorized_protected_content_is_hash_bound(tmp_path: Path) -> None:
+def test_authorized_protected_content_is_hash_bound(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
     module = load_module()
+    monkeypatch.delenv(module.TRUSTED_HASH_ENV, raising=False)
     protected = tmp_path / "VEGO-AI" / "framework" / "llm_client.py"
     protected.parent.mkdir(parents=True)
     protected.write_text("baseline\n", encoding="utf-8")
