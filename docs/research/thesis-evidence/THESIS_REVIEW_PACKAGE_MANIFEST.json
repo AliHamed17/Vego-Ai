@@ -1,6 +1,6 @@
 {
   "schemaVersion": "ThesisReviewPackageManifest-v1",
-  "generatedAt": "2026-07-25T16:34:16+00:00",
+  "generatedAt": "2026-07-25T16:51:26+00:00",
   "packageDate": "2026-07-25",
   "sourceRevision": "0e94b0c369b4a96f3bac916ab305b6189aed3033",
   "packageRevision": "32ee84a854e368ff763c65ec71e9ba2aff90b189",
@@ -33,15 +33,15 @@
       "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": null,
-      "bytes": null
+      "sha256": "0e170da9f0c9747c818899cea650732f549db4e2c0ba90245446d7c0bdf8b202",
+      "bytes": 1205976
     },
     "renderVerification": {
-      "status": "NOT_RECORDED",
-      "pdfPageCount": null,
-      "renderedPageCount": null,
-      "sheetCount": null,
-      "qaReportSha256": null
+      "status": "PASS",
+      "pdfPageCount": 91,
+      "renderedPageCount": 91,
+      "sheetCount": 23,
+      "qaReportSha256": "783a09e9d9465f774732b1aa312d3000c2ce9021f512990e2384646d8202ea3a"
     }
   },
   "sourceFiles": [
