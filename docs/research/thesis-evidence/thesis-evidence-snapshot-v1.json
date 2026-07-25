@@ -1,8 +1,8 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
   "generatedAt": "2026-07-25T18:41:52+00:00",
-  "sourceRevision": "e5dfc6d6c4a1cc27e93d5aa12ea79f27359e8bf8",
-  "sourceTreeHash": "b56becfc8e84978926cfd4f9e421ed7345283e9ea9decd57026f306c3d1a7583",
+  "sourceRevision": "0c2fcbbb8079e04abc8b00146358c3b76efb358a",
+  "sourceTreeHash": "cfb342065b44f1dedd497b0f166f008553d60fefc52bfcd6b1bc7c739c32a82e",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
@@ -1214,9 +1214,9 @@
     "scripts/verify-controlled.ps1": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239",
     "scripts/verify-release.ps1": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5",
     "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
-    "src/vego_hlayer/adapters.py": "8f2029faaa18349dfca0224279b2e18b02859ef8bb3b66482d5dc322b08fce0e",
+    "src/vego_hlayer/adapters.py": "0bf6d9afb52876a2667f9638b8ab7847bff5dd2d2fc6a48ca346313e2e2fc4e6",
     "src/vego_hlayer/contracts.py": "c5241dc907cfb5d8a574cbaf63ea118f34da287d98f7743a6711245e2f2eb62b",
-    "src/vego_hlayer/io_safety.py": "79ed888d312c1848e61faa7f0f70cda936c1b8e863e9aee45e10aad557a71024",
+    "src/vego_hlayer/io_safety.py": "c7ee7eab05c0c79b8e4196de51f345bcef72a81da4de667fddfefb304089b1cb",
     "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e",
     "docs/research/h-layer/program-status-snapshot-v1.json": "18566ce721da0f6a96a12438997f31f3d1b0e301fef64dc9909a778676e82c7c",
