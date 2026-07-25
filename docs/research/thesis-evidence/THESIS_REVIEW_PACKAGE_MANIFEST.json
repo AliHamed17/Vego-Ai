@@ -1,28 +1,28 @@
 {
   "schemaVersion": "ThesisReviewPackageManifest-v1",
-  "generatedAt": "2026-07-25T22:39:05+00:00",
+  "generatedAt": "2026-07-25T22:51:42+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "7c90827659a5b76e99f68817cd0dece8954d10d0",
-  "packageRevision": "9326f3a06db378a0a4399509754198c097684ec1",
-  "sourceTreeHash": "8e741d0cfddd33c43db7c04d6ec15e3541f02855db1a6ccc9f9e87598e9cab94",
+  "sourceRevision": "09883e98b5024ec21f25c32804f83f27a5bd8484",
+  "packageRevision": "777ae1d758cf0c8250fc20466009bc202c965eaf",
+  "sourceTreeHash": "68567f7dbb7c287611cea07b419dfd40158fd09d3e9f57f66fbe3aa73bea1cbe",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "4dff08eb5978b1547fbe8592e460040916648eafa97955c038bca798bc9facf7",
+    "sha256": "81ddb6845cc98c74ef095265e6c12346566af34d421aab1c0c4a522f2187e232",
     "bytes": 48267,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "c7eabfc55f2231e61807b08dd3ad23557cfae3dbf0737ce2a2e12b6ded756c1f",
+      "sha256": "a135acfbeeade2bdbc682cd66cd0e02a2743a1be29c82c7a4fb670d8ebacb907",
       "bytes": 1809595,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "c15fe84920641906e9edeca24dcefc11beae259da6eebcb1cdf0283564f774bb",
+      "sha256": "6d61f7d4c5a6cb5f2963b685c6551514645449f2363e5374909e0ca65e9f4731",
       "bytes": 81862,
       "tracked": true
     }
@@ -33,15 +33,15 @@
       "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": "239eae243ca9094186d6efa4092e39dd1eca2b10317161943b1348e20d02b896",
-      "bytes": 1401583
+      "sha256": "b068c409678822c765beae65f0998f8df226cc296f5d3b9f0f1f060592bef0e3",
+      "bytes": 1401606
     },
     "renderVerification": {
       "status": "PASS",
       "pdfPageCount": 91,
       "renderedPageCount": 91,
       "sheetCount": 23,
-      "qaReportSha256": "7bea789fc798f42d792e93ab4b7ace1b854fca29a96a5905687aa7f26c3c8ece"
+      "qaReportSha256": "a4adbb739b363152a12c0db6f7bfe859868ae94b967358c586469db36cb0ad18"
     }
   },
   "sourceFiles": [
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-      "sha256": "480df9134c92215b08a3ed044972fa3a713dc9fbadc523db5d5f88d7b3242cac"
+      "sha256": "b06d495a994e74553ef7d384dc4023b013eb1c1a6871f2da27e2ce9696fbd118"
     },
     {
       "path": "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md",
@@ -179,7 +179,7 @@
     },
     {
       "path": "scripts/build_hardening_manifests.py",
-      "sha256": "d1c4b0c039880fe9aaecee33b3370916cbbe8fe89757aecefe3dbc732a64b896"
+      "sha256": "6c4bb3609e23529f70c983ede481c1412f2e4f58ac07fecdbf14345c905d5383"
     },
     {
       "path": "scripts/build_thesis_evidence_package.py",
@@ -235,7 +235,7 @@
     },
     {
       "path": "scripts/verify-source.ps1",
-      "sha256": "d46166278abae1429d0ef93b9803df1a80c0313998f0c83527eaba4467ad4712"
+      "sha256": "c58237a4ccdeafdad38fdb9da7964f2c68c682f38d1f133b31b6353be5950b55"
     },
     {
       "path": "scripts/visualization_agent.py",
@@ -315,7 +315,7 @@
     },
     {
       "path": "thesis/chapters/appendix-a-supplementary.md",
-      "sha256": "7b34fdd979b1f65b617a06b3c688a412fbae1d816d44910f56127f351fc5a327"
+      "sha256": "a1d3de90572f8fe29f314147e2283c9a0815d4b4ba6134460aebf9675dab21ae"
     },
     {
       "path": "thesis/chapters/design-theory-governed-reuse.md",
