@@ -202,6 +202,7 @@ class FeedbackRecord(ContractMixin):
     evidence_refs: tuple[str, ...]
     rationale: str
     confidence: str
+    notes: str = ""
     schema_version: str = CONTRACT_SCHEMA_VERSION
 
     def __post_init__(self) -> None:
@@ -219,6 +220,8 @@ class FeedbackRecord(ContractMixin):
             raise ValidationError("rationale must be a string")
         if decision_type != "approve_ai_decision":
             _require_text("rationale", self.rationale)
+        if not isinstance(self.notes, str):
+            raise ValidationError("notes must be a string")
         _require_mapping("reuse_scope", self.reuse_scope)
         _require_sequence("evidence_refs", self.evidence_refs, nonempty=True)
         if self.confidence not in {"High", "Medium", "Low"}:
@@ -238,7 +241,7 @@ class FeedbackRecord(ContractMixin):
             "human_decision": dict(self.human_decision),
             "reusable": self.reusable,
             "reuse_scope": dict(self.reuse_scope),
-            "notes": self.rationale,
+            "notes": self.notes,
         }
 
 

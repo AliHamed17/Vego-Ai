@@ -87,7 +87,10 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
             "user": f"tokens {FAKE_LONG_TOKEN} {FAKE_AWS_KEY}",
         },
         raw=json.dumps({"token": FAKE_GITHUB_TOKEN, "pem": FAKE_PRIVATE_KEY}),
-        parsed={"pem": FAKE_PRIVATE_KEY},
+        parsed={
+            FAKE_LONG_TOKEN: "secret-shaped key",
+            "pem": FAKE_PRIVATE_KEY,
+        },
         parse_error=None,
         response=_response(),
         attempt=1,
@@ -98,6 +101,8 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
     assert FAKE_GITHUB_TOKEN not in text
     assert FAKE_AWS_KEY not in text
     assert "fixture-private-material" not in text
+    entry = json.loads(text)
+    assert "[REDACTED_SECRET]" in entry["response_parsed_content"]
 
 
 def test_off_mode_writes_nothing(tmp_path, monkeypatch) -> None:

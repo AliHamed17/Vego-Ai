@@ -440,7 +440,7 @@ def build_iteration() -> dict[str, Any]:
             "accuracyClaimAllowed": False,
         },
         "results": {
-            "vegoTestsPassed": 105,
+            "vegoTestsPassed": 106,
             "scriptTestsPassed": 82,
             "scriptSubtestsPassed": 7,
             "offlineTestsPassed": 39,

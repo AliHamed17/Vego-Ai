@@ -67,7 +67,7 @@ def _serialize_feedback(
     if "reuse_scope" in item:
         item["reuse_scope"] = copy.deepcopy(record.get("reuse_scope") or {})
     if "notes" in item:
-        item["notes"] = record.get("rationale", "")
+        item["notes"] = record.get("notes", "")
     return item
 
 
@@ -263,8 +263,9 @@ def _feedback_record(item: dict) -> FeedbackRecord:
         reusable=bool(item.get("reusable", False)),
         reuse_scope=copy.deepcopy(item.get("reuse_scope") or {}),
         evidence_refs=(item.get("review_id", ""),),
-        rationale=str(human_decision.get("rationale") or item.get("notes") or ""),
+        rationale=str(human_decision.get("rationale") or ""),
         confidence=str(human_decision.get("confidence") or ""),
+        notes=str(item.get("notes") or ""),
     )
 
 

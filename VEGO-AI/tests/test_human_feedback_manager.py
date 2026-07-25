@@ -50,11 +50,11 @@ def _item(review_id="HRQ-ucd_ch-P4", sig="e7276994de70f031", status="pending"):
 
 def _feedback(review_id="HRQ-ucd_ch-P4", sig="e7276994de70f031",
               decision_type="valid_alternative", rationale="because it is valid",
-              fid="HF-1"):
+              fid="HF-1", notes=None):
     hd = {"decision_type": decision_type, "confidence": "High"}
     if rationale is not None:
         hd["rationale"] = rationale
-    return {
+    feedback = {
         "feedback_id": fid,
         "review_id": review_id,
         "review_signature": sig,
@@ -62,6 +62,9 @@ def _feedback(review_id="HRQ-ucd_ch-P4", sig="e7276994de70f031",
         "timestamp": "2026-06-11T12:00:00Z",
         "human_decision": hd,
     }
+    if notes is not None:
+        feedback["notes"] = notes
+    return feedback
 
 
 # ---------------------------------------------------------------------------
@@ -108,6 +111,22 @@ def test_plain_approval_round_trips_every_architecture_mode():
         decision_type="approve_ai_decision",
         rationale=None,
         fid="HF-plain-approval",
+    )
+    for mode in ("legacy", "unified", "parity"):
+        items = hfm.attach_feedback(
+            [_item()],
+            [feedback],
+            architecture_mode=mode,
+        )
+        assert items[0]["status"] == "resolved"
+        assert items[0]["human_feedback"] == feedback
+
+
+def test_independent_notes_round_trip_every_architecture_mode():
+    feedback = _feedback(
+        rationale="Decision-specific rationale.",
+        notes="Independent reviewer note.",
+        fid="HF-independent-notes",
     )
     for mode in ("legacy", "unified", "parity"):
         items = hfm.attach_feedback(
