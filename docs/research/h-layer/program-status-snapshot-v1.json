@@ -148,21 +148,21 @@
       "VEGO-AI/tests": {
         "passed": 106,
         "failed": 0,
-        "durationSeconds": 6.04
+        "durationSeconds": 9.27
       },
       "scripts/tests": {
-        "passed": 86,
+        "passed": 89,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 46.91
+        "durationSeconds": 81.59
       },
       "tests/hlayer_offline": {
         "passed": 39,
         "failed": 0,
-        "durationSeconds": 5.86
+        "durationSeconds": 9.99
       }
     },
-    "recordedAt": "2026-07-25T16:29:15Z",
+    "recordedAt": "2026-07-25T17:46:18Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -172,7 +172,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "ac5d5e2f227845d34c3e67202c296ac2e429c8df9e210b26c202bf7cab21c34d",
+    "iteration15Manifest": "4e5ea936eb403b05418efa1e410785c31b84968f5ca43f3db8f9dc29e005fcb6",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
