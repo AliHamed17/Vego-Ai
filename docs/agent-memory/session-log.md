@@ -223,3 +223,25 @@ Chronological prompt history for Codex and Claude.
   - security, privacy, dependency, browser, document, and provenance checks passed
 - Status: implementation-complete; publication pending final CI and human governance gates
 - Next steps: Push PR #10, resolve review threads, wait for CI, then obtain one independent human approval and plan-enabled main protection before squash merge.
+
+## 2026-07-25 22:17 +03:00 - Codex - Unified runtime final review and release hardening
+
+- Request: Continue the unified runtime, cybersecurity, baseline, model, infrastructure, thesis, PR, and merge workflow without bypassing human or repository gates.
+- Actions taken:
+  - Closed four exact-head review findings in logging privacy, retention, nested validation, and authority documentation.
+  - Added regression tests and reconciled the final verified inventory to 108 VEGO-AI, 92 research plus 7 subtests, and 41 offline H-layer tests.
+  - Regenerated the canonical HTML, DOCX, PDF, QA, portable manifests, and byte-identical share package.
+  - Preserved EXP-005 at 0/24, EXP-012 not computable, M4B-1 at 0/27 changes, Agent 4, baseline outputs, and legacy default behavior.
+- Files changed:
+  - VEGO-AI/framework/llm_client.py
+  - src/vego_hlayer/adapters.py
+  - tests and protected-change authorization
+  - docs/research/h-layer/program-status-snapshot-v1.json
+  - thesis evidence HTML, DOCX, manifests, and appendix
+- Commands/checks:
+  - Focused pytest and Ruff checks passed.
+  - verify-release.ps1 -Check passed.
+  - PDF render inspection passed: 91 pages, 23 sheets, zero errors.
+  - GitHub exact-head review follow-up pending after push.
+- Status: completed_with_external_merge_gates_pending
+- Next steps: Push the final head, resolve review threads, request a fresh exact-head review, wait for green CI, then merge only after branch protection and one separate collaborator approval are confirmed.

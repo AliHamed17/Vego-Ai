@@ -404,3 +404,14 @@ Record file changes and rollback notes here.
   - thesis/**, VEGO-AI-Thesis-Baseline-Progress.html, .github/workflows/**
 - Rollback note: Revert the focused commits from the feature branch; legacy remains the default and baseline artifacts are unchanged.
 - Git commit: none recorded by script.
+
+## 2026-07-25 22:17 +03:00 - Codex - Unified runtime final review and release hardening
+
+- Files changed:
+  - VEGO-AI/framework/llm_client.py
+  - src/vego_hlayer/adapters.py
+  - tests and protected-change authorization
+  - docs/research/h-layer/program-status-snapshot-v1.json
+  - thesis evidence HTML, DOCX, manifests, and appendix
+- Rollback note: Revert the final focused commits in reverse order; baseline Agent 4 outputs were never modified.
+- Git commit: none recorded by script.
