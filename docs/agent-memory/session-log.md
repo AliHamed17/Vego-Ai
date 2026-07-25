@@ -402,3 +402,28 @@ Chronological prompt history for Codex and Claude.
   - PDF QA: 91 pages, 23 sheets, 0 errors
 - Status: implementation and local verification complete; GitHub governance pending
 - Next steps: Push exact head, resolve all review threads, request exact-head review, wait for exact-head CI, and merge only if branch protection and independent approval are enforced and satisfied.
+
+## 2026-07-26 01:13 +03:00 - Codex - Address exact-head envelope and archive review findings
+
+- Request: Continue PR #10 after fresh exact-head review found two additional security and validation edge cases.
+- Actions taken:
+  - Validated complete advice and comparison envelopes, including empty-record artifacts
+  - Detected ZIP payloads by magic bytes regardless of filename in current and historical scans
+  - Added three regression cases and reconciled the verified research inventory to 105 tests plus 7 subtests
+  - Rebuilt the thesis package and reverified all 91 PDF pages
+- Files changed:
+  - src/vego_hlayer/adapters.py
+  - scripts/security_audit.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - scripts/tests/test_security_audit.py
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Commands/checks:
+  - Focused architecture and security regressions: 20 passed
+  - Controlled parity: 27 rows, 0 classification changes
+  - PDF QA: 91 pages, 23 sheets, 0 errors
+- Status: review fixes and package regeneration complete; final exact-head verification pending
+- Next steps: Run the full clean release gate, push exact head, resolve all review threads, request a fresh review, and audit CI, protection, and independent approval before merge.

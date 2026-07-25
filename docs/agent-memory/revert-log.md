@@ -497,3 +497,18 @@ Record file changes and rollback notes here.
   - VEGO-AI-Thesis-Baseline-Progress.html
 - Rollback note: Revert commits a6c2b42 through 9995804 in reverse order to remove this final review-fix and republishing cycle; ignored PDF, QA, and dated share folders can be removed independently. Agent 4 outputs and expert labels were not changed.
 - Git commit: none recorded by script.
+
+## 2026-07-26 01:13 +03:00 - Codex - Address exact-head envelope and archive review findings
+
+- Files changed:
+  - src/vego_hlayer/adapters.py
+  - scripts/security_audit.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - scripts/tests/test_security_audit.py
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Rollback note: Revert commits 1ff9f72 through eb15a13 in reverse order to remove the empty-envelope and disguised-archive review cycle; ignored PDF, QA, and share folders can be removed separately.
+- Git commit: none recorded by script.
