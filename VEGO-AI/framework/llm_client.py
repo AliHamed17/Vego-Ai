@@ -153,11 +153,16 @@ class LLMClient:
         if interaction_log:
             if str(interaction_log).startswith(("\\\\", "//")):
                 raise ValueError("interaction logs must use local storage")
+            log_directory_created = not interaction_log.parent.exists()
             interaction_log.parent.mkdir(parents=True, exist_ok=True)
-            try:
-                interaction_log.parent.chmod(0o700)
-            except OSError:
-                logger.debug("Could not restrict interaction-log directory permissions.")
+            if log_directory_created:
+                try:
+                    interaction_log.parent.chmod(0o700)
+                except OSError:
+                    logger.debug(
+                        "Could not restrict newly created interaction-log "
+                        "directory permissions."
+                    )
             logger.info("Interaction log (%s) → %s", self._log_mode, interaction_log)
             if self._log_mode == "full_content":
                 logger.warning(
@@ -336,10 +341,12 @@ class LLMClient:
             entry["response_raw"] = self._redact(raw)
             entry["response_parsed_content"] = self._redact_value(parsed)
 
+        serialized_entry = json.dumps(entry, ensure_ascii=False) + "\n"
+        pending_bytes = len(serialized_entry.encode("utf-8"))
         try:
-            self._rotate_interaction_log()
+            self._rotate_interaction_log(pending_bytes=pending_bytes)
             with open(self._log_path, "a", encoding="utf-8") as fh:
-                fh.write(json.dumps(entry, ensure_ascii=False) + "\n")
+                fh.write(serialized_entry)
             try:
                 self._log_path.chmod(0o600)
             except OSError:
@@ -372,7 +379,7 @@ class LLMClient:
             return [cls._redact_value(item) for item in value]
         return value
 
-    def _rotate_interaction_log(self) -> None:
+    def _rotate_interaction_log(self, *, pending_bytes: int = 0) -> None:
         if not self._log_path:
             return
         cutoff = time.time() - (self._log_retention_days * 24 * 60 * 60)
@@ -385,7 +392,11 @@ class LLMClient:
         if self._log_path.stat().st_mtime < cutoff:
             self._log_path.unlink()
             return
-        if self._log_path.stat().st_size < self._log_max_bytes:
+        current_size = self._log_path.stat().st_size
+        if (
+            current_size == 0
+            or current_size + pending_bytes <= self._log_max_bytes
+        ):
             return
         oldest = self._log_path.with_suffix(
             f"{self._log_path.suffix}.{self._log_backups}"

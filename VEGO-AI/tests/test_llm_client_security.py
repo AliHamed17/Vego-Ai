@@ -151,7 +151,10 @@ def test_interaction_log_retention_is_bounded(tmp_path, monkeypatch) -> None:
         )
 
 
-def test_expired_active_interaction_log_is_removed_before_append(tmp_path, monkeypatch) -> None:
+def test_expired_log_is_removed_and_pending_entry_triggers_rotation(
+    tmp_path,
+    monkeypatch,
+) -> None:
     monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
     path = tmp_path / "interaction.jsonl"
     path.write_text("expired private content\n", encoding="utf-8")
@@ -159,6 +162,7 @@ def test_expired_active_interaction_log_is_removed_before_append(tmp_path, monke
     client = LLMClient(
         interaction_log=path,
         interaction_log_mode="metadata_only",
+        interaction_log_max_bytes=4096,
         interaction_log_retention_days=1,
     )
     client._write_interaction(
@@ -173,6 +177,24 @@ def test_expired_active_interaction_log_is_removed_before_append(tmp_path, monke
     text = path.read_text(encoding="utf-8")
     assert "expired private content" not in text
     assert json.loads(text)["schema_version"] == "model-execution-manifest-v1"
+
+    near_limit = "x" * (client._log_max_bytes - 1)
+    path.write_text(near_limit, encoding="utf-8")
+    client._write_interaction(
+        label="agent1/test",
+        prompt={"system": "system", "user": "user"},
+        raw="{}",
+        parsed={},
+        parse_error=None,
+        response=_response(),
+        attempt=1,
+    )
+    backup = path.with_suffix(f"{path.suffix}.1")
+    assert backup.read_text(encoding="utf-8") == near_limit
+    assert path.stat().st_size < client._log_max_bytes
+    assert json.loads(path.read_text(encoding="utf-8"))[
+        "schema_version"
+    ] == "model-execution-manifest-v1"
 
 
 def test_runtime_config_controls_production_log_policy(tmp_path, monkeypatch) -> None:
@@ -196,7 +218,14 @@ def test_runtime_config_controls_production_log_policy(tmp_path, monkeypatch) ->
         encoding="utf-8",
     )
     monkeypatch.setenv("VEGO_HLAYER_RUNTIME_CONFIG", str(policy))
+    chmod_calls = []
+    monkeypatch.setattr(
+        Path,
+        "chmod",
+        lambda path, mode: chmod_calls.append((path, mode)),
+    )
     client = LLMClient(interaction_log=tmp_path / "interaction.jsonl")
+    assert chmod_calls == []
     assert client._log_mode == "off"
     assert client._log_retention_days == 7
     assert client._log_max_bytes == 4096

@@ -49,7 +49,7 @@
     "VEGO-AI/framework/human_feedback_manager.py": "e4bd9a54673ba924cb35e0b0ca6d6a04e168a1646c1003069bba256c7747fa83",
     "VEGO-AI/framework/human_judgment_memory.py": "883d7d5c67ad92fd3d36195238c626b964b59f4c0a5b00bbf1f874d75a0539e2",
     "VEGO-AI/framework/human_review_queue.py": "19adc18eeb339e536c77cc8a5a4b3f9c59aa41db4bb57817b39914e9e9f2bc8e",
-    "VEGO-AI/framework/llm_client.py": "1ca525b09fc29a2bd4764909ee53ed9a5151fc9e0e3899f2606a7b29fcd979b1",
+    "VEGO-AI/framework/llm_client.py": "f32311b4f0502609af30f7578e095c85856f2f1ea59d1112ebabae1b2cf96358",
     "VEGO-AI/framework/memory_advisor.py": "8abefa53b34e0e700bf093631cad54ec6d67315d7a3d784aeb4739e6f3a9c2fd",
     "VEGO-AI/framework/memory_informed_classifier.py": "c3c1451d8e5362a6b322e6d8c2a849a65aa13fadbfac8d6ab015daf1f5fe5f41",
     "VEGO-AI/framework/requirements.txt": "04f5965d2b72485f6c4fcc1c3a8e1fc1c3f5dae6641fb53e73fc04533b82c3cd",
@@ -57,7 +57,7 @@
     "VEGO-AI/tests/test_human_feedback_manager.py": "39538c746498791307a433153105dc950332e8b577a5b4b1acea73699c276832",
     "VEGO-AI/tests/test_human_judgment_memory.py": "5f28d27c567984ef0d196ec5b2d58d3dc2158a4db4539cd4cdfefee3c990f7ee",
     "VEGO-AI/tests/test_human_review_queue.py": "3800258f6665f30cfda615547030040bffb83012b95fb2733bef6f9e848214fa",
-    "VEGO-AI/tests/test_llm_client_security.py": "d19133ef082395a65b3acbc1de3a7a52a879b3d087e148d634e74301caf17136",
+    "VEGO-AI/tests/test_llm_client_security.py": "c6c5b43296b1a42b6a5badbe70d89709bdf535e0f914b1098b48ab869b1f84cc",
     "VEGO-AI/tests/test_memory_advisor.py": "6dbb6609cf10f45ebbf344e8b5448fe0eb3019c71c0aea5d7845d05053782745",
     "VEGO-AI/tests/test_memory_informed_classifier.py": "43fe33344b6abba5df24f74532768745a0df0aa2d6b5e2bb0267d1c0bc41020d",
     "VEGO-AI/tests/test_visualizer_helpers.py": "d0ca91f1b175d1af843f7ea4e77b907530e029454ad3df75d619893289eb34c0"
