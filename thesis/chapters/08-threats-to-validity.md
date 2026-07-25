@@ -154,9 +154,7 @@ approval, and a cost limit. No candidate model is promoted by Iteration 15.
 
 ## 8.9 Summary
 
-The dominant threats are a small, leakage-heavy evidence base, missing
-independent labels, unstable class prevalence, and optimistic policy selection.
-Reviewer calibration, the two-reviewer workflow, fixed 16/8 split, development
-gate, paired estimand, one-time holdout, and external replication partly
-mitigate them. They do not guarantee a positive result; they keep positive,
-null, mixed, or harmful outcomes interpretable under rules fixed in advance.
+Key threats are missing labels, leakage, small and unstable classes, policy
+overfitting, and model drift. Dual review, a frozen split, paired analysis, a
+one-time holdout, and external replication keep outcomes interpretable under
+rules fixed in advance; none guarantees benefit.
