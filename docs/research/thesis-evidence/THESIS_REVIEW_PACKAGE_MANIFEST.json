@@ -2,27 +2,27 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-25T19:43:56+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "e5dfc6d6c4a1cc27e93d5aa12ea79f27359e8bf8",
-  "packageRevision": "afadf79e252fca1cd62322c96925e96c0c61b272",
-  "sourceTreeHash": "b56becfc8e84978926cfd4f9e421ed7345283e9ea9decd57026f306c3d1a7583",
+  "sourceRevision": "0c2fcbbb8079e04abc8b00146358c3b76efb358a",
+  "packageRevision": "e301ef0299d73742116354490b915db7813d8734",
+  "sourceTreeHash": "cfb342065b44f1dedd497b0f166f008553d60fefc52bfcd6b1bc7c739c32a82e",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "0934d8f03eeec51691adb73a54299de2eb4fb6f4ae787d92429ac5673af1ac6d",
+    "sha256": "87a71d4fd940a8a38e5506185965ab95ded02f00987e47595624da5f58ab064b",
     "bytes": 48266,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "1c88d912a086f00cc05ef2e3b6008687eebfa830895376340e7ecf8df24fe700",
+      "sha256": "b8c817a508e760f0228f15db688b227fa58704ffb7a063df78dd38c048945f25",
       "bytes": 1809301,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "304f7a10f729ff44ea27d6b593c878dc858494cd7e03c6b21c223046971a8b5e",
+      "sha256": "dd1f3e0dfbe4c96cc1dba8a6b98c6592227f65396655ba5b6692b3f7816b3231",
       "bytes": 81861,
       "tracked": true
     }
@@ -41,7 +41,7 @@
       "pdfPageCount": 91,
       "renderedPageCount": 91,
       "sheetCount": 23,
-      "qaReportSha256": "a1ced3ab51a9fca2f71473dc70047ea895bf2064db42eae80225c57b9346cb06"
+      "qaReportSha256": "39047bd9093212be8675dd96289ce91795a0a32b4c393683507c210d348b4e88"
     }
   },
   "sourceFiles": [
@@ -247,7 +247,7 @@
     },
     {
       "path": "src/vego_hlayer/adapters.py",
-      "sha256": "8f2029faaa18349dfca0224279b2e18b02859ef8bb3b66482d5dc322b08fce0e"
+      "sha256": "0bf6d9afb52876a2667f9638b8ab7847bff5dd2d2fc6a48ca346313e2e2fc4e6"
     },
     {
       "path": "src/vego_hlayer/contracts.py",
@@ -255,7 +255,7 @@
     },
     {
       "path": "src/vego_hlayer/io_safety.py",
-      "sha256": "79ed888d312c1848e61faa7f0f70cda936c1b8e863e9aee45e10aad557a71024"
+      "sha256": "c7ee7eab05c0c79b8e4196de51f345bcef72a81da4de667fddfefb304089b1cb"
     },
     {
       "path": "src/vego_hlayer/runtime.py",
