@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import os
 import re
@@ -26,6 +27,18 @@ import exp010_convergence_sweep as exp010
 import exp012_accuracy_baseline as exp012
 import hlayer_harness as harness
 from hlayer_offline.legacy_replay_adapter import adapt_reconstructed_row, event_type_of
+
+
+def protected_authorization_environment() -> dict[str, str]:
+    """Provide the subprocess with an explicit test-only external trust root."""
+
+    environment = os.environ.copy()
+    authorization = REPO / "configs" / "protected-change-authorization-v1.json"
+    portable_bytes = authorization.read_bytes().replace(b"\r\n", b"\n")
+    environment["H_LAYER_AUTHORIZATION_SHA256"] = hashlib.sha256(
+        portable_bytes
+    ).hexdigest()
+    return environment
 
 
 def deferred_decision_snapshot() -> dict:
@@ -839,6 +852,7 @@ class EvidenceGuardIntegrationTests(unittest.TestCase):
                     "exp007",
                 ],
                 cwd=REPO,
+                env=protected_authorization_environment(),
                 text=True,
                 encoding="utf-8",
                 errors="replace",
@@ -887,6 +901,7 @@ class EvidenceGuardIntegrationTests(unittest.TestCase):
                     str(SCRIPTS / "tests" / "fixtures" / "failing_evidence_guard.py"),
                 ],
                 cwd=REPO,
+                env=protected_authorization_environment(),
                 text=True,
                 encoding="utf-8",
                 errors="replace",
