@@ -27,6 +27,7 @@ except ModuleNotFoundError:  # Python 3.10 compatibility
     import tomli as tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
+ITERATION_SOURCE_REVISION = "d44d81ac96e4a982114e2312862d2f7291140b26"
 OUTPUT_ROOT = ROOT / "docs" / "research" / "hardening"
 BASELINE_PATH = OUTPUT_ROOT / "baseline-lock-manifest-v2.json"
 SECURITY_PATH = OUTPUT_ROOT / "security-posture-snapshot-v1.json"
@@ -429,7 +430,7 @@ def build_iteration() -> dict[str, Any]:
         "runId": "HLAYER-UNIFIED-HARDENING-V1",
         "date": "2026-07-25",
         "generatedAt": "2026-07-25T12:00:01+00:00",
-        "sourceRevision": "1ff9f724ffc70e12886f6a4576f24cf662956809",
+        "sourceRevision": ITERATION_SOURCE_REVISION,
         "iterationKind": "reliability_only",
         "verdict": "NEUTRAL",
         "hypothesis": (

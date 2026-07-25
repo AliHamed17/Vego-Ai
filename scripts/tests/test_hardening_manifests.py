@@ -96,8 +96,10 @@ def test_sbom_components_are_unique_and_pinned() -> None:
 
 
 def test_iteration_15_is_reliability_only() -> None:
+    builder = load_builder()
     payload = json.loads((OUTPUT / "iteration-015-manifest.json").read_text(encoding="utf-8"))
     assert payload["iteration"] == 15
+    assert payload["sourceRevision"] == builder.ITERATION_SOURCE_REVISION
     assert payload["verdict"] == "NEUTRAL"
     assert payload["guardrails"]["classificationChanges"] == 0
     assert payload["guardrails"]["exp005SafeLabels"] == 0
