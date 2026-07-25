@@ -185,20 +185,38 @@ def _zip_findings(path: Path) -> list[str]:
 
 
 def _historical_archive_findings() -> list[str]:
-    """Inspect every reachable historical ZIP-family blob with bounded expansion."""
+    """Inspect every reachable historical ZIP-family blob with bounded expansion.
+
+    ``git rev-list --objects`` may retain only one path for a blob reused across
+    renames. Raw history records every changed tree entry, so an archive that
+    later becomes ``artifact.bin`` is still found under its earlier ZIP-family
+    path without reading every historical blob in the repository.
+    """
 
     findings: list[str] = []
-    seen_blobs: set[str] = set()
-    for line in _git("rev-list", "--objects", "--all").splitlines():
-        parts = line.split(maxsplit=1)
-        if len(parts) != 2:
+    archive_blobs: dict[str, str] = {}
+    raw_history = _git(
+        "log",
+        "--all",
+        "--raw",
+        "--no-renames",
+        "--no-abbrev",
+        "--format=",
+    )
+    for line in raw_history.splitlines():
+        metadata, separator, relative = line.partition("\t")
+        if not separator or not metadata.startswith(":"):
             continue
-        object_id, relative = parts
         if Path(relative).suffix.lower() not in ZIP_SUFFIXES:
             continue
-        if object_id in seen_blobs:
+        fields = metadata[1:].split()
+        if len(fields) < 5:
             continue
-        seen_blobs.add(object_id)
+        for object_id in fields[2:4]:
+            if object_id and set(object_id) != {"0"}:
+                archive_blobs.setdefault(object_id, relative)
+
+    for object_id, relative in sorted(archive_blobs.items()):
         if _git("cat-file", "-t", object_id).strip() != "blob":
             continue
         display = f"history archive {object_id[:12]}:{relative}"
@@ -211,12 +229,9 @@ def _historical_archive_findings() -> list[str]:
                 f"{display}: archive blob exceeds {MAX_ARCHIVE_SCAN_BYTES} bytes"
             )
             continue
+        data = _git_bytes("cat-file", "blob", object_id)
         findings.extend(
-            _zip_data_findings(
-                _git_bytes("cat-file", "blob", object_id),
-                display,
-                check_personal_paths=False,
-            )
+            _zip_data_findings(data, display, check_personal_paths=False)
         )
     return sorted(set(findings))
 

@@ -88,7 +88,10 @@ def test_history_scan_uses_a_git_compatible_expression(tmp_path: Path) -> None:
         archive.writestr("word/document.xml", f"<w:t>{secret}</w:t>")
     git("add", "historical.docx")
     git("commit", "-m", "archive fixture secret")
-    archive_path.unlink()
+    git("mv", "historical.docx", "historical.bin")
+    git("commit", "-m", "rename archive fixture")
+    renamed_archive = tmp_path / "historical.bin"
+    renamed_archive.unlink()
     git("add", "-u")
     git("commit", "-m", "remove archive fixture")
 

@@ -94,7 +94,9 @@ def apply_architecture_mode(
     unified = adapted.to_legacy()
     legacy_hash = _sha256(legacy)
     unified_hash = _sha256(unified)
-    normalized_match = _normalize(legacy) == _normalize(unified)
+    normalized_match = canonical_json(_normalize(legacy)) == canonical_json(
+        _normalize(unified)
+    )
 
     if architecture_mode == "legacy":
         published = legacy

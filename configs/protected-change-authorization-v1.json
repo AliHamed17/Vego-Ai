@@ -45,7 +45,7 @@
   "authorized_content_sha256": {
     "VEGO-AI/eval/README_EVALUATOR.md": "eea1faae35daee60a1d7af34769f8523374d56b48bb9c896eddb297ee238474f",
     "VEGO-AI/framework/README.md": "20de6761bceedbbf81785e632c9ac2a713a6ab6b0b1ecd9c3765bcbf63fb20a5",
-    "VEGO-AI/framework/hlayer_architecture.py": "af71dc70692df85f738ad6e487fe46da9db6fc17593cc6cef829a612b1e7aaa3",
+    "VEGO-AI/framework/hlayer_architecture.py": "77194261664d8f986fc52401bfce6ea0f4b49f24c5adfce787ea9e8f4b95586c",
     "VEGO-AI/framework/human_feedback_manager.py": "bffc93f30c2a0aa9e4890a197f0bf1c1b1f928e9a00cdb84a296bf8bc799e7d9",
     "VEGO-AI/framework/human_judgment_memory.py": "23c70530370e3a7190a37657920a19500085234126252828a36544642e1cbf6d",
     "VEGO-AI/framework/human_review_queue.py": "fd7fe3d2ae3a7469581837218ac8715faa670ce9bc647d2a621582816096bc5c",
@@ -56,7 +56,7 @@
     "VEGO-AI/schemas/memory_informed_comparison.schema.json": "d14af2b67940ec4f40957ddafad30dad2134355cd6f0ec94a6fe0b82f9069ade",
     "VEGO-AI/tests/test_human_feedback_manager.py": "39538c746498791307a433153105dc950332e8b577a5b4b1acea73699c276832",
     "VEGO-AI/tests/test_human_judgment_memory.py": "5f28d27c567984ef0d196ec5b2d58d3dc2158a4db4539cd4cdfefee3c990f7ee",
-    "VEGO-AI/tests/test_human_review_queue.py": "67d6427c031db7930d5dedf3b14646ef8ce11571e96af223b2a70b0623777da7",
+    "VEGO-AI/tests/test_human_review_queue.py": "b6ac0d586f6709a7ed7824f3043cbfd69bb6b52302f96b87f430d56e4fb37815",
     "VEGO-AI/tests/test_llm_client_security.py": "f3ee01d40d60ae50e54c00f0086a51404e3162b63c55ab8b7c6094c31714d1a1",
     "VEGO-AI/tests/test_memory_advisor.py": "6dbb6609cf10f45ebbf344e8b5448fe0eb3019c71c0aea5d7845d05053782745",
     "VEGO-AI/tests/test_memory_informed_classifier.py": "43fe33344b6abba5df24f74532768745a0df0aa2d6b5e2bb0267d1c0bc41020d",

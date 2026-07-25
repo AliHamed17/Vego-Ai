@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "framework"))
 
+import hlayer_architecture as architecture_bridge  # noqa: E402
 import human_review_queue as hrq            # noqa: E402
 import selective_intervention_policy as sip  # noqa: E402
 
@@ -215,7 +216,7 @@ def test_build_empty_when_all_high_no_flag():
 # Idempotency / dedup
 # ---------------------------------------------------------------------------
 
-def test_write_queue_idempotent_and_dedups():
+def test_write_queue_idempotent_and_dedups(monkeypatch):
     vc = _vc([
         {"pattern_id": "P4", "classification": "Substantial Variability",
          "confidence": "High", "evidence": "G16 -- x",
@@ -285,6 +286,49 @@ def test_write_queue_idempotent_and_dedups():
         assert json.loads(manifest.read_text(encoding="utf-8"))[
             "parity_status"
         ] == "match"
+        first_manifest = json.loads(manifest.read_text(encoding="utf-8"))
+        first_artifact_bytes = path.read_bytes()
+        first_manifest_bytes = manifest.read_bytes()
+        changed_items = json.loads(json.dumps(items))
+        changed_items[0]["ai_decision"]["justification"] = "Updated fixture rationale."
+        with monkeypatch.context() as scoped:
+            def fail_manifest(_manifest, _path):
+                raise OSError("fixture manifest failure")
+
+            scoped.setattr(architecture_bridge, "write_manifest", fail_manifest)
+            try:
+                hrq.publish_stage_output(
+                    "review",
+                    changed_items,
+                    output_path=path,
+                    writer=hrq.write_queue,
+                    architecture_mode="parity",
+                    architecture_manifest=manifest,
+                )
+            except OSError as exc:
+                assert "fixture manifest failure" in str(exc)
+            else:
+                raise AssertionError("manifest failure must propagate")
+        assert path.read_bytes() == first_artifact_bytes
+        assert manifest.read_bytes() == first_manifest_bytes
+
+        hrq.publish_stage_output(
+            "review",
+            changed_items,
+            output_path=path,
+            writer=hrq.write_queue,
+            architecture_mode="parity",
+            architecture_manifest=manifest,
+        )
+        second_manifest = json.loads(manifest.read_text(encoding="utf-8"))
+        persisted_item = json.loads(path.read_text(encoding="utf-8").strip())
+        assert persisted_item["ai_decision"]["justification"] == (
+            "Updated fixture rationale."
+        )
+        assert second_manifest["input_sha256"] != first_manifest["input_sha256"]
+        assert second_manifest["published_output_sha256"] != (
+            first_manifest["published_output_sha256"]
+        )
 
 
 # ---------------------------------------------------------------------------

@@ -95,6 +95,39 @@ def test_parity_mismatch_fails_closed_to_legacy(monkeypatch) -> None:
     assert result.output == payload
     assert result.manifest.failure_state == "normalized_output_mismatch"
 
+    numeric_payload = [_review_item()]
+    numeric_payload[0]["numeric_marker"] = 0
+
+    @dataclass(frozen=True)
+    class TypeChangedAdapter:
+        records: tuple[dict, ...] = ()
+
+        def to_legacy(self):
+            changed = copy.deepcopy(numeric_payload)
+            changed[0]["numeric_marker"] = False
+            return changed
+
+    monkeypatch.setattr(
+        "vego_hlayer.runtime.adapt_legacy_artifact",
+        lambda stage, value: TypeChangedAdapter(),
+    )
+    type_result = apply_architecture_mode(
+        "review",
+        numeric_payload,
+        architecture_mode="parity",
+    )
+    assert type_result.manifest.parity_status == "mismatch"
+    assert type_result.output == numeric_payload
+    with pytest.raises(
+        ValidationError,
+        match="unified adapter changed public artifact semantics",
+    ):
+        apply_architecture_mode(
+            "review",
+            numeric_payload,
+            architecture_mode="unified",
+        )
+
 
 def test_unified_serializer_rebuilds_mapped_fields_from_canonical_records() -> None:
     payload = [_review_item()]
