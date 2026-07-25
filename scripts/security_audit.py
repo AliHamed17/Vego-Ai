@@ -28,7 +28,7 @@ HISTORY_SCAN_EXPRESSION = (
     r"sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,}|"
     r"gh[pousr]_[A-Za-z0-9]{20,}|"
     r"AKIA[0-9A-Z]{16}|"
-    r"BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY"
+    r"BEGIN ((RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY"
 )
 PERSONAL_PATH_RE = re.compile(
     rb"(?:[A-Za-z]:[\\/](?:Users|home)[\\/]|file:///)", re.IGNORECASE
@@ -176,24 +176,17 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
 
     history_findings: list[str] = []
     if include_history:
-        if not GIT:
-            raise OSError("git executable not found")
-        result = subprocess.run(  # noqa: S603 - fixed read-only Git history scan
-            [
-                GIT,
-                "log",
-                "--all",
-                "--pretty=format:%H",
-                "--name-only",
-                "-G",
-                HISTORY_SCAN_EXPRESSION,
-            ],
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
+        history_output = _git(
+            "log",
+            "--all",
+            "--pretty=format:%H",
+            "--name-only",
+            "-G",
+            HISTORY_SCAN_EXPRESSION,
         )
-        history_findings = sorted(set(line for line in result.stdout.splitlines() if line))
+        history_findings = sorted(
+            set(line for line in history_output.splitlines() if line)
+        )
 
     failures = secret_findings + privacy_findings + binary_findings + history_findings
     return {

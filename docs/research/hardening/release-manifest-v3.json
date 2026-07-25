@@ -17,7 +17,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "a9dacd349b8b856b9e1aa561c669bd3cfe068db61bc65ed25011073b8e34f8ee",
+  "packageTreeSha256": "2f6ea234cc2f2c4a3a7918d5ab1ed1ef969a57fb0f97c8de81c42f57ed292183",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -129,7 +129,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "8a13d1d5d927e7434940d785c0d891743be3eacea1adbc3ed589dd3c2bd10d31",
+  "sourceTreeSha256": "4d4cce390c482e275d39b432a749d53c31e5aaf8d0687224bd95648262bb6cdc",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
@@ -139,9 +139,9 @@
   },
   "trackedArtifacts": {
     "VEGO-AI-Thesis-Baseline-Progress.html": "92c0ee2f30c8a641b7852d834d51c313ac2ac07cc5286ca4f589f65b8047391d",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "297c29dfc87c7b4afd900f9096df5b7ab92d59b51b28adbe084ee83aaf41f87c",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "a60e1d202e59e002fd06db9a898a4e21af7b5a0333ca6d1e32cbb1d3aa6de6f9",
     "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
-    "docs/research/hardening/iteration-015-manifest.json": "4e5ea936eb403b05418efa1e410785c31b84968f5ca43f3db8f9dc29e005fcb6",
+    "docs/research/hardening/iteration-015-manifest.json": "85912d0ae237270284d06ce0acf2bead7ba5f6db0705a9c549a459cd9cdd1550",
     "docs/research/hardening/sbom.cdx.json": "9e26667891c31211a285c14fb5970353174d263b23e8b7112fe232f6f9b97d43",
     "docs/research/hardening/security-posture-snapshot-v1.json": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
