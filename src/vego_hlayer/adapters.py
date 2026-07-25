@@ -229,10 +229,19 @@ def _items_and_provenance(stage: str, payload: Any) -> tuple[list[dict], dict]:
     return items, provenance
 
 
+def _record_mapping(item: Mapping[str, Any], key: str) -> Mapping[str, Any]:
+    if key not in item:
+        return {}
+    value = item[key]
+    if not isinstance(value, Mapping):
+        raise ValidationError(f"{key} must be an object")
+    return value
+
+
 def _review_record(item: dict) -> ReviewItem:
     review_id = item.get("review_id", "")
     signature = item.get("review_signature", "")
-    ai_decision = item.get("ai_decision") or {}
+    ai_decision = _record_mapping(item, "ai_decision")
     confidence = str(ai_decision.get("confidence") or "").lower()
     risk = "high" if confidence == "low" else "medium"
     status = item.get("status")
@@ -253,7 +262,7 @@ def _review_record(item: dict) -> ReviewItem:
 
 
 def _feedback_record(item: dict) -> FeedbackRecord:
-    human_decision = item.get("human_decision") or {}
+    human_decision = _record_mapping(item, "human_decision")
     return FeedbackRecord(
         feedback_id=item.get("feedback_id", ""),
         review_id=item.get("review_id", ""),

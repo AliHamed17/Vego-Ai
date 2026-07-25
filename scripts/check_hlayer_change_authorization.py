@@ -40,6 +40,22 @@ def _git(repo: Path, *args: str) -> str:
     return result.stdout
 
 
+def _git_paths(repo: Path, *args: str) -> set[str]:
+    if not GIT:
+        raise OSError("git executable not found")
+    result = subprocess.run(  # noqa: S603 - executable and arguments are controlled
+        [GIT, *args],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    )
+    return {
+        item.decode("utf-8", errors="surrogateescape")
+        for item in result.stdout.split(b"\0")
+        if item
+    }
+
+
 def _matches_prefix(path: str, prefixes: list[str]) -> bool:
     normalized = path.rstrip("/")
     return any(
@@ -104,32 +120,28 @@ def inspect(
     authorized_hashes = config.get("authorized_content_sha256") or {}
     forbidden = list(config.get("forbidden_paths") or [])
     merge_base = _git(repo, "merge-base", base, "HEAD").strip()
-    committed = set(
-        line
-        for line in _git(
-            repo,
-            "diff",
-            "--no-renames",
-            "--name-only",
-            f"{merge_base}...HEAD",
-        ).splitlines()
-        if line
+    committed = _git_paths(
+        repo,
+        "diff",
+        "--no-renames",
+        "--name-only",
+        "-z",
+        f"{merge_base}...HEAD",
     )
-    working = set(
-        line
-        for line in _git(
-            repo,
-            "diff",
-            "--no-renames",
-            "--name-only",
-            "HEAD",
-        ).splitlines()
-        if line
+    working = _git_paths(
+        repo,
+        "diff",
+        "--no-renames",
+        "--name-only",
+        "-z",
+        "HEAD",
     )
-    untracked = set(
-        line
-        for line in _git(repo, "ls-files", "--others", "--exclude-standard").splitlines()
-        if line
+    untracked = _git_paths(
+        repo,
+        "ls-files",
+        "-z",
+        "--others",
+        "--exclude-standard",
     )
     changed = committed | working | untracked
     protected = sorted(

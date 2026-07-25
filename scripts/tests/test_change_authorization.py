@@ -4,6 +4,7 @@ import importlib.util
 import json
 import subprocess
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "scripts" / "check_hlayer_change_authorization.py"
@@ -143,6 +144,19 @@ def test_protected_rename_reports_the_source_path(tmp_path: Path) -> None:
     assert "VEGO-AI/framework/agent4_variability_explorer.py" in result[
         "forbidden_changes"
     ]
+
+
+def test_git_path_reader_preserves_newlines(monkeypatch, tmp_path: Path) -> None:
+    module = load_module()
+    raw_path = b"VEGO-AI/framework/review\nhook.py\0"
+
+    def fake_run(*_args, **_kwargs):
+        return SimpleNamespace(stdout=raw_path)
+
+    monkeypatch.setattr(module.subprocess, "run", fake_run)
+    assert module._git_paths(tmp_path, "diff", "--name-only", "-z") == {
+        "VEGO-AI/framework/review\nhook.py"
+    }
 
 
 def test_push_workflow_uses_the_pre_push_revision() -> None:

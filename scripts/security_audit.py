@@ -60,6 +60,7 @@ MAX_ARCHIVE_MEMBER_BYTES = 25 * 1024 * 1024
 MAX_ARCHIVE_SCAN_BYTES = 100 * 1024 * 1024
 MAX_ARCHIVE_EXPANDED_BYTES = 500 * 1024 * 1024
 MAX_ARCHIVE_NESTING_DEPTH = 3
+MAX_HISTORY_BLOB_BYTES = 100 * 1024 * 1024
 GIT = shutil.which("git")
 
 
@@ -87,15 +88,49 @@ def _git_bytes(*args: str) -> bytes:
     ).stdout
 
 
+def _git_bytes_with_input(input_data: bytes, *args: str) -> bytes:
+    if not GIT:
+        raise OSError("git executable not found")
+    return subprocess.run(  # noqa: S603 - executable and arguments are controlled
+        [GIT, *args],
+        cwd=ROOT,
+        input=input_data,
+        check=True,
+        capture_output=True,
+    ).stdout
+
+
+def _decode_git_path(raw: bytes) -> str:
+    return raw.decode("utf-8", errors="surrogateescape")
+
+
+def _nul_paths(raw: bytes) -> list[str]:
+    return [
+        _decode_git_path(item)
+        for item in raw.split(b"\0")
+        if item
+    ]
+
+
+def _display_git_path(path: str) -> str:
+    """Escape control characters without changing the path used for I/O."""
+
+    return json.dumps(path, ensure_ascii=True)[1:-1]
+
+
 def _candidate_files() -> list[str]:
     return sorted(
-        {
-            line
-            for line in _git(
-                "ls-files", "--cached", "--others", "--exclude-standard"
-            ).splitlines()
-            if line
-        }
+        set(
+            _nul_paths(
+                _git_bytes(
+                    "ls-files",
+                    "-z",
+                    "--cached",
+                    "--others",
+                    "--exclude-standard",
+                )
+            )
+        )
     )
 
 
@@ -205,55 +240,140 @@ def _zip_findings(path: Path) -> list[str]:
     )
 
 
-def _historical_archive_findings() -> list[str]:
-    """Inspect every reachable historical ZIP-family blob with bounded expansion.
+def _historical_blob_paths() -> dict[str, set[str]]:
+    """Return every reachable changed blob and all of its raw Git paths."""
 
-    ``git rev-list --objects`` may retain only one path for a blob reused across
-    renames. Raw history records every changed tree entry, so an archive that
-    later becomes ``artifact.bin`` is still found under its earlier ZIP-family
-    path without reading every historical blob in the repository.
-    """
-
-    findings: list[str] = []
-    archive_blobs: dict[str, str] = {}
-    raw_history = _git(
+    blobs: dict[str, set[str]] = {}
+    raw_history = _git_bytes(
         "log",
         "--all",
         "--raw",
+        "-z",
         "--no-renames",
         "--no-abbrev",
         "--format=",
     )
-    for line in raw_history.splitlines():
-        metadata, separator, relative = line.partition("\t")
-        if not separator or not metadata.startswith(":"):
+    fields_and_paths = raw_history.split(b"\0")
+    index = 0
+    while index < len(fields_and_paths):
+        metadata = fields_and_paths[index]
+        index += 1
+        if not metadata:
             continue
-        if Path(relative).suffix.lower() not in ZIP_SUFFIXES:
-            continue
+        if not metadata.startswith(b":") or index >= len(fields_and_paths):
+            raise OSError("malformed NUL-delimited Git raw history")
+        relative_raw = fields_and_paths[index]
+        index += 1
+        if not relative_raw:
+            raise OSError("Git raw history contains an empty path")
+        relative = _decode_git_path(relative_raw)
         fields = metadata[1:].split()
         if len(fields) < 5:
-            continue
+            raise OSError("malformed Git raw-history metadata")
         for object_id in fields[2:4]:
-            if object_id and set(object_id) != {"0"}:
-                archive_blobs.setdefault(object_id, relative)
+            if object_id and object_id.strip(b"0"):
+                blobs.setdefault(object_id.decode("ascii"), set()).add(relative)
+    return blobs
 
-    for object_id, relative in sorted(archive_blobs.items()):
-        if _git("cat-file", "-t", object_id).strip() != "blob":
+
+def _historical_blob_sizes(object_ids: list[str]) -> dict[str, int]:
+    if not object_ids:
+        return {}
+    query = "".join(f"{object_id}\n" for object_id in object_ids).encode("ascii")
+    output = _git_bytes_with_input(
+        query,
+        "cat-file",
+        "--batch-check=%(objectname) %(objecttype) %(objectsize)",
+    )
+    sizes: dict[str, int] = {}
+    for line in output.splitlines():
+        fields = line.split()
+        if len(fields) != 3:
+            raise OSError("malformed Git cat-file batch-check response")
+        object_id, object_type, size_raw = fields
+        if object_type != b"blob":
             continue
-        display = f"history archive {object_id[:12]}:{relative}"
         try:
-            size = int(_git("cat-file", "-s", object_id).strip())
+            sizes[object_id.decode("ascii")] = int(size_raw)
         except ValueError as exc:
-            raise OSError(f"invalid Git object size for {object_id}") from exc
-        if size > MAX_ARCHIVE_SCAN_BYTES:
-            findings.append(
-                f"{display}: archive blob exceeds {MAX_ARCHIVE_SCAN_BYTES} bytes"
-            )
+            raise OSError("invalid Git cat-file object size") from exc
+    return sizes
+
+
+def _historical_blob_data(object_ids: list[str]) -> dict[str, bytes]:
+    if not object_ids:
+        return {}
+    query = "".join(f"{object_id}\n" for object_id in object_ids).encode("ascii")
+    output = _git_bytes_with_input(query, "cat-file", "--batch")
+    cursor = 0
+    blobs: dict[str, bytes] = {}
+    for expected in object_ids:
+        newline = output.find(b"\n", cursor)
+        if newline < 0:
+            raise OSError("truncated Git cat-file batch header")
+        header = output[cursor:newline].split()
+        cursor = newline + 1
+        if len(header) != 3 or header[1] != b"blob":
+            raise OSError(f"unexpected Git object response for {expected}")
+        object_id = header[0].decode("ascii")
+        try:
+            size = int(header[2])
+        except ValueError as exc:
+            raise OSError("invalid Git cat-file batch size") from exc
+        end = cursor + size
+        if end >= len(output) or output[end : end + 1] != b"\n":
+            raise OSError(f"truncated Git blob response for {object_id}")
+        blobs[object_id] = output[cursor:end]
+        cursor = end + 1
+    if output[cursor:]:
+        raise OSError("unexpected trailing Git cat-file batch data")
+    return blobs
+
+
+def _historical_blob_findings() -> list[str]:
+    """Inspect reachable historical blobs, including deleted binary content."""
+
+    findings: list[str] = []
+    paths_by_blob = _historical_blob_paths()
+    object_ids = sorted(paths_by_blob)
+    sizes = _historical_blob_sizes(object_ids)
+    eligible: list[str] = []
+    for object_id in object_ids:
+        if object_id not in sizes:
+            # Gitlinks and other non-blob entries are not file contents.
             continue
-        data = _git_bytes("cat-file", "blob", object_id)
-        findings.extend(
-            _zip_data_findings(data, display, check_personal_paths=False)
-        )
+        paths = sorted(paths_by_blob[object_id])
+        display_path = _display_git_path(paths[0])
+        size = sizes[object_id]
+        if size > MAX_HISTORY_BLOB_BYTES:
+            findings.append(
+                f"history blob {object_id[:12]}:{display_path}: exceeds "
+                f"{MAX_HISTORY_BLOB_BYTES} bytes and was not inspected"
+            )
+        else:
+            eligible.append(object_id)
+
+    for object_id, data in _historical_blob_data(eligible).items():
+        paths = sorted(paths_by_blob[object_id])
+        display_path = _display_git_path(paths[0])
+        display = f"history blob {object_id[:12]}:{display_path}"
+        for label in _secret_labels(data):
+            findings.append(f"{display}: {label}")
+        archive_paths = [
+            path for path in paths if Path(path).suffix.lower() in ZIP_SUFFIXES
+        ]
+        if archive_paths:
+            archive_display = (
+                f"history archive {object_id[:12]}:"
+                f"{_display_git_path(sorted(archive_paths)[0])}"
+            )
+            findings.extend(
+                _zip_data_findings(
+                    data,
+                    archive_display,
+                    check_personal_paths=False,
+                )
+            )
     return sorted(set(findings))
 
 
@@ -282,19 +402,7 @@ def inspect(include_history: bool = False) -> dict[str, Any]:
 
     history_findings: list[str] = []
     if include_history:
-        history_output = _git(
-            "log",
-            "--all",
-            "--pretty=format:%H",
-            "--name-only",
-            "-G",
-            HISTORY_SCAN_EXPRESSION,
-        )
-        history_findings = sorted(
-            set(line for line in history_output.splitlines() if line)
-        )
-        history_findings.extend(_historical_archive_findings())
-        history_findings = sorted(set(history_findings))
+        history_findings = _historical_blob_findings()
 
     failures = secret_findings + privacy_findings + binary_findings + history_findings
     return {

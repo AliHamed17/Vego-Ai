@@ -6,6 +6,8 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+import pytest
+
 SCRIPTS = Path(__file__).resolve().parents[1]
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
@@ -224,6 +226,73 @@ def test_comparison_cli_reports_nested_shape_errors_without_traceback(
         "original_agent4_classification must be an object"
         in result.stderr
     )
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+@pytest.mark.parametrize(
+    ("stage", "payload", "expected"),
+    [
+        (
+            "review",
+            {
+                "review_id": "HRQ-ucd_ch-P1",
+                "review_signature": "0123456789abcdef",
+                "status": "pending",
+                "pattern_id": "P1",
+                "provenance": {"source": "fixture"},
+                "ai_decision": [],
+            },
+            "ai_decision must be an object",
+        ),
+        (
+            "feedback",
+            {
+                "feedback_id": "FB-001",
+                "review_id": "HRQ-ucd_ch-P1",
+                "review_signature": "0123456789abcdef",
+                "expert_id": "reviewer-1",
+                "timestamp": "2026-07-25T00:00:00Z",
+                "human_decision": [],
+            },
+            "human_decision must be an object",
+        ),
+    ],
+)
+def test_cli_reports_decision_shape_errors_without_traceback(
+    tmp_path: Path,
+    stage: str,
+    payload: dict,
+    expected: str,
+) -> None:
+    source = tmp_path / f"{stage}.jsonl"
+    source.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+    output = tmp_path / "published.jsonl"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            stage,
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "unified",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert expected in result.stderr
     assert "Traceback" not in result.stderr
     assert not output.exists()
     assert not manifest.exists()

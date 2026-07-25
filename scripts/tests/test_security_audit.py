@@ -120,6 +120,14 @@ def test_history_scan_uses_a_git_compatible_expression(tmp_path: Path) -> None:
     renamed_archive.unlink()
     git("add", "-u")
     git("commit", "-m", "remove archive fixture")
+    binary_secret = "AKIA" + "ABCDEFGHIJKLMNOP"
+    binary_path = tmp_path / "historical.pdf"
+    binary_path.write_bytes(b"%PDF-1.7\n\x00" + binary_secret.encode("ascii"))
+    git("add", "historical.pdf")
+    git("commit", "-m", "binary fixture secret")
+    binary_path.unlink()
+    git("add", "-u")
+    git("commit", "-m", "remove binary fixture")
 
     result = module.inspect(include_history=True)
     assert result["history_findings"]
@@ -128,15 +136,47 @@ def test_history_scan_uses_a_git_compatible_expression(tmp_path: Path) -> None:
         "historical.docx" in finding and "archive member" in finding
         for finding in result["history_findings"]
     )
+    assert any(
+        "historical.pdf" in finding and "aws_access_key" in finding
+        for finding in result["history_findings"]
+    )
+
+
+def test_git_path_parsers_preserve_newlines(monkeypatch) -> None:
+    module = load_module()
+    newline_path = b"secret\nbundle.zip"
+    object_id = b"a" * 40
+    raw_history = (
+        b":100644 100644 "
+        + object_id
+        + b" "
+        + object_id
+        + b" M\0"
+        + newline_path
+        + b"\0"
+    )
+
+    def fake_git_bytes(*args: str) -> bytes:
+        if args[0] == "ls-files":
+            return newline_path + b"\0"
+        if args[0] == "log":
+            return raw_history
+        raise AssertionError(args)
+
+    monkeypatch.setattr(module, "_git_bytes", fake_git_bytes)
+    assert module._candidate_files() == ["secret\nbundle.zip"]
+    assert module._historical_blob_paths() == {
+        object_id.decode("ascii"): {"secret\nbundle.zip"}
+    }
 
 
 def test_history_scan_command_failure_is_release_blocking(monkeypatch) -> None:
     module = load_module()
     monkeypatch.setattr(module, "_candidate_files", lambda: [])
 
-    def fail_git(*_args: str) -> str:
+    def fail_history() -> list[str]:
         raise subprocess.CalledProcessError(128, ["git", "log"])
 
-    monkeypatch.setattr(module, "_git", fail_git)
+    monkeypatch.setattr(module, "_historical_blob_findings", fail_history)
     with pytest.raises(subprocess.CalledProcessError):
         module.inspect(include_history=True)
