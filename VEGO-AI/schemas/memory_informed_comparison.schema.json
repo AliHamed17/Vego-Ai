@@ -58,6 +58,7 @@
         "memory_advice": {
           "type": "object",
           "additionalProperties": true,
+          "required": ["advice_strength", "memory_match_ids", "has_conflicting_memory"],
           "properties": {
             "advice_strength": { "type": ["string", "null"] },
             "advice_summary": { "type": ["string", "null"] },
@@ -68,6 +69,7 @@
         "memory_informed_classification": {
           "type": "object",
           "additionalProperties": false,
+          "required": ["classification", "confidence", "source"],
           "properties": {
             "classification": { "type": ["string", "null"] },
             "confidence": { "type": ["string", "null"] },
