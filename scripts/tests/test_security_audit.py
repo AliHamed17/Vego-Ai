@@ -45,10 +45,18 @@ def test_archive_limits_fail_closed(tmp_path: Path) -> None:
 def test_encrypted_pkcs8_private_keys_are_detected_in_content_and_history() -> None:
     module = load_module()
     encrypted_header = b"-----BEGIN ENCRYPTED " + b"PRIVATE KEY-----"
+    fine_grained_token = (
+        b"github" + b"_pat_" + b"sample_abcdefghijklmnopqrstuvwxyz1234567890"
+    )
     assert "private_key" in module._secret_labels(encrypted_header)
+    assert "github_token" in module._secret_labels(fine_grained_token)
     assert re.search(
         module.HISTORY_SCAN_EXPRESSION,
         encrypted_header.decode("ascii"),
+    )
+    assert re.search(
+        module.HISTORY_SCAN_EXPRESSION,
+        fine_grained_token.decode("ascii"),
     )
 
 
@@ -72,7 +80,7 @@ def test_history_scan_uses_a_git_compatible_expression(tmp_path: Path) -> None:
     (tmp_path / "record.txt").write_text("safe\n", encoding="utf-8")
     git("add", "record.txt")
     git("commit", "-m", "safe")
-    secret = "sk" + "-proj-" + "abcdefghijklmnopqrstuvwxyz1234567890"
+    secret = "github" + "_pat_" + "sample_abcdefghijklmnopqrstuvwxyz1234567890"
     (tmp_path / "record.txt").write_text(secret + "\n", encoding="utf-8")
     git("commit", "-am", "fixture secret")
 

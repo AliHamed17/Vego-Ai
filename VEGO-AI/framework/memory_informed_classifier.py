@@ -50,11 +50,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 try:
-    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+    )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
+        publish_stage_output,
     )
 
 logger = logging.getLogger(__name__)
@@ -330,10 +335,16 @@ def main(argv: list[str] | None = None) -> None:
         items,
         setting_id,
         provenance,
+    )
+    execution = publish_stage_output(
+        "comparison",
+        report,
+        output_path=args.out,
+        writer=write_report,
         architecture_mode=args.architecture_mode,
         architecture_manifest=args.architecture_manifest,
     )
-    write_report(report, args.out)
+    report = execution.output
 
     by_rule: dict[str, int] = {}
     differs = sum(1 for it in items if it["memory_informed_differs_from_original"])

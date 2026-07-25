@@ -47,11 +47,16 @@ except Exception:  # pragma: no cover
     from .human_review_queue import derive_domain_and_diagram      # type: ignore
 
 try:
-    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+    )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
+        publish_stage_output,
     )
 
 logger = logging.getLogger(__name__)
@@ -305,10 +310,16 @@ def main(argv: list[str] | None = None) -> None:
         items,
         setting_id,
         provenance,
+    )
+    execution = publish_stage_output(
+        "advice",
+        report,
+        output_path=args.out,
+        writer=write_advice,
         architecture_mode=args.architecture_mode,
         architecture_manifest=args.architecture_manifest,
     )
-    write_advice(report, args.out)
+    report = execution.output
 
     by_strength: dict[str, int] = {}
     for it in items:

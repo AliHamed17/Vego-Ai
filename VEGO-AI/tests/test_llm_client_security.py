@@ -21,6 +21,9 @@ FAKE_API_KEY = "sk" + "-proj-fixture-not-a-real-key"
 FAKE_LONG_TOKEN = "sk" + "-proj-" + "fixtureabcdefghijklmnopqrstuvwxyz123456"
 FAKE_GITHUB_TOKEN = "gh" + "o_fixtureabcdefghijklmnopqrstuvwxyz123456"
 FAKE_GITHUB_REFRESH_TOKEN = "gh" + "r_fixtureabcdefghijklmnopqrstuvwxyz123456"
+FAKE_GITHUB_FINE_GRAINED_TOKEN = (
+    "github" + "_pat_" + "fixture_abcdefghijklmnopqrstuvwxyz1234567890"
+)
 FAKE_AWS_KEY = "AK" + "IA" + "ABCDEFGHIJKLMNOP"
 FAKE_PRIVATE_KEY = (
     "-----BEGIN "
@@ -96,6 +99,7 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
             {
                 "token": FAKE_GITHUB_TOKEN,
                 "refresh": FAKE_GITHUB_REFRESH_TOKEN,
+                "fine_grained": FAKE_GITHUB_FINE_GRAINED_TOKEN,
                 "pem": FAKE_PRIVATE_KEY,
                 "encrypted_pem": FAKE_ENCRYPTED_PRIVATE_KEY,
             }
@@ -113,6 +117,7 @@ def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypa
     assert FAKE_LONG_TOKEN not in text
     assert FAKE_GITHUB_TOKEN not in text
     assert FAKE_GITHUB_REFRESH_TOKEN not in text
+    assert FAKE_GITHUB_FINE_GRAINED_TOKEN not in text
     assert FAKE_AWS_KEY not in text
     assert "fixture-private-material" not in text
     assert "fixture-encrypted-private-material" not in text

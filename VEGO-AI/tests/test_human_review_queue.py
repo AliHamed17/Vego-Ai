@@ -234,6 +234,58 @@ def test_write_queue_idempotent_and_dedups():
         n3 = hrq.write_queue(items + items, path)
         assert n3 == 1
 
+        manifest = Path(d) / "architecture-run.json"
+        called = False
+
+        def should_not_write(_payload, _path):
+            nonlocal called
+            called = True
+
+        try:
+            hrq.publish_stage_output(
+                "review",
+                items,
+                output_path=path,
+                writer=should_not_write,
+                architecture_manifest=path,
+            )
+        except ValueError as exc:
+            assert "different paths" in str(exc)
+        else:
+            raise AssertionError("output/manifest collision must fail closed")
+        assert called is False
+
+        def fail_writer(_payload, _path):
+            raise OSError("fixture writer failure")
+
+        try:
+            hrq.publish_stage_output(
+                "review",
+                items,
+                output_path=path,
+                writer=fail_writer,
+                architecture_manifest=manifest,
+            )
+        except OSError as exc:
+            assert "fixture writer failure" in str(exc)
+        else:
+            raise AssertionError("writer failure must propagate")
+        assert not manifest.exists()
+
+        execution = hrq.publish_stage_output(
+            "review",
+            items,
+            output_path=path,
+            writer=hrq.write_queue,
+            architecture_mode="parity",
+            architecture_manifest=manifest,
+        )
+        assert execution.output == items
+        assert path.exists()
+        assert json.loads(manifest.read_text(encoding="utf-8"))[
+            "parity_status"
+        ] == "match"
+
 
 # ---------------------------------------------------------------------------
 # Schema validation (skipped if jsonschema not installed)

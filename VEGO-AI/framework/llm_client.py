@@ -51,7 +51,11 @@ DEFAULT_RUNTIME_CONFIG = (
     Path(__file__).resolve().parents[2] / "configs" / "hlayer-runtime.json"
 )
 _SECRET_RES = (
-    re.compile(r"\b(?:(?:sk|sess)-[A-Za-z0-9_-]{12,}|gh[pousr]_[A-Za-z0-9]{12,})\b"),
+    re.compile(
+        r"\b(?:(?:sk|sess)-[A-Za-z0-9_-]{12,}|"
+        r"gh[pousr]_[A-Za-z0-9]{12,}|"
+        r"github_pat_[A-Za-z0-9_]{40,})\b"
+    ),
     re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
     re.compile(
         r"-----BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY-----"

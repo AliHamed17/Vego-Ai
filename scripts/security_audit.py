@@ -18,7 +18,9 @@ SECRET_PATTERNS = {
     "openai_key": re.compile(
         rb"\b(?:sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,})\b"
     ),
-    "github_token": re.compile(rb"\bgh[pousr]_[A-Za-z0-9]{20,}\b"),
+    "github_token": re.compile(
+        rb"\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{40,})\b"
+    ),
     "private_key": re.compile(
         rb"-----BEGIN (?:(?:RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY-----"
     ),
@@ -26,7 +28,7 @@ SECRET_PATTERNS = {
 }
 HISTORY_SCAN_EXPRESSION = (
     r"sk-proj-[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,}|"
-    r"gh[pousr]_[A-Za-z0-9]{20,}|"
+    r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{40,}|"
     r"AKIA[0-9A-Z]{16}|"
     r"BEGIN ((RSA|EC|OPENSSH|ENCRYPTED) )?PRIVATE KEY"
 )

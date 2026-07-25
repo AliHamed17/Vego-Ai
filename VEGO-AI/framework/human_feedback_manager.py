@@ -50,11 +50,16 @@ import logging
 from pathlib import Path
 
 try:
-    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+    )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
+        publish_stage_output,
     )
 
 logger = logging.getLogger(__name__)
@@ -258,11 +263,17 @@ def main(argv: list[str] | None = None) -> None:
     items = attach_feedback(
         review_items,
         valid,
+    )
+    report = report_feedback(review_items, valid)
+    execution = publish_stage_output(
+        "resolved",
+        items,
+        output_path=args.out,
+        writer=write_resolved_queue,
         architecture_mode=args.architecture_mode,
         architecture_manifest=args.architecture_manifest,
     )
-    report = report_feedback(review_items, valid)
-    write_resolved_queue(items, args.out)
+    items = execution.output
 
     print("\n=== Feedback attachment summary ===")
     print(f"review items     : {report['total_items']}")

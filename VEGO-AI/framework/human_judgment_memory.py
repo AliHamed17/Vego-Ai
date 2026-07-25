@@ -57,11 +57,16 @@ except Exception:  # pragma: no cover - fallback if import path differs
         return "unknown"
 
 try:
-    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+    )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
+        publish_stage_output,
     )
 
 logger = logging.getLogger(__name__)
@@ -411,10 +416,16 @@ def main(argv: list[str] | None = None) -> None:
         resolved = load_resolved_queue(args.resolved)
         memory, report = ingest_judgments(
             resolved,
+        )
+        execution = publish_stage_output(
+            "memory",
+            memory,
+            output_path=args.out,
+            writer=write_memory,
             architecture_mode=args.architecture_mode,
             architecture_manifest=args.architecture_manifest,
         )
-        write_memory(memory, args.out)
+        memory = execution.output
         print("\n=== Ingest summary ===")
         print(f"resolved items : {report['total_items']}")
         print(f"ingested       : {report['ingested']}")

@@ -47,11 +47,16 @@ except ImportError:  # pragma: no cover - fallback when imported as a package
         POLICY_VERSION,
     )
 try:
-    from hlayer_architecture import add_architecture_arguments, apply_stage_architecture
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+    )
 except ImportError:  # pragma: no cover - package import fallback
     from .hlayer_architecture import (  # type: ignore
         add_architecture_arguments,
         apply_stage_architecture,
+        publish_stage_output,
     )
 
 logger = logging.getLogger(__name__)
@@ -366,11 +371,17 @@ def build_and_write_for_setting(
     items = build_review_items(
         variability_classes, deviation_patterns, setting_id,
         include_medium=include_medium,
+    )
+    output_path = Path(output_dir) / QUEUE_FILENAME
+    execution = publish_stage_output(
+        "review",
+        items,
+        output_path=output_path,
+        writer=write_queue,
         architecture_mode=architecture_mode,
         architecture_manifest=architecture_manifest,
     )
-    write_queue(items, Path(output_dir) / QUEUE_FILENAME)
-    return items
+    return execution.output
 
 
 # ---------------------------------------------------------------------------
@@ -415,13 +426,20 @@ def _run_for_eval_dir(
     items = build_review_items(
         variability_classes, deviation_patterns, setting_id,
         include_medium=include_medium,
+    )
+    target_dir = eval_dir if in_place else (out_dir / setting_id)
+    output_path = target_dir / QUEUE_FILENAME
+    execution = publish_stage_output(
+        "review",
+        items,
+        output_path=output_path,
+        writer=write_queue,
         architecture_mode=architecture_mode,
         architecture_manifest=architecture_manifest,
     )
-    target_dir = eval_dir if in_place else (out_dir / setting_id)
-    write_queue(items, target_dir / QUEUE_FILENAME)
+    items = execution.output
     print(f"{setting_id}: {len(items)} review item(s) -> "
-          f"{target_dir / QUEUE_FILENAME}")
+          f"{output_path}")
     for it in items:
         print(f"    {it['pattern_id']:>3}  "
               f"{it['ai_decision']['classification']:<24} "
