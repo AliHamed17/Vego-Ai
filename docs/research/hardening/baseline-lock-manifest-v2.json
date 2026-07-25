@@ -44,7 +44,7 @@
   "currentRuntimeLocks": {
     "VEGO-AI/eval/README_EVALUATOR.md": {
       "basis": "pre-hardening-current-baseline",
-      "sha256": "5445c7b39227c5b8b135a2ba4f45929bf1ec35bfc5095ff8ddb1c418f5ac61c9"
+      "sha256": "eea1faae35daee60a1d7af34769f8523374d56b48bb9c896eddb297ee238474f"
     },
     "VEGO-AI/eval/agentA_language_evaluator.py": {
       "basis": "pre-hardening-current-baseline",

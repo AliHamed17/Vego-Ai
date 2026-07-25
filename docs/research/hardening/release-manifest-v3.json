@@ -17,7 +17,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "ee04da252a13c85e9e03cb785adc63055dc7f1ec4d083a79d7fb407e50161cd4",
+  "packageTreeSha256": "1a1a2e1c85f6bcebc4a130172f27dfa933ff04200f0eb04c98ba1fbc39214e9b",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -35,6 +35,7 @@
     ".github/workflows/security-weekly.yml",
     ".github/workflows/supervisor-package.yml",
     ".gitignore",
+    "VEGO-AI/eval/README_EVALUATOR.md",
     "VEGO-AI/framework/README.md",
     "VEGO-AI/framework/hlayer_architecture.py",
     "VEGO-AI/framework/human_feedback_manager.py",
@@ -45,8 +46,14 @@
     "VEGO-AI/framework/memory_informed_classifier.py",
     "VEGO-AI/framework/requirements.txt",
     "VEGO-AI/schemas/memory_informed_comparison.schema.json",
+    "VEGO-AI/tests/test_accuracy_improvement_analysis.py",
+    "VEGO-AI/tests/test_human_feedback_manager.py",
+    "VEGO-AI/tests/test_human_judgment_memory.py",
+    "VEGO-AI/tests/test_human_review_queue.py",
     "VEGO-AI/tests/test_llm_client_security.py",
+    "VEGO-AI/tests/test_memory_advisor.py",
     "VEGO-AI/tests/test_memory_informed_classifier.py",
+    "VEGO-AI/tests/test_results_dashboard.py",
     "VEGO-AI/tests/test_visualizer_helpers.py",
     "VEGO-AI/vego_visualizer_delivery/visualizer_utils.py",
     "configs/README.md",
@@ -85,6 +92,22 @@
     "scripts/check_quality_ratchet.py",
     "scripts/run_hlayer_architecture.py",
     "scripts/security_audit.py",
+    "scripts/tests/fixtures/exp009_seeds.v1.json",
+    "scripts/tests/fixtures/failing_evidence_guard.py",
+    "scripts/tests/fixtures/pass_then_fail_protected_guard.py",
+    "scripts/tests/supervisor_package_browser_smoke.mjs",
+    "scripts/tests/test_build_hlayer_decision_snapshot.py",
+    "scripts/tests/test_build_hlayer_program_overview.py",
+    "scripts/tests/test_build_progress_tracker.py",
+    "scripts/tests/test_change_authorization.py",
+    "scripts/tests/test_dependency_lock.py",
+    "scripts/tests/test_feedback_generalizer.py",
+    "scripts/tests/test_hardening_manifests.py",
+    "scripts/tests/test_hlayer_architecture_cli.py",
+    "scripts/tests/test_hlayer_hardening.py",
+    "scripts/tests/test_security_audit.py",
+    "scripts/tests/test_thesis_evidence_package.py",
+    "scripts/tests/thesis_progress_browser_smoke.mjs",
     "scripts/vego_doctor.py",
     "scripts/verify-controlled.ps1",
     "scripts/verify-release.ps1",
@@ -105,7 +128,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "a8747cbbdf92be280e8113e579f6fe2679b550ec3327c73bb9f75bce68a85606",
+  "sourceTreeSha256": "4d2cb95c99ac0f28aeea391a7917f04e8089d893458e7402624faf2f94aa74c1",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
@@ -115,10 +138,10 @@
   },
   "trackedArtifacts": {
     "VEGO-AI-Thesis-Baseline-Progress.html": "2b53b319cb0b08b69d2fa6eb1afd29f3785282854ae6f42fa454df6980405ea9",
-    "docs/research/h-layer/program-status-snapshot-v1.json": "b9bd6c0b25411c7654f20b615985cfc7a69ead7924e4189f0626241ddc08f1ee",
-    "docs/research/hardening/baseline-lock-manifest-v2.json": "aa3544db95c49af104cbe9bdbeac7b68d33b4d5478caa5afa15f0172d7a1389d",
-    "docs/research/hardening/iteration-015-manifest.json": "74327d260541e06449d5247c74766296096493381b85bf733999f32529907ee7",
+    "docs/research/h-layer/program-status-snapshot-v1.json": "ba31f5928031ae003889cb46beb07b1b102029373aa3caf350e7bd9101931d36",
+    "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
+    "docs/research/hardening/iteration-015-manifest.json": "0998e27ce086399ce851d3b4e2b0bfd10bfc62dd36cc978a7fe6140449d59bcb",
     "docs/research/hardening/sbom.cdx.json": "9e26667891c31211a285c14fb5970353174d263b23e8b7112fe232f6f9b97d43",
-    "docs/research/hardening/security-posture-snapshot-v1.json": "719bd828f32febbb93f6b28470304ec236cb165342d2767d5c58dec60b0e478b"
+    "docs/research/hardening/security-posture-snapshot-v1.json": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
 }

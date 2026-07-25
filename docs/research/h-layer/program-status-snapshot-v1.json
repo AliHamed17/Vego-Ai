@@ -1,15 +1,15 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-24T22:12:30+00:00",
-  "sourceRevision": "7a9101fc45f6bf30b394be044c7c8fe3dd98894d",
+  "generatedAt": "2026-07-25T12:00:01+00:00",
+  "sourceRevision": "17a9c45a6dc1e5e5bab349b8e73f78e920b0de9e",
   "latestAcceptedIteration": {
     "iteration": 15,
     "directory": "docs/research/hardening",
-    "generatedAt": "2026-07-24T22:12:30+00:00",
+    "generatedAt": "2026-07-25T12:00:01+00:00",
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "f8de360cb3c7a6939d17bc76ae8f6493c81d8d7d1f34c598abb0bd970a6a4a11",
+    "normalizedSha256": "ae092c494eb271e81a2af7d8186c67eb695dc0f4bbe5e9c023087ff3c57c779e",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -122,6 +122,7 @@
     "status": "PASS",
     "boundaryMode": "reviewed_allowlist",
     "protectedDiff": [
+      "VEGO-AI/eval/README_EVALUATOR.md",
       "VEGO-AI/framework/README.md",
       "VEGO-AI/framework/hlayer_architecture.py",
       "VEGO-AI/framework/human_feedback_manager.py",
@@ -131,7 +132,7 @@
       "VEGO-AI/framework/memory_advisor.py",
       "VEGO-AI/framework/memory_informed_classifier.py",
       "VEGO-AI/framework/requirements.txt",
-      "VEGO-AI/schemas/memory_informed_comparison.schema.json",
+      "VEGO-AI/tests/test_human_feedback_manager.py",
       "VEGO-AI/tests/test_llm_client_security.py",
       "VEGO-AI/tests/test_memory_informed_classifier.py",
       "VEGO-AI/tests/test_visualizer_helpers.py"
@@ -145,23 +146,23 @@
     "status": "PASS",
     "tests": {
       "VEGO-AI/tests": {
-        "passed": 102,
+        "passed": 105,
         "failed": 0,
-        "durationSeconds": 7.43
+        "durationSeconds": 7.5
       },
       "scripts/tests": {
-        "passed": 76,
+        "passed": 82,
         "failed": 0,
         "subtestsPassed": 7,
-        "durationSeconds": 54.85
+        "durationSeconds": 48.98
       },
       "tests/hlayer_offline": {
-        "passed": 37,
+        "passed": 39,
         "failed": 0,
-        "durationSeconds": 5.77
+        "durationSeconds": 4.62
       }
     },
-    "recordedAt": "2026-07-24T22:12:30Z",
+    "recordedAt": "2026-07-25T12:00:01Z",
     "command": "uv run python -m pytest <suite> -q -p no:cacheprovider",
     "runtime": "Python 3.13.3 / pytest 9.0.3"
   },
@@ -171,8 +172,8 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "74327d260541e06449d5247c74766296096493381b85bf733999f32529907ee7",
-    "baselineLockManifest": "aa3544db95c49af104cbe9bdbeac7b68d33b4d5478caa5afa15f0172d7a1389d",
-    "securityPostureSnapshot": "e5ff1eed3eb77192cf28a4aa48bc97d06c795e3c38143e9b35f6821973c09429"
+    "iteration15Manifest": "0998e27ce086399ce851d3b4e2b0bfd10bfc62dd36cc978a7fe6140449d59bcb",
+    "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
+    "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
 }
