@@ -1,7 +1,7 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-25T15:02:43+00:00",
-  "sourceRevision": "e383d7e84e73b3373f270a9fa1cbe1851d7f135d",
+  "generatedAt": "2026-07-25T16:07:01+00:00",
+  "sourceRevision": "fb6598b16d544163d42ff66e2bfdbe41a211b82b",
   "latestAcceptedIteration": {
     "iteration": 15,
     "directory": "docs/research/hardening",
