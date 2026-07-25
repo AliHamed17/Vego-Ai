@@ -17,18 +17,15 @@ import tempfile
 import zipfile
 from datetime import datetime
 from pathlib import Path
-from typing import Iterable
 
 from docx import Document
-from docx.enum.section import WD_SECTION
 from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK, WD_LINE_SPACING
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 from PIL import Image, ImageDraw, ImageFont
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = (
@@ -447,8 +444,11 @@ def add_table(doc: Document, rows: list[list[str]]) -> None:
             paragraph.paragraph_format.space_before = Pt(0)
             paragraph.paragraph_format.space_after = Pt(0)
             paragraph.paragraph_format.line_spacing = 1.05
-            if r_index == 0:
-                paragraph.paragraph_format.keep_with_next = True
+            # Keep compact research tables together when they fit on the
+            # current or next page. Rows are already marked cantSplit; this
+            # additional chain prevents a header or single trailing row from
+            # being stranded across a page boundary.
+            paragraph.paragraph_format.keep_with_next = r_index < len(rows) - 1
             value = row_data[c_index] if c_index < len(row_data) else ""
             add_inline(paragraph, value)
             for run in paragraph.runs:
@@ -795,7 +795,9 @@ def render_figure_assets(data: dict) -> dict[str, Path]:
         x = 70 + chart_index * 865
         draw.rounded_rectangle((x, 175, x + 790, 660), 18, fill=panel, outline=line, width=3)
         draw.text((x + 30, 205), title, font=font(28, True), fill=ink)
-        for index, ((label, value), color) in enumerate(zip(values, palette)):
+        for index, ((label, value), color) in enumerate(
+            zip(values, palette, strict=True)
+        ):
             y = 285 + index * 82
             draw.text((x + 30, y), label, font=font(20), fill=ink)
             draw.rounded_rectangle((x + 245, y + 2, x + 690, y + 29), 12, fill=bg, outline=line)

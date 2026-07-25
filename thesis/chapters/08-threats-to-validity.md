@@ -154,10 +154,9 @@ approval, and a cost limit. No candidate model is promoted by Iteration 15.
 
 ## 8.9 Summary
 
-The dominant threats are the small, leakage-heavy evidence base, missing
-independent labels, unstable class prevalence, and the risk of optimistic policy
-selection. The calibration, two-reviewer workflow, fixed 16/8 split,
-development-suitability gate, paired estimand, one-time holdout, and external
-replication form a chain of partial mitigations. None guarantees a positive
-result. They ensure that positive, null, mixed, or harmful outcomes can be
-interpreted without changing the evidence rules after the fact.
+The dominant threats are a small, leakage-heavy evidence base, missing
+independent labels, unstable class prevalence, and optimistic policy selection.
+Reviewer calibration, the two-reviewer workflow, fixed 16/8 split, development
+gate, paired estimand, one-time holdout, and external replication partly
+mitigate them. They do not guarantee a positive result; they keep positive,
+null, mixed, or harmful outcomes interpretable under rules fixed in advance.
