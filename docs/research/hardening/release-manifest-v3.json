@@ -133,7 +133,7 @@
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
-    "pytest": "8.4.2",
+    "pytest": "9.0.3",
     "python": ">=3.10",
     "ruff": "0.15.16"
   },
