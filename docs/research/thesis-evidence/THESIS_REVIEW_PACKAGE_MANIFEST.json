@@ -1,28 +1,28 @@
 {
   "schemaVersion": "ThesisReviewPackageManifest-v1",
-  "generatedAt": "2026-07-25T18:10:09+00:00",
+  "generatedAt": "2026-07-25T18:32:35+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "a23541c24a31efae190e3dc86891593f752f4e05",
-  "packageRevision": "f9187a2bfdf3305012c6dedec448145c1422ce11",
-  "sourceTreeHash": "b2f05367981f575e31d936cbce159265f0944979882f67e93fe19c47fa8cb8a2",
+  "sourceRevision": "62b31b92119c4ad78ef5120bf5271f9a6ae6609f",
+  "packageRevision": "0ae97875657ad9b06f41ae8e12cb8c02c448ed88",
+  "sourceTreeHash": "b8b45f413c0427d3c024c5edfc8b0ecebb6901e6dcbe735697e40a7d64f0c888",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "ebe9feefb643892ba2fed6b44e90cc9eb4f432a485991060f68251477b82ffcc",
+    "sha256": "119c062e8e2480a44565fcc71b169e15cb81cb9c5a76f91af0b3b05eee3f8ab4",
     "bytes": 48266,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "9717f806ff0fdeb6a6219e708cf68c10e2bbb7ae6f39bf100316c5fe45a8a17f",
+      "sha256": "aaa9d0e5de6022535df4122d252e16c4711ac2ae101f6cd087dd237fca583a5f",
       "bytes": 1809593,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "9359f9f421d7a8b8e60fdf61b07cbec716e8228170092b6363bc2e9572998e80",
+      "sha256": "233f87cdf5f2c67be4a214b488011b141b5ea34f730a7f552a037633268fa8bc",
       "bytes": 81861,
       "tracked": true
     }
@@ -33,15 +33,15 @@
       "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": "2bac913d0106764174b4b79ade05d82c593038d11eef9417c034c12e521a063e",
-      "bytes": 1206064
+      "sha256": "319f7ae95e19a54598efacd839c343af1be7ca210318e5cf6c461e01ea08cd6d",
+      "bytes": 1205959
     },
     "renderVerification": {
       "status": "PASS",
       "pdfPageCount": 91,
       "renderedPageCount": 91,
       "sheetCount": 23,
-      "qaReportSha256": "6e9d36231c0343c9d2e0557cdc5404759e05dceb861c72d8253454ff1314d071"
+      "qaReportSha256": "b92eca5cb4971d45531a69e72180712bcce09df3f856bec09262781c83023a3c"
     }
   },
   "sourceFiles": [
@@ -51,7 +51,7 @@
     },
     {
       "path": "configs/protected-change-authorization-v1.json",
-      "sha256": "1c351a0122c7f638403f5898482e50dc3bb4c63772a0093d762d440ce3b86b6f"
+      "sha256": "78d4534bf3133755af3c3531ad83a6e845c5dda3762b228b66c0c6f17376b4ae"
     },
     {
       "path": "docs/research/accuracy-improvement-plan.md",
