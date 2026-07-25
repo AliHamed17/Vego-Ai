@@ -2,27 +2,27 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-25T19:43:56+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "d1d9c8eb8942f1974669696f97be9147841e2d2f",
-  "packageRevision": "d4ed0528a74c60ef5bc9e15bc3385bab9989ae72",
-  "sourceTreeHash": "113b464e9fa5b0b3f66a0a66c3139896155dcb8d9ea6478632345cdb697d1fb3",
+  "sourceRevision": "3a810ddd3577c4c314c9ab432fa9334c81aa4470",
+  "packageRevision": "ba0fe91db7f6c37a684b643a4afb0b8cedb1590d",
+  "sourceTreeHash": "e23df8a858af7872deb329e05d84f0fb52acf756588a9bcb30ff8f97e1ab490d",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "89cd4816c7aed91dd8ad2db4ea3bbceb897d5a325b540d733bc1951d06293722",
+    "sha256": "86d8d91077047497f357924bdb7bd2eac11520a045b22a74e1c1c41579e7c28c",
     "bytes": 48266,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "b0025507692b06d0b9f9193058ef5a0e4a7f1e76ca5e80b26c7f0c10fcd4d186",
-      "bytes": 1809301,
+      "sha256": "6978ec504ba6a945db35bf3801c9e722a5b877bfbf3d51b7e78288a3a87a87d8",
+      "bytes": 1809593,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "508c313fe1d00571a43fd1523dfc46e5e4dfe2f075ac699095bb4c17f2f159c3",
+      "sha256": "f8f4efd55a553b9f1c39d7ae120706204b3724483e0a07bffb1ecc3b605efa3e",
       "bytes": 81861,
       "tracked": true
     }
@@ -33,15 +33,15 @@
       "filename": "VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.pdf",
       "tracked": false,
       "availableInClone": false,
-      "sha256": "9828303a205c331d29f58068ed37584b45f5ca7f425e4bc623dc7fd048606dca",
-      "bytes": 1401820
+      "sha256": "45b9bbace2ecb329025b4796a1aab5e16865cd024fe38713ff9f14ed843fe218",
+      "bytes": 1401603
     },
     "renderVerification": {
       "status": "PASS",
       "pdfPageCount": 91,
       "renderedPageCount": 91,
       "sheetCount": 23,
-      "qaReportSha256": "8624d8a54a886e16e3b806dc44f615349b0c9533fe2779a3019aa83152c864d5"
+      "qaReportSha256": "7a4af69b1d054cf99e3b4f76f6e2d6bd03ea4227a512c0b1af3d0bcfa953ab5c"
     }
   },
   "sourceFiles": [
@@ -59,7 +59,7 @@
     },
     {
       "path": "docs/research/h-layer/program-status-snapshot-v1.json",
-      "sha256": "945a49ff583f110e755fc6adda545f5de4820e3f88aeae9f8c0e2ae2d07e8cbe"
+      "sha256": "5ac4bd4ef114a8c59f81621aea9c82cc2e0eb37f2d891af2f9c4f567a35955a8"
     },
     {
       "path": "docs/research/hardening/MODEL_EVALUATION_PROTOCOLS.md",
@@ -331,7 +331,7 @@
     }
   ],
   "toolVersions": {
-    "python": "3.13.3",
+    "python": "3.10.0",
     "jsonschema": "4.26.0"
   },
   "protectedRuntimeChanged": false,
