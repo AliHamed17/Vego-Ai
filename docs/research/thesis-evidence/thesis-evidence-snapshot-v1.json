@@ -1,8 +1,8 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
-  "generatedAt": "2026-07-25T22:48:54+00:00",
-  "sourceRevision": "09883e98b5024ec21f25c32804f83f27a5bd8484",
-  "sourceTreeHash": "68567f7dbb7c287611cea07b419dfd40158fd09d3e9f57f66fbe3aa73bea1cbe",
+  "generatedAt": "2026-07-25T22:54:26+00:00",
+  "sourceRevision": "f8848d7ee70cc02dd3f4a71ec5a165ec287f5bb2",
+  "sourceTreeHash": "7c814d409e57c27d61903ca89b907c73e39a08fbd6231a49532c97eb9e5587e6",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
@@ -1208,9 +1208,9 @@
     "schemas/security-posture-snapshot-v1.schema.json": "326daafe746cbbe0d184739fd4fae5ed1fa814406e744fccbb640a5afd4ca770",
     "configs/hlayer-runtime.json": "0e8c03d4297b74cf04020c244be6a09441555b595b63434a3c83c86cdaf993e2",
     "configs/protected-change-authorization-v1.json": "67a542a94c517d1859b7c7f0ad7138c7b7eba9ed1040ccd421bcc0030607a2c0",
-    "scripts/build_hardening_manifests.py": "6c4bb3609e23529f70c983ede481c1412f2e4f58ac07fecdbf14345c905d5383",
+    "scripts/build_hardening_manifests.py": "867f8ecd3c72a6e3dc3395a0b5f8237d3641bb1c846de4e846f26e37bde01fc3",
     "scripts/run_hlayer_architecture.py": "559dd30181753dd6d12d925c78ab9ff3410b252c520b5d1d62e23927313f9ce9",
-    "scripts/verify-source.ps1": "c58237a4ccdeafdad38fdb9da7964f2c68c682f38d1f133b31b6353be5950b55",
+    "scripts/verify-source.ps1": "3200184060045e64921059770b11b1c2e0806e317fb2de520019b1689a176127",
     "scripts/verify-controlled.ps1": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239",
     "scripts/verify-release.ps1": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5",
     "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
