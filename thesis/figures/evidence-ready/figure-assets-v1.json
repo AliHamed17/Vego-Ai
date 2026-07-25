@@ -2,7 +2,7 @@
   "schemaVersion": "ThesisReviewFigureAssets-v1",
   "sourceSnapshot": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
   "figureDataHash": "ffa91ab9b4d6938c654ae67f18a7b7b3a144d836e8aee651f4416ed63c33a18c",
-  "rendererHash": "55662af20847be33a2e8ba06564160ca15ccde2a118ef97dfe27648fc2f53318",
+  "rendererHash": "b07b4616dfb5ddbace8521d21a3444a894a346554b5a9180fee0810d982f6c6f",
   "files": {
     "architecture": {
       "path": "thesis/figures/evidence-ready/human-judgment-architecture.png",
