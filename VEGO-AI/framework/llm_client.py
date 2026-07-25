@@ -305,6 +305,11 @@ class LLMClient:
 
         usage = getattr(response, "usage", None) if response is not None else None
         config = {"model": self.model, "max_tokens": max_tokens}
+        logged_parse_error = (
+            "invalid_json_response"
+            if parse_error is not None
+            else None
+        )
         entry: dict[str, Any] = {
             "schema_version": "model-execution-manifest-v1",
             "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -331,7 +336,10 @@ class LLMClient:
             "response_sha256": self._text_hash(raw),
             "response_chars": len(raw),
             "response_parsed": parsed is not None,
-            "parse_error":     parse_error,
+            # Metadata-only logs must not retain malformed response excerpts.
+            # The full response remains available only in explicit full-content
+            # mode, where it is redacted below.
+            "parse_error": logged_parse_error,
             "api_error": api_error,
             "token_usage": {
                 "prompt_tokens": getattr(usage, "prompt_tokens", None),
@@ -387,9 +395,18 @@ class LLMClient:
         if not self._log_path:
             return
         cutoff = time.time() - (self._log_retention_days * 24 * 60 * 60)
-        for index in range(1, self._log_backups + 1):
-            backup = self._log_path.with_suffix(f"{self._log_path.suffix}.{index}")
-            if backup.exists() and backup.stat().st_mtime < cutoff:
+        backup_prefix = f"{self._log_path.name}."
+        for backup in self._log_path.parent.glob(f"{self._log_path.name}.*"):
+            index_text = backup.name.removeprefix(backup_prefix)
+            if not index_text.isdecimal():
+                continue
+            index = int(index_text)
+            if backup.is_symlink():
+                backup.unlink()
+                continue
+            if not backup.is_file():
+                continue
+            if index > self._log_backups or backup.stat().st_mtime < cutoff:
                 backup.unlink()
         if not self._log_path.exists():
             return

@@ -85,6 +85,26 @@ def test_metadata_only_log_contains_hashes_not_content(tmp_path, monkeypatch) ->
     Draft202012Validator(schema).validate(entry)
 
 
+def test_metadata_only_log_replaces_parse_error_content(tmp_path, monkeypatch) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
+    path = tmp_path / "interaction.jsonl"
+    client = LLMClient(interaction_log=path, interaction_log_mode="metadata_only")
+    private_excerpt = "participant-name and private malformed response"
+    client._write_interaction(
+        label="agent1/test",
+        prompt={"system": "system", "user": "user"},
+        raw=private_excerpt,
+        parsed=None,
+        parse_error=f"Model returned non-JSON output: {private_excerpt}",
+        response=_response(),
+        attempt=1,
+    )
+    text = path.read_text(encoding="utf-8")
+    entry = json.loads(text)
+    assert entry["parse_error"] == "invalid_json_response"
+    assert private_excerpt not in text
+
+
 def test_full_content_log_requires_opt_in_and_redacts_secrets(tmp_path, monkeypatch) -> None:
     monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
     path = tmp_path / "interaction.jsonl"
@@ -200,6 +220,31 @@ def test_expired_log_is_removed_and_pending_entry_triggers_rotation(
     assert json.loads(path.read_text(encoding="utf-8"))[
         "schema_version"
     ] == "model-execution-manifest-v1"
+
+
+def test_rotation_prunes_expired_and_out_of_range_numbered_backups(
+    tmp_path,
+    monkeypatch,
+) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", FAKE_API_KEY)
+    path = tmp_path / "interaction.jsonl"
+    expired_in_range = path.with_suffix(f"{path.suffix}.1")
+    fresh_out_of_range = path.with_suffix(f"{path.suffix}.2")
+    unrelated = path.with_suffix(f"{path.suffix}.notes")
+    expired_in_range.write_text("expired", encoding="utf-8")
+    fresh_out_of_range.write_text("out of range", encoding="utf-8")
+    unrelated.write_text("keep", encoding="utf-8")
+    os.utime(expired_in_range, (1, 1))
+    client = LLMClient(
+        interaction_log=path,
+        interaction_log_mode="metadata_only",
+        interaction_log_backups=1,
+        interaction_log_retention_days=1,
+    )
+    client._rotate_interaction_log()
+    assert not expired_in_range.exists()
+    assert not fresh_out_of_range.exists()
+    assert unrelated.read_text(encoding="utf-8") == "keep"
 
 
 def test_runtime_config_controls_production_log_policy(tmp_path, monkeypatch) -> None:

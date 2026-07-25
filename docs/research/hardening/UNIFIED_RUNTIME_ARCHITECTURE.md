@@ -63,7 +63,7 @@ stateDiagram-v2
     feedback_received --> revised
     feedback_received --> needs_adjudication
     verified --> pending_correction_approval
-    revised --> pending_correction_approval
+    revised --> pending_review
     pending_correction_approval --> approved
     pending_correction_approval --> rejected
     pending_correction_approval --> deferred

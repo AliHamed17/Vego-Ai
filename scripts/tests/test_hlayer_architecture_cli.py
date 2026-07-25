@@ -103,6 +103,67 @@ def test_cli_rejects_shared_output_and_manifest_before_publishing(tmp_path: Path
     assert not shared.exists()
 
 
+def test_comparison_cli_reports_nested_shape_errors_without_traceback(
+    tmp_path: Path,
+) -> None:
+    payload = {
+        "comparisons": [
+            {
+                "comparison_id": "CMP-ucd_ch-P1",
+                "setting_id": "ucd_ch",
+                "pattern_id": "P1",
+                "original_agent4_classification": "Occasional Variability",
+                "memory_informed_classification": {
+                    "classification": "Occasional Variability",
+                    "source": "original_agent4",
+                },
+                "memory_informed_differs_from_original": False,
+                "requires_human_review_after_memory": False,
+                "human_memory_used": [],
+                "evaluation_leakage_status": "none",
+                "rule_applied": "preserve_original",
+                "decision_trace": ["baseline preserved"],
+                "mode": "experimental",
+                "ai_behavior_changed_in_baseline": False,
+            }
+        ],
+        "provenance": {"source": "fixture"},
+    }
+    source = tmp_path / "comparison.json"
+    source.write_text(json.dumps(payload), encoding="utf-8")
+    output = tmp_path / "published.json"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "comparison",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "unified",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert (
+        "original_agent4_classification must be an object"
+        in result.stderr
+    )
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
 def test_parity_cli_path_preserves_legacy_when_adapter_drifts(monkeypatch) -> None:
     payload = [
         {

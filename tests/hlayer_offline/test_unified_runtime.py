@@ -110,6 +110,47 @@ def test_unified_serializer_rebuilds_mapped_fields_from_canonical_records() -> N
     assert rebuilt != payload
 
 
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("original_agent4_classification", "Occasional Variability"),
+        ("memory_informed_classification", ["Occasional Variability"]),
+    ],
+)
+def test_comparison_adapter_rejects_nonobject_nested_classifications(
+    field: str,
+    value: object,
+) -> None:
+    payload = {
+        "comparisons": [
+            {
+                "comparison_id": "CMP-ucd_ch-P1",
+                "setting_id": "ucd_ch",
+                "pattern_id": "P1",
+                "original_agent4_classification": {
+                    "classification": "Occasional Variability",
+                },
+                "memory_informed_classification": {
+                    "classification": "Occasional Variability",
+                    "source": "original_agent4",
+                },
+                "memory_informed_differs_from_original": False,
+                "requires_human_review_after_memory": False,
+                "human_memory_used": [],
+                "evaluation_leakage_status": "none",
+                "rule_applied": "preserve_original",
+                "decision_trace": ["baseline preserved"],
+                "mode": "experimental",
+                "ai_behavior_changed_in_baseline": False,
+            }
+        ],
+        "provenance": {"source": "fixture"},
+    }
+    payload["comparisons"][0][field] = value
+    with pytest.raises(ValidationError, match=rf"{field} must be an object"):
+        adapt_legacy_artifact("comparison", payload)
+
+
 def test_manifest_rejects_a_symlinked_parent(tmp_path: Path) -> None:
     protected = tmp_path / "eval_output"
     protected.mkdir()

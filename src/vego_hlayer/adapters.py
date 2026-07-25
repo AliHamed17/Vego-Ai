@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import Any
 
@@ -318,8 +319,16 @@ def _advice_record(item: dict, provenance: dict) -> AdviceRecord:
 
 
 def _comparison_record(item: dict, provenance: dict) -> ComparisonRecord:
-    original = item.get("original_agent4_classification") or {}
-    parallel = item.get("memory_informed_classification") or {}
+    original = item.get("original_agent4_classification")
+    parallel = item.get("memory_informed_classification")
+    if not isinstance(original, Mapping):
+        raise ValidationError(
+            "original_agent4_classification must be an object"
+        )
+    if not isinstance(parallel, Mapping):
+        raise ValidationError(
+            "memory_informed_classification must be an object"
+        )
     return ComparisonRecord(
         comparison_id=item.get("comparison_id", ""),
         setting_id=item.get("setting_id", ""),
