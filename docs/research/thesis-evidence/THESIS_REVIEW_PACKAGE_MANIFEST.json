@@ -2,27 +2,27 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-25T19:43:56+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "0c2fcbbb8079e04abc8b00146358c3b76efb358a",
-  "packageRevision": "e301ef0299d73742116354490b915db7813d8734",
-  "sourceTreeHash": "cfb342065b44f1dedd497b0f166f008553d60fefc52bfcd6b1bc7c739c32a82e",
+  "sourceRevision": "78c74427575e4246a233e8c85f14893235e6adc8",
+  "packageRevision": "bc9522fb4be00a761cf4f98ee91380a3be922622",
+  "sourceTreeHash": "e8f91e0e7a8f58fbd41571de88f36c49740c9300747d7c43a3cc12b0aeb60a54",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "87a71d4fd940a8a38e5506185965ab95ded02f00987e47595624da5f58ab064b",
+    "sha256": "ced1811755121415961849591e8837f75531aa76afdb8f4e82ab973e6d30df99",
     "bytes": 48266,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "b8c817a508e760f0228f15db688b227fa58704ffb7a063df78dd38c048945f25",
+      "sha256": "d2454d817188186bdb2f41c713f1bf449fb6a3640bd05349f572fe3b04f4189b",
       "bytes": 1809301,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "dd1f3e0dfbe4c96cc1dba8a6b98c6592227f65396655ba5b6692b3f7816b3231",
+      "sha256": "0dcb0f65aec96066c10249eb924be0e230d35fb585cf4abce13b40feac70e45b",
       "bytes": 81861,
       "tracked": true
     }
@@ -41,7 +41,7 @@
       "pdfPageCount": 91,
       "renderedPageCount": 91,
       "sheetCount": 23,
-      "qaReportSha256": "39047bd9093212be8675dd96289ce91795a0a32b4c393683507c210d348b4e88"
+      "qaReportSha256": "4d07e1f6af6b87f1a0b1f47658fe167c8c2b0ac6692e4ffcc3c106ee512c53a9"
     }
   },
   "sourceFiles": [
@@ -207,7 +207,7 @@
     },
     {
       "path": "scripts/run_hlayer_architecture.py",
-      "sha256": "3b027f459cf772c0661c2d99962b08e71c10f0a3da2584f51c2fe71137a0bbf3"
+      "sha256": "1a8965d5decb1111be1325545b6eaf9edab04742bdca6e55bd79cf522e4b7623"
     },
     {
       "path": "scripts/validate_research_records.py",
