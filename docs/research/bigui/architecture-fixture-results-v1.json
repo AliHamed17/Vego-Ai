@@ -330,7 +330,7 @@
         {
           "case": "missing-artifact",
           "outcome": "rejected",
-          "detail": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\ahamed\\\\vego-ai\\\\does-not-exist.json'",
+          "detail": "[Errno 2] No such file or directory: '<repo>/does-not-exist.json'",
           "errorType": "FileNotFoundError",
           "baselinePreserved": true,
           "trustedMemoryWrites": 0,
@@ -427,12 +427,12 @@
     }
   ],
   "sources": {
-    "scripts/run_bigui_architecture_experiments.py": "c4fee4eb1662ab00b464c13ed27b4ae1547628061dcce1a9cea62df4023afcd7",
+    "scripts/run_bigui_architecture_experiments.py": "e039b68a97258d365d758dc4acaf002acf561b64c062e9e9a4c0bb6396278790",
     "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
     "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
     "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
   },
   "claimBoundary": "Clone-safe mechanism, structural, and fault-fixture evidence only. No accuracy, generalization, effort, topology-approval, or production-readiness claim.",
-  "normalizedSha256": "fff46b0459f721877deaaa26d868eaf76672f84588755d5d2609b36a6cf104f9"
+  "normalizedSha256": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4"
 }
