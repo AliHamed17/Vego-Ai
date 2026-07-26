@@ -1,8 +1,8 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
   "generatedAt": "2026-07-25T23:30:48+00:00",
-  "sourceRevision": "bb36ed3ab8fdc40d848888e9e4af60a221d19d60",
-  "sourceTreeHash": "e6ce812871174c7e5e3d1888169571967df23e7af1bb78f0973a933b7afb8513",
+  "sourceRevision": "b77417701b903155d823cde3ac1f70843627039f",
+  "sourceTreeHash": "23b721875d442ea09977fa049ce5c43389b2385c1233075ba4c69a615d1a001e",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
@@ -1210,7 +1210,7 @@
     "configs/protected-change-authorization-v1.json": "f96719bd850dc80459461d1e6ed1873c1f2b0913eed22df73568916391cca1d9",
     "scripts/build_hardening_manifests.py": "cb74b34b4976b52effae30c9f449c75534c02de8abae694343f4dea3186c65e7",
     "scripts/run_hlayer_architecture.py": "559dd30181753dd6d12d925c78ab9ff3410b252c520b5d1d62e23927313f9ce9",
-    "scripts/verify-source.ps1": "d26dcb9145a2985b29396f58981d40c87dc12d0a8c657d36286f70a5f7f03bdc",
+    "scripts/verify-source.ps1": "0c93156ff18554b3b43c7cbf564326e541fd8803648fc92bd4b0b15c73620b0f",
     "scripts/verify-controlled.ps1": "ff50f86a9fb54edc2df1a9f8164b35f378ffb63b00dd5e7b6d479e522bd10f4e",
     "scripts/verify-release.ps1": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5",
     "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
@@ -1227,7 +1227,7 @@
     "docs/research/hardening/VERIFICATION_AND_RELEASE.md": "837785203f5a3d070008884df5c37733a68815f2700c60eb3b38d300d3d0c2b5",
     "docs/research/accuracy-improvement-plan.md": "4df5b7c6a01ca2fcaa9e878ee9099705c6f61e561281913915e441639e3ccb60",
     "docs/research/supervisor-label-approval-pack.md": "8165442fdff772de3415c1778f007071127f9e9a42eeef37d2254b320ccf7b74",
-    "experiments/registry.md": "fa8f1825c721154dbb620f56917ed9d3e93b8ea9301b801058383a77a5f24241",
+    "experiments/registry.md": "0e27749289fd85e7cd7bda1a9ab6fd31f38168d48b2b375b880e44f71c03f9eb",
     "experiments/EXP-019-reviewer-calibration/README.md": "ad22627ca7f4c10a9fa117b48e39fb5ee7c99c3bf9433cdd276ec3b8cfbb8a06",
     "experiments/EXP-020-independent-expert-labeling/README.md": "c626d94c0a0fa4aff67e6ac8df8feda0d21fe7945b6be664def093ecf82f45a5",
     "experiments/EXP-021-development-baseline-error-analysis/README.md": "6121e00ba7bed66a1e152d4445cf882b3ed965511eb816d79d21137b99fc6cce",
