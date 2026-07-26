@@ -56,7 +56,7 @@
   "authorized_content_sha256": {
     "VEGO-AI/eval/README_EVALUATOR.md": "eea1faae35daee60a1d7af34769f8523374d56b48bb9c896eddb297ee238474f",
     "VEGO-AI/framework/README.md": "20de6761bceedbbf81785e632c9ac2a713a6ab6b0b1ecd9c3765bcbf63fb20a5",
-    "VEGO-AI/framework/hlayer_architecture.py": "5765039dbfdd60099097dc3be4d4d42916a29a597e8368e2ee7583267041a0c0",
+    "VEGO-AI/framework/hlayer_architecture.py": "b978176b03f389c5017cc6bfdb3237a1c0b2c5ea9d76793f927963bf6d04bfd5",
     "VEGO-AI/framework/human_feedback_manager.py": "238e99d7bd652a0fde2884d8fd544c829dfbc8c66dddf404cd4b1eaef13e50e2",
     "VEGO-AI/framework/human_judgment_memory.py": "87cc7113452f366a254f946a92877bc069e1c75bfc2185bf267dfdc0f74dd976",
     "VEGO-AI/framework/human_review_queue.py": "499963663722cbb3892916df4a6e8d53ee5fdfab4876db3b2ef709100897944e",
