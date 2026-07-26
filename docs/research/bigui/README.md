@@ -7,7 +7,7 @@ outcomes.
 
 ## What the catalog controls
 
-The catalog covers `EXP-000` through `EXP-036` and binds each experiment to:
+The catalog covers `EXP-000` through `EXP-040` and binds each experiment to:
 
 - its MSc, PhD, or cross-program space;
 - research question, evidence class, status, architecture targets, and gates;
@@ -32,6 +32,8 @@ From the repository root:
 
 ```powershell
 uv run python scripts/build_bigui_architecture_snapshot.py
+uv run python scripts/run_bigui_comparison_experiments.py --refresh
+uv run python scripts/build_bigui_run_store.py --refresh
 uv run python scripts/build_bigui_catalog.py
 uv run python scripts/build_bigui.py
 uv run python visualizations-gallery/build_gallery.py
@@ -41,6 +43,8 @@ Read-only freshness checks:
 
 ```powershell
 uv run python scripts/build_bigui_architecture_snapshot.py --check
+uv run python scripts/run_bigui_comparison_experiments.py --check
+uv run python scripts/build_bigui_run_store.py --check
 uv run python scripts/build_bigui_catalog.py --check
 uv run python scripts/build_bigui.py --check
 uv run python scripts/run_bigui_architecture_experiments.py --check
@@ -72,6 +76,15 @@ last accepted tracked output unchanged.
 - EXP-033–EXP-035 tracked results are clone-safe offline fixture evidence.
 - EXP-036 tracked values are engineering targets, not an accepted performance
   result; machine-specific measurements remain local.
+- EXP-037 reconciles the paper draft (178 models, 26 patterns) with the frozen
+  repository snapshot (179 models, 27 patterns). The differences are version
+  context, not evidence of higher quality.
+- EXP-038 demonstrates H-layer capability and reliability dimensions without
+  combining them into an arbitrary global score.
+- EXP-039 produces metric-specific routing, topology, and runtime deltas only
+  for compatible observations and refuses paper-to-current accuracy deltas.
+- EXP-040 keeps thesis claims aligned with present evidence: mechanism claims
+  are traceable, while empirical hypotheses remain unconfirmed.
 - EXP-031 and EXP-032 require consented human studies before any BigUI value
   claim.
 - Agent 4, the official baseline, and the GPT-4o default remain frozen.

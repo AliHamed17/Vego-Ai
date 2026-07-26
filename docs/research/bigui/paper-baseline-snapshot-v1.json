@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "PaperBaselineSnapshot-v1",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
+  "source": {
+    "logicalName": "MAS4MODELS-2026-paper-draft.pdf",
+    "title": "Not All Differences Matter: Variability Exploration of Domain Models via Agentic AI",
+    "sha256": "8c080422682dc5f90d7eca4ef973f40846c380e0df6a0f906c2ed6c070ec395a",
+    "pageCount": 10,
+    "reviewStatus": "machine_extracted_and_visually_checked",
+    "reviewedPages": [7, 8, 9]
+  },
+  "evaluationScope": {
+    "domains": ["Cheers", "ParkWise"],
+    "modelingLanguages": ["UML use case diagrams", "UML class diagrams"],
+    "settings": [
+      {"id": "ucd_ch", "caseModels": 46},
+      {"id": "cd_ch", "caseModels": 47},
+      {"id": "ucd_pw", "caseModels": 44},
+      {"id": "cd_pw", "caseModels": 41}
+    ],
+    "caseModelTotal": 178,
+    "llmCount": 1
+  },
+  "phaseA": {
+    "page": 8,
+    "table": "Table 2. Phase A Results",
+    "settings": [
+      {
+        "id": "ucd_ch",
+        "agreement": 0.88,
+        "runs": [
+          {"precision": 1.0, "recall": 0.88, "f1": 0.93},
+          {"precision": 1.0, "recall": 1.0, "f1": 1.0},
+          {"precision": 1.0, "recall": 0.75, "f1": 0.86}
+        ]
+      },
+      {
+        "id": "cd_ch",
+        "agreement": 0.83,
+        "runs": [
+          {"precision": 0.88, "recall": 0.78, "f1": 0.82},
+          {"precision": 1.0, "recall": 0.78, "f1": 0.88},
+          {"precision": 0.9, "recall": 1.0, "f1": 0.95}
+        ]
+      },
+      {
+        "id": "ucd_pw",
+        "agreement": 0.78,
+        "runs": [
+          {"precision": 1.0, "recall": 1.0, "f1": 1.0},
+          {"precision": 0.75, "recall": 0.86, "f1": 0.8},
+          {"precision": 1.0, "recall": 0.86, "f1": 0.92}
+        ]
+      },
+      {
+        "id": "cd_pw",
+        "agreement": 0.79,
+        "runs": [
+          {"precision": 0.88, "recall": 0.79, "f1": 0.82},
+          {"precision": 0.86, "recall": 0.68, "f1": 0.75},
+          {"precision": 0.82, "recall": 1.0, "f1": 0.9}
+        ]
+      }
+    ]
+  },
+  "phaseB": {
+    "page": 8,
+    "settingScores": {
+      "ucd_ch": 0.7,
+      "cd_ch": 0.88,
+      "ucd_pw": 0.85,
+      "cd_pw": 0.85
+    }
+  },
+  "phaseC": {
+    "page": 8,
+    "table": "Table 3. Phase C Results",
+    "expertSampleSize": 16,
+    "settings": [
+      {"id": "ucd_ch", "complianceVectors": 0.8, "uncoveredAudits": 0.55},
+      {"id": "cd_ch", "complianceVectors": 0.96, "uncoveredAudits": 0.81},
+      {"id": "ucd_pw", "complianceVectors": 0.83, "uncoveredAudits": 0.55},
+      {"id": "cd_pw", "complianceVectors": 0.92, "uncoveredAudits": 0.88}
+    ]
+  },
+  "phaseD": {
+    "page": 8,
+    "table": "Table 4. Explored Variability Patterns",
+    "patternTotal": 26,
+    "substantialTotal": 8,
+    "occasionalTotal": 18,
+    "settings": [
+      {"id": "ucd_ch", "substantial": 2, "occasional": 6},
+      {"id": "cd_ch", "substantial": 2, "occasional": 2},
+      {"id": "ucd_pw", "substantial": 4, "occasional": 3},
+      {"id": "cd_pw", "substantial": 0, "occasional": 7}
+    ],
+    "assessmentMethod": "Qualitative assessment by the paper authors; the paper states that no quantitative variability-classification benchmark existed."
+  },
+  "humanJudgmentCapabilities": [
+    {"id": "SELECTIVE_REVIEW_QUEUE", "paperBaseline": false, "currentExtension": true},
+    {"id": "STABLE_REVIEW_IDENTITY", "paperBaseline": false, "currentExtension": true},
+    {"id": "STRUCTURED_FEEDBACK", "paperBaseline": false, "currentExtension": true},
+    {"id": "REUSABLE_JUDGMENT_MEMORY", "paperBaseline": false, "currentExtension": true},
+    {"id": "ADVISORY_RETRIEVAL", "paperBaseline": false, "currentExtension": true},
+    {"id": "NON_DESTRUCTIVE_COMPARISON", "paperBaseline": false, "currentExtension": true},
+    {"id": "LEAKAGE_TRACKING", "paperBaseline": false, "currentExtension": true}
+  ],
+  "comparisonBoundary": "Paper-reported Phase A-C values describe the original agents and cannot be used as the current H-layer classification-accuracy baseline. Phase D is qualitative author assessment, not independent ground truth. Counts may be reconciled contextually, while current classification accuracy remains not computable at 0/24 safe labels."
+}

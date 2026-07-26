@@ -35,6 +35,14 @@ Invoke-Gate "legacy/unified controlled parity" {
 Invoke-Gate "BigUI controlled-corpus architecture checks" {
     uv run python scripts/run_bigui_architecture_experiments.py --check --controlled
 }
+Invoke-Gate "paper baseline controlled hash check" {
+    $paperPdf = Get-ChildItem -LiteralPath $repoRoot -File -Filter "Variability_MAS4MODELS2026*.pdf" |
+        Select-Object -First 1
+    if ($null -eq $paperPdf) {
+        throw "The controlled MAS4MODELS paper PDF is missing."
+    }
+    uv run python scripts/run_bigui_comparison_experiments.py --check --paper-pdf $paperPdf.FullName
+}
 $guardMode = if ($Refresh) { "--refresh" } else { "--check" }
 Invoke-Gate "EXP-005, EXP-012, baseline, and claim evidence guard" {
     uv run python scripts/check_evidence_consistency.py $guardMode

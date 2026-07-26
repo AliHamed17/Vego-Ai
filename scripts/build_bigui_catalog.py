@@ -45,10 +45,30 @@ ARCHITECTURE_FIXTURES = (
     / "bigui"
     / "architecture-fixture-results-v1.json"
 )
+PAPER_BASELINE = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "paper-baseline-snapshot-v1.json"
+)
+BASELINE_COMPARISON = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "baseline-comparison-results-v1.json"
+)
 CATALOG_SCHEMA = ROOT / "schemas" / "experiment-catalog-snapshot-v1.schema.json"
 METRIC_SCHEMA = ROOT / "schemas" / "metric-observation-v1.schema.json"
 RUN_SCHEMA = ROOT / "schemas" / "experiment-run-envelope-v1.schema.json"
 ARCHITECTURE_SCHEMA = ROOT / "schemas" / "architecture-variant-v1.schema.json"
+PAPER_BASELINE_SCHEMA = (
+    ROOT / "schemas" / "paper-baseline-snapshot-v1.schema.json"
+)
+BASELINE_COMPARISON_SCHEMA = (
+    ROOT / "schemas" / "baseline-comparison-results-v1.schema.json"
+)
 METRIC_DEFINITION_V2_SCHEMA = ROOT / "schemas" / "metric-definition-v1.schema.json"
 METRIC_V2_SCHEMA = ROOT / "schemas" / "metric-observation-v2.schema.json"
 RUN_BUNDLE_SCHEMA = ROOT / "schemas" / "accepted-experiment-run-bundle-v1.schema.json"
@@ -146,7 +166,7 @@ def parse_registry() -> dict[str, dict[str, str]]:
             "outputs": outputs,
             "notes": notes,
         }
-    expected = {f"EXP-{index:03d}" for index in range(37)}
+    expected = {f"EXP-{index:03d}" for index in range(41)}
     if set(records) != expected:
         missing = sorted(expected - set(records))
         extra = sorted(set(records) - expected)
@@ -869,7 +889,7 @@ def sources() -> list[dict[str, str]]:
             "id": "bigui-program",
             "path": BIGUI_PROGRAM.relative_to(ROOT).as_posix(),
             "sha256": sha256(BIGUI_PROGRAM),
-            "role": "EXP-030–EXP-036 protocols and metadata",
+            "role": "EXP-030–EXP-040 protocols and metadata",
         },
         {
             "id": "baseline-lock",
@@ -888,6 +908,18 @@ def sources() -> list[dict[str, str]]:
             "path": ARCHITECTURE_FIXTURES.relative_to(ROOT).as_posix(),
             "sha256": sha256(ARCHITECTURE_FIXTURES),
             "role": "Clone-safe EXP-033–EXP-035 fixture results and EXP-036 gate",
+        },
+        {
+            "id": "paper-baseline",
+            "path": PAPER_BASELINE.relative_to(ROOT).as_posix(),
+            "sha256": sha256(PAPER_BASELINE),
+            "role": "Reviewed paper-reported baseline values and comparison boundary",
+        },
+        {
+            "id": "baseline-comparison",
+            "path": BASELINE_COMPARISON.relative_to(ROOT).as_posix(),
+            "sha256": sha256(BASELINE_COMPARISON),
+            "role": "EXP-037–EXP-040 baseline, comparison, and thesis-readiness results",
         },
     ]
 
@@ -913,6 +945,8 @@ def build_catalog(
     baseline = load_json(BASELINE)
     security = load_json(SECURITY)
     architecture_fixtures = load_json(ARCHITECTURE_FIXTURES)
+    paper_baseline = load_json(PAPER_BASELINE)
+    baseline_comparison = load_json(BASELINE_COMPARISON)
     custom = {item["id"]: item for item in bigui_program["experiments"]}
     source_revision = (
         source_revision or recorded_source_revision() or program["sourceRevision"]
@@ -961,7 +995,7 @@ def build_catalog(
         run_ids_by_experiment.setdefault(run["experimentId"], []).append(run["runId"])
 
     experiments: list[dict[str, Any]] = []
-    for index in range(37):
+    for index in range(41):
         experiment_id = f"EXP-{index:03d}"
         row = registry[experiment_id]
         if experiment_id in custom:
@@ -1096,6 +1130,8 @@ def build_catalog(
             },
         },
         "architectureVariants": architecture_variants(),
+        "paperBaseline": paper_baseline,
+        "baselineComparisonResults": baseline_comparison,
         "experiments": experiments,
         "metricObservations": metrics,
         "metricDefinitionsV2": sorted(
@@ -1191,11 +1227,17 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     )
     for variant in catalog["architectureVariants"]:
         architecture_validator.validate(variant)
+    jsonschema.Draft202012Validator(
+        load_json(PAPER_BASELINE_SCHEMA), format_checker=format_checker
+    ).validate(catalog["paperBaseline"])
+    jsonschema.Draft202012Validator(
+        load_json(BASELINE_COMPARISON_SCHEMA), format_checker=format_checker
+    ).validate(catalog["baselineComparisonResults"])
 
     ids = [item["id"] for item in catalog["experiments"]]
-    expected = [f"EXP-{index:03d}" for index in range(37)]
+    expected = [f"EXP-{index:03d}" for index in range(41)]
     if ids != expected:
-        raise ValueError("experiments must be ordered and complete from EXP-000 to EXP-036")
+        raise ValueError("experiments must be ordered and complete from EXP-000 to EXP-040")
     metric_ids = [item["metricId"] for item in catalog["metricObservations"]]
     if len(metric_ids) != len(set(metric_ids)):
         raise ValueError("metric IDs must be unique")

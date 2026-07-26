@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/paper-baseline-snapshot-v1.schema.json",
+  "title": "PaperBaselineSnapshot-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "source",
+    "evaluationScope",
+    "phaseA",
+    "phaseB",
+    "phaseC",
+    "phaseD",
+    "humanJudgmentCapabilities",
+    "comparisonBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "PaperBaselineSnapshot-v1"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logicalName",
+        "title",
+        "sha256",
+        "pageCount",
+        "reviewStatus",
+        "reviewedPages"
+      ],
+      "properties": {
+        "logicalName": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "pageCount": {"type": "integer", "minimum": 1},
+        "reviewStatus": {
+          "enum": [
+            "machine_extracted_and_visually_checked",
+            "human_verified"
+          ]
+        },
+        "reviewedPages": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 1},
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      }
+    },
+    "evaluationScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domains",
+        "modelingLanguages",
+        "settings",
+        "caseModelTotal",
+        "llmCount"
+      ],
+      "properties": {
+        "domains": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "modelingLanguages": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "settings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "caseModels"],
+            "properties": {
+              "id": {"type": "string"},
+              "caseModels": {"type": "integer", "minimum": 0}
+            }
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "caseModelTotal": {"type": "integer", "minimum": 0},
+        "llmCount": {"type": "integer", "minimum": 1}
+      }
+    },
+    "phaseA": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page", "table", "settings"],
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "table": {"type": "string"},
+        "settings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "agreement", "runs"],
+            "properties": {
+              "id": {"type": "string"},
+              "agreement": {"type": "number", "minimum": 0, "maximum": 1},
+              "runs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["precision", "recall", "f1"],
+                  "properties": {
+                    "precision": {"type": "number", "minimum": 0, "maximum": 1},
+                    "recall": {"type": "number", "minimum": 0, "maximum": 1},
+                    "f1": {"type": "number", "minimum": 0, "maximum": 1}
+                  }
+                },
+                "minItems": 3,
+                "maxItems": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "phaseB": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page", "settingScores"],
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "settingScores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "phaseC": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page", "table", "expertSampleSize", "settings"],
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "table": {"type": "string"},
+        "expertSampleSize": {"type": "integer", "minimum": 0},
+        "settings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "complianceVectors", "uncoveredAudits"],
+            "properties": {
+              "id": {"type": "string"},
+              "complianceVectors": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "uncoveredAudits": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "phaseD": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "page",
+        "table",
+        "patternTotal",
+        "substantialTotal",
+        "occasionalTotal",
+        "settings",
+        "assessmentMethod"
+      ],
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "table": {"type": "string"},
+        "patternTotal": {"type": "integer", "minimum": 0},
+        "substantialTotal": {"type": "integer", "minimum": 0},
+        "occasionalTotal": {"type": "integer", "minimum": 0},
+        "settings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "substantial", "occasional"],
+            "properties": {
+              "id": {"type": "string"},
+              "substantial": {"type": "integer", "minimum": 0},
+              "occasional": {"type": "integer", "minimum": 0}
+            }
+          }
+        },
+        "assessmentMethod": {"type": "string", "minLength": 1}
+      }
+    },
+    "humanJudgmentCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "paperBaseline", "currentExtension"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+          "paperBaseline": {"type": "boolean"},
+          "currentExtension": {"type": "boolean"}
+        }
+      },
+      "minItems": 7,
+      "uniqueItems": true
+    },
+    "comparisonBoundary": {"type": "string", "minLength": 1}
+  }
+}

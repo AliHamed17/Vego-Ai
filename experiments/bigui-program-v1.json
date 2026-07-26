@@ -1,6 +1,6 @@
 {
   "schemaVersion": "BigUIExperimentProgram-v1",
-  "generatedAt": "2026-07-26T00:00:00+03:00",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
   "experiments": [
     {
       "id": "EXP-030",
@@ -198,6 +198,120 @@
       "artifactLinks": [
         "experiments/EXP-036-scale-latency-reproducibility/README.md",
         "scripts/run_bigui_architecture_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-037",
+      "title": "Paper baseline reconciliation",
+      "researchSpace": "MSc",
+      "researchTrack": "Paper and baseline alignment",
+      "researchQuestion": "Which paper-reported values are directly comparable with the current frozen repository baseline?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B0", "B1", "evaluation"],
+      "prerequisites": ["Reviewed paper baseline extraction", "Frozen repository baseline"],
+      "approvalGates": [],
+      "baseline": "MAS4MODELS paper-reported VEGO-AI evaluation",
+      "comparator": "Current frozen repository and H-layer mechanism snapshot",
+      "metricDefinitions": [
+        "PAPER_CASE_MODEL_COUNT",
+        "CURRENT_CASE_MODEL_COUNT",
+        "PAPER_PATTERN_COUNT",
+        "CURRENT_PATTERN_COUNT",
+        "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+        "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+        "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE"
+      ],
+      "claimBoundary": "The comparison reconciles versions and capabilities; it cannot prove higher classification accuracy than the paper.",
+      "validityThreats": ["The paper is a draft snapshot", "The paper's RQ4 assessment is qualitative", "Current safe-label N is zero"],
+      "owner": "Research evaluation",
+      "nextAction": "Keep the paper and repository baselines visibly separate and refresh only when either reviewed source changes.",
+      "artifactLinks": [
+        "experiments/EXP-037-paper-baseline-reconciliation/README.md",
+        "docs/research/bigui/paper-baseline-snapshot-v1.json",
+        "scripts/run_bigui_comparison_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-038",
+      "title": "Architecture improvement scorecard",
+      "researchSpace": "MSc",
+      "researchTrack": "Architecture evidence",
+      "researchQuestion": "Which new H-layer capability, reliability, and safety properties are demonstrated beyond the paper baseline?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B0", "B1", "legacy", "unified", "parity"],
+      "prerequisites": ["EXP-033", "EXP-035", "EXP-037"],
+      "approvalGates": [],
+      "baseline": "Original four-agent paper architecture",
+      "comparator": "Current non-destructive H-layer architecture",
+      "metricDefinitions": [
+        "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+        "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS"
+      ],
+      "claimBoundary": "Capability and reliability extension may be demonstrated; classification accuracy and human effort remain unmeasured.",
+      "validityThreats": ["Mechanism cohorts are finite", "Scorecard dimensions are intentionally not collapsed into one score"],
+      "owner": "Architecture validation",
+      "nextAction": "Use the scorecard as the thesis progress baseline and keep null empirical cells visible.",
+      "artifactLinks": [
+        "experiments/EXP-038-architecture-improvement-scorecard/README.md",
+        "scripts/run_bigui_comparison_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-039",
+      "title": "Cross-experiment comparability and deltas",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Metric comparison integrity",
+      "researchQuestion": "Which experiment results support a valid direct delta, and what trade-offs explain why one configuration differs from another?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B1", "legacy", "unified", "parity", "topology-a", "topology-b", "topology-c", "evaluation"],
+      "prerequisites": ["Accepted run bundles", "MetricDefinition-v1", "ComparisonEligibility-v2"],
+      "approvalGates": [],
+      "baseline": "Declared treatment baseline inside each comparable experiment",
+      "comparator": "Declared routing, topology, or runtime treatment",
+      "metricDefinitions": [
+        "DIRECT_COMPARISON_GROUPS",
+        "INCOMPATIBLE_COMPARISONS_SUPPRESSED"
+      ],
+      "claimBoundary": "Better is metric-specific; every positive delta must show its denominator, trade-off, evidence class, and guardrail.",
+      "validityThreats": ["Machine-specific latency", "Offline topology simulation", "No empirical classification comparator"],
+      "owner": "Evaluation infrastructure",
+      "nextAction": "Reject incompatible pairs and expose valid routing, topology, and runtime deltas in BigUI.",
+      "artifactLinks": [
+        "experiments/EXP-039-cross-experiment-comparability/README.md",
+        "src/vego_bigui/comparison.py",
+        "scripts/run_bigui_comparison_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-040",
+      "title": "Thesis claim-readiness audit",
+      "researchSpace": "MSc",
+      "researchTrack": "Thesis alignment",
+      "researchQuestion": "Which thesis claims are supported now, and which require independent labels, human studies, or replication?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B0", "B1", "evaluation", "BigUI"],
+      "prerequisites": ["EXP-037", "EXP-038", "EXP-039", "Thesis evidence snapshot"],
+      "approvalGates": [],
+      "baseline": "Paper and thesis claim set",
+      "comparator": "Current accepted experiment evidence",
+      "metricDefinitions": [
+        "THESIS_SAFE_CURRENT_CLAIMS",
+        "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+        "THESIS_HYPOTHESES_CONFIRMED",
+        "THESIS_TRACEABILITY_RECORDS"
+      ],
+      "claimBoundary": "Readiness and traceability do not substitute for the missing independent observations.",
+      "validityThreats": ["Thesis framing may evolve", "Human and external studies remain unexecuted"],
+      "owner": "Thesis evaluation",
+      "nextAction": "Use this audit to keep the thesis, catalog, and BigUI claim boundaries synchronized.",
+      "artifactLinks": [
+        "experiments/EXP-040-thesis-claim-readiness/README.md",
+        "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+        "scripts/run_bigui_comparison_experiments.py"
       ]
     }
   ]

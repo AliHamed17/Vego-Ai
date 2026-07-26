@@ -159,11 +159,33 @@ dialog::backdrop{background:rgba(0,0,0,.72)}.dialog-head{position:sticky;top:0;b
 .plot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .compact-bars{display:grid;gap:8px}.compact-row{display:grid;grid-template-columns:minmax(120px,1fr) 3fr auto;gap:9px;align-items:center}
 .compact-row small{color:var(--muted)}.engineering-miss{color:var(--amber)}
+.evidence-lanes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.evidence-lane{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
+.evidence-lane strong{display:block;margin:.35rem 0}.evidence-lane p{color:var(--muted);font-size:.82rem;margin:.2rem 0}
+.evidence-lane[data-status="demonstrated"]{border-color:var(--green)}
+.evidence-lane[data-status="contextual_only"]{border-color:var(--amber)}
+.evidence-lane[data-status="not_yet_measurable"]{border-style:dashed;border-color:var(--red)}
+.grouped-counts{display:grid;gap:12px}.grouped-count{display:grid;grid-template-columns:minmax(120px,1fr) 3fr;gap:12px;align-items:center}
+.dual-bars{display:grid;gap:5px}.dual-bar{display:grid;grid-template-columns:74px 1fr 42px;gap:7px;align-items:center}
+.dual-bar small{color:var(--muted)}.dual-bar .paper{background:linear-gradient(90deg,var(--violet),var(--blue))}
+.dual-bar .current{background:linear-gradient(90deg,var(--cyan),var(--green))}
+.capability-grid{display:grid;grid-template-columns:minmax(180px,2fr) 1fr 1fr;gap:6px}
+.capability-grid>div{padding:9px;border-bottom:1px solid var(--line)}.capability-grid .head{color:var(--cyan);font-weight:800}
+.capability-yes{color:var(--green);font-weight:800}.capability-no{color:var(--muted)}
+.scorecard-table{width:100%;border-collapse:collapse}.scorecard-table th,.scorecard-table td{padding:9px;border-bottom:1px solid var(--line);text-align:start}
+.scorecard-table td{color:var(--muted)}.scorecard-table .demonstrated{color:var(--green)}.scorecard-table .not_yet_measurable{color:var(--red)}
+.pareto-shell{overflow:auto}.pareto-shell svg{width:100%;min-width:540px;height:auto;display:block}
+.plot-axis{stroke:var(--line);stroke-width:1}.plot-gridline{stroke:rgba(180,200,205,.18);stroke-width:1}
+.plot-label{fill:var(--muted);font:12px "Segoe UI",Arial,sans-serif}.plot-point{fill:var(--cyan);stroke:#041612;stroke-width:2}
+.tradeoff-card{padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(7,17,25,.35)}
+.tradeoff-card h4{margin:.1rem 0 .35rem;color:var(--cyan)}.tradeoff-card p{margin:.2rem 0;color:var(--muted)}
+.proof-rule{border:1px solid var(--green);background:rgba(105,219,157,.08);padding:15px;border-radius:14px}
 .provenance-note{color:var(--muted);font-size:.8rem;margin-top:12px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
 @media(max-width:1100px){
   .kpi-grid{grid-template-columns:repeat(3,1fr)}.experiment-grid{grid-template-columns:repeat(2,1fr)}
+  .evidence-lanes{grid-template-columns:repeat(3,minmax(0,1fr))}
   .filters{grid-template-columns:repeat(3,1fr)}.filters .search{grid-column:span 3}
   .system-map{grid-template-columns:repeat(4,minmax(145px,1fr))}
   .system-node:nth-child(4)::after{display:none}
@@ -171,6 +193,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
 @media(max-width:760px){
   .topbar-inner{align-items:flex-start}.nav{display:none}.brand{flex:1}.hero{grid-template-columns:1fr;padding-top:35px}
   .kpi-grid,.two-col,.three-col,.runtime-grid,.topology-grid,.result-grid,.validity-grid,.run-grid,.plot-grid{grid-template-columns:1fr}
+  .evidence-lanes{grid-template-columns:1fr 1fr}.capability-grid{grid-template-columns:minmax(145px,2fr) 1fr 1fr}
   .experiment-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters .search{grid-column:span 2}
   .system-map{display:flex;flex-direction:column;overflow:visible}.system-node{min-height:88px}
   .system-node:not(:last-child)::after{content:"↓";inset-inline-end:auto;left:50%;top:auto;bottom:-18px}
@@ -186,6 +209,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   .shell,.topbar-inner{width:min(100% - 18px,1400px)}.top-actions button{padding:6px 8px}
   .brand .brand-text{display:none}.filters{grid-template-columns:1fr}.filters .search{grid-column:auto}
   .kpi-grid{grid-template-columns:1fr 1fr}.metric-bar{grid-template-columns:1fr}.evidence-bars{overflow:auto}
+  .evidence-lanes{grid-template-columns:1fr}.grouped-count{grid-template-columns:1fr}.capability-grid{font-size:.78rem}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media print{
@@ -202,6 +226,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     <a class="brand" href="#overview"><span class="mark">V</span><span class="brand-text">VEGO-AI BigUI</span></a>
     <nav class="nav" aria-label="Research sections">
       <a href="#overview" data-i18n="navOverview">Overview</a>
+      <a href="#baseline-progress" data-i18n="navProgress">Progress proof</a>
       <a href="#executed-results" data-i18n="navResults">Results</a>
       <a href="#run-center">Runs</a>
       <a href="#architecture" data-i18n="navArchitecture">Architecture</a>
@@ -238,6 +263,22 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     <div class="two-col" style="margin-top:14px">
       <article class="panel"><h3 data-i18n="safeNow">Safe to say now</h3><ul id="safe-claims"></ul></article>
       <article class="panel"><h3 data-i18n="notAllowed">Not allowed yet</h3><ul id="blocked-claims"></ul></article>
+    </div>
+  </section>
+
+  <section class="section" id="baseline-progress" aria-labelledby="baseline-progress-title">
+    <div class="section-head"><div><h2 id="baseline-progress-title" data-i18n="progressTitle">Paper baseline and evidence of progress</h2><p data-i18n="progressCopy">A proof-oriented view separates architectural capability, reliability, contextual version differences, and empirical value.</p></div></div>
+    <div id="comparison-lanes" class="evidence-lanes" aria-label="Evidence comparison lanes"></div>
+    <div class="two-col" style="margin-top:14px">
+      <article class="panel"><h3 data-i18n="paperCurrentCounts">Paper versus frozen repository counts</h3><div id="paper-current-counts" class="grouped-counts"></div><p class="provenance-note">A larger corpus or pattern count is a version difference, not a quality improvement.</p></article>
+      <article class="panel"><h3 data-i18n="capabilityExtension">Human-judgment capability extension</h3><div id="capability-matrix" class="capability-grid"></div></article>
+    </div>
+    <article class="panel" style="margin-top:14px"><h3 data-i18n="improvementScorecard">Multidimensional improvement scorecard</h3><div style="overflow:auto"><table class="scorecard-table"><thead><tr><th>Dimension</th><th>Paper baseline</th><th>Current evidence</th><th>Status</th><th>Interpretation</th></tr></thead><tbody id="improvement-scorecard"></tbody></table></div><div class="proof-rule" style="margin-top:12px"><strong>Proof rule:</strong> a result is called better only for a shared metric, cohort, definition, and evidence class—and only with its trade-off and guardrail visible. No global weighted score is used.</div></article>
+    <div class="plot-grid" style="margin-top:14px">
+      <article class="panel"><h3>EXP-007 · routing Pareto frontier</h3><div id="routing-pareto" class="pareto-shell"></div></article>
+      <article class="panel"><h3>EXP-039 · why configurations differ</h3><div id="comparison-tradeoffs" class="result-lane"></div></article>
+      <article class="panel"><h3>EXP-034 · topology evidence</h3><div id="topology-proof" class="compact-bars"></div></article>
+      <article class="panel"><h3>EXP-040 · thesis claim readiness</h3><div id="thesis-readiness"></div></article>
     </div>
   </section>
 
@@ -311,7 +352,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   </section>
 
   <section class="section" id="experiments" aria-labelledby="experiments-title">
-    <div class="section-head"><div><h2 id="experiments-title" data-i18n="experimentsTitle">Experiment observatory</h2><p data-i18n="experimentsCopy">Search EXP-000–EXP-036 and inspect design, gates, evidence, accepted runs, and the exact next action.</p></div><strong id="experiment-count" aria-live="polite"></strong></div>
+    <div class="section-head"><div><h2 id="experiments-title" data-i18n="experimentsTitle">Experiment observatory</h2><p data-i18n="experimentsCopy">Search EXP-000–EXP-040 and inspect design, gates, evidence, accepted runs, and the exact next action.</p></div><strong id="experiment-count" aria-live="polite"></strong></div>
     <div class="filters">
       <label class="search"><span data-i18n="search">Search</span><input id="filter-search" type="search" placeholder="EXP-033, parity, labels…" autocomplete="off"></label>
       <label><span data-i18n="space">Space</span><select id="filter-space"><option value="">All</option></select></label>
@@ -418,24 +459,26 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   },{})).map(([experimentId,run])=>[experimentId,run.runId]));
   const comparisonFields = data.comparisonRules.requiredMatchingFields;
   const i18n = {
-    en:{navOverview:"Overview",navArchitecture:"Architecture",navExperiments:"Experiments",navResults:"Results",navEvaluation:"Validity",navWorkspaces:"MSc / PhD",navOperations:"Operations",print:"Print",
+    en:{navOverview:"Overview",navProgress:"Progress proof",navArchitecture:"Architecture",navExperiments:"Experiments",navResults:"Results",navEvaluation:"Validity",navWorkspaces:"MSc / PhD",navOperations:"Operations",print:"Print",
       heroTitle:"Measured experiments first. Architecture and evidence behind every result.",heroLead:"BigUI begins with accepted runs and measured outcomes, then connects each result to its experiment design, architecture, source hash, evaluation, and next action.",
       gateTitle:"Current evaluation stage",gateBoundary:"Agent 4 and the official baseline remain frozen. Empty performance panels are intentional.",
       overviewTitle:"Research baseline",overviewCopy:"The frozen corpus and baseline against which every accepted result is interpreted.",safeNow:"Measured and supported now",notAllowed:"Requires independent evaluation",
+      progressTitle:"Paper baseline and evidence of progress",progressCopy:"A proof-oriented view separates architectural capability, reliability, contextual version differences, and empirical value.",paperCurrentCounts:"Paper versus frozen repository counts",capabilityExtension:"Human-judgment capability extension",improvementScorecard:"Multidimensional improvement scorecard",
       architectureTitle:"Architecture laboratory",architectureCopy:"The original pipeline stays read-only; every H-layer path is advisory, explicit, and fail-closed.",completeArchitecture:"Original-to-enhanced governed architecture",
       runtimeModes:"Legacy, unified, and parity modes",topologyOptions:"H-layer topology options A / B / C",artifactPipeline:"Artifact transformation pipeline",authorityFlow:"Human-authority state machine",topologyMetrics:"Topology structural trade-offs — EXP-034 fixture",
-      experimentsTitle:"Experiment observatory",experimentsCopy:"Search EXP-000–EXP-036 and inspect design, gates, evidence, accepted runs, and the exact next action.",search:"Search",space:"Space",status:"Status",evidence:"Evidence",architecture:"Architecture",
+      experimentsTitle:"Experiment observatory",experimentsCopy:"Search EXP-000–EXP-040 and inspect design, gates, evidence, accepted runs, and the exact next action.",search:"Search",space:"Space",status:"Status",evidence:"Evidence",architecture:"Architecture",
       resultsTitle:"Results and comparisons",resultsCopy:"Compare only equivalent runs. Incompatible cohorts, policies, models, metrics, leakage classes, or evidence classes are refused.",evidenceDistribution:"Experiments by evidence class",runTimeline:"Accepted-run timeline",comparisonGuard:"Run comparison guard",compare:"Compare",
       evaluationTitle:"Evaluation and validity",evaluationCopy:"The label gate, empty accuracy panels, paired matrix, and validity threats make missing evidence visible.",labelFunnel:"Independent-label funnel",accuracyPanels:"Accuracy and macro-F1",pairedMatrix:"Paired correctness",validityRisks:"Validity-threat heatmap",
       workspacesTitle:"MSc and PhD workspaces",workspacesCopy:"Education remains the MSc empirical domain. External replication and domain transfer remain later, separately gated work.",evidenceLadder:"MSc-to-PhD evidence ladder",
       operationsTitle:"Operations and reproducibility",operationsCopy:"Freshness, hashes, tests, baseline integrity, privacy tier, and security controls are visible and machine-readable."},
-    he:{navOverview:"סקירה",navArchitecture:"ארכיטקטורה",navExperiments:"ניסויים",navResults:"תוצאות",navEvaluation:"תוקף",navWorkspaces:"MSc / PhD",navOperations:"תפעול",print:"הדפסה",
+    he:{navOverview:"סקירה",navProgress:"הוכחת התקדמות",navArchitecture:"ארכיטקטורה",navExperiments:"ניסויים",navResults:"תוצאות",navEvaluation:"תוקף",navWorkspaces:"MSc / PhD",navOperations:"תפעול",print:"הדפסה",
       heroTitle:"משטח עבודה אחד לארכיטקטורה, ניסויים וראיות",heroLead:"מעקב אחר כל ניסוי — מהשאלה והשער ועד ריצות, מדדים, מגבלות והפעולה הבאה. מוכנות מנגנון אינה תחליף לתוקף אמפירי.",
       gateTitle:"שלב ההערכה הנוכחי",gateBoundary:"Agent 4 וקו הבסיס הרשמי נשארים קפואים. לוחות הביצועים הריקים הם מכוונים.",
       overviewTitle:"קו הבסיס המחקרי",overviewCopy:"הקורפוס וקו הבסיס הקפואים שלפיהם כל תוצאה מאושרת מתפרשת.",safeNow:"נמדד ונתמך כעת",notAllowed:"דורש הערכה בלתי תלויה",
+      progressTitle:"קו הבסיס של המאמר והוכחת התקדמות",progressCopy:"הצגה מוכוונת-ראיות המפרידה יכולת ארכיטקטונית, אמינות, הבדלי גרסה ותוקף אמפירי.",paperCurrentCounts:"ספירות המאמר מול המאגר הקפוא",capabilityExtension:"הרחבת יכולות השיפוט האנושי",improvementScorecard:"לוח שיפור רב-ממדי",
       architectureTitle:"מעבדת הארכיטקטורה",architectureCopy:"הצינור המקורי לקריאה בלבד; שכבת H מייעצת, מפורשת ונכשלת בצורה בטוחה.",completeArchitecture:"הארכיטקטורה המלאה והמוגנת",
       runtimeModes:"מצבי Legacy, Unified ו-Parity",topologyOptions:"חלופות טופולוגיה A / B / C",artifactPipeline:"זרימת הארטיפקטים",authorityFlow:"מכונת מצבי סמכות אנושית",topologyMetrics:"פשרות מבניות — ניסוי EXP-034",
-      experimentsTitle:"מצפה הניסויים",experimentsCopy:"חיפוש EXP-000–EXP-036 ובדיקה של תכנון, שערים, ראיות, ריצות והפעולה הבאה.",search:"חיפוש",space:"מרחב",status:"מצב",evidence:"ראיות",architecture:"ארכיטקטורה",
+      experimentsTitle:"מצפה הניסויים",experimentsCopy:"חיפוש EXP-000–EXP-040 ובדיקה של תכנון, שערים, ראיות, ריצות והפעולה הבאה.",search:"חיפוש",space:"מרחב",status:"מצב",evidence:"ראיות",architecture:"ארכיטקטורה",
       resultsTitle:"תוצאות והשוואות",resultsCopy:"השוואה מותרת רק בין ריצות שקולות. המערכת מסרבת להשוואות לא תקפות.",evidenceDistribution:"ניסויים לפי סוג ראיה",runTimeline:"ציר זמן של ריצות מאושרות",comparisonGuard:"מגן ההשוואה",compare:"השווה",
       evaluationTitle:"הערכה ותוקף",evaluationCopy:"שער התוויות, לוחות הדיוק הריקים ואיומי התוקף מציגים בגלוי את הראיות החסרות.",labelFunnel:"משפך תוויות בלתי תלויות",accuracyPanels:"דיוק ו-Macro-F1",pairedMatrix:"מטריצת נכונות זוגית",validityRisks:"מפת איומי תוקף",
       workspacesTitle:"מרחבי MSc ו-PhD",workspacesCopy:"תחום ה-MSc נשאר חינוך. רפליקציה והעברת תחום הן עבודה עתידית עם שערים נפרדים.",evidenceLadder:"סולם ראיות מ-MSc ל-PhD",
@@ -480,13 +523,94 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     ].map(value=>`<span class="chip">${esc(value)}</span>`).join("");
     $("overview-kpis").innerHTML=[
       kpi("Accepted iteration",p.latestAcceptedIteration,`<small>${esc(p.iterationVerdict)} · reliability-only</small>`),
-      kpi("Registered experiments",data.experiments.length,"<small>EXP-000–EXP-036</small>"),
+      kpi("Registered experiments",data.experiments.length,"<small>EXP-000–EXP-040</small>"),
       kpi("Safe labels",`${p.safeLabels}/${p.candidateLabels}`,metricFooter(metrics.LABEL_GENERALIZATION_SAFE)),
       kpi("Comparison changes",`${p.classificationChanges}/${p.comparisonRows}`,metricFooter(metrics.SAFETY_CLASSIFICATION_CHANGES)),
       kpi("Accuracy / macro-F1","—","<small>NOT YET COMPUTABLE</small>")
     ].join("");
     $("safe-claims").innerHTML=data.claimBoundaries.safeNow.map(item=>`<li>${esc(item)}</li>`).join("");
     $("blocked-claims").innerHTML=data.claimBoundaries.notAllowed.map(item=>`<li>${esc(item)}</li>`).join("");
+  }
+
+  function comparisonExperiment(id){
+    return data.baselineComparisonResults.experiments.find(item=>item.experimentId===id);
+  }
+  function renderBaselineProgress(){
+    const baseline=data.baselineComparisonResults;
+    const paper=data.paperBaseline;
+    $("comparison-lanes").innerHTML=baseline.comparisonLanes.map(lane=>`<article class="evidence-lane" data-status="${esc(lane.status)}">
+      <span class="evidence-badge" data-evidence="${lane.status==="demonstrated"?"offline":"blocked"}">${esc(lane.status.replaceAll("_"," "))}</span>
+      <strong>${esc(lane.title)}</strong><p>${esc(lane.explanation)}</p>
+      <small>${lane.directlyComparable?"Direct comparison permitted":"Context or gate only"}</small></article>`).join("");
+
+    const countRows=[
+      ["Case models",baseline.paperBaseline.caseModels,baseline.currentBaseline.caseModelTotal],
+      ["Variability patterns",baseline.paperBaseline.patterns,baseline.currentBaseline.patternTotal],
+      ["Substantial",baseline.paperBaseline.substantial,baseline.currentBaseline.substantialTotal],
+      ["Occasional",baseline.paperBaseline.occasional,baseline.currentBaseline.occasionalTotal]
+    ];
+    const countMax=Math.max(...countRows.flatMap(row=>row.slice(1)));
+    $("paper-current-counts").innerHTML=countRows.map(([label,paperValue,currentValue])=>`<div class="grouped-count">
+      <strong>${esc(label)}</strong><div class="dual-bars">
+        <div class="dual-bar"><small>Paper</small><div class="bar-track"><div class="bar-fill paper" style="width:${paperValue/countMax*100}%"></div></div><b>${paperValue}</b></div>
+        <div class="dual-bar"><small>Current</small><div class="bar-track"><div class="bar-fill current" style="width:${currentValue/countMax*100}%"></div></div><b>${currentValue}</b></div>
+      </div></div>`).join("")+`<div class="metric-meta">Paper: pages ${paper.source.reviewedPages.join(", ")} · sha256 ${esc(paper.source.sha256)}<br>${esc(paper.comparisonBoundary)}</div>`;
+
+    $("capability-matrix").innerHTML=`<div class="head">Capability</div><div class="head">Paper</div><div class="head">Current H-layer</div>`+
+      paper.humanJudgmentCapabilities.map(item=>`<div>${esc(item.id.replaceAll("_"," "))}</div>
+        <div class="${item.paperBaseline?"capability-yes":"capability-no"}">${item.paperBaseline?"✓ explicit":"— not explicit"}</div>
+        <div class="${item.currentExtension?"capability-yes":"capability-no"}">${item.currentExtension?"✓ implemented":"— absent"}</div>`).join("")+
+      `<div class="metric-meta" style="grid-column:1/-1">Capability presence is a design property. It does not measure classification correctness.</div>`;
+
+    const exp038=comparisonExperiment("EXP-038");
+    $("improvement-scorecard").innerHTML=exp038.details.scorecard.map(row=>`<tr>
+      <td>${esc(row.dimension.replaceAll("_"," "))}</td><td>${esc(fmt(row.paperBaseline))}</td><td>${esc(fmt(row.current))}</td>
+      <td class="${esc(row.status)}">${esc(row.status.replaceAll("_"," "))}</td><td>${esc(row.interpretation)}</td></tr>`).join("");
+
+    const routingModes=["silent","threshold_sev3","threshold_sev2","threshold_sev1","every_decision"];
+    const loads=Object.fromEntries(series("ROUTING_EVENT_LOAD","EXP-007").map(item=>[item.dimensions.mode,item]));
+    const coverage=Object.fromEntries(series("ROUTING_WEIGHTED_COVERAGE","EXP-007").map(item=>[item.dimensions.mode,item]));
+    const plotWidth=620,plotHeight=310,left=55,right=28,top=24,bottom=48;
+    const x=value=>left+Number(value)*(plotWidth-left-right);
+    const y=value=>top+(1-Number(value))*(plotHeight-top-bottom);
+    const ticks=[0,.25,.5,.75,1];
+    $("routing-pareto").innerHTML=`<svg viewBox="0 0 ${plotWidth} ${plotHeight}" role="img" aria-labelledby="routing-pareto-title routing-pareto-desc">
+      <title id="routing-pareto-title">Routing workload versus weighted coverage</title>
+      <desc id="routing-pareto-desc">Each routing mode is plotted by event review load on the horizontal axis and weighted severity coverage on the vertical axis. Threshold severity two increases coverage compared with severity three while also increasing load.</desc>
+      ${ticks.map(t=>`<line class="plot-gridline" x1="${x(t)}" y1="${top}" x2="${x(t)}" y2="${plotHeight-bottom}"></line><text class="plot-label" x="${x(t)}" y="${plotHeight-20}" text-anchor="middle">${t.toFixed(2)}</text>`).join("")}
+      ${ticks.map(t=>`<line class="plot-gridline" x1="${left}" y1="${y(t)}" x2="${plotWidth-right}" y2="${y(t)}"></line><text class="plot-label" x="${left-8}" y="${y(t)+4}" text-anchor="end">${t.toFixed(2)}</text>`).join("")}
+      <line class="plot-axis" x1="${left}" y1="${plotHeight-bottom}" x2="${plotWidth-right}" y2="${plotHeight-bottom}"></line>
+      <line class="plot-axis" x1="${left}" y1="${top}" x2="${left}" y2="${plotHeight-bottom}"></line>
+      <text class="plot-label" x="${(left+plotWidth-right)/2}" y="${plotHeight-3}" text-anchor="middle">Review load</text>
+      <text class="plot-label" transform="translate(14 ${(top+plotHeight-bottom)/2}) rotate(-90)" text-anchor="middle">Weighted coverage</text>
+      ${routingModes.filter(mode=>loads[mode]&&coverage[mode]).map(mode=>`<g><circle class="plot-point" cx="${x(loads[mode].value)}" cy="${y(coverage[mode].value)}" r="7"><title>${esc(mode)}: load ${fmt(loads[mode].value)}, coverage ${fmt(coverage[mode].value)}</title></circle><text class="plot-label" x="${x(loads[mode].value)+9}" y="${y(coverage[mode].value)-9}">${esc(mode.replace("threshold_","t-"))}</text></g>`).join("")}
+    </svg>${metricFooter(coverage.threshold_sev2)}`;
+
+    const exp039=comparisonExperiment("EXP-039");
+    const comparisons=exp039.details.eligibleComparisons;
+    $("comparison-tradeoffs").innerHTML=comparisons.map(item=>`<article class="tradeoff-card"><h4>${esc(item.family)} · ${esc(item.left)} → ${esc(item.right)}</h4>
+      <p>${Object.entries(item.deltas).map(([key,value])=>`${esc(key)}: <strong>${Number(value)>=0?"+":""}${esc(fmt(value))}</strong>`).join(" · ")}</p>
+      <p>${esc(item.interpretation)}</p></article>`).join("")+
+      exp039.details.refusedComparisons.map(item=>`<article class="tradeoff-card"><h4 class="fail">Refused · ${esc(item.family)}</h4><p>${esc(item.left)} → ${esc(item.right)}</p><ul>${item.reasons.map(reason=>`<li>${esc(reason)}</li>`).join("")}</ul></article>`).join("");
+
+    const topologyRows=["topology-a","topology-b","topology-c"].map(topology=>({
+      label:topology,
+      handoffs:series("TOPOLOGY_HANDOFF_COUNT","EXP-034").find(item=>item.dimensions.topology===topology)?.value,
+      failure:series("TOPOLOGY_FAILURE_BREADTH","EXP-034").find(item=>item.dimensions.topology===topology)?.value,
+      context:series("TOPOLOGY_CONTEXT_BYTES","EXP-034").find(item=>item.dimensions.topology===topology)?.value
+    }));
+    $("topology-proof").innerHTML=topologyRows.map(row=>`<article class="tradeoff-card"><h4>${esc(row.label)}</h4>
+      <p>Handoffs <strong>${esc(row.handoffs)}</strong> · context bytes <strong>${esc(row.context)}</strong> · failure breadth <strong>${esc(row.failure)}</strong></p></article>`).join("")+
+      `<p class="provenance-note">All three produced contract-equivalent canonical outputs. Lower coordination cost trades against broader single-component failure impact; no topology is approved.</p>`;
+
+    const exp040=comparisonExperiment("EXP-040");
+    const ready=Object.fromEntries(exp040.metrics.map(item=>[item.metricId,item]));
+    $("thesis-readiness").innerHTML=`<div class="kpi-grid" style="grid-template-columns:1fr 1fr">
+      ${kpi("Safe current claims",ready.THESIS_SAFE_CURRENT_CLAIMS.value,metricFooter(ready.THESIS_SAFE_CURRENT_CLAIMS))}
+      ${kpi("Empirical claims ready",`${ready.THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY.numerator}/${ready.THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY.denominator}`,metricFooter(ready.THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY))}
+      ${kpi("Hypotheses confirmed",`${ready.THESIS_HYPOTHESES_CONFIRMED.numerator}/${ready.THESIS_HYPOTHESES_CONFIRMED.denominator}`,metricFooter(ready.THESIS_HYPOTHESES_CONFIRMED))}
+      ${kpi("Traceability records",ready.THESIS_TRACEABILITY_RECORDS.value,metricFooter(ready.THESIS_TRACEABILITY_RECORDS))}
+    </div>`;
   }
 
   function compactBars(rows,maximum=null){
@@ -694,9 +818,24 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       ...comparisonFields.map(field=>({field,left:left.comparisonContext[field],right:right.comparisonContext[field],matches:left.comparisonContext[field]!=null&&right.comparisonContext[field]!=null&&left.comparisonContext[field]===right.comparisonContext[field]}))
     ];
     const eligible=checks.every(item=>item.matches);
+    const leftMetrics=new Map(left._bundle.metricObservations.map(item=>[`${item.metricId}|${JSON.stringify(item.dimensions||{},Object.keys(item.dimensions||{}).sort())}`,item]));
+    const rightMetrics=new Map(right._bundle.metricObservations.map(item=>[`${item.metricId}|${JSON.stringify(item.dimensions||{},Object.keys(item.dimensions||{}).sort())}`,item]));
+    const deltas=eligible?[...leftMetrics.entries()].flatMap(([key,leftMetric])=>{
+      const rightMetric=rightMetrics.get(key);
+      if(!rightMetric||typeof leftMetric.value!=="number"||typeof rightMetric.value!=="number"||leftMetric.metricDefinitionSha256!==rightMetric.metricDefinitionSha256)return[];
+      const delta=rightMetric.value-leftMetric.value;
+      const direction=leftMetric.direction;
+      const interpretation=delta===0?"no change":(
+        direction==="lower_is_better"?(delta<0?"better on this metric":"worse on this metric"):
+        direction==="higher_is_better"?(delta>0?"better on this metric":"worse on this metric"):
+        "difference only"
+      );
+      return[{metricId:leftMetric.metricId,dimensions:leftMetric.dimensions,delta,unit:leftMetric.unit,direction,interpretation,denominator:leftMetric.denominator}];
+    }):[];
     $("compare-result").innerHTML=`<div class="boundary ${eligible?"pass":"fail"}"><strong>${eligible?"Directly comparable":"Not directly comparable"}</strong><br>${eligible?"Every required comparison dimension matches.":"At least one required dimension is missing or differs; no delta chart is produced."}</div>
       <div style="overflow:auto"><table class="check-table"><thead><tr><th>Field</th><th>${esc(left.experimentId)}</th><th>${esc(right.experimentId)}</th><th>Match</th></tr></thead><tbody>
-      ${checks.map(item=>`<tr><td>${esc(item.field)}</td><td>${esc(item.left)}</td><td>${esc(item.right)}</td><td class="${item.matches?"pass":"fail"}">${item.matches?"✓":"✕"}</td></tr>`).join("")}</tbody></table></div>`;
+      ${checks.map(item=>`<tr><td>${esc(item.field)}</td><td>${esc(item.left)}</td><td>${esc(item.right)}</td><td class="${item.matches?"pass":"fail"}">${item.matches?"✓":"✕"}</td></tr>`).join("")}</tbody></table></div>
+      ${eligible?`<div class="detail-block" style="margin-top:12px"><h3>Metric deltas · right minus left</h3>${deltas.length?`<div style="overflow:auto"><table class="metric-table"><thead><tr><th>Metric</th><th>Dimensions</th><th>Delta</th><th>Denominator</th><th>Interpretation</th></tr></thead><tbody>${deltas.map(item=>`<tr><td>${esc(item.metricId)}</td><td>${esc(Object.entries(item.dimensions).map(([k,v])=>`${k}=${v}`).join(", ")||"—")}</td><td>${item.delta>=0?"+":""}${esc(fmt(item.delta))} ${esc(item.unit)}</td><td>${esc(fmt(item.denominator))}</td><td>${esc(item.interpretation)}</td></tr>`).join("")}</tbody></table></div>`:"<p>No shared numeric metric observations with identical definitions.</p>"}</div>`:""}`;
   }
 
   function renderEvaluation(){
@@ -740,7 +879,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   $("dialog-close").addEventListener("click",()=>{$("experiment-dialog").close();if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("experiment-dialog").addEventListener("cancel",()=>{if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("language-toggle").addEventListener("click",()=>setLanguage(language==="en"?"he":"en"));
-  renderOverview();renderExecutedResults();renderRunCenter();renderArchitecture();renderExperiments();renderResults();renderEvaluation();
+  renderOverview();renderBaselineProgress();renderExecutedResults();renderRunCenter();renderArchitecture();renderExperiments();renderResults();renderEvaluation();
   renderWorkspace("msc-workspace","MSc");renderWorkspace("phd-workspace","PhD");renderOperations();setLanguage(language);routeHash();
   window.addEventListener("hashchange",routeHash);
 })();
