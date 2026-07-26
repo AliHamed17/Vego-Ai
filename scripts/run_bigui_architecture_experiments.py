@@ -553,6 +553,20 @@ def exp034_topologies(*, include_timings: bool = True) -> dict[str, Any]:
 def exp035_faults() -> dict[str, Any]:
     cases: list[dict[str, Any]] = []
 
+    def stable_exception_detail(exc: Exception) -> str:
+        """Remove machine-specific repository paths from fixture diagnostics."""
+        detail = str(exc)
+        for root_text in {
+            str(ROOT),
+            str(ROOT).replace("\\", "\\\\"),
+            ROOT.as_posix(),
+        }:
+            detail = detail.replace(root_text, "<repo>")
+        detail = detail.replace("\\", "/")
+        while "//" in detail:
+            detail = detail.replace("//", "/")
+        return detail
+
     def record_safe(
         case_id: str,
         outcome: str,
@@ -585,7 +599,7 @@ def exp035_faults() -> dict[str, Any]:
                 {
                     "case": case_id,
                     "outcome": "rejected",
-                    "detail": str(exc),
+                    "detail": stable_exception_detail(exc),
                     "errorType": type(exc).__name__,
                     "baselinePreserved": True,
                     "trustedMemoryWrites": 0,
