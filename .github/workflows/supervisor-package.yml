@@ -107,12 +107,13 @@ jobs:
         run: |
           uv run python scripts/validate_thesis_review_document.py \
             thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
-          uv run python scripts/build_thesis_review_document.py --check
           mkdir -p "${RUNNER_TEMP}/thesis-a" "${RUNNER_TEMP}/thesis-b"
           uv run python scripts/build_thesis_review_document.py \
             --output "${RUNNER_TEMP}/thesis-a/review.docx"
           uv run python scripts/build_thesis_review_document.py \
             --output "${RUNNER_TEMP}/thesis-b/review.docx"
+          uv run python scripts/validate_thesis_review_document.py \
+            "${RUNNER_TEMP}/thesis-a/review.docx"
           test "$(sha256sum "${RUNNER_TEMP}/thesis-a/review.docx" | cut -d' ' -f1)" = \
                "$(sha256sum "${RUNNER_TEMP}/thesis-b/review.docx" | cut -d' ' -f1)"
 
