@@ -130,9 +130,9 @@ def semantic_errors(record: dict[str, Any]) -> list[str]:
             errors.append("ineligible comparisons must contain a mismatched check")
     elif version == "ExperimentCatalogSnapshot-v1":
         experiment_ids = [item["id"] for item in record["experiments"]]
-        expected_ids = [f"EXP-{index:03d}" for index in range(37)]
+        expected_ids = [f"EXP-{index:03d}" for index in range(41)]
         if experiment_ids != expected_ids:
-            errors.append("experiments must contain EXP-000 through EXP-036 in order")
+            errors.append("experiments must contain EXP-000 through EXP-040 in order")
         metric_ids = [item.get("metricId") for item in record["metricObservations"]]
         if len(metric_ids) != len(set(metric_ids)):
             errors.append("metricObservations must have unique metricId values")
