@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "AcceptedExperimentRunBundle-v1",
+  "publicationTier": "tracked_sanitized",
+  "envelope": {
+    "schemaVersion": "ExperimentRunEnvelope-v2",
+    "experimentId": "EXP-018",
+    "runId": "EXP-018-5ac1af70-40b34289",
+    "attemptId": "attempt-001",
+    "executionStatus": "succeeded",
+    "startedAt": "2026-07-26T00:30:26+00:00",
+    "completedAt": "2026-07-26T00:30:26+00:00",
+    "durationMilliseconds": null,
+    "manifestSchema": "HLayerExperimentManifest",
+    "manifestPath": "reports/generated/exp018/manifest.json",
+    "manifestSha256": "40b342898e046f48976d176b84682fff6eb1227c571bbb647eece631156c0304",
+    "acceptanceStatus": "accepted",
+    "acceptedAt": "2026-07-26T00:30:26+00:00",
+    "evidenceClass": "synthetic",
+    "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+    "inputHashes": {
+      "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "outputHashes": {
+      "summary": "5ac1af7096b9ad3e12d6648429ae5dc982ddfb985852e405055a814ce873566b"
+    },
+    "metricObservationIds": [
+      "OBS-METRIC-PROPOSAL_APPLICATIONS-93c4bd7d849a",
+      "OBS-METRIC-PROPOSAL_DIFF_REPRODUCIBLE-d436b688d6dc",
+      "OBS-METRIC-PROPOSAL_SOURCE_HASH_CHANGED-77ee60b448e8"
+    ],
+    "metricDefinitionHashes": {
+      "PROPOSAL_APPLICATIONS": "b15fbd31e67f19383d8dc67f063a38d4afd3e2a209c0785d0878f76cf265764b",
+      "PROPOSAL_DIFF_REPRODUCIBLE": "c419aad7f38e0c7860e30028b15d3f752bd01a5cb56f51ab8d45dabfb1bbbb33",
+      "PROPOSAL_SOURCE_HASH_CHANGED": "cac4d252593afd2e23e5c4bf46d3d9dbb86eabd0f99db2ef2af445e8aa1a8ad9"
+    },
+    "comparisonContext": {
+      "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "partitionHash": "not_applicable",
+      "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+      "policyVersion": "m4b1-v1",
+      "promptVersion": "historical-frozen",
+      "modelIdentifier": "gpt-4o-historical-alias",
+      "metricSchemaVersion": "2.0",
+      "labelEligibility": "generalization_safe",
+      "leakageClass": "none",
+      "evidenceClass": "synthetic",
+      "architectureMode": "legacy",
+      "topology": "not_applicable",
+      "interfaceVersion": "not_applicable",
+      "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "artifactRefs": [
+      "reports/generated/exp018/summary.json"
+    ],
+    "logRef": null,
+    "evaluation": {
+      "schemaVersion": "ExperimentEvaluation-v1",
+      "experimentId": "EXP-018",
+      "runId": "EXP-018-5ac1af70-40b34289",
+      "executionValid": true,
+      "deterministic": true,
+      "engineeringTargetMet": null,
+      "evidenceAdmissible": true,
+      "resultVerdict": "CONFORMANCE_PASS",
+      "criteria": [
+        {
+          "id": "SOURCE_PRESENT_AND_HASHED",
+          "passed": true,
+          "detail": "The source summary exists and has a recorded SHA-256 hash."
+        },
+        {
+          "id": "CLAIM_BOUNDARY_RECORDED",
+          "passed": true,
+          "detail": "The run records its admissible evidence boundary."
+        }
+      ],
+      "claimBoundary": "Proposal dry run only; no mutation."
+    }
+  },
+  "metricDefinitions": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "PROPOSAL_APPLICATIONS",
+      "title": "Applied corrections",
+      "description": "Applied corrections",
+      "formula": "applied corrections",
+      "unit": "boolean",
+      "direction": "lower_is_better",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "PROPOSAL_DIFF_REPRODUCIBLE",
+      "title": "Reproducible proposed diff",
+      "description": "Reproducible proposed diff",
+      "formula": "reproducible proposed diff",
+      "unit": "boolean",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "PROPOSAL_SOURCE_HASH_CHANGED",
+      "title": "Repository-source hash changes",
+      "description": "Repository-source hash changes",
+      "formula": "repository-source hash changes",
+      "unit": "boolean",
+      "direction": "lower_is_better",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-PROPOSAL_APPLICATIONS-93c4bd7d849a",
+      "experimentId": "EXP-018",
+      "runId": "EXP-018-5ac1af70-40b34289",
+      "metricId": "PROPOSAL_APPLICATIONS",
+      "metricDefinitionSha256": "b15fbd31e67f19383d8dc67f063a38d4afd3e2a209c0785d0878f76cf265764b",
+      "baselineId": "copied-artifact",
+      "comparatorId": "proposal-diff",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 1,
+      "missingCount": 0,
+      "unit": "boolean",
+      "direction": "lower_is_better",
+      "estimand": "Applied corrections",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp018/summary.json",
+      "sourceSha256": "5ac1af7096b9ad3e12d6648429ae5dc982ddfb985852e405055a814ce873566b",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Proposal dry-run evidence only; no artifact mutation is authorized."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-PROPOSAL_DIFF_REPRODUCIBLE-d436b688d6dc",
+      "experimentId": "EXP-018",
+      "runId": "EXP-018-5ac1af70-40b34289",
+      "metricId": "PROPOSAL_DIFF_REPRODUCIBLE",
+      "metricDefinitionSha256": "c419aad7f38e0c7860e30028b15d3f752bd01a5cb56f51ab8d45dabfb1bbbb33",
+      "baselineId": "copied-artifact",
+      "comparatorId": "proposal-diff",
+      "value": 1,
+      "numerator": 1,
+      "denominator": 1,
+      "missingCount": 0,
+      "unit": "boolean",
+      "direction": "target",
+      "estimand": "Reproducible proposed diff",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp018/summary.json",
+      "sourceSha256": "5ac1af7096b9ad3e12d6648429ae5dc982ddfb985852e405055a814ce873566b",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Proposal dry-run evidence only; no artifact mutation is authorized."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-PROPOSAL_SOURCE_HASH_CHANGED-77ee60b448e8",
+      "experimentId": "EXP-018",
+      "runId": "EXP-018-5ac1af70-40b34289",
+      "metricId": "PROPOSAL_SOURCE_HASH_CHANGED",
+      "metricDefinitionSha256": "cac4d252593afd2e23e5c4bf46d3d9dbb86eabd0f99db2ef2af445e8aa1a8ad9",
+      "baselineId": "copied-artifact",
+      "comparatorId": "proposal-diff",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 1,
+      "missingCount": 0,
+      "unit": "boolean",
+      "direction": "lower_is_better",
+      "estimand": "Repository-source hash changes",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp018/summary.json",
+      "sourceSha256": "5ac1af7096b9ad3e12d6648429ae5dc982ddfb985852e405055a814ce873566b",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Proposal dry-run evidence only; no artifact mutation is authorized."
+    }
+  ],
+  "acceptance": {
+    "schemaVersion": "RunAcceptanceRecord-v1",
+    "experimentId": "EXP-018",
+    "runId": "EXP-018-5ac1af70-40b34289",
+    "status": "accepted",
+    "evaluatorVersion": "bigui-run-store-v1",
+    "evaluatedAt": "2026-07-26T00:30:26+00:00",
+    "criteriaOutcomes": [
+      {
+        "id": "SOURCE_PRESENT_AND_HASHED",
+        "passed": true,
+        "detail": "The source summary exists and has a recorded SHA-256 hash."
+      },
+      {
+        "id": "CLAIM_BOUNDARY_RECORDED",
+        "passed": true,
+        "detail": "The run records its admissible evidence boundary."
+      }
+    ],
+    "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+    "approverClass": "deterministic_validator"
+  }
+}

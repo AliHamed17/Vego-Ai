@@ -428,11 +428,11 @@
   ],
   "sources": {
     "scripts/run_bigui_architecture_experiments.py": "e039b68a97258d365d758dc4acaf002acf561b64c062e9e9a4c0bb6396278790",
-    "experiments/bigui-program-v1.json": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+    "experiments/bigui-program-v1.json": "9aef5ac80b7e15a03668b3982dbd9051b8f3922728a1f741b1b97ab5e2869439",
     "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
     "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
     "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
   },
   "claimBoundary": "Clone-safe mechanism, structural, and fault-fixture evidence only. No accuracy, generalization, effort, topology-approval, or production-readiness claim.",
-  "normalizedSha256": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee"
+  "normalizedSha256": "e1a5846359e0b6b30525ddaf75c58919a194ce7f571039021f3251a9dff00302"
 }

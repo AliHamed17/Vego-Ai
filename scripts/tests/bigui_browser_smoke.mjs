@@ -85,7 +85,11 @@ async function verifyPage(viewport) {
     ["#label-funnel .funnel-stage", 4, "label stages"],
     ["#accuracy-panels .empty-result", 4, "blank performance cards"],
     ["#paired-matrix .matrix-empty", 4, "blank paired cells"],
-    ["#source-grid .source-card", 9, "source cards"],
+    ["#source-grid .source-card", 11, "source cards"],
+    ["#benchmark-dimensions .dimension-node", 7, "benchmark dimensions"],
+    ["#benchmark-baseline-ladder .baseline-stage", 6, "benchmark stages"],
+    ["#benchmark-highlights .tradeoff-card", 12, "benchmark result highlights"],
+    ["#benchmark-table-body tr", 41, "benchmark experiment rows"],
   ];
   for (const [selector, expected, label] of assertions) {
     const actual = await page.locator(selector).count();
@@ -153,6 +157,25 @@ try {
   }
   await interaction.close();
 
+  const benchmark = await browser.newPage({ viewport: { width: 1024, height: 768 } });
+  await benchmark.goto(`${baseUrl}/VEGO-AI-Research-Hub.html#experiment-benchmarks`, {
+    waitUntil: "networkidle",
+  });
+  await benchmark.locator("#benchmark-verdict").selectOption("MEASURED_PARTIAL");
+  if ((await benchmark.locator("#benchmark-table-body tr").count()) !== 4) {
+    failures.push("measured-partial benchmark filter did not return four experiments");
+  }
+  await benchmark.locator('#benchmark-table-body [data-id="EXP-007"]').focus();
+  await benchmark.keyboard.press("Enter");
+  if (!(await benchmark.locator("#dialog-body").textContent())?.includes("MEASURED_PARTIAL")) {
+    failures.push("EXP-007 benchmark detail did not expose the partial verdict");
+  }
+  if (!(await benchmark.locator("#dialog-body").textContent())?.includes("missed")) {
+    failures.push("EXP-007 benchmark detail did not expose a missed routing guardrail");
+  }
+  await benchmark.locator("#dialog-close").click();
+  await benchmark.close();
+
   const direct = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await direct.goto(`${baseUrl}/VEGO-AI-Research-Hub.html#experiment-EXP-034`, {
     waitUntil: "networkidle",
@@ -193,6 +216,40 @@ try {
   );
   if (printOverflow > 1) failures.push(`print: overflow ${printOverflow}px`);
   await compare.close();
+
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 1440, height: 900 },
+  ]) {
+    const report = await browser.newPage({ viewport });
+    const reportErrors = [];
+    const reportExternal = [];
+    report.on("console", (message) => {
+      if (message.type() === "error") reportErrors.push(message.text());
+    });
+    report.on("pageerror", (error) => reportErrors.push(error.message));
+    report.on("request", (request) => {
+      const url = new URL(request.url());
+      if (url.origin !== baseUrl) reportExternal.push(request.url());
+    });
+    await report.goto(`${baseUrl}/VEGO-AI-Experiment-Benchmark-Report.html#matrix`, {
+      waitUntil: "networkidle",
+    });
+    const overflow = await report.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    if (overflow > 1) failures.push(`benchmark report ${viewport.width}px: overflow ${overflow}px`);
+    if ((await report.locator("#records tr").count()) !== 41) {
+      failures.push(`benchmark report ${viewport.width}px: missing experiment rows`);
+    }
+    await report.locator("#search").fill("EXP-036");
+    if ((await report.locator("#records tr:visible").count()) !== 1) {
+      failures.push(`benchmark report ${viewport.width}px: search did not isolate EXP-036`);
+    }
+    if (reportErrors.length) failures.push(`benchmark report ${viewport.width}px: console errors: ${reportErrors.join(" | ")}`);
+    if (reportExternal.length) failures.push(`benchmark report ${viewport.width}px: external requests: ${reportExternal.join(" | ")}`);
+    await report.close();
+  }
 } finally {
   await browser.close();
   await new Promise((resolve) => server.close(resolve));

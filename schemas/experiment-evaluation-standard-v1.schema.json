@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-evaluation-standard-v1.schema.json",
+  "title": "ExperimentEvaluationStandard-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "purpose",
+    "scoringRule",
+    "baselineLadder",
+    "dimensions",
+    "evidenceGates",
+    "statisticalRules",
+    "trackParameters",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentEvaluationStandard-v1"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "purpose": {"type": "string", "minLength": 1},
+    "scoringRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["globalScoreAllowed", "method", "notApplicableTreatment"],
+      "properties": {
+        "globalScoreAllowed": {"const": false},
+        "method": {"type": "string", "minLength": 1},
+        "notApplicableTreatment": {"type": "string", "minLength": 1}
+      }
+    },
+    "baselineLadder": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "purpose", "eligibility", "currentState"],
+        "properties": {
+          "id": {"enum": ["B0", "B1", "B2", "B3", "B4", "B5"]},
+          "title": {"type": "string", "minLength": 1},
+          "purpose": {"type": "string", "minLength": 1},
+          "eligibility": {"type": "string", "minLength": 1},
+          "currentState": {
+            "enum": ["available", "mechanism_only", "not_eligible", "not_started"]
+          }
+        }
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "question", "criteria", "passRule"],
+        "properties": {
+          "id": {
+            "enum": [
+              "protocol",
+              "data",
+              "execution",
+              "reproducibility",
+              "safety",
+              "comparability",
+              "empiricalValidity"
+            ]
+          },
+          "title": {"type": "string", "minLength": 1},
+          "question": {"type": "string", "minLength": 1},
+          "criteria": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "passRule": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "evidenceGates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "condition", "effect"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^GATE-[A-Z0-9-]+$"},
+          "condition": {"type": "string", "minLength": 1},
+          "effect": {"type": "string", "minLength": 1}
+        }
+      },
+      "minItems": 5
+    },
+    "statisticalRules": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 5,
+      "uniqueItems": true
+    },
+    "trackParameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "track",
+          "unitOfAnalysis",
+          "primaryMetrics",
+          "guardrails",
+          "minimumEvidence"
+        ],
+        "properties": {
+          "track": {"type": "string", "minLength": 1},
+          "unitOfAnalysis": {"type": "string", "minLength": 1},
+          "primaryMetrics": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "guardrails": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "minimumEvidence": {"type": "string", "minLength": 1}
+        }
+      },
+      "minItems": 6
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}

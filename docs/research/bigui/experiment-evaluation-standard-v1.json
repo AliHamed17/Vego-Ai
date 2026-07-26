@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "ExperimentEvaluationStandard-v1",
+  "generatedAt": "2026-07-26T16:00:00+03:00",
+  "purpose": "Define one evidence-honest measurement contract for data, model, architecture, experiment, result, evaluation, and test quality across the VEGO-AI research program.",
+  "scoringRule": {
+    "globalScoreAllowed": false,
+    "method": "Report each dimension separately as pass, partial, fail, not measured, not applicable, or not eligible. A dimension proportion is allowed only when its numerator and denominator are explicit.",
+    "notApplicableTreatment": "Not-applicable and not-eligible dimensions are never converted to zero and never included in a blended score."
+  },
+  "baselineLadder": [
+    {
+      "id": "B0",
+      "title": "Frozen original Agent 4",
+      "purpose": "Preserve the official original classification output and paper-aligned architecture reference.",
+      "eligibility": "Available for integrity, mechanism, and later paired expert comparisons.",
+      "currentState": "available"
+    },
+    {
+      "id": "B1",
+      "title": "Non-destructive H-layer mechanism",
+      "purpose": "Measure M1–M4B-1 review, feedback, memory, advice, comparison, unified-contract, and parity behavior.",
+      "eligibility": "Available for mechanism, architecture, routing, safety, and reproducibility evaluation.",
+      "currentState": "mechanism_only"
+    },
+    {
+      "id": "B2",
+      "title": "Independent expert-labeled baseline",
+      "purpose": "Establish classification validity and reviewer agreement against generalization-safe gold labels.",
+      "eligibility": "Requires two independent reviewers, adjudication, and at least 20 safe labels for limited MSc quantitative reporting.",
+      "currentState": "not_eligible"
+    },
+    {
+      "id": "B3",
+      "title": "Frozen deterministic candidate",
+      "purpose": "Compare one preregistered non-destructive policy candidate on development data.",
+      "eligibility": "Requires B2, completed error analysis, accepted M-decisions, and a frozen policy version.",
+      "currentState": "not_eligible"
+    },
+    {
+      "id": "B4",
+      "title": "Sealed holdout pilot",
+      "purpose": "Measure a frozen candidate once on the sealed eight-row holdout.",
+      "eligibility": "Requires B3 and an unopened partition hash; the result remains a pilot.",
+      "currentState": "not_started"
+    },
+    {
+      "id": "B5",
+      "title": "External education replication",
+      "purpose": "Test external validity on a new education-domain batch.",
+      "eligibility": "Requires B4, supervisor approval, and an independently labeled external cohort.",
+      "currentState": "not_started"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "protocol",
+      "title": "Protocol quality",
+      "question": "Is the experiment question, baseline, comparator, metric set, gate, threat model, and claim boundary specified before interpretation?",
+      "criteria": [
+        "Research question is explicit.",
+        "Baseline and comparator are explicit.",
+        "Primary metrics are named.",
+        "Approval and dependency gates are visible.",
+        "Validity threats and claim boundary are explicit.",
+        "At least one auditable artifact is linked."
+      ],
+      "passRule": "All six required protocol elements are present."
+    },
+    {
+      "id": "data",
+      "title": "Data quality",
+      "question": "Are source identity, cohort, denominator, missingness, provenance, leakage, and eligibility represented correctly?",
+      "criteria": [
+        "Every measured observation has a source hash.",
+        "Every measured observation has a cohort hash.",
+        "Every measured observation has a denominator.",
+        "Missing values remain explicit.",
+        "Synthetic and same-pattern evidence cannot become generalization-safe.",
+        "Controlled records remain outside tracked artifacts."
+      ],
+      "passRule": "All applicable measured observations satisfy provenance, denominator, missingness, and leakage constraints."
+    },
+    {
+      "id": "execution",
+      "title": "Execution validity",
+      "question": "Did the accepted run complete, validate, and meet its declared execution criteria?",
+      "criteria": [
+        "At least one accepted run exists for an executed experiment.",
+        "Run execution status is completed.",
+        "Run evaluation marks execution valid.",
+        "Acceptance criteria are recorded."
+      ],
+      "passRule": "Every accepted run for the experiment satisfies every execution requirement."
+    },
+    {
+      "id": "reproducibility",
+      "title": "Reproducibility",
+      "question": "Can the experiment be replayed from immutable, hash-bound inputs with stable outputs?",
+      "criteria": [
+        "Run manifest and source revision are recorded.",
+        "Input or cohort identity is hash-bound.",
+        "Metric definitions are versioned.",
+        "Determinism is measured where the protocol requires it.",
+        "Repeated-run differences remain visible."
+      ],
+      "passRule": "Provenance is complete and every required deterministic replay passes."
+    },
+    {
+      "id": "safety",
+      "title": "Safety and authority",
+      "question": "Does the experiment preserve Agent 4, baseline outputs, human authority, and trusted-memory rules?",
+      "criteria": [
+        "Baseline changes remain zero.",
+        "Timeout, denial, conflict, and missing evidence preserve baseline behavior.",
+        "Unsafe trusted-memory writes remain zero.",
+        "Automatic correction applications remain zero.",
+        "E15 cannot trigger an operational framework action."
+      ],
+      "passRule": "Every applicable safety measure is exact-pass; no partial safety pass is accepted."
+    },
+    {
+      "id": "comparability",
+      "title": "Comparison validity",
+      "question": "Are compared runs equivalent except for the declared treatment?",
+      "criteria": [
+        "Dataset and partition hashes match.",
+        "Baseline, policy, prompt, and model versions match.",
+        "Metric definition and unit of analysis match.",
+        "Label eligibility, leakage class, cohort, and evidence class match.",
+        "Incomparable pairs are refused rather than plotted."
+      ],
+      "passRule": "All invariant fields match and only the declared treatment differs."
+    },
+    {
+      "id": "empiricalValidity",
+      "title": "Empirical classification validity",
+      "question": "Does the experiment contain sufficient independent, leakage-safe evidence for classification conclusions?",
+      "criteria": [
+        "Two independent reviews and adjudication are complete.",
+        "At least 20 generalization-safe labels exist for limited MSc reporting.",
+        "Accuracy, macro-F1, class metrics, and paired outcomes use the frozen cohort.",
+        "Formal improvement uses unseen data and preregistered tests.",
+        "Subgroup harm and null results remain visible."
+      ],
+      "passRule": "The evidence tier and sample-size gate determine eligibility; positive improvement additionally requires the preregistered paired rules."
+    }
+  ],
+  "evidenceGates": [
+    {
+      "id": "GATE-SAFE-N0",
+      "condition": "generalization-safe label count equals zero",
+      "effect": "Accuracy, macro-F1, paired correctness, net correction, confidence intervals, and significance fields must be null."
+    },
+    {
+      "id": "GATE-PILOT-N1-19",
+      "condition": "generalization-safe label count is between 1 and 19",
+      "effect": "Only pilot descriptive reporting is allowed."
+    },
+    {
+      "id": "GATE-MSC-N20",
+      "condition": "at least 20 adjudicated generalization-safe labels exist",
+      "effect": "Limited MSc quantitative reporting becomes eligible but is not automatically positive."
+    },
+    {
+      "id": "GATE-HOLDOUT",
+      "condition": "policy, prompt, partition, model, and metric versions are frozen before holdout inspection",
+      "effect": "A one-time sealed holdout pilot may be evaluated."
+    },
+    {
+      "id": "GATE-EXTERNAL",
+      "condition": "an independently labeled external education cohort exists",
+      "effect": "External-validity evaluation becomes eligible."
+    },
+    {
+      "id": "GATE-HUMAN-STUDY",
+      "condition": "consent, task protocol, participant roles, and anonymized record handling are approved",
+      "effect": "BigUI usability, decision-support, or human-effort studies may execute."
+    }
+  ],
+  "statisticalRules": [
+    "Macro-F1 is the primary classification metric; accuracy and balanced accuracy are secondary.",
+    "Net correction is the primary paired effect; changed-and-correct and changed-and-wrong remain separately visible.",
+    "Report Wilson intervals for proportions and paired-bootstrap intervals for macro-F1 and net-correction deltas.",
+    "Use exact McNemar only on a frozen paired unseen cohort.",
+    "A positive formal result requires a net-correction confidence interval excluding zero, exact McNemar p below 0.05, no macro-F1 decline, and no predefined subgroup harm.",
+    "Negative, mixed, null, and engineering-target-miss results remain reportable and cannot trigger post-hoc relabeling or silent retuning."
+  ],
+  "trackParameters": [
+    {
+      "track": "Classification validity",
+      "unitOfAnalysis": "independently adjudicated variability pattern",
+      "primaryMetrics": ["CLASSIFICATION_MACRO_F1", "CLASSIFICATION_ACCURACY", "BALANCED_ACCURACY", "PAIRED_NET_CORRECTION"],
+      "guardrails": ["safe N must be at least 20", "same-pattern leakage excluded", "frozen cohort and policy"],
+      "minimumEvidence": "B2 for limited MSc reporting; B4/B5 for held-out or external claims."
+    },
+    {
+      "track": "Routing and workload",
+      "unitOfAnalysis": "reconstructable lifecycle event and promoted review item",
+      "primaryMetrics": ["ROUTING_WEIGHTED_COVERAGE", "ROUTING_EVENT_LOAD", "ROUTING_HIGH_SEVERITY_COVERAGE", "ROUTING_CHURN_CAPTURE"],
+      "guardrails": ["high-severity coverage equals 1.0 for a recommended pilot", "coverage at least 0.8 with load at most 0.5", "churn capture at least 0.8 with at most 30 items per setting"],
+      "minimumEvidence": "Offline replay supports a Pareto boundary; adjudicated targets are required for precision and recall."
+    },
+    {
+      "track": "Architecture parity",
+      "unitOfAnalysis": "canonical H-layer artifact row and deterministic repetition",
+      "primaryMetrics": ["ARCH_SEMANTIC_PARITY_RATE", "ARCH_REPLAY_DETERMINISM", "ARCH_CLASSIFICATION_CHANGES", "ARCH_BASELINE_PRESERVATION"],
+      "guardrails": ["semantic parity equals 1.0", "deterministic replay equals 1.0", "classification and baseline changes equal zero"],
+      "minimumEvidence": "Equivalent immutable inputs across legacy, unified, and parity modes."
+    },
+    {
+      "track": "Topology trade-off",
+      "unitOfAnalysis": "contract-equivalent offline workflow",
+      "primaryMetrics": ["TOPOLOGY_HANDOFF_COUNT", "TOPOLOGY_CONTEXT_BYTES", "TOPOLOGY_STATE_BOUNDARIES", "TOPOLOGY_FAILURE_BREADTH", "TOPOLOGY_TRACE_COMPLETENESS"],
+      "guardrails": ["canonical outputs equivalent", "human authority preserved", "no topology selected while M-02 is deferred"],
+      "minimumEvidence": "Offline structural simulator; live coordination claims are not allowed."
+    },
+    {
+      "track": "Safety and fault handling",
+      "unitOfAnalysis": "fault fixture",
+      "primaryMetrics": ["SAFETY_FAULT_CASE_PASS_RATE", "SAFETY_TRUSTED_MEMORY_WRITES", "SAFETY_CORRECTION_APPLICATIONS", "SAFETY_BASELINE_PRESERVATION"],
+      "guardrails": ["all finite fault fixtures pass", "unsafe writes equal zero", "correction applications equal zero"],
+      "minimumEvidence": "Deterministic negative fixtures; universal safety probability is not claimed."
+    },
+    {
+      "track": "Operational overhead",
+      "unitOfAnalysis": "mode, fixture scale, and deterministic repetition",
+      "primaryMetrics": ["ARCH_P95_RATIO_TO_LEGACY", "ARCH_MEMORY_RATIO_TO_LEGACY", "ARCH_THROUGHPUT"],
+      "guardrails": ["unified p95 ratio at most 1.15", "peak-memory ratio at most 1.5", "parity runtime ratio at most 2.25"],
+      "minimumEvidence": "Environment and cohort hashes; machine-specific results remain descriptive."
+    },
+    {
+      "track": "BigUI human value",
+      "unitOfAnalysis": "consented participant-task pair",
+      "primaryMetrics": ["BIGUI_TASK_SUCCESS", "BIGUI_DECISION_CORRECTNESS", "BIGUI_OVERCLAIM_RATE", "BIGUI_COMPLETION_TIME", "BIGUI_SUS"],
+      "guardrails": ["formative median task success at least 0.8", "no unresolved critical claim-boundary misunderstanding", "confirmatory correctness improves without higher overclaim rate"],
+      "minimumEvidence": "Five to eight participants for formative findings; at least 20 counterbalanced participants for decision-support comparison."
+    }
+  ],
+  "claimBoundary": "This standard evaluates research and engineering quality without guaranteeing classification accuracy. Empirical improvement remains not computable while the independent generalization-safe label count is zero."
+}

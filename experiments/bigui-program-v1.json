@@ -18,7 +18,9 @@
       "metricDefinitions": [
         "CATALOG_REFERENCE_RESOLUTION",
         "CATALOG_SOURCE_HASH_AGREEMENT",
-        "CATALOG_METRIC_REDERIVATION"
+        "CATALOG_METRIC_REDERIVATION",
+        "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+        "BIGUI_DEFINITION_ID_UNIQUENESS"
       ],
       "claimBoundary": "Source-fidelity evidence only; it does not establish classification validity or human decision value.",
       "validityThreats": ["A passing tracked-tier audit cannot inspect private raw records."],
@@ -92,7 +94,7 @@
       "researchSpace": "Cross-program",
       "researchTrack": "Architecture validation",
       "researchQuestion": "Are legacy, unified, and parity modes semantically equivalent over the current controlled H-layer artifacts?",
-      "status": "Offline design",
+      "status": "Offline evidence",
       "evidenceClass": "offline",
       "architectureTargets": ["legacy", "unified", "parity"],
       "prerequisites": ["Unified runtime contracts available", "Controlled artifacts present locally"],
@@ -100,10 +102,10 @@
       "baseline": "Legacy M1–M4B-1 output",
       "comparator": "Unified and fail-closed parity output",
       "metricDefinitions": [
-        "ARCH_OUTPUT_PARITY",
+        "ARCH_SEMANTIC_PARITY_RATE",
         "ARCH_REPLAY_DETERMINISM",
         "ARCH_BASELINE_PRESERVATION",
-        "ARCH_MISMATCH_PUBLICATION"
+        "ARCH_CLASSIFICATION_CHANGES"
       ],
       "claimBoundary": "Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy.",
       "validityThreats": ["Current corpus may not cover all future malformed or rare records."],
@@ -120,7 +122,7 @@
       "researchSpace": "Cross-program",
       "researchTrack": "Architecture validation",
       "researchQuestion": "What operational trade-offs appear among topology A, B, and C under contract-equivalent work?",
-      "status": "Offline design",
+      "status": "Offline evidence",
       "evidenceClass": "offline",
       "architectureTargets": ["topology-a", "topology-b", "topology-c"],
       "prerequisites": ["Canonical H-layer contracts available"],
@@ -129,10 +131,11 @@
       "comparator": "Topology B and topology C offline simulations",
       "metricDefinitions": [
         "TOPOLOGY_HANDOFF_COUNT",
-        "TOPOLOGY_CONTEXT_DUPLICATION",
+        "TOPOLOGY_CONTEXT_BYTES",
         "TOPOLOGY_STATE_BOUNDARIES",
         "TOPOLOGY_FAILURE_BREADTH",
-        "TOPOLOGY_TRACE_COMPLETENESS"
+        "TOPOLOGY_TRACE_COMPLETENESS",
+        "TOPOLOGY_P95_LATENCY_MS"
       ],
       "claimBoundary": "The result is a Pareto comparison and cannot approve a production topology.",
       "validityThreats": ["Offline structural simulation does not measure live LLM coordination."],
@@ -149,7 +152,7 @@
       "researchSpace": "Cross-program",
       "researchTrack": "Safety validation",
       "researchQuestion": "Do malformed, duplicate, missing, late, conflicting, and timed-out inputs fail safely?",
-      "status": "Offline design",
+      "status": "Offline evidence",
       "evidenceClass": "offline",
       "architectureTargets": ["unified", "parity"],
       "prerequisites": ["Authority state machine and canonical validators available"],
@@ -157,6 +160,8 @@
       "baseline": "Valid canonical input",
       "comparator": "Injected invalid and conflicting cases",
       "metricDefinitions": [
+        "SAFETY_FAULT_CASE_PASS_RATE",
+        "SAFETY_FAULT_OUTCOME_COUNT",
         "SAFETY_BASELINE_PRESERVATION",
         "SAFETY_TRUSTED_MEMORY_WRITES",
         "SAFETY_CORRECTION_APPLICATIONS",
@@ -177,7 +182,7 @@
       "researchSpace": "Cross-program",
       "researchTrack": "Operational evaluation",
       "researchQuestion": "What operational overhead does the unified architecture introduce on current and synthetic stress fixtures?",
-      "status": "Offline design",
+      "status": "Offline evidence",
       "evidenceClass": "offline",
       "architectureTargets": ["legacy", "unified", "parity"],
       "prerequisites": ["EXP-033 semantic parity passes"],
@@ -185,11 +190,12 @@
       "baseline": "Legacy runtime timing and resource profile",
       "comparator": "Unified and parity runtime profiles",
       "metricDefinitions": [
-        "ARCH_P50_LATENCY",
-        "ARCH_P95_LATENCY",
-        "ARCH_THROUGHPUT",
-        "ARCH_PEAK_MEMORY",
-        "ARCH_REPLAY_DETERMINISM"
+        "ARCH_P50_LATENCY_MS",
+        "ARCH_P95_LATENCY_MS",
+        "ARCH_THROUGHPUT_RPS",
+        "ARCH_PEAK_MEMORY_BYTES",
+        "ARCH_MEMORY_RATIO_TO_LEGACY",
+        "ARCH_P95_RATIO_TO_LEGACY"
       ],
       "claimBoundary": "Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.",
       "validityThreats": ["Machine-specific timing", "Synthetic replication may not resemble future corpora"],

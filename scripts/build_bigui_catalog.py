@@ -59,6 +59,20 @@ BASELINE_COMPARISON = (
     / "bigui"
     / "baseline-comparison-results-v1.json"
 )
+EVALUATION_STANDARD = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "experiment-evaluation-standard-v1.json"
+)
+EXPERIMENT_BENCHMARK = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "experiment-benchmark-snapshot-v1.json"
+)
 CATALOG_SCHEMA = ROOT / "schemas" / "experiment-catalog-snapshot-v1.schema.json"
 METRIC_SCHEMA = ROOT / "schemas" / "metric-observation-v1.schema.json"
 RUN_SCHEMA = ROOT / "schemas" / "experiment-run-envelope-v1.schema.json"
@@ -68,6 +82,12 @@ PAPER_BASELINE_SCHEMA = (
 )
 BASELINE_COMPARISON_SCHEMA = (
     ROOT / "schemas" / "baseline-comparison-results-v1.schema.json"
+)
+EVALUATION_STANDARD_SCHEMA = (
+    ROOT / "schemas" / "experiment-evaluation-standard-v1.schema.json"
+)
+EXPERIMENT_BENCHMARK_SCHEMA = (
+    ROOT / "schemas" / "experiment-benchmark-snapshot-v1.schema.json"
 )
 METRIC_DEFINITION_V2_SCHEMA = ROOT / "schemas" / "metric-definition-v1.schema.json"
 METRIC_V2_SCHEMA = ROOT / "schemas" / "metric-observation-v2.schema.json"
@@ -256,20 +276,111 @@ def architecture_targets(number: int) -> list[str]:
 
 
 def experiment_metrics(number: int) -> list[str]:
-    if number == 0:
-        return ["BASELINE_HASH_PRESERVATION"]
-    if number == 1:
-        return ["MECH_COMPARISON_ROWS", "SAFETY_CLASSIFICATION_CHANGES"]
-    if number in {2, 3, 5, 11, 12, 19, 20, 21, 23, 24, 25}:
+    measured = {
+        0: ["BASELINE_HASH_PRESERVATION"],
+        1: [
+            "MECH_ADVICE_STRENGTH_COUNT",
+            "MECH_COMPARISON_ROWS",
+            "MECH_REVIEW_AFTER_MEMORY",
+            "SAFETY_CLASSIFICATION_CHANGES",
+        ],
+        2: [
+            "LABEL_CANDIDATES",
+            "LABEL_EXISTING_SAME_PATTERN",
+            "LABEL_RECOMMENDED_ROWS",
+        ],
+        3: [
+            "CLASSIFICATION_ACCURACY_B0",
+            "CLASSIFICATION_ACCURACY_B1",
+            "CLASSIFICATION_MACRO_F1_B0",
+            "CLASSIFICATION_MACRO_F1_B1",
+            "PAIRED_NET_CORRECTION",
+        ],
+        4: ["SYNTHETIC_POLICY_SAFE_DELTA_PP"],
+        5: [
+            "LABEL_ADJUDICATED",
+            "LABEL_GENERALIZATION_SAFE",
+            "LABEL_REVIEWER2",
+            "LABEL_SUPPLIED",
+            "LABEL_VALID",
+        ],
+        6: [
+            "EVENT_EARLY_STAGE",
+            "EVENT_SEV2PLUS",
+            "EVENT_TOTAL_RECONSTRUCTED",
+            "EVENT_UNCERTAINTY_MARKED",
+            "MECH_QUEUE_TO_EVENT_COUNT_RATIO",
+            "MECH_REVIEW_QUEUE_ITEMS",
+        ],
+        7: [
+            "ROUTING_BUNDLING_REDUCTION",
+            "ROUTING_EVENT_LOAD",
+            "ROUTING_HIGH_SEVERITY_COVERAGE",
+            "ROUTING_TRANSACTION_LOAD",
+            "ROUTING_WEIGHTED_COVERAGE",
+        ],
+        8: ["TRIGGER_CAP_CAPTURE", "TRIGGER_MAX_ADDED_LOAD"],
+        9: [
+            "HVERIFY_DETECTION_RECALL",
+            "HVERIFY_FALSE_NEGATIVES",
+            "HVERIFY_FALSE_POSITIVES",
+            "HVERIFY_FINAL_STATUS_COUNT",
+            "HVERIFY_SPECIFICITY",
+            "HVERIFY_TRUE_NEGATIVES",
+            "HVERIFY_TRUE_POSITIVES",
+        ],
+        10: [
+            "CONVERGENCE_ADJUDICATION_RATE",
+            "CONVERGENCE_NO_CONFLICT_RATE",
+            "CONVERGENCE_RESOLVED_RATE",
+            "CONVERGENCE_TIMEOUT_RATE",
+        ],
+        12: [
+            "CLASSIFICATION_ACCURACY_B0",
+            "CLASSIFICATION_ACCURACY_B1",
+            "CLASSIFICATION_MACRO_F1_B0",
+            "CLASSIFICATION_MACRO_F1_B1",
+            "EVALUATOR_CROSSCHECK_PASS",
+            "LABEL_GENERALIZATION_SAFE",
+            "LABEL_SUPPLIED",
+            "PAIRED_NET_CORRECTION",
+        ],
+        13: [
+            "CONTRACT_E15_PARKED",
+            "CONTRACT_EXPLICIT_GAPS",
+            "CONTRACT_LINEAGE_COMPLETE_RATE",
+            "CONTRACT_SCHEMA_VALID_RATE",
+        ],
+        14: ["REPLAY_DUPLICATE_REVIEW_ITEMS", "REPLAY_IDENTICAL_RUNS"],
+        15: [
+            "WORKLOAD_BUNDLE_COLLISIONS",
+            "WORKLOAD_DEFERRED_RECOVERY",
+            "WORKLOAD_HIGH_SEVERITY_COVERAGE",
+            "WORKLOAD_SELECTED_LOAD",
+        ],
+        16: [
+            "AUTHORITY_CORRECTION_APPLICATIONS",
+            "AUTHORITY_SAFE_CASE_RATE",
+            "AUTHORITY_TRUSTED_MEMORY_WRITES",
+        ],
+        17: [
+            "VERIFY_EXPECTED_OUTCOME_RATE",
+            "VERIFY_SOURCE_FAMILY_COUNT",
+        ],
+        18: [
+            "PROPOSAL_APPLICATIONS",
+            "PROPOSAL_DIFF_REPRODUCIBLE",
+            "PROPOSAL_SOURCE_HASH_CHANGED",
+        ],
+    }
+    if number in measured:
+        return measured[number]
+    if number in {11, 19, 20, 21, 23, 24, 25}:
         return [
             "CLASSIFICATION_ACCURACY_B0",
             "CLASSIFICATION_MACRO_F1_B0",
             "PAIRED_NET_CORRECTION",
         ]
-    if number in {6, 7, 8, 15}:
-        return ["ROUTING_WORKLOAD_RATE", "ROUTING_WEIGHTED_COVERAGE"]
-    if number in {9, 10, 16, 17, 18}:
-        return ["SAFETY_BASELINE_PRESERVATION"]
     if number == 22:
         return ["ROUTING_PRECISION", "ROUTING_RECALL", "RETRIEVAL_TOP1_RELEVANCE"]
     if number == 26:
@@ -921,6 +1032,18 @@ def sources() -> list[dict[str, str]]:
             "sha256": sha256(BASELINE_COMPARISON),
             "role": "EXP-037–EXP-040 baseline, comparison, and thesis-readiness results",
         },
+        {
+            "id": "experiment-evaluation-standard",
+            "path": EVALUATION_STANDARD.relative_to(ROOT).as_posix(),
+            "sha256": sha256(EVALUATION_STANDARD),
+            "role": "Canonical evaluation dimensions, baselines, parameters, gates, and statistical rules",
+        },
+        {
+            "id": "experiment-benchmark",
+            "path": EXPERIMENT_BENCHMARK.relative_to(ROOT).as_posix(),
+            "sha256": sha256(EXPERIMENT_BENCHMARK),
+            "role": "All-experiment evaluation records, program analytics, findings, and recommendations",
+        },
     ]
 
 
@@ -937,6 +1060,7 @@ def recorded_source_revision() -> str | None:
 def build_catalog(
     tier: str = "tracked_sanitized",
     source_revision: str | None = None,
+    validate_benchmark: bool = True,
 ) -> dict[str, Any]:
     registry = parse_registry()
     program = load_json(PROGRAM)
@@ -947,6 +1071,8 @@ def build_catalog(
     architecture_fixtures = load_json(ARCHITECTURE_FIXTURES)
     paper_baseline = load_json(PAPER_BASELINE)
     baseline_comparison = load_json(BASELINE_COMPARISON)
+    evaluation_standard = load_json(EVALUATION_STANDARD)
+    experiment_benchmark = load_json(EXPERIMENT_BENCHMARK)
     custom = {item["id"]: item for item in bigui_program["experiments"]}
     source_revision = (
         source_revision or recorded_source_revision() or program["sourceRevision"]
@@ -1109,6 +1235,12 @@ def build_catalog(
         datetime.fromisoformat(program["generatedAt"].replace("Z", "+00:00")),
         datetime.fromisoformat(thesis["generatedAt"].replace("Z", "+00:00")),
         datetime.fromisoformat(bigui_program["generatedAt"].replace("Z", "+00:00")),
+        datetime.fromisoformat(
+            evaluation_standard["generatedAt"].replace("Z", "+00:00")
+        ),
+        datetime.fromisoformat(
+            experiment_benchmark["generatedAt"].replace("Z", "+00:00")
+        ),
     ).isoformat()
     catalog = {
         "schemaVersion": "ExperimentCatalogSnapshot-v1",
@@ -1132,6 +1264,8 @@ def build_catalog(
         "architectureVariants": architecture_variants(),
         "paperBaseline": paper_baseline,
         "baselineComparisonResults": baseline_comparison,
+        "evaluationStandard": evaluation_standard,
+        "experimentBenchmark": experiment_benchmark,
         "experiments": experiments,
         "metricObservations": metrics,
         "metricDefinitionsV2": sorted(
@@ -1190,11 +1324,15 @@ def build_catalog(
         },
         "sources": sources(),
     }
-    validate_catalog(catalog)
+    validate_catalog(catalog, validate_benchmark=validate_benchmark)
     return catalog
 
 
-def validate_catalog(catalog: dict[str, Any]) -> None:
+def validate_catalog(
+    catalog: dict[str, Any],
+    *,
+    validate_benchmark: bool = True,
+) -> None:
     format_checker = jsonschema.FormatChecker()
     jsonschema.Draft202012Validator(
         load_json(CATALOG_SCHEMA), format_checker=format_checker
@@ -1233,6 +1371,37 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     jsonschema.Draft202012Validator(
         load_json(BASELINE_COMPARISON_SCHEMA), format_checker=format_checker
     ).validate(catalog["baselineComparisonResults"])
+    jsonschema.Draft202012Validator(
+        load_json(EVALUATION_STANDARD_SCHEMA),
+        format_checker=format_checker,
+    ).validate(catalog["evaluationStandard"])
+    if validate_benchmark:
+        jsonschema.Draft202012Validator(
+            load_json(EXPERIMENT_BENCHMARK_SCHEMA),
+            format_checker=format_checker,
+        ).validate(catalog["experimentBenchmark"])
+
+    core_projection = {
+        key: catalog[key]
+        for key in (
+            "programState",
+            "experiments",
+            "metricDefinitionsV2",
+            "metricObservationsV2",
+            "comparisonRules",
+            "acceptedRunBundles",
+            "paperBaseline",
+            "baselineComparisonResults",
+        )
+    }
+    if (
+        validate_benchmark
+        and canonical_sha256(core_projection)
+        != catalog["experimentBenchmark"]["inputProjectionSha256"]
+    ):
+        raise ValueError(
+            "experiment benchmark is stale against the catalog core projection"
+        )
 
     ids = [item["id"] for item in catalog["experiments"]]
     expected = [f"EXP-{index:03d}" for index in range(41)]

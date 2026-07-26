@@ -144,6 +144,8 @@ Invoke-Gate "BigUI catalog, architecture fixtures, and observatory freshness" {
     if ($LASTEXITCODE -ne 0) { throw "BigUI baseline comparison results are stale" }
     uv run python scripts/build_bigui_run_store.py --check
     if ($LASTEXITCODE -ne 0) { throw "BigUI accepted run store is stale" }
+    uv run python scripts/build_experiment_benchmark.py --check
+    if ($LASTEXITCODE -ne 0) { throw "all-experiment benchmark or analytics report is stale" }
     uv run python scripts/build_bigui_catalog.py --check
     if ($LASTEXITCODE -ne 0) { throw "BigUI experiment catalog is stale" }
     uv run python scripts/build_bigui.py --check

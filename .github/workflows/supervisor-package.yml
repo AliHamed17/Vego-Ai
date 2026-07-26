@@ -90,6 +90,7 @@ jobs:
           uv run python scripts/build_bigui_architecture_snapshot.py --check
           uv run python scripts/run_bigui_comparison_experiments.py --check
           uv run python scripts/build_bigui_run_store.py --check
+          uv run python scripts/build_experiment_benchmark.py --check
           uv run python scripts/build_bigui_catalog.py --check
           uv run python scripts/build_bigui.py --check
           uv run python scripts/run_bigui_architecture_experiments.py --check

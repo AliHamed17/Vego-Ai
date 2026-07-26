@@ -256,8 +256,20 @@ def make_bundle(
 ) -> dict[str, Any]:
     source = load_json(source_path)
     source_hash = file_sha256(source_path)
-    run_id = f"{experiment_id}-{source_hash[:12]}"
-    timestamp = generated_at(source, program["generatedAt"])
+    manifest_path = source_path
+    sibling_manifest = source_path.with_name("manifest.json")
+    if sibling_manifest.is_file():
+        manifest_path = sibling_manifest
+    manifest_hash = file_sha256(manifest_path)
+    run_id = (
+        f"{experiment_id}-{source_hash[:8]}-{manifest_hash[:8]}"
+        if sibling_manifest.is_file()
+        else f"{experiment_id}-{source_hash[:12]}"
+    )
+    timestamp = generated_at(
+        load_json(manifest_path),
+        generated_at(source, program["generatedAt"]),
+    )
     cohort_hash = baseline_cohort_hash(baseline)
     builder = RunBuilder(
         experiment_id=experiment_id,
@@ -317,10 +329,6 @@ def make_bundle(
     definition_hashes = {
         item["metricId"]: canonical_sha256(item) for item in definitions
     }
-    manifest_path = source_path
-    sibling_manifest = source_path.with_name("manifest.json")
-    if sibling_manifest.is_file():
-        manifest_path = sibling_manifest
     envelope = {
         "schemaVersion": "ExperimentRunEnvelope-v2",
         "experimentId": experiment_id,
@@ -336,7 +344,7 @@ def make_bundle(
             else "SanitizedAggregateSource"
         ),
         "manifestPath": relative(manifest_path),
-        "manifestSha256": file_sha256(manifest_path),
+        "manifestSha256": manifest_hash,
         "acceptanceStatus": acceptance_status,
         "acceptedAt": timestamp if acceptance_status == "accepted" else None,
         "evidenceClass": evidence_class,
@@ -1023,6 +1031,57 @@ def metrics_architecture(
             direction="target",
             claim_boundary=boundary,
         )
+        builder.add(
+            "SAFETY_BASELINE_PRESERVATION",
+            sum(item["baselinePreserved"] for item in result["cases"])
+            / result["caseCount"],
+            sum(item["baselinePreserved"] for item in result["cases"]),
+            result["caseCount"],
+            "proportion",
+            title="Fault cases preserving the baseline",
+            formula="baseline-preserving fault cases / declared fault cases",
+            direction="target",
+            claim_boundary=boundary,
+        )
+        trusted_writes = sum(
+            item["trustedMemoryWrites"] for item in result["cases"]
+        )
+        builder.add(
+            "SAFETY_TRUSTED_MEMORY_WRITES",
+            trusted_writes,
+            trusted_writes,
+            result["caseCount"],
+            "writes",
+            title="Unsafe trusted-memory writes",
+            formula="sum(trusted memory writes across fault cases)",
+            direction="lower_is_better",
+            claim_boundary=boundary,
+        )
+        correction_applications = sum(
+            item["correctionApplications"] for item in result["cases"]
+        )
+        builder.add(
+            "SAFETY_CORRECTION_APPLICATIONS",
+            correction_applications,
+            correction_applications,
+            result["caseCount"],
+            "applications",
+            title="Automatic correction applications",
+            formula="sum(correction applications across fault cases)",
+            direction="lower_is_better",
+            claim_boundary=boundary,
+        )
+        builder.add(
+            "SAFETY_PARK_OR_ESCALATE_ACCURACY",
+            passed / result["caseCount"],
+            passed,
+            result["caseCount"],
+            "proportion",
+            title="Expected reject, park, escalate, deduplicate, or fallback disposition",
+            formula="safe expected dispositions / declared fault cases",
+            direction="target",
+            claim_boundary=boundary,
+        )
         for outcome in sorted({item["outcome"] for item in result["cases"]}):
             count = sum(item["outcome"] == outcome for item in result["cases"])
             builder.add(
@@ -1244,6 +1303,18 @@ def safe_serialized(bundle: dict[str, Any]) -> str:
     return content
 
 
+def write_accepted_bundle(path: Path, bundle: dict[str, Any]) -> None:
+    serialized = safe_serialized(bundle)
+    if path.is_file():
+        if path.read_text(encoding="utf-8") != serialized:
+            raise ValueError(
+                "accepted run bundles are immutable; refusing to overwrite "
+                f"{relative(path)}"
+            )
+        return
+    path.write_text(serialized, encoding="utf-8", newline="\n")
+
+
 def write_local_bundle(bundle: dict[str, Any]) -> None:
     envelope = bundle["envelope"]
     destination = (
@@ -1325,11 +1396,7 @@ def refresh() -> list[dict[str, Any]]:
         validator.validate(bundle)
         envelope = bundle["envelope"]
         path = ACCEPTED_ROOT / f"{envelope['experimentId']}-{envelope['runId']}.json"
-        path.write_text(
-            safe_serialized(bundle),
-            encoding="utf-8",
-            newline="\n",
-        )
+        write_accepted_bundle(path, bundle)
         write_local_bundle(bundle)
         print(f"WROTE: {relative(path)}")
     loaded = load_bundles(ACCEPTED_ROOT, SCHEMA_ROOT)
