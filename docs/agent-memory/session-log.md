@@ -499,3 +499,33 @@ Chronological prompt history for Codex and Claude.
   - verify-release.ps1 -Check
 - Status: completed
 - Next steps: Obtain two independent reviewers for the 24 safe rows; keep accuracy and macro-F1 blank until adjudicated evidence exists; review PR #11 after stacked PR #10.
+
+## 2026-07-26 18:36 +03:00 - Codex - Independent expert evidence evaluation pipeline
+
+- Request: Create a real independent expert evidence workflow for classification accuracy, macro-F1, unseen-pattern evaluation, routing quality, human effort measurement, paper comparison boundaries, topology evaluation, and BigUI tracking without inventing labels.
+- Actions taken:
+  - Added deterministic blinded two-reviewer package with calibration and 24 evaluation cases
+  - Added immutable reviewer return validation, agreement analysis, adjudication freeze, and development/holdout evaluator
+  - Published sanitized local reviewer delivery and synchronized the BigUI evidence workflow
+  - Ran complete source and controlled-data verification while preserving Agent 4 and baseline outputs
+- Files changed:
+  - schemas/independent-evidence-package-v1.schema.json
+  - schemas/independent-review-return-v1.schema.json
+  - schemas/independent-evidence-delivery-v1.schema.json
+  - scripts/build_independent_evidence_package.py
+  - scripts/validate_independent_evidence_returns.py
+  - scripts/freeze_independent_gold_labels.py
+  - scripts/evaluate_independent_ground_truth.py
+  - scripts/publish_independent_evidence_package.py
+  - scripts/build_bigui.py
+  - VEGO-AI-Research-Hub.html
+  - docs/research/independent-evidence/README.md
+  - docs/research/independent-evidence/MEASUREMENT_CONTRACT.md
+  - docs/research/independent-evidence/SUPERVISOR_DECISIONS_REQUIRED.md
+- Commands/checks:
+  - verify-source.ps1 -Check -SkipNetworkAudit
+  - verify-controlled.ps1 -Check
+  - build_independent_evidence_package.py --check
+  - publish_independent_evidence_package.py --check
+- Status: Implementation and verification complete; real empirical metrics remain gated at 0/24 independent labels.
+- Next steps: Obtain Iris/Arnon approval for IE-01 through IE-10, release only the calibration packages to two independent human reviewers, verify calibration, then release the 24 blinded evaluation cases.
