@@ -17,7 +17,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "2a115ff673e70cecf23e461c9cfd78f40299fe3cdf56afd211ebe085806e2a30",
+  "packageTreeSha256": "b983810d9ba957d72225745c944e724b32107631d07b770d055ce4307fc30ec4",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -67,6 +67,7 @@
     "schemas/accepted-experiment-run-bundle-v1.schema.json",
     "schemas/architecture-run-manifest-v1.schema.json",
     "schemas/architecture-variant-v1.schema.json",
+    "schemas/baseline-comparison-results-v1.schema.json",
     "schemas/baseline-lock-manifest-v2.schema.json",
     "schemas/bigui-study-record-v1.schema.json",
     "schemas/bigui-study-record-v2.schema.json",
@@ -99,6 +100,7 @@
     "schemas/metric-observation-v1.schema.json",
     "schemas/metric-observation-v2.schema.json",
     "schemas/model-execution-manifest-v1.schema.json",
+    "schemas/paper-baseline-snapshot-v1.schema.json",
     "schemas/policy-candidate-record-v1.schema.json",
     "schemas/release-manifest-v3.schema.json",
     "schemas/run-acceptance-record-v1.schema.json",
@@ -169,7 +171,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "0e2b83f365436a2aab03536f73ca19ddc99b1f57dc1d8f49f1e7b0b482a0ec29",
+  "sourceTreeSha256": "bad4796a5807b0b56564367cbed0e5f2bb8139d631bee0024c07b13b57a414de",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
@@ -178,7 +180,7 @@
     "ruff": "0.15.16"
   },
   "trackedArtifacts": {
-    "VEGO-AI-Thesis-Baseline-Progress.html": "0bdde6d37fb6bc65efca00e4c8c9590bcd5de9921ece0ef21ee74cafdcfc5ae6",
+    "VEGO-AI-Thesis-Baseline-Progress.html": "3237786886ffa5460044a8db275d2d822982653ec5c2a8d799268bdc46510eab",
     "docs/research/h-layer/program-status-snapshot-v1.json": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
     "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "docs/research/hardening/iteration-015-manifest.json": "eebbe9492dece86a7ff5a02f3d55b5ca457032937c76576e62fc21d0fe885807",

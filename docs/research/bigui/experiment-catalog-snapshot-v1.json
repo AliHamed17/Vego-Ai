@@ -1,6 +1,6 @@
 {
   "schemaVersion": "ExperimentCatalogSnapshot-v1",
-  "generatedAt": "2026-07-26T00:30:26+00:00",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
   "sourceRevision": "411b2d9e5cf3e22c6003877ab70419851ee0dd90",
   "publicationTier": "tracked_sanitized",
   "programState": {
@@ -117,6 +117,1068 @@
       "claimBoundary": "Offline comparison candidate while M-02 is deferred."
     }
   ],
+  "paperBaseline": {
+    "schemaVersion": "PaperBaselineSnapshot-v1",
+    "generatedAt": "2026-07-26T14:16:00+03:00",
+    "source": {
+      "logicalName": "MAS4MODELS-2026-paper-draft.pdf",
+      "title": "Not All Differences Matter: Variability Exploration of Domain Models via Agentic AI",
+      "sha256": "8c080422682dc5f90d7eca4ef973f40846c380e0df6a0f906c2ed6c070ec395a",
+      "pageCount": 10,
+      "reviewStatus": "machine_extracted_and_visually_checked",
+      "reviewedPages": [
+        7,
+        8,
+        9
+      ]
+    },
+    "evaluationScope": {
+      "domains": [
+        "Cheers",
+        "ParkWise"
+      ],
+      "modelingLanguages": [
+        "UML use case diagrams",
+        "UML class diagrams"
+      ],
+      "settings": [
+        {
+          "id": "ucd_ch",
+          "caseModels": 46
+        },
+        {
+          "id": "cd_ch",
+          "caseModels": 47
+        },
+        {
+          "id": "ucd_pw",
+          "caseModels": 44
+        },
+        {
+          "id": "cd_pw",
+          "caseModels": 41
+        }
+      ],
+      "caseModelTotal": 178,
+      "llmCount": 1
+    },
+    "phaseA": {
+      "page": 8,
+      "table": "Table 2. Phase A Results",
+      "settings": [
+        {
+          "id": "ucd_ch",
+          "agreement": 0.88,
+          "runs": [
+            {
+              "precision": 1.0,
+              "recall": 0.88,
+              "f1": 0.93
+            },
+            {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.86
+            }
+          ]
+        },
+        {
+          "id": "cd_ch",
+          "agreement": 0.83,
+          "runs": [
+            {
+              "precision": 0.88,
+              "recall": 0.78,
+              "f1": 0.82
+            },
+            {
+              "precision": 1.0,
+              "recall": 0.78,
+              "f1": 0.88
+            },
+            {
+              "precision": 0.9,
+              "recall": 1.0,
+              "f1": 0.95
+            }
+          ]
+        },
+        {
+          "id": "ucd_pw",
+          "agreement": 0.78,
+          "runs": [
+            {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            {
+              "precision": 0.75,
+              "recall": 0.86,
+              "f1": 0.8
+            },
+            {
+              "precision": 1.0,
+              "recall": 0.86,
+              "f1": 0.92
+            }
+          ]
+        },
+        {
+          "id": "cd_pw",
+          "agreement": 0.79,
+          "runs": [
+            {
+              "precision": 0.88,
+              "recall": 0.79,
+              "f1": 0.82
+            },
+            {
+              "precision": 0.86,
+              "recall": 0.68,
+              "f1": 0.75
+            },
+            {
+              "precision": 0.82,
+              "recall": 1.0,
+              "f1": 0.9
+            }
+          ]
+        }
+      ]
+    },
+    "phaseB": {
+      "page": 8,
+      "settingScores": {
+        "ucd_ch": 0.7,
+        "cd_ch": 0.88,
+        "ucd_pw": 0.85,
+        "cd_pw": 0.85
+      }
+    },
+    "phaseC": {
+      "page": 8,
+      "table": "Table 3. Phase C Results",
+      "expertSampleSize": 16,
+      "settings": [
+        {
+          "id": "ucd_ch",
+          "complianceVectors": 0.8,
+          "uncoveredAudits": 0.55
+        },
+        {
+          "id": "cd_ch",
+          "complianceVectors": 0.96,
+          "uncoveredAudits": 0.81
+        },
+        {
+          "id": "ucd_pw",
+          "complianceVectors": 0.83,
+          "uncoveredAudits": 0.55
+        },
+        {
+          "id": "cd_pw",
+          "complianceVectors": 0.92,
+          "uncoveredAudits": 0.88
+        }
+      ]
+    },
+    "phaseD": {
+      "page": 8,
+      "table": "Table 4. Explored Variability Patterns",
+      "patternTotal": 26,
+      "substantialTotal": 8,
+      "occasionalTotal": 18,
+      "settings": [
+        {
+          "id": "ucd_ch",
+          "substantial": 2,
+          "occasional": 6
+        },
+        {
+          "id": "cd_ch",
+          "substantial": 2,
+          "occasional": 2
+        },
+        {
+          "id": "ucd_pw",
+          "substantial": 4,
+          "occasional": 3
+        },
+        {
+          "id": "cd_pw",
+          "substantial": 0,
+          "occasional": 7
+        }
+      ],
+      "assessmentMethod": "Qualitative assessment by the paper authors; the paper states that no quantitative variability-classification benchmark existed."
+    },
+    "humanJudgmentCapabilities": [
+      {
+        "id": "SELECTIVE_REVIEW_QUEUE",
+        "paperBaseline": false,
+        "currentExtension": true
+      },
+      {
+        "id": "STABLE_REVIEW_IDENTITY",
+        "paperBaseline": false,
+        "currentExtension": true
+      },
+      {
+        "id": "STRUCTURED_FEEDBACK",
+        "paperBaseline": false,
+        "currentExtension": true
+      },
+      {
+        "id": "REUSABLE_JUDGMENT_MEMORY",
+        "paperBaseline": false,
+        "currentExtension": true
+      },
+      {
+        "id": "ADVISORY_RETRIEVAL",
+        "paperBaseline": false,
+        "currentExtension": true
+      },
+      {
+        "id": "NON_DESTRUCTIVE_COMPARISON",
+        "paperBaseline": false,
+        "currentExtension": true
+      },
+      {
+        "id": "LEAKAGE_TRACKING",
+        "paperBaseline": false,
+        "currentExtension": true
+      }
+    ],
+    "comparisonBoundary": "Paper-reported Phase A-C values describe the original agents and cannot be used as the current H-layer classification-accuracy baseline. Phase D is qualitative author assessment, not independent ground truth. Counts may be reconciled contextually, while current classification accuracy remains not computable at 0/24 safe labels."
+  },
+  "baselineComparisonResults": {
+    "claimBoundary": "The current proof baseline is multidimensional: capability and mechanism reliability are demonstrated; classification accuracy, generalization, and effort improvement remain unmeasured.",
+    "comparisonLanes": [
+      {
+        "directlyComparable": true,
+        "explanation": "The paper lacks the seven explicit H-layer capabilities; the current implementation exposes and tests them.",
+        "id": "CAPABILITY",
+        "status": "demonstrated",
+        "title": "Human-judgment architecture capability"
+      },
+      {
+        "directlyComparable": false,
+        "explanation": "These are new architecture properties with accepted mechanism evidence, not paper accuracy metrics.",
+        "id": "RELIABILITY",
+        "status": "demonstrated",
+        "title": "Parity, replay, and authority safety"
+      },
+      {
+        "directlyComparable": false,
+        "explanation": "The paper draft reports 178 models and 26 patterns; the current locked snapshot reports 179 and 27. A larger count does not mean higher quality.",
+        "id": "COUNTS",
+        "status": "contextual_only",
+        "title": "Paper and repository version counts"
+      },
+      {
+        "directlyComparable": false,
+        "explanation": "The current independent safe-label denominator is zero.",
+        "id": "CLASSIFICATION_VALIDITY",
+        "status": "not_yet_measurable",
+        "title": "Classification accuracy and macro-F1"
+      },
+      {
+        "directlyComparable": false,
+        "explanation": "A controlled participant study has not been run.",
+        "id": "HUMAN_EFFORT",
+        "status": "not_yet_measurable",
+        "title": "Human effort and review-time value"
+      }
+    ],
+    "currentBaseline": {
+      "caseModelTotal": 179,
+      "classificationChanges": 0,
+      "comparisonRows": 27,
+      "occasionalTotal": 18,
+      "patternTotal": 27,
+      "safeLabels": 0,
+      "substantialTotal": 9,
+      "undeterminedTotal": 0
+    },
+    "experiments": [
+      {
+        "claimBoundary": "Paper-reported Phase A-C values describe the original agents and cannot be used as the current H-layer classification-accuracy baseline. Phase D is qualitative author assessment, not independent ground truth. Counts may be reconciled contextually, while current classification accuracy remains not computable at 0/24 safe labels.",
+        "details": {
+          "capabilities": [
+            {
+              "currentExtension": true,
+              "id": "SELECTIVE_REVIEW_QUEUE",
+              "paperBaseline": false
+            },
+            {
+              "currentExtension": true,
+              "id": "STABLE_REVIEW_IDENTITY",
+              "paperBaseline": false
+            },
+            {
+              "currentExtension": true,
+              "id": "STRUCTURED_FEEDBACK",
+              "paperBaseline": false
+            },
+            {
+              "currentExtension": true,
+              "id": "REUSABLE_JUDGMENT_MEMORY",
+              "paperBaseline": false
+            },
+            {
+              "currentExtension": true,
+              "id": "ADVISORY_RETRIEVAL",
+              "paperBaseline": false
+            },
+            {
+              "currentExtension": true,
+              "id": "NON_DESTRUCTIVE_COMPARISON",
+              "paperBaseline": false
+            },
+            {
+              "currentExtension": true,
+              "id": "LEAKAGE_TRACKING",
+              "paperBaseline": false
+            }
+          ],
+          "countReconciliation": {
+            "caseModels": {
+              "current": 179,
+              "delta": 1,
+              "paper": 178,
+              "qualityInterpretation": "not_applicable"
+            },
+            "patterns": {
+              "current": 27,
+              "delta": 1,
+              "paper": 26,
+              "qualityInterpretation": "not_applicable"
+            }
+          },
+          "paperPhaseA": {
+            "page": 8,
+            "settings": [
+              {
+                "agreement": 0.88,
+                "id": "ucd_ch",
+                "runs": [
+                  {
+                    "f1": 0.93,
+                    "precision": 1.0,
+                    "recall": 0.88
+                  },
+                  {
+                    "f1": 1.0,
+                    "precision": 1.0,
+                    "recall": 1.0
+                  },
+                  {
+                    "f1": 0.86,
+                    "precision": 1.0,
+                    "recall": 0.75
+                  }
+                ]
+              },
+              {
+                "agreement": 0.83,
+                "id": "cd_ch",
+                "runs": [
+                  {
+                    "f1": 0.82,
+                    "precision": 0.88,
+                    "recall": 0.78
+                  },
+                  {
+                    "f1": 0.88,
+                    "precision": 1.0,
+                    "recall": 0.78
+                  },
+                  {
+                    "f1": 0.95,
+                    "precision": 0.9,
+                    "recall": 1.0
+                  }
+                ]
+              },
+              {
+                "agreement": 0.78,
+                "id": "ucd_pw",
+                "runs": [
+                  {
+                    "f1": 1.0,
+                    "precision": 1.0,
+                    "recall": 1.0
+                  },
+                  {
+                    "f1": 0.8,
+                    "precision": 0.75,
+                    "recall": 0.86
+                  },
+                  {
+                    "f1": 0.92,
+                    "precision": 1.0,
+                    "recall": 0.86
+                  }
+                ]
+              },
+              {
+                "agreement": 0.79,
+                "id": "cd_pw",
+                "runs": [
+                  {
+                    "f1": 0.82,
+                    "precision": 0.88,
+                    "recall": 0.79
+                  },
+                  {
+                    "f1": 0.75,
+                    "precision": 0.86,
+                    "recall": 0.68
+                  },
+                  {
+                    "f1": 0.9,
+                    "precision": 0.82,
+                    "recall": 1.0
+                  }
+                ]
+              }
+            ],
+            "table": "Table 2. Phase A Results"
+          },
+          "paperPhaseB": {
+            "page": 8,
+            "settingScores": {
+              "cd_ch": 0.88,
+              "cd_pw": 0.85,
+              "ucd_ch": 0.7,
+              "ucd_pw": 0.85
+            }
+          },
+          "paperPhaseC": {
+            "expertSampleSize": 16,
+            "page": 8,
+            "settings": [
+              {
+                "complianceVectors": 0.8,
+                "id": "ucd_ch",
+                "uncoveredAudits": 0.55
+              },
+              {
+                "complianceVectors": 0.96,
+                "id": "cd_ch",
+                "uncoveredAudits": 0.81
+              },
+              {
+                "complianceVectors": 0.83,
+                "id": "ucd_pw",
+                "uncoveredAudits": 0.55
+              },
+              {
+                "complianceVectors": 0.92,
+                "id": "cd_pw",
+                "uncoveredAudits": 0.88
+              }
+            ],
+            "table": "Table 3. Phase C Results"
+          },
+          "paperPhaseD": {
+            "assessmentMethod": "Qualitative assessment by the paper authors; the paper states that no quantitative variability-classification benchmark existed.",
+            "occasionalTotal": 18,
+            "page": 8,
+            "patternTotal": 26,
+            "settings": [
+              {
+                "id": "ucd_ch",
+                "occasional": 6,
+                "substantial": 2
+              },
+              {
+                "id": "cd_ch",
+                "occasional": 2,
+                "substantial": 2
+              },
+              {
+                "id": "ucd_pw",
+                "occasional": 3,
+                "substantial": 4
+              },
+              {
+                "id": "cd_pw",
+                "occasional": 7,
+                "substantial": 0
+              }
+            ],
+            "substantialTotal": 8,
+            "table": "Table 4. Explored Variability Patterns"
+          }
+        },
+        "evidenceClass": "offline",
+        "executionValid": true,
+        "experimentId": "EXP-037",
+        "metrics": [
+          {
+            "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+            "denominator": 178,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "historical",
+            "metricId": "PAPER_CASE_MODEL_COUNT",
+            "numerator": 178,
+            "unit": "case models",
+            "value": 178
+          },
+          {
+            "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+            "denominator": 179,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "mechanism",
+            "metricId": "CURRENT_CASE_MODEL_COUNT",
+            "numerator": 179,
+            "unit": "case models",
+            "value": 179
+          },
+          {
+            "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+            "denominator": 26,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "historical",
+            "metricId": "PAPER_PATTERN_COUNT",
+            "numerator": 26,
+            "unit": "patterns",
+            "value": 26
+          },
+          {
+            "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+            "denominator": 27,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "mechanism",
+            "metricId": "CURRENT_PATTERN_COUNT",
+            "numerator": 27,
+            "unit": "patterns",
+            "value": 27
+          },
+          {
+            "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement.",
+            "denominator": 7,
+            "dimensions": {},
+            "direction": "higher_is_better",
+            "evidenceClass": "historical",
+            "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+            "numerator": 0,
+            "unit": "proportion",
+            "value": 0.0
+          },
+          {
+            "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement.",
+            "denominator": 7,
+            "dimensions": {},
+            "direction": "higher_is_better",
+            "evidenceClass": "mechanism",
+            "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+            "numerator": 7,
+            "unit": "proportion",
+            "value": 1.0
+          },
+          {
+            "claimBoundary": "Current classification accuracy remains null at safe N=0; the paper's qualitative author assessment is not a compatible independent benchmark.",
+            "denominator": 1,
+            "dimensions": {},
+            "direction": "target",
+            "evidenceClass": "offline",
+            "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
+            "numerator": 0,
+            "unit": "boolean",
+            "value": 0
+          }
+        ],
+        "passed": true
+      },
+      {
+        "claimBoundary": "Capability and reliability extension is demonstrated on the accepted cohorts; classification and effort value remain null.",
+        "details": {
+          "scorecard": [
+            {
+              "current": 1.0,
+              "dimension": "human_judgment_capabilities",
+              "evidence": "EXP-037",
+              "interpretation": "Seven explicit H-layer capabilities were added.",
+              "paperBaseline": 0.0,
+              "status": "demonstrated"
+            },
+            {
+              "current": 1.0,
+              "dimension": "semantic_parity",
+              "evidence": "EXP-033",
+              "interpretation": "Legacy and unified outputs match on the accepted parity cohort.",
+              "paperBaseline": null,
+              "status": "demonstrated"
+            },
+            {
+              "current": 1,
+              "dimension": "deterministic_replay",
+              "evidence": "EXP-033",
+              "interpretation": "The accepted parity run reproduced the same normalized outputs.",
+              "paperBaseline": null,
+              "status": "demonstrated"
+            },
+            {
+              "current": 1.0,
+              "dimension": "fault_authority_safety",
+              "evidence": "EXP-035",
+              "interpretation": "All bounded fault fixtures preserved authority and baseline behavior.",
+              "paperBaseline": null,
+              "status": "demonstrated"
+            },
+            {
+              "current": null,
+              "dimension": "classification_accuracy",
+              "evidence": "EXP-005/EXP-012",
+              "interpretation": "Independent safe labels: 0/24.",
+              "paperBaseline": null,
+              "status": "not_yet_measurable"
+            },
+            {
+              "current": null,
+              "dimension": "human_effort",
+              "evidence": "EXP-026",
+              "interpretation": "Queue counts are not time or effort evidence.",
+              "paperBaseline": null,
+              "status": "not_yet_measurable"
+            }
+          ]
+        },
+        "evidenceClass": "offline",
+        "executionValid": true,
+        "experimentId": "EXP-038",
+        "metrics": [
+          {
+            "claimBoundary": "Dimensions remain separate; no arbitrary weighted global improvement score is calculated.",
+            "denominator": 6,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "offline",
+            "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+            "numerator": 4,
+            "unit": "dimensions",
+            "value": 4
+          },
+          {
+            "claimBoundary": "Classification and effort remain visibly unmeasured.",
+            "denominator": 6,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "offline",
+            "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
+            "numerator": 2,
+            "unit": "dimensions",
+            "value": 2
+          }
+        ],
+        "passed": true
+      },
+      {
+        "claimBoundary": "Every 'better' statement is metric-specific and accompanied by its countervailing trade-off and evidence boundary.",
+        "details": {
+          "eligibleComparisons": [
+            {
+              "deltas": {
+                "eventLoad": 0.22100000000000009,
+                "highSeverityCoverage": 0.274,
+                "weightedCoverage": 0.19699999999999995
+              },
+              "directlyComparable": true,
+              "family": "routing",
+              "interpretation": "Higher-severity coverage is purchased with additional review load; this is a Pareto trade-off, not a global win.",
+              "left": "threshold_sev3",
+              "right": "threshold_sev2"
+            },
+            {
+              "deltas": {
+                "eventLoad": 0.08999999999999997,
+                "highSeverityCoverage": 0.0,
+                "weightedCoverage": 0.019000000000000017
+              },
+              "directlyComparable": true,
+              "family": "routing",
+              "interpretation": "Higher-severity coverage is purchased with additional review load; this is a Pareto trade-off, not a global win.",
+              "left": "threshold_sev2",
+              "right": "threshold_sev1"
+            },
+            {
+              "deltas": {
+                "TOPOLOGY_CONTEXT_BYTES": -7116,
+                "TOPOLOGY_FAILURE_BREADTH": 1,
+                "TOPOLOGY_HANDOFF_COUNT": -15,
+                "TOPOLOGY_STATE_BOUNDARIES": -1,
+                "TOPOLOGY_TRACE_COMPLETENESS": 0.0
+              },
+              "directlyComparable": true,
+              "family": "topology",
+              "interpretation": "Fewer handoffs and state boundaries increase the breadth affected by a single-agent failure; M-02 remains deferred.",
+              "left": "topology-a",
+              "right": "topology-b"
+            },
+            {
+              "deltas": {
+                "TOPOLOGY_CONTEXT_BYTES": -4731,
+                "TOPOLOGY_FAILURE_BREADTH": 3,
+                "TOPOLOGY_HANDOFF_COUNT": -15,
+                "TOPOLOGY_STATE_BOUNDARIES": -1,
+                "TOPOLOGY_TRACE_COMPLETENESS": 0.0
+              },
+              "directlyComparable": true,
+              "family": "topology",
+              "interpretation": "Fewer handoffs and state boundaries increase the breadth affected by a single-agent failure; M-02 remains deferred.",
+              "left": "topology-b",
+              "right": "topology-c"
+            },
+            {
+              "deltas": {
+                "TOPOLOGY_CONTEXT_BYTES": -11847,
+                "TOPOLOGY_FAILURE_BREADTH": 4,
+                "TOPOLOGY_HANDOFF_COUNT": -30,
+                "TOPOLOGY_STATE_BOUNDARIES": -2,
+                "TOPOLOGY_TRACE_COMPLETENESS": 0.0
+              },
+              "directlyComparable": true,
+              "family": "topology",
+              "interpretation": "Fewer handoffs and state boundaries increase the breadth affected by a single-agent failure; M-02 remains deferred.",
+              "left": "topology-a",
+              "right": "topology-c"
+            },
+            {
+              "deltas": {
+                "maxP95RatioToLegacy": 1.073477,
+                "meanP95RatioToLegacy": 0.9703683333333334
+              },
+              "directlyComparable": true,
+              "family": "runtime_mode",
+              "interpretation": "Machine-specific operational ratio only; it does not measure classification validity.",
+              "left": "legacy",
+              "right": "unified"
+            },
+            {
+              "deltas": {
+                "maxP95RatioToLegacy": 1.074459,
+                "meanP95RatioToLegacy": 1.0165233333333334
+              },
+              "directlyComparable": true,
+              "family": "runtime_mode",
+              "interpretation": "Machine-specific operational ratio only; it does not measure classification validity.",
+              "left": "legacy",
+              "right": "parity"
+            }
+          ],
+          "refusedComparisons": [
+            {
+              "directlyComparable": false,
+              "family": "classification_validity",
+              "left": "paper-author-qualitative-RQ4",
+              "reasons": [
+                "The paper RQ4 assessment is qualitative author judgment.",
+                "The current safe independent-label denominator is zero.",
+                "The compared architecture stages and metric definitions differ."
+              ],
+              "right": "current-H-layer"
+            }
+          ]
+        },
+        "evidenceClass": "offline",
+        "executionValid": true,
+        "experimentId": "EXP-039",
+        "metrics": [
+          {
+            "claimBoundary": "Eligibility means the treatment comparison is well-formed; it does not imply a positive result.",
+            "denominator": 8,
+            "dimensions": {},
+            "direction": "higher_is_better",
+            "evidenceClass": "offline",
+            "metricId": "DIRECT_COMPARISON_GROUPS",
+            "numerator": 7,
+            "unit": "comparison groups",
+            "value": 7
+          },
+          {
+            "claimBoundary": "Incompatible paper-to-current accuracy deltas are refused.",
+            "denominator": 8,
+            "dimensions": {},
+            "direction": "target",
+            "evidenceClass": "offline",
+            "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
+            "numerator": 1,
+            "unit": "comparison groups",
+            "value": 1
+          }
+        ],
+        "passed": true
+      },
+      {
+        "claimBoundary": "Claim readiness is a provenance audit; it cannot replace the missing independent observations.",
+        "details": {
+          "conditionalClaims": [
+            "At 20-24 generalization-safe adjudicated labels, report baseline and candidate metrics as an MSc pilot with explicit small-sample limitations.",
+            "At eight sealed holdout rows, report one-time pilot net correction without a formal improvement claim.",
+            "A formal improvement claim requires EXP-025 and every preregistered statistical and safety criterion to pass."
+          ],
+          "hypotheses": [
+            {
+              "id": "H1",
+              "statement": "Selective review identifies a non-trivial subset of patterns that contains expert-confirmed baseline errors.",
+              "status": "Pending expert input",
+              "test": "EXP-021 and EXP-022 routing precision/recall on adjudicated development labels."
+            },
+            {
+              "id": "H2",
+              "statement": "Human judgment memory retrieves relevant, scope-correct prior judgments for new review contexts.",
+              "status": "Pending expert input",
+              "test": "EXP-022 blind relevance, scope, conflict, and leakage audit."
+            },
+            {
+              "id": "H3",
+              "statement": "A frozen deterministic parallel policy yields positive net correction on unseen leakage-safe expert-labeled data.",
+              "status": "Blocked",
+              "test": "EXP-024 pilot followed by EXP-025 preregistered external paired comparison."
+            },
+            {
+              "id": "H4",
+              "statement": "Reusable memory reduces repeated human review effort without reducing escalation quality.",
+              "status": "Proposal — not approved",
+              "test": "EXP-026 controlled human-effort study."
+            }
+          ],
+          "safeClaims": [
+            "VEGO-AI has a reusable human-judgment mechanism supporting selective review, structured feedback, provenance-aware memory, advisory retrieval, and non-destructive comparison.",
+            "The legacy and unified M1-M4B-1 paths pass controlled fail-closed parity with 27 comparison rows and zero classification changes.",
+            "The current implementation preserves original Agent 4 classifications and baseline artifacts.",
+            "The project is evaluation-ready but remains blocked on independent expert input."
+          ],
+          "traceability": [
+            {
+              "chapterIds": [
+                "3",
+                "6",
+                "7"
+              ],
+              "decisionIds": [
+                "M-01",
+                "M-05"
+              ],
+              "evidenceState": "Pending expert input",
+              "experimentIds": [
+                "EXP-019",
+                "EXP-020",
+                "EXP-021"
+              ],
+              "id": "E-RQ1",
+              "kind": "research_question",
+              "metricOrGate": "Adjudicated baseline errors and error taxonomy"
+            },
+            {
+              "chapterIds": [
+                "3",
+                "5",
+                "6",
+                "7"
+              ],
+              "decisionIds": [
+                "M-03",
+                "M-04",
+                "M-05"
+              ],
+              "evidenceState": "Pending expert input",
+              "experimentIds": [
+                "EXP-021",
+                "EXP-022"
+              ],
+              "id": "E-RQ2",
+              "kind": "research_question",
+              "metricOrGate": "Routing precision/recall and retrieval validity"
+            },
+            {
+              "chapterIds": [
+                "3",
+                "6",
+                "7",
+                "8",
+                "9"
+              ],
+              "decisionIds": [
+                "M-02",
+                "M-04",
+                "M-05",
+                "M-06"
+              ],
+              "evidenceState": "Blocked",
+              "experimentIds": [
+                "EXP-023",
+                "EXP-024",
+                "EXP-025"
+              ],
+              "id": "E-RQ3",
+              "kind": "research_question",
+              "metricOrGate": "Paired net correction after policy freeze"
+            },
+            {
+              "chapterIds": [
+                "3",
+                "6",
+                "7"
+              ],
+              "decisionIds": [
+                "M-03",
+                "M-05"
+              ],
+              "evidenceState": "Pending expert input",
+              "experimentIds": [
+                "EXP-021",
+                "EXP-022"
+              ],
+              "id": "H1",
+              "kind": "hypothesis",
+              "metricOrGate": "Review routing contains adjudicated baseline errors"
+            },
+            {
+              "chapterIds": [
+                "3",
+                "5",
+                "6",
+                "7"
+              ],
+              "decisionIds": [
+                "M-02",
+                "M-04"
+              ],
+              "evidenceState": "Pending expert input",
+              "experimentIds": [
+                "EXP-022"
+              ],
+              "id": "H2",
+              "kind": "hypothesis",
+              "metricOrGate": "Blind relevance, scope, conflict, and leakage audit"
+            },
+            {
+              "chapterIds": [
+                "3",
+                "6",
+                "7",
+                "8",
+                "9"
+              ],
+              "decisionIds": [
+                "M-02",
+                "M-04",
+                "M-05"
+              ],
+              "evidenceState": "Blocked",
+              "experimentIds": [
+                "EXP-023",
+                "EXP-024",
+                "EXP-025"
+              ],
+              "id": "H3",
+              "kind": "hypothesis",
+              "metricOrGate": "Positive paired net correction on unseen safe data"
+            },
+            {
+              "chapterIds": [
+                "3",
+                "6",
+                "8",
+                "9"
+              ],
+              "decisionIds": [
+                "M-05",
+                "M-06"
+              ],
+              "evidenceState": "Proposal — not approved",
+              "experimentIds": [
+                "EXP-026"
+              ],
+              "id": "H4",
+              "kind": "hypothesis",
+              "metricOrGate": "Controlled review-time and escalation-quality study"
+            }
+          ]
+        },
+        "evidenceClass": "offline",
+        "executionValid": true,
+        "experimentId": "EXP-040",
+        "metrics": [
+          {
+            "claimBoundary": "These claims are limited to mechanism readiness, compatibility, traceability, and baseline protection.",
+            "denominator": 4,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "mechanism",
+            "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
+            "numerator": 4,
+            "unit": "claims",
+            "value": 4
+          },
+          {
+            "claimBoundary": "Independent labels, a frozen policy, and external replication remain required.",
+            "denominator": 3,
+            "dimensions": {},
+            "direction": "higher_is_better",
+            "evidenceClass": "offline",
+            "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+            "numerator": 0,
+            "unit": "claims",
+            "value": 0
+          },
+          {
+            "claimBoundary": "No empirical thesis hypothesis is confirmed at safe N=0.",
+            "denominator": 4,
+            "dimensions": {},
+            "direction": "higher_is_better",
+            "evidenceClass": "offline",
+            "metricId": "THESIS_HYPOTHESES_CONFIRMED",
+            "numerator": 0,
+            "unit": "hypotheses",
+            "value": 0
+          },
+          {
+            "claimBoundary": "Traceability completeness is not hypothesis confirmation.",
+            "denominator": 7,
+            "dimensions": {},
+            "direction": "neutral",
+            "evidenceClass": "offline",
+            "metricId": "THESIS_TRACEABILITY_RECORDS",
+            "numerator": 7,
+            "unit": "records",
+            "value": 7
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "generatedAt": "2026-07-26T14:16:00+03:00",
+    "normalizedSha256": "464c9eb538107218ddf6b0979a7393854b7ec8b7e7afbe7c409f9162589d0a05",
+    "paperBaseline": {
+      "caseModels": 178,
+      "occasional": 18,
+      "patterns": 26,
+      "rq4Assessment": "Qualitative assessment by the paper authors; the paper states that no quantitative variability-classification benchmark existed.",
+      "sourceSha256": "8c080422682dc5f90d7eca4ef973f40846c380e0df6a0f906c2ed6c070ec395a",
+      "substantial": 8
+    },
+    "schemaVersion": "BaselineComparisonResults-v1",
+    "sources": {
+      "docs/research/bigui/architecture-fixture-results-v1.json": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
+      "docs/research/bigui/paper-baseline-snapshot-v1.json": "78b6701caea4feee131980e2e8ae84f436451e53853ca0e779a0d161a6ad966a",
+      "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
+      "experiments/accepted-runs": "49e245b55a4b3b7bde775f7690aed700438d0fa13c52f474b77e7aff870ad1b6"
+    }
+  },
   "experiments": [
     {
       "id": "EXP-000",
@@ -1578,13 +2640,14 @@
       "datasetHash": null,
       "partitionHash": null,
       "acceptedRunIds": [
+        "EXP-030-7c239462b5c4",
         "EXP-030-87dbd95035e4"
       ],
       "latestResult": {
         "summary": "Infrastructure-only fidelity gate. It rejects stale, duplicate, dangling, private, and unhashable records; it provides no accuracy evidence.",
         "metricObservationIds": [
-          "OBS-METRIC-BIGUI_DEFINITION_FIELD_COMPLETENESS-5bbba755db7b",
-          "OBS-METRIC-BIGUI_DEFINITION_ID_UNIQUENESS-22533dfdfd9c"
+          "OBS-METRIC-BIGUI_DEFINITION_FIELD_COMPLETENESS-0b8c912d5864",
+          "OBS-METRIC-BIGUI_DEFINITION_ID_UNIQUENESS-e55abefcfb4a"
         ]
       }
     },
@@ -1956,6 +3019,229 @@
           "OBS-METRIC-ARCH_THROUGHPUT_RPS-f29394611f16"
         ]
       }
+    },
+    {
+      "id": "EXP-037",
+      "title": "Paper baseline reconciliation",
+      "researchSpace": "MSc",
+      "researchTrack": "Paper and baseline alignment",
+      "researchQuestion": "Which paper-reported values are directly comparable with the current frozen repository baseline?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "Reviewed paper baseline extraction",
+        "Frozen repository baseline"
+      ],
+      "approvalGates": [],
+      "baseline": "MAS4MODELS paper-reported VEGO-AI evaluation",
+      "comparator": "Current frozen repository and H-layer mechanism snapshot",
+      "metricDefinitions": [
+        "PAPER_CASE_MODEL_COUNT",
+        "CURRENT_CASE_MODEL_COUNT",
+        "PAPER_PATTERN_COUNT",
+        "CURRENT_PATTERN_COUNT",
+        "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+        "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+        "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE"
+      ],
+      "claimBoundary": "The comparison reconciles versions and capabilities; it cannot prove higher classification accuracy than the paper.",
+      "validityThreats": [
+        "The paper is a draft snapshot",
+        "The paper's RQ4 assessment is qualitative",
+        "Current safe-label N is zero"
+      ],
+      "owner": "Research evaluation",
+      "nextAction": "Keep the paper and repository baselines visibly separate and refresh only when either reviewed source changes.",
+      "artifactLinks": [
+        "experiments/EXP-037-paper-baseline-reconciliation/README.md",
+        "docs/research/bigui/paper-baseline-snapshot-v1.json",
+        "scripts/run_bigui_comparison_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "EXP-037-49963313a384"
+      ],
+      "latestResult": {
+        "summary": "The paper draft reports 178 models and 26 patterns; the current frozen repository reports 179 and 27. The difference is contextual and never called an accuracy improvement.",
+        "metricObservationIds": [
+          "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
+          "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
+          "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
+          "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
+          "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
+          "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
+          "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43"
+        ]
+      }
+    },
+    {
+      "id": "EXP-038",
+      "title": "Architecture improvement scorecard",
+      "researchSpace": "MSc",
+      "researchTrack": "Architecture evidence",
+      "researchQuestion": "Which new H-layer capability, reliability, and safety properties are demonstrated beyond the paper baseline?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [
+        "EXP-033",
+        "EXP-035",
+        "EXP-037"
+      ],
+      "approvalGates": [],
+      "baseline": "Original four-agent paper architecture",
+      "comparator": "Current non-destructive H-layer architecture",
+      "metricDefinitions": [
+        "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+        "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS"
+      ],
+      "claimBoundary": "Capability and reliability extension may be demonstrated; classification accuracy and human effort remain unmeasured.",
+      "validityThreats": [
+        "Mechanism cohorts are finite",
+        "Scorecard dimensions are intentionally not collapsed into one score"
+      ],
+      "owner": "Architecture validation",
+      "nextAction": "Use the scorecard as the thesis progress baseline and keep null empirical cells visible.",
+      "artifactLinks": [
+        "experiments/EXP-038-architecture-improvement-scorecard/README.md",
+        "scripts/run_bigui_comparison_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "EXP-038-49963313a384"
+      ],
+      "latestResult": {
+        "summary": "Demonstrates new H-layer capabilities and accepted mechanism reliability while leaving classification and effort cells null.",
+        "metricObservationIds": [
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76"
+        ]
+      }
+    },
+    {
+      "id": "EXP-039",
+      "title": "Cross-experiment comparability and deltas",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Metric comparison integrity",
+      "researchQuestion": "Which experiment results support a valid direct delta, and what trade-offs explain why one configuration differs from another?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity",
+        "topology-a",
+        "topology-b",
+        "topology-c",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "Accepted run bundles",
+        "MetricDefinition-v1",
+        "ComparisonEligibility-v2"
+      ],
+      "approvalGates": [],
+      "baseline": "Declared treatment baseline inside each comparable experiment",
+      "comparator": "Declared routing, topology, or runtime treatment",
+      "metricDefinitions": [
+        "DIRECT_COMPARISON_GROUPS",
+        "INCOMPATIBLE_COMPARISONS_SUPPRESSED"
+      ],
+      "claimBoundary": "Better is metric-specific; every positive delta must show its denominator, trade-off, evidence class, and guardrail.",
+      "validityThreats": [
+        "Machine-specific latency",
+        "Offline topology simulation",
+        "No empirical classification comparator"
+      ],
+      "owner": "Evaluation infrastructure",
+      "nextAction": "Reject incompatible pairs and expose valid routing, topology, and runtime deltas in BigUI.",
+      "artifactLinks": [
+        "experiments/EXP-039-cross-experiment-comparability/README.md",
+        "src/vego_bigui/comparison.py",
+        "scripts/run_bigui_comparison_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "EXP-039-49963313a384"
+      ],
+      "latestResult": {
+        "summary": "Produces deltas only where cohort, metric, grain, evidence, and declared treatment permit direct comparison.",
+        "metricObservationIds": [
+          "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
+          "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0"
+        ]
+      }
+    },
+    {
+      "id": "EXP-040",
+      "title": "Thesis claim-readiness audit",
+      "researchSpace": "MSc",
+      "researchTrack": "Thesis alignment",
+      "researchQuestion": "Which thesis claims are supported now, and which require independent labels, human studies, or replication?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation",
+        "BigUI"
+      ],
+      "prerequisites": [
+        "EXP-037",
+        "EXP-038",
+        "EXP-039",
+        "Thesis evidence snapshot"
+      ],
+      "approvalGates": [],
+      "baseline": "Paper and thesis claim set",
+      "comparator": "Current accepted experiment evidence",
+      "metricDefinitions": [
+        "THESIS_SAFE_CURRENT_CLAIMS",
+        "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+        "THESIS_HYPOTHESES_CONFIRMED",
+        "THESIS_TRACEABILITY_RECORDS"
+      ],
+      "claimBoundary": "Readiness and traceability do not substitute for the missing independent observations.",
+      "validityThreats": [
+        "Thesis framing may evolve",
+        "Human and external studies remain unexecuted"
+      ],
+      "owner": "Thesis evaluation",
+      "nextAction": "Use this audit to keep the thesis, catalog, and BigUI claim boundaries synchronized.",
+      "artifactLinks": [
+        "experiments/EXP-040-thesis-claim-readiness/README.md",
+        "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+        "scripts/run_bigui_comparison_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "EXP-040-49963313a384"
+      ],
+      "latestResult": {
+        "summary": "Mechanism claims are traceable now; empirical improvement hypotheses remain unconfirmed at 0/24 safe labels.",
+        "metricObservationIds": [
+          "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
+          "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
+          "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
+          "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9"
+        ]
+      }
     }
   ],
   "metricObservations": [
@@ -1969,7 +3255,7 @@
       "direction": "neutral",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -1986,7 +3272,7 @@
       "direction": "neutral",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2003,7 +3289,7 @@
       "direction": "neutral",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2020,7 +3306,7 @@
       "direction": "neutral",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2037,7 +3323,7 @@
       "direction": "neutral",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2054,7 +3340,7 @@
       "direction": "neutral",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2071,7 +3357,7 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2088,7 +3374,7 @@
       "direction": "neutral",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "evaluation_ready",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2105,7 +3391,7 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "blocked",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2122,7 +3408,7 @@
       "direction": "target",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "mechanism",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2139,7 +3425,7 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "blocked",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2156,7 +3442,7 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "blocked",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2173,7 +3459,7 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "blocked",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2190,7 +3476,7 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "blocked",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2207,7 +3493,7 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sourceSha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sourceSha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "evidenceClass": "blocked",
       "observationDate": "2026-07-25",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -2224,10 +3510,10 @@
       "direction": "target",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Clone-safe parity fixtures only; not controlled-corpus accuracy."
     },
@@ -2241,10 +3527,10 @@
       "direction": "target",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Deterministic fixture replay only."
     },
@@ -2258,10 +3544,10 @@
       "direction": "target",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural simulation only; M-02 remains deferred."
     },
@@ -2275,10 +3561,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2292,10 +3578,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2309,10 +3595,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2326,10 +3612,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2343,10 +3629,10 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2360,10 +3646,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2377,10 +3663,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2394,10 +3680,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2411,10 +3697,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2428,10 +3714,10 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2445,10 +3731,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2462,10 +3748,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2479,10 +3765,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2496,10 +3782,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2513,10 +3799,10 @@
       "direction": "higher_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Structural fixture metric only; no topology is approved."
     },
@@ -2530,10 +3816,10 @@
       "direction": "target",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "synthetic",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Finite SYNTHETIC_NOT_HUMAN fault fixtures only."
     },
@@ -2547,10 +3833,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "proposal",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Engineering target only; no accepted EXP-036 result exists."
     },
@@ -2564,10 +3850,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "proposal",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Engineering target only; no accepted EXP-036 result exists."
     },
@@ -2581,10 +3867,10 @@
       "direction": "lower_is_better",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sourceSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sourceSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "evidenceClass": "proposal",
       "observationDate": "2026-07-26",
-      "cohortHash": "2bb6c3b514b9c3776468c3682f0c8140f968e71e0d4082ebe70bbff1566377c4",
+      "cohortHash": "10fc10d66e81634f200f0172c52f5074b9bece48120bd4851cd167a01fae06ee",
       "metricSchemaVersion": "1.0",
       "claimBoundary": "Engineering target only; no accepted EXP-036 result exists."
     },
@@ -2607,6 +3893,36 @@
     }
   ],
   "metricDefinitionsV2": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+      "title": "Architecture Scorecard Demonstrated Dimensions",
+      "description": "Architecture Scorecard Demonstrated Dimensions",
+      "formula": "architecture scorecard demonstrated dimensions",
+      "unit": "dimensions",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
+      "title": "Architecture Scorecard Unmeasured Dimensions",
+      "description": "Architecture Scorecard Unmeasured Dimensions",
+      "formula": "architecture scorecard unmeasured dimensions",
+      "unit": "dimensions",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
     {
       "schemaVersion": "MetricDefinition-v1",
       "metricId": "ARCH_BASELINE_PRESERVATION",
@@ -2825,7 +4141,43 @@
       "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
       "title": "Extension definitions with complete required fields",
       "description": "Extension definitions with complete required fields",
+      "formula": "11 / 11",
+      "unit": "proportion",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": {
+        "operator": "eq",
+        "value": 1
+      }
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+      "title": "Extension definitions with complete required fields",
+      "description": "Extension definitions with complete required fields",
       "formula": "7 / 7",
+      "unit": "proportion",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": {
+        "operator": "eq",
+        "value": 1
+      }
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "BIGUI_DEFINITION_ID_UNIQUENESS",
+      "title": "Unique extension experiment IDs",
+      "description": "Unique extension experiment IDs",
+      "formula": "11 / 11",
       "unit": "proportion",
       "direction": "target",
       "grain": "experiment run",
@@ -3046,6 +4398,66 @@
     },
     {
       "schemaVersion": "MetricDefinition-v1",
+      "metricId": "CURRENT_CASE_MODEL_COUNT",
+      "title": "Current Case Model Count",
+      "description": "Current Case Model Count",
+      "formula": "current case model count",
+      "unit": "case models",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "mechanism",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+      "title": "Current Human Judgment Capability Coverage",
+      "description": "Current Human Judgment Capability Coverage",
+      "formula": "current human judgment capability coverage",
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "mechanism",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "CURRENT_PATTERN_COUNT",
+      "title": "Current Pattern Count",
+      "description": "Current Pattern Count",
+      "formula": "current pattern count",
+      "unit": "patterns",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "mechanism",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "DIRECT_COMPARISON_GROUPS",
+      "title": "Direct Comparison Groups",
+      "description": "Direct Comparison Groups",
+      "formula": "direct comparison groups",
+      "unit": "comparison groups",
+      "direction": "higher_is_better",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
       "metricId": "EVALUATOR_CROSSCHECK_PASS",
       "title": "EXP-003 evaluator cross-check",
       "description": "EXP-003 evaluator cross-check",
@@ -3224,6 +4636,21 @@
       "direction": "higher_is_better",
       "grain": "synthetic conflict fixture",
       "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
+      "title": "Incompatible Comparisons Suppressed",
+      "description": "Incompatible Comparisons Suppressed",
+      "formula": "incompatible comparisons suppressed",
+      "unit": "comparison groups",
+      "direction": "target",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
       "nullable": false,
       "nullRule": "Observed from the accepted experiment run.",
       "dimensions": [],
@@ -3473,6 +4900,66 @@
     },
     {
       "schemaVersion": "MetricDefinition-v1",
+      "metricId": "PAPER_CASE_MODEL_COUNT",
+      "title": "Paper Case Model Count",
+      "description": "Paper Case Model Count",
+      "formula": "paper case model count",
+      "unit": "case models",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "historical",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
+      "title": "Paper Current Classification Comparison Eligible",
+      "description": "Paper Current Classification Comparison Eligible",
+      "formula": "paper current classification comparison eligible",
+      "unit": "boolean",
+      "direction": "target",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+      "title": "Paper Human Judgment Capability Coverage",
+      "description": "Paper Human Judgment Capability Coverage",
+      "formula": "paper human judgment capability coverage",
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "historical",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "PAPER_PATTERN_COUNT",
+      "title": "Paper Pattern Count",
+      "description": "Paper Pattern Count",
+      "formula": "paper pattern count",
+      "unit": "patterns",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "historical",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
       "metricId": "PROPOSAL_APPLICATIONS",
       "title": "Applied corrections",
       "description": "Applied corrections",
@@ -3708,6 +5195,66 @@
         "policy",
         "truthScenario"
       ],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+      "title": "Thesis Empirical Improvement Claims Ready",
+      "description": "Thesis Empirical Improvement Claims Ready",
+      "formula": "thesis empirical improvement claims ready",
+      "unit": "claims",
+      "direction": "higher_is_better",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "THESIS_HYPOTHESES_CONFIRMED",
+      "title": "Thesis Hypotheses Confirmed",
+      "description": "Thesis Hypotheses Confirmed",
+      "formula": "thesis hypotheses confirmed",
+      "unit": "hypotheses",
+      "direction": "higher_is_better",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
+      "title": "Thesis Safe Current Claims",
+      "description": "Thesis Safe Current Claims",
+      "formula": "thesis safe current claims",
+      "unit": "claims",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "mechanism",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "THESIS_TRACEABILITY_RECORDS",
+      "title": "Thesis Traceability Records",
+      "description": "Thesis Traceability Records",
+      "formula": "thesis traceability records",
+      "unit": "records",
+      "direction": "neutral",
+      "grain": "baseline comparison experiment",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
       "target": null
     },
     {
@@ -8681,6 +10228,64 @@
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
       "metricSchemaVersion": "2.0",
       "claimBoundary": "Proposal dry-run evidence only; no artifact mutation is authorized."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-BIGUI_DEFINITION_FIELD_COMPLETENESS-0b8c912d5864",
+      "experimentId": "EXP-030",
+      "runId": "EXP-030-7c239462b5c4",
+      "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+      "metricDefinitionSha256": "6757d70045c4d265b5533b0dc106357cc2c711fa44771115454d09e528838b36",
+      "baselineId": "bigui-program-contract",
+      "comparatorId": "validated-extension-definitions",
+      "value": 1.0,
+      "numerator": 11,
+      "denominator": 11,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "target",
+      "estimand": "Extension definitions with complete required fields",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "experiments/bigui-program-v1.json",
+      "sourceSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Tracked BigUI extension-definition fidelity only. Full catalog, run, and browser fidelity are enforced separately; no classification validity follows."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-BIGUI_DEFINITION_ID_UNIQUENESS-e55abefcfb4a",
+      "experimentId": "EXP-030",
+      "runId": "EXP-030-7c239462b5c4",
+      "metricId": "BIGUI_DEFINITION_ID_UNIQUENESS",
+      "metricDefinitionSha256": "4a0999338d1fa45ebdc692eeed0d552831aa4337e6616ab7597e40ead913b593",
+      "baselineId": "bigui-program-contract",
+      "comparatorId": "validated-extension-definitions",
+      "value": 1.0,
+      "numerator": 11,
+      "denominator": 11,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "target",
+      "estimand": "Unique extension experiment IDs",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "experiments/bigui-program-v1.json",
+      "sourceSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Tracked BigUI extension-definition fidelity only. Full catalog, run, and browser fidelity are enforced separately; no classification validity follows."
     },
     {
       "schemaVersion": "MetricObservation-v2",
@@ -16995,6 +18600,441 @@
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
       "metricSchemaVersion": "2.0",
       "claimBoundary": "Machine-specific operational fixture evidence only. Engineering targets are evaluated independently from execution validity; no accuracy or human-effort conclusion follows."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-49963313a384",
+      "metricId": "CURRENT_CASE_MODEL_COUNT",
+      "metricDefinitionSha256": "07217ea408a13519255a39b0dd44ebadf5f8c6141ea2dc80d3f4f0edc87c5ae9",
+      "baselineId": "PAPER-B0",
+      "comparatorId": "CURRENT-B0/B1",
+      "value": 179,
+      "numerator": 179,
+      "denominator": 179,
+      "missingCount": 0,
+      "unit": "case models",
+      "direction": "neutral",
+      "estimand": "Current Case Model Count",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-49963313a384",
+      "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+      "metricDefinitionSha256": "babb08f84d0e308ef24fcc43f4ee1c37bcb1d135b82fe18c83d200aa81f9f06c",
+      "baselineId": "PAPER-B0",
+      "comparatorId": "CURRENT-B0/B1",
+      "value": 1.0,
+      "numerator": 7,
+      "denominator": 7,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "estimand": "Current Human Judgment Capability Coverage",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-49963313a384",
+      "metricId": "CURRENT_PATTERN_COUNT",
+      "metricDefinitionSha256": "f31700fcda5ab2e9d70af4aed1042f8861bca78163427947dc21769a84063f2a",
+      "baselineId": "PAPER-B0",
+      "comparatorId": "CURRENT-B0/B1",
+      "value": 27,
+      "numerator": 27,
+      "denominator": 27,
+      "missingCount": 0,
+      "unit": "patterns",
+      "direction": "neutral",
+      "estimand": "Current Pattern Count",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-49963313a384",
+      "metricId": "PAPER_CASE_MODEL_COUNT",
+      "metricDefinitionSha256": "ca79fca9a3a1de7547cb657ebff94bb84005eb209082afe679f09b6cdd1056b9",
+      "baselineId": "PAPER-B0",
+      "comparatorId": "CURRENT-B0/B1",
+      "value": 178,
+      "numerator": 178,
+      "denominator": 178,
+      "missingCount": 0,
+      "unit": "case models",
+      "direction": "neutral",
+      "estimand": "Paper Case Model Count",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-49963313a384",
+      "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
+      "metricDefinitionSha256": "a4785eec5ae6e45eaa3a882a94d545fc28443b585b24233ec26e8e7918a2be21",
+      "baselineId": "PAPER-B0",
+      "comparatorId": "CURRENT-B0/B1",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 1,
+      "missingCount": 0,
+      "unit": "boolean",
+      "direction": "target",
+      "estimand": "Paper Current Classification Comparison Eligible",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Current classification accuracy remains null at safe N=0; the paper's qualitative author assessment is not a compatible independent benchmark."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-49963313a384",
+      "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+      "metricDefinitionSha256": "4a5ca2f3c21c6ebac1fe7d91914d2fcd9979c8ca1a518affd04b7b943647920c",
+      "baselineId": "PAPER-B0",
+      "comparatorId": "CURRENT-B0/B1",
+      "value": 0.0,
+      "numerator": 0,
+      "denominator": 7,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "estimand": "Paper Human Judgment Capability Coverage",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43",
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-49963313a384",
+      "metricId": "PAPER_PATTERN_COUNT",
+      "metricDefinitionSha256": "f36bbf6539b2c7e4ec2ea1b9086b5cf3aec97f0cb2246c521295c32df96116b1",
+      "baselineId": "PAPER-B0",
+      "comparatorId": "CURRENT-B0/B1",
+      "value": 26,
+      "numerator": 26,
+      "denominator": 26,
+      "missingCount": 0,
+      "unit": "patterns",
+      "direction": "neutral",
+      "estimand": "Paper Pattern Count",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
+      "experimentId": "EXP-038",
+      "runId": "EXP-038-49963313a384",
+      "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+      "metricDefinitionSha256": "07e5c9e02a6458d688e688414e63f9758fd6b13fa76d2a39523196daac9baf38",
+      "baselineId": "B0/B1",
+      "comparatorId": "B1-EVIDENCE-SCORECARD",
+      "value": 4,
+      "numerator": 4,
+      "denominator": 6,
+      "missingCount": 0,
+      "unit": "dimensions",
+      "direction": "neutral",
+      "estimand": "Architecture Scorecard Demonstrated Dimensions",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Dimensions remain separate; no arbitrary weighted global improvement score is calculated."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76",
+      "experimentId": "EXP-038",
+      "runId": "EXP-038-49963313a384",
+      "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
+      "metricDefinitionSha256": "8665789c1540d86b43848653bd94b89ad1b47c43fbd0d1ded3e456fe0c3d0ad4",
+      "baselineId": "B0/B1",
+      "comparatorId": "B1-EVIDENCE-SCORECARD",
+      "value": 2,
+      "numerator": 2,
+      "denominator": 6,
+      "missingCount": 0,
+      "unit": "dimensions",
+      "direction": "neutral",
+      "estimand": "Architecture Scorecard Unmeasured Dimensions",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Classification and effort remain visibly unmeasured."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
+      "experimentId": "EXP-039",
+      "runId": "EXP-039-49963313a384",
+      "metricId": "DIRECT_COMPARISON_GROUPS",
+      "metricDefinitionSha256": "eca5090b331f96a195aaaeb1f8fc9aed408aa8fb63ccc555dc699fc2fde9a4b7",
+      "baselineId": "B0/B1",
+      "comparatorId": "DECLARED-TREATMENTS",
+      "value": 7,
+      "numerator": 7,
+      "denominator": 8,
+      "missingCount": 0,
+      "unit": "comparison groups",
+      "direction": "higher_is_better",
+      "estimand": "Direct Comparison Groups",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Eligibility means the treatment comparison is well-formed; it does not imply a positive result."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0",
+      "experimentId": "EXP-039",
+      "runId": "EXP-039-49963313a384",
+      "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
+      "metricDefinitionSha256": "90813946e196f33f91281edd0444dd43b1ee2949406c4014a799f65672e24860",
+      "baselineId": "B0/B1",
+      "comparatorId": "DECLARED-TREATMENTS",
+      "value": 1,
+      "numerator": 1,
+      "denominator": 8,
+      "missingCount": 0,
+      "unit": "comparison groups",
+      "direction": "target",
+      "estimand": "Incompatible Comparisons Suppressed",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Incompatible paper-to-current accuracy deltas are refused."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
+      "experimentId": "EXP-040",
+      "runId": "EXP-040-49963313a384",
+      "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+      "metricDefinitionSha256": "87f55c06cd8bfda4b13423c0ad48a7b65de33c8f7c8a2c6bfd34bbce2c53cdd6",
+      "baselineId": "B0/B1",
+      "comparatorId": "THESIS-CLAIM-GATES",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 3,
+      "missingCount": 0,
+      "unit": "claims",
+      "direction": "higher_is_better",
+      "estimand": "Thesis Empirical Improvement Claims Ready",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Independent labels, a frozen policy, and external replication remain required."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
+      "experimentId": "EXP-040",
+      "runId": "EXP-040-49963313a384",
+      "metricId": "THESIS_HYPOTHESES_CONFIRMED",
+      "metricDefinitionSha256": "a08b6d52087d3c73eb0e550f8e403baa2e4b254539cf835aa2e118121e18f838",
+      "baselineId": "B0/B1",
+      "comparatorId": "THESIS-CLAIM-GATES",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 4,
+      "missingCount": 0,
+      "unit": "hypotheses",
+      "direction": "higher_is_better",
+      "estimand": "Thesis Hypotheses Confirmed",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "No empirical thesis hypothesis is confirmed at safe N=0."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
+      "experimentId": "EXP-040",
+      "runId": "EXP-040-49963313a384",
+      "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
+      "metricDefinitionSha256": "8befb969471acb43380493bc58c6ec35d2ba300c713cb3bbfc1da979b01c1ffb",
+      "baselineId": "B0/B1",
+      "comparatorId": "THESIS-CLAIM-GATES",
+      "value": 4,
+      "numerator": 4,
+      "denominator": 4,
+      "missingCount": 0,
+      "unit": "claims",
+      "direction": "neutral",
+      "estimand": "Thesis Safe Current Claims",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "These claims are limited to mechanism readiness, compatibility, traceability, and baseline protection."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9",
+      "experimentId": "EXP-040",
+      "runId": "EXP-040-49963313a384",
+      "metricId": "THESIS_TRACEABILITY_RECORDS",
+      "metricDefinitionSha256": "47389979eec8c5cf2d62eb2103c06a5b2dd8e0a4ee744ce09c0167281aff9f70",
+      "baselineId": "B0/B1",
+      "comparatorId": "THESIS-CLAIM-GATES",
+      "value": 7,
+      "numerator": 7,
+      "denominator": 7,
+      "missingCount": 0,
+      "unit": "records",
+      "direction": "neutral",
+      "estimand": "Thesis Traceability Records",
+      "grain": "baseline comparison experiment",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic source reconciliation",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Traceability completeness is not hypothesis confirmation."
     }
   ],
   "comparisonRules": {
@@ -17368,14 +19408,14 @@
       "runId": "BIGUI-EXP-033-adf58941d035",
       "manifestSchema": "BigUIArchitectureFixtureResults-v1",
       "manifestPath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "manifestSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "manifestSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "acceptanceStatus": "accepted",
-      "acceptedAt": "2026-07-26T00:00:00+03:00",
+      "acceptedAt": "2026-07-26T14:16:00+03:00",
       "evidenceClass": "offline",
       "sourceRevision": "411b2d9e5cf3e22c6003877ab70419851ee0dd90",
       "inputHashes": {
         "scripts/run_bigui_architecture_experiments.py": "e039b68a97258d365d758dc4acaf002acf561b64c062e9e9a4c0bb6396278790",
-        "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+        "experiments/bigui-program-v1.json": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
         "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
         "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
         "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
@@ -17406,14 +19446,14 @@
       "runId": "BIGUI-EXP-034-fbebd5d25883",
       "manifestSchema": "BigUIArchitectureFixtureResults-v1",
       "manifestPath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "manifestSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "manifestSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "acceptanceStatus": "accepted",
-      "acceptedAt": "2026-07-26T00:00:00+03:00",
+      "acceptedAt": "2026-07-26T14:16:00+03:00",
       "evidenceClass": "offline",
       "sourceRevision": "411b2d9e5cf3e22c6003877ab70419851ee0dd90",
       "inputHashes": {
         "scripts/run_bigui_architecture_experiments.py": "e039b68a97258d365d758dc4acaf002acf561b64c062e9e9a4c0bb6396278790",
-        "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+        "experiments/bigui-program-v1.json": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
         "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
         "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
         "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
@@ -17443,14 +19483,14 @@
       "runId": "BIGUI-EXP-035-ca0b0592e8c7",
       "manifestSchema": "BigUIArchitectureFixtureResults-v1",
       "manifestPath": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "manifestSha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "manifestSha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "acceptanceStatus": "accepted",
-      "acceptedAt": "2026-07-26T00:00:00+03:00",
+      "acceptedAt": "2026-07-26T14:16:00+03:00",
       "evidenceClass": "synthetic",
       "sourceRevision": "411b2d9e5cf3e22c6003877ab70419851ee0dd90",
       "inputHashes": {
         "scripts/run_bigui_architecture_experiments.py": "e039b68a97258d365d758dc4acaf002acf561b64c062e9e9a4c0bb6396278790",
-        "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+        "experiments/bigui-program-v1.json": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
         "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
         "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
         "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
@@ -25192,6 +27232,204 @@
         "status": "accepted",
         "evaluatorVersion": "bigui-run-store-v1",
         "evaluatedAt": "2026-07-26T00:30:26+00:00",
+        "criteriaOutcomes": [
+          {
+            "id": "SOURCE_PRESENT_AND_HASHED",
+            "passed": true,
+            "detail": "The source summary exists and has a recorded SHA-256 hash."
+          },
+          {
+            "id": "CLAIM_BOUNDARY_RECORDED",
+            "passed": true,
+            "detail": "The run records its admissible evidence boundary."
+          }
+        ],
+        "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+        "approverClass": "deterministic_validator"
+      }
+    },
+    {
+      "schemaVersion": "AcceptedExperimentRunBundle-v1",
+      "publicationTier": "tracked_sanitized",
+      "envelope": {
+        "schemaVersion": "ExperimentRunEnvelope-v2",
+        "experimentId": "EXP-030",
+        "runId": "EXP-030-7c239462b5c4",
+        "attemptId": "attempt-001",
+        "executionStatus": "succeeded",
+        "startedAt": "2026-07-26T14:16:00+03:00",
+        "completedAt": "2026-07-26T14:16:00+03:00",
+        "durationMilliseconds": null,
+        "manifestSchema": "SanitizedAggregateSource",
+        "manifestPath": "experiments/bigui-program-v1.json",
+        "manifestSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+        "acceptanceStatus": "accepted",
+        "acceptedAt": "2026-07-26T14:16:00+03:00",
+        "evidenceClass": "offline",
+        "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+        "inputHashes": {
+          "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "outputHashes": {
+          "summary": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299"
+        },
+        "metricObservationIds": [
+          "OBS-METRIC-BIGUI_DEFINITION_FIELD_COMPLETENESS-0b8c912d5864",
+          "OBS-METRIC-BIGUI_DEFINITION_ID_UNIQUENESS-e55abefcfb4a"
+        ],
+        "metricDefinitionHashes": {
+          "BIGUI_DEFINITION_FIELD_COMPLETENESS": "6757d70045c4d265b5533b0dc106357cc2c711fa44771115454d09e528838b36",
+          "BIGUI_DEFINITION_ID_UNIQUENESS": "4a0999338d1fa45ebdc692eeed0d552831aa4337e6616ab7597e40ead913b593"
+        },
+        "comparisonContext": {
+          "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "partitionHash": "not_applicable",
+          "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+          "policyVersion": "m4b1-v1",
+          "promptVersion": "historical-frozen",
+          "modelIdentifier": "gpt-4o-historical-alias",
+          "metricSchemaVersion": "2.0",
+          "labelEligibility": "generalization_safe",
+          "leakageClass": "none",
+          "evidenceClass": "offline",
+          "architectureMode": "legacy",
+          "topology": "not_applicable",
+          "interfaceVersion": "BigUI-v2",
+          "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "artifactRefs": [
+          "experiments/bigui-program-v1.json"
+        ],
+        "logRef": null,
+        "evaluation": {
+          "schemaVersion": "ExperimentEvaluation-v1",
+          "experimentId": "EXP-030",
+          "runId": "EXP-030-7c239462b5c4",
+          "executionValid": true,
+          "deterministic": true,
+          "engineeringTargetMet": null,
+          "evidenceAdmissible": true,
+          "resultVerdict": "CONFORMANCE_PASS",
+          "criteria": [
+            {
+              "id": "SOURCE_PRESENT_AND_HASHED",
+              "passed": true,
+              "detail": "The source summary exists and has a recorded SHA-256 hash."
+            },
+            {
+              "id": "CLAIM_BOUNDARY_RECORDED",
+              "passed": true,
+              "detail": "The run records its admissible evidence boundary."
+            }
+          ],
+          "claimBoundary": "BigUI extension-definition fidelity only; catalog, run, and browser fidelity remain separately checked."
+        }
+      },
+      "metricDefinitions": [
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+          "title": "Extension definitions with complete required fields",
+          "description": "Extension definitions with complete required fields",
+          "formula": "11 / 11",
+          "unit": "proportion",
+          "direction": "target",
+          "grain": "experiment run",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": {
+            "operator": "eq",
+            "value": 1
+          }
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "BIGUI_DEFINITION_ID_UNIQUENESS",
+          "title": "Unique extension experiment IDs",
+          "description": "Unique extension experiment IDs",
+          "formula": "11 / 11",
+          "unit": "proportion",
+          "direction": "target",
+          "grain": "experiment run",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": {
+            "operator": "eq",
+            "value": 1
+          }
+        }
+      ],
+      "metricObservations": [
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-BIGUI_DEFINITION_FIELD_COMPLETENESS-0b8c912d5864",
+          "experimentId": "EXP-030",
+          "runId": "EXP-030-7c239462b5c4",
+          "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+          "metricDefinitionSha256": "6757d70045c4d265b5533b0dc106357cc2c711fa44771115454d09e528838b36",
+          "baselineId": "bigui-program-contract",
+          "comparatorId": "validated-extension-definitions",
+          "value": 1.0,
+          "numerator": 11,
+          "denominator": 11,
+          "missingCount": 0,
+          "unit": "proportion",
+          "direction": "target",
+          "estimand": "Extension definitions with complete required fields",
+          "grain": "experiment run",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic aggregate",
+          "confidenceInterval": null,
+          "sourcePath": "experiments/bigui-program-v1.json",
+          "sourceSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Tracked BigUI extension-definition fidelity only. Full catalog, run, and browser fidelity are enforced separately; no classification validity follows."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-BIGUI_DEFINITION_ID_UNIQUENESS-e55abefcfb4a",
+          "experimentId": "EXP-030",
+          "runId": "EXP-030-7c239462b5c4",
+          "metricId": "BIGUI_DEFINITION_ID_UNIQUENESS",
+          "metricDefinitionSha256": "4a0999338d1fa45ebdc692eeed0d552831aa4337e6616ab7597e40ead913b593",
+          "baselineId": "bigui-program-contract",
+          "comparatorId": "validated-extension-definitions",
+          "value": 1.0,
+          "numerator": 11,
+          "denominator": 11,
+          "missingCount": 0,
+          "unit": "proportion",
+          "direction": "target",
+          "estimand": "Unique extension experiment IDs",
+          "grain": "experiment run",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic aggregate",
+          "confidenceInterval": null,
+          "sourcePath": "experiments/bigui-program-v1.json",
+          "sourceSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Tracked BigUI extension-definition fidelity only. Full catalog, run, and browser fidelity are enforced separately; no classification validity follows."
+        }
+      ],
+      "acceptance": {
+        "schemaVersion": "RunAcceptanceRecord-v1",
+        "experimentId": "EXP-030",
+        "runId": "EXP-030-7c239462b5c4",
+        "status": "accepted",
+        "evaluatorVersion": "bigui-run-store-v1",
+        "evaluatedAt": "2026-07-26T14:16:00+03:00",
         "criteriaOutcomes": [
           {
             "id": "SOURCE_PRESENT_AND_HASHED",
@@ -36070,16 +38308,1106 @@
         "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
         "approverClass": "deterministic_validator"
       }
+    },
+    {
+      "schemaVersion": "AcceptedExperimentRunBundle-v1",
+      "publicationTier": "tracked_sanitized",
+      "envelope": {
+        "schemaVersion": "ExperimentRunEnvelope-v2",
+        "experimentId": "EXP-037",
+        "runId": "EXP-037-49963313a384",
+        "attemptId": "attempt-001",
+        "executionStatus": "succeeded",
+        "startedAt": "2026-07-26T14:16:00+03:00",
+        "completedAt": "2026-07-26T14:16:00+03:00",
+        "durationMilliseconds": null,
+        "manifestSchema": "SanitizedAggregateSource",
+        "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
+        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "acceptanceStatus": "accepted",
+        "acceptedAt": "2026-07-26T14:16:00+03:00",
+        "evidenceClass": "offline",
+        "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+        "inputHashes": {
+          "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "outputHashes": {
+          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+        },
+        "metricObservationIds": [
+          "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
+          "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
+          "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
+          "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
+          "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
+          "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
+          "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43"
+        ],
+        "metricDefinitionHashes": {
+          "CURRENT_CASE_MODEL_COUNT": "07217ea408a13519255a39b0dd44ebadf5f8c6141ea2dc80d3f4f0edc87c5ae9",
+          "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE": "babb08f84d0e308ef24fcc43f4ee1c37bcb1d135b82fe18c83d200aa81f9f06c",
+          "CURRENT_PATTERN_COUNT": "f31700fcda5ab2e9d70af4aed1042f8861bca78163427947dc21769a84063f2a",
+          "PAPER_CASE_MODEL_COUNT": "ca79fca9a3a1de7547cb657ebff94bb84005eb209082afe679f09b6cdd1056b9",
+          "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE": "a4785eec5ae6e45eaa3a882a94d545fc28443b585b24233ec26e8e7918a2be21",
+          "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE": "4a5ca2f3c21c6ebac1fe7d91914d2fcd9979c8ca1a518affd04b7b943647920c",
+          "PAPER_PATTERN_COUNT": "f36bbf6539b2c7e4ec2ea1b9086b5cf3aec97f0cb2246c521295c32df96116b1"
+        },
+        "comparisonContext": {
+          "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "partitionHash": "not_applicable",
+          "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+          "policyVersion": "m4b1-v1",
+          "promptVersion": "historical-frozen",
+          "modelIdentifier": "gpt-4o-historical-alias",
+          "metricSchemaVersion": "2.0",
+          "labelEligibility": "generalization_safe",
+          "leakageClass": "none",
+          "evidenceClass": "offline",
+          "architectureMode": "multi-mode",
+          "topology": "not_applicable",
+          "interfaceVersion": "BigUI-v3",
+          "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "artifactRefs": [
+          "docs/research/bigui/baseline-comparison-results-v1.json"
+        ],
+        "logRef": null,
+        "evaluation": {
+          "schemaVersion": "ExperimentEvaluation-v1",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "executionValid": true,
+          "deterministic": true,
+          "engineeringTargetMet": null,
+          "evidenceAdmissible": true,
+          "resultVerdict": "CONFORMANCE_PASS",
+          "criteria": [
+            {
+              "id": "EXECUTION_VALID",
+              "passed": true,
+              "detail": "The comparison experiment completed with schema-valid output."
+            },
+            {
+              "id": "EVIDENCE_BOUNDARY_PRESERVED",
+              "passed": true,
+              "detail": "Unsupported accuracy and effort deltas remain suppressed."
+            }
+          ],
+          "claimBoundary": "Paper-reported Phase A-C values describe the original agents and cannot be used as the current H-layer classification-accuracy baseline. Phase D is qualitative author assessment, not independent ground truth. Counts may be reconciled contextually, while current classification accuracy remains not computable at 0/24 safe labels."
+        }
+      },
+      "metricDefinitions": [
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "CURRENT_CASE_MODEL_COUNT",
+          "title": "Current Case Model Count",
+          "description": "Current Case Model Count",
+          "formula": "current case model count",
+          "unit": "case models",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "mechanism",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+          "title": "Current Human Judgment Capability Coverage",
+          "description": "Current Human Judgment Capability Coverage",
+          "formula": "current human judgment capability coverage",
+          "unit": "proportion",
+          "direction": "higher_is_better",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "mechanism",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "CURRENT_PATTERN_COUNT",
+          "title": "Current Pattern Count",
+          "description": "Current Pattern Count",
+          "formula": "current pattern count",
+          "unit": "patterns",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "mechanism",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "PAPER_CASE_MODEL_COUNT",
+          "title": "Paper Case Model Count",
+          "description": "Paper Case Model Count",
+          "formula": "paper case model count",
+          "unit": "case models",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "historical",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
+          "title": "Paper Current Classification Comparison Eligible",
+          "description": "Paper Current Classification Comparison Eligible",
+          "formula": "paper current classification comparison eligible",
+          "unit": "boolean",
+          "direction": "target",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+          "title": "Paper Human Judgment Capability Coverage",
+          "description": "Paper Human Judgment Capability Coverage",
+          "formula": "paper human judgment capability coverage",
+          "unit": "proportion",
+          "direction": "higher_is_better",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "historical",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "PAPER_PATTERN_COUNT",
+          "title": "Paper Pattern Count",
+          "description": "Paper Pattern Count",
+          "formula": "paper pattern count",
+          "unit": "patterns",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "historical",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        }
+      ],
+      "metricObservations": [
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "metricId": "CURRENT_CASE_MODEL_COUNT",
+          "metricDefinitionSha256": "07217ea408a13519255a39b0dd44ebadf5f8c6141ea2dc80d3f4f0edc87c5ae9",
+          "baselineId": "PAPER-B0",
+          "comparatorId": "CURRENT-B0/B1",
+          "value": 179,
+          "numerator": 179,
+          "denominator": 179,
+          "missingCount": 0,
+          "unit": "case models",
+          "direction": "neutral",
+          "estimand": "Current Case Model Count",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+          "metricDefinitionSha256": "babb08f84d0e308ef24fcc43f4ee1c37bcb1d135b82fe18c83d200aa81f9f06c",
+          "baselineId": "PAPER-B0",
+          "comparatorId": "CURRENT-B0/B1",
+          "value": 1.0,
+          "numerator": 7,
+          "denominator": 7,
+          "missingCount": 0,
+          "unit": "proportion",
+          "direction": "higher_is_better",
+          "estimand": "Current Human Judgment Capability Coverage",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "metricId": "CURRENT_PATTERN_COUNT",
+          "metricDefinitionSha256": "f31700fcda5ab2e9d70af4aed1042f8861bca78163427947dc21769a84063f2a",
+          "baselineId": "PAPER-B0",
+          "comparatorId": "CURRENT-B0/B1",
+          "value": 27,
+          "numerator": 27,
+          "denominator": 27,
+          "missingCount": 0,
+          "unit": "patterns",
+          "direction": "neutral",
+          "estimand": "Current Pattern Count",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "metricId": "PAPER_CASE_MODEL_COUNT",
+          "metricDefinitionSha256": "ca79fca9a3a1de7547cb657ebff94bb84005eb209082afe679f09b6cdd1056b9",
+          "baselineId": "PAPER-B0",
+          "comparatorId": "CURRENT-B0/B1",
+          "value": 178,
+          "numerator": 178,
+          "denominator": 178,
+          "missingCount": 0,
+          "unit": "case models",
+          "direction": "neutral",
+          "estimand": "Paper Case Model Count",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
+          "metricDefinitionSha256": "a4785eec5ae6e45eaa3a882a94d545fc28443b585b24233ec26e8e7918a2be21",
+          "baselineId": "PAPER-B0",
+          "comparatorId": "CURRENT-B0/B1",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1,
+          "missingCount": 0,
+          "unit": "boolean",
+          "direction": "target",
+          "estimand": "Paper Current Classification Comparison Eligible",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Current classification accuracy remains null at safe N=0; the paper's qualitative author assessment is not a compatible independent benchmark."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+          "metricDefinitionSha256": "4a5ca2f3c21c6ebac1fe7d91914d2fcd9979c8ca1a518affd04b7b943647920c",
+          "baselineId": "PAPER-B0",
+          "comparatorId": "CURRENT-B0/B1",
+          "value": 0.0,
+          "numerator": 0,
+          "denominator": 7,
+          "missingCount": 0,
+          "unit": "proportion",
+          "direction": "higher_is_better",
+          "estimand": "Paper Human Judgment Capability Coverage",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43",
+          "experimentId": "EXP-037",
+          "runId": "EXP-037-49963313a384",
+          "metricId": "PAPER_PATTERN_COUNT",
+          "metricDefinitionSha256": "f36bbf6539b2c7e4ec2ea1b9086b5cf3aec97f0cb2246c521295c32df96116b1",
+          "baselineId": "PAPER-B0",
+          "comparatorId": "CURRENT-B0/B1",
+          "value": 26,
+          "numerator": 26,
+          "denominator": 26,
+          "missingCount": 0,
+          "unit": "patterns",
+          "direction": "neutral",
+          "estimand": "Paper Pattern Count",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
+        }
+      ],
+      "acceptance": {
+        "schemaVersion": "RunAcceptanceRecord-v1",
+        "experimentId": "EXP-037",
+        "runId": "EXP-037-49963313a384",
+        "status": "accepted",
+        "evaluatorVersion": "bigui-run-store-v1",
+        "evaluatedAt": "2026-07-26T14:16:00+03:00",
+        "criteriaOutcomes": [
+          {
+            "id": "EXECUTION_VALID",
+            "passed": true,
+            "detail": "The comparison experiment completed with schema-valid output."
+          },
+          {
+            "id": "EVIDENCE_BOUNDARY_PRESERVED",
+            "passed": true,
+            "detail": "Unsupported accuracy and effort deltas remain suppressed."
+          }
+        ],
+        "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+        "approverClass": "deterministic_validator"
+      }
+    },
+    {
+      "schemaVersion": "AcceptedExperimentRunBundle-v1",
+      "publicationTier": "tracked_sanitized",
+      "envelope": {
+        "schemaVersion": "ExperimentRunEnvelope-v2",
+        "experimentId": "EXP-038",
+        "runId": "EXP-038-49963313a384",
+        "attemptId": "attempt-001",
+        "executionStatus": "succeeded",
+        "startedAt": "2026-07-26T14:16:00+03:00",
+        "completedAt": "2026-07-26T14:16:00+03:00",
+        "durationMilliseconds": null,
+        "manifestSchema": "SanitizedAggregateSource",
+        "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
+        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "acceptanceStatus": "accepted",
+        "acceptedAt": "2026-07-26T14:16:00+03:00",
+        "evidenceClass": "offline",
+        "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+        "inputHashes": {
+          "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "outputHashes": {
+          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+        },
+        "metricObservationIds": [
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76"
+        ],
+        "metricDefinitionHashes": {
+          "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS": "07e5c9e02a6458d688e688414e63f9758fd6b13fa76d2a39523196daac9baf38",
+          "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS": "8665789c1540d86b43848653bd94b89ad1b47c43fbd0d1ded3e456fe0c3d0ad4"
+        },
+        "comparisonContext": {
+          "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "partitionHash": "not_applicable",
+          "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+          "policyVersion": "m4b1-v1",
+          "promptVersion": "historical-frozen",
+          "modelIdentifier": "gpt-4o-historical-alias",
+          "metricSchemaVersion": "2.0",
+          "labelEligibility": "generalization_safe",
+          "leakageClass": "none",
+          "evidenceClass": "offline",
+          "architectureMode": "multi-mode",
+          "topology": "not_applicable",
+          "interfaceVersion": "BigUI-v3",
+          "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "artifactRefs": [
+          "docs/research/bigui/baseline-comparison-results-v1.json"
+        ],
+        "logRef": null,
+        "evaluation": {
+          "schemaVersion": "ExperimentEvaluation-v1",
+          "experimentId": "EXP-038",
+          "runId": "EXP-038-49963313a384",
+          "executionValid": true,
+          "deterministic": true,
+          "engineeringTargetMet": null,
+          "evidenceAdmissible": true,
+          "resultVerdict": "CONFORMANCE_PASS",
+          "criteria": [
+            {
+              "id": "EXECUTION_VALID",
+              "passed": true,
+              "detail": "The comparison experiment completed with schema-valid output."
+            },
+            {
+              "id": "EVIDENCE_BOUNDARY_PRESERVED",
+              "passed": true,
+              "detail": "Unsupported accuracy and effort deltas remain suppressed."
+            }
+          ],
+          "claimBoundary": "Capability and reliability extension is demonstrated on the accepted cohorts; classification and effort value remain null."
+        }
+      },
+      "metricDefinitions": [
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+          "title": "Architecture Scorecard Demonstrated Dimensions",
+          "description": "Architecture Scorecard Demonstrated Dimensions",
+          "formula": "architecture scorecard demonstrated dimensions",
+          "unit": "dimensions",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
+          "title": "Architecture Scorecard Unmeasured Dimensions",
+          "description": "Architecture Scorecard Unmeasured Dimensions",
+          "formula": "architecture scorecard unmeasured dimensions",
+          "unit": "dimensions",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        }
+      ],
+      "metricObservations": [
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
+          "experimentId": "EXP-038",
+          "runId": "EXP-038-49963313a384",
+          "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+          "metricDefinitionSha256": "07e5c9e02a6458d688e688414e63f9758fd6b13fa76d2a39523196daac9baf38",
+          "baselineId": "B0/B1",
+          "comparatorId": "B1-EVIDENCE-SCORECARD",
+          "value": 4,
+          "numerator": 4,
+          "denominator": 6,
+          "missingCount": 0,
+          "unit": "dimensions",
+          "direction": "neutral",
+          "estimand": "Architecture Scorecard Demonstrated Dimensions",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Dimensions remain separate; no arbitrary weighted global improvement score is calculated."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76",
+          "experimentId": "EXP-038",
+          "runId": "EXP-038-49963313a384",
+          "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
+          "metricDefinitionSha256": "8665789c1540d86b43848653bd94b89ad1b47c43fbd0d1ded3e456fe0c3d0ad4",
+          "baselineId": "B0/B1",
+          "comparatorId": "B1-EVIDENCE-SCORECARD",
+          "value": 2,
+          "numerator": 2,
+          "denominator": 6,
+          "missingCount": 0,
+          "unit": "dimensions",
+          "direction": "neutral",
+          "estimand": "Architecture Scorecard Unmeasured Dimensions",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Classification and effort remain visibly unmeasured."
+        }
+      ],
+      "acceptance": {
+        "schemaVersion": "RunAcceptanceRecord-v1",
+        "experimentId": "EXP-038",
+        "runId": "EXP-038-49963313a384",
+        "status": "accepted",
+        "evaluatorVersion": "bigui-run-store-v1",
+        "evaluatedAt": "2026-07-26T14:16:00+03:00",
+        "criteriaOutcomes": [
+          {
+            "id": "EXECUTION_VALID",
+            "passed": true,
+            "detail": "The comparison experiment completed with schema-valid output."
+          },
+          {
+            "id": "EVIDENCE_BOUNDARY_PRESERVED",
+            "passed": true,
+            "detail": "Unsupported accuracy and effort deltas remain suppressed."
+          }
+        ],
+        "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+        "approverClass": "deterministic_validator"
+      }
+    },
+    {
+      "schemaVersion": "AcceptedExperimentRunBundle-v1",
+      "publicationTier": "tracked_sanitized",
+      "envelope": {
+        "schemaVersion": "ExperimentRunEnvelope-v2",
+        "experimentId": "EXP-039",
+        "runId": "EXP-039-49963313a384",
+        "attemptId": "attempt-001",
+        "executionStatus": "succeeded",
+        "startedAt": "2026-07-26T14:16:00+03:00",
+        "completedAt": "2026-07-26T14:16:00+03:00",
+        "durationMilliseconds": null,
+        "manifestSchema": "SanitizedAggregateSource",
+        "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
+        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "acceptanceStatus": "accepted",
+        "acceptedAt": "2026-07-26T14:16:00+03:00",
+        "evidenceClass": "offline",
+        "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+        "inputHashes": {
+          "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "outputHashes": {
+          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+        },
+        "metricObservationIds": [
+          "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
+          "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0"
+        ],
+        "metricDefinitionHashes": {
+          "DIRECT_COMPARISON_GROUPS": "eca5090b331f96a195aaaeb1f8fc9aed408aa8fb63ccc555dc699fc2fde9a4b7",
+          "INCOMPATIBLE_COMPARISONS_SUPPRESSED": "90813946e196f33f91281edd0444dd43b1ee2949406c4014a799f65672e24860"
+        },
+        "comparisonContext": {
+          "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "partitionHash": "not_applicable",
+          "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+          "policyVersion": "m4b1-v1",
+          "promptVersion": "historical-frozen",
+          "modelIdentifier": "gpt-4o-historical-alias",
+          "metricSchemaVersion": "2.0",
+          "labelEligibility": "generalization_safe",
+          "leakageClass": "none",
+          "evidenceClass": "offline",
+          "architectureMode": "multi-mode",
+          "topology": "not_applicable",
+          "interfaceVersion": "BigUI-v3",
+          "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "artifactRefs": [
+          "docs/research/bigui/baseline-comparison-results-v1.json"
+        ],
+        "logRef": null,
+        "evaluation": {
+          "schemaVersion": "ExperimentEvaluation-v1",
+          "experimentId": "EXP-039",
+          "runId": "EXP-039-49963313a384",
+          "executionValid": true,
+          "deterministic": true,
+          "engineeringTargetMet": null,
+          "evidenceAdmissible": true,
+          "resultVerdict": "CONFORMANCE_PASS",
+          "criteria": [
+            {
+              "id": "EXECUTION_VALID",
+              "passed": true,
+              "detail": "The comparison experiment completed with schema-valid output."
+            },
+            {
+              "id": "EVIDENCE_BOUNDARY_PRESERVED",
+              "passed": true,
+              "detail": "Unsupported accuracy and effort deltas remain suppressed."
+            }
+          ],
+          "claimBoundary": "Every 'better' statement is metric-specific and accompanied by its countervailing trade-off and evidence boundary."
+        }
+      },
+      "metricDefinitions": [
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "DIRECT_COMPARISON_GROUPS",
+          "title": "Direct Comparison Groups",
+          "description": "Direct Comparison Groups",
+          "formula": "direct comparison groups",
+          "unit": "comparison groups",
+          "direction": "higher_is_better",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
+          "title": "Incompatible Comparisons Suppressed",
+          "description": "Incompatible Comparisons Suppressed",
+          "formula": "incompatible comparisons suppressed",
+          "unit": "comparison groups",
+          "direction": "target",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        }
+      ],
+      "metricObservations": [
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
+          "experimentId": "EXP-039",
+          "runId": "EXP-039-49963313a384",
+          "metricId": "DIRECT_COMPARISON_GROUPS",
+          "metricDefinitionSha256": "eca5090b331f96a195aaaeb1f8fc9aed408aa8fb63ccc555dc699fc2fde9a4b7",
+          "baselineId": "B0/B1",
+          "comparatorId": "DECLARED-TREATMENTS",
+          "value": 7,
+          "numerator": 7,
+          "denominator": 8,
+          "missingCount": 0,
+          "unit": "comparison groups",
+          "direction": "higher_is_better",
+          "estimand": "Direct Comparison Groups",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Eligibility means the treatment comparison is well-formed; it does not imply a positive result."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0",
+          "experimentId": "EXP-039",
+          "runId": "EXP-039-49963313a384",
+          "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
+          "metricDefinitionSha256": "90813946e196f33f91281edd0444dd43b1ee2949406c4014a799f65672e24860",
+          "baselineId": "B0/B1",
+          "comparatorId": "DECLARED-TREATMENTS",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 8,
+          "missingCount": 0,
+          "unit": "comparison groups",
+          "direction": "target",
+          "estimand": "Incompatible Comparisons Suppressed",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Incompatible paper-to-current accuracy deltas are refused."
+        }
+      ],
+      "acceptance": {
+        "schemaVersion": "RunAcceptanceRecord-v1",
+        "experimentId": "EXP-039",
+        "runId": "EXP-039-49963313a384",
+        "status": "accepted",
+        "evaluatorVersion": "bigui-run-store-v1",
+        "evaluatedAt": "2026-07-26T14:16:00+03:00",
+        "criteriaOutcomes": [
+          {
+            "id": "EXECUTION_VALID",
+            "passed": true,
+            "detail": "The comparison experiment completed with schema-valid output."
+          },
+          {
+            "id": "EVIDENCE_BOUNDARY_PRESERVED",
+            "passed": true,
+            "detail": "Unsupported accuracy and effort deltas remain suppressed."
+          }
+        ],
+        "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+        "approverClass": "deterministic_validator"
+      }
+    },
+    {
+      "schemaVersion": "AcceptedExperimentRunBundle-v1",
+      "publicationTier": "tracked_sanitized",
+      "envelope": {
+        "schemaVersion": "ExperimentRunEnvelope-v2",
+        "experimentId": "EXP-040",
+        "runId": "EXP-040-49963313a384",
+        "attemptId": "attempt-001",
+        "executionStatus": "succeeded",
+        "startedAt": "2026-07-26T14:16:00+03:00",
+        "completedAt": "2026-07-26T14:16:00+03:00",
+        "durationMilliseconds": null,
+        "manifestSchema": "SanitizedAggregateSource",
+        "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
+        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "acceptanceStatus": "accepted",
+        "acceptedAt": "2026-07-26T14:16:00+03:00",
+        "evidenceClass": "offline",
+        "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+        "inputHashes": {
+          "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "outputHashes": {
+          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+        },
+        "metricObservationIds": [
+          "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
+          "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
+          "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
+          "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9"
+        ],
+        "metricDefinitionHashes": {
+          "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY": "87f55c06cd8bfda4b13423c0ad48a7b65de33c8f7c8a2c6bfd34bbce2c53cdd6",
+          "THESIS_HYPOTHESES_CONFIRMED": "a08b6d52087d3c73eb0e550f8e403baa2e4b254539cf835aa2e118121e18f838",
+          "THESIS_SAFE_CURRENT_CLAIMS": "8befb969471acb43380493bc58c6ec35d2ba300c713cb3bbfc1da979b01c1ffb",
+          "THESIS_TRACEABILITY_RECORDS": "47389979eec8c5cf2d62eb2103c06a5b2dd8e0a4ee744ce09c0167281aff9f70"
+        },
+        "comparisonContext": {
+          "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "partitionHash": "not_applicable",
+          "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+          "policyVersion": "m4b1-v1",
+          "promptVersion": "historical-frozen",
+          "modelIdentifier": "gpt-4o-historical-alias",
+          "metricSchemaVersion": "2.0",
+          "labelEligibility": "generalization_safe",
+          "leakageClass": "none",
+          "evidenceClass": "offline",
+          "architectureMode": "multi-mode",
+          "topology": "not_applicable",
+          "interfaceVersion": "BigUI-v3",
+          "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+        },
+        "artifactRefs": [
+          "docs/research/bigui/baseline-comparison-results-v1.json"
+        ],
+        "logRef": null,
+        "evaluation": {
+          "schemaVersion": "ExperimentEvaluation-v1",
+          "experimentId": "EXP-040",
+          "runId": "EXP-040-49963313a384",
+          "executionValid": true,
+          "deterministic": true,
+          "engineeringTargetMet": null,
+          "evidenceAdmissible": true,
+          "resultVerdict": "CONFORMANCE_PASS",
+          "criteria": [
+            {
+              "id": "EXECUTION_VALID",
+              "passed": true,
+              "detail": "The comparison experiment completed with schema-valid output."
+            },
+            {
+              "id": "EVIDENCE_BOUNDARY_PRESERVED",
+              "passed": true,
+              "detail": "Unsupported accuracy and effort deltas remain suppressed."
+            }
+          ],
+          "claimBoundary": "Claim readiness is a provenance audit; it cannot replace the missing independent observations."
+        }
+      },
+      "metricDefinitions": [
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+          "title": "Thesis Empirical Improvement Claims Ready",
+          "description": "Thesis Empirical Improvement Claims Ready",
+          "formula": "thesis empirical improvement claims ready",
+          "unit": "claims",
+          "direction": "higher_is_better",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "THESIS_HYPOTHESES_CONFIRMED",
+          "title": "Thesis Hypotheses Confirmed",
+          "description": "Thesis Hypotheses Confirmed",
+          "formula": "thesis hypotheses confirmed",
+          "unit": "hypotheses",
+          "direction": "higher_is_better",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
+          "title": "Thesis Safe Current Claims",
+          "description": "Thesis Safe Current Claims",
+          "formula": "thesis safe current claims",
+          "unit": "claims",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "mechanism",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        },
+        {
+          "schemaVersion": "MetricDefinition-v1",
+          "metricId": "THESIS_TRACEABILITY_RECORDS",
+          "title": "Thesis Traceability Records",
+          "description": "Thesis Traceability Records",
+          "formula": "thesis traceability records",
+          "unit": "records",
+          "direction": "neutral",
+          "grain": "baseline comparison experiment",
+          "requiredEvidenceClass": "offline",
+          "nullable": false,
+          "nullRule": "Observed from the accepted experiment run.",
+          "dimensions": [],
+          "target": null
+        }
+      ],
+      "metricObservations": [
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
+          "experimentId": "EXP-040",
+          "runId": "EXP-040-49963313a384",
+          "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+          "metricDefinitionSha256": "87f55c06cd8bfda4b13423c0ad48a7b65de33c8f7c8a2c6bfd34bbce2c53cdd6",
+          "baselineId": "B0/B1",
+          "comparatorId": "THESIS-CLAIM-GATES",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 3,
+          "missingCount": 0,
+          "unit": "claims",
+          "direction": "higher_is_better",
+          "estimand": "Thesis Empirical Improvement Claims Ready",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Independent labels, a frozen policy, and external replication remain required."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
+          "experimentId": "EXP-040",
+          "runId": "EXP-040-49963313a384",
+          "metricId": "THESIS_HYPOTHESES_CONFIRMED",
+          "metricDefinitionSha256": "a08b6d52087d3c73eb0e550f8e403baa2e4b254539cf835aa2e118121e18f838",
+          "baselineId": "B0/B1",
+          "comparatorId": "THESIS-CLAIM-GATES",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 4,
+          "missingCount": 0,
+          "unit": "hypotheses",
+          "direction": "higher_is_better",
+          "estimand": "Thesis Hypotheses Confirmed",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "No empirical thesis hypothesis is confirmed at safe N=0."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
+          "experimentId": "EXP-040",
+          "runId": "EXP-040-49963313a384",
+          "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
+          "metricDefinitionSha256": "8befb969471acb43380493bc58c6ec35d2ba300c713cb3bbfc1da979b01c1ffb",
+          "baselineId": "B0/B1",
+          "comparatorId": "THESIS-CLAIM-GATES",
+          "value": 4,
+          "numerator": 4,
+          "denominator": 4,
+          "missingCount": 0,
+          "unit": "claims",
+          "direction": "neutral",
+          "estimand": "Thesis Safe Current Claims",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "These claims are limited to mechanism readiness, compatibility, traceability, and baseline protection."
+        },
+        {
+          "schemaVersion": "MetricObservation-v2",
+          "observationId": "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9",
+          "experimentId": "EXP-040",
+          "runId": "EXP-040-49963313a384",
+          "metricId": "THESIS_TRACEABILITY_RECORDS",
+          "metricDefinitionSha256": "47389979eec8c5cf2d62eb2103c06a5b2dd8e0a4ee744ce09c0167281aff9f70",
+          "baselineId": "B0/B1",
+          "comparatorId": "THESIS-CLAIM-GATES",
+          "value": 7,
+          "numerator": 7,
+          "denominator": 7,
+          "missingCount": 0,
+          "unit": "records",
+          "direction": "neutral",
+          "estimand": "Thesis Traceability Records",
+          "grain": "baseline comparison experiment",
+          "dimensions": {},
+          "exclusions": [],
+          "analysisMethod": "deterministic source reconciliation",
+          "confidenceInterval": null,
+          "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
+          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "evidenceClass": "offline",
+          "observationDate": "2026-07-26",
+          "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+          "metricSchemaVersion": "2.0",
+          "claimBoundary": "Traceability completeness is not hypothesis confirmation."
+        }
+      ],
+      "acceptance": {
+        "schemaVersion": "RunAcceptanceRecord-v1",
+        "experimentId": "EXP-040",
+        "runId": "EXP-040-49963313a384",
+        "status": "accepted",
+        "evaluatorVersion": "bigui-run-store-v1",
+        "evaluatedAt": "2026-07-26T14:16:00+03:00",
+        "criteriaOutcomes": [
+          {
+            "id": "EXECUTION_VALID",
+            "passed": true,
+            "detail": "The comparison experiment completed with schema-valid output."
+          },
+          {
+            "id": "EVIDENCE_BOUNDARY_PRESERVED",
+            "passed": true,
+            "detail": "Unsupported accuracy and effort deltas remain suppressed."
+          }
+        ],
+        "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+        "approverClass": "deterministic_validator"
+      }
     }
   ],
   "runStoreSummary": {
     "schemaVersion": "BigUIRunStoreSummary-v1",
-    "bundleCount": 30,
-    "acceptedAttemptCount": 30,
-    "uniqueExperimentRunCount": 30,
-    "uniqueRunIdCount": 30,
-    "experimentsWithAcceptedRuns": 22,
-    "metricObservationCount": 405,
+    "bundleCount": 35,
+    "acceptedAttemptCount": 35,
+    "uniqueExperimentRunCount": 35,
+    "uniqueRunIdCount": 35,
+    "experimentsWithAcceptedRuns": 26,
+    "metricObservationCount": 422,
     "experimentIds": [
       "EXP-001",
       "EXP-002",
@@ -36102,7 +39430,11 @@
       "EXP-033",
       "EXP-034",
       "EXP-035",
-      "EXP-036"
+      "EXP-036",
+      "EXP-037",
+      "EXP-038",
+      "EXP-039",
+      "EXP-040"
     ]
   },
   "claimBoundaries": {
@@ -36144,7 +39476,7 @@
     {
       "id": "experiment-registry",
       "path": "experiments/registry.md",
-      "sha256": "5e0bcda1386d01c7f620f129c95994051b85390e8a09ff856730e936fabd9e0b",
+      "sha256": "fa8f1825c721154dbb620f56917ed9d3e93b8ea9301b801058383a77a5f24241",
       "role": "Experiment titles, status narratives, and artifact references"
     },
     {
@@ -36156,14 +39488,14 @@
     {
       "id": "thesis-evidence",
       "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-      "sha256": "11538d78b178fb3c28717c47e2504a8300c88ec5281097d95b2889e130dfe0bd",
+      "sha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
       "role": "Mechanism counts, B0–B5 evidence ladder, and claim gates"
     },
     {
       "id": "bigui-program",
       "path": "experiments/bigui-program-v1.json",
-      "sha256": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
-      "role": "EXP-030–EXP-036 protocols and metadata"
+      "sha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+      "role": "EXP-030–EXP-040 protocols and metadata"
     },
     {
       "id": "baseline-lock",
@@ -36180,8 +39512,20 @@
     {
       "id": "architecture-fixtures",
       "path": "docs/research/bigui/architecture-fixture-results-v1.json",
-      "sha256": "7fc46aa1e48a8c5f2c6e59a3c0b499a5871a6bb4ab131ae4e9850b1125b88aac",
+      "sha256": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "role": "Clone-safe EXP-033–EXP-035 fixture results and EXP-036 gate"
+    },
+    {
+      "id": "paper-baseline",
+      "path": "docs/research/bigui/paper-baseline-snapshot-v1.json",
+      "sha256": "78b6701caea4feee131980e2e8ae84f436451e53853ca0e779a0d161a6ad966a",
+      "role": "Reviewed paper-reported baseline values and comparison boundary"
+    },
+    {
+      "id": "baseline-comparison",
+      "path": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "sha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "role": "EXP-037–EXP-040 baseline, comparison, and thesis-readiness results"
     }
   ]
 }

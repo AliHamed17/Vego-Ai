@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "AcceptedExperimentRunBundle-v1",
+  "publicationTier": "tracked_sanitized",
+  "envelope": {
+    "schemaVersion": "ExperimentRunEnvelope-v2",
+    "experimentId": "EXP-030",
+    "runId": "EXP-030-7c239462b5c4",
+    "attemptId": "attempt-001",
+    "executionStatus": "succeeded",
+    "startedAt": "2026-07-26T14:16:00+03:00",
+    "completedAt": "2026-07-26T14:16:00+03:00",
+    "durationMilliseconds": null,
+    "manifestSchema": "SanitizedAggregateSource",
+    "manifestPath": "experiments/bigui-program-v1.json",
+    "manifestSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+    "acceptanceStatus": "accepted",
+    "acceptedAt": "2026-07-26T14:16:00+03:00",
+    "evidenceClass": "offline",
+    "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+    "inputHashes": {
+      "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "outputHashes": {
+      "summary": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299"
+    },
+    "metricObservationIds": [
+      "OBS-METRIC-BIGUI_DEFINITION_FIELD_COMPLETENESS-0b8c912d5864",
+      "OBS-METRIC-BIGUI_DEFINITION_ID_UNIQUENESS-e55abefcfb4a"
+    ],
+    "metricDefinitionHashes": {
+      "BIGUI_DEFINITION_FIELD_COMPLETENESS": "6757d70045c4d265b5533b0dc106357cc2c711fa44771115454d09e528838b36",
+      "BIGUI_DEFINITION_ID_UNIQUENESS": "4a0999338d1fa45ebdc692eeed0d552831aa4337e6616ab7597e40ead913b593"
+    },
+    "comparisonContext": {
+      "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "partitionHash": "not_applicable",
+      "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+      "policyVersion": "m4b1-v1",
+      "promptVersion": "historical-frozen",
+      "modelIdentifier": "gpt-4o-historical-alias",
+      "metricSchemaVersion": "2.0",
+      "labelEligibility": "generalization_safe",
+      "leakageClass": "none",
+      "evidenceClass": "offline",
+      "architectureMode": "legacy",
+      "topology": "not_applicable",
+      "interfaceVersion": "BigUI-v2",
+      "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "artifactRefs": [
+      "experiments/bigui-program-v1.json"
+    ],
+    "logRef": null,
+    "evaluation": {
+      "schemaVersion": "ExperimentEvaluation-v1",
+      "experimentId": "EXP-030",
+      "runId": "EXP-030-7c239462b5c4",
+      "executionValid": true,
+      "deterministic": true,
+      "engineeringTargetMet": null,
+      "evidenceAdmissible": true,
+      "resultVerdict": "CONFORMANCE_PASS",
+      "criteria": [
+        {
+          "id": "SOURCE_PRESENT_AND_HASHED",
+          "passed": true,
+          "detail": "The source summary exists and has a recorded SHA-256 hash."
+        },
+        {
+          "id": "CLAIM_BOUNDARY_RECORDED",
+          "passed": true,
+          "detail": "The run records its admissible evidence boundary."
+        }
+      ],
+      "claimBoundary": "BigUI extension-definition fidelity only; catalog, run, and browser fidelity remain separately checked."
+    }
+  },
+  "metricDefinitions": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+      "title": "Extension definitions with complete required fields",
+      "description": "Extension definitions with complete required fields",
+      "formula": "11 / 11",
+      "unit": "proportion",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": {
+        "operator": "eq",
+        "value": 1
+      }
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "BIGUI_DEFINITION_ID_UNIQUENESS",
+      "title": "Unique extension experiment IDs",
+      "description": "Unique extension experiment IDs",
+      "formula": "11 / 11",
+      "unit": "proportion",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": {
+        "operator": "eq",
+        "value": 1
+      }
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-BIGUI_DEFINITION_FIELD_COMPLETENESS-0b8c912d5864",
+      "experimentId": "EXP-030",
+      "runId": "EXP-030-7c239462b5c4",
+      "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+      "metricDefinitionSha256": "6757d70045c4d265b5533b0dc106357cc2c711fa44771115454d09e528838b36",
+      "baselineId": "bigui-program-contract",
+      "comparatorId": "validated-extension-definitions",
+      "value": 1.0,
+      "numerator": 11,
+      "denominator": 11,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "target",
+      "estimand": "Extension definitions with complete required fields",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "experiments/bigui-program-v1.json",
+      "sourceSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Tracked BigUI extension-definition fidelity only. Full catalog, run, and browser fidelity are enforced separately; no classification validity follows."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-BIGUI_DEFINITION_ID_UNIQUENESS-e55abefcfb4a",
+      "experimentId": "EXP-030",
+      "runId": "EXP-030-7c239462b5c4",
+      "metricId": "BIGUI_DEFINITION_ID_UNIQUENESS",
+      "metricDefinitionSha256": "4a0999338d1fa45ebdc692eeed0d552831aa4337e6616ab7597e40ead913b593",
+      "baselineId": "bigui-program-contract",
+      "comparatorId": "validated-extension-definitions",
+      "value": 1.0,
+      "numerator": 11,
+      "denominator": 11,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "target",
+      "estimand": "Unique extension experiment IDs",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "experiments/bigui-program-v1.json",
+      "sourceSha256": "7c239462b5c43a11e89f0c5ec9c0f9ca523decbcdc69fecec43a585ce914f299",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Tracked BigUI extension-definition fidelity only. Full catalog, run, and browser fidelity are enforced separately; no classification validity follows."
+    }
+  ],
+  "acceptance": {
+    "schemaVersion": "RunAcceptanceRecord-v1",
+    "experimentId": "EXP-030",
+    "runId": "EXP-030-7c239462b5c4",
+    "status": "accepted",
+    "evaluatorVersion": "bigui-run-store-v1",
+    "evaluatedAt": "2026-07-26T14:16:00+03:00",
+    "criteriaOutcomes": [
+      {
+        "id": "SOURCE_PRESENT_AND_HASHED",
+        "passed": true,
+        "detail": "The source summary exists and has a recorded SHA-256 hash."
+      },
+      {
+        "id": "CLAIM_BOUNDARY_RECORDED",
+        "passed": true,
+        "detail": "The run records its admissible evidence boundary."
+      }
+    ],
+    "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+    "approverClass": "deterministic_validator"
+  }
+}
