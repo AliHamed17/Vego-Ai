@@ -1,6 +1,6 @@
 # Thesis Evidence Baseline
 
-Generated from revision `4d1e3404f4859789ea1569496e32ce8439ebef53` and accepted Iteration 15 (`HLAYER-UNIFIED-HARDENING-V1`).
+Generated from revision `717b2fa078815a68a5d571f20d8c1db5ce185e3a` and accepted Iteration 15 (`HLAYER-UNIFIED-HARDENING-V1`).
 
 > **Current verdict:** accuracy is **NOT YET COMPUTABLE** because the project has 0 of 24 generalization-safe expert labels. This file records a research baseline, not an accuracy result.
 
