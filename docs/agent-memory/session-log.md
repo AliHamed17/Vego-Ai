@@ -427,3 +427,75 @@ Chronological prompt history for Codex and Claude.
   - PDF QA: 91 pages, 23 sheets, 0 errors
 - Status: review fixes and package regeneration complete; final exact-head verification pending
 - Next steps: Run the full clean release gate, push exact head, resolve all review threads, request a fresh review, and audit CI, protection, and independent approval before merge.
+
+## 2026-07-26 13:30 +03:00 - Codex - Execute experiments and publish results-first BigUI
+
+- Request: Run available VEGO-AI experiments first, evaluate them, and ingest accepted results into the BigUI.
+- Actions taken:
+  - Added a validated accepted-run store and canonical metric observations.
+  - Executed and evaluated EXP-030 and EXP-033 through EXP-036 using clone-safe and controlled inputs.
+  - Published 30 accepted runs and 405 observations in the offline bilingual BigUI.
+  - Fixed cross-platform experiment hashing, deterministic release metadata, and portable DOCX CI.
+  - Passed local source and controlled gates and the complete GitHub merge gate.
+- Files changed:
+  - VEGO-AI-Research-Hub.html
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_architecture_experiments.py
+  - .github/workflows/supervisor-package.yml
+- Commands/checks:
+  - scripts/verify-source.ps1 -Check
+  - scripts/verify-controlled.ps1 -Check
+  - gh pr checks 11 --watch
+- Status: completed
+- Next steps: Merge PR #10 first, then retarget PR #11 to main, rerun all gates, and obtain independent review. Collect real EXP-005 labels before any accuracy claim.
+
+## 2026-07-26 14:55 +03:00 - Codex - Add paper-aligned experiment comparison evidence
+
+- Request: Compare VEGO-AI experiments against the thesis paper and each other, prove supported improvements with real metrics and plots, and publish the evidence in BigUI.
+- Actions taken:
+  - Reconciled the paper draft with the frozen repository baseline.
+  - Executed EXP-037 through EXP-040 with guarded comparison rules.
+  - Added paper/current, capability, routing, topology, and thesis-readiness visualizations to BigUI.
+  - Validated source, controlled evidence, privacy, security, browser behavior, and protected-path integrity.
+- Files changed:
+  - scripts/run_bigui_comparison_experiments.py
+  - docs/research/bigui/paper-baseline-snapshot-v1.json
+  - docs/research/bigui/baseline-comparison-results-v1.json
+  - VEGO-AI-Research-Hub.html
+- Commands/checks:
+  - scripts/verify-source.ps1
+  - scripts/verify-controlled.ps1 -Check
+- Status: Implemented and locally validated; PR publication pending CI.
+- Next steps: Collect independent EXP-005 labels before any accuracy or generalization claim, then use the accepted run manifests to populate the currently empty classification panels.
+
+## 2026-07-26 17:14 +03:00 - Codex - Evaluate all experiments and publish benchmark BigUI
+
+- Request: Define real experiment criteria, run the available experiment suites, compare architecture and paper baselines, publish plots and analytics in BigUI, and report the evidence honestly.
+- Actions taken:
+  - Defined a seven-dimension experiment evaluation standard and B0-B5 evidence ladder.
+  - Ran and accepted the Iteration 15 replay, conformance, architecture, comparison, safety, and scale experiments.
+  - Built an immutable 83-bundle run store with 785 metric observations and a current-run index.
+  - Published the results-first BigUI and standalone benchmark analytics report with guarded comparisons and claim boundaries.
+  - Fixed stale iteration provenance discovered by the controlled release gate and reran all release checks.
+- Files changed:
+  - schemas/experiment-evaluation-standard-v1.schema.json
+  - schemas/experiment-benchmark-snapshot-v1.schema.json
+  - schemas/current-run-index-v1.schema.json
+  - experiments/current-run-index-v1.json
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - VEGO-AI-Research-Hub.html
+  - VEGO-AI-Experiment-Benchmark-Report.html
+  - scripts/build_experiment_benchmark.py
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_comparison_experiments.py
+  - scripts/build_bigui.py
+- Commands/checks:
+  - run-hlayer-iteration.ps1 -IterationNumber 15
+  - verify-source.ps1
+  - verify-controlled.ps1 -Check
+  - verify-release.ps1 -Check
+- Status: completed
+- Next steps: Obtain two independent reviewers for the 24 safe rows; keep accuracy and macro-F1 blank until adjudicated evidence exists; review PR #11 after stacked PR #10.

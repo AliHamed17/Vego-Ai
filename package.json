@@ -8,6 +8,6 @@
     "playwright": "1.61.1"
   },
   "scripts": {
-    "test:browser": "node scripts/tests/supervisor_package_browser_smoke.mjs && node scripts/tests/thesis_progress_browser_smoke.mjs"
+    "test:browser": "node scripts/tests/supervisor_package_browser_smoke.mjs && node scripts/tests/thesis_progress_browser_smoke.mjs && node scripts/tests/bigui_browser_smoke.mjs"
   }
 }

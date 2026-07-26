@@ -1,0 +1,438 @@
+{
+  "schemaVersion": "BigUIArchitectureFixtureResults-v1",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
+  "evidenceClass": "offline_fixture",
+  "syntheticTag": "SYNTHETIC_NOT_HUMAN",
+  "containsControlledData": false,
+  "containsHumanLabels": false,
+  "experiments": [
+    {
+      "experimentId": "EXP-033",
+      "evidenceClass": "offline",
+      "artifactCount": 5,
+      "repetitions": 3,
+      "runCount": 15,
+      "recordExecutions": 15,
+      "semanticDifferences": 0,
+      "deterministic": true,
+      "baselinePreserved": true,
+      "classificationChanges": 0,
+      "passed": true,
+      "runs": [
+        {
+          "repetition": 1,
+          "artifact": "fixture/review",
+          "stage": "review",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "2b7bb9e3f11706fc99592e46efb2d0a20fc671f368e87d7c45f1d64770a230b9",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/feedback",
+          "stage": "feedback",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "c68c792395c8ca2a40d29442491f8d740fc87fec566cc4f9e617d5dfd369e5dc",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/memory",
+          "stage": "memory",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f939f9c7c5bc8b548ed2f7e5d12283e204d3d5e636b92cf4547804fe17cda536",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/advice",
+          "stage": "advice",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "4ce25ee29cf05fb7aa0dafa70caf613405023db17cfcd3e393ec2da3b0c9cce4",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/comparison",
+          "stage": "comparison",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f5bbaf5f33c995e66f0d6dc86ef25b2973ad2e737dacddeefb3df3e159c8f0de",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/review",
+          "stage": "review",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "2b7bb9e3f11706fc99592e46efb2d0a20fc671f368e87d7c45f1d64770a230b9",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/feedback",
+          "stage": "feedback",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "c68c792395c8ca2a40d29442491f8d740fc87fec566cc4f9e617d5dfd369e5dc",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/memory",
+          "stage": "memory",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f939f9c7c5bc8b548ed2f7e5d12283e204d3d5e636b92cf4547804fe17cda536",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/advice",
+          "stage": "advice",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "4ce25ee29cf05fb7aa0dafa70caf613405023db17cfcd3e393ec2da3b0c9cce4",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/comparison",
+          "stage": "comparison",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f5bbaf5f33c995e66f0d6dc86ef25b2973ad2e737dacddeefb3df3e159c8f0de",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/review",
+          "stage": "review",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "2b7bb9e3f11706fc99592e46efb2d0a20fc671f368e87d7c45f1d64770a230b9",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/feedback",
+          "stage": "feedback",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "c68c792395c8ca2a40d29442491f8d740fc87fec566cc4f9e617d5dfd369e5dc",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/memory",
+          "stage": "memory",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f939f9c7c5bc8b548ed2f7e5d12283e204d3d5e636b92cf4547804fe17cda536",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/advice",
+          "stage": "advice",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "4ce25ee29cf05fb7aa0dafa70caf613405023db17cfcd3e393ec2da3b0c9cce4",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/comparison",
+          "stage": "comparison",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f5bbaf5f33c995e66f0d6dc86ef25b2973ad2e737dacddeefb3df3e159c8f0de",
+          "baselinePreserved": true
+        }
+      ],
+      "claimBoundary": "Mechanism-level equivalence only; not accuracy."
+    },
+    {
+      "experimentId": "EXP-034",
+      "evidenceClass": "offline",
+      "executionValid": true,
+      "contractEquivalent": true,
+      "timingMode": "omitted_for_determinism",
+      "topologies": [
+        {
+          "id": "topology-a",
+          "agents": 3,
+          "scenarioCount": 15,
+          "repetitions": 3,
+          "handoffs": 30,
+          "contextBytes": 11847,
+          "stateBoundaries": 3,
+          "failurePropagationBreadth": 3,
+          "traceCompleteness": 1.0,
+          "p50Milliseconds": null,
+          "p95Milliseconds": null,
+          "deterministic": true,
+          "baselinePreserved": true,
+          "humanAuthorityPreserved": true,
+          "canonicalOutputSha256": "b5d04ba52e7c0e757c9c916a233d53fbb60b861a1f3492871c0bef06cfdb056a"
+        },
+        {
+          "id": "topology-b",
+          "agents": 2,
+          "scenarioCount": 15,
+          "repetitions": 3,
+          "handoffs": 15,
+          "contextBytes": 4731,
+          "stateBoundaries": 2,
+          "failurePropagationBreadth": 4,
+          "traceCompleteness": 1.0,
+          "p50Milliseconds": null,
+          "p95Milliseconds": null,
+          "deterministic": true,
+          "baselinePreserved": true,
+          "humanAuthorityPreserved": true,
+          "canonicalOutputSha256": "b5d04ba52e7c0e757c9c916a233d53fbb60b861a1f3492871c0bef06cfdb056a"
+        },
+        {
+          "id": "topology-c",
+          "agents": 1,
+          "scenarioCount": 15,
+          "repetitions": 3,
+          "handoffs": 0,
+          "contextBytes": 0,
+          "stateBoundaries": 1,
+          "failurePropagationBreadth": 7,
+          "traceCompleteness": 1.0,
+          "p50Milliseconds": null,
+          "p95Milliseconds": null,
+          "deterministic": true,
+          "baselinePreserved": true,
+          "humanAuthorityPreserved": true,
+          "canonicalOutputSha256": "b5d04ba52e7c0e757c9c916a233d53fbb60b861a1f3492871c0bef06cfdb056a"
+        }
+      ],
+      "selectedDefault": null,
+      "decisionGate": "M-02 deferred",
+      "passed": true,
+      "claimBoundary": "Measured offline contract-equivalent topology execution only; no production topology is approved."
+    },
+    {
+      "experimentId": "EXP-035",
+      "evidenceClass": "synthetic",
+      "executionValid": true,
+      "syntheticTag": "SYNTHETIC_NOT_HUMAN",
+      "caseCount": 20,
+      "cases": [
+        {
+          "case": "malformed-json",
+          "outcome": "rejected",
+          "detail": "Expecting value: line 1 column 11 (char 10)",
+          "errorType": "JSONDecodeError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "missing-source-lineage",
+          "outcome": "rejected",
+          "detail": "source_artifact must be a non-empty string",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "duplicate-observation-identity",
+          "outcome": "rejected",
+          "detail": "observation_ids must be unique",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "conflict-called-verified",
+          "outcome": "rejected",
+          "detail": "verified records cannot retain conflicts",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "automatic-correction",
+          "outcome": "rejected",
+          "detail": "offline CorrectionProposal records can never be applied",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "illegal-authority-shortcut",
+          "outcome": "rejected",
+          "detail": "illegal state transition observed -> approved",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "timeout",
+          "outcome": "timed_out_parked",
+          "detail": "Timeout parks the item and preserves the baseline.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "late-feedback-after-timeout",
+          "outcome": "rejected",
+          "detail": "illegal state transition timed_out_parked -> feedback_received",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "explicit-rejection",
+          "outcome": "rejected",
+          "detail": "Explicit rejection leaves the correction unapplied.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "evaluation-event",
+          "outcome": "park",
+          "detail": "E15 is parked on the evaluation-only track.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "legacy-memory-as-trusted",
+          "outcome": "rejected",
+          "detail": "legacy mechanism memory is advisory evidence and cannot enter trusted memory",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "missing-artifact",
+          "outcome": "rejected",
+          "detail": "[Errno 2] No such file or directory: '<repo>/does-not-exist.json'",
+          "errorType": "FileNotFoundError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "path-traversal",
+          "outcome": "rejected",
+          "detail": "output path escapes the approved root",
+          "errorType": "ValueError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "oversized-input",
+          "outcome": "rejected",
+          "detail": "input exceeds the declared size limit",
+          "errorType": "ValueError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "writer-failure",
+          "outcome": "rejected",
+          "detail": "simulated writer failure",
+          "errorType": "OSError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "parity-mismatch",
+          "outcome": "legacy_fallback",
+          "detail": "A semantic mismatch publishes only the legacy result.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "duplicate-delivery",
+          "outcome": "deduplicated",
+          "detail": "The stable observation identity suppresses duplicate delivery.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "role-denial",
+          "outcome": "needs_adjudication",
+          "detail": "An unauthorized role cannot approve a correction.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "corrupt-source-hash",
+          "outcome": "needs_adjudication",
+          "detail": "A corrupt source hash cannot be called verified.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "conflicting-memory",
+          "outcome": "needs_adjudication",
+          "detail": "Conflicting memory remains outside the trusted store.",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        }
+      ],
+      "passed": true,
+      "baselinePreserved": true,
+      "claimBoundary": "Finite offline fault-catalog conformance only; it is not a probability estimate or universal safety guarantee."
+    },
+    {
+      "experimentId": "EXP-036",
+      "evidenceClass": "proposal",
+      "status": "Offline design",
+      "targets": {
+        "unifiedP95RatioMaximum": 1.15,
+        "unifiedPeakMemoryRatioMaximum": 1.5,
+        "parityP95RatioMaximum": 2.25
+      },
+      "result": null,
+      "claimBoundary": "Machine-specific timing remains local and unaccepted; no operational or accuracy result is published."
+    }
+  ],
+  "sources": {
+    "scripts/run_bigui_architecture_experiments.py": "e039b68a97258d365d758dc4acaf002acf561b64c062e9e9a4c0bb6396278790",
+    "experiments/bigui-program-v1.json": "9aef5ac80b7e15a03668b3982dbd9051b8f3922728a1f741b1b97ab5e2869439",
+    "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
+    "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
+    "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
+  },
+  "claimBoundary": "Clone-safe mechanism, structural, and fault-fixture evidence only. No accuracy, generalization, effort, topology-approval, or production-readiness claim.",
+  "normalizedSha256": "e1a5846359e0b6b30525ddaf75c58919a194ce7f571039021f3251a9dff00302"
+}

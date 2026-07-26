@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-benchmark-snapshot-v1.schema.json",
+  "title": "ExperimentBenchmarkSnapshot-v1",
+  "$defs": {
+    "dimensionResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "passed",
+        "numerator",
+        "denominator",
+        "value",
+        "explanation"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "partial",
+            "fail",
+            "not_measured",
+            "not_applicable",
+            "not_eligible"
+          ]
+        },
+        "passed": {"type": ["boolean", "null"]},
+        "numerator": {"type": ["number", "null"]},
+        "denominator": {"type": ["number", "null"]},
+        "value": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "explanation": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "publicationTier",
+    "inputProjectionSha256",
+    "standardSha256",
+    "programState",
+    "summary",
+    "parameterDictionary",
+    "evaluationRecords",
+    "resultHighlights",
+    "metricCoverage",
+    "guardrailSummary",
+    "evidenceDistribution",
+    "comparisonFamilies",
+    "findings",
+    "recommendations",
+    "claimBoundary",
+    "sources"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentBenchmarkSnapshot-v1"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "publicationTier": {"const": "tracked_sanitized"},
+    "inputProjectionSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "standardSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "programState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registeredExperiments",
+        "acceptedBundles",
+        "metricObservations",
+        "safeLabels",
+        "classificationChanges",
+        "baselineFrozen"
+      ],
+      "properties": {
+        "registeredExperiments": {"type": "integer", "minimum": 1},
+        "acceptedBundles": {"type": "integer", "minimum": 0},
+        "metricObservations": {"type": "integer", "minimum": 0},
+        "safeLabels": {"type": "integer", "minimum": 0},
+        "classificationChanges": {"type": "integer", "minimum": 0},
+        "baselineFrozen": {"const": true}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evaluatedExperiments",
+        "executedExperiments",
+        "protocolOnlyExperiments",
+        "notEligibleExperiments",
+        "experimentsWithMeasuredEngineeringEvidence",
+        "experimentsWithEmpiricalClassificationEvidence",
+        "protocolPassCount",
+        "executionPassCount",
+        "safetyPassCount",
+        "comparabilityDefinedCount"
+      ],
+      "properties": {
+        "evaluatedExperiments": {"type": "integer", "minimum": 0},
+        "executedExperiments": {"type": "integer", "minimum": 0},
+        "protocolOnlyExperiments": {"type": "integer", "minimum": 0},
+        "notEligibleExperiments": {"type": "integer", "minimum": 0},
+        "experimentsWithMeasuredEngineeringEvidence": {"type": "integer", "minimum": 0},
+        "experimentsWithEmpiricalClassificationEvidence": {"type": "integer", "minimum": 0},
+        "protocolPassCount": {"type": "integer", "minimum": 0},
+        "executionPassCount": {"type": "integer", "minimum": 0},
+        "safetyPassCount": {"type": "integer", "minimum": 0},
+        "comparabilityDefinedCount": {"type": "integer", "minimum": 0}
+      }
+    },
+    "parameterDictionary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "definition",
+          "allowedValues",
+          "whyItMatters"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_-]+$"},
+          "title": {"type": "string", "minLength": 1},
+          "definition": {"type": "string", "minLength": 1},
+          "allowedValues": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1
+          },
+          "whyItMatters": {"type": "string", "minLength": 1}
+        }
+      },
+      "minItems": 10
+    },
+    "evaluationRecords": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "experimentId",
+          "title",
+          "status",
+          "evidenceClass",
+          "executionState",
+          "eligibility",
+          "verdict",
+          "acceptedRunCount",
+          "observationCount",
+          "historicalObservationCount",
+          "nullObservationCount",
+          "baseline",
+          "comparator",
+          "dimensions",
+          "engineeringSignals",
+          "empiricalMetrics",
+          "claimBoundary",
+          "nextAction"
+        ],
+        "properties": {
+          "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+          "title": {"type": "string", "minLength": 1},
+          "status": {"type": "string", "minLength": 1},
+          "evidenceClass": {"type": "string", "minLength": 1},
+          "executionState": {
+            "enum": ["executed", "not_executed", "parked"]
+          },
+          "eligibility": {
+            "enum": [
+              "eligible_now",
+              "human_gate_required",
+              "approval_gate_required",
+              "dependency_gate_required",
+              "parked"
+            ]
+          },
+          "verdict": {
+            "enum": [
+              "MEASURED_PASS",
+              "MEASURED_PARTIAL",
+              "MEASURED_FAIL",
+              "PROTOCOL_READY",
+              "GATED_NOT_RUN",
+              "PARKED_NO_RUN"
+            ]
+          },
+          "acceptedRunCount": {"type": "integer", "minimum": 0},
+          "observationCount": {"type": "integer", "minimum": 0},
+          "historicalObservationCount": {"type": "integer", "minimum": 0},
+          "nullObservationCount": {"type": "integer", "minimum": 0},
+          "baseline": {"type": "string", "minLength": 1},
+          "comparator": {"type": "string", "minLength": 1},
+          "dimensions": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "protocol",
+              "data",
+              "execution",
+              "reproducibility",
+              "safety",
+              "comparability",
+              "empiricalValidity"
+            ],
+            "properties": {
+              "protocol": {"$ref": "#/$defs/dimensionResult"},
+              "data": {"$ref": "#/$defs/dimensionResult"},
+              "execution": {"$ref": "#/$defs/dimensionResult"},
+              "reproducibility": {"$ref": "#/$defs/dimensionResult"},
+              "safety": {"$ref": "#/$defs/dimensionResult"},
+              "comparability": {"$ref": "#/$defs/dimensionResult"},
+              "empiricalValidity": {"$ref": "#/$defs/dimensionResult"}
+            }
+          },
+          "engineeringSignals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["metricId", "value", "unit", "denominator", "dimensions", "target", "status"],
+              "properties": {
+                "metricId": {"type": "string", "minLength": 1},
+                "value": {"type": ["number", "boolean", "string", "null"]},
+                "unit": {"type": "string", "minLength": 1},
+                "denominator": {"type": ["number", "null"]},
+                "dimensions": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": ["string", "number", "boolean", "null"]
+                  }
+                },
+                "target": {"type": ["string", "null"]},
+                "status": {
+                  "enum": ["met", "missed", "descriptive", "not_computable"]
+                }
+              }
+            }
+          },
+          "empiricalMetrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "safeN",
+              "accuracy",
+              "macroF1",
+              "netCorrection",
+              "mcnemarP",
+              "status"
+            ],
+            "properties": {
+              "safeN": {"type": "integer", "minimum": 0},
+              "accuracy": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+              "macroF1": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+              "netCorrection": {"type": ["integer", "null"]},
+              "mcnemarP": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+              "status": {
+                "enum": ["NOT_COMPUTABLE", "PILOT_ONLY", "ELIGIBLE"]
+              }
+            }
+          },
+          "claimBoundary": {"type": "string", "minLength": 1},
+          "nextAction": {"type": "string", "minLength": 1}
+        }
+      },
+      "minItems": 1
+    },
+    "resultHighlights": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "experimentId",
+          "title",
+          "summary",
+          "evidenceClass",
+          "metrics",
+          "claimBoundary"
+        ],
+        "properties": {
+          "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+          "title": {"type": "string", "minLength": 1},
+          "summary": {"type": "string", "minLength": 1},
+          "evidenceClass": {"type": "string", "minLength": 1},
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "metricId",
+                "value",
+                "denominator",
+                "unit",
+                "dimensions",
+                "sourcePath",
+                "sourceSha256",
+                "observationDate",
+                "claimBoundary"
+              ],
+              "properties": {
+                "metricId": {"type": "string", "minLength": 1},
+                "value": {"type": ["number", "boolean", "string", "null"]},
+                "denominator": {"type": ["number", "null"]},
+                "unit": {"type": "string", "minLength": 1},
+                "dimensions": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": ["string", "number", "boolean", "null"]
+                  }
+                },
+                "sourcePath": {"type": "string", "minLength": 1},
+                "sourceSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                "observationDate": {"type": "string", "format": "date"},
+                "claimBoundary": {"type": "string", "minLength": 1}
+              }
+            },
+            "minItems": 1
+          },
+          "claimBoundary": {"type": "string", "minLength": 1}
+        }
+      },
+      "minItems": 8
+    },
+    "metricCoverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["experimentId", "declared", "observed", "coverage", "status"],
+        "properties": {
+          "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+          "declared": {"type": "integer", "minimum": 0},
+          "observed": {"type": "integer", "minimum": 0},
+          "coverage": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "status": {"enum": ["measured", "protocol_only", "no_metrics_declared"]}
+        }
+      }
+    },
+    "guardrailSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assessedObservations",
+        "met",
+        "missed",
+        "notComputable",
+        "experimentsWithMissedGuardrails",
+        "historicalAssessedObservations",
+        "historicalMissed"
+      ],
+      "properties": {
+        "assessedObservations": {"type": "integer", "minimum": 0},
+        "met": {"type": "integer", "minimum": 0},
+        "missed": {"type": "integer", "minimum": 0},
+        "notComputable": {"type": "integer", "minimum": 0},
+        "experimentsWithMissedGuardrails": {"type": "integer", "minimum": 0}
+        ,
+        "historicalAssessedObservations": {"type": "integer", "minimum": 0},
+        "historicalMissed": {"type": "integer", "minimum": 0}
+      }
+    },
+    "evidenceDistribution": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "comparisonFamilies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["family", "status", "experiments", "interpretation"],
+        "properties": {
+          "family": {"type": "string", "minLength": 1},
+          "status": {"enum": ["demonstrated", "partially_measured", "not_computable"]},
+          "experiments": {
+            "type": "array",
+            "items": {"type": "string", "pattern": "^EXP-[0-9]{3}$"}
+          },
+          "interpretation": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 3
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 3
+    },
+    "claimBoundary": {"type": "string", "minLength": 1},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "role"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "role": {"type": "string", "minLength": 1}
+        }
+      },
+      "minItems": 2
+    }
+  }
+}

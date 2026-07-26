@@ -113,12 +113,12 @@ M4B-2 · Agent 4 changes · LLM/API calls · embeddings · policy v1.1 · baseli
 
 ## 7b. Recent activity (latest session-log entries)
 <!-- AUTO:activity:start -->
+- 2026-07-26 17:14 +03:00 - Codex - Evaluate all experiments and publish benchmark BigUI
+- 2026-07-26 14:55 +03:00 - Codex - Add paper-aligned experiment comparison evidence
+- 2026-07-26 13:30 +03:00 - Codex - Execute experiments and publish results-first BigUI
 - 2026-07-26 01:13 +03:00 - Codex - Address exact-head envelope and archive review findings
 - 2026-07-26 01:00 +03:00 - Codex - Close final validation and provenance review findings
 - 2026-07-26 00:31 +03:00 - Codex - Exact-head security review and release verification
-- 2026-07-25 23:50 +03:00 - Codex - Repair clone-safe authorization integration tests
-- 2026-07-25 23:35 +03:00 - Codex - Bind external authorization trust and transactional CLI publication
-- 2026-07-25 23:17 +03:00 - Codex - Close final PR review gaps and republish verified thesis package
 <!-- AUTO:activity:end -->
 
 ---

@@ -112,6 +112,9 @@ Invoke-Gate "progress tracker freshness" {
 }
 Invoke-Gate "research record schemas" {
     uv run python scripts/validate_research_records.py schemas/examples
+    if ($LASTEXITCODE -ne 0) { throw "schema examples failed" }
+    uv run python scripts/validate_research_records.py `
+        docs/research/bigui/experiment-catalog-snapshot-v1.json
 }
 Invoke-Gate "H-layer change authorization" {
     uv run python scripts/check_hlayer_change_authorization.py
@@ -133,6 +136,21 @@ Invoke-Gate "offline H-layer tests" {
 }
 Invoke-Gate "evidence guard (read-only)" {
     uv run python scripts/check_evidence_consistency.py --check
+}
+Invoke-Gate "BigUI catalog, architecture fixtures, and observatory freshness" {
+    uv run python scripts/build_bigui_architecture_snapshot.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI architecture snapshot is stale" }
+    uv run python scripts/run_bigui_comparison_experiments.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI baseline comparison results are stale" }
+    uv run python scripts/build_bigui_run_store.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI accepted run store is stale" }
+    uv run python scripts/build_experiment_benchmark.py --check
+    if ($LASTEXITCODE -ne 0) { throw "all-experiment benchmark or analytics report is stale" }
+    uv run python scripts/build_bigui_catalog.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI experiment catalog is stale" }
+    uv run python scripts/build_bigui.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI observatory is stale" }
+    uv run python scripts/run_bigui_architecture_experiments.py --check
 }
 Invoke-Gate "thesis and visualization freshness" {
     uv run python scripts/build_thesis_evidence_package.py --check
@@ -158,10 +176,12 @@ if (-not $SkipNetworkAudit) {
     }
 }
 if (-not $SkipBrowser) {
-    Invoke-Gate "offline supervisor and thesis browser checks" {
+    Invoke-Gate "offline supervisor, thesis, and BigUI browser checks" {
         node scripts/tests/supervisor_package_browser_smoke.mjs
         if ($LASTEXITCODE -ne 0) { throw "supervisor browser smoke failed" }
         node scripts/tests/thesis_progress_browser_smoke.mjs
+        if ($LASTEXITCODE -ne 0) { throw "thesis browser smoke failed" }
+        node scripts/tests/bigui_browser_smoke.mjs
     }
 }
 Invoke-Gate "Git whitespace hygiene" { git diff --check }

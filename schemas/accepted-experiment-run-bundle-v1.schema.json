@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/accepted-experiment-run-bundle-v1.schema.json",
+  "title": "AcceptedExperimentRunBundle-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "publicationTier",
+    "envelope",
+    "metricDefinitions",
+    "metricObservations",
+    "acceptance"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "AcceptedExperimentRunBundle-v1"},
+    "publicationTier": {"enum": ["tracked_sanitized", "controlled_local"]},
+    "envelope": {"$ref": "experiment-run-envelope-v2.schema.json"},
+    "metricDefinitions": {
+      "type": "array",
+      "items": {"$ref": "metric-definition-v1.schema.json"}
+    },
+    "metricObservations": {
+      "type": "array",
+      "items": {"$ref": "metric-observation-v2.schema.json"}
+    },
+    "acceptance": {"$ref": "run-acceptance-record-v1.schema.json"}
+  }
+}

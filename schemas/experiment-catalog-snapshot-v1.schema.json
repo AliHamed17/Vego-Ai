@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-catalog-snapshot-v1.schema.json",
+  "title": "ExperimentCatalogSnapshot-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "sourceRevision",
+    "publicationTier",
+    "programState",
+    "architectureVariants",
+    "paperBaseline",
+    "baselineComparisonResults",
+    "evaluationStandard",
+    "experimentBenchmark",
+    "experiments",
+    "metricObservations",
+    "metricDefinitionsV2",
+    "metricObservationsV2",
+    "comparisonRules",
+    "acceptedRuns",
+    "acceptedRunBundles",
+    "currentRunIndex",
+    "runStoreSummary",
+    "claimBoundaries",
+    "translations",
+    "sources"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentCatalogSnapshot-v1"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "sourceRevision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "publicationTier": {"enum": ["tracked_sanitized", "controlled_local"]},
+    "programState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "latestAcceptedIteration",
+        "iterationVerdict",
+        "candidateLabels",
+        "safeLabels",
+        "accuracyStatus",
+        "comparisonRows",
+        "classificationChanges",
+        "baselineFrozen",
+        "decisionState"
+      ],
+      "properties": {
+        "latestAcceptedIteration": {"type": "integer", "minimum": 0},
+        "iterationVerdict": {"enum": ["POSITIVE", "NEUTRAL", "NEGATIVE"]},
+        "candidateLabels": {"type": "integer", "minimum": 0},
+        "safeLabels": {"type": "integer", "minimum": 0},
+        "accuracyStatus": {"type": "string", "minLength": 1},
+        "comparisonRows": {"type": "integer", "minimum": 0},
+        "classificationChanges": {"type": "integer", "minimum": 0},
+        "baselineFrozen": {"const": true},
+        "decisionState": {
+          "type": "object",
+          "required": ["M-02", "M-03", "M-04", "M-05"],
+          "additionalProperties": {"type": "string"}
+        }
+      }
+    },
+    "architectureVariants": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {"type": "object"}
+    },
+    "paperBaseline": {"type": "object"},
+    "baselineComparisonResults": {"type": "object"},
+    "evaluationStandard": {"type": "object"},
+    "experimentBenchmark": {"type": "object"},
+    "experiments": {
+      "type": "array",
+      "minItems": 41,
+      "maxItems": 41,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "researchSpace",
+          "researchTrack",
+          "researchQuestion",
+          "status",
+          "evidenceClass",
+          "architectureTargets",
+          "prerequisites",
+          "approvalGates",
+          "baseline",
+          "comparator",
+          "datasetHash",
+          "partitionHash",
+          "metricDefinitions",
+          "acceptedRunIds",
+          "latestResult",
+          "claimBoundary",
+          "validityThreats",
+          "owner",
+          "nextAction",
+          "artifactLinks"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+          "title": {"type": "string", "minLength": 1},
+          "researchSpace": {"enum": ["MSc", "PhD", "Cross-program"]},
+          "researchTrack": {"type": "string", "minLength": 1},
+          "researchQuestion": {"type": "string", "minLength": 1},
+          "status": {"type": "string", "minLength": 1},
+          "evidenceClass": {
+            "enum": [
+              "historical",
+              "mechanism",
+              "offline",
+              "synthetic",
+              "evaluation_ready",
+              "pilot",
+              "empirical",
+              "proposal",
+              "blocked"
+            ]
+          },
+          "architectureTargets": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "B0",
+                "B1",
+                "legacy",
+                "unified",
+                "parity",
+                "topology-a",
+                "topology-b",
+                "topology-c",
+                "BigUI",
+                "evaluation",
+                "model"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "prerequisites": {"type": "array", "items": {"type": "string"}},
+          "approvalGates": {"type": "array", "items": {"type": "string"}},
+          "baseline": {"type": "string", "minLength": 1},
+          "comparator": {"type": "string", "minLength": 1},
+          "datasetHash": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "partitionHash": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "metricDefinitions": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          },
+          "acceptedRunIds": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          },
+          "latestResult": {
+            "oneOf": [
+              {"type": "null"},
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["summary", "metricObservationIds"],
+                "properties": {
+                  "summary": {"type": "string", "minLength": 1},
+                  "metricObservationIds": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "uniqueItems": true
+                  }
+                }
+              }
+            ]
+          },
+          "claimBoundary": {"type": "string", "minLength": 1},
+          "validityThreats": {"type": "array", "items": {"type": "string"}},
+          "owner": {"type": "string", "minLength": 1},
+          "nextAction": {"type": "string", "minLength": 1},
+          "artifactLinks": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+        }
+      }
+    },
+    "metricObservations": {"type": "array", "items": {"type": "object"}},
+    "metricDefinitionsV2": {"type": "array", "items": {"type": "object"}},
+    "metricObservationsV2": {"type": "array", "items": {"type": "object"}},
+    "comparisonRules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredMatchingFields", "incomparableLabel", "seriesIsolation"],
+      "properties": {
+        "requiredMatchingFields": {
+          "type": "array",
+          "minItems": 8,
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "incomparableLabel": {"const": "Not directly comparable"},
+        "seriesIsolation": {"const": "Synthetic and empirical observations remain separate."}
+      }
+    },
+    "acceptedRuns": {"type": "array", "items": {"type": "object"}},
+    "acceptedRunBundles": {"type": "array", "items": {"type": "object"}},
+    "currentRunIndex": {"type": "object"},
+    "runStoreSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "bundleCount",
+        "acceptedAttemptCount",
+        "uniqueExperimentRunCount",
+        "uniqueRunIdCount",
+        "experimentsWithAcceptedRuns",
+        "metricObservationCount",
+        "experimentIds"
+      ],
+      "properties": {
+        "schemaVersion": {"const": "BigUIRunStoreSummary-v1"},
+        "bundleCount": {"type": "integer", "minimum": 0},
+        "acceptedAttemptCount": {"type": "integer", "minimum": 0},
+        "uniqueExperimentRunCount": {"type": "integer", "minimum": 0},
+        "uniqueRunIdCount": {"type": "integer", "minimum": 0},
+        "experimentsWithAcceptedRuns": {"type": "integer", "minimum": 0},
+        "metricObservationCount": {"type": "integer", "minimum": 0},
+        "experimentIds": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "claimBoundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["safeNow", "conditional", "notAllowed"],
+      "properties": {
+        "safeNow": {"type": "array", "items": {"type": "string"}},
+        "conditional": {"type": "array", "items": {"type": "string"}},
+        "notAllowed": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "translations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "he"],
+      "properties": {
+        "en": {"type": "object"},
+        "he": {"type": "object"}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "sha256", "role"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "not": {"pattern": "^[A-Za-z]:\\\\|^file://"}
+          },
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "role": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

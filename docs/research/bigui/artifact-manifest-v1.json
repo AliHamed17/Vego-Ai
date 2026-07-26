@@ -1,0 +1,296 @@
+{
+  "version": 1,
+  "surface": "dashboard",
+  "title": "VEGO-AI BigUI Research Observatory",
+  "description": "Catalog-driven research, architecture, and evidence status.",
+  "generatedAt": "2026-07-26T16:00:00+03:00",
+  "blocks": [
+    {
+      "type": "markdown",
+      "id": "intro",
+      "body": "# VEGO-AI BigUI Research Observatory\n\nMechanism evidence and empirical validity are kept separate. Accuracy remains not computable at 0/24 safe labels."
+    },
+    {
+      "type": "metric-strip",
+      "id": "program-state",
+      "cardIds": [
+        "iteration-card",
+        "label-card",
+        "classification-card"
+      ]
+    },
+    {
+      "type": "chart",
+      "id": "evidence-chart-block",
+      "chartId": "evidence-chart"
+    },
+    {
+      "type": "table",
+      "id": "experiment-table-block",
+      "tableId": "experiment-table"
+    }
+  ],
+  "cards": [
+    {
+      "id": "iteration-card",
+      "dataset": "program_state",
+      "sourceId": "program-status",
+      "metrics": [
+        {
+          "label": "Accepted iteration",
+          "field": "accepted_iteration",
+          "format": "number"
+        }
+      ]
+    },
+    {
+      "id": "label-card",
+      "dataset": "program_state",
+      "sourceId": "program-status",
+      "metrics": [
+        {
+          "label": "Safe labels",
+          "field": "safe_labels",
+          "format": "number"
+        },
+        {
+          "label": "Candidate rows",
+          "field": "candidate_labels",
+          "format": "number"
+        }
+      ]
+    },
+    {
+      "id": "classification-card",
+      "dataset": "program_state",
+      "sourceId": "thesis-evidence",
+      "metrics": [
+        {
+          "label": "Classification changes",
+          "field": "classification_changes",
+          "format": "number"
+        },
+        {
+          "label": "Comparison rows",
+          "field": "comparison_rows",
+          "format": "number"
+        }
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "evidence-chart",
+      "title": "Registered experiments by evidence class",
+      "dataset": "evidence_counts",
+      "sourceId": "experiment-registry",
+      "type": "bar",
+      "encodings": {
+        "x": {
+          "field": "evidence_class",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "experiment_count",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "tables": [
+    {
+      "id": "experiment-table",
+      "title": "Experiment catalog",
+      "dataset": "experiments",
+      "sourceId": "experiment-registry",
+      "columns": [
+        {
+          "field": "experiment_id",
+          "label": "ID"
+        },
+        {
+          "field": "title",
+          "label": "Experiment"
+        },
+        {
+          "field": "research_space",
+          "label": "Space"
+        },
+        {
+          "field": "status",
+          "label": "Status"
+        },
+        {
+          "field": "evidence_class",
+          "label": "Evidence"
+        },
+        {
+          "field": "accepted_runs",
+          "label": "Accepted runs"
+        }
+      ],
+      "defaultSort": {
+        "field": "experiment_id",
+        "direction": "asc"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "experiment-registry",
+      "label": "Experiment titles, status narratives, and artifact references",
+      "path": "experiments/registry.md",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from experiments/registry.md.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "program-status",
+      "label": "Accepted iteration, gates, decisions, and verification state",
+      "path": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/h-layer/program-status-snapshot-v1.json.",
+        "sql": "SELECT * FROM program_state;",
+        "tables_used": [
+          "program_state"
+        ]
+      }
+    },
+    {
+      "id": "thesis-evidence",
+      "label": "Mechanism counts, B0–B5 evidence ladder, and claim gates",
+      "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json.",
+        "sql": "SELECT * FROM program_state;",
+        "tables_used": [
+          "program_state"
+        ]
+      }
+    },
+    {
+      "id": "bigui-program",
+      "label": "EXP-030–EXP-040 protocols and metadata",
+      "path": "experiments/bigui-program-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from experiments/bigui-program-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "baseline-lock",
+      "label": "Frozen baseline and Agent 4 provenance",
+      "path": "docs/research/hardening/baseline-lock-manifest-v2.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/hardening/baseline-lock-manifest-v2.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "security-posture",
+      "label": "Reproducible security and privacy status",
+      "path": "docs/research/hardening/security-posture-snapshot-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/hardening/security-posture-snapshot-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "architecture-fixtures",
+      "label": "Clone-safe EXP-033–EXP-035 fixture results and EXP-036 gate",
+      "path": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/architecture-fixture-results-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "paper-baseline",
+      "label": "Reviewed paper-reported baseline values and comparison boundary",
+      "path": "docs/research/bigui/paper-baseline-snapshot-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/paper-baseline-snapshot-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "baseline-comparison",
+      "label": "EXP-037–EXP-040 baseline, comparison, and thesis-readiness results",
+      "path": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/baseline-comparison-results-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "experiment-evaluation-standard",
+      "label": "Canonical evaluation dimensions, baselines, parameters, gates, and statistical rules",
+      "path": "docs/research/bigui/experiment-evaluation-standard-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/experiment-evaluation-standard-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "experiment-benchmark",
+      "label": "All-experiment evaluation records, program analytics, findings, and recommendations",
+      "path": "docs/research/bigui/experiment-benchmark-snapshot-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/experiment-benchmark-snapshot-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "current-run-index",
+      "label": "Current accepted projection for each executed experiment; older bundles remain history",
+      "path": "experiments/current-run-index-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from experiments/current-run-index-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    }
+  ]
+}

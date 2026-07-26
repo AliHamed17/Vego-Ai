@@ -2,27 +2,27 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-26T00:33:42+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "91e6214cd7d33ee01c5687801597b7d8dccff7ae",
-  "packageRevision": "b86ba03f913242e10f62407c9c11c2962d1ccc2a",
-  "sourceTreeHash": "1a7a30a5fcb0bff80c15e97c44a40df3952bd67550edb1d2d24bf9e7434545f3",
+  "sourceRevision": "b77417701b903155d823cde3ac1f70843627039f",
+  "packageRevision": "eb33daf77082b8f843c9ea9fcc430f4f4a64f795",
+  "sourceTreeHash": "23b721875d442ea09977fa049ce5c43389b2385c1233075ba4c69a615d1a001e",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "6c80039db9394aee6f2a607508637b6796798ef808ea07fb30d6972900375445",
+    "sha256": "20ada09c5180627940c3191763d16bdeaf6b8b10189757d861856418916ad7ad",
     "bytes": 48267,
     "tracked": true
   },
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "426e905f3a8cce7a64cc5b0159bccdc3d63032044302a4190efe26a29cd212b4",
+      "sha256": "912a382c5ba7a930c3ccdd2612af95d354a9cb52d1f4e0da6033a874715e8a9d",
       "bytes": 1809595,
       "tracked": true
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "3413fa02e09a1aa6182493255ab2b9cfb8b70b88f82a309261270d3e99c0a634",
+      "sha256": "666475998bddb283b266ec23dcb1478d86d01e11e66371fabf1cb7432654cafb",
       "bytes": 81862,
       "tracked": true
     }
@@ -37,11 +37,11 @@
       "bytes": 1401639
     },
     "renderVerification": {
-      "status": "PASS",
+      "status": "NOT_RECORDED",
       "pdfPageCount": 91,
-      "renderedPageCount": 91,
-      "sheetCount": 23,
-      "qaReportSha256": "07b9821a4d82c65dad5e12d3be820d57098b3c347220e5822064271793d292d8"
+      "renderedPageCount": null,
+      "sheetCount": null,
+      "qaReportSha256": null
     }
   },
   "sourceFiles": [
@@ -131,7 +131,7 @@
     },
     {
       "path": "experiments/registry.md",
-      "sha256": "220fe30ce36238a23a0820972a750ffc72967458ce4982b7b1172d4b7fc37385"
+      "sha256": "0e27749289fd85e7cd7bda1a9ab6fd31f38168d48b2b375b880e44f71c03f9eb"
     },
     {
       "path": "requirements-thesis.txt",
@@ -179,7 +179,7 @@
     },
     {
       "path": "scripts/build_hardening_manifests.py",
-      "sha256": "5e11b95a1c5ce3fcf98ac00e3e404a1ecbf8a88442860cb91812433371fef40b"
+      "sha256": "cb74b34b4976b52effae30c9f449c75534c02de8abae694343f4dea3186c65e7"
     },
     {
       "path": "scripts/build_thesis_evidence_package.py",
@@ -211,7 +211,7 @@
     },
     {
       "path": "scripts/validate_research_records.py",
-      "sha256": "7367006c821215049cb7dea2a2441f83fc09898690a5421044b7d2836df0a930"
+      "sha256": "f1357b89b36365ce5d9a23d69ae4d69f52cef3de935d309c2c9d057af1e1a2cd"
     },
     {
       "path": "scripts/validate_thesis_content.py",
@@ -227,7 +227,7 @@
     },
     {
       "path": "scripts/verify-controlled.ps1",
-      "sha256": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239"
+      "sha256": "ff50f86a9fb54edc2df1a9f8164b35f378ffb63b00dd5e7b6d479e522bd10f4e"
     },
     {
       "path": "scripts/verify-release.ps1",
@@ -235,7 +235,7 @@
     },
     {
       "path": "scripts/verify-source.ps1",
-      "sha256": "8ec7a78f71a7a124df7d02c1ce7f822bd8536f2fd6285b8ac0e59bbea0407270"
+      "sha256": "0c93156ff18554b3b43c7cbf564326e541fd8803648fc92bd4b0b15c73620b0f"
     },
     {
       "path": "scripts/visualization_agent.py",
@@ -327,11 +327,11 @@
     },
     {
       "path": "visualizations-gallery/build_gallery.py",
-      "sha256": "abf847e1197532bea8fa757c32d75c1f3b10703d257cfa7c3c2197fdba921f33"
+      "sha256": "dee21c88f8ccfbb4f299c6c64560ae98c12e5420ffb51fb98c1797ca27bb44ad"
     }
   ],
   "toolVersions": {
-    "python": "3.10.0",
+    "python": "3.13.3",
     "jsonschema": "4.26.0"
   },
   "protectedRuntimeChanged": false,

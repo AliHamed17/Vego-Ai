@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "ExperimentRunEnvelope-v1",
+  "experimentId": "EXP-033",
+  "runId": "fixture-parity-v1",
+  "manifestSchema": "ArchitectureRunManifest",
+  "manifestPath": "docs/research/bigui/architecture-fixture-results-v1.json",
+  "manifestSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "acceptanceStatus": "accepted",
+  "acceptedAt": "2026-07-26T00:00:00Z",
+  "evidenceClass": "offline",
+  "sourceRevision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "inputHashes": {
+    "fixture": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "outputHashes": {
+    "normalized": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "metricObservationIds": [
+    "ARCHITECTURE_PARITY_RATE"
+  ],
+  "comparisonContext": {
+    "datasetHash": "fixture-v1",
+    "partitionHash": "all",
+    "baselineRevision": "official-vego-ai-baseline",
+    "policyVersion": "conservative-m4b1",
+    "promptVersion": "unchanged",
+    "modelIdentifier": "not-applicable-offline",
+    "metricSchemaVersion": "1.0",
+    "labelEligibility": "not-applicable",
+    "leakageClass": "none",
+    "evidenceClass": "offline"
+  }
+}

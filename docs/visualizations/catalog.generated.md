@@ -2,12 +2,13 @@
 
 Generated deterministically from Git-tracked shareable files.
 
-Totals: **8** Mermaid · **21** SVG · **8** HTML.
+Totals: **8** Mermaid · **21** SVG · **9** HTML.
 
 <details><summary>All diagram/graph files</summary>
 
 - `VEGO-AI-Agent-Flow.html`
 - `VEGO-AI-Demo-Flow.html`
+- `VEGO-AI-Experiment-Benchmark-Report.html`
 - `VEGO-AI-July1-PointByPoint-EN-HE.html`
 - `VEGO-AI-Live-Demo.html`
 - `VEGO-AI-Research-Hub.html`

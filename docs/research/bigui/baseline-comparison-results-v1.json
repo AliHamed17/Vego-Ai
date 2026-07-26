@@ -1,0 +1,823 @@
+{
+  "claimBoundary": "The current proof baseline is multidimensional: capability and mechanism reliability are demonstrated; classification accuracy, generalization, and effort improvement remain unmeasured.",
+  "comparisonLanes": [
+    {
+      "directlyComparable": true,
+      "explanation": "The paper lacks the seven explicit H-layer capabilities; the current implementation exposes and tests them.",
+      "id": "CAPABILITY",
+      "status": "demonstrated",
+      "title": "Human-judgment architecture capability"
+    },
+    {
+      "directlyComparable": false,
+      "explanation": "These are new architecture properties with accepted mechanism evidence, not paper accuracy metrics.",
+      "id": "RELIABILITY",
+      "status": "demonstrated",
+      "title": "Parity, replay, and authority safety"
+    },
+    {
+      "directlyComparable": false,
+      "explanation": "The paper draft reports 178 models and 26 patterns; the current locked snapshot reports 179 and 27. A larger count does not mean higher quality.",
+      "id": "COUNTS",
+      "status": "contextual_only",
+      "title": "Paper and repository version counts"
+    },
+    {
+      "directlyComparable": false,
+      "explanation": "The current independent safe-label denominator is zero.",
+      "id": "CLASSIFICATION_VALIDITY",
+      "status": "not_yet_measurable",
+      "title": "Classification accuracy and macro-F1"
+    },
+    {
+      "directlyComparable": false,
+      "explanation": "A controlled participant study has not been run.",
+      "id": "HUMAN_EFFORT",
+      "status": "not_yet_measurable",
+      "title": "Human effort and review-time value"
+    }
+  ],
+  "currentBaseline": {
+    "caseModelTotal": 179,
+    "classificationChanges": 0,
+    "comparisonRows": 27,
+    "occasionalTotal": 18,
+    "patternTotal": 27,
+    "safeLabels": 0,
+    "substantialTotal": 9,
+    "undeterminedTotal": 0
+  },
+  "experiments": [
+    {
+      "claimBoundary": "Paper-reported Phase A-C values describe the original agents and cannot be used as the current H-layer classification-accuracy baseline. Phase D is qualitative author assessment, not independent ground truth. Counts may be reconciled contextually, while current classification accuracy remains not computable at 0/24 safe labels.",
+      "details": {
+        "capabilities": [
+          {
+            "currentExtension": true,
+            "id": "SELECTIVE_REVIEW_QUEUE",
+            "paperBaseline": false
+          },
+          {
+            "currentExtension": true,
+            "id": "STABLE_REVIEW_IDENTITY",
+            "paperBaseline": false
+          },
+          {
+            "currentExtension": true,
+            "id": "STRUCTURED_FEEDBACK",
+            "paperBaseline": false
+          },
+          {
+            "currentExtension": true,
+            "id": "REUSABLE_JUDGMENT_MEMORY",
+            "paperBaseline": false
+          },
+          {
+            "currentExtension": true,
+            "id": "ADVISORY_RETRIEVAL",
+            "paperBaseline": false
+          },
+          {
+            "currentExtension": true,
+            "id": "NON_DESTRUCTIVE_COMPARISON",
+            "paperBaseline": false
+          },
+          {
+            "currentExtension": true,
+            "id": "LEAKAGE_TRACKING",
+            "paperBaseline": false
+          }
+        ],
+        "countReconciliation": {
+          "caseModels": {
+            "current": 179,
+            "delta": 1,
+            "paper": 178,
+            "qualityInterpretation": "not_applicable"
+          },
+          "patterns": {
+            "current": 27,
+            "delta": 1,
+            "paper": 26,
+            "qualityInterpretation": "not_applicable"
+          }
+        },
+        "paperPhaseA": {
+          "page": 8,
+          "settings": [
+            {
+              "agreement": 0.88,
+              "id": "ucd_ch",
+              "runs": [
+                {
+                  "f1": 0.93,
+                  "precision": 1.0,
+                  "recall": 0.88
+                },
+                {
+                  "f1": 1.0,
+                  "precision": 1.0,
+                  "recall": 1.0
+                },
+                {
+                  "f1": 0.86,
+                  "precision": 1.0,
+                  "recall": 0.75
+                }
+              ]
+            },
+            {
+              "agreement": 0.83,
+              "id": "cd_ch",
+              "runs": [
+                {
+                  "f1": 0.82,
+                  "precision": 0.88,
+                  "recall": 0.78
+                },
+                {
+                  "f1": 0.88,
+                  "precision": 1.0,
+                  "recall": 0.78
+                },
+                {
+                  "f1": 0.95,
+                  "precision": 0.9,
+                  "recall": 1.0
+                }
+              ]
+            },
+            {
+              "agreement": 0.78,
+              "id": "ucd_pw",
+              "runs": [
+                {
+                  "f1": 1.0,
+                  "precision": 1.0,
+                  "recall": 1.0
+                },
+                {
+                  "f1": 0.8,
+                  "precision": 0.75,
+                  "recall": 0.86
+                },
+                {
+                  "f1": 0.92,
+                  "precision": 1.0,
+                  "recall": 0.86
+                }
+              ]
+            },
+            {
+              "agreement": 0.79,
+              "id": "cd_pw",
+              "runs": [
+                {
+                  "f1": 0.82,
+                  "precision": 0.88,
+                  "recall": 0.79
+                },
+                {
+                  "f1": 0.75,
+                  "precision": 0.86,
+                  "recall": 0.68
+                },
+                {
+                  "f1": 0.9,
+                  "precision": 0.82,
+                  "recall": 1.0
+                }
+              ]
+            }
+          ],
+          "table": "Table 2. Phase A Results"
+        },
+        "paperPhaseB": {
+          "page": 8,
+          "settingScores": {
+            "cd_ch": 0.88,
+            "cd_pw": 0.85,
+            "ucd_ch": 0.7,
+            "ucd_pw": 0.85
+          }
+        },
+        "paperPhaseC": {
+          "expertSampleSize": 16,
+          "page": 8,
+          "settings": [
+            {
+              "complianceVectors": 0.8,
+              "id": "ucd_ch",
+              "uncoveredAudits": 0.55
+            },
+            {
+              "complianceVectors": 0.96,
+              "id": "cd_ch",
+              "uncoveredAudits": 0.81
+            },
+            {
+              "complianceVectors": 0.83,
+              "id": "ucd_pw",
+              "uncoveredAudits": 0.55
+            },
+            {
+              "complianceVectors": 0.92,
+              "id": "cd_pw",
+              "uncoveredAudits": 0.88
+            }
+          ],
+          "table": "Table 3. Phase C Results"
+        },
+        "paperPhaseD": {
+          "assessmentMethod": "Qualitative assessment by the paper authors; the paper states that no quantitative variability-classification benchmark existed.",
+          "occasionalTotal": 18,
+          "page": 8,
+          "patternTotal": 26,
+          "settings": [
+            {
+              "id": "ucd_ch",
+              "occasional": 6,
+              "substantial": 2
+            },
+            {
+              "id": "cd_ch",
+              "occasional": 2,
+              "substantial": 2
+            },
+            {
+              "id": "ucd_pw",
+              "occasional": 3,
+              "substantial": 4
+            },
+            {
+              "id": "cd_pw",
+              "occasional": 7,
+              "substantial": 0
+            }
+          ],
+          "substantialTotal": 8,
+          "table": "Table 4. Explored Variability Patterns"
+        }
+      },
+      "evidenceClass": "offline",
+      "executionValid": true,
+      "experimentId": "EXP-037",
+      "metrics": [
+        {
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+          "denominator": 178,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "historical",
+          "metricId": "PAPER_CASE_MODEL_COUNT",
+          "numerator": 178,
+          "unit": "case models",
+          "value": 178
+        },
+        {
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+          "denominator": 179,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "mechanism",
+          "metricId": "CURRENT_CASE_MODEL_COUNT",
+          "numerator": 179,
+          "unit": "case models",
+          "value": 179
+        },
+        {
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+          "denominator": 26,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "historical",
+          "metricId": "PAPER_PATTERN_COUNT",
+          "numerator": 26,
+          "unit": "patterns",
+          "value": 26
+        },
+        {
+          "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer.",
+          "denominator": 27,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "mechanism",
+          "metricId": "CURRENT_PATTERN_COUNT",
+          "numerator": 27,
+          "unit": "patterns",
+          "value": 27
+        },
+        {
+          "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement.",
+          "denominator": 7,
+          "dimensions": {},
+          "direction": "higher_is_better",
+          "evidenceClass": "historical",
+          "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+          "numerator": 0,
+          "unit": "proportion",
+          "value": 0.0
+        },
+        {
+          "claimBoundary": "Implemented capability coverage demonstrates architectural extension, not classification accuracy or human-effort improvement.",
+          "denominator": 7,
+          "dimensions": {},
+          "direction": "higher_is_better",
+          "evidenceClass": "mechanism",
+          "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+          "numerator": 7,
+          "unit": "proportion",
+          "value": 1.0
+        },
+        {
+          "claimBoundary": "Current classification accuracy remains null at safe N=0; the paper's qualitative author assessment is not a compatible independent benchmark.",
+          "denominator": 1,
+          "dimensions": {},
+          "direction": "target",
+          "evidenceClass": "offline",
+          "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
+          "numerator": 0,
+          "unit": "boolean",
+          "value": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "claimBoundary": "Capability and reliability extension is demonstrated on the accepted cohorts; classification and effort value remain null.",
+      "details": {
+        "scorecard": [
+          {
+            "current": 1.0,
+            "dimension": "human_judgment_capabilities",
+            "evidence": "EXP-037",
+            "interpretation": "Seven explicit H-layer capabilities were added.",
+            "paperBaseline": 0.0,
+            "status": "demonstrated"
+          },
+          {
+            "current": 1.0,
+            "dimension": "semantic_parity",
+            "evidence": "EXP-033",
+            "interpretation": "Legacy and unified outputs match on the accepted parity cohort.",
+            "paperBaseline": null,
+            "status": "demonstrated"
+          },
+          {
+            "current": 1,
+            "dimension": "deterministic_replay",
+            "evidence": "EXP-033",
+            "interpretation": "The accepted parity run reproduced the same normalized outputs.",
+            "paperBaseline": null,
+            "status": "demonstrated"
+          },
+          {
+            "current": 1.0,
+            "dimension": "fault_authority_safety",
+            "evidence": "EXP-035",
+            "interpretation": "All bounded fault fixtures preserved authority and baseline behavior.",
+            "paperBaseline": null,
+            "status": "demonstrated"
+          },
+          {
+            "current": null,
+            "dimension": "classification_accuracy",
+            "evidence": "EXP-005/EXP-012",
+            "interpretation": "Independent safe labels: 0/24.",
+            "paperBaseline": null,
+            "status": "not_yet_measurable"
+          },
+          {
+            "current": null,
+            "dimension": "human_effort",
+            "evidence": "EXP-026",
+            "interpretation": "Queue counts are not time or effort evidence.",
+            "paperBaseline": null,
+            "status": "not_yet_measurable"
+          }
+        ]
+      },
+      "evidenceClass": "offline",
+      "executionValid": true,
+      "experimentId": "EXP-038",
+      "metrics": [
+        {
+          "claimBoundary": "Dimensions remain separate; no arbitrary weighted global improvement score is calculated.",
+          "denominator": 6,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "offline",
+          "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+          "numerator": 4,
+          "unit": "dimensions",
+          "value": 4
+        },
+        {
+          "claimBoundary": "Classification and effort remain visibly unmeasured.",
+          "denominator": 6,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "offline",
+          "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
+          "numerator": 2,
+          "unit": "dimensions",
+          "value": 2
+        }
+      ],
+      "passed": true
+    },
+    {
+      "claimBoundary": "Every 'better' statement is metric-specific and accompanied by its countervailing trade-off and evidence boundary.",
+      "details": {
+        "eligibleComparisons": [
+          {
+            "deltas": {
+              "eventLoad": 0.22100000000000009,
+              "highSeverityCoverage": 0.274,
+              "weightedCoverage": 0.19699999999999995
+            },
+            "directlyComparable": true,
+            "family": "routing",
+            "interpretation": "Higher-severity coverage is purchased with additional review load; this is a Pareto trade-off, not a global win.",
+            "left": "threshold_sev3",
+            "right": "threshold_sev2"
+          },
+          {
+            "deltas": {
+              "eventLoad": 0.08999999999999997,
+              "highSeverityCoverage": 0.0,
+              "weightedCoverage": 0.019000000000000017
+            },
+            "directlyComparable": true,
+            "family": "routing",
+            "interpretation": "Higher-severity coverage is purchased with additional review load; this is a Pareto trade-off, not a global win.",
+            "left": "threshold_sev2",
+            "right": "threshold_sev1"
+          },
+          {
+            "deltas": {
+              "TOPOLOGY_CONTEXT_BYTES": -7116,
+              "TOPOLOGY_FAILURE_BREADTH": 1,
+              "TOPOLOGY_HANDOFF_COUNT": -15,
+              "TOPOLOGY_STATE_BOUNDARIES": -1,
+              "TOPOLOGY_TRACE_COMPLETENESS": 0.0
+            },
+            "directlyComparable": true,
+            "family": "topology",
+            "interpretation": "Fewer handoffs and state boundaries increase the breadth affected by a single-agent failure; M-02 remains deferred.",
+            "left": "topology-a",
+            "right": "topology-b"
+          },
+          {
+            "deltas": {
+              "TOPOLOGY_CONTEXT_BYTES": -4731,
+              "TOPOLOGY_FAILURE_BREADTH": 3,
+              "TOPOLOGY_HANDOFF_COUNT": -15,
+              "TOPOLOGY_STATE_BOUNDARIES": -1,
+              "TOPOLOGY_TRACE_COMPLETENESS": 0.0
+            },
+            "directlyComparable": true,
+            "family": "topology",
+            "interpretation": "Fewer handoffs and state boundaries increase the breadth affected by a single-agent failure; M-02 remains deferred.",
+            "left": "topology-b",
+            "right": "topology-c"
+          },
+          {
+            "deltas": {
+              "TOPOLOGY_CONTEXT_BYTES": -11847,
+              "TOPOLOGY_FAILURE_BREADTH": 4,
+              "TOPOLOGY_HANDOFF_COUNT": -30,
+              "TOPOLOGY_STATE_BOUNDARIES": -2,
+              "TOPOLOGY_TRACE_COMPLETENESS": 0.0
+            },
+            "directlyComparable": true,
+            "family": "topology",
+            "interpretation": "Fewer handoffs and state boundaries increase the breadth affected by a single-agent failure; M-02 remains deferred.",
+            "left": "topology-a",
+            "right": "topology-c"
+          },
+          {
+            "deltas": {
+              "maxP95RatioToLegacy": 1.11319,
+              "meanP95RatioToLegacy": 1.011181
+            },
+            "directlyComparable": true,
+            "family": "runtime_mode",
+            "interpretation": "Machine-specific operational ratio only; it does not measure classification validity.",
+            "left": "legacy",
+            "right": "unified"
+          },
+          {
+            "deltas": {
+              "maxP95RatioToLegacy": 1.07407,
+              "meanP95RatioToLegacy": 1.01125
+            },
+            "directlyComparable": true,
+            "family": "runtime_mode",
+            "interpretation": "Machine-specific operational ratio only; it does not measure classification validity.",
+            "left": "legacy",
+            "right": "parity"
+          }
+        ],
+        "refusedComparisons": [
+          {
+            "directlyComparable": false,
+            "family": "classification_validity",
+            "left": "paper-author-qualitative-RQ4",
+            "reasons": [
+              "The paper RQ4 assessment is qualitative author judgment.",
+              "The current safe independent-label denominator is zero.",
+              "The compared architecture stages and metric definitions differ."
+            ],
+            "right": "current-H-layer"
+          }
+        ]
+      },
+      "evidenceClass": "offline",
+      "executionValid": true,
+      "experimentId": "EXP-039",
+      "metrics": [
+        {
+          "claimBoundary": "Eligibility means the treatment comparison is well-formed; it does not imply a positive result.",
+          "denominator": 8,
+          "dimensions": {},
+          "direction": "higher_is_better",
+          "evidenceClass": "offline",
+          "metricId": "DIRECT_COMPARISON_GROUPS",
+          "numerator": 7,
+          "unit": "comparison groups",
+          "value": 7
+        },
+        {
+          "claimBoundary": "Incompatible paper-to-current accuracy deltas are refused.",
+          "denominator": 8,
+          "dimensions": {},
+          "direction": "target",
+          "evidenceClass": "offline",
+          "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
+          "numerator": 1,
+          "unit": "comparison groups",
+          "value": 1
+        }
+      ],
+      "passed": true
+    },
+    {
+      "claimBoundary": "Claim readiness is a provenance audit; it cannot replace the missing independent observations.",
+      "details": {
+        "conditionalClaims": [
+          "At 20-24 generalization-safe adjudicated labels, report baseline and candidate metrics as an MSc pilot with explicit small-sample limitations.",
+          "At eight sealed holdout rows, report one-time pilot net correction without a formal improvement claim.",
+          "A formal improvement claim requires EXP-025 and every preregistered statistical and safety criterion to pass."
+        ],
+        "hypotheses": [
+          {
+            "id": "H1",
+            "statement": "Selective review identifies a non-trivial subset of patterns that contains expert-confirmed baseline errors.",
+            "status": "Pending expert input",
+            "test": "EXP-021 and EXP-022 routing precision/recall on adjudicated development labels."
+          },
+          {
+            "id": "H2",
+            "statement": "Human judgment memory retrieves relevant, scope-correct prior judgments for new review contexts.",
+            "status": "Pending expert input",
+            "test": "EXP-022 blind relevance, scope, conflict, and leakage audit."
+          },
+          {
+            "id": "H3",
+            "statement": "A frozen deterministic parallel policy yields positive net correction on unseen leakage-safe expert-labeled data.",
+            "status": "Blocked",
+            "test": "EXP-024 pilot followed by EXP-025 preregistered external paired comparison."
+          },
+          {
+            "id": "H4",
+            "statement": "Reusable memory reduces repeated human review effort without reducing escalation quality.",
+            "status": "Proposal — not approved",
+            "test": "EXP-026 controlled human-effort study."
+          }
+        ],
+        "safeClaims": [
+          "VEGO-AI has a reusable human-judgment mechanism supporting selective review, structured feedback, provenance-aware memory, advisory retrieval, and non-destructive comparison.",
+          "The legacy and unified M1-M4B-1 paths pass controlled fail-closed parity with 27 comparison rows and zero classification changes.",
+          "The current implementation preserves original Agent 4 classifications and baseline artifacts.",
+          "The project is evaluation-ready but remains blocked on independent expert input."
+        ],
+        "traceability": [
+          {
+            "chapterIds": [
+              "3",
+              "6",
+              "7"
+            ],
+            "decisionIds": [
+              "M-01",
+              "M-05"
+            ],
+            "evidenceState": "Pending expert input",
+            "experimentIds": [
+              "EXP-019",
+              "EXP-020",
+              "EXP-021"
+            ],
+            "id": "E-RQ1",
+            "kind": "research_question",
+            "metricOrGate": "Adjudicated baseline errors and error taxonomy"
+          },
+          {
+            "chapterIds": [
+              "3",
+              "5",
+              "6",
+              "7"
+            ],
+            "decisionIds": [
+              "M-03",
+              "M-04",
+              "M-05"
+            ],
+            "evidenceState": "Pending expert input",
+            "experimentIds": [
+              "EXP-021",
+              "EXP-022"
+            ],
+            "id": "E-RQ2",
+            "kind": "research_question",
+            "metricOrGate": "Routing precision/recall and retrieval validity"
+          },
+          {
+            "chapterIds": [
+              "3",
+              "6",
+              "7",
+              "8",
+              "9"
+            ],
+            "decisionIds": [
+              "M-02",
+              "M-04",
+              "M-05",
+              "M-06"
+            ],
+            "evidenceState": "Blocked",
+            "experimentIds": [
+              "EXP-023",
+              "EXP-024",
+              "EXP-025"
+            ],
+            "id": "E-RQ3",
+            "kind": "research_question",
+            "metricOrGate": "Paired net correction after policy freeze"
+          },
+          {
+            "chapterIds": [
+              "3",
+              "6",
+              "7"
+            ],
+            "decisionIds": [
+              "M-03",
+              "M-05"
+            ],
+            "evidenceState": "Pending expert input",
+            "experimentIds": [
+              "EXP-021",
+              "EXP-022"
+            ],
+            "id": "H1",
+            "kind": "hypothesis",
+            "metricOrGate": "Review routing contains adjudicated baseline errors"
+          },
+          {
+            "chapterIds": [
+              "3",
+              "5",
+              "6",
+              "7"
+            ],
+            "decisionIds": [
+              "M-02",
+              "M-04"
+            ],
+            "evidenceState": "Pending expert input",
+            "experimentIds": [
+              "EXP-022"
+            ],
+            "id": "H2",
+            "kind": "hypothesis",
+            "metricOrGate": "Blind relevance, scope, conflict, and leakage audit"
+          },
+          {
+            "chapterIds": [
+              "3",
+              "6",
+              "7",
+              "8",
+              "9"
+            ],
+            "decisionIds": [
+              "M-02",
+              "M-04",
+              "M-05"
+            ],
+            "evidenceState": "Blocked",
+            "experimentIds": [
+              "EXP-023",
+              "EXP-024",
+              "EXP-025"
+            ],
+            "id": "H3",
+            "kind": "hypothesis",
+            "metricOrGate": "Positive paired net correction on unseen safe data"
+          },
+          {
+            "chapterIds": [
+              "3",
+              "6",
+              "8",
+              "9"
+            ],
+            "decisionIds": [
+              "M-05",
+              "M-06"
+            ],
+            "evidenceState": "Proposal — not approved",
+            "experimentIds": [
+              "EXP-026"
+            ],
+            "id": "H4",
+            "kind": "hypothesis",
+            "metricOrGate": "Controlled review-time and escalation-quality study"
+          }
+        ]
+      },
+      "evidenceClass": "offline",
+      "executionValid": true,
+      "experimentId": "EXP-040",
+      "metrics": [
+        {
+          "claimBoundary": "These claims are limited to mechanism readiness, compatibility, traceability, and baseline protection.",
+          "denominator": 4,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "mechanism",
+          "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
+          "numerator": 4,
+          "unit": "claims",
+          "value": 4
+        },
+        {
+          "claimBoundary": "Independent labels, a frozen policy, and external replication remain required.",
+          "denominator": 3,
+          "dimensions": {},
+          "direction": "higher_is_better",
+          "evidenceClass": "offline",
+          "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+          "numerator": 0,
+          "unit": "claims",
+          "value": 0
+        },
+        {
+          "claimBoundary": "No empirical thesis hypothesis is confirmed at safe N=0.",
+          "denominator": 4,
+          "dimensions": {},
+          "direction": "higher_is_better",
+          "evidenceClass": "offline",
+          "metricId": "THESIS_HYPOTHESES_CONFIRMED",
+          "numerator": 0,
+          "unit": "hypotheses",
+          "value": 0
+        },
+        {
+          "claimBoundary": "Traceability completeness is not hypothesis confirmation.",
+          "denominator": 7,
+          "dimensions": {},
+          "direction": "neutral",
+          "evidenceClass": "offline",
+          "metricId": "THESIS_TRACEABILITY_RECORDS",
+          "numerator": 7,
+          "unit": "records",
+          "value": 7
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "generatedAt": "2026-07-26T14:16:00+03:00",
+  "normalizedSha256": "ad655d0da64546038f8efb46188692ff353e3f3bd77462939ffbda7f11383b87",
+  "paperBaseline": {
+    "caseModels": 178,
+    "occasional": 18,
+    "patterns": 26,
+    "rq4Assessment": "Qualitative assessment by the paper authors; the paper states that no quantitative variability-classification benchmark existed.",
+    "sourceSha256": "8c080422682dc5f90d7eca4ef973f40846c380e0df6a0f906c2ed6c070ec395a",
+    "substantial": 8
+  },
+  "schemaVersion": "BaselineComparisonResults-v1",
+  "sources": {
+    "docs/research/bigui/architecture-fixture-results-v1.json": "7fcf650512b37dfb7063b48c5fef95d73d7b8db36a268926d6178329aef73ba5",
+    "docs/research/bigui/paper-baseline-snapshot-v1.json": "78b6701caea4feee131980e2e8ae84f436451e53853ca0e779a0d161a6ad966a",
+    "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "20ada09c5180627940c3191763d16bdeaf6b8b10189757d861856418916ad7ad",
+    "experiments/accepted-runs": "8cc33fdd800964cfc729e5d4ba15dbf8400bccb23de3c9834de54fc494ffa26e",
+    "experiments/current-run-index-v1.json#comparison-dependencies": "99115846282369e33d9bc312b4bdc487acdc7762438036ca887dad0373f682db"
+  }
+}

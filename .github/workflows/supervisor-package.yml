@@ -1,4 +1,4 @@
-name: Unified runtime, security, supervisor, and thesis checks
+name: Unified runtime, BigUI, security, supervisor, and thesis checks
 
 on:
   pull_request:
@@ -84,7 +84,16 @@ jobs:
       - name: Validate contracts, manifests, claims, citations, and freshness
         run: |
           uv run python scripts/validate_research_records.py schemas/examples
+          uv run python scripts/validate_research_records.py \
+            docs/research/bigui/experiment-catalog-snapshot-v1.json
           uv run python scripts/build_hardening_manifests.py --check
+          uv run python scripts/build_bigui_architecture_snapshot.py --check
+          uv run python scripts/run_bigui_comparison_experiments.py --check
+          uv run python scripts/build_bigui_run_store.py --check
+          uv run python scripts/build_experiment_benchmark.py --check
+          uv run python scripts/build_bigui_catalog.py --check
+          uv run python scripts/build_bigui.py --check
+          uv run python scripts/run_bigui_architecture_experiments.py --check
           uv run python scripts/check_thesis_citations.py
           uv run python scripts/validate_thesis_content.py
           uv run python scripts/validate_thesis_evidence_package.py
@@ -100,12 +109,13 @@ jobs:
         run: |
           uv run python scripts/validate_thesis_review_document.py \
             thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
-          uv run python scripts/build_thesis_review_document.py --check
           mkdir -p "${RUNNER_TEMP}/thesis-a" "${RUNNER_TEMP}/thesis-b"
           uv run python scripts/build_thesis_review_document.py \
             --output "${RUNNER_TEMP}/thesis-a/review.docx"
           uv run python scripts/build_thesis_review_document.py \
             --output "${RUNNER_TEMP}/thesis-b/review.docx"
+          uv run python scripts/validate_thesis_review_document.py \
+            "${RUNNER_TEMP}/thesis-a/review.docx"
           test "$(sha256sum "${RUNNER_TEMP}/thesis-a/review.docx" | cut -d' ' -f1)" = \
                "$(sha256sum "${RUNNER_TEMP}/thesis-b/review.docx" | cut -d' ' -f1)"
 
@@ -129,10 +139,11 @@ jobs:
             --progress-spinner off
           npm audit --audit-level=high
 
-      - name: Exercise offline supervisor and thesis views
+      - name: Exercise offline supervisor, thesis, and BigUI views
         run: |
           node scripts/tests/supervisor_package_browser_smoke.mjs
           node scripts/tests/thesis_progress_browser_smoke.mjs
+          node scripts/tests/bigui_browser_smoke.mjs
 
       - name: Check diff and line-ending hygiene
         env:

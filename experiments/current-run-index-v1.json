@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "CurrentRunIndex-v1",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
+  "publicationTier": "tracked_sanitized",
+  "currentRuns": [
+    {
+      "experimentId": "EXP-001",
+      "runId": "EXP-001-06419d6e3a5a",
+      "manifestSha256": "06419d6e3a5ac5b547fc8586964ef5a461eaeb450b176f93c6384bcb0822622e",
+      "completedAt": "2026-06-16T19:01:09.7551967+00:00"
+    },
+    {
+      "experimentId": "EXP-002",
+      "runId": "EXP-002-90ff2e7178b1",
+      "manifestSha256": "90ff2e7178b1fa69e6b9ea1880a37cba9f15990d4c607407c88a8e1426619c90",
+      "completedAt": "2026-06-16T19:01:10.8182777+00:00"
+    },
+    {
+      "experimentId": "EXP-003",
+      "runId": "EXP-003-523b8502554d",
+      "manifestSha256": "523b8502554da6f5774346411293931d46312bdfb7f0d0c8025c4e1cc1d259b3",
+      "completedAt": "2026-06-16T19:53:24.498229+00:00"
+    },
+    {
+      "experimentId": "EXP-004",
+      "runId": "EXP-004-9d877c7e46e1",
+      "manifestSha256": "9d877c7e46e19198b29b1082bf110bfbeadab0f69448b13880e60fcb862ea506",
+      "completedAt": "2026-07-10T16:35:17.767177+00:00"
+    },
+    {
+      "experimentId": "EXP-005",
+      "runId": "EXP-005-55760400d49c",
+      "manifestSha256": "55760400d49c3af7a88b2755b701e15f100eced3805a50491ffe1965483a3fa8",
+      "completedAt": "2026-06-22T12:24:58.204954+00:00"
+    },
+    {
+      "experimentId": "EXP-006",
+      "runId": "EXP-006-7d8abc08-78770f5c",
+      "manifestSha256": "78770f5ca689ee62b438b07bb89fe5f0ffd12fc1d258884c1abdd65a119bfda5",
+      "completedAt": "2026-07-26T14:04:40.3433140+00:00"
+    },
+    {
+      "experimentId": "EXP-007",
+      "runId": "EXP-007-1d1e4922-8dfba649",
+      "manifestSha256": "8dfba649946cd93fc94489043dffa6d98f699846d66d388d92f0162b3b1dd4c5",
+      "completedAt": "2026-07-26T14:04:40.3433140+00:00"
+    },
+    {
+      "experimentId": "EXP-008",
+      "runId": "EXP-008-de19666d-245f75e2",
+      "manifestSha256": "245f75e2dc0b98171d7b7519906289f3139bd217161c002bf6e912051d3b6ed0",
+      "completedAt": "2026-07-26T14:04:40.3433140+00:00"
+    },
+    {
+      "experimentId": "EXP-009",
+      "runId": "EXP-009-5bea318e-6a03dfe4",
+      "manifestSha256": "6a03dfe4ed3d5a8afd3901784f27f1ee427e8f4e28518eda13a5112873f9aae6",
+      "completedAt": "2026-07-26T14:04:40.3433140+00:00"
+    },
+    {
+      "experimentId": "EXP-010",
+      "runId": "EXP-010-10dedea4-44066e25",
+      "manifestSha256": "44066e258a452fbcb610b40b7511712c3bdf5908826c740855d8c9d815866c4b",
+      "completedAt": "2026-07-26T14:04:40.3433140+00:00"
+    },
+    {
+      "experimentId": "EXP-012",
+      "runId": "EXP-012-b489f6b6-b5055baf",
+      "manifestSha256": "b5055baf43c8f03164b31ea473dcf1607295652b962c5ec9451694f372f193db",
+      "completedAt": "2026-07-26T14:04:40.3433140+00:00"
+    },
+    {
+      "experimentId": "EXP-013",
+      "runId": "EXP-013-abd2c478-58ce1aa5",
+      "manifestSha256": "58ce1aa572d7353272ebf70c7a778fc1335ccdc07789a67005da9aa04db68e03",
+      "completedAt": "2026-07-26T00:30:26+00:00"
+    },
+    {
+      "experimentId": "EXP-014",
+      "runId": "EXP-014-693ce3af-3f1f574c",
+      "manifestSha256": "3f1f574c749421a124fac8b6086b5c231ee3a8d1b1e2125b2ca23468ddb0334a",
+      "completedAt": "2026-07-26T00:30:26+00:00"
+    },
+    {
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-ed444c58",
+      "manifestSha256": "ed444c58583ea93a7f920a028345e93274d55784b1fcbc9ad2c3a09ba6563f1f",
+      "completedAt": "2026-07-26T00:30:26+00:00"
+    },
+    {
+      "experimentId": "EXP-016",
+      "runId": "EXP-016-2e9b44d9-167f8436",
+      "manifestSha256": "167f8436b59abf9c439af488a57f6dbadb124025280d1ac30fb108b11be5bfc1",
+      "completedAt": "2026-07-26T00:30:26+00:00"
+    },
+    {
+      "experimentId": "EXP-017",
+      "runId": "EXP-017-9b18b744-e196d6ff",
+      "manifestSha256": "e196d6ff2500f1474d764bccc63aa4737af86c9b6e8044739ac43d0474fba25e",
+      "completedAt": "2026-07-26T00:30:26+00:00"
+    },
+    {
+      "experimentId": "EXP-018",
+      "runId": "EXP-018-5ac1af70-40b34289",
+      "manifestSha256": "40b342898e046f48976d176b84682fff6eb1227c571bbb647eece631156c0304",
+      "completedAt": "2026-07-26T00:30:26+00:00"
+    },
+    {
+      "experimentId": "EXP-030",
+      "runId": "EXP-030-9aef5ac80b7e",
+      "manifestSha256": "9aef5ac80b7e15a03668b3982dbd9051b8f3922728a1f741b1b97ab5e2869439",
+      "completedAt": "2026-07-26T14:16:00+03:00"
+    },
+    {
+      "experimentId": "EXP-033",
+      "runId": "EXP-033-a9de44bc668d",
+      "manifestSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+      "completedAt": "2026-07-26T00:00:00+00:00"
+    },
+    {
+      "experimentId": "EXP-034",
+      "runId": "EXP-034-a9de44bc668d",
+      "manifestSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+      "completedAt": "2026-07-26T00:00:00+00:00"
+    },
+    {
+      "experimentId": "EXP-035",
+      "runId": "EXP-035-a9de44bc668d",
+      "manifestSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+      "completedAt": "2026-07-26T00:00:00+00:00"
+    },
+    {
+      "experimentId": "EXP-036",
+      "runId": "EXP-036-a9de44bc668d",
+      "manifestSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+      "completedAt": "2026-07-26T00:00:00+00:00"
+    },
+    {
+      "experimentId": "EXP-037",
+      "runId": "EXP-037-39e1d188a059",
+      "manifestSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+      "completedAt": "2026-07-26T14:16:00+03:00"
+    },
+    {
+      "experimentId": "EXP-038",
+      "runId": "EXP-038-39e1d188a059",
+      "manifestSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+      "completedAt": "2026-07-26T14:16:00+03:00"
+    },
+    {
+      "experimentId": "EXP-039",
+      "runId": "EXP-039-39e1d188a059",
+      "manifestSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+      "completedAt": "2026-07-26T14:16:00+03:00"
+    },
+    {
+      "experimentId": "EXP-040",
+      "runId": "EXP-040-39e1d188a059",
+      "manifestSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+      "completedAt": "2026-07-26T14:16:00+03:00"
+    }
+  ],
+  "claimBoundary": "This index identifies the current deterministic projection for each executed experiment. Older accepted bundles remain history."
+}

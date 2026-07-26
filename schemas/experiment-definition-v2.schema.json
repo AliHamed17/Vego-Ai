@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-definition-v2.schema.json",
+  "title": "ExperimentDefinition-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "title",
+    "researchSpace",
+    "researchTrack",
+    "researchQuestion",
+    "definitionStatus",
+    "evidenceClass",
+    "architectureTargets",
+    "prerequisites",
+    "approvalGates",
+    "baseline",
+    "comparator",
+    "runner",
+    "evaluator",
+    "metricDefinitionIds",
+    "acceptanceRules",
+    "comparisonSpec",
+    "claimBoundary",
+    "validityThreats",
+    "owner",
+    "nextAction",
+    "artifactLinks"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentDefinition-v2"},
+    "id": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "researchSpace": {"enum": ["MSc", "PhD", "Cross-program"]},
+    "researchTrack": {"type": "string", "minLength": 1},
+    "researchQuestion": {"type": "string", "minLength": 1},
+    "definitionStatus": {
+      "enum": [
+        "measured",
+        "ready_to_run",
+        "awaiting_external_observation",
+        "ready_after_dependency",
+        "future_study",
+        "historical"
+      ]
+    },
+    "evidenceClass": {
+      "enum": [
+        "historical",
+        "mechanism",
+        "offline",
+        "synthetic",
+        "evaluation_ready",
+        "pilot",
+        "empirical",
+        "proposal"
+      ]
+    },
+    "architectureTargets": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "approvalGates": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "baseline": {"type": "string", "minLength": 1},
+    "comparator": {"type": "string", "minLength": 1},
+    "runner": {"type": ["string", "null"]},
+    "evaluator": {"type": ["string", "null"]},
+    "metricDefinitionIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]+$"},
+      "uniqueItems": true
+    },
+    "acceptanceRules": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1
+    },
+    "comparisonSpec": {"$ref": "comparison-eligibility-v2.schema.json#/$defs/spec"},
+    "claimBoundary": {"type": "string", "minLength": 1},
+    "validityThreats": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "owner": {"type": "string", "minLength": 1},
+    "nextAction": {"type": "string", "minLength": 1},
+    "artifactLinks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "not": {"pattern": "^[A-Za-z]:\\\\|^file://"}
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}

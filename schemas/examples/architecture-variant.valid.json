@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "ArchitectureVariant-v1",
+  "id": "legacy",
+  "kind": "runtime_mode",
+  "title": "Legacy runtime",
+  "status": "Implemented",
+  "implemented": true,
+  "approved": true,
+  "default": true,
+  "contractVersion": "1.0",
+  "failureBehavior": "Preserve the official baseline and park unresolved work.",
+  "humanAuthorityPreserved": true,
+  "baselineMutationAllowed": false,
+  "evidenceClass": "mechanism",
+  "claimBoundary": "Reference mechanism; no accuracy claim."
+}

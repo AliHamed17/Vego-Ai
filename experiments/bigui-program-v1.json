@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "BigUIExperimentProgram-v1",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
+  "experiments": [
+    {
+      "id": "EXP-030",
+      "title": "BigUI source fidelity and provenance",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Observatory integrity",
+      "researchQuestion": "Does every rendered BigUI fact resolve to an accepted, hash-bound canonical source?",
+      "status": "Evaluation-ready",
+      "evidenceClass": "evaluation_ready",
+      "architectureTargets": ["BigUI"],
+      "prerequisites": ["Program and thesis snapshots are schema-valid"],
+      "approvalGates": [],
+      "baseline": "Current fragmented research interfaces",
+      "comparator": "Catalog-driven BigUI",
+      "metricDefinitions": [
+        "CATALOG_REFERENCE_RESOLUTION",
+        "CATALOG_SOURCE_HASH_AGREEMENT",
+        "CATALOG_METRIC_REDERIVATION",
+        "BIGUI_DEFINITION_FIELD_COMPLETENESS",
+        "BIGUI_DEFINITION_ID_UNIQUENESS"
+      ],
+      "claimBoundary": "Source-fidelity evidence only; it does not establish classification validity or human decision value.",
+      "validityThreats": ["A passing tracked-tier audit cannot inspect private raw records."],
+      "owner": "Research infrastructure",
+      "nextAction": "Run the deterministic catalog fidelity gate on every refresh.",
+      "artifactLinks": [
+        "experiments/EXP-030-bigui-source-fidelity/README.md",
+        "scripts/build_bigui_catalog.py"
+      ]
+    },
+    {
+      "id": "EXP-031",
+      "title": "BigUI formative usability",
+      "researchSpace": "MSc",
+      "researchTrack": "Human-facing usability",
+      "researchQuestion": "Can supervisors and domain reviewers complete the core research-interpretation tasks with BigUI?",
+      "status": "Proposal — not approved",
+      "evidenceClass": "proposal",
+      "architectureTargets": ["BigUI"],
+      "prerequisites": ["EXP-030 passes", "BigUI interface is frozen for the pilot"],
+      "approvalGates": ["Consent and participant protocol approved"],
+      "baseline": "No population-level usability claim",
+      "comparator": "Prespecified task completion targets",
+      "metricDefinitions": [
+        "BIGUI_TASK_SUCCESS",
+        "BIGUI_COMPLETION_TIME",
+        "BIGUI_SEQ",
+        "BIGUI_SUS",
+        "BIGUI_NAVIGATION_ERRORS"
+      ],
+      "claimBoundary": "A 5–8 participant formative study supports interface refinement only.",
+      "validityThreats": ["Small convenience sample", "Facilitator influence", "Learning effects"],
+      "owner": "Human-study lead",
+      "nextAction": "Approve consent, tasks, and anonymized local record handling.",
+      "artifactLinks": [
+        "experiments/EXP-031-bigui-formative-usability/README.md",
+        "schemas/bigui-study-record-v1.schema.json"
+      ]
+    },
+    {
+      "id": "EXP-032",
+      "title": "BigUI decision-support comparison",
+      "researchSpace": "MSc",
+      "researchTrack": "Decision-support value",
+      "researchQuestion": "Does BigUI improve correct evidence-state interpretation relative to the fragmented existing interfaces?",
+      "status": "Blocked",
+      "evidenceClass": "blocked",
+      "architectureTargets": ["BigUI"],
+      "prerequisites": ["EXP-031 complete", "Confirmatory BigUI and task protocol frozen"],
+      "approvalGates": ["At least 20 consented participants", "Counterbalanced protocol approved"],
+      "baseline": "Fragmented existing interfaces",
+      "comparator": "Frozen BigUI",
+      "metricDefinitions": [
+        "BIGUI_DECISION_CORRECTNESS",
+        "BIGUI_OVERCLAIM_RATE",
+        "BIGUI_COMPLETION_TIME",
+        "BIGUI_CONFIDENCE_CALIBRATION"
+      ],
+      "claimBoundary": "A value claim is permitted only for measured tasks and only if correctness improves without increasing overclaim errors.",
+      "validityThreats": ["Interface-order effects", "Participant expertise imbalance", "Task artificiality"],
+      "owner": "Human-study lead",
+      "nextAction": "Complete EXP-031 and preregister the counterbalanced study.",
+      "artifactLinks": [
+        "experiments/EXP-032-bigui-decision-support/README.md",
+        "schemas/bigui-study-record-v1.schema.json"
+      ]
+    },
+    {
+      "id": "EXP-033",
+      "title": "Full-corpus runtime parity",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture validation",
+      "researchQuestion": "Are legacy, unified, and parity modes semantically equivalent over the current controlled H-layer artifacts?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["legacy", "unified", "parity"],
+      "prerequisites": ["Unified runtime contracts available", "Controlled artifacts present locally"],
+      "approvalGates": [],
+      "baseline": "Legacy M1–M4B-1 output",
+      "comparator": "Unified and fail-closed parity output",
+      "metricDefinitions": [
+        "ARCH_SEMANTIC_PARITY_RATE",
+        "ARCH_REPLAY_DETERMINISM",
+        "ARCH_BASELINE_PRESERVATION",
+        "ARCH_CLASSIFICATION_CHANGES"
+      ],
+      "claimBoundary": "Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy.",
+      "validityThreats": ["Current corpus may not cover all future malformed or rare records."],
+      "owner": "Architecture validation",
+      "nextAction": "Run three repetitions over available controlled M1–M4B-1 artifacts.",
+      "artifactLinks": [
+        "experiments/EXP-033-full-corpus-runtime-parity/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-034",
+      "title": "H-layer topology trade-off",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture validation",
+      "researchQuestion": "What operational trade-offs appear among topology A, B, and C under contract-equivalent work?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["topology-a", "topology-b", "topology-c"],
+      "prerequisites": ["Canonical H-layer contracts available"],
+      "approvalGates": ["M-02 remains deferred; no production selection is allowed"],
+      "baseline": "Topology A: H1, H2, and H3 as three agents",
+      "comparator": "Topology B and topology C offline simulations",
+      "metricDefinitions": [
+        "TOPOLOGY_HANDOFF_COUNT",
+        "TOPOLOGY_CONTEXT_BYTES",
+        "TOPOLOGY_STATE_BOUNDARIES",
+        "TOPOLOGY_FAILURE_BREADTH",
+        "TOPOLOGY_TRACE_COMPLETENESS",
+        "TOPOLOGY_P95_LATENCY_MS"
+      ],
+      "claimBoundary": "The result is a Pareto comparison and cannot approve a production topology.",
+      "validityThreats": ["Offline structural simulation does not measure live LLM coordination."],
+      "owner": "Architecture validation",
+      "nextAction": "Run the deterministic topology simulator and report trade-offs without ranking a winner.",
+      "artifactLinks": [
+        "experiments/EXP-034-hlayer-topology-tradeoff/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-035",
+      "title": "Fault injection and authority safety",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Safety validation",
+      "researchQuestion": "Do malformed, duplicate, missing, late, conflicting, and timed-out inputs fail safely?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["unified", "parity"],
+      "prerequisites": ["Authority state machine and canonical validators available"],
+      "approvalGates": [],
+      "baseline": "Valid canonical input",
+      "comparator": "Injected invalid and conflicting cases",
+      "metricDefinitions": [
+        "SAFETY_FAULT_CASE_PASS_RATE",
+        "SAFETY_FAULT_OUTCOME_COUNT",
+        "SAFETY_BASELINE_PRESERVATION",
+        "SAFETY_TRUSTED_MEMORY_WRITES",
+        "SAFETY_CORRECTION_APPLICATIONS",
+        "SAFETY_PARK_OR_ESCALATE_ACCURACY"
+      ],
+      "claimBoundary": "Fixture safety evidence only; it is not a guarantee against every future fault.",
+      "validityThreats": ["Finite fault catalog", "No live external-service failures"],
+      "owner": "Safety validation",
+      "nextAction": "Execute deterministic negative fixtures and preserve the legacy result on every mismatch.",
+      "artifactLinks": [
+        "experiments/EXP-035-fault-injection-authority-safety/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-036",
+      "title": "Scale, latency, and reproducibility",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Operational evaluation",
+      "researchQuestion": "What operational overhead does the unified architecture introduce on current and synthetic stress fixtures?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["legacy", "unified", "parity"],
+      "prerequisites": ["EXP-033 semantic parity passes"],
+      "approvalGates": [],
+      "baseline": "Legacy runtime timing and resource profile",
+      "comparator": "Unified and parity runtime profiles",
+      "metricDefinitions": [
+        "ARCH_P50_LATENCY_MS",
+        "ARCH_P95_LATENCY_MS",
+        "ARCH_THROUGHPUT_RPS",
+        "ARCH_PEAK_MEMORY_BYTES",
+        "ARCH_MEMORY_RATIO_TO_LEGACY",
+        "ARCH_P95_RATIO_TO_LEGACY"
+      ],
+      "claimBoundary": "Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.",
+      "validityThreats": ["Machine-specific timing", "Synthetic replication may not resemble future corpora"],
+      "owner": "Architecture validation",
+      "nextAction": "Benchmark current, 5×, and 10× fixtures with environment and cohort hashes.",
+      "artifactLinks": [
+        "experiments/EXP-036-scale-latency-reproducibility/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-037",
+      "title": "Paper baseline reconciliation",
+      "researchSpace": "MSc",
+      "researchTrack": "Paper and baseline alignment",
+      "researchQuestion": "Which paper-reported values are directly comparable with the current frozen repository baseline?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B0", "B1", "evaluation"],
+      "prerequisites": ["Reviewed paper baseline extraction", "Frozen repository baseline"],
+      "approvalGates": [],
+      "baseline": "MAS4MODELS paper-reported VEGO-AI evaluation",
+      "comparator": "Current frozen repository and H-layer mechanism snapshot",
+      "metricDefinitions": [
+        "PAPER_CASE_MODEL_COUNT",
+        "CURRENT_CASE_MODEL_COUNT",
+        "PAPER_PATTERN_COUNT",
+        "CURRENT_PATTERN_COUNT",
+        "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+        "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
+        "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE"
+      ],
+      "claimBoundary": "The comparison reconciles versions and capabilities; it cannot prove higher classification accuracy than the paper.",
+      "validityThreats": ["The paper is a draft snapshot", "The paper's RQ4 assessment is qualitative", "Current safe-label N is zero"],
+      "owner": "Research evaluation",
+      "nextAction": "Keep the paper and repository baselines visibly separate and refresh only when either reviewed source changes.",
+      "artifactLinks": [
+        "experiments/EXP-037-paper-baseline-reconciliation/README.md",
+        "docs/research/bigui/paper-baseline-snapshot-v1.json",
+        "scripts/run_bigui_comparison_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-038",
+      "title": "Architecture improvement scorecard",
+      "researchSpace": "MSc",
+      "researchTrack": "Architecture evidence",
+      "researchQuestion": "Which new H-layer capability, reliability, and safety properties are demonstrated beyond the paper baseline?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B0", "B1", "legacy", "unified", "parity"],
+      "prerequisites": ["EXP-033", "EXP-035", "EXP-037"],
+      "approvalGates": [],
+      "baseline": "Original four-agent paper architecture",
+      "comparator": "Current non-destructive H-layer architecture",
+      "metricDefinitions": [
+        "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
+        "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS"
+      ],
+      "claimBoundary": "Capability and reliability extension may be demonstrated; classification accuracy and human effort remain unmeasured.",
+      "validityThreats": ["Mechanism cohorts are finite", "Scorecard dimensions are intentionally not collapsed into one score"],
+      "owner": "Architecture validation",
+      "nextAction": "Use the scorecard as the thesis progress baseline and keep null empirical cells visible.",
+      "artifactLinks": [
+        "experiments/EXP-038-architecture-improvement-scorecard/README.md",
+        "scripts/run_bigui_comparison_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-039",
+      "title": "Cross-experiment comparability and deltas",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Metric comparison integrity",
+      "researchQuestion": "Which experiment results support a valid direct delta, and what trade-offs explain why one configuration differs from another?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B1", "legacy", "unified", "parity", "topology-a", "topology-b", "topology-c", "evaluation"],
+      "prerequisites": ["Accepted run bundles", "MetricDefinition-v1", "ComparisonEligibility-v2"],
+      "approvalGates": [],
+      "baseline": "Declared treatment baseline inside each comparable experiment",
+      "comparator": "Declared routing, topology, or runtime treatment",
+      "metricDefinitions": [
+        "DIRECT_COMPARISON_GROUPS",
+        "INCOMPATIBLE_COMPARISONS_SUPPRESSED"
+      ],
+      "claimBoundary": "Better is metric-specific; every positive delta must show its denominator, trade-off, evidence class, and guardrail.",
+      "validityThreats": ["Machine-specific latency", "Offline topology simulation", "No empirical classification comparator"],
+      "owner": "Evaluation infrastructure",
+      "nextAction": "Reject incompatible pairs and expose valid routing, topology, and runtime deltas in BigUI.",
+      "artifactLinks": [
+        "experiments/EXP-039-cross-experiment-comparability/README.md",
+        "src/vego_bigui/comparison.py",
+        "scripts/run_bigui_comparison_experiments.py"
+      ]
+    },
+    {
+      "id": "EXP-040",
+      "title": "Thesis claim-readiness audit",
+      "researchSpace": "MSc",
+      "researchTrack": "Thesis alignment",
+      "researchQuestion": "Which thesis claims are supported now, and which require independent labels, human studies, or replication?",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": ["B0", "B1", "evaluation", "BigUI"],
+      "prerequisites": ["EXP-037", "EXP-038", "EXP-039", "Thesis evidence snapshot"],
+      "approvalGates": [],
+      "baseline": "Paper and thesis claim set",
+      "comparator": "Current accepted experiment evidence",
+      "metricDefinitions": [
+        "THESIS_SAFE_CURRENT_CLAIMS",
+        "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
+        "THESIS_HYPOTHESES_CONFIRMED",
+        "THESIS_TRACEABILITY_RECORDS"
+      ],
+      "claimBoundary": "Readiness and traceability do not substitute for the missing independent observations.",
+      "validityThreats": ["Thesis framing may evolve", "Human and external studies remain unexecuted"],
+      "owner": "Thesis evaluation",
+      "nextAction": "Use this audit to keep the thesis, catalog, and BigUI claim boundaries synchronized.",
+      "artifactLinks": [
+        "experiments/EXP-040-thesis-claim-readiness/README.md",
+        "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+        "scripts/run_bigui_comparison_experiments.py"
+      ]
+    }
+  ]
+}

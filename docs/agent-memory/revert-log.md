@@ -512,3 +512,43 @@ Record file changes and rollback notes here.
   - VEGO-AI-Thesis-Baseline-Progress.html
 - Rollback note: Revert commits 1ff9f72 through eb15a13 in reverse order to remove the empty-envelope and disguised-archive review cycle; ignored PDF, QA, and share folders can be removed separately.
 - Git commit: none recorded by script.
+
+## 2026-07-26 13:30 +03:00 - Codex - Execute experiments and publish results-first BigUI
+
+- Files changed:
+  - VEGO-AI-Research-Hub.html
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_architecture_experiments.py
+  - .github/workflows/supervisor-package.yml
+- Rollback note: Revert the BigUI experiment-platform commits on agent/bigui-experiment-platform; Agent 4 and baseline outputs were not changed.
+- Git commit: none recorded by script.
+
+## 2026-07-26 14:55 +03:00 - Codex - Add paper-aligned experiment comparison evidence
+
+- Files changed:
+  - scripts/run_bigui_comparison_experiments.py
+  - docs/research/bigui/paper-baseline-snapshot-v1.json
+  - docs/research/bigui/baseline-comparison-results-v1.json
+  - VEGO-AI-Research-Hub.html
+- Rollback note: Revert the four focused commits from this task; Agent 4 and baseline outputs were not modified.
+- Git commit: none recorded by script.
+
+## 2026-07-26 17:14 +03:00 - Codex - Evaluate all experiments and publish benchmark BigUI
+
+- Files changed:
+  - schemas/experiment-evaluation-standard-v1.schema.json
+  - schemas/experiment-benchmark-snapshot-v1.schema.json
+  - schemas/current-run-index-v1.schema.json
+  - experiments/current-run-index-v1.json
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - VEGO-AI-Research-Hub.html
+  - VEGO-AI-Experiment-Benchmark-Report.html
+  - scripts/build_experiment_benchmark.py
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_comparison_experiments.py
+  - scripts/build_bigui.py
+- Rollback note: Revert the focused BigUI benchmark commits; accepted run bundles are append-only and the frozen Agent 4 baseline remains unchanged.
+- Git commit: none recorded by script.

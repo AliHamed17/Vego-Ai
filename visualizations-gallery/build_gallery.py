@@ -18,10 +18,17 @@ HUB_OUTPUT = ROOT / "VEGO-AI-Research-Hub.html"
 THESIS_SNAPSHOT = (
     ROOT / "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json"
 )
+BIGUI_CATALOG = (
+    ROOT / "docs/research/bigui/experiment-catalog-snapshot-v1.json"
+)
 
 
 def thesis_data() -> dict:
     return json.loads(THESIS_SNAPSHOT.read_text(encoding="utf-8"))
+
+
+def bigui_data() -> dict:
+    return json.loads(BIGUI_CATALOG.read_text(encoding="utf-8"))
 
 
 def sha256(path: Path) -> str:
@@ -84,11 +91,11 @@ footer{border-top:1px solid var(--line);color:var(--muted);padding:28px 0;margin
 
 
 def build_gallery() -> str:
-    data = thesis_data()
-    gate = data["labelGate"]
+    data = bigui_data()
+    gate = data["programState"]
     date = data["generatedAt"][:10]
     latest_experiment = data["experiments"][-1]["id"]
-    latest_iteration = data["programSnapshot"]["latestAcceptedIteration"]
+    latest_iteration = data["programState"]["latestAcceptedIteration"]
     tracked = tracked_paths()
     architecture = [
         ("assets/architecture/vego-ai-architecture-enhanced.svg", "Enhanced architecture", "Historical architecture illustration; verify current decisions in the July 21 explainer."),
@@ -124,11 +131,12 @@ def build_gallery() -> str:
   <div class="eyebrow">VEGO-AI · offline visualization index · {date}</div>
   <h1>See the governed system, then inspect the evidence</h1>
   <p class="lead">Use the thesis evidence visual for the B0–B5 research progression and the July 21 bilingual explainer for the supervisor decision record. Older diagrams remain dated historical illustrations—not current evidence or approval.</p>
-  <div class="boundary"><strong>Claim boundary:</strong> EXP-005 has {gate["candidateRows"]} candidates and {gate["suppliedLabels"]} supplied labels; EXP-012 is {html.escape(gate["accuracyStatus"])}. Agent 4 and the baseline remain unchanged. M-01–M-06 are deferred and unconfirmed.</div>
-  <div class="status"><span class="pill"><strong>{latest_iteration}</strong> accepted iterations</span><span class="pill"><strong>EXP-000–{latest_experiment.removeprefix("EXP-")}</strong> registered</span><span class="pill"><strong>{gate["suppliedLabels"]}/{gate["candidateRows"]}</strong> supplied labels</span><span class="pill"><strong>Offline</strong> no external runtime</span></div>
+  <div class="boundary"><strong>Claim boundary:</strong> EXP-005 has {gate["candidateLabels"]} candidates and {gate["safeLabels"]} safe labels; EXP-012 is {html.escape(gate["accuracyStatus"])}. Agent 4 and the baseline remain unchanged. M-01–M-06 are deferred and unconfirmed.</div>
+  <div class="status"><span class="pill"><strong>{latest_iteration}</strong> accepted iterations</span><span class="pill"><strong>EXP-000–{latest_experiment.removeprefix("EXP-")}</strong> registered</span><span class="pill"><strong>{gate["safeLabels"]}/{gate["candidateLabels"]}</strong> safe labels</span><span class="pill"><strong>Offline</strong> no external runtime</span></div>
 </header>
 <nav><a href="#current">Current package</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence figures</a><a href="#archive">Historical archive</a></nav>
-<section id="current"><h2>Current decision package</h2><p class="section-copy">Use these files for the Iris and Arnon follow-up.</p><div class="grid">
+<section id="current"><h2>Current research operating surface</h2><p class="section-copy">Use BigUI for current architecture, experiment, result, validity, and reproducibility status.</p><div class="grid">
+{card("../VEGO-AI-Research-Hub.html", "BigUI Research Observatory", "Catalog-driven EXP-000–036 explorer with architecture laboratory, guarded comparisons, validity gates, and MSc/PhD workspaces.", "Featured · current")}
 {card("../VEGO-AI-Thesis-Baseline-Progress.html", "Thesis evidence baseline", "Interactive B0–B5 ladder, mechanism flow, current plots, EXP-019–027 roadmap, blank safe-N=0 matrix, and formal claim gate.", "Featured · thesis")}
 {card("../VEGO-AI-July1-PointByPoint-EN-HE.html", "Interactive EN/HE architecture puzzle", "Six guided pieces plus the complete D1–D12, EXP-000–018, iteration, evidence, and decision reference.", "Featured · July 21")}
 {card("../presentations/VEGO-AI-Supervisor-Progress-and-Decisions-2026-07-21.pptx", "23-slide supervisor deck", "Twelve core decision slides and eleven evidence appendices.", "Current deck")}
@@ -209,7 +217,6 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     ok = write_or_check(GALLERY_OUTPUT, build_gallery(), args.check)
-    ok = write_or_check(HUB_OUTPUT, build_hub(), args.check) and ok
     if args.check and ok:
         print("visualization entry points: PASS")
     return 0 if ok else 1
