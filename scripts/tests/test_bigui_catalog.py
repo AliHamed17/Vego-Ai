@@ -52,6 +52,13 @@ def test_catalog_is_complete_deterministic_and_schema_valid() -> None:
         f"EXP-{index:03d}" for index in range(41)
     ]
     assert len({item["id"] for item in tracked["experiments"]}) == 41
+    current_rows = tracked["currentRunIndex"]["currentRuns"]
+    assert len(current_rows) == tracked["runStoreSummary"][
+        "experimentsWithAcceptedRuns"
+    ]
+    assert len({item["experimentId"] for item in current_rows}) == len(
+        current_rows
+    )
 
 
 def test_catalog_zero_label_gate_keeps_empirical_metrics_null() -> None:

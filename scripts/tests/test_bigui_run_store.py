@@ -20,6 +20,7 @@ from vego_bigui.store import (
 
 ROOT = Path(__file__).resolve().parents[2]
 ACCEPTED = ROOT / "experiments" / "accepted-runs"
+CURRENT_INDEX = ROOT / "experiments" / "current-run-index-v1.json"
 SCHEMAS = ROOT / "schemas"
 
 
@@ -59,6 +60,20 @@ def test_accepted_run_store_is_complete_and_rebuildable(tmp_path: Path) -> None:
         ).fetchone()[0]
     assert run_count == summary["bundleCount"]
     assert observation_count == summary["metricObservationCount"]
+    current_index = json.loads(CURRENT_INDEX.read_text(encoding="utf-8"))
+    current_rows = current_index["currentRuns"]
+    assert len(current_rows) == summary["experimentsWithAcceptedRuns"]
+    assert len({item["experimentId"] for item in current_rows}) == len(
+        current_rows
+    )
+    available = {
+        (item["envelope"]["experimentId"], item["envelope"]["runId"])
+        for item in bundles
+    }
+    assert all(
+        (item["experimentId"], item["runId"]) in available
+        for item in current_rows
+    )
 
 
 def test_accepted_bundle_writer_is_idempotent_but_immutable(
