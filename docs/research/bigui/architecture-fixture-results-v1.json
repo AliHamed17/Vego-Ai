@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "BigUIArchitectureFixtureResults-v1",
+  "generatedAt": "2026-07-26T00:00:00+03:00",
+  "evidenceClass": "offline_fixture",
+  "syntheticTag": "SYNTHETIC_NOT_HUMAN",
+  "containsControlledData": false,
+  "containsHumanLabels": false,
+  "experiments": [
+    {
+      "experimentId": "EXP-033",
+      "evidenceClass": "offline",
+      "artifactCount": 5,
+      "repetitions": 3,
+      "runCount": 15,
+      "recordExecutions": 15,
+      "semanticDifferences": 0,
+      "deterministic": true,
+      "baselinePreserved": true,
+      "classificationChanges": 0,
+      "passed": true,
+      "runs": [
+        {
+          "repetition": 1,
+          "artifact": "fixture/review",
+          "stage": "review",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "2b7bb9e3f11706fc99592e46efb2d0a20fc671f368e87d7c45f1d64770a230b9",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/feedback",
+          "stage": "feedback",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "c68c792395c8ca2a40d29442491f8d740fc87fec566cc4f9e617d5dfd369e5dc",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/memory",
+          "stage": "memory",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f939f9c7c5bc8b548ed2f7e5d12283e204d3d5e636b92cf4547804fe17cda536",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/advice",
+          "stage": "advice",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "4ce25ee29cf05fb7aa0dafa70caf613405023db17cfcd3e393ec2da3b0c9cce4",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 1,
+          "artifact": "fixture/comparison",
+          "stage": "comparison",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f5bbaf5f33c995e66f0d6dc86ef25b2973ad2e737dacddeefb3df3e159c8f0de",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/review",
+          "stage": "review",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "2b7bb9e3f11706fc99592e46efb2d0a20fc671f368e87d7c45f1d64770a230b9",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/feedback",
+          "stage": "feedback",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "c68c792395c8ca2a40d29442491f8d740fc87fec566cc4f9e617d5dfd369e5dc",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/memory",
+          "stage": "memory",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f939f9c7c5bc8b548ed2f7e5d12283e204d3d5e636b92cf4547804fe17cda536",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/advice",
+          "stage": "advice",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "4ce25ee29cf05fb7aa0dafa70caf613405023db17cfcd3e393ec2da3b0c9cce4",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 2,
+          "artifact": "fixture/comparison",
+          "stage": "comparison",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f5bbaf5f33c995e66f0d6dc86ef25b2973ad2e737dacddeefb3df3e159c8f0de",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/review",
+          "stage": "review",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "2b7bb9e3f11706fc99592e46efb2d0a20fc671f368e87d7c45f1d64770a230b9",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/feedback",
+          "stage": "feedback",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "c68c792395c8ca2a40d29442491f8d740fc87fec566cc4f9e617d5dfd369e5dc",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/memory",
+          "stage": "memory",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f939f9c7c5bc8b548ed2f7e5d12283e204d3d5e636b92cf4547804fe17cda536",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/advice",
+          "stage": "advice",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "4ce25ee29cf05fb7aa0dafa70caf613405023db17cfcd3e393ec2da3b0c9cce4",
+          "baselinePreserved": true
+        },
+        {
+          "repetition": 3,
+          "artifact": "fixture/comparison",
+          "stage": "comparison",
+          "records": 1,
+          "parityStatus": "match",
+          "normalizedOutputSha256": "f5bbaf5f33c995e66f0d6dc86ef25b2973ad2e737dacddeefb3df3e159c8f0de",
+          "baselinePreserved": true
+        }
+      ],
+      "claimBoundary": "Mechanism-level equivalence only; not accuracy."
+    },
+    {
+      "experimentId": "EXP-034",
+      "evidenceClass": "offline",
+      "contractEquivalent": true,
+      "topologies": [
+        {
+          "id": "topology-a",
+          "agents": 3,
+          "handoffs": 2,
+          "contextDuplicationUnits": 2,
+          "stateBoundaries": 3,
+          "failurePropagationBreadth": 3,
+          "traceCompleteness": 1.0,
+          "canonicalOutputSha256": "fd82cd12585fc441463edfb89bd0b227b6f5619e3f945f5e9d87d2553a3fd75b"
+        },
+        {
+          "id": "topology-b",
+          "agents": 2,
+          "handoffs": 1,
+          "contextDuplicationUnits": 1,
+          "stateBoundaries": 2,
+          "failurePropagationBreadth": 4,
+          "traceCompleteness": 1.0,
+          "canonicalOutputSha256": "fd82cd12585fc441463edfb89bd0b227b6f5619e3f945f5e9d87d2553a3fd75b"
+        },
+        {
+          "id": "topology-c",
+          "agents": 1,
+          "handoffs": 0,
+          "contextDuplicationUnits": 0,
+          "stateBoundaries": 1,
+          "failurePropagationBreadth": 7,
+          "traceCompleteness": 1.0,
+          "canonicalOutputSha256": "fd82cd12585fc441463edfb89bd0b227b6f5619e3f945f5e9d87d2553a3fd75b"
+        }
+      ],
+      "selectedDefault": null,
+      "decisionGate": "M-02 deferred",
+      "passed": true,
+      "claimBoundary": "Structural Pareto comparison only; no topology is approved."
+    },
+    {
+      "experimentId": "EXP-035",
+      "evidenceClass": "synthetic",
+      "syntheticTag": "SYNTHETIC_NOT_HUMAN",
+      "caseCount": 8,
+      "cases": [
+        {
+          "case": "missing-source-lineage",
+          "outcome": "rejected",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "duplicate-observation-identity",
+          "outcome": "rejected",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "conflict-called-verified",
+          "outcome": "rejected",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "automatic-correction",
+          "outcome": "rejected",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "illegal-authority-shortcut",
+          "outcome": "rejected",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "timeout",
+          "outcome": "timed_out_parked",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "evaluation-event",
+          "outcome": "park",
+          "errorType": null,
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        },
+        {
+          "case": "legacy-memory-as-trusted",
+          "outcome": "rejected",
+          "errorType": "ValidationError",
+          "baselinePreserved": true,
+          "trustedMemoryWrites": 0,
+          "correctionApplications": 0
+        }
+      ],
+      "passed": true,
+      "claimBoundary": "Finite offline fault fixtures only."
+    },
+    {
+      "experimentId": "EXP-036",
+      "evidenceClass": "proposal",
+      "status": "Offline design",
+      "targets": {
+        "unifiedP95RatioMaximum": 1.15,
+        "unifiedPeakMemoryRatioMaximum": 1.5,
+        "parityP95RatioMaximum": 2.25
+      },
+      "result": null,
+      "claimBoundary": "Machine-specific timing remains local and unaccepted; no operational or accuracy result is published."
+    }
+  ],
+  "sources": {
+    "scripts/run_bigui_architecture_experiments.py": "4f3266a2448a0e99392a8889362707941359bc5e9095d827e22eac5731820682",
+    "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+    "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
+    "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
+    "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
+  },
+  "claimBoundary": "Clone-safe mechanism, structural, and fault-fixture evidence only. No accuracy, generalization, effort, topology-approval, or production-readiness claim.",
+  "normalizedSha256": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790"
+}

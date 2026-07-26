@@ -1,0 +1,2920 @@
+{
+  "schemaVersion": "ExperimentCatalogSnapshot-v1",
+  "generatedAt": "2026-07-26T00:30:26+00:00",
+  "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+  "publicationTier": "tracked_sanitized",
+  "programState": {
+    "latestAcceptedIteration": 15,
+    "iterationVerdict": "NEUTRAL",
+    "candidateLabels": 24,
+    "safeLabels": 0,
+    "accuracyStatus": "NOT YET COMPUTABLE",
+    "comparisonRows": 27,
+    "classificationChanges": 0,
+    "baselineFrozen": true,
+    "decisionState": {
+      "M-02": "Deferred",
+      "M-03": "Deferred",
+      "M-04": "Deferred",
+      "M-05": "Deferred"
+    }
+  },
+  "architectureVariants": [
+    {
+      "schemaVersion": "ArchitectureVariant-v1",
+      "contractVersion": "1.0",
+      "humanAuthorityPreserved": true,
+      "baselineMutationAllowed": false,
+      "id": "legacy",
+      "kind": "runtime_mode",
+      "title": "Legacy M1–M4B-1",
+      "status": "Implemented",
+      "implemented": true,
+      "approved": true,
+      "default": true,
+      "failureBehavior": "Preserve the existing artifact behavior.",
+      "evidenceClass": "mechanism",
+      "claimBoundary": "Publication reference; not an accuracy result."
+    },
+    {
+      "schemaVersion": "ArchitectureVariant-v1",
+      "contractVersion": "1.0",
+      "humanAuthorityPreserved": true,
+      "baselineMutationAllowed": false,
+      "id": "unified",
+      "kind": "runtime_mode",
+      "title": "Unified contract runtime",
+      "status": "Implemented",
+      "implemented": true,
+      "approved": false,
+      "default": false,
+      "failureBehavior": "Reject semantic drift and preserve the baseline.",
+      "evidenceClass": "mechanism",
+      "claimBoundary": "Explicit opt-in mechanism path; legacy remains default."
+    },
+    {
+      "schemaVersion": "ArchitectureVariant-v1",
+      "contractVersion": "1.0",
+      "humanAuthorityPreserved": true,
+      "baselineMutationAllowed": false,
+      "id": "parity",
+      "kind": "runtime_mode",
+      "title": "Fail-closed parity",
+      "status": "Implemented",
+      "implemented": true,
+      "approved": false,
+      "default": false,
+      "failureBehavior": "Publish only legacy output on any mismatch.",
+      "evidenceClass": "mechanism",
+      "claimBoundary": "Compatibility control only; no empirical performance claim."
+    },
+    {
+      "schemaVersion": "ArchitectureVariant-v1",
+      "contractVersion": "1.0",
+      "humanAuthorityPreserved": true,
+      "baselineMutationAllowed": false,
+      "id": "topology-a",
+      "kind": "h_layer_topology",
+      "title": "Topology A · H1, H2, H3",
+      "status": "Offline design",
+      "implemented": false,
+      "approved": false,
+      "default": false,
+      "failureBehavior": "Park unresolved cross-agent state and preserve baseline.",
+      "evidenceClass": "proposal",
+      "claimBoundary": "Offline comparison candidate while M-02 is deferred."
+    },
+    {
+      "schemaVersion": "ArchitectureVariant-v1",
+      "contractVersion": "1.0",
+      "humanAuthorityPreserved": true,
+      "baselineMutationAllowed": false,
+      "id": "topology-b",
+      "kind": "h_layer_topology",
+      "title": "Topology B · Observer + Integrator",
+      "status": "Proposal — not approved",
+      "implemented": false,
+      "approved": false,
+      "default": false,
+      "failureBehavior": "Park unresolved integrator state and preserve baseline.",
+      "evidenceClass": "proposal",
+      "claimBoundary": "Provisional recommendation only while M-02 is deferred."
+    },
+    {
+      "schemaVersion": "ArchitectureVariant-v1",
+      "contractVersion": "1.0",
+      "humanAuthorityPreserved": true,
+      "baselineMutationAllowed": false,
+      "id": "topology-c",
+      "kind": "h_layer_topology",
+      "title": "Topology C · one modular agent",
+      "status": "Offline design",
+      "implemented": false,
+      "approved": false,
+      "default": false,
+      "failureBehavior": "Park unresolved skill state and preserve baseline.",
+      "evidenceClass": "proposal",
+      "claimBoundary": "Offline comparison candidate while M-02 is deferred."
+    }
+  ],
+  "experiments": [
+    {
+      "id": "EXP-000",
+      "title": "Existing packaged results audit",
+      "researchSpace": "MSc",
+      "researchTrack": "Baseline integrity",
+      "researchQuestion": "RQ1-RQ4",
+      "status": "Documented — parked",
+      "evidenceClass": "historical",
+      "architectureTargets": [
+        "B0"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Official baseline tag",
+      "comparator": "Current locked baseline",
+      "metricDefinitions": [
+        "BASELINE_HASH_PRESERVATION"
+      ],
+      "claimBoundary": "Historical or parked record only; it is not current empirical evidence.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Map existing paper results to reproducible records without copying controlled artifacts into Git.",
+      "artifactLinks": [
+        "experiments/EXP-000-existing-packaged-results-audit/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-001",
+      "title": "M4B-1 memory-informed parallel comparison experiment",
+      "researchSpace": "MSc",
+      "researchTrack": "Mechanism readiness",
+      "researchQuestion": "RQ4",
+      "status": "Implemented",
+      "evidenceClass": "mechanism",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Original Agent 4",
+      "comparator": "M4B-1 parallel comparison",
+      "metricDefinitions": [
+        "MECH_COMPARISON_ROWS",
+        "SAFETY_CLASSIFICATION_CHANGES"
+      ],
+      "claimBoundary": "Mechanism readiness and baseline protection only; no accuracy or generalization claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Initial run: 27 comparisons, 3 same-pattern expert labels, 0 generalization-safe expert labels, 0 memory-informed classification changes, 2 human-review-after-memory flags. No accuracy-improvement claim allowed yet.",
+      "artifactLinks": [
+        "experiments/EXP-001-memory-assisted-agent4-controlled-experiment/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Initial run: 27 comparisons, 3 same-pattern expert labels, 0 generalization-safe expert labels, 0 memory-informed classification changes, 2 human-review-after-memory flags. No accuracy-improvement claim allowed yet.",
+        "metricObservationIds": [
+          "MECH_COMPARISON_ROWS",
+          "SAFETY_CLASSIFICATION_CHANGES"
+        ]
+      }
+    },
+    {
+      "id": "EXP-002",
+      "title": "Expert label expansion and holdout evaluation",
+      "researchSpace": "MSc",
+      "researchTrack": "Evaluation infrastructure",
+      "researchQuestion": "RQ4",
+      "status": "Evaluation-ready",
+      "evidenceClass": "evaluation_ready",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "Protocol and tooling readiness only until independent evidence is supplied.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Prepares independent expert labels for generalization-safe M4B-1 evaluation. No M4B-2, Agent 4, LLM/API, or baseline-output changes.",
+      "artifactLinks": [
+        "experiments/EXP-002-expert-label-expansion-holdout-evaluation/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Prepares independent expert labels for generalization-safe M4B-1 evaluation. No M4B-2, Agent 4, LLM/API, or baseline-output changes.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-003",
+      "title": "Accuracy improvement evaluation",
+      "researchSpace": "MSc",
+      "researchTrack": "Evaluation infrastructure",
+      "researchQuestion": "RQ4",
+      "status": "Pending expert input",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-005"
+      ],
+      "approvalGates": [],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "The required human, evidence, or approval gate is closed.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Human reviewers",
+      "nextAction": "Evaluation-first path for accuracy improvement. Stops accuracy claims when there are fewer than 20 generalization-safe expert labels; no Agent 4, M4B-2, LLM/API, embedding, or baseline-output changes.",
+      "artifactLinks": [
+        "experiments/EXP-003-accuracy-improvement-evaluation/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Evaluation-first path for accuracy improvement. Stops accuracy claims when there are fewer than 20 generalization-safe expert labels; no Agent 4, M4B-2, LLM/API, embedding, or baseline-output changes.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-004",
+      "title": "Policy sensitivity simulation",
+      "researchSpace": "MSc",
+      "researchTrack": "Evaluation infrastructure",
+      "researchQuestion": "RQ4",
+      "status": "Synthetic fixture",
+      "evidenceClass": "synthetic",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [],
+      "claimBoundary": "Synthetic fixture behavior only; never human or empirical validation.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Tests candidate M4B-1.1-style policy variants under synthetic labels only. Not expert evidence; no Agent 4, M4B-2, LLM/API, embedding, eval_output, or baseline-output changes.",
+      "artifactLinks": [
+        "experiments/EXP-004-policy-sensitivity-simulation/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-005",
+      "title": "Real-label accuracy evaluation and policy gate",
+      "researchSpace": "MSc",
+      "researchTrack": "Evaluation infrastructure",
+      "researchQuestion": "RQ4",
+      "status": "Pending expert input",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-002"
+      ],
+      "approvalGates": [
+        "Supervisor-approved protocol",
+        "Two independent reviewers"
+      ],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "Zero safe labels means accuracy and macro-F1 remain not computable; labels are never inferred or prefilled.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Human reviewers",
+      "nextAction": "Prepares supervisor/expert labeling materials, validates filled labels, tracks reviewer/adjudication reliability, and blocks M4B-1.1/M4B-2 until at least 20 generalization-safe labels justify a deterministic policy change.",
+      "artifactLinks": [
+        "experiments/EXP-005-real-label-accuracy-gate/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Prepares supervisor/expert labeling materials, validates filled labels, tracks reviewer/adjudication reliability, and blocks M4B-1.1/M4B-2 until at least 20 generalization-safe labels justify a deterministic policy change.",
+        "metricObservationIds": [
+          "LABEL_CANDIDATES",
+          "LABEL_GENERALIZATION_SAFE"
+        ]
+      }
+    },
+    {
+      "id": "EXP-006",
+      "title": "H-Listen event replay",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Observation, dosage, and verification",
+      "researchQuestion": "RQ1/RQ2 (H-layer observability)",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "topology-a",
+        "topology-b",
+        "topology-c"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "ROUTING_WORKLOAD_RATE",
+        "ROUTING_WEIGHTED_COVERAGE"
+      ],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "481 captured records plus 20 explicit gap records = 501 contract records. `11 queue items / 481 heterogeneous reconstructed lifecycle events` remains a count ratio only; no event-level visibility inference or linkage exists. Mechanism evidence only.",
+      "artifactLinks": [
+        "experiments/EXP-006-hlayer-event-replay/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "hlayer-20260720T173308Z-d79047f5e2"
+      ],
+      "latestResult": {
+        "summary": "481 captured records plus 20 explicit gap records = 501 contract records. `11 queue items / 481 heterogeneous reconstructed lifecycle events` remains a count ratio only; no event-level visibility inference or linkage exists. Mechanism evidence only.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-007",
+      "title": "S2 dosage-mode replay",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Observation, dosage, and verification",
+      "researchQuestion": "RQ2 (dosage calibration)",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "topology-a",
+        "topology-b",
+        "topology-c"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "ROUTING_WORKLOAD_RATE",
+        "ROUTING_WEIGHTED_COVERAGE"
+      ],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "`threshold_sev2`: event load 0.799, transaction load 0.796, weighted coverage 0.981, high-severity coverage 1.0. Aggregate coverage >=0.8 at load <=0.5 remains unmet. Pareto evidence only; no default.",
+      "artifactLinks": [
+        "experiments/EXP-007-dosage-mode-replay/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "hlayer-20260720T173308Z-d79047f5e2"
+      ],
+      "latestResult": {
+        "summary": "`threshold_sev2`: event load 0.799, transaction load 0.796, weighted coverage 0.981, high-severity coverage 1.0. Aggregate coverage >=0.8 at load <=0.5 remains unmet. Pareto evidence only; no default.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-008",
+      "title": "Early-trigger mining",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Observation, dosage, and verification",
+      "researchQuestion": "RQ2 (early triggers)",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "topology-a",
+        "topology-b",
+        "topology-c"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "ROUTING_WORKLOAD_RATE",
+        "ROUTING_WEIGHTED_COVERAGE"
+      ],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Uniform K30 capture 0.75; K35 capture 0.85. Report the cap/capture trade-off only; no uniform or adaptive cap is approved.",
+      "artifactLinks": [
+        "experiments/EXP-008-early-trigger-mining/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "hlayer-20260720T173308Z-d79047f5e2"
+      ],
+      "latestResult": {
+        "summary": "Uniform K30 capture 0.75; K35 capture 0.85. Report the cap/capture trade-off only; no uniform or adaptive cap is approved.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-009",
+      "title": "H-Verify seeded-conflict dry run",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Observation, dosage, and verification",
+      "researchQuestion": "RQ3/RQ4 (anti-sycophancy design)",
+      "status": "Synthetic fixture",
+      "evidenceClass": "synthetic",
+      "architectureTargets": [
+        "B1",
+        "topology-a",
+        "topology-b",
+        "topology-c"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "SAFETY_BASELINE_PRESERVATION"
+      ],
+      "claimBoundary": "Synthetic fixture behavior only; never human or empirical validation.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Assumption-driven `SYNTHETIC_NOT_HUMAN` rule test, isolated from real stores. It does not validate behavior on real expert mistakes; M-04 remains unrecorded.",
+      "artifactLinks": [
+        "experiments/EXP-009-hverify-seeded-conflict-dry-run/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "hlayer-20260720T173308Z-d79047f5e2"
+      ],
+      "latestResult": {
+        "summary": "Assumption-driven `SYNTHETIC_NOT_HUMAN` rule test, isolated from real stores. It does not validate behavior on real expert mistakes; M-04 remains unrecorded.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-010",
+      "title": "Convergence-bound sweep",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Observation, dosage, and verification",
+      "researchQuestion": "RQ4 (convergence policy)",
+      "status": "Synthetic fixture",
+      "evidenceClass": "synthetic",
+      "architectureTargets": [
+        "B1",
+        "topology-a",
+        "topology-b",
+        "topology-c"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "SAFETY_BASELINE_PRESERVATION"
+      ],
+      "claimBoundary": "Synthetic fixture behavior only; never human or empirical validation.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Assumption-driven synthetic rule sweep. Resolution and escalation are separate outcomes; the run cannot approve a two-round bound.",
+      "artifactLinks": [
+        "experiments/EXP-010-convergence-bound-sweep/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "hlayer-20260720T173308Z-d79047f5e2"
+      ],
+      "latestResult": {
+        "summary": "Assumption-driven synthetic rule sweep. Resolution and escalation are separate outcomes; the run cannot approve a two-round bound.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-011",
+      "title": "Version 0 vs Version 1 comparison",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Evaluation infrastructure",
+      "researchQuestion": "RQ4 (accuracy - blocked)",
+      "status": "Documented — parked",
+      "evidenceClass": "historical",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-005",
+        "M-02",
+        "M-05"
+      ],
+      "approvalGates": [
+        "M-02 and M-05 accepted",
+        "At least 20 safe labels"
+      ],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "Historical or parked record only; it is not current empirical evidence.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Iris's V0/V1 + usability design; requires >=20 generalization-safe real labels via EXP-005 and supervisor go-ahead.",
+      "artifactLinks": [
+        "experiments/EXP-011-v0-v1-comparison/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Iris's V0/V1 + usability design; requires >=20 generalization-safe real labels via EXP-005 and supervisor go-ahead.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-012",
+      "title": "Validated EXP-005 baseline interface (M-D)",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Evaluation infrastructure",
+      "researchQuestion": "RQ4 (measurement infrastructure)",
+      "status": "Blocked",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-005"
+      ],
+      "approvalGates": [],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "The validated interface remains NOT YET COMPUTABLE at safe N=0.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Reads the validated EXP-005 full export + validation summary, requires explicit safe/leakage/provenance fields, and matches the canonical EXP-003 evaluator at N=0. Generalization-safe M-D remains `NOT YET COMPUTABLE`; historical same-pattern pilot is excluded.",
+      "artifactLinks": [
+        "experiments/EXP-012-accuracy-baseline-scaffold/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "hlayer-20260720T173308Z-d79047f5e2"
+      ],
+      "latestResult": {
+        "summary": "Reads the validated EXP-005 full export + validation summary, requires explicit safe/leakage/provenance fields, and matches the canonical EXP-003 evaluator at N=0. Generalization-safe M-D remains `NOT YET COMPUTABLE`; historical same-pattern pilot is excluded.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0"
+        ]
+      }
+    },
+    {
+      "id": "EXP-013",
+      "title": "Event-contract fidelity",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture conformance",
+      "researchQuestion": "H-layer contract conformance",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Five fixture records schema-valid; captured/reconstructed lineage complete; E3/E9 gaps explicit; E15 parked. Fixture mechanism evidence only; no live-hook authorization.",
+      "artifactLinks": [
+        "experiments/EXP-013-event-contract-fidelity/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "HLAYER-CONFORMANCE-8c458da3755870930900"
+      ],
+      "latestResult": {
+        "summary": "Five fixture records schema-valid; captured/reconstructed lineage complete; E3/E9 gaps explicit; E15 parked. Fixture mechanism evidence only; no live-hook authorization.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-014",
+      "title": "Replay determinism",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture conformance",
+      "researchQuestion": "H-layer replay reliability",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Three normalized fixture replays produced identical hashes and no duplicate review-item IDs.",
+      "artifactLinks": [
+        "experiments/EXP-014-replay-determinism/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "HLAYER-CONFORMANCE-8c458da3755870930900"
+      ],
+      "latestResult": {
+        "summary": "Three normalized fixture replays produced identical hashes and no duplicate review-item IDs.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-015",
+      "title": "Workload, bundling, and fairness",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture conformance",
+      "researchQuestion": "H-layer workload design",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "ROUTING_WORKLOAD_RATE",
+        "ROUTING_WEIGHTED_COVERAGE"
+      ],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Fixed-denominator fixture comparison only; high-severity preservation, collision checks, aging, and deferred recovery reported. No approved cap or workload forecast.",
+      "artifactLinks": [
+        "experiments/EXP-015-workload-bundling-fairness/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "HLAYER-CONFORMANCE-8c458da3755870930900"
+      ],
+      "latestResult": {
+        "summary": "Fixed-denominator fixture comparison only; high-severity preservation, collision checks, aging, and deferred recovery reported. No approved cap or workload forecast.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-016",
+      "title": "Authority and timeout safety",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture conformance",
+      "researchQuestion": "H-layer safety",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "SAFETY_BASELINE_PRESERVATION"
+      ],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "`SYNTHETIC_NOT_HUMAN` cases preserved baseline hashes, parked timeout/denial paths, and produced zero trusted-memory writes/correction applications. No implementation authority.",
+      "artifactLinks": [
+        "experiments/EXP-016-authority-timeout-safety/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "HLAYER-CONFORMANCE-8c458da3755870930900"
+      ],
+      "latestResult": {
+        "summary": "`SYNTHETIC_NOT_HUMAN` cases preserved baseline hashes, parked timeout/denial paths, and produced zero trusted-memory writes/correction applications. No implementation authority.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-017",
+      "title": "Verification provenance",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture conformance",
+      "researchQuestion": "H-Verify provenance",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "SAFETY_BASELINE_PRESERVATION"
+      ],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Deterministic-first four-family fixture trace passed; semantic checks absent; missing/conflicting cases require adjudication. M-04 remains unrecorded.",
+      "artifactLinks": [
+        "experiments/EXP-017-verification-provenance/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "HLAYER-CONFORMANCE-8c458da3755870930900"
+      ],
+      "latestResult": {
+        "summary": "Deterministic-first four-family fixture trace passed; semantic checks absent; missing/conflicting cases require adjudication. M-04 remains unrecorded.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-018",
+      "title": "Correction-proposal dry run",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture conformance",
+      "researchQuestion": "S6 proposal safety",
+      "status": "Offline evidence",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "B1",
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [],
+      "approvalGates": [],
+      "baseline": "Current offline contract behavior",
+      "comparator": "Candidate architecture configuration",
+      "metricDefinitions": [
+        "SAFETY_BASELINE_PRESERVATION"
+      ],
+      "claimBoundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Reproducible diff over a disposable copy with target hash/rollback; `applied=false`; repository fixture unchanged. No correction authorization.",
+      "artifactLinks": [
+        "experiments/EXP-018-correction-proposal-dry-run/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "HLAYER-CONFORMANCE-8c458da3755870930900"
+      ],
+      "latestResult": {
+        "summary": "Reproducible diff over a disposable copy with target hash/rollback; `applied=false`; repository fixture unchanged. No correction authorization.",
+        "metricObservationIds": []
+      }
+    },
+    {
+      "id": "EXP-019",
+      "title": "Reviewer calibration without evaluation leakage",
+      "researchSpace": "MSc",
+      "researchTrack": "MSc empirical evaluation",
+      "researchQuestion": "E-RQ1 / label reliability",
+      "status": "Evaluation-ready",
+      "evidenceClass": "evaluation_ready",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "M-05"
+      ],
+      "approvalGates": [
+        "Consent and calibration protocol approved"
+      ],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "Protocol and tooling readiness only until independent evidence is supplied.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Uses the three excluded same-pattern rows to clarify the protocol. It supplies no performance or generalization evidence.",
+      "artifactLinks": [
+        "experiments/EXP-019-reviewer-calibration/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Uses the three excluded same-pattern rows to clarify the protocol. It supplies no performance or generalization evidence.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-020",
+      "title": "Independent expert labeling of 24 safe candidates",
+      "researchSpace": "MSc",
+      "researchTrack": "MSc empirical evaluation",
+      "researchQuestion": "E-RQ1 / H1-H3 evidence gate",
+      "status": "Pending expert input",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-019",
+        "M-05"
+      ],
+      "approvalGates": [
+        "Reviewer panel and adjudicator approved"
+      ],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "The required human, evidence, or approval gate is closed.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Human reviewers",
+      "nextAction": "Two blind reviewers plus adjudication. At 1-19 safe labels reporting is pilot-only; at 20-24 it is a small-sample MSc quantitative evaluation.",
+      "artifactLinks": [
+        "experiments/EXP-020-independent-expert-labeling/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Two blind reviewers plus adjudication. At 1-19 safe labels reporting is pilot-only; at 20-24 it is a small-sample MSc quantitative evaluation.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-021",
+      "title": "Development-only baseline error characterization",
+      "researchSpace": "MSc",
+      "researchTrack": "MSc empirical evaluation",
+      "researchQuestion": "E-RQ1 / H1",
+      "status": "Blocked",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-020"
+      ],
+      "approvalGates": [],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "The required human, evidence, or approval gate is closed.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "The eight-row holdout remains sealed. No policy is selected in this experiment.",
+      "artifactLinks": [
+        "experiments/EXP-021-development-baseline-error-analysis/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "The eight-row holdout remains sealed. No policy is selected in this experiment.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-022",
+      "title": "Routing and retrieval validity audit",
+      "researchSpace": "MSc",
+      "researchTrack": "MSc empirical evaluation",
+      "researchQuestion": "E-RQ2 / H1-H2",
+      "status": "Blocked",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-021"
+      ],
+      "approvalGates": [],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "ROUTING_PRECISION",
+        "ROUTING_RECALL",
+        "RETRIEVAL_TOP1_RELEVANCE"
+      ],
+      "claimBoundary": "The required human, evidence, or approval gate is closed.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Tests targeting and relevance only; it cannot independently prove accuracy improvement or reduced effort.",
+      "artifactLinks": [
+        "experiments/EXP-022-routing-retrieval-validity/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-023",
+      "title": "Deterministic policy development",
+      "researchSpace": "MSc",
+      "researchTrack": "MSc empirical evaluation",
+      "researchQuestion": "E-RQ3 / H3",
+      "status": "Proposal — not approved",
+      "evidenceClass": "proposal",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-021",
+        "EXP-022",
+        "M-02",
+        "M-04",
+        "M-05"
+      ],
+      "approvalGates": [
+        "M-02, M-04, and M-05 accepted"
+      ],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "Proposal only; not approved, implemented, or empirically validated.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Entry requires at least three correctable development errors across at least two settings plus explicit supervisor approval. Output remains parallel and non-destructive.",
+      "artifactLinks": [
+        "experiments/EXP-023-deterministic-policy-development/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Entry requires at least three correctable development errors across at least two settings plus explicit supervisor approval. Output remains parallel and non-destructive.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-024",
+      "title": "One-time sealed eight-row holdout pilot",
+      "researchSpace": "MSc",
+      "researchTrack": "MSc empirical evaluation",
+      "researchQuestion": "E-RQ3 / H3",
+      "status": "Blocked",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-023"
+      ],
+      "approvalGates": [
+        "Frozen policy and sealed partition"
+      ],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "The required human, evidence, or approval gate is closed.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "N=8 is pilot-only. Policy cannot change after holdout inspection.",
+      "artifactLinks": [
+        "experiments/EXP-024-sealed-holdout-pilot/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "N=8 is pilot-only. Policy cannot change after holdout inspection.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-025",
+      "title": "External education-domain replication",
+      "researchSpace": "PhD",
+      "researchTrack": "PhD extension",
+      "researchQuestion": "E-RQ3 / H3",
+      "status": "Proposal — not approved",
+      "evidenceClass": "proposal",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-024",
+        "M-06"
+      ],
+      "approvalGates": [
+        "M-06 accepted",
+        "External education batch approved"
+      ],
+      "baseline": "B0 frozen Agent 4",
+      "comparator": "Independent expert or frozen candidate",
+      "metricDefinitions": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "claimBoundary": "Proposal only; not approved, implemented, or empirically validated.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Minimum N=30, target N=48. This is the only planned formal-improvement gate; every preregistered criterion must pass.",
+      "artifactLinks": [
+        "experiments/EXP-025-external-education-replication/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Minimum N=30, target N=48. This is the only planned formal-improvement gate; every preregistered criterion must pass.",
+        "metricObservationIds": [
+          "CLASSIFICATION_ACCURACY_B0",
+          "CLASSIFICATION_MACRO_F1_B0",
+          "PAIRED_NET_CORRECTION"
+        ]
+      }
+    },
+    {
+      "id": "EXP-026",
+      "title": "Human-effort study",
+      "researchSpace": "PhD",
+      "researchTrack": "PhD extension",
+      "researchQuestion": "H4",
+      "status": "Proposal — not approved",
+      "evidenceClass": "proposal",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-025",
+        "M-05"
+      ],
+      "approvalGates": [
+        "Human-study consent protocol approved"
+      ],
+      "baseline": "Review without reusable memory",
+      "comparator": "Review with advisory memory",
+      "metricDefinitions": [
+        "HUMAN_REVIEW_TIME",
+        "HUMAN_ESCALATION_QUALITY"
+      ],
+      "claimBoundary": "Proposal only; not approved, implemented, or empirically validated.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Queue counts are not effort evidence. No reduced-effort claim is allowed before this controlled study.",
+      "artifactLinks": [
+        "experiments/EXP-026-human-effort-study/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-027",
+      "title": "Ablation and robustness",
+      "researchSpace": "PhD",
+      "researchTrack": "PhD extension",
+      "researchQuestion": "E-RQ2/E-RQ3",
+      "status": "Proposal — not approved",
+      "evidenceClass": "proposal",
+      "architectureTargets": [
+        "B0",
+        "B1",
+        "evaluation"
+      ],
+      "prerequisites": [
+        "EXP-025"
+      ],
+      "approvalGates": [],
+      "baseline": "Frozen full configuration",
+      "comparator": "Predeclared ablations",
+      "metricDefinitions": [
+        "ROBUSTNESS_ABLATION_DELTA"
+      ],
+      "claimBoundary": "Proposal only; not approved, implemented, or empirically validated.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Runs only after the primary external analysis and cannot tune or rescue it.",
+      "artifactLinks": [
+        "experiments/EXP-027-ablation-robustness/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-028",
+      "title": "Model execution reproducibility and drift",
+      "researchSpace": "PhD",
+      "researchTrack": "Model evaluation",
+      "researchQuestion": "Model provenance / reliability",
+      "status": "Proposal — not approved",
+      "evidenceClass": "proposal",
+      "architectureTargets": [
+        "B0",
+        "model"
+      ],
+      "prerequisites": [
+        "M-05",
+        "M-06"
+      ],
+      "approvalGates": [
+        "Model provenance protocol approved"
+      ],
+      "baseline": "Frozen GPT-4o request",
+      "comparator": "Frozen candidate snapshot",
+      "metricDefinitions": [
+        "MODEL_REPLAY_STABILITY"
+      ],
+      "claimBoundary": "Proposal only; not approved, implemented, or empirically validated.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Descriptive protocol only. It does not select a model or establish accuracy. Historical GPT-4o alias snapshot remains unknown.",
+      "artifactLinks": [
+        "experiments/EXP-028-model-execution-reproducibility/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-029",
+      "title": "Frozen candidate-model comparison",
+      "researchSpace": "PhD",
+      "researchTrack": "Model evaluation",
+      "researchQuestion": "Model comparison / E-RQ3",
+      "status": "Blocked",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "B0",
+        "model"
+      ],
+      "prerequisites": [
+        "EXP-020",
+        "EXP-023",
+        "M-05",
+        "M-06"
+      ],
+      "approvalGates": [
+        "At least 20 safe labels",
+        "Frozen prompt, policy, partition, and cost limit",
+        "Supervisor approval"
+      ],
+      "baseline": "Frozen GPT-4o request",
+      "comparator": "Frozen candidate snapshot",
+      "metricDefinitions": [
+        "MODEL_REPLAY_STABILITY"
+      ],
+      "claimBoundary": "The required human, evidence, or approval gate is closed.",
+      "validityThreats": [
+        "Evidence class and cohort limits must remain visible."
+      ],
+      "owner": "Research program",
+      "nextAction": "Requires >=20 safe labels, reviewer agreement/adjudication, frozen prompt/policy/partition, supervisor approval, and a cost ceiling. GPT-4o remains default.",
+      "artifactLinks": [
+        "experiments/EXP-029-frozen-candidate-model-comparison/README.md"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-030",
+      "title": "BigUI source fidelity and provenance",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Observatory integrity",
+      "researchQuestion": "Does every rendered BigUI fact resolve to an accepted, hash-bound canonical source?",
+      "status": "Evaluation-ready",
+      "evidenceClass": "evaluation_ready",
+      "architectureTargets": [
+        "BigUI"
+      ],
+      "prerequisites": [
+        "Program and thesis snapshots are schema-valid"
+      ],
+      "approvalGates": [],
+      "baseline": "Current fragmented research interfaces",
+      "comparator": "Catalog-driven BigUI",
+      "metricDefinitions": [
+        "CATALOG_REFERENCE_RESOLUTION",
+        "CATALOG_SOURCE_HASH_AGREEMENT",
+        "CATALOG_METRIC_REDERIVATION"
+      ],
+      "claimBoundary": "Source-fidelity evidence only; it does not establish classification validity or human decision value.",
+      "validityThreats": [
+        "A passing tracked-tier audit cannot inspect private raw records."
+      ],
+      "owner": "Research infrastructure",
+      "nextAction": "Run the deterministic catalog fidelity gate on every refresh.",
+      "artifactLinks": [
+        "experiments/EXP-030-bigui-source-fidelity/README.md",
+        "scripts/build_bigui_catalog.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-031",
+      "title": "BigUI formative usability",
+      "researchSpace": "MSc",
+      "researchTrack": "Human-facing usability",
+      "researchQuestion": "Can supervisors and domain reviewers complete the core research-interpretation tasks with BigUI?",
+      "status": "Proposal — not approved",
+      "evidenceClass": "proposal",
+      "architectureTargets": [
+        "BigUI"
+      ],
+      "prerequisites": [
+        "EXP-030 passes",
+        "BigUI interface is frozen for the pilot"
+      ],
+      "approvalGates": [
+        "Consent and participant protocol approved"
+      ],
+      "baseline": "No population-level usability claim",
+      "comparator": "Prespecified task completion targets",
+      "metricDefinitions": [
+        "BIGUI_TASK_SUCCESS",
+        "BIGUI_COMPLETION_TIME",
+        "BIGUI_SEQ",
+        "BIGUI_SUS",
+        "BIGUI_NAVIGATION_ERRORS"
+      ],
+      "claimBoundary": "A 5–8 participant formative study supports interface refinement only.",
+      "validityThreats": [
+        "Small convenience sample",
+        "Facilitator influence",
+        "Learning effects"
+      ],
+      "owner": "Human-study lead",
+      "nextAction": "Approve consent, tasks, and anonymized local record handling.",
+      "artifactLinks": [
+        "experiments/EXP-031-bigui-formative-usability/README.md",
+        "schemas/bigui-study-record-v1.schema.json"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-032",
+      "title": "BigUI decision-support comparison",
+      "researchSpace": "MSc",
+      "researchTrack": "Decision-support value",
+      "researchQuestion": "Does BigUI improve correct evidence-state interpretation relative to the fragmented existing interfaces?",
+      "status": "Blocked",
+      "evidenceClass": "blocked",
+      "architectureTargets": [
+        "BigUI"
+      ],
+      "prerequisites": [
+        "EXP-031 complete",
+        "Confirmatory BigUI and task protocol frozen"
+      ],
+      "approvalGates": [
+        "At least 20 consented participants",
+        "Counterbalanced protocol approved"
+      ],
+      "baseline": "Fragmented existing interfaces",
+      "comparator": "Frozen BigUI",
+      "metricDefinitions": [
+        "BIGUI_DECISION_CORRECTNESS",
+        "BIGUI_OVERCLAIM_RATE",
+        "BIGUI_COMPLETION_TIME",
+        "BIGUI_CONFIDENCE_CALIBRATION"
+      ],
+      "claimBoundary": "A value claim is permitted only for measured tasks and only if correctness improves without increasing overclaim errors.",
+      "validityThreats": [
+        "Interface-order effects",
+        "Participant expertise imbalance",
+        "Task artificiality"
+      ],
+      "owner": "Human-study lead",
+      "nextAction": "Complete EXP-031 and preregister the counterbalanced study.",
+      "artifactLinks": [
+        "experiments/EXP-032-bigui-decision-support/README.md",
+        "schemas/bigui-study-record-v1.schema.json"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": null
+    },
+    {
+      "id": "EXP-033",
+      "title": "Full-corpus runtime parity",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture validation",
+      "researchQuestion": "Are legacy, unified, and parity modes semantically equivalent over the current controlled H-layer artifacts?",
+      "status": "Offline design",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [
+        "Unified runtime contracts available",
+        "Controlled artifacts present locally"
+      ],
+      "approvalGates": [],
+      "baseline": "Legacy M1–M4B-1 output",
+      "comparator": "Unified and fail-closed parity output",
+      "metricDefinitions": [
+        "ARCH_OUTPUT_PARITY",
+        "ARCH_REPLAY_DETERMINISM",
+        "ARCH_BASELINE_PRESERVATION",
+        "ARCH_MISMATCH_PUBLICATION"
+      ],
+      "claimBoundary": "Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy.",
+      "validityThreats": [
+        "Current corpus may not cover all future malformed or rare records."
+      ],
+      "owner": "Architecture validation",
+      "nextAction": "Run three repetitions over available controlled M1–M4B-1 artifacts.",
+      "artifactLinks": [
+        "experiments/EXP-033-full-corpus-runtime-parity/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "BIGUI-EXP-033-adf58941d035"
+      ],
+      "latestResult": {
+        "summary": "Three deterministic repetitions over equivalent immutable inputs; mismatch fails closed to legacy. Mechanism evidence only.",
+        "metricObservationIds": [
+          "ARCH_FIXTURE_SEMANTIC_DIFFERENCES",
+          "ARCH_FIXTURE_REPLAY_DETERMINISM"
+        ]
+      }
+    },
+    {
+      "id": "EXP-034",
+      "title": "H-layer topology trade-off",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Architecture validation",
+      "researchQuestion": "What operational trade-offs appear among topology A, B, and C under contract-equivalent work?",
+      "status": "Offline design",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "topology-a",
+        "topology-b",
+        "topology-c"
+      ],
+      "prerequisites": [
+        "Canonical H-layer contracts available"
+      ],
+      "approvalGates": [
+        "M-02 remains deferred; no production selection is allowed"
+      ],
+      "baseline": "Topology A: H1, H2, and H3 as three agents",
+      "comparator": "Topology B and topology C offline simulations",
+      "metricDefinitions": [
+        "TOPOLOGY_HANDOFF_COUNT",
+        "TOPOLOGY_CONTEXT_DUPLICATION",
+        "TOPOLOGY_STATE_BOUNDARIES",
+        "TOPOLOGY_FAILURE_BREADTH",
+        "TOPOLOGY_TRACE_COMPLETENESS"
+      ],
+      "claimBoundary": "The result is a Pareto comparison and cannot approve a production topology.",
+      "validityThreats": [
+        "Offline structural simulation does not measure live LLM coordination."
+      ],
+      "owner": "Architecture validation",
+      "nextAction": "Run the deterministic topology simulator and report trade-offs without ranking a winner.",
+      "artifactLinks": [
+        "experiments/EXP-034-hlayer-topology-tradeoff/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "BIGUI-EXP-034-d61c55f8510f"
+      ],
+      "latestResult": {
+        "summary": "A/B/C use contract-equivalent work. M-02 remains deferred, so the experiment cannot select a production topology.",
+        "metricObservationIds": [
+          "TOPOLOGY_A_CONTEXT_DUPLICATION",
+          "TOPOLOGY_A_FAILURE_BREADTH",
+          "TOPOLOGY_A_HANDOFFS",
+          "TOPOLOGY_A_STATE_BOUNDARIES",
+          "TOPOLOGY_A_TRACE_COMPLETENESS",
+          "TOPOLOGY_B_CONTEXT_DUPLICATION",
+          "TOPOLOGY_B_FAILURE_BREADTH",
+          "TOPOLOGY_B_HANDOFFS",
+          "TOPOLOGY_B_STATE_BOUNDARIES",
+          "TOPOLOGY_B_TRACE_COMPLETENESS",
+          "TOPOLOGY_CONTRACT_EQUIVALENCE",
+          "TOPOLOGY_C_CONTEXT_DUPLICATION",
+          "TOPOLOGY_C_FAILURE_BREADTH",
+          "TOPOLOGY_C_HANDOFFS",
+          "TOPOLOGY_C_STATE_BOUNDARIES",
+          "TOPOLOGY_C_TRACE_COMPLETENESS"
+        ]
+      }
+    },
+    {
+      "id": "EXP-035",
+      "title": "Fault injection and authority safety",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Safety validation",
+      "researchQuestion": "Do malformed, duplicate, missing, late, conflicting, and timed-out inputs fail safely?",
+      "status": "Offline design",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [
+        "Authority state machine and canonical validators available"
+      ],
+      "approvalGates": [],
+      "baseline": "Valid canonical input",
+      "comparator": "Injected invalid and conflicting cases",
+      "metricDefinitions": [
+        "SAFETY_BASELINE_PRESERVATION",
+        "SAFETY_TRUSTED_MEMORY_WRITES",
+        "SAFETY_CORRECTION_APPLICATIONS",
+        "SAFETY_PARK_OR_ESCALATE_ACCURACY"
+      ],
+      "claimBoundary": "Fixture safety evidence only; it is not a guarantee against every future fault.",
+      "validityThreats": [
+        "Finite fault catalog",
+        "No live external-service failures"
+      ],
+      "owner": "Safety validation",
+      "nextAction": "Execute deterministic negative fixtures and preserve the legacy result on every mismatch.",
+      "artifactLinks": [
+        "experiments/EXP-035-fault-injection-authority-safety/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [
+        "BIGUI-EXP-035-687cf33f2706"
+      ],
+      "latestResult": {
+        "summary": "Baseline preservation, zero unsafe memory writes, zero correction applications, and correct park/escalate behavior are mandatory.",
+        "metricObservationIds": [
+          "SAFETY_FAULT_CASES_PASS"
+        ]
+      }
+    },
+    {
+      "id": "EXP-036",
+      "title": "Scale, latency, and reproducibility",
+      "researchSpace": "Cross-program",
+      "researchTrack": "Operational evaluation",
+      "researchQuestion": "What operational overhead does the unified architecture introduce on current and synthetic stress fixtures?",
+      "status": "Offline design",
+      "evidenceClass": "offline",
+      "architectureTargets": [
+        "legacy",
+        "unified",
+        "parity"
+      ],
+      "prerequisites": [
+        "EXP-033 semantic parity passes"
+      ],
+      "approvalGates": [],
+      "baseline": "Legacy runtime timing and resource profile",
+      "comparator": "Unified and parity runtime profiles",
+      "metricDefinitions": [
+        "ARCH_P50_LATENCY",
+        "ARCH_P95_LATENCY",
+        "ARCH_THROUGHPUT",
+        "ARCH_PEAK_MEMORY",
+        "ARCH_REPLAY_DETERMINISM"
+      ],
+      "claimBoundary": "Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.",
+      "validityThreats": [
+        "Machine-specific timing",
+        "Synthetic replication may not resemble future corpora"
+      ],
+      "owner": "Architecture validation",
+      "nextAction": "Benchmark current, 5×, and 10× fixtures with environment and cohort hashes.",
+      "artifactLinks": [
+        "experiments/EXP-036-scale-latency-reproducibility/README.md",
+        "scripts/run_bigui_architecture_experiments.py"
+      ],
+      "datasetHash": null,
+      "partitionHash": null,
+      "acceptedRunIds": [],
+      "latestResult": {
+        "summary": "Current plus synthetic 5×/10× fixtures. Operational overhead only; no accuracy, effort, or generalization conclusion.",
+        "metricObservationIds": [
+          "ARCH_TARGET_PARITY_P95_RATIO",
+          "ARCH_TARGET_UNIFIED_MEMORY_RATIO",
+          "ARCH_TARGET_UNIFIED_P95_RATIO"
+        ]
+      }
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "MECH_STUDENT_MODELS",
+      "value": 179,
+      "numerator": 179,
+      "denominator": 179,
+      "unit": "models",
+      "direction": "neutral",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Descriptive corpus count; not a performance metric."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "MECH_AGENT4_PATTERNS",
+      "value": 27,
+      "numerator": 27,
+      "denominator": 27,
+      "unit": "patterns",
+      "direction": "neutral",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Descriptive Agent 4 output count."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "MECH_REVIEW_ITEMS",
+      "value": 11,
+      "numerator": 11,
+      "denominator": 27,
+      "unit": "review items",
+      "direction": "neutral",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Queue count is not validated human effort."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "MECH_REUSABLE_JUDGMENTS",
+      "value": 3,
+      "numerator": 3,
+      "denominator": 11,
+      "unit": "judgments",
+      "direction": "neutral",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Legacy mechanism memory includes same-pattern evidence."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "MECH_MEMORY_ADVICE_ITEMS",
+      "value": 8,
+      "numerator": 8,
+      "denominator": 27,
+      "unit": "advice items",
+      "direction": "neutral",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Advice remains advisory_only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "MECH_COMPARISON_ROWS",
+      "value": 27,
+      "numerator": 27,
+      "denominator": 27,
+      "unit": "comparison rows",
+      "direction": "neutral",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Parallel comparison coverage; not accuracy."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "SAFETY_CLASSIFICATION_CHANGES",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 27,
+      "unit": "classification changes",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "The preserved mechanism changes zero baseline classifications."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "LABEL_CANDIDATES",
+      "value": 24,
+      "numerator": 24,
+      "denominator": 24,
+      "unit": "candidate rows",
+      "direction": "neutral",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "evaluation_ready",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Candidate readiness is not supplied human evidence."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "LABEL_GENERALIZATION_SAFE",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 24,
+      "unit": "labels",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "blocked",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Accuracy remains not computable at safe N=0."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "ARCH_CONTROLLED_PARITY",
+      "value": 1,
+      "numerator": 27,
+      "denominator": 27,
+      "unit": "proportion",
+      "direction": "target",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Controlled compatibility evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "CLASSIFICATION_ACCURACY_B0",
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "unit": "not computable",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "blocked",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Independent generalization-safe labels are required."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "CLASSIFICATION_ACCURACY_B1",
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "unit": "not computable",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "blocked",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Independent generalization-safe labels are required."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "CLASSIFICATION_MACRO_F1_B0",
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "unit": "not computable",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "blocked",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Independent generalization-safe labels are required."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "CLASSIFICATION_MACRO_F1_B1",
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "unit": "not computable",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "blocked",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Independent generalization-safe labels are required."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "PAIRED_NET_CORRECTION",
+      "value": null,
+      "numerator": null,
+      "denominator": 0,
+      "unit": "not computable",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sourceSha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "evidenceClass": "blocked",
+      "observationDate": "2026-07-25",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Independent generalization-safe labels are required."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "ARCH_FIXTURE_SEMANTIC_DIFFERENCES",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 15,
+      "unit": "differences",
+      "direction": "target",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Clone-safe parity fixtures only; not controlled-corpus accuracy."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "ARCH_FIXTURE_REPLAY_DETERMINISM",
+      "value": 1,
+      "numerator": 5,
+      "denominator": 5,
+      "unit": "proportion",
+      "direction": "target",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Deterministic fixture replay only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_CONTRACT_EQUIVALENCE",
+      "value": 1,
+      "numerator": 3,
+      "denominator": 3,
+      "unit": "proportion",
+      "direction": "target",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural simulation only; M-02 remains deferred."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_A_HANDOFFS",
+      "value": 2,
+      "numerator": 2,
+      "denominator": null,
+      "unit": "handoffs",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_A_CONTEXT_DUPLICATION",
+      "value": 2,
+      "numerator": 2,
+      "denominator": null,
+      "unit": "context units",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_A_STATE_BOUNDARIES",
+      "value": 3,
+      "numerator": 3,
+      "denominator": null,
+      "unit": "boundaries",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_A_FAILURE_BREADTH",
+      "value": 3,
+      "numerator": 3,
+      "denominator": null,
+      "unit": "skills affected",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_A_TRACE_COMPLETENESS",
+      "value": 1.0,
+      "numerator": 1.0,
+      "denominator": 1,
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_B_HANDOFFS",
+      "value": 1,
+      "numerator": 1,
+      "denominator": null,
+      "unit": "handoffs",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_B_CONTEXT_DUPLICATION",
+      "value": 1,
+      "numerator": 1,
+      "denominator": null,
+      "unit": "context units",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_B_STATE_BOUNDARIES",
+      "value": 2,
+      "numerator": 2,
+      "denominator": null,
+      "unit": "boundaries",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_B_FAILURE_BREADTH",
+      "value": 4,
+      "numerator": 4,
+      "denominator": null,
+      "unit": "skills affected",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_B_TRACE_COMPLETENESS",
+      "value": 1.0,
+      "numerator": 1.0,
+      "denominator": 1,
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_C_HANDOFFS",
+      "value": 0,
+      "numerator": 0,
+      "denominator": null,
+      "unit": "handoffs",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_C_CONTEXT_DUPLICATION",
+      "value": 0,
+      "numerator": 0,
+      "denominator": null,
+      "unit": "context units",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_C_STATE_BOUNDARIES",
+      "value": 1,
+      "numerator": 1,
+      "denominator": null,
+      "unit": "boundaries",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_C_FAILURE_BREADTH",
+      "value": 7,
+      "numerator": 7,
+      "denominator": null,
+      "unit": "skills affected",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "TOPOLOGY_C_TRACE_COMPLETENESS",
+      "value": 1.0,
+      "numerator": 1.0,
+      "denominator": 1,
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Structural fixture metric only; no topology is approved."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "SAFETY_FAULT_CASES_PASS",
+      "value": 1,
+      "numerator": 8,
+      "denominator": 8,
+      "unit": "proportion",
+      "direction": "target",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Finite SYNTHETIC_NOT_HUMAN fault fixtures only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "ARCH_TARGET_UNIFIED_P95_RATIO",
+      "value": 1.15,
+      "numerator": null,
+      "denominator": null,
+      "unit": "maximum ratio target",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "proposal",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Engineering target only; no accepted EXP-036 result exists."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "ARCH_TARGET_UNIFIED_MEMORY_RATIO",
+      "value": 1.5,
+      "numerator": null,
+      "denominator": null,
+      "unit": "maximum ratio target",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "proposal",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Engineering target only; no accepted EXP-036 result exists."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "ARCH_TARGET_PARITY_P95_RATIO",
+      "value": 2.25,
+      "numerator": null,
+      "denominator": null,
+      "unit": "maximum ratio target",
+      "direction": "lower_is_better",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sourceSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "evidenceClass": "proposal",
+      "observationDate": "2026-07-26",
+      "cohortHash": "68ef7ef87f54d04144a8ec27e5d19612e95f1c20b09a3b1911f038196a551790",
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Engineering target only; no accepted EXP-036 result exists."
+    },
+    {
+      "schemaVersion": "MetricObservation-v1",
+      "metricId": "OPS_SECURITY_CONTROLS_PASS",
+      "value": 5,
+      "numerator": 5,
+      "denominator": 5,
+      "unit": "controls",
+      "direction": "target",
+      "confidenceInterval": null,
+      "sourcePath": "docs/research/hardening/security-posture-snapshot-v1.json",
+      "sourceSha256": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd",
+      "evidenceClass": "mechanism",
+      "observationDate": "2026-07-26",
+      "cohortHash": null,
+      "metricSchemaVersion": "1.0",
+      "claimBoundary": "Recorded reproducible control status; not a guarantee that no future vulnerability exists."
+    }
+  ],
+  "comparisonRules": {
+    "requiredMatchingFields": [
+      "datasetHash",
+      "partitionHash",
+      "baselineRevision",
+      "policyVersion",
+      "promptVersion",
+      "modelIdentifier",
+      "metricSchemaVersion",
+      "labelEligibility",
+      "leakageClass",
+      "evidenceClass"
+    ],
+    "incomparableLabel": "Not directly comparable",
+    "seriesIsolation": "Synthetic and empirical observations remain separate."
+  },
+  "acceptedRuns": [
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-006",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-007",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-008",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-009",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-010",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-012",
+      "runId": "hlayer-20260720T173308Z-d79047f5e2",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "3a8e0c1b476e418f4f31ea0b766a048d1d21d7d3e268074442420fe7c8d373b7",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-013",
+      "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-014",
+      "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-015",
+      "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-016",
+      "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-017",
+      "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-018",
+      "runId": "HLAYER-CONFORMANCE-8c458da3755870930900",
+      "manifestSchema": "ProgramStatusSnapshot-v1",
+      "manifestPath": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "manifestSha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:30:26+00:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {},
+      "outputHashes": {
+        "normalized": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af"
+      },
+      "metricObservationIds": [],
+      "comparisonContext": {
+        "datasetHash": "8c458da3755870930900d29f6fff8e8161214eb60dabfaa1edd919b05588a7af",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "offline-suite-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-033",
+      "runId": "BIGUI-EXP-033-adf58941d035",
+      "manifestSchema": "BigUIArchitectureFixtureResults-v1",
+      "manifestPath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "manifestSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:00:00+03:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {
+        "scripts/run_bigui_architecture_experiments.py": "4f3266a2448a0e99392a8889362707941359bc5e9095d827e22eac5731820682",
+        "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+        "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
+        "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
+        "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
+      },
+      "outputHashes": {
+        "result": "adf58941d035201927abd726cecaa6cd582685e8872c35988a90feaf64e277e7"
+      },
+      "metricObservationIds": [
+        "ARCH_FIXTURE_SEMANTIC_DIFFERENCES",
+        "ARCH_FIXTURE_REPLAY_DETERMINISM"
+      ],
+      "comparisonContext": {
+        "datasetHash": "adf58941d035201927abd726cecaa6cd582685e8872c35988a90feaf64e277e7",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "architecture-fixture-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-034",
+      "runId": "BIGUI-EXP-034-d61c55f8510f",
+      "manifestSchema": "BigUIArchitectureFixtureResults-v1",
+      "manifestPath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "manifestSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:00:00+03:00",
+      "evidenceClass": "offline",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {
+        "scripts/run_bigui_architecture_experiments.py": "4f3266a2448a0e99392a8889362707941359bc5e9095d827e22eac5731820682",
+        "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+        "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
+        "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
+        "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
+      },
+      "outputHashes": {
+        "result": "d61c55f8510f209dae640b153e64ec9ff5930f592b5cbde25d35148fe7e9187e"
+      },
+      "metricObservationIds": [
+        "TOPOLOGY_CONTRACT_EQUIVALENCE"
+      ],
+      "comparisonContext": {
+        "datasetHash": "d61c55f8510f209dae640b153e64ec9ff5930f592b5cbde25d35148fe7e9187e",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "architecture-fixture-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "not_applicable",
+        "evidenceClass": "offline"
+      }
+    },
+    {
+      "schemaVersion": "ExperimentRunEnvelope-v1",
+      "experimentId": "EXP-035",
+      "runId": "BIGUI-EXP-035-687cf33f2706",
+      "manifestSchema": "BigUIArchitectureFixtureResults-v1",
+      "manifestPath": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "manifestSha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "acceptanceStatus": "accepted",
+      "acceptedAt": "2026-07-26T00:00:00+03:00",
+      "evidenceClass": "synthetic",
+      "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+      "inputHashes": {
+        "scripts/run_bigui_architecture_experiments.py": "4f3266a2448a0e99392a8889362707941359bc5e9095d827e22eac5731820682",
+        "experiments/bigui-program-v1.json": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+        "src/vego_hlayer/contracts.py": "97881676db22c28cb9a8a3e45a57f1555e213f1f8849c8f9196b768f3cc6075b",
+        "src/vego_hlayer/runtime.py": "bd285dafcda15ef34ebcbcfd465461bcb19ca28c9c59182e0749112e4c7880ec",
+        "src/vego_hlayer/state_machine.py": "df539df9ba50fefbdc75fe4e050c8039cbe2bf7da4049330589b0df76a55e42e"
+      },
+      "outputHashes": {
+        "result": "687cf33f2706564686bcda6214d02abfcff6595164b4520e968cc39f92195c32"
+      },
+      "metricObservationIds": [
+        "SAFETY_FAULT_CASES_PASS"
+      ],
+      "comparisonContext": {
+        "datasetHash": "687cf33f2706564686bcda6214d02abfcff6595164b4520e968cc39f92195c32",
+        "partitionHash": "not_applicable",
+        "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+        "policyVersion": "architecture-fixture-v1",
+        "promptVersion": "not_applicable",
+        "modelIdentifier": "not_applicable",
+        "metricSchemaVersion": "1.0",
+        "labelEligibility": "not_applicable",
+        "leakageClass": "synthetic_fixture",
+        "evidenceClass": "synthetic"
+      }
+    }
+  ],
+  "claimBoundaries": {
+    "safeNow": [
+      "VEGO-AI has a reusable human-judgment mechanism supporting selective review, structured feedback, provenance-aware memory, advisory retrieval, and non-destructive comparison.",
+      "The legacy and unified M1-M4B-1 paths pass controlled fail-closed parity with 27 comparison rows and zero classification changes.",
+      "The current implementation preserves original Agent 4 classifications and baseline artifacts.",
+      "The project is evaluation-ready but remains blocked on independent expert input."
+    ],
+    "conditional": [
+      "At 20-24 generalization-safe adjudicated labels, report baseline and candidate metrics as an MSc pilot with explicit small-sample limitations.",
+      "At eight sealed holdout rows, report one-time pilot net correction without a formal improvement claim.",
+      "A formal improvement claim requires EXP-025 and every preregistered statistical and safety criterion to pass."
+    ],
+    "notAllowed": [
+      "Guaranteed or proven accuracy improvement at the current zero-label state",
+      "Generalization from same-pattern memory records",
+      "Benchmark superiority using analysis files that duplicate Agent 4 output",
+      "Reduced human effort at scale without EXP-026",
+      "Clinical performance or domain transfer claims",
+      "Automatic baseline mutation, Agent 4 changes, or M4B-2 authorization"
+    ]
+  },
+  "translations": {
+    "en": {
+      "title": "VEGO-AI Research Observatory",
+      "blocked": "Blocked",
+      "notComputable": "Not yet computable",
+      "notComparable": "Not directly comparable"
+    },
+    "he": {
+      "title": "מצפה המחקר של VEGO-AI",
+      "blocked": "חסום",
+      "notComputable": "עדיין לא ניתן לחישוב",
+      "notComparable": "לא ניתן להשוואה ישירה"
+    }
+  },
+  "sources": [
+    {
+      "id": "experiment-registry",
+      "path": "experiments/registry.md",
+      "sha256": "5e0bcda1386d01c7f620f129c95994051b85390e8a09ff856730e936fabd9e0b",
+      "role": "Experiment titles, status narratives, and artifact references"
+    },
+    {
+      "id": "program-status",
+      "path": "docs/research/h-layer/program-status-snapshot-v1.json",
+      "sha256": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
+      "role": "Accepted iteration, gates, decisions, and verification state"
+    },
+    {
+      "id": "thesis-evidence",
+      "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
+      "sha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+      "role": "Mechanism counts, B0–B5 evidence ladder, and claim gates"
+    },
+    {
+      "id": "bigui-program",
+      "path": "experiments/bigui-program-v1.json",
+      "sha256": "87dbd95035e4312bebaba32b51cd25939a9c29c0467bc46c7eee37f2bffc8371",
+      "role": "EXP-030–EXP-036 protocols and metadata"
+    },
+    {
+      "id": "baseline-lock",
+      "path": "docs/research/hardening/baseline-lock-manifest-v2.json",
+      "sha256": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
+      "role": "Frozen baseline and Agent 4 provenance"
+    },
+    {
+      "id": "security-posture",
+      "path": "docs/research/hardening/security-posture-snapshot-v1.json",
+      "sha256": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd",
+      "role": "Reproducible security and privacy status"
+    },
+    {
+      "id": "architecture-fixtures",
+      "path": "docs/research/bigui/architecture-fixture-results-v1.json",
+      "sha256": "7c291b0085625d308d38d9597227b74de3698b676519e809508aa1e5b9c5af4e",
+      "role": "Clone-safe EXP-033–EXP-035 fixture results and EXP-036 gate"
+    }
+  ]
+}
