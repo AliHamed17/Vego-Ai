@@ -1,0 +1,428 @@
+{
+  "schemaVersion": "AcceptedExperimentRunBundle-v1",
+  "publicationTier": "tracked_sanitized",
+  "envelope": {
+    "schemaVersion": "ExperimentRunEnvelope-v2",
+    "experimentId": "EXP-015",
+    "runId": "EXP-015-dabe22c7-30c6eb65",
+    "attemptId": "attempt-001",
+    "executionStatus": "succeeded",
+    "startedAt": "2026-07-26T00:30:26+00:00",
+    "completedAt": "2026-07-26T00:30:26+00:00",
+    "durationMilliseconds": null,
+    "manifestSchema": "HLayerExperimentManifest",
+    "manifestPath": "reports/generated/exp015/manifest.json",
+    "manifestSha256": "30c6eb6506a3ebf0b1d3e046c05a6147a2e0818fa790fcd1bfe5812d689b0401",
+    "acceptanceStatus": "accepted",
+    "acceptedAt": "2026-07-26T00:30:26+00:00",
+    "evidenceClass": "offline",
+    "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+    "inputHashes": {
+      "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "outputHashes": {
+      "summary": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10"
+    },
+    "metricObservationIds": [
+      "OBS-METRIC-WORKLOAD_BUNDLE_COLLISIONS-971dd418d8c5",
+      "OBS-METRIC-WORKLOAD_BUNDLE_COLLISIONS-9841ac8bbc64",
+      "OBS-METRIC-WORKLOAD_DEFERRED_RECOVERY-01399d4bc4ff",
+      "OBS-METRIC-WORKLOAD_DEFERRED_RECOVERY-4e6b83c39b0d",
+      "OBS-METRIC-WORKLOAD_HIGH_SEVERITY_COVERAGE-bf5be967a14b",
+      "OBS-METRIC-WORKLOAD_HIGH_SEVERITY_COVERAGE-f824b045d212",
+      "OBS-METRIC-WORKLOAD_SELECTED_LOAD-63dc487f31a3",
+      "OBS-METRIC-WORKLOAD_SELECTED_LOAD-efb375583a6c"
+    ],
+    "metricDefinitionHashes": {
+      "WORKLOAD_BUNDLE_COLLISIONS": "607990822b9f8a80cc4c91f67625dc09c63972874a5d29324f416126d404f883",
+      "WORKLOAD_DEFERRED_RECOVERY": "d91e69438a51753177c96ee8f35ddbb4e38e2d7e6d2b73e525e18a39088a6af5",
+      "WORKLOAD_HIGH_SEVERITY_COVERAGE": "1b4030c0377be4c6bf8b8851d28eb78bf56c8085cd31ff59b2543fb234e49142",
+      "WORKLOAD_SELECTED_LOAD": "dba1970d6de68aa3e3a22ca93733eb885c91dba91af9db71af4543a185ac3303"
+    },
+    "comparisonContext": {
+      "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "partitionHash": "not_applicable",
+      "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+      "policyVersion": "m4b1-v1",
+      "promptVersion": "historical-frozen",
+      "modelIdentifier": "gpt-4o-historical-alias",
+      "metricSchemaVersion": "2.0",
+      "labelEligibility": "generalization_safe",
+      "leakageClass": "none",
+      "evidenceClass": "offline",
+      "architectureMode": "legacy",
+      "topology": "not_applicable",
+      "interfaceVersion": "not_applicable",
+      "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "artifactRefs": [
+      "reports/generated/exp015/summary.json"
+    ],
+    "logRef": null,
+    "evaluation": {
+      "schemaVersion": "ExperimentEvaluation-v1",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "executionValid": true,
+      "deterministic": true,
+      "engineeringTargetMet": null,
+      "evidenceAdmissible": true,
+      "resultVerdict": "CONFORMANCE_PASS",
+      "criteria": [
+        {
+          "id": "SOURCE_PRESENT_AND_HASHED",
+          "passed": true,
+          "detail": "The source summary exists and has a recorded SHA-256 hash."
+        },
+        {
+          "id": "CLAIM_BOUNDARY_RECORDED",
+          "passed": true,
+          "detail": "The run records its admissible evidence boundary."
+        }
+      ],
+      "claimBoundary": "Offline workload/fairness fixtures only."
+    }
+  },
+  "metricDefinitions": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "WORKLOAD_BUNDLE_COLLISIONS",
+      "title": "Cross-subject bundle collisions",
+      "description": "Cross-subject bundle collisions",
+      "formula": "cross-subject bundle collisions",
+      "unit": "items",
+      "direction": "lower_is_better",
+      "grain": "workload configuration",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [
+        "configuration"
+      ],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "WORKLOAD_DEFERRED_RECOVERY",
+      "title": "Deferred items recovered",
+      "description": "Deferred items recovered",
+      "formula": "deferred items recovered",
+      "unit": "items",
+      "direction": "higher_is_better",
+      "grain": "workload configuration",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [
+        "configuration"
+      ],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "WORKLOAD_HIGH_SEVERITY_COVERAGE",
+      "title": "High-severity coverage",
+      "description": "High-severity coverage",
+      "formula": "high-severity coverage",
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "grain": "workload configuration",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [
+        "configuration"
+      ],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "WORKLOAD_SELECTED_LOAD",
+      "title": "Selected observation load",
+      "description": "Selected observation load",
+      "formula": "selected observation load",
+      "unit": "proportion",
+      "direction": "lower_is_better",
+      "grain": "workload configuration",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [
+        "configuration"
+      ],
+      "target": null
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_BUNDLE_COLLISIONS-971dd418d8c5",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_BUNDLE_COLLISIONS",
+      "metricDefinitionSha256": "607990822b9f8a80cc4c91f67625dc09c63972874a5d29324f416126d404f883",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "items",
+      "direction": "lower_is_better",
+      "estimand": "Cross-subject bundle collisions",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "uniform_cap_4"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_BUNDLE_COLLISIONS-9841ac8bbc64",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_BUNDLE_COLLISIONS",
+      "metricDefinitionSha256": "607990822b9f8a80cc4c91f67625dc09c63972874a5d29324f416126d404f883",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "items",
+      "direction": "lower_is_better",
+      "estimand": "Cross-subject bundle collisions",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "adaptive_fixture_caps"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_DEFERRED_RECOVERY-01399d4bc4ff",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_DEFERRED_RECOVERY",
+      "metricDefinitionSha256": "d91e69438a51753177c96ee8f35ddbb4e38e2d7e6d2b73e525e18a39088a6af5",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 4,
+      "numerator": 4,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "items",
+      "direction": "higher_is_better",
+      "estimand": "Deferred items recovered",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "adaptive_fixture_caps"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_DEFERRED_RECOVERY-4e6b83c39b0d",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_DEFERRED_RECOVERY",
+      "metricDefinitionSha256": "d91e69438a51753177c96ee8f35ddbb4e38e2d7e6d2b73e525e18a39088a6af5",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 4,
+      "numerator": 4,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "items",
+      "direction": "higher_is_better",
+      "estimand": "Deferred items recovered",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "uniform_cap_4"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_HIGH_SEVERITY_COVERAGE-bf5be967a14b",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_HIGH_SEVERITY_COVERAGE",
+      "metricDefinitionSha256": "1b4030c0377be4c6bf8b8851d28eb78bf56c8085cd31ff59b2543fb234e49142",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 1.0,
+      "numerator": 6,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "estimand": "High-severity coverage",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "adaptive_fixture_caps"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_HIGH_SEVERITY_COVERAGE-f824b045d212",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_HIGH_SEVERITY_COVERAGE",
+      "metricDefinitionSha256": "1b4030c0377be4c6bf8b8851d28eb78bf56c8085cd31ff59b2543fb234e49142",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 1.0,
+      "numerator": 6,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "higher_is_better",
+      "estimand": "High-severity coverage",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "uniform_cap_4"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_SELECTED_LOAD-63dc487f31a3",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_SELECTED_LOAD",
+      "metricDefinitionSha256": "dba1970d6de68aa3e3a22ca93733eb885c91dba91af9db71af4543a185ac3303",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 0.666667,
+      "numerator": 8,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "lower_is_better",
+      "estimand": "Selected observation load",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "adaptive_fixture_caps"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-WORKLOAD_SELECTED_LOAD-efb375583a6c",
+      "experimentId": "EXP-015",
+      "runId": "EXP-015-dabe22c7-30c6eb65",
+      "metricId": "WORKLOAD_SELECTED_LOAD",
+      "metricDefinitionSha256": "dba1970d6de68aa3e3a22ca93733eb885c91dba91af9db71af4543a185ac3303",
+      "baselineId": "uniform-cap",
+      "comparatorId": "adaptive-cap",
+      "value": 0.666667,
+      "numerator": 8,
+      "denominator": 12,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "lower_is_better",
+      "estimand": "Selected observation load",
+      "grain": "workload configuration",
+      "dimensions": {
+        "configuration": "uniform_cap_4"
+      },
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp015/summary.json",
+      "sourceSha256": "dabe22c7ca1a57e993913b6e075f3e53b18b5202d214b403def5e5751f0fce10",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline workload and fairness fixture evidence only."
+    }
+  ],
+  "acceptance": {
+    "schemaVersion": "RunAcceptanceRecord-v1",
+    "experimentId": "EXP-015",
+    "runId": "EXP-015-dabe22c7-30c6eb65",
+    "status": "accepted",
+    "evaluatorVersion": "bigui-run-store-v1",
+    "evaluatedAt": "2026-07-26T00:30:26+00:00",
+    "criteriaOutcomes": [
+      {
+        "id": "SOURCE_PRESENT_AND_HASHED",
+        "passed": true,
+        "detail": "The source summary exists and has a recorded SHA-256 hash."
+      },
+      {
+        "id": "CLAIM_BOUNDARY_RECORDED",
+        "passed": true,
+        "detail": "The run records its admissible evidence boundary."
+      }
+    ],
+    "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+    "approverClass": "deterministic_validator"
+  }
+}

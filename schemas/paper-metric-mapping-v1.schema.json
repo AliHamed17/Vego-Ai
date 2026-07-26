@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/paper-metric-mapping-v1.schema.json",
+  "title": "PaperMetricMapping-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "mappingId",
+    "paperPhase",
+    "paperResearchQuestion",
+    "paperMetric",
+    "paperCohort",
+    "extractionSource",
+    "currentEquivalent",
+    "directComparisonEligible",
+    "incompatibilityReason",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "PaperMetricMapping-v1"},
+    "mappingId": {"type": "string", "pattern": "^PAPER-MAP-[A-D]$"},
+    "paperPhase": {"enum": ["A", "B", "C", "D"]},
+    "paperResearchQuestion": {"type": "string", "minLength": 1},
+    "paperMetric": {"type": "string", "minLength": 1},
+    "paperCohort": {"type": "string", "minLength": 1},
+    "extractionSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "page"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "page": {"type": "integer", "minimum": 1}
+      }
+    },
+    "currentEquivalent": {"type": ["string", "null"]},
+    "directComparisonEligible": {"type": "boolean"},
+    "incompatibilityReason": {"type": ["string", "null"]},
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"directComparisonEligible": {"const": false}}},
+      "then": {"properties": {"incompatibilityReason": {"type": "string", "minLength": 1}}}
+    }
+  ]
+}

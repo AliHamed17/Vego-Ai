@@ -31,7 +31,7 @@
         "track": "Mechanism readiness",
         "status": "Implemented",
         "evidence_class": "mechanism",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "Mechanism readiness and baseline protection only; no accuracy or generalization claim.",
         "next_action": "Initial run: 27 comparisons, 3 same-pattern expert labels, 0 generalization-safe expert labels, 0 memory-informed classification changes, 2 human-review-after-memory flags. No accuracy-improvement claim allowed yet."
       },
@@ -42,7 +42,7 @@
         "track": "Evaluation infrastructure",
         "status": "Evaluation-ready",
         "evidence_class": "evaluation_ready",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "Protocol and tooling readiness only until independent evidence is supplied.",
         "next_action": "Prepares independent expert labels for generalization-safe M4B-1 evaluation. No M4B-2, Agent 4, LLM/API, or baseline-output changes."
       },
@@ -53,7 +53,7 @@
         "track": "Evaluation infrastructure",
         "status": "Pending expert input",
         "evidence_class": "blocked",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "The required human, evidence, or approval gate is closed.",
         "next_action": "Evaluation-first path for accuracy improvement. Stops accuracy claims when there are fewer than 20 generalization-safe expert labels; no Agent 4, M4B-2, LLM/API, embedding, or baseline-output changes."
       },
@@ -64,7 +64,7 @@
         "track": "Evaluation infrastructure",
         "status": "Synthetic fixture",
         "evidence_class": "synthetic",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "Synthetic fixture behavior only; never human or empirical validation.",
         "next_action": "Tests candidate M4B-1.1-style policy variants under synthetic labels only. Not expert evidence; no Agent 4, M4B-2, LLM/API, embedding, eval_output, or baseline-output changes."
       },
@@ -75,7 +75,7 @@
         "track": "Evaluation infrastructure",
         "status": "Pending expert input",
         "evidence_class": "blocked",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "Zero safe labels means accuracy and macro-F1 remain not computable; labels are never inferred or prefilled.",
         "next_action": "Prepares supervisor/expert labeling materials, validates filled labels, tracks reviewer/adjudication reliability, and blocks M4B-1.1/M4B-2 until at least 20 generalization-safe labels justify a deterministic policy change."
       },
@@ -86,7 +86,7 @@
         "track": "Observation, dosage, and verification",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 3,
+        "accepted_runs": 5,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "481 captured records plus 20 explicit gap records = 501 contract records. `11 queue items / 481 heterogeneous reconstructed lifecycle events` remains a count ratio only; no event-level visibility inference or linkage exists. Mechanism evidence only."
       },
@@ -97,7 +97,7 @@
         "track": "Observation, dosage, and verification",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 3,
+        "accepted_runs": 5,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "`threshold_sev2`: event load 0.799, transaction load 0.796, weighted coverage 0.981, high-severity coverage 1.0. Aggregate coverage >=0.8 at load <=0.5 remains unmet. Pareto evidence only; no default."
       },
@@ -108,7 +108,7 @@
         "track": "Observation, dosage, and verification",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 3,
+        "accepted_runs": 5,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "Uniform K30 capture 0.75; K35 capture 0.85. Report the cap/capture trade-off only; no uniform or adaptive cap is approved."
       },
@@ -119,7 +119,7 @@
         "track": "Observation, dosage, and verification",
         "status": "Synthetic fixture",
         "evidence_class": "synthetic",
-        "accepted_runs": 3,
+        "accepted_runs": 5,
         "claim_boundary": "Synthetic fixture behavior only; never human or empirical validation.",
         "next_action": "Assumption-driven `SYNTHETIC_NOT_HUMAN` rule test, isolated from real stores. It does not validate behavior on real expert mistakes; M-04 remains unrecorded."
       },
@@ -130,7 +130,7 @@
         "track": "Observation, dosage, and verification",
         "status": "Synthetic fixture",
         "evidence_class": "synthetic",
-        "accepted_runs": 3,
+        "accepted_runs": 5,
         "claim_boundary": "Synthetic fixture behavior only; never human or empirical validation.",
         "next_action": "Assumption-driven synthetic rule sweep. Resolution and escalation are separate outcomes; the run cannot approve a two-round bound."
       },
@@ -152,7 +152,7 @@
         "track": "Evaluation infrastructure",
         "status": "Blocked",
         "evidence_class": "blocked",
-        "accepted_runs": 3,
+        "accepted_runs": 5,
         "claim_boundary": "The validated interface remains NOT YET COMPUTABLE at safe N=0.",
         "next_action": "Reads the validated EXP-005 full export + validation summary, requires explicit safe/leakage/provenance fields, and matches the canonical EXP-003 evaluator at N=0. Generalization-safe M-D remains `NOT YET COMPUTABLE`; historical same-pattern pilot is excluded."
       },
@@ -163,7 +163,7 @@
         "track": "Architecture conformance",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 2,
+        "accepted_runs": 3,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "Five fixture records schema-valid; captured/reconstructed lineage complete; E3/E9 gaps explicit; E15 parked. Fixture mechanism evidence only; no live-hook authorization."
       },
@@ -174,7 +174,7 @@
         "track": "Architecture conformance",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 2,
+        "accepted_runs": 3,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "Three normalized fixture replays produced identical hashes and no duplicate review-item IDs."
       },
@@ -185,7 +185,7 @@
         "track": "Architecture conformance",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 2,
+        "accepted_runs": 3,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "Fixed-denominator fixture comparison only; high-severity preservation, collision checks, aging, and deferred recovery reported. No approved cap or workload forecast."
       },
@@ -196,7 +196,7 @@
         "track": "Architecture conformance",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 2,
+        "accepted_runs": 3,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "`SYNTHETIC_NOT_HUMAN` cases preserved baseline hashes, parked timeout/denial paths, and produced zero trusted-memory writes/correction applications. No implementation authority."
       },
@@ -207,7 +207,7 @@
         "track": "Architecture conformance",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 2,
+        "accepted_runs": 3,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "Deterministic-first four-family fixture trace passed; semantic checks absent; missing/conflicting cases require adjudication. M-04 remains unrecorded."
       },
@@ -218,7 +218,7 @@
         "track": "Architecture conformance",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 2,
+        "accepted_runs": 3,
         "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
         "next_action": "Reproducible diff over a disposable copy with target hash/rollback; `applied=false`; repository fixture unchanged. No correction authorization."
       },
@@ -383,7 +383,7 @@
         "track": "Architecture validation",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 4,
+        "accepted_runs": 5,
         "claim_boundary": "Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy.",
         "next_action": "Run three repetitions over available controlled M1–M4B-1 artifacts."
       },
@@ -394,7 +394,7 @@
         "track": "Architecture validation",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 4,
+        "accepted_runs": 5,
         "claim_boundary": "The result is a Pareto comparison and cannot approve a production topology.",
         "next_action": "Run the deterministic topology simulator and report trade-offs without ranking a winner."
       },
@@ -405,7 +405,7 @@
         "track": "Safety validation",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 4,
+        "accepted_runs": 5,
         "claim_boundary": "Fixture safety evidence only; it is not a guarantee against every future fault.",
         "next_action": "Execute deterministic negative fixtures and preserve the legacy result on every mismatch."
       },
@@ -416,7 +416,7 @@
         "track": "Operational evaluation",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 4,
+        "accepted_runs": 5,
         "claim_boundary": "Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.",
         "next_action": "Benchmark current, 5×, and 10× fixtures with environment and cohort hashes."
       },
@@ -427,7 +427,7 @@
         "track": "Paper and baseline alignment",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 9,
+        "accepted_runs": 13,
         "claim_boundary": "The comparison reconciles versions and capabilities; it cannot prove higher classification accuracy than the paper.",
         "next_action": "Keep the paper and repository baselines visibly separate and refresh only when either reviewed source changes."
       },
@@ -438,7 +438,7 @@
         "track": "Architecture evidence",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 9,
+        "accepted_runs": 13,
         "claim_boundary": "Capability and reliability extension may be demonstrated; classification accuracy and human effort remain unmeasured.",
         "next_action": "Use the scorecard as the thesis progress baseline and keep null empirical cells visible."
       },
@@ -449,7 +449,7 @@
         "track": "Metric comparison integrity",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 9,
+        "accepted_runs": 13,
         "claim_boundary": "Better is metric-specific; every positive delta must show its denominator, trade-off, evidence class, and guardrail.",
         "next_action": "Reject incompatible pairs and expose valid routing, topology, and runtime deltas in BigUI."
       },
@@ -460,7 +460,7 @@
         "track": "Thesis alignment",
         "status": "Offline evidence",
         "evidence_class": "offline",
-        "accepted_runs": 9,
+        "accepted_runs": 13,
         "claim_boundary": "Readiness and traceability do not substitute for the missing independent observations.",
         "next_action": "Use this audit to keep the thesis, catalog, and BigUI claim boundaries synchronized."
       }

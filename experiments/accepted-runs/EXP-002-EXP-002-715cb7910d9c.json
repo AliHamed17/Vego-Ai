@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "AcceptedExperimentRunBundle-v1",
+  "publicationTier": "tracked_sanitized",
+  "envelope": {
+    "schemaVersion": "ExperimentRunEnvelope-v2",
+    "experimentId": "EXP-002",
+    "runId": "EXP-002-715cb7910d9c",
+    "attemptId": "attempt-001",
+    "executionStatus": "succeeded",
+    "startedAt": "2026-07-26T22:15:07.8292650+00:00",
+    "completedAt": "2026-07-26T22:15:07.8292650+00:00",
+    "durationMilliseconds": null,
+    "manifestSchema": "SanitizedAggregateSource",
+    "manifestPath": "reports/generated/exp002/exp002_summary.json",
+    "manifestSha256": "715cb7910d9c3e213bc191e95255e6f04d37d67523ecaa0faf9c8342de329760",
+    "acceptanceStatus": "accepted",
+    "acceptedAt": "2026-07-26T22:15:07.8292650+00:00",
+    "evidenceClass": "evaluation_ready",
+    "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+    "inputHashes": {
+      "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "outputHashes": {
+      "summary": "715cb7910d9c3e213bc191e95255e6f04d37d67523ecaa0faf9c8342de329760"
+    },
+    "metricObservationIds": [
+      "OBS-METRIC-LABEL_CANDIDATES-7712205e119b",
+      "OBS-METRIC-LABEL_EXISTING_SAME_PATTERN-1c556efdc6db",
+      "OBS-METRIC-LABEL_RECOMMENDED_ROWS-76401b134f8d"
+    ],
+    "metricDefinitionHashes": {
+      "LABEL_CANDIDATES": "b7ee55f81c1e117ee47d2ab5d198792cb577882099c20706ef2c4857bd2f08a6",
+      "LABEL_EXISTING_SAME_PATTERN": "c654c487a3884c3078725edbbe47d6e8ee62d0f97c2e990a5fea57c9bde63cdb",
+      "LABEL_RECOMMENDED_ROWS": "c5ddb5d729f3071977b94aa8de810cbaaee64aa7be2244fdc8a885f8173d43ba"
+    },
+    "comparisonContext": {
+      "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "partitionHash": "not_applicable",
+      "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+      "policyVersion": "m4b1-v1",
+      "promptVersion": "historical-frozen",
+      "modelIdentifier": "gpt-4o-historical-alias",
+      "metricSchemaVersion": "2.0",
+      "labelEligibility": "generalization_safe",
+      "leakageClass": "none",
+      "evidenceClass": "evaluation_ready",
+      "architectureMode": "legacy",
+      "topology": "not_applicable",
+      "interfaceVersion": "not_applicable",
+      "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "artifactRefs": [
+      "reports/generated/exp002/exp002_summary.json"
+    ],
+    "logRef": null,
+    "evaluation": {
+      "schemaVersion": "ExperimentEvaluation-v1",
+      "experimentId": "EXP-002",
+      "runId": "EXP-002-715cb7910d9c",
+      "executionValid": true,
+      "deterministic": null,
+      "engineeringTargetMet": null,
+      "evidenceAdmissible": true,
+      "resultVerdict": "NOT_APPLICABLE",
+      "criteria": [
+        {
+          "id": "SOURCE_PRESENT_AND_HASHED",
+          "passed": true,
+          "detail": "The source summary exists and has a recorded SHA-256 hash."
+        },
+        {
+          "id": "CLAIM_BOUNDARY_RECORDED",
+          "passed": true,
+          "detail": "The run records its admissible evidence boundary."
+        }
+      ],
+      "claimBoundary": "Annotation-package readiness only."
+    }
+  },
+  "metricDefinitions": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "LABEL_CANDIDATES",
+      "title": "Safe label candidates",
+      "description": "Safe label candidates",
+      "formula": "generalization_safe_candidate_count / row_count",
+      "unit": "rows",
+      "direction": "neutral",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "evaluation_ready",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "LABEL_EXISTING_SAME_PATTERN",
+      "title": "Same-pattern mechanism labels",
+      "description": "Same-pattern mechanism labels",
+      "formula": "existing_expert_label_count / row_count",
+      "unit": "rows",
+      "direction": "neutral",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "evaluation_ready",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "LABEL_RECOMMENDED_ROWS",
+      "title": "Recommended annotation rows",
+      "description": "Recommended annotation rows",
+      "formula": "recommended_count / row_count",
+      "unit": "rows",
+      "direction": "neutral",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "evaluation_ready",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-LABEL_CANDIDATES-7712205e119b",
+      "experimentId": "EXP-002",
+      "runId": "EXP-002-715cb7910d9c",
+      "metricId": "LABEL_CANDIDATES",
+      "metricDefinitionSha256": "b7ee55f81c1e117ee47d2ab5d198792cb577882099c20706ef2c4857bd2f08a6",
+      "baselineId": "B0",
+      "comparatorId": "label-package",
+      "value": 24,
+      "numerator": 24,
+      "denominator": 27,
+      "missingCount": 0,
+      "unit": "rows",
+      "direction": "neutral",
+      "estimand": "Safe label candidates",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp002/exp002_summary.json",
+      "sourceSha256": "715cb7910d9c3e213bc191e95255e6f04d37d67523ecaa0faf9c8342de329760",
+      "evidenceClass": "evaluation_ready",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Label-package readiness only; no independent labels were supplied."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-LABEL_EXISTING_SAME_PATTERN-1c556efdc6db",
+      "experimentId": "EXP-002",
+      "runId": "EXP-002-715cb7910d9c",
+      "metricId": "LABEL_EXISTING_SAME_PATTERN",
+      "metricDefinitionSha256": "c654c487a3884c3078725edbbe47d6e8ee62d0f97c2e990a5fea57c9bde63cdb",
+      "baselineId": "B0",
+      "comparatorId": "label-package",
+      "value": 3,
+      "numerator": 3,
+      "denominator": 27,
+      "missingCount": 0,
+      "unit": "rows",
+      "direction": "neutral",
+      "estimand": "Same-pattern mechanism labels",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp002/exp002_summary.json",
+      "sourceSha256": "715cb7910d9c3e213bc191e95255e6f04d37d67523ecaa0faf9c8342de329760",
+      "evidenceClass": "evaluation_ready",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Label-package readiness only; no independent labels were supplied."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-LABEL_RECOMMENDED_ROWS-76401b134f8d",
+      "experimentId": "EXP-002",
+      "runId": "EXP-002-715cb7910d9c",
+      "metricId": "LABEL_RECOMMENDED_ROWS",
+      "metricDefinitionSha256": "c5ddb5d729f3071977b94aa8de810cbaaee64aa7be2244fdc8a885f8173d43ba",
+      "baselineId": "B0",
+      "comparatorId": "label-package",
+      "value": 27,
+      "numerator": 27,
+      "denominator": 27,
+      "missingCount": 0,
+      "unit": "rows",
+      "direction": "neutral",
+      "estimand": "Recommended annotation rows",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp002/exp002_summary.json",
+      "sourceSha256": "715cb7910d9c3e213bc191e95255e6f04d37d67523ecaa0faf9c8342de329760",
+      "evidenceClass": "evaluation_ready",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Label-package readiness only; no independent labels were supplied."
+    }
+  ],
+  "acceptance": {
+    "schemaVersion": "RunAcceptanceRecord-v1",
+    "experimentId": "EXP-002",
+    "runId": "EXP-002-715cb7910d9c",
+    "status": "accepted",
+    "evaluatorVersion": "bigui-run-store-v1",
+    "evaluatedAt": "2026-07-26T22:15:07.8292650+00:00",
+    "criteriaOutcomes": [
+      {
+        "id": "SOURCE_PRESENT_AND_HASHED",
+        "passed": true,
+        "detail": "The source summary exists and has a recorded SHA-256 hash."
+      },
+      {
+        "id": "CLAIM_BOUNDARY_RECORDED",
+        "passed": true,
+        "detail": "The run records its admissible evidence boundary."
+      }
+    ],
+    "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+    "approverClass": "deterministic_validator"
+  }
+}

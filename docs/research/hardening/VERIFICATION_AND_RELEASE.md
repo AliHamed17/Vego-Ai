@@ -35,3 +35,9 @@ remain audit context, but validation does not depend on feature-branch ancestry;
 therefore a squash merge and a clean clone of `main` preserve valid provenance.
 The post-merge SHA belongs in GitHub PR and tag metadata, not in a
 self-invalidating tracked manifest.
+
+Presentation artifacts that embed hardening state are deliberately excluded
+from `ReleaseManifest-v3` to prevent a circular hash dependency. The
+repository-generated BigUI and deployable AI Studio package are hashed by
+`DeploymentSnapshot-v1`; the thesis presentation artifacts are hashed by the
+thesis review package manifest.

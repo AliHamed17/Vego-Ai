@@ -82,14 +82,14 @@ Stable tags: `official-vego-ai-baseline` · `research-state-m4a-clean` · `resea
 | Invariant | Value | Checked by |
 | --- | --- | --- |
 | Tests passing | **113 passed _(dated verification record)_** | `pytest VEGO-AI/tests` |
-| `ai_classification_changed` | **0** | dashboard / guard |
-| baseline `eval_output` modified | **false** | guard |
-| memory-informed differs from original | **0 / 27** | guard |
+| `ai_classification_changed` | **?** | dashboard / guard |
+| baseline `eval_output` modified | **?** | guard |
+| memory-informed differs from original | **0 / ?** | guard |
 | generalization-safe expert labels | **0** | guard |
 | deterministic policy | **v1 (no M4B-1.1 in code)** | guard |
-| evidence consistency | **18/18 present checks passed PASS** | `scripts/check_evidence_consistency.py` |
+| evidence consistency | **10/10 present checks passed PASS** | `scripts/check_evidence_consistency.py` |
 
-Scale figures: **179** models · **27** patterns · **11** review items · **3** reusable judgments · **8** advice items.
+Scale figures: **?** models · **?** patterns · **?** review items · **?** reusable judgments · **?** advice items.
 <!-- AUTO:invariants:end -->
 
 ## 6. Critical path (what actually unblocks the thesis)

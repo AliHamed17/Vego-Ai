@@ -330,13 +330,39 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["experimentId", "declared", "observed", "coverage", "status"],
+        "required": [
+          "experimentId",
+          "declared",
+          "observed",
+          "nonNullObservations",
+          "nonNullMetricCount",
+          "nullMetricIds",
+          "observedCoverage",
+          "coverage",
+          "status"
+        ],
         "properties": {
           "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
           "declared": {"type": "integer", "minimum": 0},
           "observed": {"type": "integer", "minimum": 0},
+          "nonNullObservations": {"type": "integer", "minimum": 0},
+          "nonNullMetricCount": {"type": "integer", "minimum": 0},
+          "nullMetricIds": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true
+          },
+          "observedCoverage": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
           "coverage": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
-          "status": {"enum": ["measured", "protocol_only", "no_metrics_declared"]}
+          "status": {
+            "enum": [
+              "measured_complete",
+              "measured_partial",
+              "observed_null",
+              "protocol_only",
+              "no_metrics_declared"
+            ]
+          }
         }
       }
     },

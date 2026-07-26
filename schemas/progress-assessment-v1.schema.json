@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/progress-assessment-v1.schema.json",
+  "title": "ProgressAssessment-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "assessmentId",
+    "experimentId",
+    "metricId",
+    "comparisonFamily",
+    "leftRunId",
+    "rightRunId",
+    "comparabilityVerdict",
+    "mismatches",
+    "absoluteDelta",
+    "relativeDelta",
+    "confidenceInterval",
+    "guardrails",
+    "status",
+    "explanation"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ProgressAssessment-v1"},
+    "assessmentId": {"type": "string", "pattern": "^PA-[A-Fa-f0-9]{16}$"},
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "metricId": {"type": "string", "minLength": 1},
+    "comparisonFamily": {
+      "enum": [
+        "historical_run",
+        "baseline_candidate",
+        "paper_context",
+        "guardrail",
+        "none"
+      ]
+    },
+    "leftRunId": {"type": ["string", "null"]},
+    "rightRunId": {"type": ["string", "null"]},
+    "comparabilityVerdict": {
+      "enum": ["Eligible", "Not directly comparable", "Not measured", "Not eligible"]
+    },
+    "mismatches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "left", "right"],
+        "properties": {
+          "field": {"type": "string"},
+          "left": {},
+          "right": {}
+        }
+      }
+    },
+    "absoluteDelta": {"type": ["number", "null"]},
+    "relativeDelta": {"type": ["number", "null"]},
+    "confidenceInterval": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["lower", "upper", "level", "method"],
+          "properties": {
+            "lower": {"type": "number"},
+            "upper": {"type": "number"},
+            "level": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+            "method": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "guardrails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "status", "detail"],
+        "properties": {
+          "id": {"type": "string"},
+          "status": {"enum": ["met", "missed", "not_assessed"]},
+          "detail": {"type": "string"}
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "Target met",
+        "Improved",
+        "Unchanged",
+        "Regressed",
+        "Mixed",
+        "Not directly comparable",
+        "Not measured",
+        "Not eligible"
+      ]
+    },
+    "explanation": {"type": "string", "minLength": 1}
+  }
+}

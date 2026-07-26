@@ -1,7 +1,7 @@
 # VEGO-AI Experiment Benchmark Analytics Report
 
 Generated: `2026-07-26T16:00:00+03:00`
-Input projection: `245266e00a127bf9f4f47c54849b9b84daa759986c7d28989e9e38aab85e5adf`
+Input projection: `de570f38d546974debcbecc9f11929ccab15e5537531468a2aee724c958e68ba`
 
 ## Technical summary
 
@@ -25,9 +25,9 @@ These are selected latest-run observations. Every value retains its denominator,
 
 The conservative human-judgment mechanism produced a complete 27-row parallel comparison while preserving every baseline classification.
 
-- `MECH_COMPARISON_ROWS` = 27 comparison rows (N=27; aggregate)  Source: `reports/generated/exp001/exp001_summary.json` (`06419d6e3a5a…`, 2026-06-16).
-- `MECH_REVIEW_AFTER_MEMORY` = 2 review escalations (N=27; aggregate)  Source: `reports/generated/exp001/exp001_summary.json` (`06419d6e3a5a…`, 2026-06-16).
-- `SAFETY_CLASSIFICATION_CHANGES` = 0 classification changes (N=27; aggregate)  Source: `reports/generated/exp001/exp001_summary.json` (`06419d6e3a5a…`, 2026-06-16).
+- `MECH_COMPARISON_ROWS` = 27 comparison rows (N=27; aggregate)  Source: `reports/generated/exp001/exp001_summary.json` (`03b042052bbe…`, 2026-07-26).
+- `MECH_REVIEW_AFTER_MEMORY` = 2 review escalations (N=27; aggregate)  Source: `reports/generated/exp001/exp001_summary.json` (`03b042052bbe…`, 2026-07-26).
+- `SAFETY_CLASSIFICATION_CHANGES` = 0 classification changes (N=27; aggregate)  Source: `reports/generated/exp001/exp001_summary.json` (`03b042052bbe…`, 2026-07-26).
 
 Evidence class: `mechanism`. Claim boundary: Mechanism readiness and baseline protection only; no accuracy or generalization claim.
 
@@ -77,9 +77,9 @@ Evidence class: `offline`. Claim boundary: Offline architecture or workload evid
 
 All authority and timeout fixtures preserve the baseline and create no correction application or trusted-memory write.
 
-- `AUTHORITY_SAFE_CASE_RATE` = 1.000 proportion (N=5; aggregate)  Source: `reports/generated/exp016/summary.json` (`2e9b44d98fbe…`, 2026-07-26).
-- `AUTHORITY_TRUSTED_MEMORY_WRITES` = 0 count (N=5; aggregate)  Source: `reports/generated/exp016/summary.json` (`2e9b44d98fbe…`, 2026-07-26).
-- `AUTHORITY_CORRECTION_APPLICATIONS` = 0 count (N=5; aggregate)  Source: `reports/generated/exp016/summary.json` (`2e9b44d98fbe…`, 2026-07-26).
+- `AUTHORITY_SAFE_CASE_RATE` = 1.000 proportion (N=6; aggregate)  Source: `reports/generated/exp016/summary.json` (`15f6f442cae6…`, 2026-07-26).
+- `AUTHORITY_TRUSTED_MEMORY_WRITES` = 0 count (N=6; aggregate)  Source: `reports/generated/exp016/summary.json` (`15f6f442cae6…`, 2026-07-26).
+- `AUTHORITY_CORRECTION_APPLICATIONS` = 0 count (N=6; aggregate)  Source: `reports/generated/exp016/summary.json` (`15f6f442cae6…`, 2026-07-26).
 
 Evidence class: `synthetic`. Claim boundary: Offline architecture or workload evidence only; no production approval or accuracy claim.
 
@@ -87,9 +87,9 @@ Evidence class: `synthetic`. Claim boundary: Offline architecture or workload ev
 
 Legacy, unified, and parity paths are semantically equivalent on the controlled fixture, replay deterministically, and preserve classifications.
 
-- `ARCH_SEMANTIC_PARITY_RATE` = 1.000 proportion (N=15; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `ARCH_REPLAY_DETERMINISM` = 1 proportion (N=1; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `ARCH_CLASSIFICATION_CHANGES` = 0 count (N=15; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
+- `ARCH_SEMANTIC_PARITY_RATE` = 1.000 proportion (N=15; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `ARCH_REPLAY_DETERMINISM` = 1 proportion (N=1; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `ARCH_CLASSIFICATION_CHANGES` = 0 count (N=15; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
 
 Evidence class: `offline`. Claim boundary: Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy.
 
@@ -97,12 +97,12 @@ Evidence class: `offline`. Claim boundary: Mechanism-equivalence evidence only; 
 
 The three H-layer topologies produce contract-equivalent traces while exposing different coordination and failure-containment trade-offs.
 
-- `TOPOLOGY_HANDOFF_COUNT` = 30 handoffs (N=15; topology=topology-a)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `TOPOLOGY_HANDOFF_COUNT` = 15 handoffs (N=15; topology=topology-b)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `TOPOLOGY_HANDOFF_COUNT` = 0 handoffs (N=15; topology=topology-c)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `TOPOLOGY_FAILURE_BREADTH` = 3 skills (N=15; topology=topology-a)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `TOPOLOGY_FAILURE_BREADTH` = 4 skills (N=15; topology=topology-b)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `TOPOLOGY_FAILURE_BREADTH` = 7 skills (N=15; topology=topology-c)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
+- `TOPOLOGY_HANDOFF_COUNT` = 30 handoffs (N=15; topology=topology-a)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `TOPOLOGY_HANDOFF_COUNT` = 15 handoffs (N=15; topology=topology-b)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `TOPOLOGY_HANDOFF_COUNT` = 0 handoffs (N=15; topology=topology-c)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `TOPOLOGY_FAILURE_BREADTH` = 3 skills (N=15; topology=topology-a)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `TOPOLOGY_FAILURE_BREADTH` = 4 skills (N=15; topology=topology-b)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `TOPOLOGY_FAILURE_BREADTH` = 7 skills (N=15; topology=topology-c)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
 
 Evidence class: `offline`. Claim boundary: The result is a Pareto comparison and cannot approve a production topology.
 
@@ -110,10 +110,10 @@ Evidence class: `offline`. Claim boundary: The result is a Pareto comparison and
 
 Every malformed, duplicate, missing, late, conflicting, and timed-out fixture resolves through a safe disposition without baseline mutation.
 
-- `SAFETY_FAULT_CASE_PASS_RATE` = 1.000 proportion (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `SAFETY_BASELINE_PRESERVATION` = 1.000 proportion (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `SAFETY_TRUSTED_MEMORY_WRITES` = 0 writes (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `SAFETY_CORRECTION_APPLICATIONS` = 0 applications (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
+- `SAFETY_FAULT_CASE_PASS_RATE` = 1.000 proportion (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `SAFETY_BASELINE_PRESERVATION` = 1.000 proportion (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `SAFETY_TRUSTED_MEMORY_WRITES` = 0 writes (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `SAFETY_CORRECTION_APPLICATIONS` = 0 applications (N=20; aggregate)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
 
 Evidence class: `synthetic`. Claim boundary: Fixture safety evidence only; it is not a guarantee against every future fault.
 
@@ -121,10 +121,10 @@ Evidence class: `synthetic`. Claim boundary: Fixture safety evidence only; it is
 
 The latest controlled scale run meets the declared unified and parity overhead limits; prior accepted-run variability remains visible separately.
 
-- `ARCH_P95_RATIO_TO_LEGACY` = 0.974 ratio (N=100; fixture=SYNTHETIC_1X, mode=unified)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `ARCH_P95_RATIO_TO_LEGACY` = 0.947 ratio (N=100; fixture=SYNTHETIC_5X, mode=unified)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `ARCH_P95_RATIO_TO_LEGACY` = 1.113 ratio (N=100; fixture=SYNTHETIC_10X, mode=unified)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
-- `ARCH_P95_RATIO_TO_LEGACY` = 1.074 ratio (N=100; fixture=SYNTHETIC_10X, mode=parity)  Source: `reports/generated/bigui_architecture/summary.json` (`a9de44bc668d…`, 2026-07-26).
+- `ARCH_P95_RATIO_TO_LEGACY` = 0.999 ratio (N=100; fixture=SYNTHETIC_1X, mode=unified)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `ARCH_P95_RATIO_TO_LEGACY` = 0.968 ratio (N=100; fixture=SYNTHETIC_5X, mode=unified)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `ARCH_P95_RATIO_TO_LEGACY` = 0.935 ratio (N=100; fixture=SYNTHETIC_10X, mode=unified)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
+- `ARCH_P95_RATIO_TO_LEGACY` = 0.975 ratio (N=100; fixture=SYNTHETIC_10X, mode=parity)  Source: `reports/generated/bigui_architecture/summary.json` (`1f9c08220e10…`, 2026-07-26).
 
 Evidence class: `synthetic`. Claim boundary: Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.
 
@@ -132,11 +132,11 @@ Evidence class: `synthetic`. Claim boundary: Operational overhead only; syntheti
 
 The paper and current repository can be aligned on corpus and architecture counts, but not on independent classification performance.
 
-- `PAPER_CASE_MODEL_COUNT` = 178 case models (N=178; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
-- `CURRENT_CASE_MODEL_COUNT` = 179 case models (N=179; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
-- `PAPER_PATTERN_COUNT` = 26 patterns (N=26; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
-- `CURRENT_PATTERN_COUNT` = 27 patterns (N=27; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
-- `PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE` = 0 boolean (N=1; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
+- `PAPER_CASE_MODEL_COUNT` = 178 case models (N=178; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
+- `CURRENT_CASE_MODEL_COUNT` = 179 case models (N=179; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
+- `PAPER_PATTERN_COUNT` = 26 patterns (N=26; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
+- `CURRENT_PATTERN_COUNT` = 27 patterns (N=27; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
+- `PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE` = 0 boolean (N=1; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
 
 Evidence class: `offline`. Claim boundary: The comparison reconciles versions and capabilities; it cannot prove higher classification accuracy than the paper.
 
@@ -144,10 +144,10 @@ Evidence class: `offline`. Claim boundary: The comparison reconciles versions an
 
 The thesis traceability audit separates supported mechanism claims from empirical improvement claims that remain unopened.
 
-- `THESIS_SAFE_CURRENT_CLAIMS` = 4 claims (N=4; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
-- `THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY` = 0 claims (N=3; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
-- `THESIS_HYPOTHESES_CONFIRMED` = 0 hypotheses (N=4; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
-- `THESIS_TRACEABILITY_RECORDS` = 7 records (N=7; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`b6c7098fe937…`, 2026-07-26).
+- `THESIS_SAFE_CURRENT_CLAIMS` = 4 claims (N=4; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
+- `THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY` = 0 claims (N=3; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
+- `THESIS_HYPOTHESES_CONFIRMED` = 0 hypotheses (N=4; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
+- `THESIS_TRACEABILITY_RECORDS` = 7 records (N=7; aggregate)  Source: `docs/research/bigui/baseline-comparison-results-v1.json` (`f7c762464a0d…`, 2026-07-26).
 
 Evidence class: `offline`. Claim boundary: Readiness and traceability do not substitute for the missing independent observations.
 

@@ -19,6 +19,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 import uuid
 from collections.abc import Iterable
 from datetime import datetime, timezone
@@ -544,6 +545,18 @@ def write_suite_manifest(root: Path, experiments: list[str], destination: Path) 
     return value
 
 
+def replace_with_retry(source: Path, destination: Path, attempts: int = 5) -> None:
+    """Retry transient Windows file locks without weakening atomic rename semantics."""
+    for attempt in range(1, attempts + 1):
+        try:
+            os.replace(source, destination)
+            return
+        except PermissionError:
+            if attempt == attempts:
+                raise
+            time.sleep(0.05 * attempt)
+
+
 def atomic_promote(
     stage_root: Path,
     target_root: Path,
@@ -581,14 +594,14 @@ def atomic_promote(
     try:
         # First move the already-validated staged set under the target parent.
         for name in names:
-            os.replace(stage_root / name, incoming / name)
+            replace_with_retry(stage_root / name, incoming / name)
         for name in names:
             target = target_root / name
             if target.exists():
-                os.replace(target, backup / name)
+                replace_with_retry(target, backup / name)
                 moved_old.append(name)
         for name in names:
-            os.replace(incoming / name, target_root / name)
+            replace_with_retry(incoming / name, target_root / name)
             moved_new.append(name)
     except Exception as exc:
         # Remove newly promoted paths, then restore every prior path.  A failed
@@ -605,7 +618,7 @@ def atomic_promote(
                 rollback_errors.append(f"remove {name}: {rollback_exc}")
         for name in reversed(moved_old):
             try:
-                os.replace(backup / name, target_root / name)
+                replace_with_retry(backup / name, target_root / name)
             except Exception as rollback_exc:  # pragma: no cover
                 rollback_errors.append(f"restore {name}: {rollback_exc}")
         detail = f"; rollback errors: {rollback_errors}" if rollback_errors else ""

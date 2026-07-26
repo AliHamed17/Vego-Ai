@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/visualization-spec-v1.schema.json",
+  "title": "VisualizationSpec-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "visualizationId",
+    "experimentId",
+    "title",
+    "analyticalQuestion",
+    "chartFamily",
+    "metricIds",
+    "observationIds",
+    "fieldBindings",
+    "denominator",
+    "cohort",
+    "sources",
+    "observationDate",
+    "evidenceClass",
+    "comparisonBasis",
+    "claimBoundary",
+    "emptyState",
+    "accessibleDescription"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "VisualizationSpec-v1"},
+    "visualizationId": {"type": "string", "pattern": "^VIS-EXP-[0-9]{3}-[A-Fa-f0-9]{12}$"},
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "analyticalQuestion": {"type": "string", "minLength": 1},
+    "chartFamily": {
+      "enum": [
+        "metric_card",
+        "bar",
+        "grouped_bar",
+        "dot",
+        "matrix",
+        "funnel",
+        "timeline",
+        "heatmap",
+        "small_multiples",
+        "empty_state"
+      ]
+    },
+    "metricIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "observationIds": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "fieldBindings": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "denominator": {
+      "oneOf": [
+        {"type": "number"},
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+    "cohort": {"type": "string", "minLength": 1},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "observationDate": {"type": ["string", "null"], "format": "date"},
+    "evidenceClass": {"type": "string", "minLength": 1},
+    "comparisonBasis": {"type": "string", "minLength": 1},
+    "claimBoundary": {"type": "string", "minLength": 1},
+    "emptyState": {"type": ["string", "null"]},
+    "accessibleDescription": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"chartFamily": {"const": "empty_state"}}},
+      "then": {
+        "properties": {
+          "emptyState": {"type": "string", "minLength": 1},
+          "observationIds": {"maxItems": 0}
+        }
+      },
+      "else": {
+        "properties": {
+          "observationIds": {"minItems": 1}
+        }
+      }
+    }
+  ]
+}

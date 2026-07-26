@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/deployment-snapshot-v1.schema.json",
+  "title": "DeploymentSnapshot-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "apiVersion",
+    "publicationState",
+    "mainBranchRevision",
+    "catalogSha256",
+    "resultViewsSha256",
+    "deploymentPackageSha256",
+    "experimentCount",
+    "currentAcceptedRunCount",
+    "historicalAcceptedRunCount",
+    "metricObservationCount",
+    "acceptedIteration",
+    "generatedAt",
+    "deployedAt",
+    "targetUrl",
+    "liveObservation",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "DeploymentSnapshot-v1"},
+    "apiVersion": {"const": "v1"},
+    "publicationState": {"enum": ["candidate", "deployed", "stale", "failed"]},
+    "mainBranchRevision": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+      ]
+    },
+    "catalogSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "resultViewsSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "deploymentPackageSha256": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      ]
+    },
+    "experimentCount": {"const": 41},
+    "currentAcceptedRunCount": {"type": "integer", "minimum": 0},
+    "historicalAcceptedRunCount": {"type": "integer", "minimum": 0},
+    "metricObservationCount": {"type": "integer", "minimum": 0},
+    "acceptedIteration": {"type": "integer", "minimum": 0},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "deployedAt": {"type": ["string", "null"], "format": "date-time"},
+    "targetUrl": {"type": "string", "format": "uri"},
+    "liveObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observedAt",
+        "iteration",
+        "experimentCount",
+        "catalogSha256",
+        "status",
+        "detail"
+      ],
+      "properties": {
+        "observedAt": {"type": ["string", "null"], "format": "date-time"},
+        "iteration": {"type": ["integer", "null"]},
+        "experimentCount": {"type": ["integer", "null"]},
+        "catalogSha256": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          ]
+        },
+        "status": {"enum": ["unknown", "current", "stale", "unreachable"]},
+        "detail": {"type": "string", "minLength": 1}
+      }
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}

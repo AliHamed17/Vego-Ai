@@ -498,8 +498,8 @@
           },
           {
             "deltas": {
-              "maxP95RatioToLegacy": 1.11319,
-              "meanP95RatioToLegacy": 1.011181
+              "maxP95RatioToLegacy": 0.998522,
+              "meanP95RatioToLegacy": 0.967043
             },
             "directlyComparable": true,
             "family": "runtime_mode",
@@ -509,8 +509,8 @@
           },
           {
             "deltas": {
-              "maxP95RatioToLegacy": 1.07407,
-              "meanP95RatioToLegacy": 1.01125
+              "maxP95RatioToLegacy": 0.994438,
+              "meanP95RatioToLegacy": 0.978514
             },
             "directlyComparable": true,
             "family": "runtime_mode",
@@ -803,7 +803,7 @@
     }
   ],
   "generatedAt": "2026-07-26T14:16:00+03:00",
-  "normalizedSha256": "3e555fb4f6642919a6d1efb8e32c543fe10cbd65aea58869a235620805793851",
+  "normalizedSha256": "6717a22a17d14e2abd600e2980bda21008ee4dccf330c1ad29625c31b76a4c4d",
   "paperBaseline": {
     "caseModels": 178,
     "occasional": 18,
@@ -816,8 +816,8 @@
   "sources": {
     "docs/research/bigui/architecture-fixture-results-v1.json": "7fcf650512b37dfb7063b48c5fef95d73d7b8db36a268926d6178329aef73ba5",
     "docs/research/bigui/paper-baseline-snapshot-v1.json": "78b6701caea4feee131980e2e8ae84f436451e53853ca0e779a0d161a6ad966a",
-    "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "1677a665c7ae3d0edda9899fddb0fe4d3e7d7bdff610e8d549be5681d57e26bc",
-    "experiments/accepted-runs": "8cc33fdd800964cfc729e5d4ba15dbf8400bccb23de3c9834de54fc494ffa26e",
-    "experiments/current-run-index-v1.json#comparison-dependencies": "99115846282369e33d9bc312b4bdc487acdc7762438036ca887dad0373f682db"
+    "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "363c999981f73aa070d3925d6c336a25b395d9dbddcc708710992585fd47efa5",
+    "experiments/accepted-runs": "71a6b28eff85fdd84904cc7880da3c1899961b61bc4154959c3c93deab284ef3",
+    "experiments/current-run-index-v1.json#comparison-dependencies": "5162622daaae4c29320268a679b33d237ad42b37e69799e2cbaf281095ec999a"
   }
 }

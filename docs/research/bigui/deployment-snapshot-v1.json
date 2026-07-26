@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "DeploymentSnapshot-v1",
+  "apiVersion": "v1",
+  "publicationState": "candidate",
+  "mainBranchRevision": null,
+  "catalogSha256": "90bdd89e1d7b0965ba84c1d6baa82848715af2a59d414b1fc6846216ec2a8af9",
+  "resultViewsSha256": "bc0f1389fd5515762ca18288f4fa509ba4afeec8f4f98e3175e3f872ec291944",
+  "deploymentPackageSha256": null,
+  "experimentCount": 41,
+  "currentAcceptedRunCount": 26,
+  "historicalAcceptedRunCount": 134,
+  "metricObservationCount": 1196,
+  "acceptedIteration": 15,
+  "generatedAt": "2026-07-26T16:00:00+03:00",
+  "deployedAt": null,
+  "targetUrl": "https://vego-ai.ai.studio/",
+  "liveObservation": {
+    "observedAt": "2026-07-27T00:55:11.5065678+03:00",
+    "iteration": 14,
+    "experimentCount": 28,
+    "catalogSha256": null,
+    "status": "stale",
+    "detail": "The legacy deployed API returned 28 shallow experiment records and exposed no canonical catalog hash. The merged repository source contains Iteration 15 and EXP-000 through EXP-040."
+  },
+  "claimBoundary": "This tracked snapshot describes a deployable candidate. It is not proof that the production URL was updated. Empirical claims remain blocked at zero independent safe labels."
+}

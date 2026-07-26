@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "LiveDeploymentObservation-v1",
+  "observedAt": "2026-07-27T00:55:11.5065678+03:00",
+  "targetUrl": "https://vego-ai.ai.studio/",
+  "reachable": true,
+  "iteration": 14,
+  "experimentCount": 28,
+  "catalogSha256": null,
+  "status": "stale",
+  "detail": "The legacy deployed API returned 28 shallow experiment records and exposed no canonical catalog hash. The merged repository source contains Iteration 15 and EXP-000 through EXP-040."
+}

@@ -63,6 +63,24 @@ def test_benchmark_is_deterministic_complete_and_schema_valid() -> None:
     assert len(
         {item["experimentId"] for item in tracked["resultHighlights"]}
     ) == len(tracked["resultHighlights"])
+    coverage = {
+        item["experimentId"]: item for item in tracked["metricCoverage"]
+    }
+    assert coverage["EXP-003"]["observed"] == 5
+    assert coverage["EXP-003"]["nonNullMetricCount"] == 0
+    assert coverage["EXP-003"]["coverage"] == 0
+    assert coverage["EXP-003"]["status"] == "observed_null"
+    assert coverage["EXP-012"]["observed"] == 8
+    assert coverage["EXP-012"]["nonNullMetricCount"] == 3
+    assert coverage["EXP-012"]["coverage"] == 3 / 8
+    assert coverage["EXP-012"]["status"] == "measured_partial"
+    assert set(coverage["EXP-012"]["nullMetricIds"]) == {
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_ACCURACY_B1",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "CLASSIFICATION_MACRO_F1_B1",
+        "PAIRED_NET_CORRECTION",
+    }
     for highlight in tracked["resultHighlights"]:
         assert highlight["metrics"]
         for metric in highlight["metrics"]:

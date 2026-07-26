@@ -411,6 +411,31 @@ class AtomicPromotionTests(unittest.TestCase):
             self.assertFalse((target / "exp006" / "stale.txt").exists())
             self.assertEqual((target / "exp006" / "fresh.txt").read_text(encoding="utf-8"), "fresh")
 
+    def test_transient_windows_permission_error_is_retried(self) -> None:
+        with tempfile.TemporaryDirectory(dir=REPO / "reports" / "generated") as temp:
+            root = Path(temp)
+            source = root / "source.txt"
+            destination = root / "destination.txt"
+            source.write_text("fresh", encoding="utf-8")
+            real_replace = os.replace
+            calls = 0
+
+            def transient_lock(source_path, destination_path):
+                nonlocal calls
+                calls += 1
+                if calls == 1:
+                    raise PermissionError("injected transient lock")
+                return real_replace(source_path, destination_path)
+
+            with (
+                mock.patch("hlayer_harness.os.replace", side_effect=transient_lock),
+                mock.patch("hlayer_harness.time.sleep"),
+            ):
+                harness.replace_with_retry(source, destination)
+
+            self.assertEqual(calls, 2)
+            self.assertEqual(destination.read_text(encoding="utf-8"), "fresh")
+
 
 class ManifestIntegrityTests(unittest.TestCase):
     def test_live_authorization_requires_exact_five_path_touch_set(self) -> None:

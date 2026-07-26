@@ -95,6 +95,9 @@ Initialize-OfficialBaselineTag
 Invoke-Gate "locked dependency definition" { uv lock --check }
 Invoke-Gate "frozen Python environment" { uv sync --frozen --all-groups }
 Invoke-Gate "locked Node environment" { npm ci --ignore-scripts --no-audit }
+Invoke-Gate "locked AI Studio adapter environment" {
+    npm ci --prefix deploy/ai-studio --ignore-scripts --no-audit
+}
 if (-not $SkipBrowser) {
     Invoke-Gate "Playwright browser runtime" {
         npx --no-install playwright install chromium
@@ -148,8 +151,14 @@ Invoke-Gate "BigUI catalog, architecture fixtures, and observatory freshness" {
     if ($LASTEXITCODE -ne 0) { throw "all-experiment benchmark or analytics report is stale" }
     uv run python scripts/build_bigui_catalog.py --check
     if ($LASTEXITCODE -ne 0) { throw "BigUI experiment catalog is stale" }
+    uv run python scripts/build_bigui_result_views.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI experiment result views are stale" }
+    uv run python scripts/build_bigui_deployment_snapshot.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI deployment snapshot is stale" }
     uv run python scripts/build_bigui.py --check
     if ($LASTEXITCODE -ne 0) { throw "BigUI observatory is stale" }
+    uv run python scripts/build_ai_studio_package.py --check
+    if ($LASTEXITCODE -ne 0) { throw "AI Studio deployment package is invalid" }
     uv run python scripts/run_bigui_architecture_experiments.py --check
 }
 Invoke-Gate "thesis and visualization freshness" {
@@ -173,6 +182,8 @@ if (-not $SkipNetworkAudit) {
     }
     Invoke-Gate "Node dependency vulnerability audit" {
         npm audit --audit-level=high
+        if ($LASTEXITCODE -ne 0) { throw "root Node audit failed" }
+        npm audit --prefix deploy/ai-studio --audit-level=high
     }
 }
 if (-not $SkipBrowser) {
@@ -182,6 +193,8 @@ if (-not $SkipBrowser) {
         node scripts/tests/thesis_progress_browser_smoke.mjs
         if ($LASTEXITCODE -ne 0) { throw "thesis browser smoke failed" }
         node scripts/tests/bigui_browser_smoke.mjs
+        if ($LASTEXITCODE -ne 0) { throw "BigUI browser smoke failed" }
+        node scripts/tests/ai_studio_api_smoke.mjs
     }
 }
 Invoke-Gate "Git whitespace hygiene" { git diff --check }
