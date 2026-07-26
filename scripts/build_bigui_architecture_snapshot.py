@@ -49,7 +49,7 @@ def build() -> dict:
     program = json.loads(PROGRAM.read_text(encoding="utf-8"))
     experiments = [
         runner.exp033_parity(runner.clone_safe_artifacts()),
-        runner.exp034_topologies(),
+        runner.exp034_topologies(include_timings=False),
         runner.exp035_faults(),
         {
             "experimentId": "EXP-036",

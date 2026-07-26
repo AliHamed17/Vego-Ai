@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/run-acceptance-record-v1.schema.json",
+  "title": "RunAcceptanceRecord-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "experimentId",
+    "runId",
+    "status",
+    "evaluatorVersion",
+    "evaluatedAt",
+    "criteriaOutcomes",
+    "rationale",
+    "approverClass"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "RunAcceptanceRecord-v1"},
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "runId": {"type": "string", "minLength": 1},
+    "status": {"enum": ["accepted", "rejected", "quarantined", "pending"]},
+    "evaluatorVersion": {"type": "string", "minLength": 1},
+    "evaluatedAt": {"type": "string", "format": "date-time"},
+    "criteriaOutcomes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "passed"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "passed": {"type": "boolean"},
+          "detail": {"type": "string"}
+        }
+      },
+      "minItems": 1
+    },
+    "rationale": {"type": "string", "minLength": 1},
+    "approverClass": {
+      "enum": ["deterministic_validator", "human_supervisor", "human_adjudicator"]
+    }
+  }
+}

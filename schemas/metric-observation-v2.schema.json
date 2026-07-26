@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/metric-observation-v2.schema.json",
+  "title": "MetricObservation-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "observationId",
+    "experimentId",
+    "runId",
+    "metricId",
+    "metricDefinitionSha256",
+    "baselineId",
+    "comparatorId",
+    "value",
+    "numerator",
+    "denominator",
+    "missingCount",
+    "unit",
+    "direction",
+    "estimand",
+    "grain",
+    "dimensions",
+    "exclusions",
+    "analysisMethod",
+    "confidenceInterval",
+    "sourcePath",
+    "sourceSha256",
+    "evidenceClass",
+    "observationDate",
+    "cohortHash",
+    "metricSchemaVersion",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "MetricObservation-v2"},
+    "observationId": {
+      "type": "string",
+      "pattern": "^OBS-METRIC-[A-Z0-9_.-]+-[0-9a-f]{12}$"
+    },
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "runId": {"type": "string", "minLength": 1},
+    "metricId": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]+$"},
+    "metricDefinitionSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "baselineId": {"type": "string", "minLength": 1},
+    "comparatorId": {"type": "string", "minLength": 1},
+    "value": {"type": ["number", "integer", "string", "boolean", "null"]},
+    "numerator": {"type": ["number", "integer", "null"]},
+    "denominator": {"type": ["number", "integer", "null"], "minimum": 0},
+    "missingCount": {"type": "integer", "minimum": 0},
+    "unit": {"type": "string", "minLength": 1},
+    "direction": {
+      "enum": ["higher_is_better", "lower_is_better", "target", "neutral"]
+    },
+    "estimand": {"type": "string", "minLength": 1},
+    "grain": {"type": "string", "minLength": 1},
+    "dimensions": {"type": "object"},
+    "exclusions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "analysisMethod": {"type": "string", "minLength": 1},
+    "confidenceInterval": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level", "lower", "upper", "method"],
+          "properties": {
+            "level": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+            "lower": {"type": "number"},
+            "upper": {"type": "number"},
+            "method": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "sourcePath": {
+      "type": "string",
+      "minLength": 1,
+      "not": {"pattern": "^[A-Za-z]:\\\\|^file://"}
+    },
+    "sourceSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidenceClass": {
+      "enum": [
+        "historical",
+        "mechanism",
+        "offline",
+        "synthetic",
+        "evaluation_ready",
+        "pilot",
+        "empirical"
+      ]
+    },
+    "observationDate": {"type": "string", "format": "date"},
+    "cohortHash": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "metricSchemaVersion": {"const": "2.0"},
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}

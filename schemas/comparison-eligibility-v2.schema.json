@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/comparison-eligibility-v2.schema.json",
+  "title": "ComparisonEligibility-v2",
+  "$defs": {
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparisonFamily",
+        "treatmentField",
+        "allowedDifferences",
+        "invariantFields",
+        "unitOfAnalysis",
+        "requiresPairedCohort"
+      ],
+      "properties": {
+        "comparisonFamily": {
+          "enum": [
+            "reproducibility",
+            "architecture",
+            "topology",
+            "policy",
+            "model",
+            "interface",
+            "empirical"
+          ]
+        },
+        "treatmentField": {"type": "string", "minLength": 1},
+        "allowedDifferences": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "invariantFields": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "unitOfAnalysis": {"type": "string", "minLength": 1},
+        "requiresPairedCohort": {"type": "boolean"}
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "leftRunId",
+    "rightRunId",
+    "spec",
+    "eligible",
+    "status",
+    "checks",
+    "sharedMetricIds",
+    "reasons"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ComparisonEligibility-v2"},
+    "leftRunId": {"type": "string", "minLength": 1},
+    "rightRunId": {"type": "string", "minLength": 1},
+    "spec": {"$ref": "#/$defs/spec"},
+    "eligible": {"type": "boolean"},
+    "status": {"enum": ["Directly comparable", "Not directly comparable"]},
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "left", "right", "role", "matches"],
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "left": {},
+          "right": {},
+          "role": {"enum": ["invariant", "treatment", "paired_cohort", "metric"]},
+          "matches": {"type": "boolean"}
+        }
+      }
+    },
+    "sharedMetricIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]+$"},
+      "uniqueItems": true
+    },
+    "reasons": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  }
+}

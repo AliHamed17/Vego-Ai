@@ -59,7 +59,10 @@ def test_catalog_zero_label_gate_keeps_empirical_metrics_null() -> None:
     assert catalog["programState"]["safeLabels"] == 0
     performance = [
         item
-        for item in catalog["metricObservations"]
+        for item in [
+            *catalog["metricObservations"],
+            *catalog["metricObservationsV2"],
+        ]
         if item["metricId"].startswith(("CLASSIFICATION_", "PAIRED_"))
     ]
     assert performance
@@ -70,6 +73,16 @@ def test_catalog_zero_label_gate_keeps_empirical_metrics_null() -> None:
 def test_every_metric_and_source_has_publishable_provenance() -> None:
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
     for metric in catalog["metricObservations"]:
+        assert metric["sourcePath"]
+        assert metric["sourceSha256"]
+        assert metric["unit"]
+        assert metric["observationDate"]
+        assert metric["evidenceClass"]
+        assert metric["claimBoundary"]
+    for metric in catalog["metricObservationsV2"]:
+        assert metric["observationId"]
+        assert metric["experimentId"]
+        assert metric["runId"]
         assert metric["sourcePath"]
         assert metric["sourceSha256"]
         assert metric["unit"]
@@ -140,6 +153,8 @@ def test_bigui_html_is_fresh_offline_and_catalog_driven() -> None:
     assert "http://" not in content
     assert "EXP-036" in content
     assert "NOT YET COMPUTABLE" in content
+    assert "Accepted run center" in content
+    assert "Measured experiments first" in content
     match = re.search(
         r'<script id="bigui-catalog" type="application/json">(.*?)</script>',
         content,

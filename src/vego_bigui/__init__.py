@@ -1,4 +1,4 @@
-"""Canonical catalog and comparison helpers for the VEGO-AI BigUI."""
+"""Canonical catalog, run-store, and comparison helpers for VEGO-AI BigUI."""
 
 from .comparison import COMPARISON_FIELDS, comparison_eligibility
 

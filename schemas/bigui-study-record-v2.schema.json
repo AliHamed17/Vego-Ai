@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/bigui-study-record-v2.schema.json",
+  "title": "BigUIStudyRecord-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "studyId",
+    "participantId",
+    "participantRole",
+    "consented",
+    "interfaceVersion",
+    "interfaceSha256",
+    "interfaceCondition",
+    "counterbalanceOrder",
+    "taskSetVersion",
+    "taskSetSha256",
+    "correctnessRubricSha256",
+    "randomizationRecord",
+    "tasks",
+    "susScore",
+    "rawLocalOnly",
+    "containsDirectIdentifiers"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "BigUIStudyRecord-v2"},
+    "studyId": {"enum": ["EXP-031", "EXP-032"]},
+    "participantId": {"type": "string", "pattern": "^P-[0-9a-f]{12}$"},
+    "participantRole": {
+      "enum": ["supervisor", "domain_reviewer", "researcher", "student", "other"]
+    },
+    "consented": {"const": true},
+    "interfaceVersion": {"type": "string", "minLength": 1},
+    "interfaceSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "interfaceCondition": {"enum": ["fragmented", "bigui"]},
+    "counterbalanceOrder": {"enum": ["fragmented_first", "bigui_first", "not_applicable"]},
+    "taskSetVersion": {"type": "string", "minLength": 1},
+    "taskSetSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "correctnessRubricSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "randomizationRecord": {
+      "type": "object",
+      "required": ["seedHash", "assignment"],
+      "properties": {
+        "seedHash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "assignment": {"type": "string", "minLength": 1}
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "taskId",
+          "completed",
+          "correct",
+          "durationSeconds",
+          "seqScore",
+          "confidence",
+          "navigationErrors",
+          "overclaimErrors",
+          "censorReason"
+        ],
+        "properties": {
+          "taskId": {"type": "string", "minLength": 1},
+          "completed": {"type": "boolean"},
+          "correct": {"type": "boolean"},
+          "durationSeconds": {"type": "number", "minimum": 0},
+          "seqScore": {"type": "integer", "minimum": 1, "maximum": 7},
+          "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+          "navigationErrors": {"type": "integer", "minimum": 0},
+          "overclaimErrors": {"type": "integer", "minimum": 0},
+          "censorReason": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "susScore": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "rawLocalOnly": {"const": true},
+    "containsDirectIdentifiers": {"const": false}
+  }
+}

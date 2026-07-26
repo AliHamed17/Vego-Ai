@@ -94,6 +94,16 @@ async function verifyPage(viewport) {
   if (!(await page.locator("#overview-kpis").textContent())?.includes("NOT YET COMPUTABLE")) {
     failures.push(`${viewport.width}px: not-computable result is not visible`);
   }
+  const embeddedRunCount = await page.evaluate(
+    () => new Set(JSON.parse(document.getElementById("bigui-catalog").textContent).acceptedRunBundles.map((bundle) => bundle.envelope.experimentId)).size,
+  );
+  const renderedRunCount = await page.locator("#run-grid .run-card").count();
+  if (renderedRunCount !== embeddedRunCount) {
+    failures.push(`${viewport.width}px: expected ${embeddedRunCount} run cards, got ${renderedRunCount}`);
+  }
+  if (!(await page.locator("#executed-kpis").textContent())?.includes("Measured observations")) {
+    failures.push(`${viewport.width}px: executed metric summary is missing`);
+  }
   if (errors.length) failures.push(`${viewport.width}px: console errors: ${errors.join(" | ")}`);
   if (external.length) failures.push(`${viewport.width}px: external requests: ${external.join(" | ")}`);
   if ([390, 1440].includes(viewport.width)) {
@@ -166,8 +176,8 @@ try {
   await compare.locator("#compare-left").selectOption(leftReplay);
   await compare.locator("#compare-right").selectOption(rightReplay);
   await compare.locator("#compare-button").click();
-  if (!(await compare.locator("#compare-result").textContent())?.includes("Directly comparable")) {
-    failures.push("equivalent replay-suite records were not comparable");
+  if (!(await compare.locator("#compare-result").textContent())?.includes("Not directly comparable")) {
+    failures.push("unrelated EXP-006 and EXP-007 records were not refused");
   }
   await compare.locator("#compare-right").selectOption(faultRun);
   await compare.locator("#compare-button").click();

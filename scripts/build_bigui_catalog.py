@@ -15,6 +15,10 @@ from typing import Any
 import jsonschema
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from vego_bigui.store import load_bundles, run_store_summary  # noqa: E402
+
 REGISTRY = ROOT / "experiments" / "registry.md"
 PROGRAM = ROOT / "docs" / "research" / "h-layer" / "program-status-snapshot-v1.json"
 THESIS = (
@@ -45,6 +49,10 @@ CATALOG_SCHEMA = ROOT / "schemas" / "experiment-catalog-snapshot-v1.schema.json"
 METRIC_SCHEMA = ROOT / "schemas" / "metric-observation-v1.schema.json"
 RUN_SCHEMA = ROOT / "schemas" / "experiment-run-envelope-v1.schema.json"
 ARCHITECTURE_SCHEMA = ROOT / "schemas" / "architecture-variant-v1.schema.json"
+METRIC_DEFINITION_V2_SCHEMA = ROOT / "schemas" / "metric-definition-v1.schema.json"
+METRIC_V2_SCHEMA = ROOT / "schemas" / "metric-observation-v2.schema.json"
+RUN_BUNDLE_SCHEMA = ROOT / "schemas" / "accepted-experiment-run-bundle-v1.schema.json"
+ACCEPTED_RUNS_DIR = ROOT / "experiments" / "accepted-runs"
 OUTPUT_DIR = ROOT / "docs" / "research" / "bigui"
 CATALOG_OUTPUT = OUTPUT_DIR / "experiment-catalog-snapshot-v1.json"
 ARTIFACT_MANIFEST_OUTPUT = OUTPUT_DIR / "artifact-manifest-v1.json"
@@ -622,8 +630,8 @@ def metric_observations(
             ("HANDOFFS", "handoffs", "handoffs", "lower_is_better"),
             (
                 "CONTEXT_DUPLICATION",
-                "contextDuplicationUnits",
-                "context units",
+                "contextBytes",
+                "bytes",
                 "lower_is_better",
             ),
             (
@@ -780,7 +788,8 @@ def suite_envelopes(
     if accepted_dir.is_dir():
         for path in sorted(accepted_dir.glob("*.json")):
             payload = load_json(path)
-            envelopes.append(payload)
+            if payload.get("schemaVersion") == "ExperimentRunEnvelope-v1":
+                envelopes.append(payload)
     fixture_path = ARCHITECTURE_FIXTURES.relative_to(ROOT).as_posix()
     fixture_manifest_hash = sha256(ARCHITECTURE_FIXTURES)
     fixture_metric_ids = {
@@ -913,6 +922,36 @@ def build_catalog(
     metrics = metric_observations(
         thesis, program, baseline, architecture_fixtures, security
     )
+    loaded_bundles = load_bundles(ACCEPTED_RUNS_DIR, ROOT / "schemas")
+    run_bundles = []
+    for loaded_bundle in loaded_bundles:
+        run_bundles.append(
+            {
+                key: value
+                for key, value in loaded_bundle.items()
+                if not key.startswith("_")
+            }
+        )
+    run_summary = run_store_summary(run_bundles)
+    metric_definitions_v2: dict[str, dict[str, Any]] = {}
+    metric_observations_v2: list[dict[str, Any]] = []
+    latest_bundle_by_experiment: dict[str, dict[str, Any]] = {}
+    for bundle in run_bundles:
+        envelope = bundle["envelope"]
+        experiment_id = envelope["experimentId"]
+        current = latest_bundle_by_experiment.get(experiment_id)
+        if current is None or (
+            envelope["completedAt"],
+            envelope["runId"],
+        ) > (
+            current["envelope"]["completedAt"],
+            current["envelope"]["runId"],
+        ):
+            latest_bundle_by_experiment[experiment_id] = bundle
+        for definition in bundle["metricDefinitions"]:
+            key = canonical_sha256(definition)
+            metric_definitions_v2[key] = definition
+        metric_observations_v2.extend(bundle["metricObservations"])
     metric_ids = {item["metricId"] for item in metrics}
     runs = suite_envelopes(
         program, source_revision, architecture_fixtures, baseline
@@ -969,7 +1008,18 @@ def build_catalog(
             }
         item["datasetHash"] = None
         item["partitionHash"] = None
-        item["acceptedRunIds"] = sorted(set(run_ids_by_experiment.get(experiment_id, [])))
+        v2_run_ids = sorted(
+            {
+                bundle["envelope"]["runId"]
+                for bundle in run_bundles
+                if bundle["envelope"]["experimentId"] == experiment_id
+            }
+        )
+        item["acceptedRunIds"] = (
+            v2_run_ids
+            if v2_run_ids
+            else sorted(set(run_ids_by_experiment.get(experiment_id, [])))
+        )
         relevant_metric_ids = [
             metric_id
             for metric_id in item["metricDefinitions"]
@@ -1006,10 +1056,15 @@ def build_catalog(
                 for metric_id in metric_ids
                 if metric_id.startswith("ARCH_TARGET_")
             )
+        latest_bundle = latest_bundle_by_experiment.get(experiment_id)
         item["latestResult"] = (
             {
                 "summary": row["notes"],
-                "metricObservationIds": relevant_metric_ids,
+                "metricObservationIds": (
+                    latest_bundle["envelope"]["metricObservationIds"]
+                    if latest_bundle
+                    else relevant_metric_ids
+                ),
             }
             if item["acceptedRunIds"] or relevant_metric_ids
             else None
@@ -1043,6 +1098,19 @@ def build_catalog(
         "architectureVariants": architecture_variants(),
         "experiments": experiments,
         "metricObservations": metrics,
+        "metricDefinitionsV2": sorted(
+            metric_definitions_v2.values(),
+            key=lambda item: item["metricId"],
+        ),
+        "metricObservationsV2": sorted(
+            metric_observations_v2,
+            key=lambda item: (
+                item["experimentId"],
+                item["runId"],
+                item["metricId"],
+                item["observationId"],
+            ),
+        ),
         "comparisonRules": {
             "requiredMatchingFields": [
                 "datasetHash",
@@ -1060,6 +1128,8 @@ def build_catalog(
             "seriesIsolation": "Synthetic and empirical observations remain separate.",
         },
         "acceptedRuns": runs,
+        "acceptedRunBundles": run_bundles,
+        "runStoreSummary": run_summary,
         "claimBoundaries": {
             "safeNow": thesis["claimGates"]["safeNow"],
             "conditional": (
@@ -1098,6 +1168,19 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     )
     for metric in catalog["metricObservations"]:
         metric_validator.validate(metric)
+    metric_definition_v2_validator = jsonschema.Draft202012Validator(
+        load_json(METRIC_DEFINITION_V2_SCHEMA), format_checker=format_checker
+    )
+    for definition in catalog["metricDefinitionsV2"]:
+        metric_definition_v2_validator.validate(definition)
+    metric_v2_validator = jsonschema.Draft202012Validator(
+        load_json(METRIC_V2_SCHEMA), format_checker=format_checker
+    )
+    for metric in catalog["metricObservationsV2"]:
+        metric_v2_validator.validate(metric)
+    # Accepted bundles were already validated with a local schema registry by
+    # load_bundles(). Avoid a second bare jsonschema pass here because relative
+    # references would otherwise attempt an online lookup.
     run_validator = jsonschema.Draft202012Validator(
         load_json(RUN_SCHEMA), format_checker=format_checker
     )
@@ -1117,7 +1200,10 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
     if len(metric_ids) != len(set(metric_ids)):
         raise ValueError("metric IDs must be unique")
     if catalog["programState"]["safeLabels"] == 0:
-        for metric in catalog["metricObservations"]:
+        for metric in [
+            *catalog["metricObservations"],
+            *catalog["metricObservationsV2"],
+        ]:
             if metric["metricId"].startswith(("CLASSIFICATION_", "PAIRED_")):
                 if metric["value"] is not None:
                     raise ValueError(
@@ -1131,6 +1217,15 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
         path = ROOT / source["path"]
         if not path.is_file() or sha256(path) != source["sha256"]:
             raise ValueError(f"source hash mismatch: {source['path']}")
+    observation_ids = [
+        item["observationId"] for item in catalog["metricObservationsV2"]
+    ]
+    if len(observation_ids) != len(set(observation_ids)):
+        raise ValueError("v2 metric observation IDs must be unique")
+    if catalog["runStoreSummary"] != run_store_summary(
+        catalog["acceptedRunBundles"]
+    ):
+        raise ValueError("run-store summary does not match accepted bundles")
     known_ids = set(ids)
     for item in catalog["experiments"]:
         for dependency in item["prerequisites"]:
