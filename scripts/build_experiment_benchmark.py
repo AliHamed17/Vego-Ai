@@ -1162,7 +1162,7 @@ def render_markdown(snapshot: dict[str, Any]) -> str:
     lines = [
         "# VEGO-AI Experiment Benchmark Analytics Report",
         "",
-        f"Generated: `{snapshot['generatedAt']}`  ",
+        f"Generated: `{snapshot['generatedAt']}`",
         f"Input projection: `{snapshot['inputProjectionSha256']}`",
         "",
         "## Technical summary",
