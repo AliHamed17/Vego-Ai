@@ -17,7 +17,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "1e13e7497af72d5b421319f74462e0781ef57ba573f828fc7e4742434df4829d",
+  "packageTreeSha256": "2a115ff673e70cecf23e461c9cfd78f40299fe3cdf56afd211ebe085806e2a30",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -178,7 +178,7 @@
     "ruff": "0.15.16"
   },
   "trackedArtifacts": {
-    "VEGO-AI-Thesis-Baseline-Progress.html": "1992061eca53a0a5127eba8a547304f0789cdd4ca3d76b694c6bee11f626f68c",
+    "VEGO-AI-Thesis-Baseline-Progress.html": "0bdde6d37fb6bc65efca00e4c8c9590bcd5de9921ece0ef21ee74cafdcfc5ae6",
     "docs/research/h-layer/program-status-snapshot-v1.json": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
     "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "docs/research/hardening/iteration-015-manifest.json": "eebbe9492dece86a7ff5a02f3d55b5ca457032937c76576e62fc21d0fe885807",
