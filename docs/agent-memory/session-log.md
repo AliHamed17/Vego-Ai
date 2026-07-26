@@ -529,3 +529,29 @@ Chronological prompt history for Codex and Claude.
   - publish_independent_evidence_package.py --check
 - Status: Implementation and verification complete; real empirical metrics remain gated at 0/24 independent labels.
 - Next steps: Obtain Iris/Arnon approval for IE-01 through IE-10, release only the calibration packages to two independent human reviewers, verify calibration, then release the 24 blinded evaluation cases.
+
+## 2026-07-26 20:45 +03:00 - Codex - Advance independent evidence study to calibration
+
+- Request: Record all IE-01 through IE-10 as accepted and move the independent expert evidence program to its next phase.
+- Actions taken:
+  - Recorded an auditable accepted decision register and conservative reviewer governance policy
+  - Added participant information and affirmative-consent procedure
+  - Added calibration-return validation and a human-only instruction-freeze gate
+  - Changed external delivery to calibration-only and removed all evaluation files until calibration succeeds
+  - Updated BigUI, thesis evidence, accepted comparison runs, manifests, and provenance
+- Files changed:
+  - docs/research/independent-evidence/decision-register.json
+  - docs/research/independent-evidence/PARTICIPANT_INFORMATION_AND_CONSENT.md
+  - schemas/independent-calibration-return-v1.schema.json
+  - schemas/independent-evidence-decision-register-v1.schema.json
+  - scripts/validate_independent_calibration_returns.py
+  - scripts/freeze_independent_calibration.py
+  - scripts/publish_independent_evidence_package.py
+  - VEGO-AI-Research-Hub.html
+- Commands/checks:
+  - verify-source.ps1 -Check -SkipNetworkAudit
+  - build_independent_evidence_package.py --check
+  - publish_independent_evidence_package.py --check --stage calibration
+  - validate_independent_calibration_returns.py --check-gate
+- Status: Calibration-ready; 10/10 decisions accepted, 0/2 calibration returns, 0/24 labels, evaluation release unauthorized.
+- Next steps: Provide each selected independent reviewer the participant information and only their three-case calibration folder; collect the two immutable JSON returns; validate them; then obtain a human instruction freeze before evaluation release.
