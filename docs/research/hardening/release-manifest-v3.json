@@ -169,11 +169,11 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "1c339520b7174b8339a13669a51a23952c29a65ee380703173d88a58627e0ed8",
+  "sourceTreeSha256": "e034ea509c318bbd0fa0a80625aaf2c0d6a3ef3b9d52417a6bc49b05f127ab40",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
-    "pytest": "9.1.1",
+    "pytest": "9.0.3",
     "python": ">=3.10",
     "ruff": "0.15.16"
   },
