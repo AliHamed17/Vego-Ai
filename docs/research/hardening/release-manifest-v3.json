@@ -18,7 +18,7 @@
     "docs/research/hardening/sbom.cdx.json",
     "docs/research/hardening/security-posture-snapshot-v1.json"
   ],
-  "packageTreeSha256": "bc76f63d47e9971a9a027edbfbead40f640350c9ebeef5bc5ee518666d54a770",
+  "packageTreeSha256": "20938e9f16121a401cceb812ff7efb615dae7a01b5b5927e6106257bfc559c9f",
   "releaseId": "unified-runtime-security-hardening-v1",
   "sbom": {
     "format": "CycloneDX-1.5",
@@ -61,8 +61,10 @@
     "configs/hlayer-runtime.json",
     "configs/protected-change-authorization-v1.json",
     "docs/research/independent-evidence/MEASUREMENT_CONTRACT.md",
+    "docs/research/independent-evidence/PARTICIPANT_INFORMATION_AND_CONSENT.md",
     "docs/research/independent-evidence/README.md",
     "docs/research/independent-evidence/SUPERVISOR_DECISIONS_REQUIRED.md",
+    "docs/research/independent-evidence/decision-register.json",
     "package-lock.json",
     "package.json",
     "pyproject.toml",
@@ -103,6 +105,8 @@
     "schemas/gold-label-record-v2.schema.json",
     "schemas/hlayer-iteration-manifest-v1.schema.json",
     "schemas/hlayer-runtime-config-v1.schema.json",
+    "schemas/independent-calibration-return-v1.schema.json",
+    "schemas/independent-evidence-decision-register-v1.schema.json",
     "schemas/independent-evidence-delivery-v1.schema.json",
     "schemas/independent-evidence-package-v1.schema.json",
     "schemas/independent-review-return-v1.schema.json",
@@ -127,6 +131,7 @@
     "scripts/check_hlayer_change_authorization.py",
     "scripts/check_quality_ratchet.py",
     "scripts/evaluate_independent_ground_truth.py",
+    "scripts/freeze_independent_calibration.py",
     "scripts/freeze_independent_gold_labels.py",
     "scripts/hlayer_offline/__init__.py",
     "scripts/hlayer_offline/common.py",
@@ -168,6 +173,7 @@
     "scripts/tests/thesis_progress_browser_smoke.mjs",
     "scripts/validate_hlayer_offline.py",
     "scripts/validate_hlayer_program.py",
+    "scripts/validate_independent_calibration_returns.py",
     "scripts/validate_independent_evidence_returns.py",
     "scripts/vego_doctor.py",
     "scripts/verify-controlled.ps1",
@@ -189,7 +195,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "9483bcb8221ad6a6ca5bb56bb6a810df9cf0ca9ce47e68af5fe619b027de276e",
+  "sourceTreeSha256": "a78605d5a663f7e4b25bbc3abded3c171318355d4b5baec62820fe6280b566a5",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
@@ -198,8 +204,8 @@
     "ruff": "0.15.16"
   },
   "trackedArtifacts": {
-    "VEGO-AI-Research-Hub.html": "586d2d677c197d608210ea9edc33e43af52c73331ab0a83f74d7a600d6b062b0",
-    "VEGO-AI-Thesis-Baseline-Progress.html": "2d262537401139de85242a23b75040c0f17e7c9ba28a168e0b8722023663c2b8",
+    "VEGO-AI-Research-Hub.html": "da8ede1ec86d81d4e1b6b2bfbfa1324589fffa0a3e526f99ab202b8210e81669",
+    "VEGO-AI-Thesis-Baseline-Progress.html": "08504cd68778fdb5037a7981c04112b23385f9c9946ebb902183d1b496b59b14",
     "docs/research/h-layer/program-status-snapshot-v1.json": "c28e034fbf0efd2221e96e5517ee14e55380f2f496a022b5d4145ccd3629882f",
     "docs/research/hardening/baseline-lock-manifest-v2.json": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "docs/research/hardening/iteration-015-manifest.json": "eebbe9492dece86a7ff5a02f3d55b5ca457032937c76576e62fc21d0fe885807",
