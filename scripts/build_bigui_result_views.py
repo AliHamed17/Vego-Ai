@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -37,6 +38,12 @@ REQUIRED_COMPARISON_FIELDS = (
     "evidenceClass",
 )
 EMPIRICAL_PREFIXES = ("CLASSIFICATION_", "PAIRED_")
+ACCEPTED_AT_PATTERN = re.compile(
+    r"^(?P<base>[0-9]{4}-[0-9]{2}-[0-9]{2}T"
+    r"[0-9]{2}:[0-9]{2}:[0-9]{2})"
+    r"(?:\.(?P<fraction>[0-9]+))?"
+    r"(?P<offset>Z|[+-][0-9]{2}:[0-9]{2})$"
+)
 
 VISUAL_FAMILY = {
     0: "matrix",
@@ -155,7 +162,7 @@ def metric_definition_mismatches(
 
 def accepted_bundle_sort_key(
     bundle: dict[str, Any],
-) -> tuple[datetime, str, str]:
+) -> tuple[datetime, str, str, str]:
     """Sort accepted bundles chronologically with stable deterministic ties."""
     envelope = bundle["envelope"]
     accepted_at = envelope.get("acceptedAt")
@@ -163,8 +170,22 @@ def accepted_bundle_sort_key(
         raise ValueError(
             f"accepted run {envelope.get('runId')} has no acceptedAt timestamp"
         )
+    match = ACCEPTED_AT_PATTERN.fullmatch(accepted_at)
+    if match is None:
+        raise ValueError(
+            f"accepted run {envelope.get('runId')} has invalid acceptedAt: "
+            f"{accepted_at}"
+        )
+    fraction = match.group("fraction") or ""
+    parser_fraction = (fraction + "000000")[:6]
+    offset = (
+        "+00:00"
+        if match.group("offset") == "Z"
+        else match.group("offset")
+    )
+    normalized = f"{match.group('base')}.{parser_fraction}{offset}"
     try:
-        parsed = datetime.fromisoformat(accepted_at.replace("Z", "+00:00"))
+        parsed = datetime.fromisoformat(normalized)
     except ValueError as exc:
         raise ValueError(
             f"accepted run {envelope.get('runId')} has invalid acceptedAt: "
@@ -174,6 +195,7 @@ def accepted_bundle_sort_key(
         parsed = parsed.replace(tzinfo=timezone.utc)
     return (
         parsed.astimezone(timezone.utc),
+        (fraction + "000000000")[:9],
         accepted_at,
         envelope["runId"],
     )

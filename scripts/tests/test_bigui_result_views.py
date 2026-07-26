@@ -228,6 +228,26 @@ def test_previous_run_is_selected_by_acceptance_time() -> None:
     )
 
 
+def test_acceptance_sort_supports_seven_digit_fractional_seconds() -> None:
+    builder = load_builder()
+    earlier = {
+        "envelope": {
+            "runId": "earlier",
+            "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+        }
+    }
+    later = {
+        "envelope": {
+            "runId": "later",
+            "acceptedAt": "2026-07-26T22:19:06.7064424+00:00",
+        }
+    }
+
+    assert builder.accepted_bundle_sort_key(earlier) < (
+        builder.accepted_bundle_sort_key(later)
+    )
+
+
 def test_unchanged_progress_is_not_labeled_regressed_when_guardrail_is_missed() -> None:
     builder = load_builder()
     payload = builder.build_result_views()
