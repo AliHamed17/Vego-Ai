@@ -19,4 +19,3 @@ Record each item as `Accepted`, `Accepted with changes`, `Rejected`, or
 | IE-10 | Confirm that paper comparison is reported as not directly comparable unless the same independent protocol can be reconstructed | Deferred |
 
 No silence or incomplete entry is treated as approval.
-

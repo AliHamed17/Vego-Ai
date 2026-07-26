@@ -73,4 +73,3 @@ empirical rows never share a headline delta.
 | Positive net-correction CI excludes zero, McNemar p<0.05, no macro-F1 decline, no predefined subgroup harm | Positive result for that frozen cohort and protocol |
 
 None of these gates authorize Agent 4 changes or baseline overwrites.
-
