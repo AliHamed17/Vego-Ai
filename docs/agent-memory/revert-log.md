@@ -571,3 +571,17 @@ Record file changes and rollback notes here.
   - docs/research/independent-evidence/SUPERVISOR_DECISIONS_REQUIRED.md
 - Rollback note: Revert the five independent-evidence commits; no protected runtime or baseline artifact was modified.
 - Git commit: none recorded by script.
+
+## 2026-07-26 20:45 +03:00 - Codex - Advance independent evidence study to calibration
+
+- Files changed:
+  - docs/research/independent-evidence/decision-register.json
+  - docs/research/independent-evidence/PARTICIPANT_INFORMATION_AND_CONSENT.md
+  - schemas/independent-calibration-return-v1.schema.json
+  - schemas/independent-evidence-decision-register-v1.schema.json
+  - scripts/validate_independent_calibration_returns.py
+  - scripts/freeze_independent_calibration.py
+  - scripts/publish_independent_evidence_package.py
+  - VEGO-AI-Research-Hub.html
+- Rollback note: Revert the calibration-phase commits; the baseline, Agent 4, private mapping, expert-label count, and evaluation results were not changed.
+- Git commit: none recorded by script.
