@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "AcceptedExperimentRunBundle-v1",
+  "publicationTier": "tracked_sanitized",
+  "envelope": {
+    "schemaVersion": "ExperimentRunEnvelope-v2",
+    "experimentId": "EXP-016",
+    "runId": "EXP-016-2e9b44d98fbe",
+    "attemptId": "attempt-001",
+    "executionStatus": "succeeded",
+    "startedAt": "2026-07-26T00:30:26+00:00",
+    "completedAt": "2026-07-26T00:30:26+00:00",
+    "durationMilliseconds": null,
+    "manifestSchema": "HLayerExperimentManifest",
+    "manifestPath": "reports/generated/exp016/manifest.json",
+    "manifestSha256": "167f8436b59abf9c439af488a57f6dbadb124025280d1ac30fb108b11be5bfc1",
+    "acceptanceStatus": "accepted",
+    "acceptedAt": "2026-07-26T00:30:26+00:00",
+    "evidenceClass": "synthetic",
+    "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+    "inputHashes": {
+      "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "outputHashes": {
+      "summary": "2e9b44d98fbe1eb713804bd9274ca06b2f580390133bcedff28f7138f24a81c2"
+    },
+    "metricObservationIds": [
+      "OBS-METRIC-AUTHORITY_CORRECTION_APPLICATIONS-c3d8315a02b8",
+      "OBS-METRIC-AUTHORITY_SAFE_CASE_RATE-6f021770e33b",
+      "OBS-METRIC-AUTHORITY_TRUSTED_MEMORY_WRITES-fca664727311"
+    ],
+    "metricDefinitionHashes": {
+      "AUTHORITY_CORRECTION_APPLICATIONS": "046813843399cfc2df54b177dd1e5fe25eb8c73e8a5ded82d26c104cbb31d252",
+      "AUTHORITY_SAFE_CASE_RATE": "5830803cb8641e3d76416f78a64876bcd2fbb659f518c008e09ab7a918f46557",
+      "AUTHORITY_TRUSTED_MEMORY_WRITES": "d74098e13ab17c915c73562553ca57093ac0a86330797e1516bd76e52aecbc0a"
+    },
+    "comparisonContext": {
+      "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "partitionHash": "not_applicable",
+      "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+      "policyVersion": "m4b1-v1",
+      "promptVersion": "historical-frozen",
+      "modelIdentifier": "gpt-4o-historical-alias",
+      "metricSchemaVersion": "2.0",
+      "labelEligibility": "generalization_safe",
+      "leakageClass": "none",
+      "evidenceClass": "synthetic",
+      "architectureMode": "legacy",
+      "topology": "not_applicable",
+      "interfaceVersion": "not_applicable",
+      "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "artifactRefs": [
+      "reports/generated/exp016/summary.json"
+    ],
+    "logRef": null,
+    "evaluation": {
+      "schemaVersion": "ExperimentEvaluation-v1",
+      "experimentId": "EXP-016",
+      "runId": "EXP-016-2e9b44d98fbe",
+      "executionValid": true,
+      "deterministic": true,
+      "engineeringTargetMet": null,
+      "evidenceAdmissible": true,
+      "resultVerdict": "CONFORMANCE_PASS",
+      "criteria": [
+        {
+          "id": "SOURCE_PRESENT_AND_HASHED",
+          "passed": true,
+          "detail": "The source summary exists and has a recorded SHA-256 hash."
+        },
+        {
+          "id": "CLAIM_BOUNDARY_RECORDED",
+          "passed": true,
+          "detail": "The run records its admissible evidence boundary."
+        }
+      ],
+      "claimBoundary": "Synthetic authority safety fixtures only."
+    }
+  },
+  "metricDefinitions": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "AUTHORITY_CORRECTION_APPLICATIONS",
+      "title": "Correction applications",
+      "description": "Correction applications",
+      "formula": "correction applications",
+      "unit": "count",
+      "direction": "lower_is_better",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "AUTHORITY_SAFE_CASE_RATE",
+      "title": "Authority cases preserving baseline",
+      "description": "Authority cases preserving baseline",
+      "formula": "authority cases preserving baseline",
+      "unit": "proportion",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "AUTHORITY_TRUSTED_MEMORY_WRITES",
+      "title": "Unsafe trusted-memory writes",
+      "description": "Unsafe trusted-memory writes",
+      "formula": "unsafe trusted-memory writes",
+      "unit": "count",
+      "direction": "lower_is_better",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-AUTHORITY_CORRECTION_APPLICATIONS-c3d8315a02b8",
+      "experimentId": "EXP-016",
+      "runId": "EXP-016-2e9b44d98fbe",
+      "metricId": "AUTHORITY_CORRECTION_APPLICATIONS",
+      "metricDefinitionSha256": "046813843399cfc2df54b177dd1e5fe25eb8c73e8a5ded82d26c104cbb31d252",
+      "baselineId": "authority-state-machine",
+      "comparatorId": "negative-authority-cases",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 5,
+      "missingCount": 0,
+      "unit": "count",
+      "direction": "lower_is_better",
+      "estimand": "Correction applications",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp016/summary.json",
+      "sourceSha256": "2e9b44d98fbe1eb713804bd9274ca06b2f580390133bcedff28f7138f24a81c2",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Synthetic authority fixtures only; no live authority is granted."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-AUTHORITY_SAFE_CASE_RATE-6f021770e33b",
+      "experimentId": "EXP-016",
+      "runId": "EXP-016-2e9b44d98fbe",
+      "metricId": "AUTHORITY_SAFE_CASE_RATE",
+      "metricDefinitionSha256": "5830803cb8641e3d76416f78a64876bcd2fbb659f518c008e09ab7a918f46557",
+      "baselineId": "authority-state-machine",
+      "comparatorId": "negative-authority-cases",
+      "value": 1.0,
+      "numerator": 5,
+      "denominator": 5,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "target",
+      "estimand": "Authority cases preserving baseline",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp016/summary.json",
+      "sourceSha256": "2e9b44d98fbe1eb713804bd9274ca06b2f580390133bcedff28f7138f24a81c2",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Synthetic authority fixtures only; no live authority is granted."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-AUTHORITY_TRUSTED_MEMORY_WRITES-fca664727311",
+      "experimentId": "EXP-016",
+      "runId": "EXP-016-2e9b44d98fbe",
+      "metricId": "AUTHORITY_TRUSTED_MEMORY_WRITES",
+      "metricDefinitionSha256": "d74098e13ab17c915c73562553ca57093ac0a86330797e1516bd76e52aecbc0a",
+      "baselineId": "authority-state-machine",
+      "comparatorId": "negative-authority-cases",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 5,
+      "missingCount": 0,
+      "unit": "count",
+      "direction": "lower_is_better",
+      "estimand": "Unsafe trusted-memory writes",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp016/summary.json",
+      "sourceSha256": "2e9b44d98fbe1eb713804bd9274ca06b2f580390133bcedff28f7138f24a81c2",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Synthetic authority fixtures only; no live authority is granted."
+    }
+  ],
+  "acceptance": {
+    "schemaVersion": "RunAcceptanceRecord-v1",
+    "experimentId": "EXP-016",
+    "runId": "EXP-016-2e9b44d98fbe",
+    "status": "accepted",
+    "evaluatorVersion": "bigui-run-store-v1",
+    "evaluatedAt": "2026-07-26T00:30:26+00:00",
+    "criteriaOutcomes": [
+      {
+        "id": "SOURCE_PRESENT_AND_HASHED",
+        "passed": true,
+        "detail": "The source summary exists and has a recorded SHA-256 hash."
+      },
+      {
+        "id": "CLAIM_BOUNDARY_RECORDED",
+        "passed": true,
+        "detail": "The run records its admissible evidence boundary."
+      }
+    ],
+    "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+    "approverClass": "deterministic_validator"
+  }
+}

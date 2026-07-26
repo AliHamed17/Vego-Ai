@@ -31,7 +31,7 @@
         "track": "Mechanism readiness",
         "status": "Implemented",
         "evidence_class": "mechanism",
-        "accepted_runs": 0,
+        "accepted_runs": 1,
         "claim_boundary": "Mechanism readiness and baseline protection only; no accuracy or generalization claim.",
         "next_action": "Initial run: 27 comparisons, 3 same-pattern expert labels, 0 generalization-safe expert labels, 0 memory-informed classification changes, 2 human-review-after-memory flags. No accuracy-improvement claim allowed yet."
       },
@@ -42,7 +42,7 @@
         "track": "Evaluation infrastructure",
         "status": "Evaluation-ready",
         "evidence_class": "evaluation_ready",
-        "accepted_runs": 0,
+        "accepted_runs": 1,
         "claim_boundary": "Protocol and tooling readiness only until independent evidence is supplied.",
         "next_action": "Prepares independent expert labels for generalization-safe M4B-1 evaluation. No M4B-2, Agent 4, LLM/API, or baseline-output changes."
       },
@@ -53,7 +53,7 @@
         "track": "Evaluation infrastructure",
         "status": "Pending expert input",
         "evidence_class": "blocked",
-        "accepted_runs": 0,
+        "accepted_runs": 1,
         "claim_boundary": "The required human, evidence, or approval gate is closed.",
         "next_action": "Evaluation-first path for accuracy improvement. Stops accuracy claims when there are fewer than 20 generalization-safe expert labels; no Agent 4, M4B-2, LLM/API, embedding, or baseline-output changes."
       },
@@ -64,7 +64,7 @@
         "track": "Evaluation infrastructure",
         "status": "Synthetic fixture",
         "evidence_class": "synthetic",
-        "accepted_runs": 0,
+        "accepted_runs": 1,
         "claim_boundary": "Synthetic fixture behavior only; never human or empirical validation.",
         "next_action": "Tests candidate M4B-1.1-style policy variants under synthetic labels only. Not expert evidence; no Agent 4, M4B-2, LLM/API, embedding, eval_output, or baseline-output changes."
       },
@@ -75,7 +75,7 @@
         "track": "Evaluation infrastructure",
         "status": "Pending expert input",
         "evidence_class": "blocked",
-        "accepted_runs": 0,
+        "accepted_runs": 1,
         "claim_boundary": "Zero safe labels means accuracy and macro-F1 remain not computable; labels are never inferred or prefilled.",
         "next_action": "Prepares supervisor/expert labeling materials, validates filled labels, tracks reviewer/adjudication reliability, and blocks M4B-1.1/M4B-2 until at least 20 generalization-safe labels justify a deterministic policy change."
       },
@@ -350,7 +350,7 @@
         "track": "Observatory integrity",
         "status": "Evaluation-ready",
         "evidence_class": "evaluation_ready",
-        "accepted_runs": 0,
+        "accepted_runs": 1,
         "claim_boundary": "Source-fidelity evidence only; it does not establish classification validity or human decision value.",
         "next_action": "Run the deterministic catalog fidelity gate on every refresh."
       },
@@ -383,7 +383,7 @@
         "track": "Architecture validation",
         "status": "Offline design",
         "evidence_class": "offline",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy.",
         "next_action": "Run three repetitions over available controlled M1–M4B-1 artifacts."
       },
@@ -394,7 +394,7 @@
         "track": "Architecture validation",
         "status": "Offline design",
         "evidence_class": "offline",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "The result is a Pareto comparison and cannot approve a production topology.",
         "next_action": "Run the deterministic topology simulator and report trade-offs without ranking a winner."
       },
@@ -405,7 +405,7 @@
         "track": "Safety validation",
         "status": "Offline design",
         "evidence_class": "offline",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "Fixture safety evidence only; it is not a guarantee against every future fault.",
         "next_action": "Execute deterministic negative fixtures and preserve the legacy result on every mismatch."
       },
@@ -416,7 +416,7 @@
         "track": "Operational evaluation",
         "status": "Offline design",
         "evidence_class": "offline",
-        "accepted_runs": 0,
+        "accepted_runs": 2,
         "claim_boundary": "Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.",
         "next_action": "Benchmark current, 5×, and 10× fixtures with environment and cohort hashes."
       }
