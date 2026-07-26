@@ -2,8 +2,8 @@
   "schemaVersion": "ExperimentResultViewCollection-v1",
   "generatedAt": "2026-07-26T16:00:00+03:00",
   "publicationTier": "tracked_shareable",
-  "catalogSha256": "728e81c3ddc3aa61dbb366ebc24641eb2d0b20b4898fed789f2f0b122379d4c0",
-  "benchmarkSha256": "7ad5707908031ee3a41d840c38ecf7963acda235034228f059d42da19589e718",
+  "catalogSha256": "90bdd89e1d7b0965ba84c1d6baa82848715af2a59d414b1fc6846216ec2a8af9",
+  "benchmarkSha256": "d126d973807a681a2f24f2e0cb96550bec49ab7cdf029e3eabc725632892c6b5",
   "resultViews": [
     {
       "schemaVersion": "ExperimentResultView-v1",
@@ -11027,12 +11027,12 @@
       "status": "Offline evidence",
       "evidenceClass": "offline",
       "currentRun": {
-        "runId": "EXP-037-7e6b2fa018a8",
+        "runId": "EXP-037-f7c762464a0d",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "executionStatus": "succeeded",
         "evidenceClass": "offline",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
+        "manifestSha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -11086,7 +11086,7 @@
           "runId": "EXP-037-7e6b2fa018a8",
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-037-8e7ff0d28761",
@@ -11123,6 +11123,12 @@
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
           "current": false
+        },
+        {
+          "runId": "EXP-037-f7c762464a0d",
+          "acceptedAt": "2026-07-26T14:16:00+03:00",
+          "evidenceClass": "offline",
+          "current": true
         }
       ],
       "measurementState": {
@@ -11155,18 +11161,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 48,
-          "denominator": 48,
+          "numerator": 52,
+          "denominator": 52,
           "value": 1.0,
-          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
+          "explanation": "52/52 accepted-run execution checks pass across 13 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 37,
-          "denominator": 37,
+          "numerator": 40,
+          "denominator": 40,
           "value": 1.0,
-          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "40/40 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -11196,12 +11202,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-CF47A65227A6A48B",
+          "assessmentId": "PA-AD50CCAC6C88B022",
           "experimentId": "EXP-037",
           "metricId": "PAPER_CASE_MODEL_COUNT",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-037-e4d3f6d0c455",
-          "rightRunId": "EXP-037-7e6b2fa018a8",
+          "rightRunId": "EXP-037-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11213,12 +11219,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-5ED045305DB7C43A",
+          "assessmentId": "PA-59945E755A72932A",
           "experimentId": "EXP-037",
           "metricId": "CURRENT_CASE_MODEL_COUNT",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-037-e4d3f6d0c455",
-          "rightRunId": "EXP-037-7e6b2fa018a8",
+          "rightRunId": "EXP-037-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11230,12 +11236,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-4B82E1A9B05C0A71",
+          "assessmentId": "PA-24CCBB41310DDEC9",
           "experimentId": "EXP-037",
           "metricId": "PAPER_PATTERN_COUNT",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-037-e4d3f6d0c455",
-          "rightRunId": "EXP-037-7e6b2fa018a8",
+          "rightRunId": "EXP-037-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11247,12 +11253,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-81FB98AD4FD1C6E7",
+          "assessmentId": "PA-E7CBA1875722BB5E",
           "experimentId": "EXP-037",
           "metricId": "CURRENT_PATTERN_COUNT",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-037-e4d3f6d0c455",
-          "rightRunId": "EXP-037-7e6b2fa018a8",
+          "rightRunId": "EXP-037-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11264,12 +11270,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D48653DF4705F499",
+          "assessmentId": "PA-EF9AB950AFFDE5C2",
           "experimentId": "EXP-037",
           "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-037-e4d3f6d0c455",
-          "rightRunId": "EXP-037-7e6b2fa018a8",
+          "rightRunId": "EXP-037-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11281,12 +11287,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-C6F444142B22D128",
+          "assessmentId": "PA-50EE87FC7A70DBBB",
           "experimentId": "EXP-037",
           "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-037-e4d3f6d0c455",
-          "rightRunId": "EXP-037-7e6b2fa018a8",
+          "rightRunId": "EXP-037-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11298,12 +11304,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-89DB6ADECD14CA30",
+          "assessmentId": "PA-08E88F3F385D25EE",
           "experimentId": "EXP-037",
           "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-037-e4d3f6d0c455",
-          "rightRunId": "EXP-037-7e6b2fa018a8",
+          "rightRunId": "EXP-037-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11317,7 +11323,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-037-DB8AD6D7B29A",
+          "visualizationId": "VIS-EXP-037-FE2A4D474763",
           "experimentId": "EXP-037",
           "title": "Paper Case Model Count",
           "analyticalQuestion": "What does the latest accepted PAPER_CASE_MODEL_COUNT evidence show for EXP-037?",
@@ -11326,7 +11332,7 @@
             "PAPER_CASE_MODEL_COUNT"
           ],
           "observationIds": [
-            "OBS-METRIC-PAPER_CASE_MODEL_COUNT-db70cc410507"
+            "OBS-METRIC-PAPER_CASE_MODEL_COUNT-8407a0475982"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11337,7 +11343,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11349,7 +11355,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-037-BF6FDCCF7891",
+          "visualizationId": "VIS-EXP-037-DC2C669E2876",
           "experimentId": "EXP-037",
           "title": "Current Case Model Count",
           "analyticalQuestion": "What does the latest accepted CURRENT_CASE_MODEL_COUNT evidence show for EXP-037?",
@@ -11358,7 +11364,7 @@
             "CURRENT_CASE_MODEL_COUNT"
           ],
           "observationIds": [
-            "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-76ba5c358198"
+            "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-fa50327b0d2e"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11369,7 +11375,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11381,7 +11387,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-037-A2E5F7F30873",
+          "visualizationId": "VIS-EXP-037-C21248BD6B56",
           "experimentId": "EXP-037",
           "title": "Paper Pattern Count",
           "analyticalQuestion": "What does the latest accepted PAPER_PATTERN_COUNT evidence show for EXP-037?",
@@ -11390,7 +11396,7 @@
             "PAPER_PATTERN_COUNT"
           ],
           "observationIds": [
-            "OBS-METRIC-PAPER_PATTERN_COUNT-351bd1362cf5"
+            "OBS-METRIC-PAPER_PATTERN_COUNT-16c1bd818cc5"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11401,7 +11407,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11413,7 +11419,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-037-F5D4E3651EA1",
+          "visualizationId": "VIS-EXP-037-992B26875E4F",
           "experimentId": "EXP-037",
           "title": "Current Pattern Count",
           "analyticalQuestion": "What does the latest accepted CURRENT_PATTERN_COUNT evidence show for EXP-037?",
@@ -11422,7 +11428,7 @@
             "CURRENT_PATTERN_COUNT"
           ],
           "observationIds": [
-            "OBS-METRIC-CURRENT_PATTERN_COUNT-a35f1235f482"
+            "OBS-METRIC-CURRENT_PATTERN_COUNT-49adb755124a"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11433,7 +11439,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11445,7 +11451,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-037-AFD5D7D6A647",
+          "visualizationId": "VIS-EXP-037-75909DEAF178",
           "experimentId": "EXP-037",
           "title": "Paper Human Judgment Capability Coverage",
           "analyticalQuestion": "What does the latest accepted PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE evidence show for EXP-037?",
@@ -11454,7 +11460,7 @@
             "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE"
           ],
           "observationIds": [
-            "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-7097766b1fd9"
+            "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-ef27b08273e2"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11465,7 +11471,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11477,7 +11483,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-037-D58445BD51C2",
+          "visualizationId": "VIS-EXP-037-4D7D48A43D6F",
           "experimentId": "EXP-037",
           "title": "Current Human Judgment Capability Coverage",
           "analyticalQuestion": "What does the latest accepted CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE evidence show for EXP-037?",
@@ -11486,7 +11492,7 @@
             "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE"
           ],
           "observationIds": [
-            "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-876faa4f035c"
+            "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-35dd25d469bb"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11497,7 +11503,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11509,7 +11515,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-037-CA1521C4925A",
+          "visualizationId": "VIS-EXP-037-7C8A0646E8BC",
           "experimentId": "EXP-037",
           "title": "Paper Current Classification Comparison Eligible",
           "analyticalQuestion": "What does the latest accepted PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE evidence show for EXP-037?",
@@ -11518,7 +11524,7 @@
             "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE"
           ],
           "observationIds": [
-            "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-e4365a402131"
+            "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-36f533167259"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11529,7 +11535,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11620,7 +11626,7 @@
       "sources": [
         {
           "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+          "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
         }
       ],
       "limitations": [
@@ -11647,12 +11653,12 @@
       "status": "Offline evidence",
       "evidenceClass": "offline",
       "currentRun": {
-        "runId": "EXP-038-7e6b2fa018a8",
+        "runId": "EXP-038-f7c762464a0d",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "executionStatus": "succeeded",
         "evidenceClass": "offline",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
+        "manifestSha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -11706,7 +11712,7 @@
           "runId": "EXP-038-7e6b2fa018a8",
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-038-8e7ff0d28761",
@@ -11743,6 +11749,12 @@
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
           "current": false
+        },
+        {
+          "runId": "EXP-038-f7c762464a0d",
+          "acceptedAt": "2026-07-26T14:16:00+03:00",
+          "evidenceClass": "offline",
+          "current": true
         }
       ],
       "measurementState": {
@@ -11775,18 +11787,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 48,
-          "denominator": 48,
+          "numerator": 52,
+          "denominator": 52,
           "value": 1.0,
-          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
+          "explanation": "52/52 accepted-run execution checks pass across 13 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 37,
-          "denominator": 37,
+          "numerator": 40,
+          "denominator": 40,
           "value": 1.0,
-          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "40/40 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -11816,12 +11828,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-E6B504DC7D647422",
+          "assessmentId": "PA-046FE87E1C418988",
           "experimentId": "EXP-038",
           "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-038-e4d3f6d0c455",
-          "rightRunId": "EXP-038-7e6b2fa018a8",
+          "rightRunId": "EXP-038-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11833,12 +11845,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-F5B5E7A9167E76E0",
+          "assessmentId": "PA-A298B876CF0EB15F",
           "experimentId": "EXP-038",
           "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-038-e4d3f6d0c455",
-          "rightRunId": "EXP-038-7e6b2fa018a8",
+          "rightRunId": "EXP-038-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -11852,7 +11864,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-038-D09F77E39BAA",
+          "visualizationId": "VIS-EXP-038-1BB287CDA52B",
           "experimentId": "EXP-038",
           "title": "Architecture Scorecard Demonstrated Dimensions",
           "analyticalQuestion": "What does the latest accepted ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS evidence show for EXP-038?",
@@ -11861,7 +11873,7 @@
             "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS"
           ],
           "observationIds": [
-            "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-173872742311"
+            "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-fecdad413aab"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11872,7 +11884,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11884,7 +11896,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-038-D46EEAA36C72",
+          "visualizationId": "VIS-EXP-038-3FC76EBE397F",
           "experimentId": "EXP-038",
           "title": "Architecture Scorecard Unmeasured Dimensions",
           "analyticalQuestion": "What does the latest accepted ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS evidence show for EXP-038?",
@@ -11893,7 +11905,7 @@
             "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS"
           ],
           "observationIds": [
-            "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-1debe062e485"
+            "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-4c45c95fc968"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -11904,7 +11916,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -11926,7 +11938,7 @@
       "sources": [
         {
           "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+          "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
         }
       ],
       "limitations": [
@@ -11952,12 +11964,12 @@
       "status": "Offline evidence",
       "evidenceClass": "offline",
       "currentRun": {
-        "runId": "EXP-039-7e6b2fa018a8",
+        "runId": "EXP-039-f7c762464a0d",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "executionStatus": "succeeded",
         "evidenceClass": "offline",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
+        "manifestSha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -12011,7 +12023,7 @@
           "runId": "EXP-039-7e6b2fa018a8",
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-039-8e7ff0d28761",
@@ -12048,6 +12060,12 @@
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
           "current": false
+        },
+        {
+          "runId": "EXP-039-f7c762464a0d",
+          "acceptedAt": "2026-07-26T14:16:00+03:00",
+          "evidenceClass": "offline",
+          "current": true
         }
       ],
       "measurementState": {
@@ -12080,18 +12098,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 48,
-          "denominator": 48,
+          "numerator": 52,
+          "denominator": 52,
           "value": 1.0,
-          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
+          "explanation": "52/52 accepted-run execution checks pass across 13 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 37,
-          "denominator": 37,
+          "numerator": 40,
+          "denominator": 40,
           "value": 1.0,
-          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "40/40 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -12121,12 +12139,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-C5AC59610BA62F58",
+          "assessmentId": "PA-6F413FD202F6ECBA",
           "experimentId": "EXP-039",
           "metricId": "DIRECT_COMPARISON_GROUPS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-039-e4d3f6d0c455",
-          "rightRunId": "EXP-039-7e6b2fa018a8",
+          "rightRunId": "EXP-039-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -12138,12 +12156,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-747376D12C6E6EFD",
+          "assessmentId": "PA-3E90E423599CD359",
           "experimentId": "EXP-039",
           "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-039-e4d3f6d0c455",
-          "rightRunId": "EXP-039-7e6b2fa018a8",
+          "rightRunId": "EXP-039-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -12157,7 +12175,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-039-3FE4E05B5E5A",
+          "visualizationId": "VIS-EXP-039-2E0A9AF5A74B",
           "experimentId": "EXP-039",
           "title": "Direct Comparison Groups",
           "analyticalQuestion": "What does the latest accepted DIRECT_COMPARISON_GROUPS evidence show for EXP-039?",
@@ -12166,7 +12184,7 @@
             "DIRECT_COMPARISON_GROUPS"
           ],
           "observationIds": [
-            "OBS-METRIC-DIRECT_COMPARISON_GROUPS-7078976b8576"
+            "OBS-METRIC-DIRECT_COMPARISON_GROUPS-7bc05dbe9645"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -12177,7 +12195,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -12189,7 +12207,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-039-E5898AC77184",
+          "visualizationId": "VIS-EXP-039-774E2210E92A",
           "experimentId": "EXP-039",
           "title": "Incompatible Comparisons Suppressed",
           "analyticalQuestion": "What does the latest accepted INCOMPATIBLE_COMPARISONS_SUPPRESSED evidence show for EXP-039?",
@@ -12198,7 +12216,7 @@
             "INCOMPATIBLE_COMPARISONS_SUPPRESSED"
           ],
           "observationIds": [
-            "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-67870ce36df6"
+            "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-ede80a364eb6"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -12209,7 +12227,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -12231,7 +12249,7 @@
       "sources": [
         {
           "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+          "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
         }
       ],
       "limitations": [
@@ -12258,12 +12276,12 @@
       "status": "Offline evidence",
       "evidenceClass": "offline",
       "currentRun": {
-        "runId": "EXP-040-7e6b2fa018a8",
+        "runId": "EXP-040-f7c762464a0d",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "executionStatus": "succeeded",
         "evidenceClass": "offline",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
+        "manifestSha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -12317,7 +12335,7 @@
           "runId": "EXP-040-7e6b2fa018a8",
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-040-8e7ff0d28761",
@@ -12354,6 +12372,12 @@
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
           "current": false
+        },
+        {
+          "runId": "EXP-040-f7c762464a0d",
+          "acceptedAt": "2026-07-26T14:16:00+03:00",
+          "evidenceClass": "offline",
+          "current": true
         }
       ],
       "measurementState": {
@@ -12386,18 +12410,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 48,
-          "denominator": 48,
+          "numerator": 52,
+          "denominator": 52,
           "value": 1.0,
-          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
+          "explanation": "52/52 accepted-run execution checks pass across 13 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 37,
-          "denominator": 37,
+          "numerator": 40,
+          "denominator": 40,
           "value": 1.0,
-          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "40/40 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -12427,12 +12451,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-79B0C4EF73754782",
+          "assessmentId": "PA-42143CB54FAD46FA",
           "experimentId": "EXP-040",
           "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-040-e4d3f6d0c455",
-          "rightRunId": "EXP-040-7e6b2fa018a8",
+          "rightRunId": "EXP-040-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -12444,12 +12468,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-2340A9D274A85213",
+          "assessmentId": "PA-FD5B37CA7962E9FD",
           "experimentId": "EXP-040",
           "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-040-e4d3f6d0c455",
-          "rightRunId": "EXP-040-7e6b2fa018a8",
+          "rightRunId": "EXP-040-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -12461,12 +12485,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-521F9AA0563F31C2",
+          "assessmentId": "PA-62194CF66D458011",
           "experimentId": "EXP-040",
           "metricId": "THESIS_HYPOTHESES_CONFIRMED",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-040-e4d3f6d0c455",
-          "rightRunId": "EXP-040-7e6b2fa018a8",
+          "rightRunId": "EXP-040-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -12478,12 +12502,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-1BB2DFBB005889A1",
+          "assessmentId": "PA-2687CEB306D49C5B",
           "experimentId": "EXP-040",
           "metricId": "THESIS_TRACEABILITY_RECORDS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-040-e4d3f6d0c455",
-          "rightRunId": "EXP-040-7e6b2fa018a8",
+          "rightRunId": "EXP-040-f7c762464a0d",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -12497,7 +12521,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-040-7DFA48AD5D7B",
+          "visualizationId": "VIS-EXP-040-FF29E1A42A98",
           "experimentId": "EXP-040",
           "title": "Thesis Safe Current Claims",
           "analyticalQuestion": "What does the latest accepted THESIS_SAFE_CURRENT_CLAIMS evidence show for EXP-040?",
@@ -12506,7 +12530,7 @@
             "THESIS_SAFE_CURRENT_CLAIMS"
           ],
           "observationIds": [
-            "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-63d46e0e6207"
+            "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-6ae8cccb51c2"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -12517,7 +12541,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -12529,7 +12553,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-040-7B374F8BEACF",
+          "visualizationId": "VIS-EXP-040-254ACC20D6AA",
           "experimentId": "EXP-040",
           "title": "Thesis Empirical Improvement Claims Ready",
           "analyticalQuestion": "What does the latest accepted THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY evidence show for EXP-040?",
@@ -12538,7 +12562,7 @@
             "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY"
           ],
           "observationIds": [
-            "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-eb75b765d65b"
+            "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-55ef54ffbe86"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -12549,7 +12573,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -12561,7 +12585,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-040-E3FD5F3CE913",
+          "visualizationId": "VIS-EXP-040-E621F2D0DDD8",
           "experimentId": "EXP-040",
           "title": "Thesis Hypotheses Confirmed",
           "analyticalQuestion": "What does the latest accepted THESIS_HYPOTHESES_CONFIRMED evidence show for EXP-040?",
@@ -12570,7 +12594,7 @@
             "THESIS_HYPOTHESES_CONFIRMED"
           ],
           "observationIds": [
-            "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-8765a251e156"
+            "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-3e3441d3f0bf"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -12581,7 +12605,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -12593,7 +12617,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-040-043AFAD7AA60",
+          "visualizationId": "VIS-EXP-040-16FEC2431C9E",
           "experimentId": "EXP-040",
           "title": "Thesis Traceability Records",
           "analyticalQuestion": "What does the latest accepted THESIS_TRACEABILITY_RECORDS evidence show for EXP-040?",
@@ -12602,7 +12626,7 @@
             "THESIS_TRACEABILITY_RECORDS"
           ],
           "observationIds": [
-            "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-6602f183bc31"
+            "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-d3c9606c948f"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -12613,7 +12637,7 @@
           "sources": [
             {
               "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-              "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+              "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
             }
           ],
           "observationDate": "2026-07-26",
@@ -12635,7 +12659,7 @@
       "sources": [
         {
           "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e"
+          "sha256": "f7c762464a0d9a145723de35740d47dfbb23d6c905a2d5072483328d87208981"
         }
       ],
       "limitations": [
@@ -12719,7 +12743,7 @@
   "summary": {
     "experimentCount": 41,
     "currentAcceptedRunCount": 26,
-    "historicalAcceptedRunCount": 130,
+    "historicalAcceptedRunCount": 134,
     "declaredMetricCount": 149,
     "observedMetricCount": 107,
     "nonNullMetricCount": 97,
