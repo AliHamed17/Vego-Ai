@@ -2,12 +2,12 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-25 by Codex (unified runtime, security hardening, and final review package)
+**Last Updated:** 2026-07-26 by Codex (experiment benchmark, immutable run history, and results-first BigUI)
 
 ---
 
 ## 1. Quick Status (< 10 lines)
-* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. PR #8 records the thesis evidence release; PR #10 is the active unified-runtime and security-hardening publication route. Live GitHub remains authoritative for review and merge state.
+* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. PR #8 records the thesis evidence release; PR #10 is the unified-runtime dependency; stacked PR #11 is the BigUI experiment-platform publication route. Live GitHub remains authoritative for review and merge state.
 * Two constraints are active: offline H-layer architecture/experiment hardening and the EXP-005 human-label gate for the parked evaluation track.
 * The machine-derived July 1 meeting record supports a **framework-first** direction pending participant confirmation. M-02 through M-05 have no recorded outcomes.
 * July skills, prompt requirements, and six detailed specifications are **provisional drafts**, not approved interfaces. `allowed-touch-proposal.md` is also unapproved.
@@ -15,6 +15,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 * **MediVARIA draft added (2026-07-04):** a provisional PhD/future-work proposal exists, but it is not supervisor-endorsed clinical work. MSc evidence remains education-only; there is no patient data or clinical-performance evidence in this repo.
 * **Accuracy Verdict:** *Accuracy improvement cannot be evaluated yet* (0 generalization-safe real labels exist). The EXP-005 gate now gates the PARKED evaluation track only - not framework-track doc/spec work.
 * **Thesis evidence package (2026-07-25):** a B0-B5 evidence ladder, canonical evidence snapshot, claim/chapter traceability, EXP-019..029 gated protocols, a 91-page review DOCX/PDF, and offline baseline-progress HTML are prepared and manifest-bound. This improves reliability and evaluation rigor; it does not establish an accuracy gain.
+* **All-experiment benchmark (2026-07-26):** EXP-000..040 are evaluated with seven independent dimensions. Twenty-six experiments have current source-backed runs: 22 `MEASURED_PASS`, four `MEASURED_PARTIAL`, 13 `GATED_NOT_RUN`, and two `PARKED_NO_RUN`. `CurrentRunIndex-v1` identifies the current projection while 73 accepted bundles and 690 observations remain immutable history. Current accuracy evidence is still zero.
 
 ---
 
@@ -29,8 +30,8 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
   -> M4B-1 Deterministic Memory-Informed Comparison (parallel experimental comparison)
 ```
 * **Git Repository:** Initialized; baseline pushed to private `AliHamed17/Vego-Ai`.
-* **Git orientation:** PR #10 is the active hardening publication route. Run live Git checks for branch, revision, PR state, approval, protection, and cleanliness; durable memory intentionally does not pin volatile values. The visualizer tag `research-state-visualizer-ux-clean` names a historical commit, not current workspace state.
-* **Publication records:** PR #6 covers earlier schema/test hardening; PR #8 covers the thesis evidence package; PR #10 covers unified contracts, parity, security, provenance, and final package reconciliation.
+* **Git orientation:** PR #11 is stacked on PR #10 for the experiment benchmark and BigUI. Run live Git checks for branch, revision, PR state, approval, protection, and cleanliness; durable memory intentionally does not pin volatile values.
+* **Publication records:** PR #6 covers earlier schema/test hardening; PR #8 covers the thesis evidence package; PR #10 covers unified contracts, parity, security, and provenance; PR #11 covers the results-first experiment observatory and benchmark.
 * **Tags:** `milestone-m3-human-judgment-memory`, `milestone-m4a-memory-advisory`, `research-state-m4a-clean`, `research-state-results-dashboard`, `research-state-m4b1-deterministic-comparison`.
 
 ---
@@ -73,13 +74,13 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 
 * **Original Package:** Extracted to `VEGO-AI/`.
 * **Framework Code:** `VEGO-AI/framework/human_feedback_manager.py`, `memory_advisor.py`, `build_results_dashboard.py`.
-* **Tests:** Current unsuppressed rerun on 2026-07-25: 113 passed in `VEGO-AI/tests`; 113 passed plus 7 subtests in `scripts/tests`; 46 passed in `tests/hlayer_offline`; the complete controlled/source/release gate passed.
+* **Tests:** The 2026-07-26 benchmark pass added source, schema, run-history, comparison, report, and browser tests. Final unsuppressed suite counts must be taken from the latest verification record rather than copied from this orientation page.
 * **Schemas:** runtime schemas remain unchanged; the evidence package adds document-level schemas for the evidence snapshot, gold labels, policy candidates, and evaluation-run manifests.
 * **Latest Run ID:** `20260614-122150` (27 comparisons, 0 differences, 2 review flags, 0 changes to baseline behavior).
 </details>
 
 <details>
-<summary><b>6.2 Evaluation & Experiment Details (EXP-001...027)</b></summary>
+<summary><b>6.2 Evaluation & Experiment Details (EXP-001...040)</b></summary>
 
 * **EXP-001 (Mechanism):** 27 rows, 3 same-pattern labels, 0 generalization-safe labels.
 * **EXP-002 (Generalization candidates):** 24 safe candidate rows identified for expert labeling.
@@ -87,6 +88,7 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 * **EXP-004 (Sensitivity):** Synthetic policy screening only (no real evidence).
 * **EXP-005 (Real-label gate):** Tooling generates blind reviews, reliability stats, and kappa metrics. Closed until expert labels are added.
 * **EXP-019..027 (Preregistered next phase):** reviewer calibration, independent labeling, development-only baseline error analysis, routing/retrieval validity, deterministic policy development, one-time sealed holdout, external education replication, human-effort evaluation, and ablation/robustness. They are planned protocols, not completed evidence.
+* **EXP-030..040:** BigUI integrity, gated human-value protocols, runtime parity, topology trade-offs, authority fault injection, operational scale, paper reconciliation, architecture scorecard, valid cross-experiment deltas, and thesis-claim readiness. Only source-backed mechanism/offline results are populated; human and empirical cells remain empty.
 </details>
 
 <details>

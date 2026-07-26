@@ -97,8 +97,8 @@ last accepted tracked output unchanged.
   15 protocol/gated/parked, 22 measured passes, four measured partials,
   13 gated non-runs, and two parked records.
 - `CurrentRunIndex-v1` selects one deterministic current projection for each
-  of the 26 executed experiments while preserving all 69 accepted bundles and
-  675 source-linked metric observations as immutable history.
+  of the 26 executed experiments while preserving all 73 accepted bundles and
+  690 source-linked metric observations as immutable history.
 - The latest-run guardrail view assesses 62 target-bearing or required-null
   observations: 41 met, 11 routing targets missed, and 10 empirical fields
   remained intentionally not computable. Historical misses remain visible

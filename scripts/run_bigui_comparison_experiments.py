@@ -450,8 +450,10 @@ def build() -> dict[str, Any]:
                 "right": mode,
                 "directlyComparable": True,
                 "deltas": {
-                    "meanP95RatioToLegacy": sum(values) / len(values),
-                    "maxP95RatioToLegacy": max(values),
+                    "meanP95RatioToLegacy": round(
+                        sum(values) / len(values), 6
+                    ),
+                    "maxP95RatioToLegacy": round(max(values), 6),
                 },
                 "interpretation": (
                     "Machine-specific operational ratio only; it does not "

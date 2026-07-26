@@ -499,7 +499,7 @@
           {
             "deltas": {
               "maxP95RatioToLegacy": 1.11319,
-              "meanP95RatioToLegacy": 1.0111806666666665
+              "meanP95RatioToLegacy": 1.011181
             },
             "directlyComparable": true,
             "family": "runtime_mode",
@@ -510,7 +510,7 @@
           {
             "deltas": {
               "maxP95RatioToLegacy": 1.07407,
-              "meanP95RatioToLegacy": 1.0112496666666668
+              "meanP95RatioToLegacy": 1.01125
             },
             "directlyComparable": true,
             "family": "runtime_mode",
@@ -803,7 +803,7 @@
     }
   ],
   "generatedAt": "2026-07-26T14:16:00+03:00",
-  "normalizedSha256": "fb0d2f0d0705c401bf830e16c7ae57ec981468a6eba951938af19f5750615046",
+  "normalizedSha256": "d68a8be3eb6ee0705acc46d86450cead390acede6159970653175701881a3681",
   "paperBaseline": {
     "caseModels": 178,
     "occasional": 18,
