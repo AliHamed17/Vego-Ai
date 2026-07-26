@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "MetricObservation-v1",
+  "metricId": "ARCHITECTURE_PARITY_RATE",
+  "value": 1.0,
+  "numerator": 27,
+  "denominator": 27,
+  "unit": "proportion",
+  "direction": "higher_is_better",
+  "confidenceInterval": null,
+  "sourcePath": "docs/research/bigui/architecture-fixture-results-v1.json",
+  "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "evidenceClass": "offline",
+  "observationDate": "2026-07-26",
+  "cohortHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "metricSchemaVersion": "1.0",
+  "claimBoundary": "Mechanism parity only; this is not classification-validity evidence."
+}

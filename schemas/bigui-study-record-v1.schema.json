@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/bigui-study-record-v1.schema.json",
+  "title": "BigUIStudyRecord-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "studyId",
+    "participantId",
+    "participantRole",
+    "consented",
+    "interfaceVersion",
+    "interfaceSha256",
+    "tasks",
+    "susScore",
+    "rawLocalOnly",
+    "containsDirectIdentifiers"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "BigUIStudyRecord-v1"},
+    "studyId": {"enum": ["EXP-031", "EXP-032"]},
+    "participantId": {"type": "string", "pattern": "^P-[0-9a-f]{12}$"},
+    "participantRole": {
+      "enum": ["supervisor", "domain_reviewer", "researcher", "student", "other"]
+    },
+    "consented": {"const": true},
+    "interfaceVersion": {"type": "string", "minLength": 1},
+    "interfaceSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "taskId",
+          "completed",
+          "correct",
+          "durationSeconds",
+          "seqScore",
+          "navigationErrors",
+          "overclaimErrors"
+        ],
+        "properties": {
+          "taskId": {"type": "string", "minLength": 1},
+          "completed": {"type": "boolean"},
+          "correct": {"type": "boolean"},
+          "durationSeconds": {"type": "number", "minimum": 0},
+          "seqScore": {"type": "integer", "minimum": 1, "maximum": 7},
+          "navigationErrors": {"type": "integer", "minimum": 0},
+          "overclaimErrors": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "susScore": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "rawLocalOnly": {"const": true},
+    "containsDirectIdentifiers": {"const": false}
+  }
+}

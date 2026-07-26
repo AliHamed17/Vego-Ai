@@ -32,6 +32,9 @@ Invoke-Gate "official baseline byte and semantic locks" {
 Invoke-Gate "legacy/unified controlled parity" {
     uv run python scripts/verify_hlayer_controlled_parity.py
 }
+Invoke-Gate "BigUI controlled-corpus architecture checks" {
+    uv run python scripts/run_bigui_architecture_experiments.py --check --controlled
+}
 $guardMode = if ($Refresh) { "--refresh" } else { "--check" }
 Invoke-Gate "EXP-005, EXP-012, baseline, and claim evidence guard" {
     uv run python scripts/check_evidence_consistency.py $guardMode

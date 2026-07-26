@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/architecture-variant-v1.schema.json",
+  "title": "ArchitectureVariant-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "kind",
+    "title",
+    "status",
+    "implemented",
+    "approved",
+    "default",
+    "contractVersion",
+    "failureBehavior",
+    "humanAuthorityPreserved",
+    "baselineMutationAllowed",
+    "evidenceClass",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ArchitectureVariant-v1"},
+    "id": {
+      "enum": ["legacy", "unified", "parity", "topology-a", "topology-b", "topology-c"]
+    },
+    "kind": {"enum": ["runtime_mode", "h_layer_topology"]},
+    "title": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": [
+        "Implemented",
+        "Delivered — provisional",
+        "Documented — parked",
+        "Offline design",
+        "Offline evidence",
+        "Synthetic fixture",
+        "Evaluation-ready",
+        "Pending expert input",
+        "Proposal — not approved",
+        "Blocked",
+        "Confirmed outcome"
+      ]
+    },
+    "implemented": {"type": "boolean"},
+    "approved": {"type": "boolean"},
+    "default": {"type": "boolean"},
+    "contractVersion": {"const": "1.0"},
+    "failureBehavior": {"type": "string", "minLength": 1},
+    "humanAuthorityPreserved": {"const": true},
+    "baselineMutationAllowed": {"const": false},
+    "evidenceClass": {
+      "enum": ["mechanism", "offline", "proposal", "blocked"]
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"kind": {"const": "h_layer_topology"}}},
+      "then": {
+        "properties": {
+          "approved": {"const": false},
+          "default": {"const": false}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"default": {"const": true}}},
+      "then": {"properties": {"id": {"const": "legacy"}}}
+    }
+  ]
+}

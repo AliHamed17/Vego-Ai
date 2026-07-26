@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "ComparisonEligibility-v1",
+  "leftRunId": "legacy-fixture-v1",
+  "rightRunId": "unified-fixture-v1",
+  "eligible": true,
+  "status": "Directly comparable",
+  "checks": [
+    {"field": "datasetHash", "left": "a", "right": "a", "matches": true},
+    {"field": "partitionHash", "left": "b", "right": "b", "matches": true},
+    {"field": "baselineRevision", "left": "c", "right": "c", "matches": true},
+    {"field": "policyVersion", "left": "d", "right": "d", "matches": true},
+    {"field": "promptVersion", "left": "e", "right": "e", "matches": true},
+    {"field": "modelIdentifier", "left": "f", "right": "f", "matches": true},
+    {"field": "metricSchemaVersion", "left": "1", "right": "1", "matches": true},
+    {"field": "labelEligibility", "left": "none", "right": "none", "matches": true},
+    {"field": "leakageClass", "left": "none", "right": "none", "matches": true},
+    {"field": "evidenceClass", "left": "offline", "right": "offline", "matches": true}
+  ],
+  "reasons": []
+}

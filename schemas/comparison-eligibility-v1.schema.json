@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/comparison-eligibility-v1.schema.json",
+  "title": "ComparisonEligibility-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "leftRunId",
+    "rightRunId",
+    "eligible",
+    "status",
+    "checks",
+    "reasons"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ComparisonEligibility-v1"},
+    "leftRunId": {"type": "string", "minLength": 1},
+    "rightRunId": {"type": "string", "minLength": 1},
+    "eligible": {"type": "boolean"},
+    "status": {"enum": ["Directly comparable", "Not directly comparable"]},
+    "checks": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "left", "right", "matches"],
+        "properties": {
+          "field": {
+            "enum": [
+              "datasetHash",
+              "partitionHash",
+              "baselineRevision",
+              "policyVersion",
+              "promptVersion",
+              "modelIdentifier",
+              "metricSchemaVersion",
+              "labelEligibility",
+              "leakageClass",
+              "evidenceClass"
+            ]
+          },
+          "left": {"type": ["string", "null"]},
+          "right": {"type": ["string", "null"]},
+          "matches": {"type": "boolean"}
+        }
+      }
+    },
+    "reasons": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"eligible": {"const": true}}},
+      "then": {
+        "properties": {
+          "status": {"const": "Directly comparable"},
+          "reasons": {"maxItems": 0}
+        }
+      },
+      "else": {
+        "properties": {
+          "status": {"const": "Not directly comparable"},
+          "reasons": {"minItems": 1}
+        }
+      }
+    }
+  ]
+}
