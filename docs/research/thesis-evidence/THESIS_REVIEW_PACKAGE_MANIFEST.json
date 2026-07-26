@@ -2,14 +2,14 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-26T00:33:42+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "bb36ed3ab8fdc40d848888e9e4af60a221d19d60",
-  "packageRevision": "4acadba5c4fe08fbc6157c31245bbbab9480e73d",
-  "sourceTreeHash": "e6ce812871174c7e5e3d1888169571967df23e7af1bb78f0973a933b7afb8513",
+  "sourceRevision": "b77417701b903155d823cde3ac1f70843627039f",
+  "packageRevision": "8af9b18a09346e451dfed651697cecd58671094b",
+  "sourceTreeHash": "23b721875d442ea09977fa049ce5c43389b2385c1233075ba4c69a615d1a001e",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
+    "sha256": "20ada09c5180627940c3191763d16bdeaf6b8b10189757d861856418916ad7ad",
     "bytes": 48267,
     "tracked": true
   },
@@ -22,7 +22,7 @@
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "3237786886ffa5460044a8db275d2d822982653ec5c2a8d799268bdc46510eab",
+      "sha256": "666475998bddb283b266ec23dcb1478d86d01e11e66371fabf1cb7432654cafb",
       "bytes": 81862,
       "tracked": true
     }
@@ -131,7 +131,7 @@
     },
     {
       "path": "experiments/registry.md",
-      "sha256": "fa8f1825c721154dbb620f56917ed9d3e93b8ea9301b801058383a77a5f24241"
+      "sha256": "0e27749289fd85e7cd7bda1a9ab6fd31f38168d48b2b375b880e44f71c03f9eb"
     },
     {
       "path": "requirements-thesis.txt",
@@ -235,7 +235,7 @@
     },
     {
       "path": "scripts/verify-source.ps1",
-      "sha256": "d26dcb9145a2985b29396f58981d40c87dc12d0a8c657d36286f70a5f7f03bdc"
+      "sha256": "0c93156ff18554b3b43c7cbf564326e541fd8803648fc92bd4b0b15c73620b0f"
     },
     {
       "path": "scripts/visualization_agent.py",
@@ -331,7 +331,7 @@
     }
   ],
   "toolVersions": {
-    "python": "3.10.0",
+    "python": "3.13.3",
     "jsonschema": "4.26.0"
   },
   "protectedRuntimeChanged": false,
