@@ -85,7 +85,7 @@ async function verifyPage(viewport) {
     ["#label-funnel .funnel-stage", 4, "label stages"],
     ["#accuracy-panels .empty-result", 4, "blank performance cards"],
     ["#paired-matrix .matrix-empty", 4, "blank paired cells"],
-    ["#source-grid .source-card", 11, "source cards"],
+    ["#source-grid .source-card", 12, "source cards"],
     ["#benchmark-dimensions .dimension-node", 7, "benchmark dimensions"],
     ["#benchmark-baseline-ladder .baseline-stage", 6, "benchmark stages"],
     ["#benchmark-highlights .tradeoff-card", 12, "benchmark result highlights"],

@@ -651,6 +651,7 @@ def build_snapshot() -> dict[str, Any]:
             "metricObservationsV2",
             "comparisonRules",
             "acceptedRunBundles",
+            "currentRunIndex",
             "paperBaseline",
             "baselineComparisonResults",
         )
@@ -665,16 +666,23 @@ def build_snapshot() -> dict[str, Any]:
         bundles_by_experiment[bundle["envelope"]["experimentId"]].append(
             bundle
         )
-    latest_bundle_by_experiment = {
-        experiment_id: max(
-            bundles,
-            key=lambda item: (
-                item["envelope"]["completedAt"],
-                item["envelope"]["runId"],
-            ),
-        )
-        for experiment_id, bundles in bundles_by_experiment.items()
+    bundle_index = {
+        (
+            bundle["envelope"]["experimentId"],
+            bundle["envelope"]["runId"],
+        ): bundle
+        for bundle in catalog["acceptedRunBundles"]
     }
+    latest_bundle_by_experiment = {}
+    for current_run in catalog["currentRunIndex"]["currentRuns"]:
+        key = (current_run["experimentId"], current_run["runId"])
+        bundle = bundle_index.get(key)
+        if bundle is None:
+            raise ValueError(
+                "current run index points to a missing bundle: "
+                f"{current_run['experimentId']} {current_run['runId']}"
+            )
+        latest_bundle_by_experiment[current_run["experimentId"]] = bundle
 
     safe_n = catalog["programState"]["safeLabels"]
     records: list[dict[str, Any]] = []

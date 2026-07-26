@@ -71,6 +71,30 @@ def test_benchmark_is_deterministic_complete_and_schema_valid() -> None:
             assert metric["sourcePath"]
             assert metric["observationDate"]
             assert metric["claimBoundary"]
+    current_ids = {
+        item["experimentId"]: item["runId"]
+        for item in json.loads(
+            (
+                ROOT / "experiments" / "current-run-index-v1.json"
+            ).read_text(encoding="utf-8")
+        )["currentRuns"]
+    }
+    catalog = json.loads(
+        (
+            ROOT
+            / "docs"
+            / "research"
+            / "bigui"
+            / "experiment-catalog-snapshot-v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    current_bundle_ids = {
+        bundle["envelope"]["experimentId"]: bundle["envelope"]["runId"]
+        for bundle in catalog["acceptedRunBundles"]
+        if bundle["envelope"]["runId"]
+        == current_ids.get(bundle["envelope"]["experimentId"])
+    }
+    assert current_bundle_ids == current_ids
 
 
 def test_benchmark_never_converts_missing_empirical_evidence_to_zero() -> None:

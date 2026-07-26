@@ -96,6 +96,13 @@ last accepted tracked output unchanged.
 - `ExperimentBenchmarkSnapshot-v1` evaluates all 41 experiments: 26 executed,
   15 protocol/gated/parked, 22 measured passes, four measured partials,
   13 gated non-runs, and two parked records.
+- `CurrentRunIndex-v1` selects one deterministic current projection for each
+  of the 26 executed experiments while preserving all 69 accepted bundles and
+  675 source-linked metric observations as immutable history.
+- The latest-run guardrail view assesses 62 target-bearing or required-null
+  observations: 41 met, 11 routing targets missed, and 10 empirical fields
+  remained intentionally not computable. Historical misses remain visible
+  separately and are never mixed into the current verdict.
 - `VEGO-AI-Experiment-Benchmark-Report.html` is the offline technical analytics
   report generated from that benchmark snapshot.
 - EXP-031 and EXP-032 require consented human studies before any BigUI value

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/current-run-index-v1.schema.json",
+  "title": "CurrentRunIndex-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "publicationTier",
+    "currentRuns",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "CurrentRunIndex-v1"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "publicationTier": {"const": "tracked_sanitized"},
+    "currentRuns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "experimentId",
+          "runId",
+          "manifestSha256",
+          "completedAt"
+        ],
+        "properties": {
+          "experimentId": {
+            "type": "string",
+            "pattern": "^EXP-[0-9]{3}$"
+          },
+          "runId": {"type": "string", "minLength": 1},
+          "manifestSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "completedAt": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}

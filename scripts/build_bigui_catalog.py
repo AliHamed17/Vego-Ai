@@ -93,6 +93,8 @@ METRIC_DEFINITION_V2_SCHEMA = ROOT / "schemas" / "metric-definition-v1.schema.js
 METRIC_V2_SCHEMA = ROOT / "schemas" / "metric-observation-v2.schema.json"
 RUN_BUNDLE_SCHEMA = ROOT / "schemas" / "accepted-experiment-run-bundle-v1.schema.json"
 ACCEPTED_RUNS_DIR = ROOT / "experiments" / "accepted-runs"
+CURRENT_RUN_INDEX = ROOT / "experiments" / "current-run-index-v1.json"
+CURRENT_RUN_INDEX_SCHEMA = ROOT / "schemas" / "current-run-index-v1.schema.json"
 OUTPUT_DIR = ROOT / "docs" / "research" / "bigui"
 CATALOG_OUTPUT = OUTPUT_DIR / "experiment-catalog-snapshot-v1.json"
 ARTIFACT_MANIFEST_OUTPUT = OUTPUT_DIR / "artifact-manifest-v1.json"
@@ -1044,6 +1046,12 @@ def sources() -> list[dict[str, str]]:
             "sha256": sha256(EXPERIMENT_BENCHMARK),
             "role": "All-experiment evaluation records, program analytics, findings, and recommendations",
         },
+        {
+            "id": "current-run-index",
+            "path": CURRENT_RUN_INDEX.relative_to(ROOT).as_posix(),
+            "sha256": sha256(CURRENT_RUN_INDEX),
+            "role": "Current accepted projection for each executed experiment; older bundles remain history",
+        },
     ]
 
 
@@ -1073,6 +1081,7 @@ def build_catalog(
     baseline_comparison = load_json(BASELINE_COMPARISON)
     evaluation_standard = load_json(EVALUATION_STANDARD)
     experiment_benchmark = load_json(EXPERIMENT_BENCHMARK)
+    current_run_index = load_json(CURRENT_RUN_INDEX)
     custom = {item["id"]: item for item in bigui_program["experiments"]}
     source_revision = (
         source_revision or recorded_source_revision() or program["sourceRevision"]
@@ -1095,23 +1104,34 @@ def build_catalog(
     run_summary = run_store_summary(run_bundles)
     metric_definitions_v2: dict[str, dict[str, Any]] = {}
     metric_observations_v2: list[dict[str, Any]] = []
-    latest_bundle_by_experiment: dict[str, dict[str, Any]] = {}
+    bundles_by_identity: dict[tuple[str, str], dict[str, Any]] = {}
     for bundle in run_bundles:
         envelope = bundle["envelope"]
-        experiment_id = envelope["experimentId"]
-        current = latest_bundle_by_experiment.get(experiment_id)
-        if current is None or (
-            envelope["completedAt"],
-            envelope["runId"],
-        ) > (
-            current["envelope"]["completedAt"],
-            current["envelope"]["runId"],
-        ):
-            latest_bundle_by_experiment[experiment_id] = bundle
+        bundles_by_identity[
+            (envelope["experimentId"], envelope["runId"])
+        ] = bundle
         for definition in bundle["metricDefinitions"]:
             key = canonical_sha256(definition)
             metric_definitions_v2[key] = definition
         metric_observations_v2.extend(bundle["metricObservations"])
+    latest_bundle_by_experiment: dict[str, dict[str, Any]] = {}
+    for current_run in current_run_index["currentRuns"]:
+        key = (current_run["experimentId"], current_run["runId"])
+        bundle = bundles_by_identity.get(key)
+        if bundle is None:
+            raise ValueError(
+                "current run index points to a missing accepted bundle: "
+                f"{current_run['experimentId']} {current_run['runId']}"
+            )
+        if (
+            bundle["envelope"]["manifestSha256"]
+            != current_run["manifestSha256"]
+        ):
+            raise ValueError(
+                "current run index manifest hash mismatch: "
+                f"{current_run['experimentId']} {current_run['runId']}"
+            )
+        latest_bundle_by_experiment[current_run["experimentId"]] = bundle
     metric_ids = {item["metricId"] for item in metrics}
     runs = suite_envelopes(
         program, source_revision, architecture_fixtures, baseline
@@ -1299,6 +1319,7 @@ def build_catalog(
         },
         "acceptedRuns": runs,
         "acceptedRunBundles": run_bundles,
+        "currentRunIndex": current_run_index,
         "runStoreSummary": run_summary,
         "claimBoundaries": {
             "safeNow": thesis["claimGates"]["safeNow"],
@@ -1390,6 +1411,7 @@ def validate_catalog(
             "metricObservationsV2",
             "comparisonRules",
             "acceptedRunBundles",
+            "currentRunIndex",
             "paperBaseline",
             "baselineComparisonResults",
         )
@@ -1437,6 +1459,10 @@ def validate_catalog(
         catalog["acceptedRunBundles"]
     ):
         raise ValueError("run-store summary does not match accepted bundles")
+    jsonschema.Draft202012Validator(
+        load_json(CURRENT_RUN_INDEX_SCHEMA),
+        format_checker=format_checker,
+    ).validate(catalog["currentRunIndex"])
     known_ids = set(ids)
     for item in catalog["experiments"]:
         for dependency in item["prerequisites"]:

@@ -42,6 +42,7 @@ ARCHITECTURE = (
     / "architecture-fixture-results-v1.json"
 )
 ACCEPTED_RUNS = ROOT / "experiments" / "accepted-runs"
+CURRENT_RUN_INDEX = ROOT / "experiments" / "current-run-index-v1.json"
 SCHEMAS = ROOT / "schemas"
 OUTPUT = (
     ROOT
@@ -91,22 +92,28 @@ def metric(
 def latest_bundle(
     bundles: list[dict[str, Any]],
     experiment_id: str,
+    current_run_index: dict[str, Any],
 ) -> dict[str, Any]:
+    current_run_id = next(
+        (
+            item["runId"]
+            for item in current_run_index["currentRuns"]
+            if item["experimentId"] == experiment_id
+        ),
+        None,
+    )
     candidates = [
         item
         for item in bundles
         if item["envelope"]["experimentId"] == experiment_id
         and item["envelope"]["acceptanceStatus"] == "accepted"
+        and item["envelope"]["runId"] == current_run_id
     ]
-    if not candidates:
-        raise ValueError(f"{experiment_id} has no accepted bundle")
-    return max(
-        candidates,
-        key=lambda item: (
-            item["envelope"]["completedAt"],
-            item["envelope"]["runId"],
-        ),
-    )
+    if len(candidates) != 1:
+        raise ValueError(
+            f"current run index did not resolve exactly one {experiment_id} bundle"
+        )
+    return candidates[0]
 
 
 def observation_index(bundle: dict[str, Any]) -> dict[tuple[str, str], Any]:
@@ -146,6 +153,7 @@ def build() -> dict[str, Any]:
         format_checker=jsonschema.FormatChecker(),
     ).validate(paper)
     bundles = load_bundles(ACCEPTED_RUNS, SCHEMAS)
+    current_run_index = load_json(CURRENT_RUN_INDEX)
     dependency_experiments = {
         "EXP-007",
         "EXP-033",
@@ -249,8 +257,8 @@ def build() -> dict[str, Any]:
         ),
     ]
 
-    exp033 = latest_bundle(bundles, "EXP-033")
-    exp035 = latest_bundle(bundles, "EXP-035")
+    exp033 = latest_bundle(bundles, "EXP-033", current_run_index)
+    exp035 = latest_bundle(bundles, "EXP-035", current_run_index)
     exp033_index = observation_index(exp033)
     exp035_index = observation_index(exp035)
     empty_dimensions = "{}"
@@ -347,9 +355,9 @@ def build() -> dict[str, Any]:
         ),
     ]
 
-    exp007 = latest_bundle(bundles, "EXP-007")
-    exp034 = latest_bundle(bundles, "EXP-034")
-    exp036 = latest_bundle(bundles, "EXP-036")
+    exp007 = latest_bundle(bundles, "EXP-007", current_run_index)
+    exp034 = latest_bundle(bundles, "EXP-034", current_run_index)
+    exp036 = latest_bundle(bundles, "EXP-036", current_run_index)
     routing_load = dimensional_rows(exp007, "ROUTING_EVENT_LOAD", "mode")
     routing_coverage = dimensional_rows(
         exp007, "ROUTING_WEIGHTED_COVERAGE", "mode"
@@ -710,6 +718,15 @@ def build() -> dict[str, Any]:
             PAPER.relative_to(ROOT).as_posix(): file_sha256(PAPER),
             THESIS.relative_to(ROOT).as_posix(): file_sha256(THESIS),
             ARCHITECTURE.relative_to(ROOT).as_posix(): file_sha256(ARCHITECTURE),
+            "experiments/current-run-index-v1.json#comparison-dependencies": (
+                canonical_sha256(
+                    [
+                        item
+                        for item in current_run_index["currentRuns"]
+                        if item["experimentId"] in dependency_experiments
+                    ]
+                )
+            ),
             "experiments/accepted-runs": canonical_sha256(
                 sorted(
                     {

@@ -512,11 +512,9 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   const runEntries = (data.acceptedRunBundles || []).map((bundle,index) => ({
     ...bundle.envelope,_bundle:bundle,_key:`${index}|${bundle.envelope.experimentId}|${bundle.envelope.runId}`
   }));
-  const latestRunIdByExperiment = Object.fromEntries(Object.entries(runEntries.reduce((index,run)=>{
-    const current=index[run.experimentId];
-    if(!current||`${run.completedAt}|${run.runId}`>`${current.completedAt}|${current.runId}`)index[run.experimentId]=run;
-    return index;
-  },{})).map(([experimentId,run])=>[experimentId,run.runId]));
+  const latestRunIdByExperiment = Object.fromEntries(
+    data.currentRunIndex.currentRuns.map(item=>[item.experimentId,item.runId])
+  );
   const comparisonFields = data.comparisonRules.requiredMatchingFields;
   const i18n = {
     en:{navOverview:"Overview",navProgress:"Progress proof",navBenchmark:"Benchmark",navArchitecture:"Architecture",navExperiments:"Experiments",navResults:"Results",navEvaluation:"Validity",navWorkspaces:"MSc / PhD",navOperations:"Operations",print:"Print",
@@ -841,11 +839,9 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     const query=$("run-search").value.trim().toLowerCase();
     const evidence=$("run-evidence").value,execution=$("run-execution").value;
     const history=$("run-history").value;
-    const latestKeys=new Set(Object.values(runEntries.reduce((index,run)=>{
-      const current=index[run.experimentId];
-      if(!current||`${run.completedAt}|${run.runId}`>`${current.completedAt}|${current.runId}`)index[run.experimentId]=run;
-      return index;
-    },{})).map(run=>run._key));
+    const latestKeys=new Set(runEntries.filter(
+      run=>latestRunIdByExperiment[run.experimentId]===run.runId
+    ).map(run=>run._key));
     const filtered=runEntries.filter(run=>{
       const experiment=experiments[run.experimentId];
       const haystack=[run.experimentId,run.runId,experiment?.title,run.evidenceClass,run.manifestSchema].join(" ").toLowerCase();

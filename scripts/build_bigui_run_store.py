@@ -17,6 +17,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+import jsonschema
+
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 if str(SRC) not in sys.path:
@@ -32,6 +34,7 @@ from vego_bigui.store import (  # noqa: E402
 )
 
 ACCEPTED_ROOT = ROOT / "experiments" / "accepted-runs"
+CURRENT_INDEX = ROOT / "experiments" / "current-run-index-v1.json"
 LOCAL_ROOT = ROOT / "reports" / "generated" / "experiments"
 DATABASE = ROOT / "reports" / "generated" / "bigui" / "run-registry.sqlite"
 SCHEMA_ROOT = ROOT / "schemas"
@@ -1307,12 +1310,78 @@ def write_accepted_bundle(path: Path, bundle: dict[str, Any]) -> None:
     serialized = safe_serialized(bundle)
     if path.is_file():
         if path.read_text(encoding="utf-8") != serialized:
+            try:
+                display_path = relative(path)
+            except ValueError:
+                display_path = str(path)
             raise ValueError(
                 "accepted run bundles are immutable; refusing to overwrite "
-                f"{relative(path)}"
+                f"{display_path}"
             )
         return
     path.write_text(serialized, encoding="utf-8", newline="\n")
+
+
+def build_current_index(bundles: list[dict[str, Any]]) -> dict[str, Any]:
+    current_runs = [
+        {
+            "experimentId": bundle["envelope"]["experimentId"],
+            "runId": bundle["envelope"]["runId"],
+            "manifestSha256": bundle["envelope"]["manifestSha256"],
+            "completedAt": bundle["envelope"]["completedAt"],
+        }
+        for bundle in sorted(
+            bundles,
+            key=lambda item: item["envelope"]["experimentId"],
+        )
+    ]
+    index = {
+        "schemaVersion": "CurrentRunIndex-v1",
+        "generatedAt": max(item["completedAt"] for item in current_runs),
+        "publicationTier": "tracked_sanitized",
+        "currentRuns": current_runs,
+        "claimBoundary": (
+            "This index identifies the current deterministic projection for "
+            "each executed experiment. Older accepted bundles remain history."
+        ),
+    }
+    jsonschema.Draft202012Validator(
+        load_json(SCHEMA_ROOT / "current-run-index-v1.schema.json"),
+        format_checker=jsonschema.FormatChecker(),
+    ).validate(index)
+    return index
+
+
+def validate_current_index(
+    index: dict[str, Any], bundles: list[dict[str, Any]]
+) -> None:
+    jsonschema.Draft202012Validator(
+        load_json(SCHEMA_ROOT / "current-run-index-v1.schema.json"),
+        format_checker=jsonschema.FormatChecker(),
+    ).validate(index)
+    available = {
+        (
+            item["envelope"]["experimentId"],
+            item["envelope"]["runId"],
+            item["envelope"]["manifestSha256"],
+        )
+        for item in bundles
+    }
+    rows = index["currentRuns"]
+    experiment_ids = [item["experimentId"] for item in rows]
+    if len(experiment_ids) != len(set(experiment_ids)):
+        raise ValueError("current run index contains duplicate experiment IDs")
+    for item in rows:
+        key = (
+            item["experimentId"],
+            item["runId"],
+            item["manifestSha256"],
+        )
+        if key not in available:
+            raise ValueError(
+                "current run index points to a missing accepted bundle: "
+                f"{item['experimentId']} {item['runId']}"
+            )
 
 
 def write_local_bundle(bundle: dict[str, Any]) -> None:
@@ -1400,6 +1469,14 @@ def refresh() -> list[dict[str, Any]]:
         write_local_bundle(bundle)
         print(f"WROTE: {relative(path)}")
     loaded = load_bundles(ACCEPTED_ROOT, SCHEMA_ROOT)
+    current_index = build_current_index(bundles)
+    validate_current_index(current_index, loaded)
+    CURRENT_INDEX.write_text(
+        json.dumps(current_index, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    print(f"WROTE: {relative(CURRENT_INDEX)}")
     summary = rebuild_sqlite(loaded, DATABASE)
     summary_path = DATABASE.with_name("run-store-summary.json")
     summary_path.write_text(
@@ -1415,6 +1492,9 @@ def check() -> list[dict[str, Any]]:
     bundles = load_bundles(ACCEPTED_ROOT, SCHEMA_ROOT)
     if not bundles:
         raise ValueError("no accepted run bundles are tracked")
+    if not CURRENT_INDEX.is_file():
+        raise ValueError(f"missing current run index: {relative(CURRENT_INDEX)}")
+    validate_current_index(load_json(CURRENT_INDEX), bundles)
     summary = run_store_summary(bundles)
     if summary["uniqueExperimentRunCount"] != summary["acceptedAttemptCount"]:
         raise ValueError("accepted attempts do not map one-to-one to experiment runs")
