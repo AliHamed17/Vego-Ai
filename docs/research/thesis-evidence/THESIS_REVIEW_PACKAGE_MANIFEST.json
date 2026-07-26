@@ -3,7 +3,7 @@
   "generatedAt": "2026-07-26T00:33:42+00:00",
   "packageDate": "2026-07-25",
   "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
-  "packageRevision": "17dbcb8ca1448914bece8092e04700a8b28de76b",
+  "packageRevision": "34851a05cdf0657b96fdee3f43ec8c7a1db0b551",
   "sourceTreeHash": "57d76137adf63f73e14697444acfb8de47c160901de8f09ab674dff6d3b788aa",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
@@ -16,7 +16,7 @@
   "trackedOutputs": {
     "docx": {
       "path": "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx",
-      "sha256": "426e905f3a8cce7a64cc5b0159bccdc3d63032044302a4190efe26a29cd212b4",
+      "sha256": "912a382c5ba7a930c3ccdd2612af95d354a9cb52d1f4e0da6033a874715e8a9d",
       "bytes": 1809595,
       "tracked": true
     },
