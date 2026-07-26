@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-run-envelope-v1.schema.json",
+  "title": "ExperimentRunEnvelope-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "experimentId",
+    "runId",
+    "manifestSchema",
+    "manifestPath",
+    "manifestSha256",
+    "acceptanceStatus",
+    "acceptedAt",
+    "evidenceClass",
+    "sourceRevision",
+    "inputHashes",
+    "outputHashes",
+    "metricObservationIds",
+    "comparisonContext"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentRunEnvelope-v1"},
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "runId": {"type": "string", "minLength": 1},
+    "manifestSchema": {"type": "string", "minLength": 1},
+    "manifestPath": {
+      "type": "string",
+      "minLength": 1,
+      "not": {"pattern": "^[A-Za-z]:\\\\|^file://"}
+    },
+    "manifestSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "acceptanceStatus": {"enum": ["accepted", "rejected", "pending"]},
+    "acceptedAt": {"type": ["string", "null"], "format": "date-time"},
+    "evidenceClass": {
+      "enum": [
+        "historical",
+        "mechanism",
+        "offline",
+        "synthetic",
+        "evaluation_ready",
+        "pilot",
+        "empirical",
+        "proposal",
+        "blocked"
+      ]
+    },
+    "sourceRevision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "inputHashes": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "outputHashes": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "metricObservationIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]+$"},
+      "uniqueItems": true
+    },
+    "comparisonContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "datasetHash",
+        "partitionHash",
+        "baselineRevision",
+        "policyVersion",
+        "promptVersion",
+        "modelIdentifier",
+        "metricSchemaVersion",
+        "labelEligibility",
+        "leakageClass",
+        "evidenceClass"
+      ],
+      "properties": {
+        "datasetHash": {"type": "string", "minLength": 1},
+        "partitionHash": {"type": "string", "minLength": 1},
+        "baselineRevision": {"type": "string", "minLength": 1},
+        "policyVersion": {"type": "string", "minLength": 1},
+        "promptVersion": {"type": "string", "minLength": 1},
+        "modelIdentifier": {"type": "string", "minLength": 1},
+        "metricSchemaVersion": {"type": "string", "minLength": 1},
+        "labelEligibility": {"type": "string", "minLength": 1},
+        "leakageClass": {"type": "string", "minLength": 1},
+        "evidenceClass": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"acceptanceStatus": {"const": "accepted"}},
+        "required": ["acceptanceStatus"]
+      },
+      "then": {"properties": {"acceptedAt": {"type": "string"}}}
+    }
+  ]
+}

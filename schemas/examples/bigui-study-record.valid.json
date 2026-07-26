@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "BigUIStudyRecord-v1",
+  "studyId": "EXP-031",
+  "participantId": "P-0123456789ab",
+  "participantRole": "domain_reviewer",
+  "consented": true,
+  "interfaceVersion": "bigui-v1",
+  "interfaceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "tasks": [
+    {
+      "taskId": "identify-evidence-gate",
+      "completed": true,
+      "correct": true,
+      "durationSeconds": 42.5,
+      "seqScore": 6,
+      "navigationErrors": 0,
+      "overclaimErrors": 0
+    }
+  ],
+  "susScore": 82.5,
+  "rawLocalOnly": true,
+  "containsDirectIdentifiers": false
+}
