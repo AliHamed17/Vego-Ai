@@ -29,6 +29,10 @@ def test_accepted_run_store_is_complete_and_rebuildable(tmp_path: Path) -> None:
     assert "EXP-005" in summary["experimentIds"]
     assert "EXP-036" in summary["experimentIds"]
     assert "EXP-040" in summary["experimentIds"]
+    assert all(
+        Path(item["_bundlePath"]).name == item["_bundlePath"]
+        for item in bundles
+    )
 
     database = tmp_path / "run-registry.sqlite"
     rebuilt = rebuild_sqlite(bundles, database)

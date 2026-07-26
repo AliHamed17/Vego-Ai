@@ -180,7 +180,11 @@ def load_bundles(
                     f"duplicate metric observation {observation_id}"
                 )
             seen_observations.add(observation_id)
-        value["_bundlePath"] = path.as_posix()
+        # Internal bundle identity must be clone- and platform-stable.  The
+        # caller already supplies the accepted-run root, so an absolute path
+        # would add no provenance value and would make refresh hashes depend
+        # on the checkout location.
+        value["_bundlePath"] = path.name
         value["_bundleSha256"] = file_sha256(path)
         bundles.append(value)
     return bundles
