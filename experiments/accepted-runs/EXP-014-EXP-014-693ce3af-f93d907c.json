@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "AcceptedExperimentRunBundle-v1",
+  "publicationTier": "tracked_sanitized",
+  "envelope": {
+    "schemaVersion": "ExperimentRunEnvelope-v2",
+    "experimentId": "EXP-014",
+    "runId": "EXP-014-693ce3af-f93d907c",
+    "attemptId": "attempt-001",
+    "executionStatus": "succeeded",
+    "startedAt": "2026-07-26T00:30:26+00:00",
+    "completedAt": "2026-07-26T00:30:26+00:00",
+    "durationMilliseconds": null,
+    "manifestSchema": "HLayerExperimentManifest",
+    "manifestPath": "reports/generated/exp014/manifest.json",
+    "manifestSha256": "f93d907c4db071f62ae3f71b8045b6657e2cf5dd9d0ce060dba8b610e15c5dbd",
+    "acceptanceStatus": "accepted",
+    "acceptedAt": "2026-07-26T00:30:26+00:00",
+    "evidenceClass": "offline",
+    "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+    "inputHashes": {
+      "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "outputHashes": {
+      "summary": "693ce3afcf0e076146aa8bfe75a202d20330f8ca5d997613b5c5fad02fa8e76e"
+    },
+    "metricObservationIds": [
+      "OBS-METRIC-REPLAY_DUPLICATE_REVIEW_ITEMS-5e29784ce0f4",
+      "OBS-METRIC-REPLAY_IDENTICAL_RUNS-56b1131d2c14"
+    ],
+    "metricDefinitionHashes": {
+      "REPLAY_DUPLICATE_REVIEW_ITEMS": "7e38e8d872f552d30c39c5ed207cbb8948f4c628ef8b3861d04921c79fad98dd",
+      "REPLAY_IDENTICAL_RUNS": "3a61c1f2c98df472ec4b4ee1add689a021b5c5c1f175abb7db906641a97ed849"
+    },
+    "comparisonContext": {
+      "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "partitionHash": "not_applicable",
+      "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+      "policyVersion": "m4b1-v1",
+      "promptVersion": "historical-frozen",
+      "modelIdentifier": "gpt-4o-historical-alias",
+      "metricSchemaVersion": "2.0",
+      "labelEligibility": "generalization_safe",
+      "leakageClass": "none",
+      "evidenceClass": "offline",
+      "architectureMode": "legacy",
+      "topology": "not_applicable",
+      "interfaceVersion": "not_applicable",
+      "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "artifactRefs": [
+      "reports/generated/exp014/summary.json"
+    ],
+    "logRef": null,
+    "evaluation": {
+      "schemaVersion": "ExperimentEvaluation-v1",
+      "experimentId": "EXP-014",
+      "runId": "EXP-014-693ce3af-f93d907c",
+      "executionValid": true,
+      "deterministic": true,
+      "engineeringTargetMet": null,
+      "evidenceAdmissible": true,
+      "resultVerdict": "CONFORMANCE_PASS",
+      "criteria": [
+        {
+          "id": "SOURCE_PRESENT_AND_HASHED",
+          "passed": true,
+          "detail": "The source summary exists and has a recorded SHA-256 hash."
+        },
+        {
+          "id": "CLAIM_BOUNDARY_RECORDED",
+          "passed": true,
+          "detail": "The run records its admissible evidence boundary."
+        }
+      ],
+      "claimBoundary": "Offline replay determinism only."
+    }
+  },
+  "metricDefinitions": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "REPLAY_DUPLICATE_REVIEW_ITEMS",
+      "title": "Duplicate review item IDs",
+      "description": "Duplicate review item IDs",
+      "formula": "count(duplicate review item IDs)",
+      "unit": "duplicates",
+      "direction": "lower_is_better",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": {
+        "operator": "eq",
+        "value": 0
+      }
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "REPLAY_IDENTICAL_RUNS",
+      "title": "Identical normalized replays",
+      "description": "Identical normalized replays",
+      "formula": "count(replays matching the canonical normalized hash)",
+      "unit": "runs",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "offline",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": {
+        "operator": "eq",
+        "value": 3
+      }
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-REPLAY_DUPLICATE_REVIEW_ITEMS-5e29784ce0f4",
+      "experimentId": "EXP-014",
+      "runId": "EXP-014-693ce3af-f93d907c",
+      "metricId": "REPLAY_DUPLICATE_REVIEW_ITEMS",
+      "metricDefinitionSha256": "7e38e8d872f552d30c39c5ed207cbb8948f4c628ef8b3861d04921c79fad98dd",
+      "baselineId": "replay-input",
+      "comparatorId": "three-repetitions",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 3,
+      "missingCount": 0,
+      "unit": "duplicates",
+      "direction": "lower_is_better",
+      "estimand": "Duplicate review item IDs",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp014/summary.json",
+      "sourceSha256": "693ce3afcf0e076146aa8bfe75a202d20330f8ca5d997613b5c5fad02fa8e76e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline deterministic replay evidence only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-REPLAY_IDENTICAL_RUNS-56b1131d2c14",
+      "experimentId": "EXP-014",
+      "runId": "EXP-014-693ce3af-f93d907c",
+      "metricId": "REPLAY_IDENTICAL_RUNS",
+      "metricDefinitionSha256": "3a61c1f2c98df472ec4b4ee1add689a021b5c5c1f175abb7db906641a97ed849",
+      "baselineId": "replay-input",
+      "comparatorId": "three-repetitions",
+      "value": 3,
+      "numerator": 3,
+      "denominator": 3,
+      "missingCount": 0,
+      "unit": "runs",
+      "direction": "target",
+      "estimand": "Identical normalized replays",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp014/summary.json",
+      "sourceSha256": "693ce3afcf0e076146aa8bfe75a202d20330f8ca5d997613b5c5fad02fa8e76e",
+      "evidenceClass": "offline",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Offline deterministic replay evidence only."
+    }
+  ],
+  "acceptance": {
+    "schemaVersion": "RunAcceptanceRecord-v1",
+    "experimentId": "EXP-014",
+    "runId": "EXP-014-693ce3af-f93d907c",
+    "status": "accepted",
+    "evaluatorVersion": "bigui-run-store-v1",
+    "evaluatedAt": "2026-07-26T00:30:26+00:00",
+    "criteriaOutcomes": [
+      {
+        "id": "SOURCE_PRESENT_AND_HASHED",
+        "passed": true,
+        "detail": "The source summary exists and has a recorded SHA-256 hash."
+      },
+      {
+        "id": "CLAIM_BOUNDARY_RECORDED",
+        "passed": true,
+        "detail": "The run records its admissible evidence boundary."
+      }
+    ],
+    "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+    "approverClass": "deterministic_validator"
+  }
+}

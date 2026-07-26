@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "AcceptedExperimentRunBundle-v1",
+  "publicationTier": "tracked_sanitized",
+  "envelope": {
+    "schemaVersion": "ExperimentRunEnvelope-v2",
+    "experimentId": "EXP-017",
+    "runId": "EXP-017-9b18b744-1e71dcbb",
+    "attemptId": "attempt-001",
+    "executionStatus": "succeeded",
+    "startedAt": "2026-07-26T00:30:26+00:00",
+    "completedAt": "2026-07-26T00:30:26+00:00",
+    "durationMilliseconds": null,
+    "manifestSchema": "HLayerExperimentManifest",
+    "manifestPath": "reports/generated/exp017/manifest.json",
+    "manifestSha256": "1e71dcbb0df577ff1a80ac8c097e02d0e59494acc4bc3c6c81db99eaeedbf664",
+    "acceptanceStatus": "accepted",
+    "acceptedAt": "2026-07-26T00:30:26+00:00",
+    "evidenceClass": "synthetic",
+    "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+    "inputHashes": {
+      "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "outputHashes": {
+      "summary": "9b18b744df2f34617687258ea7a84814e33fe94cfc6d0af7d07cb4512951cf60"
+    },
+    "metricObservationIds": [
+      "OBS-METRIC-VERIFY_EXPECTED_OUTCOME_RATE-db6ba872d06e",
+      "OBS-METRIC-VERIFY_SOURCE_FAMILY_COUNT-ceef94e86d64"
+    ],
+    "metricDefinitionHashes": {
+      "VERIFY_EXPECTED_OUTCOME_RATE": "b74c4acecbd17b9569958bd86544fbdfcb3478e7fbee3f56efd8ca5fba78899c",
+      "VERIFY_SOURCE_FAMILY_COUNT": "17fecfea80836bdf09c21dcda345b5a707f61cae6e1febc94fc303fd4ffd2c13"
+    },
+    "comparisonContext": {
+      "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "partitionHash": "not_applicable",
+      "baselineRevision": "2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf",
+      "policyVersion": "m4b1-v1",
+      "promptVersion": "historical-frozen",
+      "modelIdentifier": "gpt-4o-historical-alias",
+      "metricSchemaVersion": "2.0",
+      "labelEligibility": "generalization_safe",
+      "leakageClass": "none",
+      "evidenceClass": "synthetic",
+      "architectureMode": "legacy",
+      "topology": "not_applicable",
+      "interfaceVersion": "not_applicable",
+      "pairedCohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
+    },
+    "artifactRefs": [
+      "reports/generated/exp017/summary.json"
+    ],
+    "logRef": null,
+    "evaluation": {
+      "schemaVersion": "ExperimentEvaluation-v1",
+      "experimentId": "EXP-017",
+      "runId": "EXP-017-9b18b744-1e71dcbb",
+      "executionValid": true,
+      "deterministic": true,
+      "engineeringTargetMet": null,
+      "evidenceAdmissible": true,
+      "resultVerdict": "CONFORMANCE_PASS",
+      "criteria": [
+        {
+          "id": "SOURCE_PRESENT_AND_HASHED",
+          "passed": true,
+          "detail": "The source summary exists and has a recorded SHA-256 hash."
+        },
+        {
+          "id": "CLAIM_BOUNDARY_RECORDED",
+          "passed": true,
+          "detail": "The run records its admissible evidence boundary."
+        }
+      ],
+      "claimBoundary": "Synthetic source-verification fixtures only."
+    }
+  },
+  "metricDefinitions": [
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "VERIFY_EXPECTED_OUTCOME_RATE",
+      "title": "Expected verification outcomes",
+      "description": "Expected verification outcomes",
+      "formula": "cases with expected deterministic disposition / all fixture cases",
+      "unit": "proportion",
+      "direction": "target",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    },
+    {
+      "schemaVersion": "MetricDefinition-v1",
+      "metricId": "VERIFY_SOURCE_FAMILY_COUNT",
+      "title": "Deterministic source families traced",
+      "description": "Deterministic source families traced",
+      "formula": "count(ordered source families)",
+      "unit": "source families",
+      "direction": "neutral",
+      "grain": "experiment run",
+      "requiredEvidenceClass": "synthetic",
+      "nullable": false,
+      "nullRule": "Observed from the accepted experiment run.",
+      "dimensions": [],
+      "target": null
+    }
+  ],
+  "metricObservations": [
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-VERIFY_EXPECTED_OUTCOME_RATE-db6ba872d06e",
+      "experimentId": "EXP-017",
+      "runId": "EXP-017-9b18b744-1e71dcbb",
+      "metricId": "VERIFY_EXPECTED_OUTCOME_RATE",
+      "metricDefinitionSha256": "b74c4acecbd17b9569958bd86544fbdfcb3478e7fbee3f56efd8ca5fba78899c",
+      "baselineId": "source-catalog",
+      "comparatorId": "deterministic-verification",
+      "value": 1.0,
+      "numerator": 4,
+      "denominator": 4,
+      "missingCount": 0,
+      "unit": "proportion",
+      "direction": "target",
+      "estimand": "Expected verification outcomes",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp017/summary.json",
+      "sourceSha256": "9b18b744df2f34617687258ea7a84814e33fe94cfc6d0af7d07cb4512951cf60",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Synthetic deterministic-source verification fixtures only."
+    },
+    {
+      "schemaVersion": "MetricObservation-v2",
+      "observationId": "OBS-METRIC-VERIFY_SOURCE_FAMILY_COUNT-ceef94e86d64",
+      "experimentId": "EXP-017",
+      "runId": "EXP-017-9b18b744-1e71dcbb",
+      "metricId": "VERIFY_SOURCE_FAMILY_COUNT",
+      "metricDefinitionSha256": "17fecfea80836bdf09c21dcda345b5a707f61cae6e1febc94fc303fd4ffd2c13",
+      "baselineId": "source-catalog",
+      "comparatorId": "deterministic-verification",
+      "value": 4,
+      "numerator": 4,
+      "denominator": 4,
+      "missingCount": 0,
+      "unit": "source families",
+      "direction": "neutral",
+      "estimand": "Deterministic source families traced",
+      "grain": "experiment run",
+      "dimensions": {},
+      "exclusions": [],
+      "analysisMethod": "deterministic aggregate",
+      "confidenceInterval": null,
+      "sourcePath": "reports/generated/exp017/summary.json",
+      "sourceSha256": "9b18b744df2f34617687258ea7a84814e33fe94cfc6d0af7d07cb4512951cf60",
+      "evidenceClass": "synthetic",
+      "observationDate": "2026-07-26",
+      "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
+      "metricSchemaVersion": "2.0",
+      "claimBoundary": "Synthetic deterministic-source verification fixtures only."
+    }
+  ],
+  "acceptance": {
+    "schemaVersion": "RunAcceptanceRecord-v1",
+    "experimentId": "EXP-017",
+    "runId": "EXP-017-9b18b744-1e71dcbb",
+    "status": "accepted",
+    "evaluatorVersion": "bigui-run-store-v1",
+    "evaluatedAt": "2026-07-26T00:30:26+00:00",
+    "criteriaOutcomes": [
+      {
+        "id": "SOURCE_PRESENT_AND_HASHED",
+        "passed": true,
+        "detail": "The source summary exists and has a recorded SHA-256 hash."
+      },
+      {
+        "id": "CLAIM_BOUNDARY_RECORDED",
+        "passed": true,
+        "detail": "The run records its admissible evidence boundary."
+      }
+    ],
+    "rationale": "The privacy-safe aggregate run is accepted for its stated evidence class.",
+    "approverClass": "deterministic_validator"
+  }
+}

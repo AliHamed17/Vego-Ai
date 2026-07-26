@@ -2,12 +2,12 @@
   "schemaVersion": "ExperimentBenchmarkSnapshot-v1",
   "generatedAt": "2026-07-26T16:00:00+03:00",
   "publicationTier": "tracked_sanitized",
-  "inputProjectionSha256": "245266e00a127bf9f4f47c54849b9b84daa759986c7d28989e9e38aab85e5adf",
+  "inputProjectionSha256": "b806f2a2aa1db0054cae0e23f9891cfbc318f3f9fa5ea71076df0a324cd5b133",
   "standardSha256": "1b9a814e3498ac97ac5da84e5eb15894c15583c87456491af363c3a805e3c7c5",
   "programState": {
     "registeredExperiments": 41,
-    "acceptedBundles": 91,
-    "metricObservations": 815,
+    "acceptedBundles": 124,
+    "metricObservations": 1101,
     "safeLabels": 0,
     "classificationChanges": 0,
     "baselineFrozen": true
@@ -258,9 +258,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 1,
+      "acceptedRunCount": 2,
       "observationCount": 7,
-      "historicalObservationCount": 7,
+      "historicalObservationCount": 14,
       "nullObservationCount": 0,
       "baseline": "Original Agent 4",
       "comparator": "M4B-1 parallel comparison",
@@ -284,18 +284,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 4,
-          "denominator": 4,
+          "numerator": 8,
+          "denominator": 8,
           "value": 1.0,
-          "explanation": "4/4 accepted-run execution checks pass across 1 run bundles."
+          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 3,
-          "denominator": 3,
+          "numerator": 6,
+          "denominator": 6,
           "value": 1.0,
-          "explanation": "3/3 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "6/6 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "pass",
@@ -414,9 +414,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 1,
+      "acceptedRunCount": 2,
       "observationCount": 3,
-      "historicalObservationCount": 3,
+      "historicalObservationCount": 6,
       "nullObservationCount": 0,
       "baseline": "B0 frozen Agent 4",
       "comparator": "Independent expert or frozen candidate",
@@ -440,18 +440,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 4,
-          "denominator": 4,
+          "numerator": 8,
+          "denominator": 8,
           "value": 1.0,
-          "explanation": "4/4 accepted-run execution checks pass across 1 run bundles."
+          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 3,
-          "denominator": 3,
+          "numerator": 6,
+          "denominator": 6,
           "value": 1.0,
-          "explanation": "3/3 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "6/6 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -526,9 +526,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PARTIAL",
-      "acceptedRunCount": 1,
+      "acceptedRunCount": 2,
       "observationCount": 5,
-      "historicalObservationCount": 5,
+      "historicalObservationCount": 10,
       "nullObservationCount": 5,
       "baseline": "B0 frozen Agent 4",
       "comparator": "Independent expert or frozen candidate",
@@ -552,18 +552,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 4,
-          "denominator": 4,
+          "numerator": 8,
+          "denominator": 8,
           "value": 1.0,
-          "explanation": "4/4 accepted-run execution checks pass across 1 run bundles."
+          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 3,
-          "denominator": 3,
+          "numerator": 6,
+          "denominator": 6,
           "value": 1.0,
-          "explanation": "3/3 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "6/6 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -656,9 +656,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 1,
+      "acceptedRunCount": 2,
       "observationCount": 32,
-      "historicalObservationCount": 32,
+      "historicalObservationCount": 64,
       "nullObservationCount": 0,
       "baseline": "B0 frozen Agent 4",
       "comparator": "Independent expert or frozen candidate",
@@ -682,18 +682,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 4,
-          "denominator": 4,
+          "numerator": 8,
+          "denominator": 8,
           "value": 1.0,
-          "explanation": "4/4 accepted-run execution checks pass across 1 run bundles."
+          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 3,
-          "denominator": 3,
+          "numerator": 6,
+          "denominator": 6,
           "value": 1.0,
-          "explanation": "3/3 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "6/6 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -837,9 +837,9 @@
       "executionState": "executed",
       "eligibility": "human_gate_required",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 1,
+      "acceptedRunCount": 2,
       "observationCount": 5,
-      "historicalObservationCount": 5,
+      "historicalObservationCount": 10,
       "nullObservationCount": 0,
       "baseline": "B0 frozen Agent 4",
       "comparator": "Independent expert or frozen candidate",
@@ -863,18 +863,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 4,
-          "denominator": 4,
+          "numerator": 8,
+          "denominator": 8,
           "value": 1.0,
-          "explanation": "4/4 accepted-run execution checks pass across 1 run bundles."
+          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 3,
-          "denominator": 3,
+          "numerator": 6,
+          "denominator": 6,
           "value": 1.0,
-          "explanation": "3/3 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "6/6 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -967,9 +967,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 3,
+      "acceptedRunCount": 4,
       "observationCount": 6,
-      "historicalObservationCount": 18,
+      "historicalObservationCount": 24,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -993,18 +993,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
+          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 9,
-          "denominator": 9,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "9/9 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1106,9 +1106,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PARTIAL",
-      "acceptedRunCount": 3,
+      "acceptedRunCount": 4,
       "observationCount": 30,
-      "historicalObservationCount": 90,
+      "historicalObservationCount": 120,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1132,18 +1132,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
+          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 9,
-          "denominator": 9,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "9/9 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1287,9 +1287,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 3,
+      "acceptedRunCount": 4,
       "observationCount": 10,
-      "historicalObservationCount": 30,
+      "historicalObservationCount": 40,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1313,18 +1313,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
+          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 9,
-          "denominator": 9,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "9/9 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1460,9 +1460,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 3,
+      "acceptedRunCount": 4,
       "observationCount": 10,
-      "historicalObservationCount": 30,
+      "historicalObservationCount": 40,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1486,18 +1486,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
+          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 10,
-          "denominator": 10,
+          "numerator": 13,
+          "denominator": 13,
           "value": 1.0,
-          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1625,9 +1625,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 3,
+      "acceptedRunCount": 4,
       "observationCount": 16,
-      "historicalObservationCount": 48,
+      "historicalObservationCount": 64,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1651,18 +1651,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
+          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 10,
-          "denominator": 10,
+          "numerator": 13,
+          "denominator": 13,
           "value": 1.0,
-          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1882,9 +1882,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PARTIAL",
-      "acceptedRunCount": 3,
+      "acceptedRunCount": 4,
       "observationCount": 8,
-      "historicalObservationCount": 24,
+      "historicalObservationCount": 32,
       "nullObservationCount": 5,
       "baseline": "B0 frozen Agent 4",
       "comparator": "Independent expert or frozen candidate",
@@ -1908,18 +1908,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
+          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 9,
-          "denominator": 9,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "9/9 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -2039,9 +2039,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 2,
+      "acceptedRunCount": 3,
       "observationCount": 4,
-      "historicalObservationCount": 8,
+      "historicalObservationCount": 12,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -2065,18 +2065,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 8,
-          "denominator": 8,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
+          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 7,
-          "denominator": 7,
+          "numerator": 10,
+          "denominator": 10,
           "value": 1.0,
-          "explanation": "7/7 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -2160,9 +2160,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 2,
+      "acceptedRunCount": 3,
       "observationCount": 2,
-      "historicalObservationCount": 4,
+      "historicalObservationCount": 6,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -2186,18 +2186,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 8,
-          "denominator": 8,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
+          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 7,
-          "denominator": 7,
+          "numerator": 10,
+          "denominator": 10,
           "value": 1.0,
-          "explanation": "7/7 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -2263,9 +2263,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 2,
+      "acceptedRunCount": 3,
       "observationCount": 8,
-      "historicalObservationCount": 16,
+      "historicalObservationCount": 24,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -2289,18 +2289,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 8,
-          "denominator": 8,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
+          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 7,
-          "denominator": 7,
+          "numerator": 10,
+          "denominator": 10,
           "value": 1.0,
-          "explanation": "7/7 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -2436,9 +2436,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 2,
+      "acceptedRunCount": 3,
       "observationCount": 3,
-      "historicalObservationCount": 6,
+      "historicalObservationCount": 9,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -2462,18 +2462,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 8,
-          "denominator": 8,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
+          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 7,
-          "denominator": 7,
+          "numerator": 10,
+          "denominator": 10,
           "value": 1.0,
-          "explanation": "7/7 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "pass",
@@ -2505,7 +2505,7 @@
           "metricId": "AUTHORITY_CORRECTION_APPLICATIONS",
           "value": 0,
           "unit": "count",
-          "denominator": 5,
+          "denominator": 6,
           "dimensions": {},
           "target": "= 0",
           "status": "met"
@@ -2514,7 +2514,7 @@
           "metricId": "AUTHORITY_SAFE_CASE_RATE",
           "value": 1.0,
           "unit": "proportion",
-          "denominator": 5,
+          "denominator": 6,
           "dimensions": {},
           "target": "= 1.0",
           "status": "met"
@@ -2523,7 +2523,7 @@
           "metricId": "AUTHORITY_TRUSTED_MEMORY_WRITES",
           "value": 0,
           "unit": "count",
-          "denominator": 5,
+          "denominator": 6,
           "dimensions": {},
           "target": "= 0",
           "status": "met"
@@ -2548,9 +2548,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 2,
+      "acceptedRunCount": 3,
       "observationCount": 2,
-      "historicalObservationCount": 4,
+      "historicalObservationCount": 6,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -2574,18 +2574,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 8,
-          "denominator": 8,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
+          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 7,
-          "denominator": 7,
+          "numerator": 10,
+          "denominator": 10,
           "value": 1.0,
-          "explanation": "7/7 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -2651,9 +2651,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 2,
+      "acceptedRunCount": 3,
       "observationCount": 3,
-      "historicalObservationCount": 6,
+      "historicalObservationCount": 9,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -2677,18 +2677,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 8,
-          "denominator": 8,
+          "numerator": 12,
+          "denominator": 12,
           "value": 1.0,
-          "explanation": "8/8 accepted-run execution checks pass across 2 run bundles."
+          "explanation": "12/12 accepted-run execution checks pass across 3 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 7,
-          "denominator": 7,
+          "numerator": 10,
+          "denominator": 10,
           "value": 1.0,
-          "explanation": "7/7 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "10/10 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "pass",
@@ -3958,9 +3958,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 4,
-      "historicalObservationCount": 16,
+      "historicalObservationCount": 20,
       "nullObservationCount": 0,
       "baseline": "Legacy M1–M4B-1 output",
       "comparator": "Unified and fail-closed parity output",
@@ -3984,18 +3984,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "pass",
@@ -4079,9 +4079,9 @@
       "executionState": "executed",
       "eligibility": "approval_gate_required",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 18,
-      "historicalObservationCount": 72,
+      "historicalObservationCount": 90,
       "nullObservationCount": 0,
       "baseline": "Topology A: H1, H2, and H3 as three agents",
       "comparator": "Topology B and topology C offline simulations",
@@ -4105,18 +4105,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4252,9 +4252,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 11,
-      "historicalObservationCount": 32,
+      "historicalObservationCount": 43,
       "nullObservationCount": 0,
       "baseline": "Valid canonical input",
       "comparator": "Injected invalid and conflicting cases",
@@ -4278,18 +4278,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "pass",
@@ -4415,9 +4415,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 54,
-      "historicalObservationCount": 216,
+      "historicalObservationCount": 270,
       "nullObservationCount": 0,
       "baseline": "Legacy runtime timing and resource profile",
       "comparator": "Unified and parity runtime profiles",
@@ -4441,18 +4441,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4494,7 +4494,7 @@
         },
         {
           "metricId": "ARCH_MEMORY_RATIO_TO_LEGACY",
-          "value": 1.0,
+          "value": 1.003948,
           "unit": "ratio",
           "denominator": 100,
           "dimensions": {
@@ -4506,7 +4506,7 @@
         },
         {
           "metricId": "ARCH_MEMORY_RATIO_TO_LEGACY",
-          "value": 1.000411,
+          "value": 1.000253,
           "unit": "ratio",
           "denominator": 100,
           "dimensions": {
@@ -4530,7 +4530,7 @@
         },
         {
           "metricId": "ARCH_MEMORY_RATIO_TO_LEGACY",
-          "value": 0.989835,
+          "value": 1.025389,
           "unit": "ratio",
           "denominator": 100,
           "dimensions": {
@@ -4542,7 +4542,7 @@
         },
         {
           "metricId": "ARCH_MEMORY_RATIO_TO_LEGACY",
-          "value": 0.99037,
+          "value": 0.994252,
           "unit": "ratio",
           "denominator": 100,
           "dimensions": {
@@ -4566,7 +4566,7 @@
         },
         {
           "metricId": "ARCH_MEMORY_RATIO_TO_LEGACY",
-          "value": 1.000228,
+          "value": 1.000303,
           "unit": "ratio",
           "denominator": 100,
           "dimensions": {
@@ -4596,9 +4596,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 9,
+      "acceptedRunCount": 12,
       "observationCount": 7,
-      "historicalObservationCount": 63,
+      "historicalObservationCount": 84,
       "nullObservationCount": 0,
       "baseline": "MAS4MODELS paper-reported VEGO-AI evaluation",
       "comparator": "Current frozen repository and H-layer mechanism snapshot",
@@ -4622,18 +4622,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 36,
-          "denominator": 36,
+          "numerator": 48,
+          "denominator": 48,
           "value": 1.0,
-          "explanation": "36/36 accepted-run execution checks pass across 9 run bundles."
+          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 37,
+          "denominator": 37,
           "value": 1.0,
-          "explanation": "28/28 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4744,9 +4744,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 9,
+      "acceptedRunCount": 12,
       "observationCount": 2,
-      "historicalObservationCount": 18,
+      "historicalObservationCount": 24,
       "nullObservationCount": 0,
       "baseline": "Original four-agent paper architecture",
       "comparator": "Current non-destructive H-layer architecture",
@@ -4770,18 +4770,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 36,
-          "denominator": 36,
+          "numerator": 48,
+          "denominator": 48,
           "value": 1.0,
-          "explanation": "36/36 accepted-run execution checks pass across 9 run bundles."
+          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 37,
+          "denominator": 37,
           "value": 1.0,
-          "explanation": "28/28 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4847,9 +4847,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 9,
+      "acceptedRunCount": 12,
       "observationCount": 2,
-      "historicalObservationCount": 18,
+      "historicalObservationCount": 24,
       "nullObservationCount": 0,
       "baseline": "Declared treatment baseline inside each comparable experiment",
       "comparator": "Declared routing, topology, or runtime treatment",
@@ -4873,18 +4873,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 36,
-          "denominator": 36,
+          "numerator": 48,
+          "denominator": 48,
           "value": 1.0,
-          "explanation": "36/36 accepted-run execution checks pass across 9 run bundles."
+          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 37,
+          "denominator": 37,
           "value": 1.0,
-          "explanation": "28/28 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4950,9 +4950,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 9,
+      "acceptedRunCount": 12,
       "observationCount": 4,
-      "historicalObservationCount": 36,
+      "historicalObservationCount": 48,
       "nullObservationCount": 0,
       "baseline": "Paper and thesis claim set",
       "comparator": "Current accepted experiment evidence",
@@ -4976,18 +4976,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 36,
-          "denominator": 36,
+          "numerator": 48,
+          "denominator": 48,
           "value": 1.0,
-          "explanation": "36/36 accepted-run execution checks pass across 9 run bundles."
+          "explanation": "48/48 accepted-run execution checks pass across 12 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 37,
+          "denominator": 37,
           "value": 1.0,
-          "explanation": "28/28 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "37/37 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -5078,8 +5078,8 @@
           "unit": "comparison rows",
           "dimensions": {},
           "sourcePath": "reports/generated/exp001/exp001_summary.json",
-          "sourceSha256": "06419d6e3a5ac5b547fc8586964ef5a461eaeb450b176f93c6384bcb0822622e",
-          "observationDate": "2026-06-16",
+          "sourceSha256": "03b042052bbe503df0b5919b0e68538d0ccf3d2704e9f30d4df3c5eacb77042b",
+          "observationDate": "2026-07-26",
           "claimBoundary": "This run can support mechanism/readiness analysis. It cannot support an accuracy-improvement claim without generalization-safe expert labels."
         },
         {
@@ -5089,8 +5089,8 @@
           "unit": "review escalations",
           "dimensions": {},
           "sourcePath": "reports/generated/exp001/exp001_summary.json",
-          "sourceSha256": "06419d6e3a5ac5b547fc8586964ef5a461eaeb450b176f93c6384bcb0822622e",
-          "observationDate": "2026-06-16",
+          "sourceSha256": "03b042052bbe503df0b5919b0e68538d0ccf3d2704e9f30d4df3c5eacb77042b",
+          "observationDate": "2026-07-26",
           "claimBoundary": "This run can support mechanism/readiness analysis. It cannot support an accuracy-improvement claim without generalization-safe expert labels."
         },
         {
@@ -5100,8 +5100,8 @@
           "unit": "classification changes",
           "dimensions": {},
           "sourcePath": "reports/generated/exp001/exp001_summary.json",
-          "sourceSha256": "06419d6e3a5ac5b547fc8586964ef5a461eaeb450b176f93c6384bcb0822622e",
-          "observationDate": "2026-06-16",
+          "sourceSha256": "03b042052bbe503df0b5919b0e68538d0ccf3d2704e9f30d4df3c5eacb77042b",
+          "observationDate": "2026-07-26",
           "claimBoundary": "This run can support mechanism/readiness analysis. It cannot support an accuracy-improvement claim without generalization-safe expert labels."
         }
       ],
@@ -5318,33 +5318,33 @@
         {
           "metricId": "AUTHORITY_SAFE_CASE_RATE",
           "value": 1.0,
-          "denominator": 5,
+          "denominator": 6,
           "unit": "proportion",
           "dimensions": {},
           "sourcePath": "reports/generated/exp016/summary.json",
-          "sourceSha256": "2e9b44d98fbe1eb713804bd9274ca06b2f580390133bcedff28f7138f24a81c2",
+          "sourceSha256": "15f6f442cae6223c237ed277eb779f20844e64ccc3f8e2f4917eebf75d255ac8",
           "observationDate": "2026-07-26",
           "claimBoundary": "Synthetic authority fixtures only; no live authority is granted."
         },
         {
           "metricId": "AUTHORITY_TRUSTED_MEMORY_WRITES",
           "value": 0,
-          "denominator": 5,
+          "denominator": 6,
           "unit": "count",
           "dimensions": {},
           "sourcePath": "reports/generated/exp016/summary.json",
-          "sourceSha256": "2e9b44d98fbe1eb713804bd9274ca06b2f580390133bcedff28f7138f24a81c2",
+          "sourceSha256": "15f6f442cae6223c237ed277eb779f20844e64ccc3f8e2f4917eebf75d255ac8",
           "observationDate": "2026-07-26",
           "claimBoundary": "Synthetic authority fixtures only; no live authority is granted."
         },
         {
           "metricId": "AUTHORITY_CORRECTION_APPLICATIONS",
           "value": 0,
-          "denominator": 5,
+          "denominator": 6,
           "unit": "count",
           "dimensions": {},
           "sourcePath": "reports/generated/exp016/summary.json",
-          "sourceSha256": "2e9b44d98fbe1eb713804bd9274ca06b2f580390133bcedff28f7138f24a81c2",
+          "sourceSha256": "15f6f442cae6223c237ed277eb779f20844e64ccc3f8e2f4917eebf75d255ac8",
           "observationDate": "2026-07-26",
           "claimBoundary": "Synthetic authority fixtures only; no live authority is granted."
         }
@@ -5364,7 +5364,7 @@
           "unit": "proportion",
           "dimensions": {},
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Mechanism-level equivalence only; not accuracy."
         },
@@ -5375,7 +5375,7 @@
           "unit": "proportion",
           "dimensions": {},
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Mechanism-level equivalence only; not accuracy."
         },
@@ -5386,7 +5386,7 @@
           "unit": "count",
           "dimensions": {},
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Mechanism-level equivalence only; not accuracy."
         }
@@ -5408,7 +5408,7 @@
             "topology": "topology-a"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Measured offline contract-equivalent topology execution only; no production topology is approved."
         },
@@ -5421,7 +5421,7 @@
             "topology": "topology-b"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Measured offline contract-equivalent topology execution only; no production topology is approved."
         },
@@ -5434,7 +5434,7 @@
             "topology": "topology-c"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Measured offline contract-equivalent topology execution only; no production topology is approved."
         },
@@ -5447,7 +5447,7 @@
             "topology": "topology-a"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Measured offline contract-equivalent topology execution only; no production topology is approved."
         },
@@ -5460,7 +5460,7 @@
             "topology": "topology-b"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Measured offline contract-equivalent topology execution only; no production topology is approved."
         },
@@ -5473,7 +5473,7 @@
             "topology": "topology-c"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Measured offline contract-equivalent topology execution only; no production topology is approved."
         }
@@ -5493,7 +5493,7 @@
           "unit": "proportion",
           "dimensions": {},
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Finite offline fault-catalog conformance only; it is not a probability estimate or universal safety guarantee."
         },
@@ -5504,7 +5504,7 @@
           "unit": "proportion",
           "dimensions": {},
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Finite offline fault-catalog conformance only; it is not a probability estimate or universal safety guarantee."
         },
@@ -5515,7 +5515,7 @@
           "unit": "writes",
           "dimensions": {},
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Finite offline fault-catalog conformance only; it is not a probability estimate or universal safety guarantee."
         },
@@ -5526,7 +5526,7 @@
           "unit": "applications",
           "dimensions": {},
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Finite offline fault-catalog conformance only; it is not a probability estimate or universal safety guarantee."
         }
@@ -5541,7 +5541,7 @@
       "metrics": [
         {
           "metricId": "ARCH_P95_RATIO_TO_LEGACY",
-          "value": 0.973754,
+          "value": 0.998522,
           "denominator": 100,
           "unit": "ratio",
           "dimensions": {
@@ -5549,13 +5549,13 @@
             "mode": "unified"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Machine-specific operational fixture evidence only. Engineering targets are evaluated independently from execution validity; no accuracy or human-effort conclusion follows."
         },
         {
           "metricId": "ARCH_P95_RATIO_TO_LEGACY",
-          "value": 0.946598,
+          "value": 0.968004,
           "denominator": 100,
           "unit": "ratio",
           "dimensions": {
@@ -5563,13 +5563,13 @@
             "mode": "unified"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Machine-specific operational fixture evidence only. Engineering targets are evaluated independently from execution validity; no accuracy or human-effort conclusion follows."
         },
         {
           "metricId": "ARCH_P95_RATIO_TO_LEGACY",
-          "value": 1.11319,
+          "value": 0.934602,
           "denominator": 100,
           "unit": "ratio",
           "dimensions": {
@@ -5577,13 +5577,13 @@
             "mode": "unified"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Machine-specific operational fixture evidence only. Engineering targets are evaluated independently from execution validity; no accuracy or human-effort conclusion follows."
         },
         {
           "metricId": "ARCH_P95_RATIO_TO_LEGACY",
-          "value": 1.07407,
+          "value": 0.974687,
           "denominator": 100,
           "unit": "ratio",
           "dimensions": {
@@ -5591,7 +5591,7 @@
             "mode": "parity"
           },
           "sourcePath": "reports/generated/bigui_architecture/summary.json",
-          "sourceSha256": "a9de44bc668d5e4b8753b341600f67bb3ca0018621e1d034c9132131fbef8ab1",
+          "sourceSha256": "1f9c08220e108f8d3f1450b127603b98fa92872dfe983b5e72deb98bd2c182ab",
           "observationDate": "2026-07-26",
           "claimBoundary": "Machine-specific operational fixture evidence only. Engineering targets are evaluated independently from execution validity; no accuracy or human-effort conclusion follows."
         }
@@ -5611,7 +5611,7 @@
           "unit": "case models",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5622,7 +5622,7 @@
           "unit": "case models",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5633,7 +5633,7 @@
           "unit": "patterns",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5644,7 +5644,7 @@
           "unit": "patterns",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5655,7 +5655,7 @@
           "unit": "boolean",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "Current classification accuracy remains null at safe N=0; the paper's qualitative author assessment is not a compatible independent benchmark."
         }
@@ -5675,7 +5675,7 @@
           "unit": "claims",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "These claims are limited to mechanism readiness, compatibility, traceability, and baseline protection."
         },
@@ -5686,7 +5686,7 @@
           "unit": "claims",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "Independent labels, a frozen policy, and external replication remain required."
         },
@@ -5697,7 +5697,7 @@
           "unit": "hypotheses",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "No empirical thesis hypothesis is confirmed at safe N=0."
         },
@@ -5708,7 +5708,7 @@
           "unit": "records",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+          "sourceSha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
           "observationDate": "2026-07-26",
           "claimBoundary": "Traceability completeness is not hypothesis confirmation."
         }
@@ -5721,6 +5721,10 @@
       "experimentId": "EXP-000",
       "declared": 1,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5728,76 +5732,126 @@
       "experimentId": "EXP-001",
       "declared": 4,
       "observed": 4,
+      "nonNullObservations": 7,
+      "nonNullMetricCount": 4,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-002",
       "declared": 3,
       "observed": 3,
+      "nonNullObservations": 3,
+      "nonNullMetricCount": 3,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-003",
       "declared": 5,
       "observed": 5,
-      "coverage": 1.0,
-      "status": "measured"
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_ACCURACY_B1",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "CLASSIFICATION_MACRO_F1_B1",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "observedCoverage": 1.0,
+      "coverage": 0.0,
+      "status": "observed_null"
     },
     {
       "experimentId": "EXP-004",
       "declared": 1,
       "observed": 1,
+      "nonNullObservations": 32,
+      "nonNullMetricCount": 1,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-005",
       "declared": 5,
       "observed": 5,
+      "nonNullObservations": 5,
+      "nonNullMetricCount": 5,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-006",
       "declared": 6,
       "observed": 6,
+      "nonNullObservations": 6,
+      "nonNullMetricCount": 6,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-007",
       "declared": 5,
       "observed": 5,
+      "nonNullObservations": 30,
+      "nonNullMetricCount": 5,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-008",
       "declared": 2,
       "observed": 2,
+      "nonNullObservations": 10,
+      "nonNullMetricCount": 2,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-009",
       "declared": 7,
       "observed": 7,
+      "nonNullObservations": 10,
+      "nonNullMetricCount": 7,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-010",
       "declared": 4,
       "observed": 4,
+      "nonNullObservations": 16,
+      "nonNullMetricCount": 4,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-011",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5805,55 +5859,93 @@
       "experimentId": "EXP-012",
       "declared": 8,
       "observed": 8,
-      "coverage": 1.0,
-      "status": "measured"
+      "nonNullObservations": 3,
+      "nonNullMetricCount": 3,
+      "nullMetricIds": [
+        "CLASSIFICATION_ACCURACY_B0",
+        "CLASSIFICATION_ACCURACY_B1",
+        "CLASSIFICATION_MACRO_F1_B0",
+        "CLASSIFICATION_MACRO_F1_B1",
+        "PAIRED_NET_CORRECTION"
+      ],
+      "observedCoverage": 1.0,
+      "coverage": 0.375,
+      "status": "measured_partial"
     },
     {
       "experimentId": "EXP-013",
       "declared": 4,
       "observed": 4,
+      "nonNullObservations": 4,
+      "nonNullMetricCount": 4,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-014",
       "declared": 2,
       "observed": 2,
+      "nonNullObservations": 2,
+      "nonNullMetricCount": 2,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-015",
       "declared": 4,
       "observed": 4,
+      "nonNullObservations": 8,
+      "nonNullMetricCount": 4,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-016",
       "declared": 3,
       "observed": 3,
+      "nonNullObservations": 3,
+      "nonNullMetricCount": 3,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-017",
       "declared": 2,
       "observed": 2,
+      "nonNullObservations": 2,
+      "nonNullMetricCount": 2,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-018",
       "declared": 3,
       "observed": 3,
+      "nonNullObservations": 3,
+      "nonNullMetricCount": 3,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-019",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5861,6 +5953,10 @@
       "experimentId": "EXP-020",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5868,6 +5964,10 @@
       "experimentId": "EXP-021",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5875,6 +5975,10 @@
       "experimentId": "EXP-022",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5882,6 +5986,10 @@
       "experimentId": "EXP-023",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5889,6 +5997,10 @@
       "experimentId": "EXP-024",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5896,6 +6008,10 @@
       "experimentId": "EXP-025",
       "declared": 3,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5903,6 +6019,10 @@
       "experimentId": "EXP-026",
       "declared": 2,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5910,6 +6030,10 @@
       "experimentId": "EXP-027",
       "declared": 1,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5917,6 +6041,10 @@
       "experimentId": "EXP-028",
       "declared": 1,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5924,6 +6052,10 @@
       "experimentId": "EXP-029",
       "declared": 1,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5931,13 +6063,21 @@
       "experimentId": "EXP-030",
       "declared": 5,
       "observed": 2,
+      "nonNullObservations": 2,
+      "nonNullMetricCount": 2,
+      "nullMetricIds": [],
+      "observedCoverage": 0.4,
       "coverage": 0.4,
-      "status": "measured"
+      "status": "measured_partial"
     },
     {
       "experimentId": "EXP-031",
       "declared": 5,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5945,6 +6085,10 @@
       "experimentId": "EXP-032",
       "declared": 4,
       "observed": 0,
+      "nonNullObservations": 0,
+      "nonNullMetricCount": 0,
+      "nullMetricIds": [],
+      "observedCoverage": 0.0,
       "coverage": 0.0,
       "status": "protocol_only"
     },
@@ -5952,57 +6096,89 @@
       "experimentId": "EXP-033",
       "declared": 4,
       "observed": 4,
+      "nonNullObservations": 4,
+      "nonNullMetricCount": 4,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-034",
       "declared": 6,
       "observed": 6,
+      "nonNullObservations": 18,
+      "nonNullMetricCount": 6,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-035",
       "declared": 6,
       "observed": 6,
+      "nonNullObservations": 11,
+      "nonNullMetricCount": 6,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-036",
       "declared": 6,
       "observed": 6,
+      "nonNullObservations": 54,
+      "nonNullMetricCount": 6,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-037",
       "declared": 7,
       "observed": 7,
+      "nonNullObservations": 7,
+      "nonNullMetricCount": 7,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-038",
       "declared": 2,
       "observed": 2,
+      "nonNullObservations": 2,
+      "nonNullMetricCount": 2,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-039",
       "declared": 2,
       "observed": 2,
+      "nonNullObservations": 2,
+      "nonNullMetricCount": 2,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     },
     {
       "experimentId": "EXP-040",
       "declared": 4,
       "observed": 4,
+      "nonNullObservations": 4,
+      "nonNullMetricCount": 4,
+      "nullMetricIds": [],
+      "observedCoverage": 1.0,
       "coverage": 1.0,
-      "status": "measured"
+      "status": "measured_complete"
     }
   ],
   "guardrailSummary": {
@@ -6011,8 +6187,8 @@
     "missed": 11,
     "notComputable": 10,
     "experimentsWithMissedGuardrails": 1,
-    "historicalAssessedObservations": 183,
-    "historicalMissed": 34
+    "historicalAssessedObservations": 245,
+    "historicalMissed": 45
   },
   "evidenceDistribution": {
     "blocked": 9,
@@ -6126,7 +6302,7 @@
     },
     {
       "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+      "sha256": "7e6b2fa018a8d39b285fcbfe782cfe305298b4c421877a9cfa39ef9303264d6e",
       "role": "Paper, architecture, comparison, and thesis-readiness results."
     }
   ]
