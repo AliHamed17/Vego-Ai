@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "IndependentEvidenceDecisionRegister-v1",
+  "decisionSetId": "IE-01--IE-10",
+  "recordedAt": "2026-07-26T19:05:00+03:00",
+  "recordedFrom": {
+    "channel": "Codex task",
+    "statement": "all accepted move to the next phase",
+    "recordedByRole": "Project owner",
+    "confirmationStatus": "user_confirmed"
+  },
+  "programStage": "calibration_ready",
+  "decisions": [
+    {
+      "id": "IE-01",
+      "outcome": "Accepted",
+      "selectedValue": "Use Substantial Variability, Occasional Variability, and Undetermined / Needs Review with neutral reviewer context.",
+      "rationale": "A fixed three-label vocabulary supports blind classification and preserves an explicit uncertainty outcome.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-02",
+      "outcome": "Accepted",
+      "selectedValue": "Collect independent human-review need, rationale, and Low/Medium/High review priority for every row.",
+      "rationale": "The same blind review can create a separate target for routing evaluation without using Agent 4 output as ground truth.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-03",
+      "outcome": "Accepted",
+      "selectedValue": "Both independent reviewers label all 24 evaluation rows.",
+      "rationale": "Complete paired coverage enables reviewer agreement and paired baseline/candidate evaluation.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-04",
+      "outcome": "Accepted",
+      "selectedValue": "Use two independent human reviewers with domain-modeling assessment experience who did not create the VEGO-AI predictions under review.",
+      "rationale": "Relevant expertise and separation from the evaluated predictions reduce construct and confirmation bias.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-05",
+      "outcome": "Accepted",
+      "selectedValue": "Provide written participant information and obtain affirmative consent before calibration; comply with any applicable institutional ethics requirement and infer no waiver.",
+      "rationale": "Human-study participation and data use require explicit information and consent even when records are pseudonymous.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-06",
+      "outcome": "Accepted",
+      "selectedValue": "Use pseudonymous reviewer IDs; store returns only under the ignored local evidence root; transfer one-to-one through institutional email or an access-controlled drive; retain through thesis acceptance plus 12 months, then delete subject to institutional policy.",
+      "rationale": "This minimizes personal data exposure while preserving a bounded audit window.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-07",
+      "outcome": "Accepted",
+      "selectedValue": "Use a supervisor-authorized human adjudicator who is not acting as either primary reviewer; preserve both raw returns unchanged.",
+      "rationale": "Adjudication must be a separate human decision layer and cannot rewrite the original evidence.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-08",
+      "outcome": "Accepted",
+      "selectedValue": "Use the hidden 16-development/8-sealed split and open the sealed partition once after a candidate policy is frozen.",
+      "rationale": "A sealed pilot limits direct policy tuning on the evaluation subset.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-09",
+      "outcome": "Accepted",
+      "selectedValue": "Use macro-F1 as the primary classification metric and net correction as the primary paired metric.",
+      "rationale": "Macro-F1 protects minority-class visibility and net correction makes gains and regressions explicit.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    },
+    {
+      "id": "IE-10",
+      "outcome": "Accepted",
+      "selectedValue": "Report the paper comparison as Not directly comparable unless the same independent cohort, labels, baseline, and metric protocol can be reconstructed.",
+      "rationale": "Historical mechanism counts cannot support a classification-superiority claim without an equivalent reference protocol.",
+      "approverRole": "Project owner",
+      "decisionDate": "2026-07-26",
+      "confirmationStatus": "conversation_recorded"
+    }
+  ],
+  "operationalPolicy": {
+    "reviewerEligibility": "Two independent humans with domain-modeling assessment experience who did not create the evaluated VEGO-AI predictions",
+    "consentAndEthics": "Written participant information and affirmative consent before calibration; comply with applicable institutional requirements and infer no ethics waiver",
+    "reviewerIds": "Pseudonymous stable IDs reviewer_1 and reviewer_2",
+    "storageLocation": "Ignored local reports/generated/independent_evidence_v1/returns and validation directories",
+    "transferChannel": "Private one-to-one institutional email or access-controlled drive",
+    "retentionPeriod": "Through thesis acceptance plus 12 months, then delete subject to institutional policy",
+    "adjudicatorRole": "Supervisor-authorized human who is not either primary reviewer",
+    "reviewerIndependence": "Reviewers work independently and cannot consult VEGO-AI, memory output, generative AI, or one another",
+    "evaluationReleaseRule": "Release evaluation files only after two valid calibration returns and a human-frozen instruction manifest"
+  },
+  "claimBoundary": "Approval advances the study to calibration only. It creates no expert label, accuracy result, generalization result, effort result, paper-superiority result, topology selection, or routing-policy superiority."
+}

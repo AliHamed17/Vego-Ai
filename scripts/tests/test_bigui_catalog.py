@@ -77,6 +77,27 @@ def test_catalog_zero_label_gate_keeps_empirical_metrics_null() -> None:
     assert all(item["denominator"] == 0 for item in performance)
 
 
+def test_bigui_exposes_independent_evidence_workflow() -> None:
+    html = HTML_PATH.read_text(encoding="utf-8")
+    assert 'id="independent-evidence"' in html
+    assert "Blind 24-item review" in html
+    assert "Agreement + adjudication" in html
+    assert "Only independent humans may supply or adjudicate the labels" in html
+    assert "Current phase: calibration." in html
+    assert "IE-01–IE-10 accepted" in html
+    assert "all 24 evaluation cases remain sealed" in html
+    decision_match = re.search(
+        r'<script id="independent-evidence-decisions" type="application/json">(.*?)</script>',
+        html,
+        re.DOTALL,
+    )
+    assert decision_match
+    decisions = json.loads(decision_match.group(1))
+    assert decisions["programStage"] == "calibration_ready"
+    assert len(decisions["decisions"]) == 10
+    assert all(item["outcome"] == "Accepted" for item in decisions["decisions"])
+
+
 def test_every_metric_and_source_has_publishable_provenance() -> None:
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
     for metric in catalog["metricObservations"]:

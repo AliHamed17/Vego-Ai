@@ -499,3 +499,59 @@ Chronological prompt history for Codex and Claude.
   - verify-release.ps1 -Check
 - Status: completed
 - Next steps: Obtain two independent reviewers for the 24 safe rows; keep accuracy and macro-F1 blank until adjudicated evidence exists; review PR #11 after stacked PR #10.
+
+## 2026-07-26 18:36 +03:00 - Codex - Independent expert evidence evaluation pipeline
+
+- Request: Create a real independent expert evidence workflow for classification accuracy, macro-F1, unseen-pattern evaluation, routing quality, human effort measurement, paper comparison boundaries, topology evaluation, and BigUI tracking without inventing labels.
+- Actions taken:
+  - Added deterministic blinded two-reviewer package with calibration and 24 evaluation cases
+  - Added immutable reviewer return validation, agreement analysis, adjudication freeze, and development/holdout evaluator
+  - Published sanitized local reviewer delivery and synchronized the BigUI evidence workflow
+  - Ran complete source and controlled-data verification while preserving Agent 4 and baseline outputs
+- Files changed:
+  - schemas/independent-evidence-package-v1.schema.json
+  - schemas/independent-review-return-v1.schema.json
+  - schemas/independent-evidence-delivery-v1.schema.json
+  - scripts/build_independent_evidence_package.py
+  - scripts/validate_independent_evidence_returns.py
+  - scripts/freeze_independent_gold_labels.py
+  - scripts/evaluate_independent_ground_truth.py
+  - scripts/publish_independent_evidence_package.py
+  - scripts/build_bigui.py
+  - VEGO-AI-Research-Hub.html
+  - docs/research/independent-evidence/README.md
+  - docs/research/independent-evidence/MEASUREMENT_CONTRACT.md
+  - docs/research/independent-evidence/SUPERVISOR_DECISIONS_REQUIRED.md
+- Commands/checks:
+  - verify-source.ps1 -Check -SkipNetworkAudit
+  - verify-controlled.ps1 -Check
+  - build_independent_evidence_package.py --check
+  - publish_independent_evidence_package.py --check
+- Status: Implementation and verification complete; real empirical metrics remain gated at 0/24 independent labels.
+- Next steps: Obtain Iris/Arnon approval for IE-01 through IE-10, release only the calibration packages to two independent human reviewers, verify calibration, then release the 24 blinded evaluation cases.
+
+## 2026-07-26 20:45 +03:00 - Codex - Advance independent evidence study to calibration
+
+- Request: Record all IE-01 through IE-10 as accepted and move the independent expert evidence program to its next phase.
+- Actions taken:
+  - Recorded an auditable accepted decision register and conservative reviewer governance policy
+  - Added participant information and affirmative-consent procedure
+  - Added calibration-return validation and a human-only instruction-freeze gate
+  - Changed external delivery to calibration-only and removed all evaluation files until calibration succeeds
+  - Updated BigUI, thesis evidence, accepted comparison runs, manifests, and provenance
+- Files changed:
+  - docs/research/independent-evidence/decision-register.json
+  - docs/research/independent-evidence/PARTICIPANT_INFORMATION_AND_CONSENT.md
+  - schemas/independent-calibration-return-v1.schema.json
+  - schemas/independent-evidence-decision-register-v1.schema.json
+  - scripts/validate_independent_calibration_returns.py
+  - scripts/freeze_independent_calibration.py
+  - scripts/publish_independent_evidence_package.py
+  - VEGO-AI-Research-Hub.html
+- Commands/checks:
+  - verify-source.ps1 -Check -SkipNetworkAudit
+  - build_independent_evidence_package.py --check
+  - publish_independent_evidence_package.py --check --stage calibration
+  - validate_independent_calibration_returns.py --check-gate
+- Status: Calibration-ready; 10/10 decisions accepted, 0/2 calibration returns, 0/24 labels, evaluation release unauthorized.
+- Next steps: Provide each selected independent reviewer the participant information and only their three-case calibration folder; collect the two immutable JSON returns; validate them; then obtain a human instruction freeze before evaluation release.

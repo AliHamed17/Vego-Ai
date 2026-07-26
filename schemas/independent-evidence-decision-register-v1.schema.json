@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/independent-evidence-decision-register-v1.schema.json",
+  "title": "IndependentEvidenceDecisionRegister v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "decisionSetId",
+    "recordedAt",
+    "recordedFrom",
+    "programStage",
+    "decisions",
+    "operationalPolicy",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "IndependentEvidenceDecisionRegister-v1"
+    },
+    "decisionSetId": {
+      "const": "IE-01--IE-10"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recordedFrom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "channel",
+        "statement",
+        "recordedByRole",
+        "confirmationStatus"
+      ],
+      "properties": {
+        "channel": {
+          "const": "Codex task"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recordedByRole": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confirmationStatus": {
+          "const": "user_confirmed"
+        }
+      }
+    },
+    "programStage": {
+      "const": "calibration_ready"
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "outcome",
+          "selectedValue",
+          "rationale",
+          "approverRole",
+          "decisionDate",
+          "confirmationStatus"
+        ],
+        "properties": {
+          "id": {
+            "pattern": "^IE-(0[1-9]|10)$"
+          },
+          "outcome": {
+            "const": "Accepted"
+          },
+          "selectedValue": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "approverRole": {
+            "type": "string",
+            "minLength": 1
+          },
+          "decisionDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "confirmationStatus": {
+            "const": "conversation_recorded"
+          }
+        }
+      }
+    },
+    "operationalPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewerEligibility",
+        "consentAndEthics",
+        "reviewerIds",
+        "storageLocation",
+        "transferChannel",
+        "retentionPeriod",
+        "adjudicatorRole",
+        "reviewerIndependence",
+        "evaluationReleaseRule"
+      ],
+      "properties": {
+        "reviewerEligibility": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consentAndEthics": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewerIds": {
+          "const": "Pseudonymous stable IDs reviewer_1 and reviewer_2"
+        },
+        "storageLocation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transferChannel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retentionPeriod": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adjudicatorRole": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewerIndependence": {
+          "const": "Reviewers work independently and cannot consult VEGO-AI, memory output, generative AI, or one another"
+        },
+        "evaluationReleaseRule": {
+          "const": "Release evaluation files only after two valid calibration returns and a human-frozen instruction manifest"
+        }
+      }
+    },
+    "claimBoundary": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

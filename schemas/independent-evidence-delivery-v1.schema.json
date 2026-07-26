@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/independent-evidence-delivery-v1.schema.json",
+  "title": "IndependentEvidenceDelivery v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "deliveryDate",
+    "deliveryStage",
+    "sourcePackageSha256",
+    "decisionRegisterSha256",
+    "calibrationFreezeSha256",
+    "files",
+    "privateMappingIncluded",
+    "suppliedLabels",
+    "evaluationReleased",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "IndependentEvidenceDelivery-v1"
+    },
+    "deliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "deliveryStage": {
+      "enum": [
+        "calibration",
+        "evaluation"
+      ]
+    },
+    "sourcePackageSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "decisionRegisterSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "calibrationFreezeSha256": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "files": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "audience",
+          "releaseStage"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "audience": {
+            "enum": [
+              "supervisors",
+              "reviewer_1",
+              "reviewer_2",
+              "package_owner"
+            ]
+          },
+          "releaseStage": {
+            "enum": [
+              "now",
+              "after_supervisor_approval",
+              "after_calibration"
+            ]
+          }
+        }
+      }
+    },
+    "privateMappingIncluded": {
+      "const": false
+    },
+    "suppliedLabels": {
+      "const": 0
+    },
+    "evaluationReleased": {
+      "type": "boolean"
+    },
+    "claimBoundary": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "deliveryStage": {
+            "const": "calibration"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "calibrationFreezeSha256": {
+            "type": "null"
+          },
+          "evaluationReleased": {
+            "const": false
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "calibrationFreezeSha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "evaluationReleased": {
+            "const": true
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

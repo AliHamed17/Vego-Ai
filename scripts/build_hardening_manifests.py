@@ -91,6 +91,7 @@ SOURCE_EXACT = (
 SOURCE_PREFIXES = (
     ".github/workflows/",
     "configs/",
+    "docs/research/independent-evidence/",
     "schemas/",
     "scripts/hlayer_offline/",
     "scripts/tests/",
@@ -100,13 +101,21 @@ SOURCE_PREFIXES = (
 )
 SOURCE_EXTRA = (
     "scripts/build-hlayer-experiments.ps1",
+    "scripts/build_bigui.py",
     "scripts/build_hardening_manifests.py",
+    "scripts/build_independent_evidence_package.py",
     "scripts/check_dependency_lock.py",
     "scripts/check_hlayer_change_authorization.py",
     "scripts/check_quality_ratchet.py",
     "scripts/check_evidence_consistency.py",
     "scripts/run_hlayer_architecture.py",
     "scripts/security_audit.py",
+    "scripts/evaluate_independent_ground_truth.py",
+    "scripts/freeze_independent_calibration.py",
+    "scripts/freeze_independent_gold_labels.py",
+    "scripts/publish_independent_evidence_package.py",
+    "scripts/validate_independent_calibration_returns.py",
+    "scripts/validate_independent_evidence_returns.py",
     "scripts/validate_hlayer_offline.py",
     "scripts/validate_hlayer_program.py",
     "scripts/vego_doctor.py",
@@ -537,6 +546,7 @@ def build_all(require_controlled: bool) -> dict[Path, str]:
     }
     for path in (
         ROOT / "docs/research/h-layer/program-status-snapshot-v1.json",
+        ROOT / "VEGO-AI-Research-Hub.html",
         ROOT / "VEGO-AI-Thesis-Baseline-Progress.html",
     ):
         if path.is_file():

@@ -32,6 +32,7 @@ This folder is for the scientific substance of the PhD work.
 | `hardening/` | Iteration 15 unified-runtime architecture, threat model, baseline/security/SBOM/release manifests, and verification runbook. |
 | `hardening/MODEL_EVALUATION_PROTOCOLS.md` | Proposed EXP-028 provenance and blocked EXP-029 frozen candidate-model comparison; `gpt-4o` remains default. |
 | `bigui/` | Canonical EXP-000–040 catalog, immutable accepted-run history, current-run index, evaluation standard, benchmark analytics, tracked architecture evidence, and offline BigUI operating rules. |
+| `independent-evidence/` | Approved calibration-stage two-reviewer ground-truth workflow, participant information/consent, metric contract, and decision record for classification, routing, holdout, effort, topology, and paper-comparison claims. |
 | `thesis-evidence/` | Canonical B0-B5 thesis evidence ladder, EXP-019-029 preregistration/model gates, reviewer calibration, claim gates, chapter traceability, and risk register. |
 | `h-layer/enhancement-plan-2026-07-12.md` | Comprehensive enhancement backlog from the 2026-07-12 verification sweep: Phase 1 (program overview, verify-all gate, consistency fixes, iteration-014 coherence repair) implemented; Phase 2/3 absorbed into the continuation plan. |
 | `continuation-plan-2026-07-24.md` | ACTIVE continuation plan after the evidence-ready thesis package: Phase 0 secure/commit, the human-gated label-campaign spine, parallel tracks (survey deadline, deferred enhancements, MediVARIA), thesis finalization trajectory. Read this for current sequencing. |

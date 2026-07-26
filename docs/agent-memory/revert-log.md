@@ -552,3 +552,36 @@ Record file changes and rollback notes here.
   - scripts/build_bigui.py
 - Rollback note: Revert the focused BigUI benchmark commits; accepted run bundles are append-only and the frozen Agent 4 baseline remains unchanged.
 - Git commit: none recorded by script.
+
+## 2026-07-26 18:36 +03:00 - Codex - Independent expert evidence evaluation pipeline
+
+- Files changed:
+  - schemas/independent-evidence-package-v1.schema.json
+  - schemas/independent-review-return-v1.schema.json
+  - schemas/independent-evidence-delivery-v1.schema.json
+  - scripts/build_independent_evidence_package.py
+  - scripts/validate_independent_evidence_returns.py
+  - scripts/freeze_independent_gold_labels.py
+  - scripts/evaluate_independent_ground_truth.py
+  - scripts/publish_independent_evidence_package.py
+  - scripts/build_bigui.py
+  - VEGO-AI-Research-Hub.html
+  - docs/research/independent-evidence/README.md
+  - docs/research/independent-evidence/MEASUREMENT_CONTRACT.md
+  - docs/research/independent-evidence/SUPERVISOR_DECISIONS_REQUIRED.md
+- Rollback note: Revert the five independent-evidence commits; no protected runtime or baseline artifact was modified.
+- Git commit: none recorded by script.
+
+## 2026-07-26 20:45 +03:00 - Codex - Advance independent evidence study to calibration
+
+- Files changed:
+  - docs/research/independent-evidence/decision-register.json
+  - docs/research/independent-evidence/PARTICIPANT_INFORMATION_AND_CONSENT.md
+  - schemas/independent-calibration-return-v1.schema.json
+  - schemas/independent-evidence-decision-register-v1.schema.json
+  - scripts/validate_independent_calibration_returns.py
+  - scripts/freeze_independent_calibration.py
+  - scripts/publish_independent_evidence_package.py
+  - VEGO-AI-Research-Hub.html
+- Rollback note: Revert the calibration-phase commits; the baseline, Agent 4, private mapping, expert-label count, and evaluation results were not changed.
+- Git commit: none recorded by script.
