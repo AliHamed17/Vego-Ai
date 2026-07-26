@@ -1,7 +1,7 @@
 {
   "schemaVersion": "ProgramStatusSnapshot-v1",
-  "generatedAt": "2026-07-26T00:24:04+00:00",
-  "sourceRevision": "b866fbf5c8c5c08dfbc5da6e0387e60a887eaa7f",
+  "generatedAt": "2026-07-26T00:30:26+00:00",
+  "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
   "latestAcceptedIteration": {
     "iteration": 15,
     "directory": "docs/research/hardening",
@@ -9,7 +9,7 @@
     "runId": "HLAYER-UNIFIED-HARDENING-V1",
     "iterationKind": "reliability_only",
     "verdict": "NEUTRAL",
-    "normalizedSha256": "3e791ac220102953bf7147afed06312a8281585069ea2e9974e28e4b3e9759fd",
+    "normalizedSha256": "52930728cff7c3152125713a6fa4a0ad69c04c74ad4de8884fc95b474c0b3f4b",
     "claimScope": "Unified-runtime parity, security, provenance, and reliability evidence only. No accuracy, generalization, reduced-effort, benchmark-superiority, or clinical-performance claim."
   },
   "replaySuite": {
@@ -187,7 +187,7 @@
     "conformanceManifest": "c4a293ddd8495fd759ded68c4bef10b8bcc1454b90291d42485d8a5447b79202",
     "exp005Gate": "88a6b7c5fbbf3c5ffc31be8732023db2c0fe09e79bcc24169aeb6f92ec3cface",
     "decisionSnapshot": "ba7e03d395302f4e8eeebdd87b59cb380b8d4a3a76292beddf585772bf93fe88",
-    "iteration15Manifest": "7a2847a071cd80d2c532628e2053d6a8674bf3af09c827e027b8703b089f9e5d",
+    "iteration15Manifest": "eebbe9492dece86a7ff5a02f3d55b5ca457032937c76576e62fc21d0fe885807",
     "baselineLockManifest": "3ed664b6de6b8d943e36493bbb8e31d863e8a3dea041cfda82c7be5e218d695f",
     "securityPostureSnapshot": "de37819083ac9cd814cf0ad3b0b0028b50fa9671d024e8b97c422fcf3a49e4cd"
   }
