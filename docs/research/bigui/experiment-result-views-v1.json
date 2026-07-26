@@ -2,8 +2,8 @@
   "schemaVersion": "ExperimentResultViewCollection-v1",
   "generatedAt": "2026-07-26T16:00:00+03:00",
   "publicationTier": "tracked_shareable",
-  "catalogSha256": "1bb728112ddc5e4da06493fccf1c64f893c7d573b886b833b025a143a4055cb7",
-  "benchmarkSha256": "c0023824a08bf764d5ef1f8b0b0057aa50d3614b89ae6aa38b7642613e8278d1",
+  "catalogSha256": "728e81c3ddc3aa61dbb366ebc24641eb2d0b20b4898fed789f2f0b122379d4c0",
+  "benchmarkSha256": "7ad5707908031ee3a41d840c38ecf7963acda235034228f059d42da19589e718",
   "resultViews": [
     {
       "schemaVersion": "ExperimentResultView-v1",
@@ -1740,12 +1740,12 @@
       "status": "Offline evidence",
       "evidenceClass": "offline",
       "currentRun": {
-        "runId": "EXP-006-7d8abc08-73dc46ce",
-        "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+        "runId": "EXP-006-7d8abc08-a289b7c3",
+        "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
         "executionStatus": "succeeded",
         "evidenceClass": "offline",
         "manifestPath": "reports/generated/exp006/manifest.json",
-        "manifestSha256": "73dc46ce61882549a83483c322e06fe8b3d87ba5a33f00a192234671bb0c9848",
+        "manifestSha256": "a289b7c3d0dc5e12f2486d1634815b6737e5291b66cdfe4e955af0f31fed8e6e",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -1769,13 +1769,19 @@
           "runId": "EXP-006-7d8abc08-73dc46ce",
           "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
           "evidenceClass": "offline",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-006-7d8abc08-78770f5c",
           "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
           "evidenceClass": "offline",
           "current": false
+        },
+        {
+          "runId": "EXP-006-7d8abc08-a289b7c3",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "offline",
+          "current": true
         },
         {
           "runId": "EXP-006-7d8abc08-cbf9dbed",
@@ -1820,18 +1826,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1861,12 +1867,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-170918DFC23A7CEA",
+          "assessmentId": "PA-005306982A015C05",
           "experimentId": "EXP-006",
           "metricId": "EVENT_EARLY_STAGE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-006-7d8abc081553",
-          "rightRunId": "EXP-006-7d8abc08-73dc46ce",
+          "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -1878,12 +1884,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-DC5AE86BC7331927",
+          "assessmentId": "PA-4A8DED31980CD0E9",
           "experimentId": "EXP-006",
           "metricId": "EVENT_SEV2PLUS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-006-7d8abc081553",
-          "rightRunId": "EXP-006-7d8abc08-73dc46ce",
+          "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -1895,12 +1901,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-38ADF5617CBE638C",
+          "assessmentId": "PA-735CB3476E6B5BEA",
           "experimentId": "EXP-006",
           "metricId": "EVENT_TOTAL_RECONSTRUCTED",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-006-7d8abc081553",
-          "rightRunId": "EXP-006-7d8abc08-73dc46ce",
+          "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -1912,12 +1918,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-84B04541DAECFD08",
+          "assessmentId": "PA-8831553ECCC57A01",
           "experimentId": "EXP-006",
           "metricId": "EVENT_UNCERTAINTY_MARKED",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-006-7d8abc081553",
-          "rightRunId": "EXP-006-7d8abc08-73dc46ce",
+          "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -1929,12 +1935,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-80507E460514383F",
+          "assessmentId": "PA-9085F772F0ED7FA6",
           "experimentId": "EXP-006",
           "metricId": "MECH_QUEUE_TO_EVENT_COUNT_RATIO",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-006-7d8abc081553",
-          "rightRunId": "EXP-006-7d8abc08-73dc46ce",
+          "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -1946,12 +1952,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-616AE1BCE00A1A60",
+          "assessmentId": "PA-D27D4092717207EB",
           "experimentId": "EXP-006",
           "metricId": "MECH_REVIEW_QUEUE_ITEMS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-006-7d8abc081553",
-          "rightRunId": "EXP-006-7d8abc08-73dc46ce",
+          "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -1965,7 +1971,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-006-C56FB7120AAA",
+          "visualizationId": "VIS-EXP-006-A98A8ECBAF8D",
           "experimentId": "EXP-006",
           "title": "Event Early Stage",
           "analyticalQuestion": "What does the latest accepted EVENT_EARLY_STAGE evidence show for EXP-006?",
@@ -1974,7 +1980,7 @@
             "EVENT_EARLY_STAGE"
           ],
           "observationIds": [
-            "OBS-METRIC-EVENT_EARLY_STAGE-e1aff0cb4e41"
+            "OBS-METRIC-EVENT_EARLY_STAGE-93268d399604"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -1997,7 +2003,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-006-2D35BCFBA840",
+          "visualizationId": "VIS-EXP-006-E2379015B896",
           "experimentId": "EXP-006",
           "title": "Event Sev2Plus",
           "analyticalQuestion": "What does the latest accepted EVENT_SEV2PLUS evidence show for EXP-006?",
@@ -2006,7 +2012,7 @@
             "EVENT_SEV2PLUS"
           ],
           "observationIds": [
-            "OBS-METRIC-EVENT_SEV2PLUS-ab26648a4819"
+            "OBS-METRIC-EVENT_SEV2PLUS-f688f33ebfe9"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -2029,7 +2035,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-006-34806EC47D5D",
+          "visualizationId": "VIS-EXP-006-7A045EC60763",
           "experimentId": "EXP-006",
           "title": "Event Total Reconstructed",
           "analyticalQuestion": "What does the latest accepted EVENT_TOTAL_RECONSTRUCTED evidence show for EXP-006?",
@@ -2038,7 +2044,7 @@
             "EVENT_TOTAL_RECONSTRUCTED"
           ],
           "observationIds": [
-            "OBS-METRIC-EVENT_TOTAL_RECONSTRUCTED-c1efd8ef0919"
+            "OBS-METRIC-EVENT_TOTAL_RECONSTRUCTED-5f60d80ceece"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -2061,7 +2067,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-006-A876DDC9B082",
+          "visualizationId": "VIS-EXP-006-BA15A76BA36E",
           "experimentId": "EXP-006",
           "title": "Event Uncertainty Marked",
           "analyticalQuestion": "What does the latest accepted EVENT_UNCERTAINTY_MARKED evidence show for EXP-006?",
@@ -2070,7 +2076,7 @@
             "EVENT_UNCERTAINTY_MARKED"
           ],
           "observationIds": [
-            "OBS-METRIC-EVENT_UNCERTAINTY_MARKED-37320a98861a"
+            "OBS-METRIC-EVENT_UNCERTAINTY_MARKED-620b96fbddc6"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -2093,7 +2099,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-006-BE3830CC19B8",
+          "visualizationId": "VIS-EXP-006-1C32B48230A9",
           "experimentId": "EXP-006",
           "title": "Mech Queue To Event Count Ratio",
           "analyticalQuestion": "What does the latest accepted MECH_QUEUE_TO_EVENT_COUNT_RATIO evidence show for EXP-006?",
@@ -2102,7 +2108,7 @@
             "MECH_QUEUE_TO_EVENT_COUNT_RATIO"
           ],
           "observationIds": [
-            "OBS-METRIC-MECH_QUEUE_TO_EVENT_COUNT_RATIO-178807790d96"
+            "OBS-METRIC-MECH_QUEUE_TO_EVENT_COUNT_RATIO-c7a136ee7b94"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -2125,7 +2131,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-006-FE2BA29A5A6E",
+          "visualizationId": "VIS-EXP-006-1BA40F2FC410",
           "experimentId": "EXP-006",
           "title": "Mech Review Queue Items",
           "analyticalQuestion": "What does the latest accepted MECH_REVIEW_QUEUE_ITEMS evidence show for EXP-006?",
@@ -2134,7 +2140,7 @@
             "MECH_REVIEW_QUEUE_ITEMS"
           ],
           "observationIds": [
-            "OBS-METRIC-MECH_REVIEW_QUEUE_ITEMS-25d2ddacd6aa"
+            "OBS-METRIC-MECH_REVIEW_QUEUE_ITEMS-7f6333b235c6"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -2192,12 +2198,12 @@
       "status": "Offline evidence",
       "evidenceClass": "offline",
       "currentRun": {
-        "runId": "EXP-007-1d1e4922-4a938423",
-        "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+        "runId": "EXP-007-1d1e4922-fa9872e5",
+        "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
         "executionStatus": "succeeded",
         "evidenceClass": "offline",
         "manifestPath": "reports/generated/exp007/manifest.json",
-        "manifestSha256": "4a9384237cb88561797727994d1406df79d8e59323c357a30627e54654384b89",
+        "manifestSha256": "fa9872e5dc3177c8e877b6c4487c26f6e99cbbe21e7c5b2b13fa5267a2519ac7",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -2221,7 +2227,7 @@
           "runId": "EXP-007-1d1e4922-4a938423",
           "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
           "evidenceClass": "offline",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-007-1d1e4922-82797308",
@@ -2234,6 +2240,12 @@
           "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
           "evidenceClass": "offline",
           "current": false
+        },
+        {
+          "runId": "EXP-007-1d1e4922-fa9872e5",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "offline",
+          "current": true
         },
         {
           "runId": "EXP-007-1d1e4922f274",
@@ -2272,18 +2284,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -2313,12 +2325,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-6138F384D6BD6971",
+          "assessmentId": "PA-EC235281B530E48D",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_BUNDLING_REDUCTION",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-007-1d1e4922f274",
-          "rightRunId": "EXP-007-1d1e4922-4a938423",
+          "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -2330,12 +2342,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-30B2EBB9E7E08816",
+          "assessmentId": "PA-0411AB029944E131",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_EVENT_LOAD",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-007-1d1e4922f274",
-          "rightRunId": "EXP-007-1d1e4922-4a938423",
+          "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -2373,12 +2385,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-7E174EFCED013674",
+          "assessmentId": "PA-7DFFB7E14A7E8894",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_HIGH_SEVERITY_COVERAGE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-007-1d1e4922f274",
-          "rightRunId": "EXP-007-1d1e4922-4a938423",
+          "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -2406,12 +2418,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-2778B6338D4AD913",
+          "assessmentId": "PA-190C887C5AF43AD6",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_TRANSACTION_LOAD",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-007-1d1e4922f274",
-          "rightRunId": "EXP-007-1d1e4922-4a938423",
+          "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -2423,12 +2435,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-EB12970DC8F058AF",
+          "assessmentId": "PA-9514E5128641460E",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_WEIGHTED_COVERAGE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-007-1d1e4922f274",
-          "rightRunId": "EXP-007-1d1e4922-4a938423",
+          "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -2442,7 +2454,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-007-88A2970A89D0",
+          "visualizationId": "VIS-EXP-007-87CA5E51DCAD",
           "experimentId": "EXP-007",
           "title": "Routing Bundling Reduction",
           "analyticalQuestion": "What does the latest accepted ROUTING_BUNDLING_REDUCTION evidence show for EXP-007?",
@@ -2451,12 +2463,12 @@
             "ROUTING_BUNDLING_REDUCTION"
           ],
           "observationIds": [
-            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-15d88730c26d",
-            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-29af548bceda",
-            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-40a250ebb3b5",
-            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-b14e1a87e5ed",
-            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-bbad65359f0f",
-            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-dfa072d3d111"
+            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-0541d292dd5b",
+            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-19389c59facc",
+            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-4e77c9c9ffc6",
+            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-8a64b27d19f9",
+            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-d9d5986f7a1e",
+            "OBS-METRIC-ROUTING_BUNDLING_REDUCTION-e8e38f6981f0"
           ],
           "fieldBindings": {
             "x": "dimensions.mode",
@@ -2480,7 +2492,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-007-835814DA145E",
+          "visualizationId": "VIS-EXP-007-66415F8B2E3E",
           "experimentId": "EXP-007",
           "title": "Routing Event Load",
           "analyticalQuestion": "What does the latest accepted ROUTING_EVENT_LOAD evidence show for EXP-007?",
@@ -2489,12 +2501,12 @@
             "ROUTING_EVENT_LOAD"
           ],
           "observationIds": [
-            "OBS-METRIC-ROUTING_EVENT_LOAD-486183bfa0c0",
-            "OBS-METRIC-ROUTING_EVENT_LOAD-51e4f9d68558",
-            "OBS-METRIC-ROUTING_EVENT_LOAD-5f129b79eae4",
-            "OBS-METRIC-ROUTING_EVENT_LOAD-65cb539b21a7",
-            "OBS-METRIC-ROUTING_EVENT_LOAD-85eb28c71e24",
-            "OBS-METRIC-ROUTING_EVENT_LOAD-d285de5fda90"
+            "OBS-METRIC-ROUTING_EVENT_LOAD-2c60e3df90fc",
+            "OBS-METRIC-ROUTING_EVENT_LOAD-7c59f24d823c",
+            "OBS-METRIC-ROUTING_EVENT_LOAD-8ad2d5dc58c9",
+            "OBS-METRIC-ROUTING_EVENT_LOAD-8bf88f57b6f2",
+            "OBS-METRIC-ROUTING_EVENT_LOAD-8f541053b144",
+            "OBS-METRIC-ROUTING_EVENT_LOAD-e517b96f6d57"
           ],
           "fieldBindings": {
             "x": "dimensions.mode",
@@ -2518,7 +2530,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-007-637E10F3E16C",
+          "visualizationId": "VIS-EXP-007-1206D434ED16",
           "experimentId": "EXP-007",
           "title": "Routing High Severity Coverage",
           "analyticalQuestion": "What does the latest accepted ROUTING_HIGH_SEVERITY_COVERAGE evidence show for EXP-007?",
@@ -2527,12 +2539,12 @@
             "ROUTING_HIGH_SEVERITY_COVERAGE"
           ],
           "observationIds": [
-            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-57bdf5a31f90",
-            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-9c2ecb3c9f27",
-            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-9cd5c1aebd6a",
-            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-a745772e0d1a",
-            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-d5f3c6ea7b54",
-            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-e88e435e7e27"
+            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-887521440cf7",
+            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-ad8c120eb2c0",
+            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-b1a8d901bb86",
+            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-b3a0524f9c7d",
+            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-e5a737eda448",
+            "OBS-METRIC-ROUTING_HIGH_SEVERITY_COVERAGE-ffc5150de04c"
           ],
           "fieldBindings": {
             "x": "dimensions.mode",
@@ -2556,7 +2568,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-007-AE950DAE06FB",
+          "visualizationId": "VIS-EXP-007-3AFA20BC6FF6",
           "experimentId": "EXP-007",
           "title": "Routing Transaction Load",
           "analyticalQuestion": "What does the latest accepted ROUTING_TRANSACTION_LOAD evidence show for EXP-007?",
@@ -2565,12 +2577,12 @@
             "ROUTING_TRANSACTION_LOAD"
           ],
           "observationIds": [
-            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-5b1b6dfe96f4",
-            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-5da463ce2029",
-            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-910f1df25439",
-            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-99f6d41db18d",
-            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-9ad98f44b4c1",
-            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-b65782572816"
+            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-07e2eddc1af6",
+            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-36fc46c75233",
+            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-bc6c8202b904",
+            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-bf52f85dc587",
+            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-e1ccea985634",
+            "OBS-METRIC-ROUTING_TRANSACTION_LOAD-f0d6b2320c07"
           ],
           "fieldBindings": {
             "x": "dimensions.mode",
@@ -2594,7 +2606,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-007-BC3DDA855A25",
+          "visualizationId": "VIS-EXP-007-B5C4644F4940",
           "experimentId": "EXP-007",
           "title": "Routing Weighted Coverage",
           "analyticalQuestion": "What does the latest accepted ROUTING_WEIGHTED_COVERAGE evidence show for EXP-007?",
@@ -2603,12 +2615,12 @@
             "ROUTING_WEIGHTED_COVERAGE"
           ],
           "observationIds": [
-            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-0abe241d644e",
-            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-292d0b7a2b17",
-            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-38845a737764",
-            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-9813266605a5",
-            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-b437138b9175",
-            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-dd523b099592"
+            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-01c08de12752",
+            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-109135f6da62",
+            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-32fd9ae0d6c6",
+            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-7d99f87185b8",
+            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-a53a96e159ce",
+            "OBS-METRIC-ROUTING_WEIGHTED_COVERAGE-d1cf9137e791"
           ],
           "fieldBindings": {
             "x": "dimensions.mode",
@@ -2667,12 +2679,12 @@
       "status": "Offline evidence",
       "evidenceClass": "offline",
       "currentRun": {
-        "runId": "EXP-008-de19666d-70c3984b",
-        "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+        "runId": "EXP-008-de19666d-3b3b6f7e",
+        "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
         "executionStatus": "succeeded",
         "evidenceClass": "offline",
         "manifestPath": "reports/generated/exp008/manifest.json",
-        "manifestSha256": "70c3984b4fdf94851478febc9c0a6adba14d9414ad37e9895fa817b3f8998bdf",
+        "manifestSha256": "3b3b6f7ef5139eddb53f5e2b39bf39fa02076a8cf846f9870b054ea97ff48fff",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -2699,10 +2711,16 @@
           "current": false
         },
         {
+          "runId": "EXP-008-de19666d-3b3b6f7e",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "offline",
+          "current": true
+        },
+        {
           "runId": "EXP-008-de19666d-70c3984b",
           "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
           "evidenceClass": "offline",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-008-de19666d-9c896ede",
@@ -2747,18 +2765,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -2788,12 +2806,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-7431C1B400787C67",
+          "assessmentId": "PA-7A164B264A18CF25",
           "experimentId": "EXP-008",
           "metricId": "TRIGGER_CAP_CAPTURE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-008-de19666dc016",
-          "rightRunId": "EXP-008-de19666d-70c3984b",
+          "rightRunId": "EXP-008-de19666d-3b3b6f7e",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -2805,12 +2823,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-8D720DB112C90CBB",
+          "assessmentId": "PA-5F5B89EE9EFB28B7",
           "experimentId": "EXP-008",
           "metricId": "TRIGGER_MAX_ADDED_LOAD",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-008-de19666dc016",
-          "rightRunId": "EXP-008-de19666d-70c3984b",
+          "rightRunId": "EXP-008-de19666d-3b3b6f7e",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -2824,7 +2842,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-008-C42BF254E0FE",
+          "visualizationId": "VIS-EXP-008-9D42BB00FDDF",
           "experimentId": "EXP-008",
           "title": "Trigger Cap Capture",
           "analyticalQuestion": "What does the latest accepted TRIGGER_CAP_CAPTURE evidence show for EXP-008?",
@@ -2833,11 +2851,11 @@
             "TRIGGER_CAP_CAPTURE"
           ],
           "observationIds": [
-            "OBS-METRIC-TRIGGER_CAP_CAPTURE-165aa355c847",
-            "OBS-METRIC-TRIGGER_CAP_CAPTURE-380fc0a4f63e",
-            "OBS-METRIC-TRIGGER_CAP_CAPTURE-8825b3ea4080",
-            "OBS-METRIC-TRIGGER_CAP_CAPTURE-ba964bbe72a4",
-            "OBS-METRIC-TRIGGER_CAP_CAPTURE-f2f64a89eb96"
+            "OBS-METRIC-TRIGGER_CAP_CAPTURE-021f65a86662",
+            "OBS-METRIC-TRIGGER_CAP_CAPTURE-0940c6646c5e",
+            "OBS-METRIC-TRIGGER_CAP_CAPTURE-34c00eb97523",
+            "OBS-METRIC-TRIGGER_CAP_CAPTURE-43cc54bb320e",
+            "OBS-METRIC-TRIGGER_CAP_CAPTURE-e857a8a0bff1"
           ],
           "fieldBindings": {
             "x": "dimensions.capPerSetting",
@@ -2860,7 +2878,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-008-3B8734EF5464",
+          "visualizationId": "VIS-EXP-008-227C83CC9BB6",
           "experimentId": "EXP-008",
           "title": "Trigger Max Added Load",
           "analyticalQuestion": "What does the latest accepted TRIGGER_MAX_ADDED_LOAD evidence show for EXP-008?",
@@ -2869,11 +2887,11 @@
             "TRIGGER_MAX_ADDED_LOAD"
           ],
           "observationIds": [
-            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-2fb8439839ee",
-            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-4e03e4b8fa32",
-            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-6a0721ee1548",
-            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-840080fd66d1",
-            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-dbe785cee37f"
+            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-1c730caada25",
+            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-1cfa2b939b7a",
+            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-7083d09b4e74",
+            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-981c2e5395f7",
+            "OBS-METRIC-TRIGGER_MAX_ADDED_LOAD-ede73e14862f"
           ],
           "fieldBindings": {
             "x": "dimensions.capPerSetting",
@@ -2931,12 +2949,12 @@
       "status": "Synthetic fixture",
       "evidenceClass": "synthetic",
       "currentRun": {
-        "runId": "EXP-009-5bea318e-302e7b83",
-        "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+        "runId": "EXP-009-5bea318e-096eb0cb",
+        "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
         "executionStatus": "succeeded",
         "evidenceClass": "synthetic",
         "manifestPath": "reports/generated/exp009/manifest.json",
-        "manifestSha256": "302e7b8376935d7cc4ece6e6b45fef2fa865b7e0c0e575647118b0a4fe716cae",
+        "manifestSha256": "096eb0cb920fe0e2f3d3004c111f1ac7c8a1c321696700bff9c5001257a7a941",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -2957,10 +2975,16 @@
       },
       "historicalRuns": [
         {
+          "runId": "EXP-009-5bea318e-096eb0cb",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "synthetic",
+          "current": true
+        },
+        {
           "runId": "EXP-009-5bea318e-302e7b83",
           "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
           "evidenceClass": "synthetic",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-009-5bea318e-66a54781",
@@ -3011,18 +3035,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -3052,12 +3076,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-E09B9EFEC15CE159",
+          "assessmentId": "PA-106EA9940C07E5EE",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_DETECTION_RECALL",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-009-5bea318ee21d",
-          "rightRunId": "EXP-009-5bea318e-302e7b83",
+          "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3069,12 +3093,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-88E5D66665D1B09A",
+          "assessmentId": "PA-D6772FB97D246B9A",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_FALSE_NEGATIVES",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-009-5bea318ee21d",
-          "rightRunId": "EXP-009-5bea318e-302e7b83",
+          "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3086,12 +3110,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-AF2336016CA4B690",
+          "assessmentId": "PA-3BA840DAD9D64356",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_FALSE_POSITIVES",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-009-5bea318ee21d",
-          "rightRunId": "EXP-009-5bea318e-302e7b83",
+          "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3103,12 +3127,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-8CE36FF226C678D8",
+          "assessmentId": "PA-6A80DCA96CD9D3D5",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_FINAL_STATUS_COUNT",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-009-5bea318ee21d",
-          "rightRunId": "EXP-009-5bea318e-302e7b83",
+          "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3120,12 +3144,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-73103992CE27ECD4",
+          "assessmentId": "PA-55B9F4991095824B",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_SPECIFICITY",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-009-5bea318ee21d",
-          "rightRunId": "EXP-009-5bea318e-302e7b83",
+          "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3137,12 +3161,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D2A19EBB2E10E926",
+          "assessmentId": "PA-1D5E80A8E4FB6C22",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_TRUE_NEGATIVES",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-009-5bea318ee21d",
-          "rightRunId": "EXP-009-5bea318e-302e7b83",
+          "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3154,12 +3178,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-A3CCDE1B029C53D0",
+          "assessmentId": "PA-A493C83E4DFAE301",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_TRUE_POSITIVES",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-009-5bea318ee21d",
-          "rightRunId": "EXP-009-5bea318e-302e7b83",
+          "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3173,7 +3197,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-009-129F8BAC25E1",
+          "visualizationId": "VIS-EXP-009-98C0E8D803BF",
           "experimentId": "EXP-009",
           "title": "Hverify Detection Recall",
           "analyticalQuestion": "What does the latest accepted HVERIFY_DETECTION_RECALL evidence show for EXP-009?",
@@ -3182,7 +3206,7 @@
             "HVERIFY_DETECTION_RECALL"
           ],
           "observationIds": [
-            "OBS-METRIC-HVERIFY_DETECTION_RECALL-2933072e446b"
+            "OBS-METRIC-HVERIFY_DETECTION_RECALL-d7b1564c446d"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -3205,7 +3229,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-009-97696DAA57D7",
+          "visualizationId": "VIS-EXP-009-4BA34DD96B10",
           "experimentId": "EXP-009",
           "title": "Hverify False Negatives",
           "analyticalQuestion": "What does the latest accepted HVERIFY_FALSE_NEGATIVES evidence show for EXP-009?",
@@ -3214,7 +3238,7 @@
             "HVERIFY_FALSE_NEGATIVES"
           ],
           "observationIds": [
-            "OBS-METRIC-HVERIFY_FALSE_NEGATIVES-d31d007f8902"
+            "OBS-METRIC-HVERIFY_FALSE_NEGATIVES-cf230fd445a4"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -3237,7 +3261,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-009-23811C08B8AF",
+          "visualizationId": "VIS-EXP-009-7004086EF683",
           "experimentId": "EXP-009",
           "title": "Hverify False Positives",
           "analyticalQuestion": "What does the latest accepted HVERIFY_FALSE_POSITIVES evidence show for EXP-009?",
@@ -3246,7 +3270,7 @@
             "HVERIFY_FALSE_POSITIVES"
           ],
           "observationIds": [
-            "OBS-METRIC-HVERIFY_FALSE_POSITIVES-275359d834be"
+            "OBS-METRIC-HVERIFY_FALSE_POSITIVES-eb5bd66af6a2"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -3269,7 +3293,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-009-EF17E026FE2D",
+          "visualizationId": "VIS-EXP-009-0A579DCAF754",
           "experimentId": "EXP-009",
           "title": "Hverify Final Status Count",
           "analyticalQuestion": "What does the latest accepted HVERIFY_FINAL_STATUS_COUNT evidence show for EXP-009?",
@@ -3278,10 +3302,10 @@
             "HVERIFY_FINAL_STATUS_COUNT"
           ],
           "observationIds": [
-            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-0d4e8ad4b128",
-            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-1d408006ecb4",
-            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-483825a1af84",
-            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-cf2925fd6e85"
+            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-0d92f4225c72",
+            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-5a3e1580cfa3",
+            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-676bd4a26528",
+            "OBS-METRIC-HVERIFY_FINAL_STATUS_COUNT-c206bc5c7c53"
           ],
           "fieldBindings": {
             "x": "dimensions.outcome",
@@ -3304,7 +3328,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-009-EB2A091EE8CA",
+          "visualizationId": "VIS-EXP-009-1BE06386B9B4",
           "experimentId": "EXP-009",
           "title": "Hverify Specificity",
           "analyticalQuestion": "What does the latest accepted HVERIFY_SPECIFICITY evidence show for EXP-009?",
@@ -3313,7 +3337,7 @@
             "HVERIFY_SPECIFICITY"
           ],
           "observationIds": [
-            "OBS-METRIC-HVERIFY_SPECIFICITY-b6b650913ffa"
+            "OBS-METRIC-HVERIFY_SPECIFICITY-623315d0faaa"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -3336,7 +3360,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-009-EC06BB5B595C",
+          "visualizationId": "VIS-EXP-009-4FB2029E05F6",
           "experimentId": "EXP-009",
           "title": "Hverify True Negatives",
           "analyticalQuestion": "What does the latest accepted HVERIFY_TRUE_NEGATIVES evidence show for EXP-009?",
@@ -3345,7 +3369,7 @@
             "HVERIFY_TRUE_NEGATIVES"
           ],
           "observationIds": [
-            "OBS-METRIC-HVERIFY_TRUE_NEGATIVES-2955fac0c901"
+            "OBS-METRIC-HVERIFY_TRUE_NEGATIVES-b3787807af9f"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -3368,7 +3392,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-009-F28B4BE610ED",
+          "visualizationId": "VIS-EXP-009-BF8CE27F7E3B",
           "experimentId": "EXP-009",
           "title": "Hverify True Positives",
           "analyticalQuestion": "What does the latest accepted HVERIFY_TRUE_POSITIVES evidence show for EXP-009?",
@@ -3377,7 +3401,7 @@
             "HVERIFY_TRUE_POSITIVES"
           ],
           "observationIds": [
-            "OBS-METRIC-HVERIFY_TRUE_POSITIVES-9303719467c0"
+            "OBS-METRIC-HVERIFY_TRUE_POSITIVES-f6c0a219ddac"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -3435,12 +3459,12 @@
       "status": "Synthetic fixture",
       "evidenceClass": "synthetic",
       "currentRun": {
-        "runId": "EXP-010-10dedea4-13b74472",
-        "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+        "runId": "EXP-010-10dedea4-060a8858",
+        "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
         "executionStatus": "succeeded",
         "evidenceClass": "synthetic",
         "manifestPath": "reports/generated/exp010/manifest.json",
-        "manifestSha256": "13b744724390ae0195933549e76a2fddd2335bff86225d80a35d5492d824726e",
+        "manifestSha256": "060a885876cfee21a24ffb83f00eaf95eb6ce7ead944a1b7e879825eb333e9c5",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -3461,10 +3485,16 @@
       },
       "historicalRuns": [
         {
+          "runId": "EXP-010-10dedea4-060a8858",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "synthetic",
+          "current": true
+        },
+        {
           "runId": "EXP-010-10dedea4-13b74472",
           "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
           "evidenceClass": "synthetic",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-010-10dedea4-44066e25",
@@ -3515,18 +3545,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -3556,12 +3586,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-129E656B220C354B",
+          "assessmentId": "PA-66D24F73670A96B7",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_ADJUDICATION_RATE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-010-10dedea4647c",
-          "rightRunId": "EXP-010-10dedea4-13b74472",
+          "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3573,12 +3603,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-47F611AF21A3C954",
+          "assessmentId": "PA-E9F022060136F8C0",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_NO_CONFLICT_RATE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-010-10dedea4647c",
-          "rightRunId": "EXP-010-10dedea4-13b74472",
+          "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3590,12 +3620,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-BAB61F674CB680C7",
+          "assessmentId": "PA-203C2CF26845F9AF",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_RESOLVED_RATE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-010-10dedea4647c",
-          "rightRunId": "EXP-010-10dedea4-13b74472",
+          "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3607,12 +3637,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-0E2B84D45A3D0F3B",
+          "assessmentId": "PA-393092ECB0BEC7B2",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_TIMEOUT_RATE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-010-10dedea4647c",
-          "rightRunId": "EXP-010-10dedea4-13b74472",
+          "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -3626,7 +3656,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-010-BED598B1BDEC",
+          "visualizationId": "VIS-EXP-010-DC7A19F17925",
           "experimentId": "EXP-010",
           "title": "Convergence Adjudication Rate",
           "analyticalQuestion": "What does the latest accepted CONVERGENCE_ADJUDICATION_RATE evidence show for EXP-010?",
@@ -3635,10 +3665,10 @@
             "CONVERGENCE_ADJUDICATION_RATE"
           ],
           "observationIds": [
-            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-0716e7b02ab2",
-            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-30545847248e",
-            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-dd2ae044f354",
-            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-de440882f8f8"
+            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-2612365cce5b",
+            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-a7fc949d1609",
+            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-b12a0b6964b5",
+            "OBS-METRIC-CONVERGENCE_ADJUDICATION_RATE-c8af2ff95de7"
           ],
           "fieldBindings": {
             "x": "dimensions.roundBound",
@@ -3661,7 +3691,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-010-BDB8F21B18B1",
+          "visualizationId": "VIS-EXP-010-A6C2EA03587F",
           "experimentId": "EXP-010",
           "title": "Convergence No Conflict Rate",
           "analyticalQuestion": "What does the latest accepted CONVERGENCE_NO_CONFLICT_RATE evidence show for EXP-010?",
@@ -3670,10 +3700,10 @@
             "CONVERGENCE_NO_CONFLICT_RATE"
           ],
           "observationIds": [
-            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-428f176bcb49",
-            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-7276d97ece13",
-            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-72f148f54450",
-            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-8c509b7f7fc2"
+            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-2106370bcbf4",
+            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-457ecc4e914d",
+            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-d4288361a760",
+            "OBS-METRIC-CONVERGENCE_NO_CONFLICT_RATE-e93259e17f7b"
           ],
           "fieldBindings": {
             "x": "dimensions.roundBound",
@@ -3696,7 +3726,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-010-893D5D3B6D8B",
+          "visualizationId": "VIS-EXP-010-B1517A4D0466",
           "experimentId": "EXP-010",
           "title": "Convergence Resolved Rate",
           "analyticalQuestion": "What does the latest accepted CONVERGENCE_RESOLVED_RATE evidence show for EXP-010?",
@@ -3705,10 +3735,10 @@
             "CONVERGENCE_RESOLVED_RATE"
           ],
           "observationIds": [
-            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-1b532c9cdb06",
-            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-52d14d597aa3",
-            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-dde99d496840",
-            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-fe8b1cd2279d"
+            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-08d2f9ad5691",
+            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-1d22ff165874",
+            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-ae651ee8c17a",
+            "OBS-METRIC-CONVERGENCE_RESOLVED_RATE-bd55bb39df42"
           ],
           "fieldBindings": {
             "x": "dimensions.roundBound",
@@ -3731,7 +3761,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-010-12ED27B825AF",
+          "visualizationId": "VIS-EXP-010-11C643E236E4",
           "experimentId": "EXP-010",
           "title": "Convergence Timeout Rate",
           "analyticalQuestion": "What does the latest accepted CONVERGENCE_TIMEOUT_RATE evidence show for EXP-010?",
@@ -3740,10 +3770,10 @@
             "CONVERGENCE_TIMEOUT_RATE"
           ],
           "observationIds": [
-            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-0f11ce6ff2d8",
-            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-d3dd2980c9f6",
-            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-e20c42f421b1",
-            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-eaff8640adea"
+            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-138cf630824c",
+            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-4cc82fb40f43",
+            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-a18eaa57eb48",
+            "OBS-METRIC-CONVERGENCE_TIMEOUT_RATE-e11890875d4f"
           ],
           "fieldBindings": {
             "x": "dimensions.roundBound",
@@ -3990,12 +4020,12 @@
       "status": "Blocked",
       "evidenceClass": "blocked",
       "currentRun": {
-        "runId": "EXP-012-95c4dc03-ce433519",
-        "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+        "runId": "EXP-012-95c4dc03-5e68843f",
+        "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
         "executionStatus": "succeeded",
         "evidenceClass": "evaluation_ready",
         "manifestPath": "reports/generated/exp012/manifest.json",
-        "manifestSha256": "ce43351966c8ee72c83e7641f8a66b930dbf8f528f37c97bc83a85835357db45",
+        "manifestSha256": "5e68843f64a71c82c5362abc516250423258a2996b0d1a491d8062cf0b3f9285",
         "comparisonContext": {
           "datasetHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
           "partitionHash": "not_applicable",
@@ -4016,10 +4046,16 @@
       },
       "historicalRuns": [
         {
+          "runId": "EXP-012-95c4dc03-5e68843f",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "evaluation_ready",
+          "current": true
+        },
+        {
           "runId": "EXP-012-95c4dc03-ce433519",
           "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
           "evidenceClass": "evaluation_ready",
-          "current": true
+          "current": false
         },
         {
           "runId": "EXP-012-b489f6b6-b5055baf",
@@ -4076,18 +4112,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4117,12 +4153,12 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-4F69708846B71978",
+          "assessmentId": "PA-686D145E44BAAF4F",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_ACCURACY_B0",
           "comparisonFamily": "none",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
           "absoluteDelta": null,
@@ -4134,12 +4170,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-8F4F2E0F32338F56",
+          "assessmentId": "PA-E38DFF401A527F35",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_ACCURACY_B1",
           "comparisonFamily": "none",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
           "absoluteDelta": null,
@@ -4151,12 +4187,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-485D5E86CF724E44",
+          "assessmentId": "PA-C5E474B4B4A02DAB",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_MACRO_F1_B0",
           "comparisonFamily": "none",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
           "absoluteDelta": null,
@@ -4168,12 +4204,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-372C30AE1676449D",
+          "assessmentId": "PA-05778178BBB3A4E1",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_MACRO_F1_B1",
           "comparisonFamily": "none",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
           "absoluteDelta": null,
@@ -4185,12 +4221,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D69F3C91308B8E35",
+          "assessmentId": "PA-5BB7D7C64CB98139",
           "experimentId": "EXP-012",
           "metricId": "EVALUATOR_CROSSCHECK_PASS",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -4202,12 +4238,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D84750E29B218194",
+          "assessmentId": "PA-2D7066D0838A44EF",
           "experimentId": "EXP-012",
           "metricId": "LABEL_GENERALIZATION_SAFE",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -4219,12 +4255,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-34EF8054707BAE43",
+          "assessmentId": "PA-00AD29274898DAA1",
           "experimentId": "EXP-012",
           "metricId": "LABEL_SUPPLIED",
           "comparisonFamily": "historical_run",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
           "absoluteDelta": 0.0,
@@ -4236,12 +4272,12 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-3A21A11130AF59D5",
+          "assessmentId": "PA-8A8FC94E2855D593",
           "experimentId": "EXP-012",
           "metricId": "PAIRED_NET_CORRECTION",
           "comparisonFamily": "none",
           "leftRunId": "EXP-012-b489f6b64930",
-          "rightRunId": "EXP-012-95c4dc03-ce433519",
+          "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
           "absoluteDelta": null,
@@ -4255,7 +4291,7 @@
       "visualizationSpecs": [
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-012-8B3FB99C62BA",
+          "visualizationId": "VIS-EXP-012-CD8197AB9055",
           "experimentId": "EXP-012",
           "title": "Evaluator Crosscheck Pass",
           "analyticalQuestion": "What does the latest accepted EVALUATOR_CROSSCHECK_PASS evidence show for EXP-012?",
@@ -4264,7 +4300,7 @@
             "EVALUATOR_CROSSCHECK_PASS"
           ],
           "observationIds": [
-            "OBS-METRIC-EVALUATOR_CROSSCHECK_PASS-0b8c0b5efd14"
+            "OBS-METRIC-EVALUATOR_CROSSCHECK_PASS-56994f175fe9"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -4287,7 +4323,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-012-05CFA3985B73",
+          "visualizationId": "VIS-EXP-012-C0BD097527E3",
           "experimentId": "EXP-012",
           "title": "Label Generalization Safe",
           "analyticalQuestion": "What does the latest accepted LABEL_GENERALIZATION_SAFE evidence show for EXP-012?",
@@ -4296,7 +4332,7 @@
             "LABEL_GENERALIZATION_SAFE"
           ],
           "observationIds": [
-            "OBS-METRIC-LABEL_GENERALIZATION_SAFE-d55d27adf481"
+            "OBS-METRIC-LABEL_GENERALIZATION_SAFE-601f7b890e40"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -4319,7 +4355,7 @@
         },
         {
           "schemaVersion": "VisualizationSpec-v1",
-          "visualizationId": "VIS-EXP-012-2097783AE1C9",
+          "visualizationId": "VIS-EXP-012-68C1EC0C9552",
           "experimentId": "EXP-012",
           "title": "Label Supplied",
           "analyticalQuestion": "What does the latest accepted LABEL_SUPPLIED evidence show for EXP-012?",
@@ -4328,7 +4364,7 @@
             "LABEL_SUPPLIED"
           ],
           "observationIds": [
-            "OBS-METRIC-LABEL_SUPPLIED-f1b38680a3e2"
+            "OBS-METRIC-LABEL_SUPPLIED-c4f3af67429d"
           ],
           "fieldBindings": {
             "x": "metricId",
@@ -9693,8 +9729,8 @@
           "rightRunId": "EXP-034-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -0.049433333333333336,
-          "relativeDelta": -0.566030534351145,
+          "absoluteDelta": -0.049433333,
+          "relativeDelta": -0.566030534,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10572,8 +10608,8 @@
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -3.7387833333333305,
-          "relativeDelta": -0.2342197391212647,
+          "absoluteDelta": -3.738783333,
+          "relativeDelta": -0.234219739,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10589,8 +10625,8 @@
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -7.514644444444439,
-          "relativeDelta": -0.3308762483360003,
+          "absoluteDelta": -7.514644444,
+          "relativeDelta": -0.330876248,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10606,8 +10642,8 @@
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 532.4502222222209,
-          "relativeDelta": 0.14049461071805067,
+          "absoluteDelta": 532.450222222,
+          "relativeDelta": 0.140494611,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10623,8 +10659,8 @@
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 149786.22222222225,
-          "relativeDelta": 0.3456918023605727,
+          "absoluteDelta": 149786.222222222,
+          "relativeDelta": 0.345691802,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Regressed",
@@ -10640,8 +10676,8 @@
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.004968111111111062,
-          "relativeDelta": 0.0049787080145250896,
+          "absoluteDelta": 0.004968111,
+          "relativeDelta": 0.004978708,
           "confidenceInterval": null,
           "guardrails": [
             {
@@ -10698,8 +10734,8 @@
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -0.02562444444444456,
-          "relativeDelta": -0.025434277999901077,
+          "absoluteDelta": -0.025624444,
+          "relativeDelta": -0.025434278,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -12683,7 +12719,7 @@
   "summary": {
     "experimentCount": 41,
     "currentAcceptedRunCount": 26,
-    "historicalAcceptedRunCount": 124,
+    "historicalAcceptedRunCount": 130,
     "declaredMetricCount": 149,
     "observedMetricCount": 107,
     "nonNullMetricCount": 97,

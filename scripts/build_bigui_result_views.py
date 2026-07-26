@@ -129,6 +129,14 @@ def finite_number(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
 
+def stable_delta(value: float | None) -> float | None:
+    """Normalize insignificant interpreter-level floating-point differences."""
+    if value is None:
+        return None
+    normalized = round(value, 9)
+    return 0.0 if normalized == 0 else normalized
+
+
 def comparison_mismatches(
     left: dict[str, Any], right: dict[str, Any]
 ) -> list[dict[str, Any]]:
@@ -281,8 +289,9 @@ def assessment_for_metric(
 
     left_mean = sum(float(left["value"]) for left, _ in pairs) / len(pairs)
     right_mean = sum(float(right["value"]) for _, right in pairs) / len(pairs)
-    delta = right_mean - left_mean
-    relative = delta / abs(left_mean) if left_mean else None
+    raw_delta = right_mean - left_mean
+    delta = stable_delta(raw_delta)
+    relative = stable_delta(raw_delta / abs(left_mean)) if left_mean else None
     direction = current_numeric[0].get("direction")
     if target_status in {"Target met", "Mixed", "Regressed"}:
         status = target_status

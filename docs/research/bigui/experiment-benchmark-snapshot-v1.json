@@ -2,12 +2,12 @@
   "schemaVersion": "ExperimentBenchmarkSnapshot-v1",
   "generatedAt": "2026-07-26T16:00:00+03:00",
   "publicationTier": "tracked_sanitized",
-  "inputProjectionSha256": "b806f2a2aa1db0054cae0e23f9891cfbc318f3f9fa5ea71076df0a324cd5b133",
+  "inputProjectionSha256": "8ead490a4516bd4cbf650bed53244d6e99333aea37f7cc68c2a8c8de52f35f26",
   "standardSha256": "1b9a814e3498ac97ac5da84e5eb15894c15583c87456491af363c3a805e3c7c5",
   "programState": {
     "registeredExperiments": 41,
-    "acceptedBundles": 124,
-    "metricObservations": 1101,
+    "acceptedBundles": 130,
+    "metricObservations": 1181,
     "safeLabels": 0,
     "classificationChanges": 0,
     "baselineFrozen": true
@@ -967,9 +967,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 6,
-      "historicalObservationCount": 24,
+      "historicalObservationCount": 30,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -993,18 +993,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1106,9 +1106,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PARTIAL",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 30,
-      "historicalObservationCount": 120,
+      "historicalObservationCount": 150,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1132,18 +1132,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1287,9 +1287,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 10,
-      "historicalObservationCount": 40,
+      "historicalObservationCount": 50,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1313,18 +1313,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1460,9 +1460,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 10,
-      "historicalObservationCount": 40,
+      "historicalObservationCount": 50,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1486,18 +1486,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1625,9 +1625,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 16,
-      "historicalObservationCount": 64,
+      "historicalObservationCount": 80,
       "nullObservationCount": 0,
       "baseline": "Current offline contract behavior",
       "comparator": "Candidate architecture configuration",
@@ -1651,18 +1651,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 13,
-          "denominator": 13,
+          "numerator": 16,
+          "denominator": 16,
           "value": 1.0,
-          "explanation": "13/13 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "16/16 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -1882,9 +1882,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PARTIAL",
-      "acceptedRunCount": 4,
+      "acceptedRunCount": 5,
       "observationCount": 8,
-      "historicalObservationCount": 32,
+      "historicalObservationCount": 40,
       "nullObservationCount": 5,
       "baseline": "B0 frozen Agent 4",
       "comparator": "Independent expert or frozen candidate",
@@ -1908,18 +1908,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 16,
-          "denominator": 16,
+          "numerator": 20,
+          "denominator": 20,
           "value": 1.0,
-          "explanation": "16/16 accepted-run execution checks pass across 4 run bundles."
+          "explanation": "20/20 accepted-run execution checks pass across 5 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 12,
-          "denominator": 12,
+          "numerator": 15,
+          "denominator": 15,
           "value": 1.0,
-          "explanation": "12/12 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "15/15 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -6187,8 +6187,8 @@
     "missed": 11,
     "notComputable": 10,
     "experimentsWithMissedGuardrails": 1,
-    "historicalAssessedObservations": 245,
-    "historicalMissed": 45
+    "historicalAssessedObservations": 268,
+    "historicalMissed": 56
   },
   "evidenceDistribution": {
     "blocked": 9,

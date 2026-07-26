@@ -56,6 +56,21 @@ def test_result_views_are_deterministic_complete_and_schema_valid() -> None:
     )
 
 
+def test_progress_deltas_have_cross_interpreter_precision() -> None:
+    builder = load_builder()
+    payload = builder.build_result_views()
+    deltas = [
+        assessment[field]
+        for view in payload["resultViews"]
+        for assessment in view["progressAssessments"]
+        for field in ("absoluteDelta", "relativeDelta")
+        if assessment[field] is not None
+    ]
+
+    assert deltas
+    assert all(value == round(value, 9) for value in deltas)
+
+
 def test_result_views_do_not_count_null_values_as_measured() -> None:
     payload = json.loads(RESULT_VIEWS.read_text(encoding="utf-8"))
     views = {item["experimentId"]: item for item in payload["resultViews"]}
