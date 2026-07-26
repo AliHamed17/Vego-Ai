@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import importlib.metadata
 import json
 import shutil
 import subprocess
@@ -503,6 +502,20 @@ def serialized(value: dict[str, Any]) -> str:
     return json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
 
 
+def locked_dependency_version(name: str) -> str:
+    """Read an exact direct dependency version from the canonical project file."""
+    metadata = project_metadata()
+    requirements = list(metadata["project"].get("dependencies", []))
+    for group in metadata.get("dependency-groups", {}).values():
+        requirements.extend(group)
+    prefix = f"{name.lower()}=="
+    for requirement in requirements:
+        normalized = requirement.split(";", maxsplit=1)[0].strip()
+        if normalized.lower().startswith(prefix):
+            return normalized.split("==", maxsplit=1)[1]
+    raise ValueError(f"{name} must be exactly pinned in pyproject.toml")
+
+
 def build_all(require_controlled: bool) -> dict[Path, str]:
     baseline = build_baseline(require_controlled)
     security = build_security()
@@ -544,10 +557,10 @@ def build_all(require_controlled: bool) -> dict[Path, str]:
         },
         "toolVersions": {
             "python": project_metadata()["project"]["requires-python"],
-            "jsonschema": importlib.metadata.version("jsonschema"),
-            "openai": importlib.metadata.version("openai"),
-            "pytest": importlib.metadata.version("pytest"),
-            "ruff": importlib.metadata.version("ruff"),
+            "jsonschema": locked_dependency_version("jsonschema"),
+            "openai": locked_dependency_version("openai"),
+            "pytest": locked_dependency_version("pytest"),
+            "ruff": locked_dependency_version("ruff"),
         },
         "sourceChecks": {
             "status": "PASS",
