@@ -524,3 +524,13 @@ Record file changes and rollback notes here.
   - .github/workflows/supervisor-package.yml
 - Rollback note: Revert the BigUI experiment-platform commits on agent/bigui-experiment-platform; Agent 4 and baseline outputs were not changed.
 - Git commit: none recorded by script.
+
+## 2026-07-26 14:55 +03:00 - Codex - Add paper-aligned experiment comparison evidence
+
+- Files changed:
+  - scripts/run_bigui_comparison_experiments.py
+  - docs/research/bigui/paper-baseline-snapshot-v1.json
+  - docs/research/bigui/baseline-comparison-results-v1.json
+  - VEGO-AI-Research-Hub.html
+- Rollback note: Revert the four focused commits from this task; Agent 4 and baseline outputs were not modified.
+- Git commit: none recorded by script.

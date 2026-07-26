@@ -450,3 +450,22 @@ Chronological prompt history for Codex and Claude.
   - gh pr checks 11 --watch
 - Status: completed
 - Next steps: Merge PR #10 first, then retarget PR #11 to main, rerun all gates, and obtain independent review. Collect real EXP-005 labels before any accuracy claim.
+
+## 2026-07-26 14:55 +03:00 - Codex - Add paper-aligned experiment comparison evidence
+
+- Request: Compare VEGO-AI experiments against the thesis paper and each other, prove supported improvements with real metrics and plots, and publish the evidence in BigUI.
+- Actions taken:
+  - Reconciled the paper draft with the frozen repository baseline.
+  - Executed EXP-037 through EXP-040 with guarded comparison rules.
+  - Added paper/current, capability, routing, topology, and thesis-readiness visualizations to BigUI.
+  - Validated source, controlled evidence, privacy, security, browser behavior, and protected-path integrity.
+- Files changed:
+  - scripts/run_bigui_comparison_experiments.py
+  - docs/research/bigui/paper-baseline-snapshot-v1.json
+  - docs/research/bigui/baseline-comparison-results-v1.json
+  - VEGO-AI-Research-Hub.html
+- Commands/checks:
+  - scripts/verify-source.ps1
+  - scripts/verify-controlled.ps1 -Check
+- Status: Implemented and locally validated; PR publication pending CI.
+- Next steps: Collect independent EXP-005 labels before any accuracy or generalization claim, then use the accepted run manifests to populate the currently empty classification panels.
