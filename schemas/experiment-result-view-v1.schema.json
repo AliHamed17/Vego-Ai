@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-result-view-v1.schema.json",
+  "title": "ExperimentResultView-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "experimentId",
+    "title",
+    "plainLanguagePurpose",
+    "baseline",
+    "comparator",
+    "cohort",
+    "treatment",
+    "status",
+    "evidenceClass",
+    "currentRun",
+    "historicalRuns",
+    "measurementState",
+    "evaluationDimensions",
+    "progressAssessments",
+    "visualizationSpecs",
+    "paperAlignment",
+    "conclusion",
+    "sources",
+    "limitations",
+    "nextAction",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentResultView-v1"},
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "plainLanguagePurpose": {"type": "string", "minLength": 1},
+    "baseline": {"type": "string", "minLength": 1},
+    "comparator": {"type": "string", "minLength": 1},
+    "cohort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["datasetHash", "partitionHash", "description"],
+      "properties": {
+        "datasetHash": {"type": ["string", "null"]},
+        "partitionHash": {"type": ["string", "null"]},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "treatment": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "evidenceClass": {"type": "string", "minLength": 1},
+    "currentRun": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "runId",
+            "acceptedAt",
+            "executionStatus",
+            "evidenceClass",
+            "manifestPath",
+            "manifestSha256",
+            "comparisonContext",
+            "resultVerdict"
+          ],
+          "properties": {
+            "runId": {"type": "string"},
+            "acceptedAt": {"type": ["string", "null"], "format": "date-time"},
+            "executionStatus": {"type": "string"},
+            "evidenceClass": {"type": "string"},
+            "manifestPath": {"type": "string"},
+            "manifestSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+            "comparisonContext": {"type": "object"},
+            "resultVerdict": {"type": "string"}
+          }
+        }
+      ]
+    },
+    "historicalRuns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["runId", "acceptedAt", "evidenceClass", "current"],
+        "properties": {
+          "runId": {"type": "string"},
+          "acceptedAt": {"type": ["string", "null"], "format": "date-time"},
+          "evidenceClass": {"type": "string"},
+          "current": {"type": "boolean"}
+        }
+      }
+    },
+    "measurementState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declaredMetricCount",
+        "observedMetricCount",
+        "nonNullObservationCount",
+        "nonNullMetricCount",
+        "nullMetricIds",
+        "comparisonEligibleMetricCount",
+        "claimEligibleMetricCount",
+        "status"
+      ],
+      "properties": {
+        "declaredMetricCount": {"type": "integer", "minimum": 0},
+        "observedMetricCount": {"type": "integer", "minimum": 0},
+        "nonNullObservationCount": {"type": "integer", "minimum": 0},
+        "nonNullMetricCount": {"type": "integer", "minimum": 0},
+        "nullMetricIds": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "comparisonEligibleMetricCount": {"type": "integer", "minimum": 0},
+        "claimEligibleMetricCount": {"type": "integer", "minimum": 0},
+        "status": {
+          "enum": [
+            "no_metrics_declared",
+            "protocol_only",
+            "observed_null",
+            "measured_partial",
+            "measured_complete"
+          ]
+        }
+      }
+    },
+    "evaluationDimensions": {"type": "object"},
+    "progressAssessments": {
+      "type": "array",
+      "items": {"$ref": "progress-assessment-v1.schema.json"}
+    },
+    "visualizationSpecs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "visualization-spec-v1.schema.json"}
+    },
+    "paperAlignment": {
+      "type": "array",
+      "items": {"$ref": "paper-metric-mapping-v1.schema.json"}
+    },
+    "conclusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "whatWasTested",
+        "whatHappened",
+        "targetOutcome",
+        "progressStatus",
+        "cannotInfer"
+      ],
+      "properties": {
+        "whatWasTested": {"type": "string", "minLength": 1},
+        "whatHappened": {"type": "string", "minLength": 1},
+        "targetOutcome": {"type": "string", "minLength": 1},
+        "progressStatus": {
+          "enum": [
+            "Target met",
+            "Improved",
+            "Unchanged",
+            "Regressed",
+            "Mixed",
+            "Not directly comparable",
+            "Not measured",
+            "Not eligible"
+          ]
+        },
+        "cannotInfer": {"type": "string", "minLength": 1}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "nextAction": {"type": "string", "minLength": 1},
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}

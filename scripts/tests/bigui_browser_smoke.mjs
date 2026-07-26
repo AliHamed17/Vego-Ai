@@ -90,6 +90,7 @@ async function verifyPage(viewport) {
     ["#benchmark-baseline-ladder .baseline-stage", 6, "benchmark stages"],
     ["#benchmark-highlights .tradeoff-card", 12, "benchmark result highlights"],
     ["#benchmark-table-body tr", 41, "benchmark experiment rows"],
+    ["#paper-phase-lab .paper-phase", 4, "paper measurement lanes"],
   ];
   for (const [selector, expected, label] of assertions) {
     const actual = await page.locator(selector).count();
@@ -108,8 +109,11 @@ async function verifyPage(viewport) {
   if (renderedRunCount !== embeddedRunCount) {
     failures.push(`${viewport.width}px: expected ${embeddedRunCount} run cards, got ${renderedRunCount}`);
   }
-  if (!(await page.locator("#executed-kpis").textContent())?.includes("Measured observations")) {
-    failures.push(`${viewport.width}px: executed metric summary is missing`);
+  if (!(await page.locator("#executed-kpis").textContent())?.includes("Non-null metric families")) {
+    failures.push(`${viewport.width}px: non-null measurement summary is missing`);
+  }
+  if (!(await page.locator("#deployment-health").textContent())?.includes("Live deployment is stale")) {
+    failures.push(`${viewport.width}px: stale live deployment warning is missing`);
   }
   if (errors.length) failures.push(`${viewport.width}px: console errors: ${errors.join(" | ")}`);
   if (external.length) failures.push(`${viewport.width}px: external requests: ${external.join(" | ")}`);
@@ -146,6 +150,24 @@ try {
   await interaction.keyboard.press("Enter");
   if (!(await interaction.locator("#dialog-title").textContent())?.includes("EXP-033")) {
     failures.push("keyboard activation did not open EXP-033");
+  }
+  await interaction.locator("#dialog-close").click();
+  await interaction.locator('#experiment-grid [data-id="EXP-003"]').focus();
+  await interaction.keyboard.press("Enter");
+  const exp003Text = await interaction.locator("#dialog-body").textContent();
+  const exp003MeasuredCount = await interaction
+    .locator("#dialog-body .measurement-cell strong")
+    .nth(2)
+    .textContent();
+  if (
+    !exp003Text?.includes("observed null")
+    || !exp003Text?.includes("measured non-null metrics")
+    || exp003MeasuredCount !== "0"
+  ) {
+    failures.push("EXP-003 did not expose the null-versus-measured distinction");
+  }
+  if ((await interaction.locator("#dialog-body .plot-empty").count()) < 1) {
+    failures.push("EXP-003 did not render an evidence-honest empty plot");
   }
   await interaction.locator("#dialog-close").click();
   await interaction.locator("#language-toggle").click();

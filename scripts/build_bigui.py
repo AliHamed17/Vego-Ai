@@ -4,11 +4,13 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
 
 import jsonschema
+from referencing import Registry, Resource
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CATALOG = (
@@ -22,9 +24,27 @@ DEFAULT_OUTPUT = ROOT / "VEGO-AI-Research-Hub.html"
 DEFAULT_INDEPENDENT_DECISIONS = (
     ROOT / "docs/research/independent-evidence/decision-register.json"
 )
+DEFAULT_RESULT_VIEWS = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "experiment-result-views-v1.json"
+)
+DEFAULT_DEPLOYMENT_SNAPSHOT = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "deployment-snapshot-v1.json"
+)
 INDEPENDENT_DECISION_SCHEMA = (
     ROOT / "schemas/independent-evidence-decision-register-v1.schema.json"
 )
+RESULT_VIEW_SCHEMA = (
+    ROOT / "schemas/experiment-result-view-collection-v1.schema.json"
+)
+DEPLOYMENT_SCHEMA = ROOT / "schemas/deployment-snapshot-v1.schema.json"
 
 TEMPLATE = r"""<!doctype html>
 <html lang="en" dir="ltr">
@@ -213,6 +233,23 @@ dialog::backdrop{background:rgba(0,0,0,.72)}.dialog-head{position:sticky;top:0;b
 .parameter-card,.comparison-family{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
 .parameter-card summary{cursor:pointer;color:var(--cyan);font-weight:800}.parameter-card p,.comparison-family p{color:var(--muted);margin:.35rem 0}
 .comparison-family strong{color:var(--cyan)}.benchmark-link{display:inline-flex;margin-top:12px;padding:8px 11px;border:1px solid var(--cyan);border-radius:10px;text-decoration:none}
+.measurement-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.measurement-cell{padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
+.measurement-cell strong{display:block;font-size:1.2rem;color:var(--cyan)}.measurement-cell small{color:var(--muted)}
+.experiment-plots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.experiment-plot{border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--panel)}
+.experiment-plot h4{margin:0 0 5px}.experiment-plot>p{color:var(--muted);margin:.25rem 0}
+.plot-meta{font-size:.73rem;color:var(--muted);border-top:1px solid var(--line);margin-top:9px;padding-top:8px;overflow-wrap:anywhere}
+.plot-empty{border:1px dashed var(--red);border-radius:10px;padding:18px;color:var(--red);background:rgba(255,123,120,.06)}
+.plot-table{width:100%;border-collapse:collapse}.plot-table th,.plot-table td{padding:6px;border-bottom:1px solid var(--line);text-align:start;font-size:.78rem}
+.progress-label{display:inline-flex;padding:4px 9px;border-radius:999px;border:1px solid var(--line);font-size:.76rem;font-weight:800}
+.progress-label[data-status="Improved"],.progress-label[data-status="Target met"]{color:var(--green)}
+.progress-label[data-status="Regressed"]{color:var(--red)}.progress-label[data-status="Mixed"]{color:var(--amber)}
+.paper-phase-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.paper-phase{border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--panel2)}
+.paper-phase strong{color:var(--cyan)}.paper-phase p{color:var(--muted);font-size:.82rem}
+.deployment-banner{border:1px solid var(--amber);border-radius:12px;padding:13px;background:rgba(255,200,87,.08);margin-top:14px}
+.deployment-banner.current{border-color:var(--green);background:rgba(105,219,157,.08)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
 @media(max-width:1100px){
@@ -230,6 +267,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   .evidence-lanes{grid-template-columns:1fr 1fr}.capability-grid{grid-template-columns:minmax(145px,2fr) 1fr 1fr}
   .dimension-map{display:flex;flex-direction:column;overflow:visible}.dimension-node{min-height:auto}
   .baseline-ladder{grid-template-columns:1fr 1fr}.parameter-grid,.comparison-family-grid{grid-template-columns:1fr}
+  .paper-phase-grid,.experiment-plots,.measurement-strip{grid-template-columns:1fr 1fr}
   .experiment-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters .search{grid-column:span 2}
   .system-map{display:flex;flex-direction:column;overflow:visible}.system-node{min-height:88px}
   .system-node:not(:last-child)::after{content:"↓";inset-inline-end:auto;left:50%;top:auto;bottom:-18px}
@@ -247,6 +285,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   .kpi-grid{grid-template-columns:1fr 1fr}.metric-bar{grid-template-columns:1fr}.evidence-bars{overflow:auto}
   .evidence-lanes{grid-template-columns:1fr}.grouped-count{grid-template-columns:1fr}.capability-grid{font-size:.78rem}
   .baseline-ladder{grid-template-columns:1fr}.benchmark-row{grid-template-columns:1fr}
+  .paper-phase-grid,.experiment-plots,.measurement-strip{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media print{
@@ -313,6 +352,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       <article class="panel"><h3 data-i18n="capabilityExtension">Human-judgment capability extension</h3><div id="capability-matrix" class="capability-grid"></div></article>
     </div>
     <article class="panel" style="margin-top:14px"><h3 data-i18n="improvementScorecard">Multidimensional improvement scorecard</h3><div style="overflow:auto"><table class="scorecard-table"><thead><tr><th>Dimension</th><th>Paper baseline</th><th>Current evidence</th><th>Status</th><th>Interpretation</th></tr></thead><tbody id="improvement-scorecard"></tbody></table></div><div class="proof-rule" style="margin-top:12px"><strong>Proof rule:</strong> a result is called better only for a shared metric, cohort, definition, and evidence class—and only with its trade-off and guardrail visible. No global weighted score is used.</div></article>
+    <article class="panel" style="margin-top:14px"><h3>Paper baseline laboratory · Phases A–D</h3><p>Each paper phase stays in its own measurement lane. The compatibility statement explains exactly what may and may not be compared.</p><div id="paper-phase-lab" class="paper-phase-grid"></div></article>
     <div class="plot-grid" style="margin-top:14px">
       <article class="panel"><h3>EXP-007 · routing Pareto frontier</h3><div id="routing-pareto" class="pareto-shell"></div></article>
       <article class="panel"><h3>EXP-039 · why configurations differ</h3><div id="comparison-tradeoffs" class="result-lane"></div></article>
@@ -342,7 +382,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
         <label><span>Execution</span><select id="benchmark-execution"><option value="">All</option></select></label>
       </div>
       <strong id="benchmark-count" aria-live="polite"></strong>
-      <div style="overflow:auto"><table class="benchmark-table"><thead><tr><th>Experiment</th><th>Execution</th><th>Verdict</th><th>Protocol</th><th>Data</th><th>Reproducibility</th><th>Safety</th><th>Comparability</th><th>Empirical</th><th>Observations</th></tr></thead><tbody id="benchmark-table-body"></tbody></table></div>
+      <div style="overflow:auto"><table class="benchmark-table"><thead><tr><th>Experiment</th><th>Execution</th><th>Verdict</th><th>Measurement</th><th>Protocol</th><th>Data</th><th>Reproducibility</th><th>Safety</th><th>Comparability</th><th>Empirical</th><th>Recorded observations</th></tr></thead><tbody id="benchmark-table-body"></tbody></table></div>
     </article>
     <div class="two-col" style="margin-top:14px">
       <article class="panel"><h3>Canonical parameter dictionary</h3><div id="benchmark-parameters" class="parameter-grid"></div></article>
@@ -525,6 +565,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   <section class="section" id="operations" aria-labelledby="operations-title">
     <div class="section-head"><div><h2 id="operations-title" data-i18n="operationsTitle">Operations and reproducibility</h2><p data-i18n="operationsCopy">Freshness, hashes, tests, baseline integrity, privacy tier, and security controls are visible and machine-readable.</p></div></div>
     <div class="kpi-grid" id="operations-kpis"></div>
+    <div id="deployment-health" class="deployment-banner"></div>
     <div class="source-grid" id="source-grid" style="margin-top:14px"></div>
     <p class="provenance-note" id="catalog-provenance"></p>
   </section>
@@ -538,11 +579,15 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
 <footer><div class="shell">VEGO-AI BigUI · tracked sanitized tier by default · no external network runtime · research outcomes are read-only · <a href="VEGO-AI-Thesis-Baseline-Progress.html">historical thesis evidence view</a>.</div></footer>
 <script id="bigui-catalog" type="application/json">__CATALOG__</script>
 <script id="independent-evidence-decisions" type="application/json">__INDEPENDENT_DECISIONS__</script>
+<script id="experiment-result-views" type="application/json">__RESULT_VIEWS__</script>
+<script id="deployment-snapshot" type="application/json">__DEPLOYMENT_SNAPSHOT__</script>
 <script>
 (() => {
   "use strict";
   const data = JSON.parse(document.getElementById("bigui-catalog").textContent);
   const evidenceDecisions = JSON.parse(document.getElementById("independent-evidence-decisions").textContent);
+  const resultViewData = JSON.parse(document.getElementById("experiment-result-views").textContent);
+  const deployment = JSON.parse(document.getElementById("deployment-snapshot").textContent);
   const $ = (id) => document.getElementById(id);
   const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
   const legacyMetrics = data.metricObservations || [];
@@ -553,6 +598,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     (index[item.metricId] ||= []).push(item);return index;
   },{});
   const experiments = Object.fromEntries(data.experiments.map((item) => [item.id,item]));
+  const resultViews = Object.fromEntries(resultViewData.resultViews.map((item) => [item.experimentId,item]));
   const benchmark = data.experimentBenchmark;
   const evaluationStandard = data.evaluationStandard;
   const benchmarkRecords = Object.fromEntries(
@@ -627,12 +673,13 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     $("hero-status").innerHTML=[
       `ITER-${String(p.latestAcceptedIteration).padStart(3,"0")} · ${p.iterationVerdict}`,
       `${data.experiments.length} experiments`,
-      `${data.runStoreSummary.uniqueExperimentRunCount} accepted experiment runs`,
+      `${resultViewData.summary.currentAcceptedRunCount} current results · ${resultViewData.summary.historicalAcceptedRunCount} historical bundles`,
       data.publicationTier.replaceAll("_"," ")
     ].map(value=>`<span class="chip">${esc(value)}</span>`).join("");
     $("overview-kpis").innerHTML=[
       kpi("Accepted iteration",p.latestAcceptedIteration,`<small>${esc(p.iterationVerdict)} · reliability-only</small>`),
       kpi("Registered experiments",data.experiments.length,"<small>EXP-000–EXP-040</small>"),
+      kpi("Current / historical runs",`${resultViewData.summary.currentAcceptedRunCount}/${resultViewData.summary.historicalAcceptedRunCount}`,"<small>history is not an experiment count</small>"),
       kpi("Safe labels",`${p.safeLabels}/${p.candidateLabels}`,metricFooter(metrics.LABEL_GENERALIZATION_SAFE)),
       kpi("Comparison changes",`${p.classificationChanges}/${p.comparisonRows}`,metricFooter(metrics.SAFETY_CLASSIFICATION_CHANGES)),
       kpi("Accuracy / macro-F1","—","<small>NOT YET COMPUTABLE</small>")
@@ -670,6 +717,21 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
         <div class="${item.paperBaseline?"capability-yes":"capability-no"}">${item.paperBaseline?"✓ explicit":"— not explicit"}</div>
         <div class="${item.currentExtension?"capability-yes":"capability-no"}">${item.currentExtension?"✓ implemented":"— absent"}</div>`).join("")+
       `<div class="metric-meta" style="grid-column:1/-1">Capability presence is a design property. It does not measure classification correctness.</div>`;
+
+    const phaseSummaries={
+      A:`${paper.phaseA.settings.length} settings · three stability runs each`,
+      B:Object.entries(paper.phaseB.settingScores).map(([id,value])=>`${id} ${fmt(value)}`).join(" · "),
+      C:`N=${paper.phaseC.expertSampleSize} expert-reviewed models`,
+      D:`${paper.phaseD.patternTotal} patterns · ${paper.phaseD.substantialTotal} substantial · ${paper.phaseD.occasionalTotal} occasional`
+    };
+    $("paper-phase-lab").innerHTML=resultViewData.paperMetricMappings.map(mapping=>`<article class="paper-phase">
+      <span class="chip">Phase ${esc(mapping.paperPhase)}</span>
+      <strong>${esc(mapping.paperMetric)}</strong>
+      <p>${esc(phaseSummaries[mapping.paperPhase])}</p>
+      <p><b>Comparison:</b> ${mapping.directComparisonEligible?"eligible":"not directly comparable"}</p>
+      <p>${esc(mapping.incompatibilityReason||"Equivalent measurement contract required.")}</p>
+      <div class="plot-meta">Paper p.${esc(mapping.extractionSource.page)} · ${esc(mapping.extractionSource.sha256.slice(0,12))}…<br>${esc(mapping.claimBoundary)}</div>
+    </article>`).join("");
 
     const exp038=comparisonExperiment("EXP-038");
     $("improvement-scorecard").innerHTML=exp038.details.scorecard.map(row=>`<tr>
@@ -808,7 +870,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     $("benchmark-count").textContent=`${filtered.length} / ${benchmark.evaluationRecords.length}`;
     $("benchmark-table-body").innerHTML=filtered.map(item=>`<tr tabindex="0" data-id="${esc(item.experimentId)}" aria-label="Open ${esc(item.experimentId)} evaluation">
       <td><strong><bdi dir="ltr">${esc(item.experimentId)}</bdi></strong><small>${esc(item.title)}</small></td>
-      <td>${esc(item.executionState.replaceAll("_"," "))}</td><td>${esc(item.verdict.replaceAll("_"," "))}</td>
+      <td>${esc(item.executionState.replaceAll("_"," "))}</td><td>${esc(item.verdict.replaceAll("_"," "))}</td><td>${esc(resultViews[item.experimentId].measurementState.status.replaceAll("_"," "))}<br><small>${resultViews[item.experimentId].measurementState.nonNullMetricCount}/${resultViews[item.experimentId].measurementState.declaredMetricCount} non-null</small></td>
       <td>${dimensionState(item.dimensions.protocol)}</td><td>${dimensionState(item.dimensions.data)}</td>
       <td>${dimensionState(item.dimensions.reproducibility)}</td><td>${dimensionState(item.dimensions.safety)}</td>
       <td>${dimensionState(item.dimensions.comparability)}</td><td>${dimensionState(item.dimensions.empiricalValidity)}</td>
@@ -833,8 +895,10 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     const safety=firstMetric("SAFETY_FAULT_CASE_PASS_RATE","EXP-035");
     $("executed-kpis").innerHTML=[
       kpi("Executed experiments",`${s.experimentsWithAcceptedRuns}/${data.experiments.length}`,"<small>accepted, source-backed bundles</small>"),
-      kpi("Accepted runs",s.uniqueExperimentRunCount,"<small>one or more attempts per experiment</small>"),
-      kpi("Measured observations",s.metricObservationCount,"<small>MetricObservation-v2</small>"),
+      kpi("Current accepted runs",resultViewData.summary.currentAcceptedRunCount,"<small>one current result per executed experiment</small>"),
+      kpi("Accepted history",resultViewData.summary.historicalAcceptedRunCount,"<small>bundles; not distinct experiments</small>"),
+      kpi("Recorded observations",s.metricObservationCount,"<small>includes explicit null placeholders</small>"),
+      kpi("Non-null metric families",resultViewData.summary.nonNullMetricCount,"<small>measured; summed by experiment</small>"),
       kpi("Runtime semantic parity",fmt(parity?.value),metricFooter(parity)),
       kpi("Fault cases passed",safety?`${safety.numerator}/${safety.denominator}`:"—",metricFooter(safety))
     ].join("");
@@ -974,33 +1038,74 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     });
     $("experiment-count").textContent=`${filtered.length} / ${data.experiments.length}`;
     $("experiment-empty").hidden=filtered.length>0;
-    $("experiment-grid").innerHTML=filtered.map(item=>`<button type="button" class="experiment-card" data-id="${item.id}" aria-label="Open ${esc(item.id)} ${esc(item.title)}">
+    $("experiment-grid").innerHTML=filtered.map(item=>{const view=resultViews[item.id];return `<button type="button" class="experiment-card" data-id="${item.id}" aria-label="Open ${esc(item.id)} ${esc(item.title)}">
       <div class="status-row"><span class="id"><bdi dir="ltr">${item.id}</bdi></span><span class="evidence-badge" data-evidence="${esc(item.evidenceClass)}">${esc(item.evidenceClass.replaceAll("_"," "))}</span></div>
       <h3>${esc(item.title)}</h3><p>${esc(item.researchSpace)} · ${esc(item.researchTrack)}</p>
-      <div class="chips"><span class="chip">${esc(item.status)}</span><span class="chip">${item.acceptedRunIds.length} accepted run${item.acceptedRunIds.length===1?"":"s"}</span></div>
-      <p class="next">${esc(item.nextAction)}</p></button>`).join("");
+      <div class="chips"><span class="chip">${esc(item.status)}</span><span class="chip">${view.currentRun?"1 current":"0 current"} / ${view.historicalRuns.length} historical</span></div>
+      <div class="chips"><span class="progress-label" data-status="${esc(view.conclusion.progressStatus)}">${esc(view.conclusion.progressStatus)}</span><span class="chip">${esc(view.measurementState.status.replaceAll("_"," "))}</span></div>
+      <p class="next">${esc(item.nextAction)}</p></button>`}).join("");
     $("experiment-grid").querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>openExperiment(button.dataset.id,true)));
     localStorage.setItem("vego-bigui-filters",JSON.stringify({
       "filter-search":query,"filter-space":space,"filter-status":status,"filter-evidence":evidence,"filter-architecture":architecture
     }));
   }
   const list=(values)=>values.length?`<ul>${values.map(value=>`<li>${esc(value)}</li>`).join("")}</ul>`:"<p>None recorded.</p>";
+  function observationLabel(item){
+    const dimensions=Object.entries(item.dimensions||{}).map(([key,value])=>`${key}=${value}`).join(" · ");
+    return dimensions||item.metricId;
+  }
+  function renderVisualization(spec){
+    const rows=spec.observationIds.map(id=>observations[id]).filter(Boolean);
+    const sourceText=spec.sources.map(source=>`${source.path} · ${source.sha256.slice(0,12)}…`).join("<br>");
+    const meta=`<div class="plot-meta">Denominator: ${esc(spec.denominator??"n/a")} · cohort ${esc(spec.cohort)} · ${esc(spec.evidenceClass)} · ${esc(spec.observationDate||"not measured")}<br>${sourceText}<br>${esc(spec.claimBoundary)}</div>`;
+    let body="";
+    if(spec.chartFamily==="empty_state"){
+      body=`<div class="plot-empty">${esc(spec.emptyState)}</div>`;
+    }else if(spec.chartFamily==="metric_card"){
+      body=`<div class="measurement-strip">${rows.slice(0,8).map(row=>`<div class="measurement-cell"><strong>${esc(fmt(row.value))}</strong><small>${esc(observationLabel(row))} · ${esc(row.unit)}</small></div>`).join("")}</div>`;
+    }else if(["matrix","heatmap"].includes(spec.chartFamily)){
+      body=`<div style="overflow:auto"><table class="plot-table"><thead><tr><th>Metric / dimensions</th><th>Value</th><th>Unit</th><th>N</th></tr></thead><tbody>${rows.map(row=>`<tr><td>${esc(observationLabel(row))}</td><td>${esc(fmt(row.value))}</td><td>${esc(row.unit)}</td><td>${esc(fmt(row.denominator))}</td></tr>`).join("")}</tbody></table></div>`;
+    }else if(spec.chartFamily==="funnel"){
+      body=`<div class="funnel">${rows.slice(0,8).map(row=>`<div class="funnel-stage"><small>${esc(observationLabel(row))}</small><strong>${esc(fmt(row.value))}</strong><small>${esc(row.unit)} · N=${esc(fmt(row.denominator))}</small></div>`).join("")}</div>`;
+    }else{
+      const max=Math.max(...rows.map(row=>Math.abs(Number(row.value)||0)),1);
+      body=`<div class="compact-bars">${rows.slice(0,20).map(row=>`<div class="compact-row"><small>${esc(observationLabel(row))}</small><div class="bar-track"><div class="bar-fill" style="width:${Math.max(Number(row.value)===0?0:2,Math.abs(Number(row.value)||0)/max*100)}%"></div></div><b>${esc(fmt(row.value))}</b></div>`).join("")}</div>`;
+    }
+    return `<article class="experiment-plot" role="figure" aria-label="${esc(spec.accessibleDescription)}"><h4>${esc(spec.title)}</h4><p>${esc(spec.analyticalQuestion)}</p>${body}${meta}</article>`;
+  }
   function openExperiment(id,updateHash=false){
     const item=experiments[id];if(!item)return;
     const evaluation=benchmarkRecords[id];
+    const view=resultViews[id];
     $("dialog-title").innerHTML=`<bdi dir="ltr">${esc(item.id)}</bdi> · ${esc(item.title)}`;
     const observed=item.latestResult?.metricObservationIds.map(metricId=>observations[metricId]||metrics[metricId]).filter(Boolean)||[];
     const dimensionDetails=evaluation?Object.entries(evaluation.dimensions).map(([key,result])=>`<p>${dimensionState(result)} <strong>${esc(key.replaceAll("_"," "))}:</strong> ${esc(result.explanation)}</p>`).join(""):"<p>No benchmark record.</p>";
     const signalDetails=evaluation?.engineeringSignals.length?`<div style="overflow:auto"><table class="metric-table"><thead><tr><th>Metric</th><th>Dimensions</th><th>Value</th><th>Target</th><th>Status</th></tr></thead><tbody>
       ${evaluation.engineeringSignals.map(signal=>`<tr><td>${esc(signal.metricId)}</td><td>${esc(Object.entries(signal.dimensions||{}).map(([k,v])=>`${k}=${v}`).join(", ")||"—")}</td><td>${esc(fmt(signal.value))} ${esc(signal.unit)}</td><td>${esc(signal.target||"descriptive")}</td><td class="${signal.status==="met"?"pass":signal.status==="missed"?"fail":""}">${esc(signal.status.replaceAll("_"," "))}</td></tr>`).join("")}
       </tbody></table></div>`:"<p>No measured engineering signal.</p>";
-    $("dialog-body").innerHTML=`<div class="status-row"><span class="status-badge">${esc(item.status)}</span><span class="evidence-badge" data-evidence="${esc(item.evidenceClass)}">${esc(item.evidenceClass)}</span><span class="chip">${esc(item.researchSpace)}</span></div>
+    const measure=view.measurementState;
+    const progressRows=view.progressAssessments.map(row=>`<tr><td>${esc(row.metricId)}</td><td>${esc(row.comparabilityVerdict)}</td><td>${esc(fmt(row.absoluteDelta))}</td><td><span class="progress-label" data-status="${esc(row.status)}">${esc(row.status)}</span></td><td>${esc(row.explanation)}</td></tr>`).join("");
+    $("dialog-body").innerHTML=`<div class="status-row"><span class="status-badge">${esc(item.status)}</span><span class="evidence-badge" data-evidence="${esc(item.evidenceClass)}">${esc(item.evidenceClass)}</span><span class="chip">${esc(item.researchSpace)}</span><span class="progress-label" data-status="${esc(view.conclusion.progressStatus)}">${esc(view.conclusion.progressStatus)}</span></div>
+      <div class="detail-grid" style="margin-top:12px">
+        <div class="detail-block"><h3>What was tested</h3><p>${esc(view.conclusion.whatWasTested)}</p></div>
+        <div class="detail-block"><h3>What happened</h3><p>${esc(view.conclusion.whatHappened)}</p></div>
+        <div class="detail-block"><h3>Target outcome</h3><p>${esc(view.conclusion.targetOutcome)}</p></div>
+        <div class="detail-block"><h3>What this cannot prove</h3><p>${esc(view.conclusion.cannotInfer)}</p></div>
+      </div>
+      <div class="measurement-strip" style="margin-top:12px">
+        <div class="measurement-cell"><strong>${measure.declaredMetricCount}</strong><small>declared metrics</small></div>
+        <div class="measurement-cell"><strong>${measure.observedMetricCount}</strong><small>observed metric IDs</small></div>
+        <div class="measurement-cell"><strong>${measure.nonNullMetricCount}</strong><small>measured non-null metrics</small></div>
+        <div class="measurement-cell"><strong>${measure.comparisonEligibleMetricCount}</strong><small>comparison-eligible metrics</small></div>
+        <div class="measurement-cell"><strong>${measure.claimEligibleMetricCount}</strong><small>claim-eligible in scope</small></div>
+      </div>
+      <p class="provenance-note">Measurement state: <strong>${esc(measure.status.replaceAll("_"," "))}</strong>. A declared or null placeholder is never counted as a measured result.</p>
       <div class="detail-grid" style="margin-top:12px">
         <div class="detail-block"><h3>Research question</h3><p>${esc(item.researchQuestion)}</p></div>
         <div class="detail-block"><h3>Architecture targets</h3>${list(item.architectureTargets)}</div>
         <div class="detail-block"><h3>Baseline</h3><p>${esc(item.baseline)}</p><h3>Comparator</h3><p>${esc(item.comparator)}</p></div>
         <div class="detail-block"><h3>Prerequisites</h3>${list(item.prerequisites)}<h3>Approval gates</h3>${list(item.approvalGates)}</div>
-        <div class="detail-block"><h3>Accepted runs</h3>${list(item.acceptedRunIds)}<h3>Owner</h3><p>${esc(item.owner)}</p></div>
+        <div class="detail-block"><h3>Current accepted run</h3><p>${esc(view.currentRun?.runId||"No current accepted run")}</p><h3>Accepted history</h3><p>${view.historicalRuns.length} bundle(s)</p><h3>Owner</h3><p>${esc(item.owner)}</p></div>
         <div class="detail-block"><h3>Metric definitions</h3>${list(item.metricDefinitions)}</div>
         <div class="detail-block"><h3>Current observations</h3>${observed.length?observed.map(metric=>`<p><strong>${esc(metric.metricId)}:</strong> ${esc(fmt(metric.value))}</p>${metricFooter(metric)}`).join(""):"<p>No accepted observation.</p>"}</div>
         <div class="detail-block"><h3>Validity threats</h3>${list(item.validityThreats)}</div>
@@ -1010,6 +1115,9 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
         <div class="detail-block"><h3>Seven-dimension evaluation</h3>${dimensionDetails}</div>
       </div>
       <div class="detail-block" style="margin-top:12px"><h3>Measured engineering signals and guardrails</h3>${signalDetails}</div>
+      <div class="detail-block" style="margin-top:12px"><h3>Result plots and evidence-honest empty states</h3><div class="experiment-plots">${view.visualizationSpecs.map(renderVisualization).join("")}</div></div>
+      <div class="detail-block" style="margin-top:12px"><h3>Comparable progress assessments</h3><div style="overflow:auto"><table class="plot-table"><thead><tr><th>Metric</th><th>Eligibility</th><th>Delta</th><th>Outcome</th><th>Reason</th></tr></thead><tbody>${progressRows}</tbody></table></div></div>
+      ${view.paperAlignment.length?`<div class="detail-block" style="margin-top:12px"><h3>Paper alignment</h3>${view.paperAlignment.map(mapping=>`<p><strong>Phase ${esc(mapping.paperPhase)}:</strong> ${esc(mapping.paperMetric)} — <span class="fail">not directly comparable</span><br>${esc(mapping.incompatibilityReason)}</p>`).join("")}</div>`:""}
       <div class="boundary" style="margin-top:12px"><strong>Claim boundary:</strong> ${esc(item.claimBoundary)}</div>
       <div class="detail-block" style="margin-top:12px"><h3>Next action</h3><p>${esc(item.nextAction)}</p><h3>Artifacts</h3>${list(item.artifactLinks)}</div>`;
     if(!$("experiment-dialog").open)$("experiment-dialog").showModal();
@@ -1109,6 +1217,13 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       kpi("Baseline frozen","YES","<small>Agent 4 unchanged</small>"),
       kpi("Publication tier",data.publicationTier.replaceAll("_"," "),"<small>private raw records excluded</small>")
     ].join("");
+    const live=deployment.liveObservation;
+    const current=live.status==="current"&&live.catalogSha256===deployment.catalogSha256;
+    $("deployment-health").classList.toggle("current",current);
+    $("deployment-health").innerHTML=`<strong>${current?"Live deployment matches the canonical catalog":"Live deployment is stale"}</strong>
+      <p>Repository candidate: Iteration ${esc(deployment.acceptedIteration)} · ${esc(deployment.experimentCount)} experiments · catalog ${esc(deployment.catalogSha256.slice(0,12))}…</p>
+      <p>Observed live: Iteration ${esc(live.iteration??"unknown")} · ${esc(live.experimentCount??"unknown")} experiments · ${esc(live.status)}. ${esc(live.detail)}</p>
+      <p><a href="/api/v1/deployment">Deployment API</a> · <a href="/archive/workspace-v1">Historical workspace</a></p>`;
     $("source-grid").innerHTML=data.sources.map(source=>`<article class="source-card"><strong>${esc(source.role)}</strong><p>${esc(source.path)}</p><code>sha256 ${esc(source.sha256)}</code></article>`).join("");
     $("catalog-provenance").textContent=`Generated ${data.generatedAt} from accepted source revision ${data.sourceRevision}. The UI contains no raw expert labels, transcripts, or controlled records.`;
   }
@@ -1150,7 +1265,53 @@ def load_independent_decisions(
     return value
 
 
-def render(catalog: dict) -> str:
+def validate_with_local_schemas(value: dict, schema_path: Path) -> None:
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    registry = Registry()
+    for path in (ROOT / "schemas").glob("*.schema.json"):
+        candidate = json.loads(path.read_text(encoding="utf-8"))
+        if candidate.get("$id"):
+            registry = registry.with_resource(
+                candidate["$id"], Resource.from_contents(candidate)
+            )
+    jsonschema.Draft202012Validator(
+        schema,
+        registry=registry,
+        format_checker=jsonschema.FormatChecker(),
+    ).validate(value)
+
+
+def load_result_views(
+    path: Path = DEFAULT_RESULT_VIEWS,
+    catalog_path: Path = DEFAULT_CATALOG,
+) -> dict:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    validate_with_local_schemas(value, RESULT_VIEW_SCHEMA)
+    catalog_hash = hashlib.sha256(catalog_path.read_bytes()).hexdigest()
+    if value["catalogSha256"] != catalog_hash:
+        raise ValueError("result-view catalog hash does not match BigUI catalog")
+    return value
+
+
+def load_deployment_snapshot(
+    path: Path = DEFAULT_DEPLOYMENT_SNAPSHOT,
+    catalog_path: Path = DEFAULT_CATALOG,
+) -> dict:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    validate_with_local_schemas(value, DEPLOYMENT_SCHEMA)
+    catalog_hash = hashlib.sha256(catalog_path.read_bytes()).hexdigest()
+    if value["catalogSha256"] != catalog_hash:
+        raise ValueError("deployment catalog hash does not match BigUI catalog")
+    return value
+
+
+def render(
+    catalog: dict,
+    result_views: dict | None = None,
+    deployment: dict | None = None,
+) -> str:
+    result_views = result_views or load_result_views()
+    deployment = deployment or load_deployment_snapshot()
     embedded = json.dumps(
         catalog, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     ).replace("</", "<\\/")
@@ -1160,9 +1321,23 @@ def render(catalog: dict) -> str:
         sort_keys=True,
         separators=(",", ":"),
     ).replace("</", "<\\/")
+    result_view_payload = json.dumps(
+        result_views,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).replace("</", "<\\/")
+    deployment_payload = json.dumps(
+        deployment,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).replace("</", "<\\/")
     return (
         TEMPLATE.replace("__CATALOG__", embedded)
         .replace("__INDEPENDENT_DECISIONS__", decisions)
+        .replace("__RESULT_VIEWS__", result_view_payload)
+        .replace("__DEPLOYMENT_SNAPSHOT__", deployment_payload)
         .replace("\r\n", "\n")
     )
 
@@ -1195,10 +1370,12 @@ def main() -> int:
             args.catalog if args.catalog.is_absolute() else ROOT / args.catalog
         )
         catalog = load_catalog(catalog_path)
+        result_views = load_result_views(catalog_path=catalog_path)
+        deployment = load_deployment_snapshot(catalog_path=catalog_path)
         if args.controlled and catalog["publicationTier"] != "controlled_local":
             catalog = json.loads(json.dumps(catalog))
             catalog["publicationTier"] = "controlled_local"
-        content = render(catalog)
+        content = render(catalog, result_views, deployment)
         output = safe_output(args.output, args.controlled)
         if args.check:
             if not output.is_file() or output.read_text(encoding="utf-8") != content:

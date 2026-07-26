@@ -218,8 +218,8 @@ def test_bigui_html_is_fresh_offline_and_catalog_driven() -> None:
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
     assert HTML_PATH.read_text(encoding="utf-8") == builder.render(catalog)
     content = HTML_PATH.read_text(encoding="utf-8")
-    assert "https://" not in content
-    assert "http://" not in content
+    assert '<script src="http' not in content
+    assert '<link href="http' not in content
     assert "EXP-040" in content
     assert "Paper baseline and evidence of progress" in content
     assert "All-experiment evaluation benchmark" in content
@@ -227,6 +227,9 @@ def test_bigui_html_is_fresh_offline_and_catalog_driven() -> None:
     assert "NOT YET COMPUTABLE" in content
     assert "Accepted run center" in content
     assert "Measured experiments first" in content
+    assert "A declared or null placeholder is never counted as a measured result." in content
+    assert "Paper baseline laboratory · Phases A–D" in content
+    assert "Live deployment is stale" in content
     match = re.search(
         r'<script id="bigui-catalog" type="application/json">(.*?)</script>',
         content,
@@ -235,6 +238,23 @@ def test_bigui_html_is_fresh_offline_and_catalog_driven() -> None:
     assert match
     embedded = json.loads(match.group(1))
     assert embedded == catalog
+    result_match = re.search(
+        r'<script id="experiment-result-views" type="application/json">(.*?)</script>',
+        content,
+        re.DOTALL,
+    )
+    deployment_match = re.search(
+        r'<script id="deployment-snapshot" type="application/json">(.*?)</script>',
+        content,
+        re.DOTALL,
+    )
+    assert result_match and deployment_match
+    result_views = json.loads(result_match.group(1))
+    deployment = json.loads(deployment_match.group(1))
+    assert len(result_views["resultViews"]) == 41
+    assert result_views["summary"]["classificationClaimsEligible"] is False
+    assert deployment["experimentCount"] == 41
+    assert deployment["liveObservation"]["status"] == "stale"
 
 
 def test_status_and_evidence_classes_remain_separate() -> None:

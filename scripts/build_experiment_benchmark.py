@@ -698,6 +698,17 @@ def build_snapshot() -> dict[str, Any]:
         declared_ids = set(experiment["metricDefinitions"])
         observed_ids = {item["metricId"] for item in observations}
         observed_declared_ids = observed_ids & declared_ids
+        non_null_observations = [
+            item
+            for item in observations
+            if item["metricId"] in declared_ids and item["value"] is not None
+        ]
+        non_null_metric_ids = {
+            item["metricId"] for item in non_null_observations
+        }
+        null_metric_ids = sorted(
+            observed_declared_ids - non_null_metric_ids
+        )
         metric_contract_incomplete = bool(bundles) and not declared_ids.issubset(
             observed_ids
         )
@@ -777,23 +788,32 @@ def build_snapshot() -> dict[str, Any]:
         records.append(record)
         declared = len(declared_ids)
         observed = len(observed_declared_ids)
+        non_null_metric_count = len(non_null_metric_ids)
+        if not declared:
+            measurement_status = "no_metrics_declared"
+        elif not observations:
+            measurement_status = "protocol_only"
+        elif not non_null_metric_ids:
+            measurement_status = "observed_null"
+        elif non_null_metric_ids != declared_ids:
+            measurement_status = "measured_partial"
+        else:
+            measurement_status = "measured_complete"
         coverage_rows.append(
             {
                 "experimentId": experiment_id,
                 "declared": declared,
                 "observed": observed,
-                "coverage": (
+                "nonNullObservations": len(non_null_observations),
+                "nonNullMetricCount": non_null_metric_count,
+                "nullMetricIds": null_metric_ids,
+                "observedCoverage": (
                     observed / declared if declared else None
                 ),
-                "status": (
-                    "measured"
-                    if observations
-                    else (
-                        "protocol_only"
-                        if declared
-                        else "no_metrics_declared"
-                    )
+                "coverage": (
+                    non_null_metric_count / declared if declared else None
                 ),
+                "status": measurement_status,
             }
         )
 

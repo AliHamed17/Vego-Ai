@@ -73,6 +73,7 @@ jobs:
           python -m pip install "uv==${UV_VERSION}"
           uv sync --frozen --all-groups
           npm ci --ignore-scripts --no-audit
+          npm ci --prefix deploy/ai-studio --ignore-scripts --no-audit
           npx --no-install playwright install --with-deps chromium
 
       - name: Verify environment and compile imports
@@ -92,7 +93,10 @@ jobs:
           uv run python scripts/build_bigui_run_store.py --check
           uv run python scripts/build_experiment_benchmark.py --check
           uv run python scripts/build_bigui_catalog.py --check
+          uv run python scripts/build_bigui_result_views.py --check
+          uv run python scripts/build_bigui_deployment_snapshot.py --check
           uv run python scripts/build_bigui.py --check
+          uv run python scripts/build_ai_studio_package.py --check
           uv run python scripts/run_bigui_architecture_experiments.py --check
           uv run python scripts/check_thesis_citations.py
           uv run python scripts/validate_thesis_content.py
@@ -138,12 +142,14 @@ jobs:
           uv run pip-audit -r "${RUNNER_TEMP}/requirements-audit.txt" \
             --progress-spinner off
           npm audit --audit-level=high
+          npm audit --prefix deploy/ai-studio --audit-level=high
 
       - name: Exercise offline supervisor, thesis, and BigUI views
         run: |
           node scripts/tests/supervisor_package_browser_smoke.mjs
           node scripts/tests/thesis_progress_browser_smoke.mjs
           node scripts/tests/bigui_browser_smoke.mjs
+          node scripts/tests/ai_studio_api_smoke.mjs
 
       - name: Check diff and line-ending hygiene
         env:
