@@ -427,3 +427,26 @@ Chronological prompt history for Codex and Claude.
   - PDF QA: 91 pages, 23 sheets, 0 errors
 - Status: review fixes and package regeneration complete; final exact-head verification pending
 - Next steps: Run the full clean release gate, push exact head, resolve all review threads, request a fresh review, and audit CI, protection, and independent approval before merge.
+
+## 2026-07-26 13:30 +03:00 - Codex - Execute experiments and publish results-first BigUI
+
+- Request: Run available VEGO-AI experiments first, evaluate them, and ingest accepted results into the BigUI.
+- Actions taken:
+  - Added a validated accepted-run store and canonical metric observations.
+  - Executed and evaluated EXP-030 and EXP-033 through EXP-036 using clone-safe and controlled inputs.
+  - Published 30 accepted runs and 405 observations in the offline bilingual BigUI.
+  - Fixed cross-platform experiment hashing, deterministic release metadata, and portable DOCX CI.
+  - Passed local source and controlled gates and the complete GitHub merge gate.
+- Files changed:
+  - VEGO-AI-Research-Hub.html
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_architecture_experiments.py
+  - .github/workflows/supervisor-package.yml
+- Commands/checks:
+  - scripts/verify-source.ps1 -Check
+  - scripts/verify-controlled.ps1 -Check
+  - gh pr checks 11 --watch
+- Status: completed
+- Next steps: Merge PR #10 first, then retarget PR #11 to main, rerun all gates, and obtain independent review. Collect real EXP-005 labels before any accuracy claim.

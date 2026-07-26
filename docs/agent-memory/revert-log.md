@@ -512,3 +512,15 @@ Record file changes and rollback notes here.
   - VEGO-AI-Thesis-Baseline-Progress.html
 - Rollback note: Revert commits 1ff9f72 through eb15a13 in reverse order to remove the empty-envelope and disguised-archive review cycle; ignored PDF, QA, and share folders can be removed separately.
 - Git commit: none recorded by script.
+
+## 2026-07-26 13:30 +03:00 - Codex - Execute experiments and publish results-first BigUI
+
+- Files changed:
+  - VEGO-AI-Research-Hub.html
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_architecture_experiments.py
+  - .github/workflows/supervisor-package.yml
+- Rollback note: Revert the BigUI experiment-platform commits on agent/bigui-experiment-platform; Agent 4 and baseline outputs were not changed.
+- Git commit: none recorded by script.
