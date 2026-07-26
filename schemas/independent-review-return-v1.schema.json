@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/independent-review-return-v1.schema.json",
+  "title": "IndependentReviewReturn v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packageVersion",
+    "reviewerSlot",
+    "reviewerId",
+    "sourceSheetSha256",
+    "completedAt",
+    "records"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "IndependentReviewReturn-v1"
+    },
+    "packageVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "reviewerSlot": {
+      "enum": [
+        "reviewer_1",
+        "reviewer_2"
+      ]
+    },
+    "reviewerId": {
+      "type": "string",
+      "minLength": 3,
+      "not": {
+        "enum": [
+          "SYNTHETIC_NOT_HUMAN",
+          "ChatGPT",
+          "Codex"
+        ]
+      }
+    },
+    "sourceSheetSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "records": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "anonymousItemId",
+          "expertLabel",
+          "expertRationale",
+          "confidence",
+          "reviewRequirement",
+          "routingRationale",
+          "reviewPriority",
+          "reviewDate",
+          "activeSeconds"
+        ],
+        "properties": {
+          "anonymousItemId": {
+            "type": "string",
+            "pattern": "^ITEM-[0-9]{2}$"
+          },
+          "expertLabel": {
+            "enum": [
+              "Substantial Variability",
+              "Occasional Variability",
+              "Undetermined / Needs Review"
+            ]
+          },
+          "expertRationale": {
+            "type": "string",
+            "minLength": 3
+          },
+          "confidence": {
+            "enum": [
+              "Low",
+              "Medium",
+              "High"
+            ]
+          },
+          "reviewRequirement": {
+            "enum": [
+              "Human review required",
+              "Automatic handling acceptable",
+              "Insufficient context"
+            ]
+          },
+          "routingRationale": {
+            "type": "string",
+            "minLength": 3
+          },
+          "reviewPriority": {
+            "enum": [
+              "Low",
+              "Medium",
+              "High"
+            ]
+          },
+          "reviewDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "activeSeconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

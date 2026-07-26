@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/independent-evidence-package-v1.schema.json",
+  "title": "IndependentEvidencePackage v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packageVersion",
+    "generatedAt",
+    "source",
+    "counts",
+    "randomization",
+    "labelVocabulary",
+    "reviewWorkflow",
+    "gate",
+    "files",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "IndependentEvidencePackage-v1"
+    },
+    "packageVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateRows",
+        "calibrationRows",
+        "developmentRows",
+        "sealedHoldoutRows",
+        "reviewerCount",
+        "suppliedLabels"
+      ],
+      "properties": {
+        "candidateRows": {
+          "const": 24
+        },
+        "calibrationRows": {
+          "const": 3
+        },
+        "developmentRows": {
+          "const": 16
+        },
+        "sealedHoldoutRows": {
+          "const": 8
+        },
+        "reviewerCount": {
+          "const": 2
+        },
+        "suppliedLabels": {
+          "const": 0
+        }
+      }
+    },
+    "randomization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "partitionSeed",
+        "reviewerOrderSeeds"
+      ],
+      "properties": {
+        "partitionSeed": {
+          "type": "integer"
+        },
+        "reviewerOrderSeeds": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "labelVocabulary": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "Substantial Variability",
+          "Occasional Variability",
+          "Undetermined / Needs Review"
+        ]
+      }
+    },
+    "reviewWorkflow": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "minimumSafeLabels",
+        "accuracyMetricsComputable",
+        "generalizationClaimAllowed",
+        "humanInputRequired"
+      ],
+      "properties": {
+        "status": {
+          "const": "HUMAN_INPUT_REQUIRED"
+        },
+        "minimumSafeLabels": {
+          "const": 20
+        },
+        "accuracyMetricsComputable": {
+          "const": false
+        },
+        "generalizationClaimAllowed": {
+          "const": false
+        },
+        "humanInputRequired": {
+          "const": true
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "role",
+          "sendToReviewer",
+          "containsPrivateMapping"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sendToReviewer": {
+            "type": "boolean"
+          },
+          "containsPrivateMapping": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "claimBoundary": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

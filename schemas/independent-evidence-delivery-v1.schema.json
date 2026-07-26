@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/independent-evidence-delivery-v1.schema.json",
+  "title": "IndependentEvidenceDelivery v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "deliveryDate",
+    "sourcePackageSha256",
+    "files",
+    "privateMappingIncluded",
+    "suppliedLabels",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "IndependentEvidenceDelivery-v1"
+    },
+    "deliveryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourcePackageSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "audience",
+          "releaseStage"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "audience": {
+            "enum": [
+              "supervisors",
+              "reviewer_1",
+              "reviewer_2",
+              "package_owner"
+            ]
+          },
+          "releaseStage": {
+            "enum": [
+              "now",
+              "after_supervisor_approval",
+              "after_calibration"
+            ]
+          }
+        }
+      }
+    },
+    "privateMappingIncluded": {
+      "const": false
+    },
+    "suppliedLabels": {
+      "const": 0
+    },
+    "claimBoundary": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
