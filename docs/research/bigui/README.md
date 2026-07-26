@@ -14,6 +14,7 @@ The catalog covers `EXP-000` through `EXP-040` and binds each experiment to:
 - baseline, comparator, metrics, accepted runs, limitations, and next action;
 - source paths and SHA-256 hashes;
 - the current label, decision, baseline, and claim boundaries.
+- the seven-dimension experiment evaluation record and B0–B5 benchmark stage.
 
 Every rendered BigUI number, experiment card, result panel, dependency, and
 comparison option is derived from the catalog. Hand-maintained metric constants
@@ -34,6 +35,7 @@ From the repository root:
 uv run python scripts/build_bigui_architecture_snapshot.py
 uv run python scripts/run_bigui_comparison_experiments.py --refresh
 uv run python scripts/build_bigui_run_store.py --refresh
+uv run python scripts/build_experiment_benchmark.py --refresh
 uv run python scripts/build_bigui_catalog.py
 uv run python scripts/build_bigui.py
 uv run python visualizations-gallery/build_gallery.py
@@ -45,6 +47,7 @@ Read-only freshness checks:
 uv run python scripts/build_bigui_architecture_snapshot.py --check
 uv run python scripts/run_bigui_comparison_experiments.py --check
 uv run python scripts/build_bigui_run_store.py --check
+uv run python scripts/build_experiment_benchmark.py --check
 uv run python scripts/build_bigui_catalog.py --check
 uv run python scripts/build_bigui.py --check
 uv run python scripts/run_bigui_architecture_experiments.py --check
@@ -73,9 +76,12 @@ last accepted tracked output unchanged.
 - Accuracy and macro-F1 therefore remain `null` and appear as not computable.
 - M4B-1 currently changes zero of 27 comparison rows.
 - Iteration 15 is `NEUTRAL` and reliability-only.
-- EXP-033–EXP-035 tracked results are clone-safe offline fixture evidence.
-- EXP-036 tracked values are engineering targets, not an accepted performance
-  result; machine-specific measurements remain local.
+- EXP-033–EXP-035 have accepted clone-safe offline parity, topology, and fault
+  evidence. Their finite fixtures do not establish classification validity.
+- EXP-036 has accepted deterministic operational measurements, but at least
+  one older accepted run missed the unified p95 limit. The latest accepted run
+  meets the declared ratio limits; machine-specific variability remains
+  visible and requires replication.
 - EXP-037 reconciles the paper draft (178 models, 26 patterns) with the frozen
   repository snapshot (179 models, 27 patterns). The differences are version
   context, not evidence of higher quality.
@@ -85,6 +91,13 @@ last accepted tracked output unchanged.
   for compatible observations and refuses paper-to-current accuracy deltas.
 - EXP-040 keeps thesis claims aligned with present evidence: mechanism claims
   are traceable, while empirical hypotheses remain unconfirmed.
+- `ExperimentEvaluationStandard-v1` defines protocol, data, execution,
+  reproducibility, safety, comparability, and empirical-validity criteria.
+- `ExperimentBenchmarkSnapshot-v1` evaluates all 41 experiments: 26 executed,
+  15 protocol/gated/parked, 22 measured passes, four measured partials,
+  13 gated non-runs, and two parked records.
+- `VEGO-AI-Experiment-Benchmark-Report.html` is the offline technical analytics
+  report generated from that benchmark snapshot.
 - EXP-031 and EXP-032 require consented human studies before any BigUI value
   claim.
 - Agent 4, the official baseline, and the GPT-4o default remain frozen.

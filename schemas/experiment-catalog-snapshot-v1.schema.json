@@ -13,6 +13,8 @@
     "architectureVariants",
     "paperBaseline",
     "baselineComparisonResults",
+    "evaluationStandard",
+    "experimentBenchmark",
     "experiments",
     "metricObservations",
     "metricDefinitionsV2",
@@ -68,6 +70,8 @@
     },
     "paperBaseline": {"type": "object"},
     "baselineComparisonResults": {"type": "object"},
+    "evaluationStandard": {"type": "object"},
+    "experimentBenchmark": {"type": "object"},
     "experiments": {
       "type": "array",
       "minItems": 41,

@@ -194,6 +194,8 @@ def test_bigui_html_is_fresh_offline_and_catalog_driven() -> None:
     assert "http://" not in content
     assert "EXP-040" in content
     assert "Paper baseline and evidence of progress" in content
+    assert "All-experiment evaluation benchmark" in content
+    assert "VEGO-AI-Experiment-Benchmark-Report.html" in content
     assert "NOT YET COMPUTABLE" in content
     assert "Accepted run center" in content
     assert "Measured experiments first" in content
@@ -213,6 +215,7 @@ def test_status_and_evidence_classes_remain_separate() -> None:
     assert by_id["EXP-009"]["evidenceClass"] == "synthetic"
     assert by_id["EXP-020"]["evidenceClass"] == "blocked"
     assert by_id["EXP-033"]["evidenceClass"] == "offline"
+    assert by_id["EXP-033"]["status"] == "Offline evidence"
     assert by_id["EXP-031"]["status"] == "Proposal — not approved"
     assert by_id["EXP-032"]["status"] == "Blocked"
     assert by_id["EXP-034"]["latestResult"]["metricObservationIds"]

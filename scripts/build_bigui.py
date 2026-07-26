@@ -181,11 +181,33 @@ dialog::backdrop{background:rgba(0,0,0,.72)}.dialog-head{position:sticky;top:0;b
 .tradeoff-card h4{margin:.1rem 0 .35rem;color:var(--cyan)}.tradeoff-card p{margin:.2rem 0;color:var(--muted)}
 .proof-rule{border:1px solid var(--green);background:rgba(105,219,157,.08);padding:15px;border-radius:14px}
 .provenance-note{color:var(--muted);font-size:.8rem;margin-top:12px}
+.dimension-map{display:grid;grid-template-columns:repeat(7,minmax(120px,1fr));gap:8px;overflow:auto;padding:4px}
+.dimension-node{min-height:118px;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--panel2)}
+.dimension-node strong{display:block;color:var(--cyan);margin-bottom:4px}.dimension-node small{display:block;color:var(--muted)}
+.benchmark-bars{display:grid;gap:9px}.benchmark-row{display:grid;grid-template-columns:minmax(150px,1fr) 3fr 52px;gap:9px;align-items:center}
+.benchmark-row .track{display:flex;height:13px;background:#07141b;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.benchmark-row .pass-segment{background:var(--green)}.benchmark-row .partial-segment{background:var(--amber)}
+.benchmark-row .other-segment{background:var(--line)}
+.baseline-ladder{display:grid;grid-template-columns:repeat(6,minmax(150px,1fr));gap:9px;overflow:auto}
+.baseline-stage{padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--panel2);min-height:142px}
+.baseline-stage strong{display:block;color:var(--cyan);font-size:1.25rem}.baseline-stage span{display:block;margin:.25rem 0;font-weight:750}
+.baseline-stage[data-state="not_eligible"],.baseline-stage[data-state="not_started"]{border-style:dashed}
+.benchmark-table{width:100%;border-collapse:collapse;min-width:1180px}.benchmark-table th,.benchmark-table td{padding:8px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+.benchmark-table tbody tr{cursor:pointer}.benchmark-table tbody tr:hover{background:rgba(97,230,214,.05)}
+.dimension-state{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px 7px;font-size:.7rem;font-weight:750}
+.dimension-state.pass{color:var(--green)}.dimension-state.partial,.dimension-state.not_measured{color:var(--amber)}
+.dimension-state.fail,.dimension-state.not_eligible{color:var(--red)}.dimension-state.not_applicable{color:var(--muted)}
+.parameter-grid,.comparison-family-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.parameter-card,.comparison-family{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.parameter-card summary{cursor:pointer;color:var(--cyan);font-weight:800}.parameter-card p,.comparison-family p{color:var(--muted);margin:.35rem 0}
+.comparison-family strong{color:var(--cyan)}.benchmark-link{display:inline-flex;margin-top:12px;padding:8px 11px;border:1px solid var(--cyan);border-radius:10px;text-decoration:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
 @media(max-width:1100px){
   .kpi-grid{grid-template-columns:repeat(3,1fr)}.experiment-grid{grid-template-columns:repeat(2,1fr)}
   .evidence-lanes{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dimension-map{grid-template-columns:repeat(4,minmax(145px,1fr))}
+  .baseline-ladder{grid-template-columns:repeat(3,minmax(160px,1fr))}
   .filters{grid-template-columns:repeat(3,1fr)}.filters .search{grid-column:span 3}
   .system-map{grid-template-columns:repeat(4,minmax(145px,1fr))}
   .system-node:nth-child(4)::after{display:none}
@@ -194,6 +216,8 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   .topbar-inner{align-items:flex-start}.nav{display:none}.brand{flex:1}.hero{grid-template-columns:1fr;padding-top:35px}
   .kpi-grid,.two-col,.three-col,.runtime-grid,.topology-grid,.result-grid,.validity-grid,.run-grid,.plot-grid{grid-template-columns:1fr}
   .evidence-lanes{grid-template-columns:1fr 1fr}.capability-grid{grid-template-columns:minmax(145px,2fr) 1fr 1fr}
+  .dimension-map{display:flex;flex-direction:column;overflow:visible}.dimension-node{min-height:auto}
+  .baseline-ladder{grid-template-columns:1fr 1fr}.parameter-grid,.comparison-family-grid{grid-template-columns:1fr}
   .experiment-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters .search{grid-column:span 2}
   .system-map{display:flex;flex-direction:column;overflow:visible}.system-node{min-height:88px}
   .system-node:not(:last-child)::after{content:"↓";inset-inline-end:auto;left:50%;top:auto;bottom:-18px}
@@ -210,6 +234,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   .brand .brand-text{display:none}.filters{grid-template-columns:1fr}.filters .search{grid-column:auto}
   .kpi-grid{grid-template-columns:1fr 1fr}.metric-bar{grid-template-columns:1fr}.evidence-bars{overflow:auto}
   .evidence-lanes{grid-template-columns:1fr}.grouped-count{grid-template-columns:1fr}.capability-grid{font-size:.78rem}
+  .baseline-ladder{grid-template-columns:1fr}.benchmark-row{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media print{
@@ -227,6 +252,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     <nav class="nav" aria-label="Research sections">
       <a href="#overview" data-i18n="navOverview">Overview</a>
       <a href="#baseline-progress" data-i18n="navProgress">Progress proof</a>
+      <a href="#experiment-benchmarks" data-i18n="navBenchmark">Benchmark</a>
       <a href="#executed-results" data-i18n="navResults">Results</a>
       <a href="#run-center">Runs</a>
       <a href="#architecture" data-i18n="navArchitecture">Architecture</a>
@@ -279,6 +305,35 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       <article class="panel"><h3>EXP-039 · why configurations differ</h3><div id="comparison-tradeoffs" class="result-lane"></div></article>
       <article class="panel"><h3>EXP-034 · topology evidence</h3><div id="topology-proof" class="compact-bars"></div></article>
       <article class="panel"><h3>EXP-040 · thesis claim readiness</h3><div id="thesis-readiness"></div></article>
+    </div>
+  </section>
+
+  <section class="section" id="experiment-benchmarks" aria-labelledby="experiment-benchmarks-title">
+    <div class="section-head"><div><h2 id="experiment-benchmarks-title" data-i18n="benchmarkTitle">All-experiment evaluation benchmark</h2><p data-i18n="benchmarkCopy">One measurable standard evaluates protocol, data, execution, reproducibility, safety, comparability, and empirical validity without hiding missing evidence.</p></div><a class="benchmark-link" href="VEGO-AI-Experiment-Benchmark-Report.html">Open full analytics report</a></div>
+    <div class="kpi-grid" id="benchmark-kpis"></div>
+    <article class="panel" style="margin-top:14px"><h3>Data → model → architecture → experiment → result → evaluation → test</h3><div id="benchmark-dimensions" class="dimension-map" role="img" aria-label="Seven independent evaluation dimensions connect data, model, architecture, experiments, results, evaluation, and tests."></div><p class="provenance-note">No global weighted value score is calculated. Not-applicable and not-eligible dimensions are never converted into zero.</p></article>
+    <div class="two-col" style="margin-top:14px">
+      <article class="panel"><h3>Dimension pass coverage</h3><div id="benchmark-dimension-bars" class="benchmark-bars"></div><p class="provenance-note">Counts show exact dimension outcomes across 41 registered experiments; they are not a quality ranking.</p></article>
+      <article class="panel"><h3>Program disposition</h3><div id="benchmark-verdict-bars" class="benchmark-bars"></div><p class="provenance-note">A gated non-run is a valid methodological outcome when consent, labels, approval, or sealed data are required.</p></article>
+      <article class="panel"><h3>Latest accepted guardrail outcomes</h3><div id="benchmark-guardrail-bars" class="benchmark-bars"></div><p class="provenance-note">Only latest-run observations with a declared numerical guardrail or a required null are counted. Historical misses remain reported separately.</p></article>
+      <article class="panel"><h3>Observation volume by executed experiment</h3><div id="benchmark-observation-bars" class="benchmark-bars"></div><p class="provenance-note">Observation count indicates analytical coverage, not result quality. EXP-036 is large because scale, mode, and repetition dimensions are explicit.</p></article>
+    </div>
+    <article class="panel" style="margin-top:14px"><h3>B0–B5 evidence and benchmark ladder</h3><div id="benchmark-baseline-ladder" class="baseline-ladder"></div></article>
+    <article class="panel" id="benchmark-highlights-panel" style="margin-top:14px"><h3>Measured result highlights</h3><p>Selected latest-run observations with denominator, source hash, date, evidence class, and claim boundary.</p><div id="benchmark-highlights" class="plot-grid"></div></article>
+    <article class="panel" style="margin-top:14px">
+      <h3>EXP-000–EXP-040 evaluation matrix</h3>
+      <div class="filters">
+        <label class="search"><span>Find experiment</span><input id="benchmark-search" type="search" placeholder="EXP-036, routing, labels…" autocomplete="off"></label>
+        <label><span>Verdict</span><select id="benchmark-verdict"><option value="">All</option></select></label>
+        <label><span>Evidence</span><select id="benchmark-evidence"><option value="">All</option></select></label>
+        <label><span>Execution</span><select id="benchmark-execution"><option value="">All</option></select></label>
+      </div>
+      <strong id="benchmark-count" aria-live="polite"></strong>
+      <div style="overflow:auto"><table class="benchmark-table"><thead><tr><th>Experiment</th><th>Execution</th><th>Verdict</th><th>Protocol</th><th>Data</th><th>Reproducibility</th><th>Safety</th><th>Comparability</th><th>Empirical</th><th>Observations</th></tr></thead><tbody id="benchmark-table-body"></tbody></table></div>
+    </article>
+    <div class="two-col" style="margin-top:14px">
+      <article class="panel"><h3>Canonical parameter dictionary</h3><div id="benchmark-parameters" class="parameter-grid"></div></article>
+      <article class="panel"><h3>Valid comparison families</h3><div id="benchmark-comparison-families" class="comparison-family-grid"></div></article>
     </div>
   </section>
 
@@ -449,6 +504,11 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     (index[item.metricId] ||= []).push(item);return index;
   },{});
   const experiments = Object.fromEntries(data.experiments.map((item) => [item.id,item]));
+  const benchmark = data.experimentBenchmark;
+  const evaluationStandard = data.evaluationStandard;
+  const benchmarkRecords = Object.fromEntries(
+    benchmark.evaluationRecords.map((item) => [item.experimentId,item])
+  );
   const runEntries = (data.acceptedRunBundles || []).map((bundle,index) => ({
     ...bundle.envelope,_bundle:bundle,_key:`${index}|${bundle.envelope.experimentId}|${bundle.envelope.runId}`
   }));
@@ -459,11 +519,12 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   },{})).map(([experimentId,run])=>[experimentId,run.runId]));
   const comparisonFields = data.comparisonRules.requiredMatchingFields;
   const i18n = {
-    en:{navOverview:"Overview",navProgress:"Progress proof",navArchitecture:"Architecture",navExperiments:"Experiments",navResults:"Results",navEvaluation:"Validity",navWorkspaces:"MSc / PhD",navOperations:"Operations",print:"Print",
+    en:{navOverview:"Overview",navProgress:"Progress proof",navBenchmark:"Benchmark",navArchitecture:"Architecture",navExperiments:"Experiments",navResults:"Results",navEvaluation:"Validity",navWorkspaces:"MSc / PhD",navOperations:"Operations",print:"Print",
       heroTitle:"Measured experiments first. Architecture and evidence behind every result.",heroLead:"BigUI begins with accepted runs and measured outcomes, then connects each result to its experiment design, architecture, source hash, evaluation, and next action.",
       gateTitle:"Current evaluation stage",gateBoundary:"Agent 4 and the official baseline remain frozen. Empty performance panels are intentional.",
       overviewTitle:"Research baseline",overviewCopy:"The frozen corpus and baseline against which every accepted result is interpreted.",safeNow:"Measured and supported now",notAllowed:"Requires independent evaluation",
       progressTitle:"Paper baseline and evidence of progress",progressCopy:"A proof-oriented view separates architectural capability, reliability, contextual version differences, and empirical value.",paperCurrentCounts:"Paper versus frozen repository counts",capabilityExtension:"Human-judgment capability extension",improvementScorecard:"Multidimensional improvement scorecard",
+      benchmarkTitle:"All-experiment evaluation benchmark",benchmarkCopy:"One measurable standard evaluates protocol, data, execution, reproducibility, safety, comparability, and empirical validity without hiding missing evidence.",
       architectureTitle:"Architecture laboratory",architectureCopy:"The original pipeline stays read-only; every H-layer path is advisory, explicit, and fail-closed.",completeArchitecture:"Original-to-enhanced governed architecture",
       runtimeModes:"Legacy, unified, and parity modes",topologyOptions:"H-layer topology options A / B / C",artifactPipeline:"Artifact transformation pipeline",authorityFlow:"Human-authority state machine",topologyMetrics:"Topology structural trade-offs — EXP-034 fixture",
       experimentsTitle:"Experiment observatory",experimentsCopy:"Search EXP-000–EXP-040 and inspect design, gates, evidence, accepted runs, and the exact next action.",search:"Search",space:"Space",status:"Status",evidence:"Evidence",architecture:"Architecture",
@@ -471,11 +532,12 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       evaluationTitle:"Evaluation and validity",evaluationCopy:"The label gate, empty accuracy panels, paired matrix, and validity threats make missing evidence visible.",labelFunnel:"Independent-label funnel",accuracyPanels:"Accuracy and macro-F1",pairedMatrix:"Paired correctness",validityRisks:"Validity-threat heatmap",
       workspacesTitle:"MSc and PhD workspaces",workspacesCopy:"Education remains the MSc empirical domain. External replication and domain transfer remain later, separately gated work.",evidenceLadder:"MSc-to-PhD evidence ladder",
       operationsTitle:"Operations and reproducibility",operationsCopy:"Freshness, hashes, tests, baseline integrity, privacy tier, and security controls are visible and machine-readable."},
-    he:{navOverview:"סקירה",navProgress:"הוכחת התקדמות",navArchitecture:"ארכיטקטורה",navExperiments:"ניסויים",navResults:"תוצאות",navEvaluation:"תוקף",navWorkspaces:"MSc / PhD",navOperations:"תפעול",print:"הדפסה",
+    he:{navOverview:"סקירה",navProgress:"הוכחת התקדמות",navBenchmark:"מדד השוואה",navArchitecture:"ארכיטקטורה",navExperiments:"ניסויים",navResults:"תוצאות",navEvaluation:"תוקף",navWorkspaces:"MSc / PhD",navOperations:"תפעול",print:"הדפסה",
       heroTitle:"משטח עבודה אחד לארכיטקטורה, ניסויים וראיות",heroLead:"מעקב אחר כל ניסוי — מהשאלה והשער ועד ריצות, מדדים, מגבלות והפעולה הבאה. מוכנות מנגנון אינה תחליף לתוקף אמפירי.",
       gateTitle:"שלב ההערכה הנוכחי",gateBoundary:"Agent 4 וקו הבסיס הרשמי נשארים קפואים. לוחות הביצועים הריקים הם מכוונים.",
       overviewTitle:"קו הבסיס המחקרי",overviewCopy:"הקורפוס וקו הבסיס הקפואים שלפיהם כל תוצאה מאושרת מתפרשת.",safeNow:"נמדד ונתמך כעת",notAllowed:"דורש הערכה בלתי תלויה",
       progressTitle:"קו הבסיס של המאמר והוכחת התקדמות",progressCopy:"הצגה מוכוונת-ראיות המפרידה יכולת ארכיטקטונית, אמינות, הבדלי גרסה ותוקף אמפירי.",paperCurrentCounts:"ספירות המאמר מול המאגר הקפוא",capabilityExtension:"הרחבת יכולות השיפוט האנושי",improvementScorecard:"לוח שיפור רב-ממדי",
+      benchmarkTitle:"מדד הערכה לכל הניסויים",benchmarkCopy:"תקן מדיד אחד מעריך פרוטוקול, נתונים, ביצוע, שחזור, בטיחות, השוואתיות ותוקף אמפירי בלי להסתיר ראיות חסרות.",
       architectureTitle:"מעבדת הארכיטקטורה",architectureCopy:"הצינור המקורי לקריאה בלבד; שכבת H מייעצת, מפורשת ונכשלת בצורה בטוחה.",completeArchitecture:"הארכיטקטורה המלאה והמוגנת",
       runtimeModes:"מצבי Legacy, Unified ו-Parity",topologyOptions:"חלופות טופולוגיה A / B / C",artifactPipeline:"זרימת הארטיפקטים",authorityFlow:"מכונת מצבי סמכות אנושית",topologyMetrics:"פשרות מבניות — ניסוי EXP-034",
       experimentsTitle:"מצפה הניסויים",experimentsCopy:"חיפוש EXP-000–EXP-040 ובדיקה של תכנון, שערים, ראיות, ריצות והפעולה הבאה.",search:"חיפוש",space:"מרחב",status:"מצב",evidence:"ראיות",architecture:"ארכיטקטורה",
@@ -613,6 +675,104 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     </div>`;
   }
 
+  function dimensionState(result){
+    return `<span class="dimension-state ${esc(result.status)}">${esc(result.status.replaceAll("_"," "))}</span>`;
+  }
+  function renderExperimentBenchmarks(){
+    const summary=benchmark.summary;
+    $("benchmark-kpis").innerHTML=[
+      kpi("Evaluated",summary.evaluatedExperiments,"<small>complete EXP-000–EXP-040 program</small>"),
+      kpi("Executed",summary.executedExperiments,"<small>accepted source-backed runs</small>"),
+      kpi("Protocol / gated",summary.protocolOnlyExperiments,"<small>no result invented</small>"),
+      kpi("Engineering evidence",summary.experimentsWithMeasuredEngineeringEvidence,"<small>mechanism and operations</small>"),
+      kpi("Empirical classification",summary.experimentsWithEmpiricalClassificationEvidence,"<small>safe N=0</small>")
+    ].join("");
+    $("benchmark-dimensions").innerHTML=evaluationStandard.dimensions.map((item,index)=>`<article class="dimension-node">
+      <strong>${index+1}. ${esc(item.title)}</strong><small>${esc(item.question)}</small></article>`).join("");
+
+    const dimensionIds=evaluationStandard.dimensions.map(item=>item.id);
+    $("benchmark-dimension-bars").innerHTML=dimensionIds.map(dimension=>{
+      const counts={pass:0,partial:0,other:0};
+      benchmark.evaluationRecords.forEach(record=>{
+        const status=record.dimensions[dimension].status;
+        if(status==="pass")counts.pass++;
+        else if(status==="partial")counts.partial++;
+        else counts.other++;
+      });
+      const total=benchmark.evaluationRecords.length;
+      return `<div class="benchmark-row"><span>${esc(dimension.replaceAll("_"," "))}</span>
+        <div class="track" title="${counts.pass} pass, ${counts.partial} partial, ${counts.other} other">
+          <i class="pass-segment" style="width:${counts.pass/total*100}%"></i>
+          <i class="partial-segment" style="width:${counts.partial/total*100}%"></i>
+          <i class="other-segment" style="width:${counts.other/total*100}%"></i>
+        </div><b>${counts.pass}/${total}</b></div>`;
+    }).join("");
+    const verdictCounts={};
+    benchmark.evaluationRecords.forEach(item=>verdictCounts[item.verdict]=(verdictCounts[item.verdict]||0)+1);
+    const verdictMax=Math.max(...Object.values(verdictCounts),1);
+    $("benchmark-verdict-bars").innerHTML=Object.entries(verdictCounts).sort().map(([label,value])=>`<div class="benchmark-row">
+      <span>${esc(label.replaceAll("_"," "))}</span><div class="bar-track"><div class="bar-fill" style="width:${value/verdictMax*100}%"></div></div><b>${value}</b></div>`).join("");
+    const guardrails=benchmark.guardrailSummary;
+    const guardrailMax=Math.max(guardrails.met,guardrails.missed,guardrails.notComputable,1);
+    $("benchmark-guardrail-bars").innerHTML=[
+      ["met",guardrails.met],["missed",guardrails.missed],["not computable",guardrails.notComputable]
+    ].map(([label,value])=>`<div class="benchmark-row"><span>${esc(label)}</span><div class="bar-track"><div class="bar-fill" style="width:${value/guardrailMax*100}%"></div></div><b>${value}</b></div>`).join("")+
+      `<div class="metric-meta">${guardrails.assessedObservations} latest observations · ${guardrails.experimentsWithMissedGuardrails} experiments with a current miss<br>${guardrails.historicalMissed}/${guardrails.historicalAssessedObservations} target-bearing observations missed across accepted history.</div>`;
+    const observed=benchmark.evaluationRecords.filter(item=>item.observationCount>0).sort((a,b)=>b.observationCount-a.observationCount);
+    const observationMax=Math.max(...observed.map(item=>item.observationCount),1);
+    $("benchmark-observation-bars").innerHTML=observed.map(item=>`<div class="benchmark-row"><span><bdi dir="ltr">${esc(item.experimentId)}</bdi></span>
+      <div class="bar-track"><div class="bar-fill" style="width:${item.observationCount/observationMax*100}%"></div></div><b>${item.observationCount}</b></div>`).join("");
+    $("benchmark-baseline-ladder").innerHTML=evaluationStandard.baselineLadder.map(item=>`<article class="baseline-stage" data-state="${esc(item.currentState)}">
+      <strong>${esc(item.id)}</strong><span>${esc(item.title)}</span><p>${esc(item.purpose)}</p>
+      <small>${esc(item.currentState.replaceAll("_"," "))}</small></article>`).join("");
+    $("benchmark-highlights").innerHTML=benchmark.resultHighlights.map(item=>`<article class="tradeoff-card">
+      <div class="status-row"><strong><bdi dir="ltr">${esc(item.experimentId)}</bdi> · ${esc(item.title)}</strong>
+      <span class="evidence-badge" data-evidence="${esc(item.evidenceClass)}">${esc(item.evidenceClass)}</span></div>
+      <p>${esc(item.summary)}</p>
+      <div class="result-lane">${item.metrics.map(metric=>`<div class="detail-block">
+        <strong><bdi dir="ltr">${esc(metric.metricId)}</bdi></strong>
+        <p><b>${esc(fmt(metric.value))}</b> ${esc(metric.unit)} · N=${esc(fmt(metric.denominator))}</p>
+        <small>${esc(Object.entries(metric.dimensions||{}).map(([key,value])=>`${key}=${value}`).join(" · ")||"aggregate")}</small>
+        <div class="metric-meta">${esc(metric.observationDate)} · ${esc(metric.sourcePath)} · ${esc(metric.sourceSha256.slice(0,12))}…<br>${esc(metric.claimBoundary)}</div>
+      </div>`).join("")}</div>
+      <div class="boundary">${esc(item.claimBoundary)}</div></article>`).join("");
+    optionValues($("benchmark-verdict"),benchmark.evaluationRecords.map(item=>item.verdict));
+    optionValues($("benchmark-evidence"),benchmark.evaluationRecords.map(item=>item.evidenceClass));
+    optionValues($("benchmark-execution"),benchmark.evaluationRecords.map(item=>item.executionState));
+    for(const id of ["benchmark-search","benchmark-verdict","benchmark-evidence","benchmark-execution"]){
+      $(id).addEventListener("input",filterBenchmarkRecords);
+      $(id).addEventListener("change",filterBenchmarkRecords);
+    }
+    filterBenchmarkRecords();
+    $("benchmark-parameters").innerHTML=benchmark.parameterDictionary.map(item=>`<details class="parameter-card">
+      <summary><bdi dir="ltr">${esc(item.id)}</bdi> · ${esc(item.title)}</summary><p>${esc(item.definition)}</p>
+      <p><strong>Allowed:</strong> ${esc(item.allowedValues.join(" · "))}</p><small>${esc(item.whyItMatters)}</small></details>`).join("");
+    $("benchmark-comparison-families").innerHTML=benchmark.comparisonFamilies.map(item=>`<article class="comparison-family">
+      <span class="evidence-badge" data-evidence="${item.status==="demonstrated"?"offline":"blocked"}">${esc(item.status.replaceAll("_"," "))}</span>
+      <strong>${esc(item.family.replaceAll("_"," "))}</strong><p>${esc(item.experiments.join(" · "))}</p><p>${esc(item.interpretation)}</p></article>`).join("");
+  }
+  function filterBenchmarkRecords(){
+    const query=$("benchmark-search").value.trim().toLowerCase();
+    const verdict=$("benchmark-verdict").value,evidence=$("benchmark-evidence").value,execution=$("benchmark-execution").value;
+    const filtered=benchmark.evaluationRecords.filter(item=>{
+      const haystack=[item.experimentId,item.title,item.status,item.evidenceClass,item.verdict,item.baseline,item.comparator].join(" ").toLowerCase();
+      return (!query||haystack.includes(query))&&(!verdict||item.verdict===verdict)&&(!evidence||item.evidenceClass===evidence)&&(!execution||item.executionState===execution);
+    });
+    $("benchmark-count").textContent=`${filtered.length} / ${benchmark.evaluationRecords.length}`;
+    $("benchmark-table-body").innerHTML=filtered.map(item=>`<tr tabindex="0" data-id="${esc(item.experimentId)}" aria-label="Open ${esc(item.experimentId)} evaluation">
+      <td><strong><bdi dir="ltr">${esc(item.experimentId)}</bdi></strong><small>${esc(item.title)}</small></td>
+      <td>${esc(item.executionState.replaceAll("_"," "))}</td><td>${esc(item.verdict.replaceAll("_"," "))}</td>
+      <td>${dimensionState(item.dimensions.protocol)}</td><td>${dimensionState(item.dimensions.data)}</td>
+      <td>${dimensionState(item.dimensions.reproducibility)}</td><td>${dimensionState(item.dimensions.safety)}</td>
+      <td>${dimensionState(item.dimensions.comparability)}</td><td>${dimensionState(item.dimensions.empiricalValidity)}</td>
+      <td>${item.observationCount}</td></tr>`).join("");
+    $("benchmark-table-body").querySelectorAll("tr").forEach(row=>{
+      const open=()=>openExperiment(row.dataset.id,true);
+      row.addEventListener("click",open);
+      row.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();open()}});
+    });
+  }
+
   function compactBars(rows,maximum=null){
     const max=maximum ?? Math.max(...rows.map(row=>Number(row.value)||0),1);
     return rows.map(row=>`<div class="compact-row"><small>${esc(row.label)}</small>
@@ -657,9 +817,16 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
        <p class="provenance-note">Finite synthetic fault catalog; this is conformance evidence, not a universal safety probability.</p>`:
       '<div class="empty">No accepted safety observation.</div>';
     const latency=series("ARCH_P95_RATIO_TO_LEGACY","EXP-036").filter(item=>item.dimensions.mode!=="legacy");
+    const latencyHistory=runEntries.filter(run=>run.experimentId==="EXP-036").sort((a,b)=>`${a.completedAt}|${a.runId}`.localeCompare(`${b.completedAt}|${b.runId}`)).map(run=>{
+      const unified=run._bundle.metricObservations.filter(item=>item.metricId==="ARCH_P95_RATIO_TO_LEGACY"&&item.dimensions.mode==="unified");
+      return {label:run.runId.slice(-12),value:Math.max(...unified.map(item=>Number(item.value)||0),0)};
+    });
+    const exp036Verdict=benchmarkRecords["EXP-036"]?.verdict;
     $("scale-result").innerHTML=compactBars(latency.map(item=>({
       label:`${item.dimensions.fixture} · ${item.dimensions.mode}`,value:item.value
-    })),2.25)+`<p class="engineering-miss"><strong>Engineering verdict:</strong> the run was valid and deterministic, but not every preregistered latency target was met.</p>`;
+    })),2.25)+`<p class="${exp036Verdict==="MEASURED_PASS"?"pass":"engineering-miss"}"><strong>Latest engineering verdict:</strong> ${esc(exp036Verdict||"—")}. The unified limit is ≤1.15 and the parity limit is ≤2.25.</p>
+      <h4>Accepted-run history · worst unified p95 ratio</h4>${compactBars(latencyHistory,Math.max(1.15,...latencyHistory.map(item=>item.value)))}
+      <p class="provenance-note">The latest accepted run is evaluated as current; earlier misses remain visible as reproducibility history.</p>`;
   }
 
   function renderRunCenter(){
@@ -775,8 +942,13 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   const list=(values)=>values.length?`<ul>${values.map(value=>`<li>${esc(value)}</li>`).join("")}</ul>`:"<p>None recorded.</p>";
   function openExperiment(id,updateHash=false){
     const item=experiments[id];if(!item)return;
+    const evaluation=benchmarkRecords[id];
     $("dialog-title").innerHTML=`<bdi dir="ltr">${esc(item.id)}</bdi> · ${esc(item.title)}`;
     const observed=item.latestResult?.metricObservationIds.map(metricId=>observations[metricId]||metrics[metricId]).filter(Boolean)||[];
+    const dimensionDetails=evaluation?Object.entries(evaluation.dimensions).map(([key,result])=>`<p>${dimensionState(result)} <strong>${esc(key.replaceAll("_"," "))}:</strong> ${esc(result.explanation)}</p>`).join(""):"<p>No benchmark record.</p>";
+    const signalDetails=evaluation?.engineeringSignals.length?`<div style="overflow:auto"><table class="metric-table"><thead><tr><th>Metric</th><th>Dimensions</th><th>Value</th><th>Target</th><th>Status</th></tr></thead><tbody>
+      ${evaluation.engineeringSignals.map(signal=>`<tr><td>${esc(signal.metricId)}</td><td>${esc(Object.entries(signal.dimensions||{}).map(([k,v])=>`${k}=${v}`).join(", ")||"—")}</td><td>${esc(fmt(signal.value))} ${esc(signal.unit)}</td><td>${esc(signal.target||"descriptive")}</td><td class="${signal.status==="met"?"pass":signal.status==="missed"?"fail":""}">${esc(signal.status.replaceAll("_"," "))}</td></tr>`).join("")}
+      </tbody></table></div>`:"<p>No measured engineering signal.</p>";
     $("dialog-body").innerHTML=`<div class="status-row"><span class="status-badge">${esc(item.status)}</span><span class="evidence-badge" data-evidence="${esc(item.evidenceClass)}">${esc(item.evidenceClass)}</span><span class="chip">${esc(item.researchSpace)}</span></div>
       <div class="detail-grid" style="margin-top:12px">
         <div class="detail-block"><h3>Research question</h3><p>${esc(item.researchQuestion)}</p></div>
@@ -788,6 +960,11 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
         <div class="detail-block"><h3>Current observations</h3>${observed.length?observed.map(metric=>`<p><strong>${esc(metric.metricId)}:</strong> ${esc(fmt(metric.value))}</p>${metricFooter(metric)}`).join(""):"<p>No accepted observation.</p>"}</div>
         <div class="detail-block"><h3>Validity threats</h3>${list(item.validityThreats)}</div>
       </div>
+      <div class="detail-grid" style="margin-top:12px">
+        <div class="detail-block"><h3>Benchmark verdict</h3><p><strong>${esc(evaluation?.verdict||"—")}</strong></p><p>Execution: ${esc(evaluation?.executionState||"—")} · eligibility: ${esc(evaluation?.eligibility||"—")}</p><p>${esc(evaluation?.observationCount||0)} observations · ${esc(evaluation?.acceptedRunCount||0)} accepted run bundles</p></div>
+        <div class="detail-block"><h3>Seven-dimension evaluation</h3>${dimensionDetails}</div>
+      </div>
+      <div class="detail-block" style="margin-top:12px"><h3>Measured engineering signals and guardrails</h3>${signalDetails}</div>
       <div class="boundary" style="margin-top:12px"><strong>Claim boundary:</strong> ${esc(item.claimBoundary)}</div>
       <div class="detail-block" style="margin-top:12px"><h3>Next action</h3><p>${esc(item.nextAction)}</p><h3>Artifacts</h3>${list(item.artifactLinks)}</div>`;
     if(!$("experiment-dialog").open)$("experiment-dialog").showModal();
@@ -879,7 +1056,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   $("dialog-close").addEventListener("click",()=>{$("experiment-dialog").close();if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("experiment-dialog").addEventListener("cancel",()=>{if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("language-toggle").addEventListener("click",()=>setLanguage(language==="en"?"he":"en"));
-  renderOverview();renderBaselineProgress();renderExecutedResults();renderRunCenter();renderArchitecture();renderExperiments();renderResults();renderEvaluation();
+  renderOverview();renderBaselineProgress();renderExperimentBenchmarks();renderExecutedResults();renderRunCenter();renderArchitecture();renderExperiments();renderResults();renderEvaluation();
   renderWorkspace("msc-workspace","MSc");renderWorkspace("phd-workspace","PhD");renderOperations();setLanguage(language);routeHash();
   window.addEventListener("hashchange",routeHash);
 })();

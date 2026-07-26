@@ -498,8 +498,8 @@
           },
           {
             "deltas": {
-              "maxP95RatioToLegacy": 1.073477,
-              "meanP95RatioToLegacy": 0.9703683333333334
+              "maxP95RatioToLegacy": 1.11319,
+              "meanP95RatioToLegacy": 1.0111806666666665
             },
             "directlyComparable": true,
             "family": "runtime_mode",
@@ -509,8 +509,8 @@
           },
           {
             "deltas": {
-              "maxP95RatioToLegacy": 1.074459,
-              "meanP95RatioToLegacy": 1.0165233333333334
+              "maxP95RatioToLegacy": 1.07407,
+              "meanP95RatioToLegacy": 1.0112496666666668
             },
             "directlyComparable": true,
             "family": "runtime_mode",
@@ -803,7 +803,7 @@
     }
   ],
   "generatedAt": "2026-07-26T14:16:00+03:00",
-  "normalizedSha256": "e956efa061cb64fbbbb3bed9abf98267f4d7c3e3817939b7c9dbfe83daceb40d",
+  "normalizedSha256": "d3357690fe44eb6ed4f79bbadb20636bea9841d45f8f0b77a78ddea7e58fae92",
   "paperBaseline": {
     "caseModels": 178,
     "occasional": 18,
@@ -814,9 +814,9 @@
   },
   "schemaVersion": "BaselineComparisonResults-v1",
   "sources": {
-    "docs/research/bigui/architecture-fixture-results-v1.json": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
+    "docs/research/bigui/architecture-fixture-results-v1.json": "7fcf650512b37dfb7063b48c5fef95d73d7b8db36a268926d6178329aef73ba5",
     "docs/research/bigui/paper-baseline-snapshot-v1.json": "78b6701caea4feee131980e2e8ae84f436451e53853ca0e779a0d161a6ad966a",
     "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
-    "experiments/accepted-runs": "88b14a6c2bdef99084d8c08ceda572f867eee6747cf2170aefed52c0cd58e44d"
+    "experiments/accepted-runs": "c66e91b5685118808308b723c941045c6c33a4cb6b01f01f3634664542f8730e"
   }
 }
