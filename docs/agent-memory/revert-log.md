@@ -534,3 +534,21 @@ Record file changes and rollback notes here.
   - VEGO-AI-Research-Hub.html
 - Rollback note: Revert the four focused commits from this task; Agent 4 and baseline outputs were not modified.
 - Git commit: none recorded by script.
+
+## 2026-07-26 17:14 +03:00 - Codex - Evaluate all experiments and publish benchmark BigUI
+
+- Files changed:
+  - schemas/experiment-evaluation-standard-v1.schema.json
+  - schemas/experiment-benchmark-snapshot-v1.schema.json
+  - schemas/current-run-index-v1.schema.json
+  - experiments/current-run-index-v1.json
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - VEGO-AI-Research-Hub.html
+  - VEGO-AI-Experiment-Benchmark-Report.html
+  - scripts/build_experiment_benchmark.py
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_comparison_experiments.py
+  - scripts/build_bigui.py
+- Rollback note: Revert the focused BigUI benchmark commits; accepted run bundles are append-only and the frozen Agent 4 baseline remains unchanged.
+- Git commit: none recorded by script.

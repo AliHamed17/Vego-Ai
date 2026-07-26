@@ -469,3 +469,33 @@ Chronological prompt history for Codex and Claude.
   - scripts/verify-controlled.ps1 -Check
 - Status: Implemented and locally validated; PR publication pending CI.
 - Next steps: Collect independent EXP-005 labels before any accuracy or generalization claim, then use the accepted run manifests to populate the currently empty classification panels.
+
+## 2026-07-26 17:14 +03:00 - Codex - Evaluate all experiments and publish benchmark BigUI
+
+- Request: Define real experiment criteria, run the available experiment suites, compare architecture and paper baselines, publish plots and analytics in BigUI, and report the evidence honestly.
+- Actions taken:
+  - Defined a seven-dimension experiment evaluation standard and B0-B5 evidence ladder.
+  - Ran and accepted the Iteration 15 replay, conformance, architecture, comparison, safety, and scale experiments.
+  - Built an immutable 83-bundle run store with 785 metric observations and a current-run index.
+  - Published the results-first BigUI and standalone benchmark analytics report with guarded comparisons and claim boundaries.
+  - Fixed stale iteration provenance discovered by the controlled release gate and reran all release checks.
+- Files changed:
+  - schemas/experiment-evaluation-standard-v1.schema.json
+  - schemas/experiment-benchmark-snapshot-v1.schema.json
+  - schemas/current-run-index-v1.schema.json
+  - experiments/current-run-index-v1.json
+  - experiments/accepted-runs/
+  - docs/research/bigui/
+  - VEGO-AI-Research-Hub.html
+  - VEGO-AI-Experiment-Benchmark-Report.html
+  - scripts/build_experiment_benchmark.py
+  - scripts/build_bigui_run_store.py
+  - scripts/run_bigui_comparison_experiments.py
+  - scripts/build_bigui.py
+- Commands/checks:
+  - run-hlayer-iteration.ps1 -IterationNumber 15
+  - verify-source.ps1
+  - verify-controlled.ps1 -Check
+  - verify-release.ps1 -Check
+- Status: completed
+- Next steps: Obtain two independent reviewers for the 24 safe rows; keep accuracy and macro-F1 blank until adjudicated evidence exists; review PR #11 after stacked PR #10.
