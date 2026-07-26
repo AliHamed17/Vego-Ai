@@ -1162,7 +1162,7 @@
       }
     ],
     "generatedAt": "2026-07-26T14:16:00+03:00",
-    "normalizedSha256": "464c9eb538107218ddf6b0979a7393854b7ec8b7e7afbe7c409f9162589d0a05",
+    "normalizedSha256": "e956efa061cb64fbbbb3bed9abf98267f4d7c3e3817939b7c9dbfe83daceb40d",
     "paperBaseline": {
       "caseModels": 178,
       "occasional": 18,
@@ -1176,7 +1176,7 @@
       "docs/research/bigui/architecture-fixture-results-v1.json": "3a3be7dfce54f97934bd3ad6368fa2fb664ce4b4b730740ae5933985f81464e9",
       "docs/research/bigui/paper-baseline-snapshot-v1.json": "78b6701caea4feee131980e2e8ae84f436451e53853ca0e779a0d161a6ad966a",
       "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "aa10856d4656a568f6aff792203a9f410a9bdbee2f5e61a799164a3f9e316f95",
-      "experiments/accepted-runs": "49e245b55a4b3b7bde775f7690aed700438d0fa13c52f474b77e7aff870ad1b6"
+      "experiments/accepted-runs": "88b14a6c2bdef99084d8c08ceda572f867eee6747cf2170aefed52c0cd58e44d"
     }
   },
   "experiments": [
@@ -3065,18 +3065,18 @@
       "datasetHash": null,
       "partitionHash": null,
       "acceptedRunIds": [
-        "EXP-037-49963313a384"
+        "EXP-037-6db2aecd0acf"
       ],
       "latestResult": {
         "summary": "The paper draft reports 178 models and 26 patterns; the current frozen repository reports 179 and 27. The difference is contextual and never called an accuracy improvement.",
         "metricObservationIds": [
-          "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
-          "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
-          "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
-          "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
-          "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
-          "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
-          "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43"
+          "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-61294def0964",
+          "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-96c65d4cae02",
+          "OBS-METRIC-CURRENT_PATTERN_COUNT-214d9e211344",
+          "OBS-METRIC-PAPER_CASE_MODEL_COUNT-625e6ed7d9ef",
+          "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-b6bdc66fb780",
+          "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-4a8fb548ef97",
+          "OBS-METRIC-PAPER_PATTERN_COUNT-3d4639cc2810"
         ]
       }
     },
@@ -3121,13 +3121,13 @@
       "datasetHash": null,
       "partitionHash": null,
       "acceptedRunIds": [
-        "EXP-038-49963313a384"
+        "EXP-038-6db2aecd0acf"
       ],
       "latestResult": {
         "summary": "Demonstrates new H-layer capabilities and accepted mechanism reliability while leaving classification and effort cells null.",
         "metricObservationIds": [
-          "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
-          "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76"
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-91210eab95b5",
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-9e0788525375"
         ]
       }
     },
@@ -3177,13 +3177,13 @@
       "datasetHash": null,
       "partitionHash": null,
       "acceptedRunIds": [
-        "EXP-039-49963313a384"
+        "EXP-039-6db2aecd0acf"
       ],
       "latestResult": {
         "summary": "Produces deltas only where cohort, metric, grain, evidence, and declared treatment permit direct comparison.",
         "metricObservationIds": [
-          "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
-          "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0"
+          "OBS-METRIC-DIRECT_COMPARISON_GROUPS-164d1d98d1b5",
+          "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-477332f22958"
         ]
       }
     },
@@ -3231,15 +3231,15 @@
       "datasetHash": null,
       "partitionHash": null,
       "acceptedRunIds": [
-        "EXP-040-49963313a384"
+        "EXP-040-6db2aecd0acf"
       ],
       "latestResult": {
         "summary": "Mechanism claims are traceable now; empirical improvement hypotheses remain unconfirmed at 0/24 safe labels.",
         "metricObservationIds": [
-          "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
-          "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
-          "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
-          "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9"
+          "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-ef1529e467b9",
+          "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-dbca706bbada",
+          "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-acb93683e765",
+          "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-f178551f8097"
         ]
       }
     }
@@ -18603,9 +18603,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
+      "observationId": "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-61294def0964",
       "experimentId": "EXP-037",
-      "runId": "EXP-037-49963313a384",
+      "runId": "EXP-037-6db2aecd0acf",
       "metricId": "CURRENT_CASE_MODEL_COUNT",
       "metricDefinitionSha256": "07217ea408a13519255a39b0dd44ebadf5f8c6141ea2dc80d3f4f0edc87c5ae9",
       "baselineId": "PAPER-B0",
@@ -18623,7 +18623,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18632,9 +18632,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
+      "observationId": "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-96c65d4cae02",
       "experimentId": "EXP-037",
-      "runId": "EXP-037-49963313a384",
+      "runId": "EXP-037-6db2aecd0acf",
       "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
       "metricDefinitionSha256": "babb08f84d0e308ef24fcc43f4ee1c37bcb1d135b82fe18c83d200aa81f9f06c",
       "baselineId": "PAPER-B0",
@@ -18652,7 +18652,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18661,9 +18661,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
+      "observationId": "OBS-METRIC-CURRENT_PATTERN_COUNT-214d9e211344",
       "experimentId": "EXP-037",
-      "runId": "EXP-037-49963313a384",
+      "runId": "EXP-037-6db2aecd0acf",
       "metricId": "CURRENT_PATTERN_COUNT",
       "metricDefinitionSha256": "f31700fcda5ab2e9d70af4aed1042f8861bca78163427947dc21769a84063f2a",
       "baselineId": "PAPER-B0",
@@ -18681,7 +18681,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18690,9 +18690,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
+      "observationId": "OBS-METRIC-PAPER_CASE_MODEL_COUNT-625e6ed7d9ef",
       "experimentId": "EXP-037",
-      "runId": "EXP-037-49963313a384",
+      "runId": "EXP-037-6db2aecd0acf",
       "metricId": "PAPER_CASE_MODEL_COUNT",
       "metricDefinitionSha256": "ca79fca9a3a1de7547cb657ebff94bb84005eb209082afe679f09b6cdd1056b9",
       "baselineId": "PAPER-B0",
@@ -18710,7 +18710,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18719,9 +18719,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
+      "observationId": "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-b6bdc66fb780",
       "experimentId": "EXP-037",
-      "runId": "EXP-037-49963313a384",
+      "runId": "EXP-037-6db2aecd0acf",
       "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
       "metricDefinitionSha256": "a4785eec5ae6e45eaa3a882a94d545fc28443b585b24233ec26e8e7918a2be21",
       "baselineId": "PAPER-B0",
@@ -18739,7 +18739,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18748,9 +18748,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
+      "observationId": "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-4a8fb548ef97",
       "experimentId": "EXP-037",
-      "runId": "EXP-037-49963313a384",
+      "runId": "EXP-037-6db2aecd0acf",
       "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
       "metricDefinitionSha256": "4a5ca2f3c21c6ebac1fe7d91914d2fcd9979c8ca1a518affd04b7b943647920c",
       "baselineId": "PAPER-B0",
@@ -18768,7 +18768,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18777,9 +18777,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43",
+      "observationId": "OBS-METRIC-PAPER_PATTERN_COUNT-3d4639cc2810",
       "experimentId": "EXP-037",
-      "runId": "EXP-037-49963313a384",
+      "runId": "EXP-037-6db2aecd0acf",
       "metricId": "PAPER_PATTERN_COUNT",
       "metricDefinitionSha256": "f36bbf6539b2c7e4ec2ea1b9086b5cf3aec97f0cb2246c521295c32df96116b1",
       "baselineId": "PAPER-B0",
@@ -18797,7 +18797,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18806,9 +18806,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
+      "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-91210eab95b5",
       "experimentId": "EXP-038",
-      "runId": "EXP-038-49963313a384",
+      "runId": "EXP-038-6db2aecd0acf",
       "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
       "metricDefinitionSha256": "07e5c9e02a6458d688e688414e63f9758fd6b13fa76d2a39523196daac9baf38",
       "baselineId": "B0/B1",
@@ -18826,7 +18826,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18835,9 +18835,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76",
+      "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-9e0788525375",
       "experimentId": "EXP-038",
-      "runId": "EXP-038-49963313a384",
+      "runId": "EXP-038-6db2aecd0acf",
       "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
       "metricDefinitionSha256": "8665789c1540d86b43848653bd94b89ad1b47c43fbd0d1ded3e456fe0c3d0ad4",
       "baselineId": "B0/B1",
@@ -18855,7 +18855,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18864,9 +18864,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
+      "observationId": "OBS-METRIC-DIRECT_COMPARISON_GROUPS-164d1d98d1b5",
       "experimentId": "EXP-039",
-      "runId": "EXP-039-49963313a384",
+      "runId": "EXP-039-6db2aecd0acf",
       "metricId": "DIRECT_COMPARISON_GROUPS",
       "metricDefinitionSha256": "eca5090b331f96a195aaaeb1f8fc9aed408aa8fb63ccc555dc699fc2fde9a4b7",
       "baselineId": "B0/B1",
@@ -18884,7 +18884,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18893,9 +18893,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0",
+      "observationId": "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-477332f22958",
       "experimentId": "EXP-039",
-      "runId": "EXP-039-49963313a384",
+      "runId": "EXP-039-6db2aecd0acf",
       "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
       "metricDefinitionSha256": "90813946e196f33f91281edd0444dd43b1ee2949406c4014a799f65672e24860",
       "baselineId": "B0/B1",
@@ -18913,7 +18913,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18922,9 +18922,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
+      "observationId": "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-ef1529e467b9",
       "experimentId": "EXP-040",
-      "runId": "EXP-040-49963313a384",
+      "runId": "EXP-040-6db2aecd0acf",
       "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
       "metricDefinitionSha256": "87f55c06cd8bfda4b13423c0ad48a7b65de33c8f7c8a2c6bfd34bbce2c53cdd6",
       "baselineId": "B0/B1",
@@ -18942,7 +18942,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18951,9 +18951,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
+      "observationId": "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-dbca706bbada",
       "experimentId": "EXP-040",
-      "runId": "EXP-040-49963313a384",
+      "runId": "EXP-040-6db2aecd0acf",
       "metricId": "THESIS_HYPOTHESES_CONFIRMED",
       "metricDefinitionSha256": "a08b6d52087d3c73eb0e550f8e403baa2e4b254539cf835aa2e118121e18f838",
       "baselineId": "B0/B1",
@@ -18971,7 +18971,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -18980,9 +18980,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
+      "observationId": "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-acb93683e765",
       "experimentId": "EXP-040",
-      "runId": "EXP-040-49963313a384",
+      "runId": "EXP-040-6db2aecd0acf",
       "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
       "metricDefinitionSha256": "8befb969471acb43380493bc58c6ec35d2ba300c713cb3bbfc1da979b01c1ffb",
       "baselineId": "B0/B1",
@@ -19000,7 +19000,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -19009,9 +19009,9 @@
     },
     {
       "schemaVersion": "MetricObservation-v2",
-      "observationId": "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9",
+      "observationId": "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-f178551f8097",
       "experimentId": "EXP-040",
-      "runId": "EXP-040-49963313a384",
+      "runId": "EXP-040-6db2aecd0acf",
       "metricId": "THESIS_TRACEABILITY_RECORDS",
       "metricDefinitionSha256": "47389979eec8c5cf2d62eb2103c06a5b2dd8e0a4ee744ce09c0167281aff9f70",
       "baselineId": "B0/B1",
@@ -19029,7 +19029,7 @@
       "analysisMethod": "deterministic source reconciliation",
       "confidenceInterval": null,
       "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "evidenceClass": "offline",
       "observationDate": "2026-07-26",
       "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38315,7 +38315,7 @@
       "envelope": {
         "schemaVersion": "ExperimentRunEnvelope-v2",
         "experimentId": "EXP-037",
-        "runId": "EXP-037-49963313a384",
+        "runId": "EXP-037-6db2aecd0acf",
         "attemptId": "attempt-001",
         "executionStatus": "succeeded",
         "startedAt": "2026-07-26T14:16:00+03:00",
@@ -38323,7 +38323,7 @@
         "durationMilliseconds": null,
         "manifestSchema": "SanitizedAggregateSource",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "manifestSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
         "acceptanceStatus": "accepted",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "evidenceClass": "offline",
@@ -38332,16 +38332,16 @@
           "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
         },
         "outputHashes": {
-          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+          "summary": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949"
         },
         "metricObservationIds": [
-          "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
-          "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
-          "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
-          "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
-          "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
-          "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
-          "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43"
+          "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-61294def0964",
+          "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-96c65d4cae02",
+          "OBS-METRIC-CURRENT_PATTERN_COUNT-214d9e211344",
+          "OBS-METRIC-PAPER_CASE_MODEL_COUNT-625e6ed7d9ef",
+          "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-b6bdc66fb780",
+          "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-4a8fb548ef97",
+          "OBS-METRIC-PAPER_PATTERN_COUNT-3d4639cc2810"
         ],
         "metricDefinitionHashes": {
           "CURRENT_CASE_MODEL_COUNT": "07217ea408a13519255a39b0dd44ebadf5f8c6141ea2dc80d3f4f0edc87c5ae9",
@@ -38375,7 +38375,7 @@
         "evaluation": {
           "schemaVersion": "ExperimentEvaluation-v1",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "executionValid": true,
           "deterministic": true,
           "engineeringTargetMet": null,
@@ -38506,9 +38506,9 @@
       "metricObservations": [
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-c80e73592776",
+          "observationId": "OBS-METRIC-CURRENT_CASE_MODEL_COUNT-61294def0964",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "metricId": "CURRENT_CASE_MODEL_COUNT",
           "metricDefinitionSha256": "07217ea408a13519255a39b0dd44ebadf5f8c6141ea2dc80d3f4f0edc87c5ae9",
           "baselineId": "PAPER-B0",
@@ -38526,7 +38526,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38535,9 +38535,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-017fa678c141",
+          "observationId": "OBS-METRIC-CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-96c65d4cae02",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "metricId": "CURRENT_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
           "metricDefinitionSha256": "babb08f84d0e308ef24fcc43f4ee1c37bcb1d135b82fe18c83d200aa81f9f06c",
           "baselineId": "PAPER-B0",
@@ -38555,7 +38555,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38564,9 +38564,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-CURRENT_PATTERN_COUNT-912e26b1189b",
+          "observationId": "OBS-METRIC-CURRENT_PATTERN_COUNT-214d9e211344",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "metricId": "CURRENT_PATTERN_COUNT",
           "metricDefinitionSha256": "f31700fcda5ab2e9d70af4aed1042f8861bca78163427947dc21769a84063f2a",
           "baselineId": "PAPER-B0",
@@ -38584,7 +38584,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38593,9 +38593,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-PAPER_CASE_MODEL_COUNT-fbb91aee35aa",
+          "observationId": "OBS-METRIC-PAPER_CASE_MODEL_COUNT-625e6ed7d9ef",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "metricId": "PAPER_CASE_MODEL_COUNT",
           "metricDefinitionSha256": "ca79fca9a3a1de7547cb657ebff94bb84005eb209082afe679f09b6cdd1056b9",
           "baselineId": "PAPER-B0",
@@ -38613,7 +38613,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38622,9 +38622,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-a5bfd12a8918",
+          "observationId": "OBS-METRIC-PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE-b6bdc66fb780",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "metricId": "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE",
           "metricDefinitionSha256": "a4785eec5ae6e45eaa3a882a94d545fc28443b585b24233ec26e8e7918a2be21",
           "baselineId": "PAPER-B0",
@@ -38642,7 +38642,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38651,9 +38651,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-968a6235fdb4",
+          "observationId": "OBS-METRIC-PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE-4a8fb548ef97",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "metricId": "PAPER_HUMAN_JUDGMENT_CAPABILITY_COVERAGE",
           "metricDefinitionSha256": "4a5ca2f3c21c6ebac1fe7d91914d2fcd9979c8ca1a518affd04b7b943647920c",
           "baselineId": "PAPER-B0",
@@ -38671,7 +38671,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38680,9 +38680,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-PAPER_PATTERN_COUNT-313ef6d37e43",
+          "observationId": "OBS-METRIC-PAPER_PATTERN_COUNT-3d4639cc2810",
           "experimentId": "EXP-037",
-          "runId": "EXP-037-49963313a384",
+          "runId": "EXP-037-6db2aecd0acf",
           "metricId": "PAPER_PATTERN_COUNT",
           "metricDefinitionSha256": "f36bbf6539b2c7e4ec2ea1b9086b5cf3aec97f0cb2246c521295c32df96116b1",
           "baselineId": "PAPER-B0",
@@ -38700,7 +38700,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38711,7 +38711,7 @@
       "acceptance": {
         "schemaVersion": "RunAcceptanceRecord-v1",
         "experimentId": "EXP-037",
-        "runId": "EXP-037-49963313a384",
+        "runId": "EXP-037-6db2aecd0acf",
         "status": "accepted",
         "evaluatorVersion": "bigui-run-store-v1",
         "evaluatedAt": "2026-07-26T14:16:00+03:00",
@@ -38737,7 +38737,7 @@
       "envelope": {
         "schemaVersion": "ExperimentRunEnvelope-v2",
         "experimentId": "EXP-038",
-        "runId": "EXP-038-49963313a384",
+        "runId": "EXP-038-6db2aecd0acf",
         "attemptId": "attempt-001",
         "executionStatus": "succeeded",
         "startedAt": "2026-07-26T14:16:00+03:00",
@@ -38745,7 +38745,7 @@
         "durationMilliseconds": null,
         "manifestSchema": "SanitizedAggregateSource",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "manifestSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
         "acceptanceStatus": "accepted",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "evidenceClass": "offline",
@@ -38754,11 +38754,11 @@
           "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
         },
         "outputHashes": {
-          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+          "summary": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949"
         },
         "metricObservationIds": [
-          "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
-          "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76"
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-91210eab95b5",
+          "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-9e0788525375"
         ],
         "metricDefinitionHashes": {
           "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS": "07e5c9e02a6458d688e688414e63f9758fd6b13fa76d2a39523196daac9baf38",
@@ -38787,7 +38787,7 @@
         "evaluation": {
           "schemaVersion": "ExperimentEvaluation-v1",
           "experimentId": "EXP-038",
-          "runId": "EXP-038-49963313a384",
+          "runId": "EXP-038-6db2aecd0acf",
           "executionValid": true,
           "deterministic": true,
           "engineeringTargetMet": null,
@@ -38843,9 +38843,9 @@
       "metricObservations": [
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-90a72e9a584a",
+          "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS-91210eab95b5",
           "experimentId": "EXP-038",
-          "runId": "EXP-038-49963313a384",
+          "runId": "EXP-038-6db2aecd0acf",
           "metricId": "ARCHITECTURE_SCORECARD_DEMONSTRATED_DIMENSIONS",
           "metricDefinitionSha256": "07e5c9e02a6458d688e688414e63f9758fd6b13fa76d2a39523196daac9baf38",
           "baselineId": "B0/B1",
@@ -38863,7 +38863,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38872,9 +38872,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-b2e8408b2c76",
+          "observationId": "OBS-METRIC-ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS-9e0788525375",
           "experimentId": "EXP-038",
-          "runId": "EXP-038-49963313a384",
+          "runId": "EXP-038-6db2aecd0acf",
           "metricId": "ARCHITECTURE_SCORECARD_UNMEASURED_DIMENSIONS",
           "metricDefinitionSha256": "8665789c1540d86b43848653bd94b89ad1b47c43fbd0d1ded3e456fe0c3d0ad4",
           "baselineId": "B0/B1",
@@ -38892,7 +38892,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -38903,7 +38903,7 @@
       "acceptance": {
         "schemaVersion": "RunAcceptanceRecord-v1",
         "experimentId": "EXP-038",
-        "runId": "EXP-038-49963313a384",
+        "runId": "EXP-038-6db2aecd0acf",
         "status": "accepted",
         "evaluatorVersion": "bigui-run-store-v1",
         "evaluatedAt": "2026-07-26T14:16:00+03:00",
@@ -38929,7 +38929,7 @@
       "envelope": {
         "schemaVersion": "ExperimentRunEnvelope-v2",
         "experimentId": "EXP-039",
-        "runId": "EXP-039-49963313a384",
+        "runId": "EXP-039-6db2aecd0acf",
         "attemptId": "attempt-001",
         "executionStatus": "succeeded",
         "startedAt": "2026-07-26T14:16:00+03:00",
@@ -38937,7 +38937,7 @@
         "durationMilliseconds": null,
         "manifestSchema": "SanitizedAggregateSource",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "manifestSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
         "acceptanceStatus": "accepted",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "evidenceClass": "offline",
@@ -38946,11 +38946,11 @@
           "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
         },
         "outputHashes": {
-          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+          "summary": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949"
         },
         "metricObservationIds": [
-          "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
-          "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0"
+          "OBS-METRIC-DIRECT_COMPARISON_GROUPS-164d1d98d1b5",
+          "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-477332f22958"
         ],
         "metricDefinitionHashes": {
           "DIRECT_COMPARISON_GROUPS": "eca5090b331f96a195aaaeb1f8fc9aed408aa8fb63ccc555dc699fc2fde9a4b7",
@@ -38979,7 +38979,7 @@
         "evaluation": {
           "schemaVersion": "ExperimentEvaluation-v1",
           "experimentId": "EXP-039",
-          "runId": "EXP-039-49963313a384",
+          "runId": "EXP-039-6db2aecd0acf",
           "executionValid": true,
           "deterministic": true,
           "engineeringTargetMet": null,
@@ -39035,9 +39035,9 @@
       "metricObservations": [
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-DIRECT_COMPARISON_GROUPS-ac0a1dccc211",
+          "observationId": "OBS-METRIC-DIRECT_COMPARISON_GROUPS-164d1d98d1b5",
           "experimentId": "EXP-039",
-          "runId": "EXP-039-49963313a384",
+          "runId": "EXP-039-6db2aecd0acf",
           "metricId": "DIRECT_COMPARISON_GROUPS",
           "metricDefinitionSha256": "eca5090b331f96a195aaaeb1f8fc9aed408aa8fb63ccc555dc699fc2fde9a4b7",
           "baselineId": "B0/B1",
@@ -39055,7 +39055,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -39064,9 +39064,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-aa75dcc5b3c0",
+          "observationId": "OBS-METRIC-INCOMPATIBLE_COMPARISONS_SUPPRESSED-477332f22958",
           "experimentId": "EXP-039",
-          "runId": "EXP-039-49963313a384",
+          "runId": "EXP-039-6db2aecd0acf",
           "metricId": "INCOMPATIBLE_COMPARISONS_SUPPRESSED",
           "metricDefinitionSha256": "90813946e196f33f91281edd0444dd43b1ee2949406c4014a799f65672e24860",
           "baselineId": "B0/B1",
@@ -39084,7 +39084,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -39095,7 +39095,7 @@
       "acceptance": {
         "schemaVersion": "RunAcceptanceRecord-v1",
         "experimentId": "EXP-039",
-        "runId": "EXP-039-49963313a384",
+        "runId": "EXP-039-6db2aecd0acf",
         "status": "accepted",
         "evaluatorVersion": "bigui-run-store-v1",
         "evaluatedAt": "2026-07-26T14:16:00+03:00",
@@ -39121,7 +39121,7 @@
       "envelope": {
         "schemaVersion": "ExperimentRunEnvelope-v2",
         "experimentId": "EXP-040",
-        "runId": "EXP-040-49963313a384",
+        "runId": "EXP-040-6db2aecd0acf",
         "attemptId": "attempt-001",
         "executionStatus": "succeeded",
         "startedAt": "2026-07-26T14:16:00+03:00",
@@ -39129,7 +39129,7 @@
         "durationMilliseconds": null,
         "manifestSchema": "SanitizedAggregateSource",
         "manifestPath": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "manifestSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+        "manifestSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
         "acceptanceStatus": "accepted",
         "acceptedAt": "2026-07-26T14:16:00+03:00",
         "evidenceClass": "offline",
@@ -39138,13 +39138,13 @@
           "baselineCohort": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f"
         },
         "outputHashes": {
-          "summary": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2"
+          "summary": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949"
         },
         "metricObservationIds": [
-          "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
-          "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
-          "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
-          "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9"
+          "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-ef1529e467b9",
+          "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-dbca706bbada",
+          "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-acb93683e765",
+          "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-f178551f8097"
         ],
         "metricDefinitionHashes": {
           "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY": "87f55c06cd8bfda4b13423c0ad48a7b65de33c8f7c8a2c6bfd34bbce2c53cdd6",
@@ -39175,7 +39175,7 @@
         "evaluation": {
           "schemaVersion": "ExperimentEvaluation-v1",
           "experimentId": "EXP-040",
-          "runId": "EXP-040-49963313a384",
+          "runId": "EXP-040-6db2aecd0acf",
           "executionValid": true,
           "deterministic": true,
           "engineeringTargetMet": null,
@@ -39261,9 +39261,9 @@
       "metricObservations": [
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-de5413106f01",
+          "observationId": "OBS-METRIC-THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY-ef1529e467b9",
           "experimentId": "EXP-040",
-          "runId": "EXP-040-49963313a384",
+          "runId": "EXP-040-6db2aecd0acf",
           "metricId": "THESIS_EMPIRICAL_IMPROVEMENT_CLAIMS_READY",
           "metricDefinitionSha256": "87f55c06cd8bfda4b13423c0ad48a7b65de33c8f7c8a2c6bfd34bbce2c53cdd6",
           "baselineId": "B0/B1",
@@ -39281,7 +39281,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -39290,9 +39290,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-660f89ae43e3",
+          "observationId": "OBS-METRIC-THESIS_HYPOTHESES_CONFIRMED-dbca706bbada",
           "experimentId": "EXP-040",
-          "runId": "EXP-040-49963313a384",
+          "runId": "EXP-040-6db2aecd0acf",
           "metricId": "THESIS_HYPOTHESES_CONFIRMED",
           "metricDefinitionSha256": "a08b6d52087d3c73eb0e550f8e403baa2e4b254539cf835aa2e118121e18f838",
           "baselineId": "B0/B1",
@@ -39310,7 +39310,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -39319,9 +39319,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-e210841a45f8",
+          "observationId": "OBS-METRIC-THESIS_SAFE_CURRENT_CLAIMS-acb93683e765",
           "experimentId": "EXP-040",
-          "runId": "EXP-040-49963313a384",
+          "runId": "EXP-040-6db2aecd0acf",
           "metricId": "THESIS_SAFE_CURRENT_CLAIMS",
           "metricDefinitionSha256": "8befb969471acb43380493bc58c6ec35d2ba300c713cb3bbfc1da979b01c1ffb",
           "baselineId": "B0/B1",
@@ -39339,7 +39339,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -39348,9 +39348,9 @@
         },
         {
           "schemaVersion": "MetricObservation-v2",
-          "observationId": "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-79660788aee9",
+          "observationId": "OBS-METRIC-THESIS_TRACEABILITY_RECORDS-f178551f8097",
           "experimentId": "EXP-040",
-          "runId": "EXP-040-49963313a384",
+          "runId": "EXP-040-6db2aecd0acf",
           "metricId": "THESIS_TRACEABILITY_RECORDS",
           "metricDefinitionSha256": "47389979eec8c5cf2d62eb2103c06a5b2dd8e0a4ee744ce09c0167281aff9f70",
           "baselineId": "B0/B1",
@@ -39368,7 +39368,7 @@
           "analysisMethod": "deterministic source reconciliation",
           "confidenceInterval": null,
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+          "sourceSha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
           "evidenceClass": "offline",
           "observationDate": "2026-07-26",
           "cohortHash": "fdf816bcf5a814f73726dfe864f4ce55a76f531b15100c20f4944347b4692c7f",
@@ -39379,7 +39379,7 @@
       "acceptance": {
         "schemaVersion": "RunAcceptanceRecord-v1",
         "experimentId": "EXP-040",
-        "runId": "EXP-040-49963313a384",
+        "runId": "EXP-040-6db2aecd0acf",
         "status": "accepted",
         "evaluatorVersion": "bigui-run-store-v1",
         "evaluatedAt": "2026-07-26T14:16:00+03:00",
@@ -39524,7 +39524,7 @@
     {
       "id": "baseline-comparison",
       "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sha256": "49963313a384179ba093ad33fdbfa659c72601e4452e6fcbbde843cf21b1f6b2",
+      "sha256": "6db2aecd0acfcd62b4a1cb63e1d18511824856c24decff9781c6f143827fa949",
       "role": "EXP-037–EXP-040 baseline, comparison, and thesis-readiness results"
     }
   ]
