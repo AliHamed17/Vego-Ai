@@ -1,6 +1,6 @@
 # H-Layer Experiment Iteration Loop
 
-Last updated: 2026-07-20. Status: **ACTIVE, OFFLINE-ONLY.** The hardening demanded by the 2026-07-10 review was delivered in iterations 008-009 and the latest accepted Iteration 14 restores suite/iteration coherence. M-01 through M-06 remain unrecorded; no transition, default, or live implementation is approved. Companion to `docs/research/h-layer/experiment-expansion-plan.md`, `docs/research/h-layer/enhancement-plan-2026-07-12.md`, and the tracked `program-status-snapshot-v1.json`; accepted history lives in the ledger.
+Last updated: 2026-07-25. Status: **ACTIVE; LEGACY DEFAULT WITH EXPLICIT UNIFIED/PARITY MODES.** Iterations 008-009 delivered the initial hardening, Iteration 14 restored suite/iteration coherence, and Iteration 15 adds the user-authorized canonical M1–M4B-1 runtime and security boundary. M-01 through M-06 remain unrecorded: no routing, H-Verify, automatic-correction, live-listener, or model default is supervisor-approved. Companion to `docs/research/h-layer/experiment-expansion-plan.md`, `docs/research/h-layer/enhancement-plan-2026-07-12.md`, and the tracked `program-status-snapshot-v1.json`; accepted history lives in the ledger.
 
 Purpose: a repeatable enhancement loop - run the experiment suite, analyze results, derive enhancement hypotheses, implement them, re-run, and compare against the previous iteration with explicit better/worse verdicts. The loop makes improvement MEASURED, not asserted.
 
@@ -11,9 +11,9 @@ Purpose: a repeatable enhancement loop - run the experiment suite, analyze resul
 1. **Now (no real labels):** the loop optimizes DESIGN metrics - dosage efficiency, trigger capture, observability coverage. These are mechanism measurements, not classification accuracy. Improving them is real progress (it is exactly the calibration work Iris asked for), but no iteration may claim accuracy improvement.
 2. **After the EXP-005 gate passes (>=20 generalization-safe real labels):** the SAME ledger gains accuracy columns (expert-alignment deltas via the EXP-003/EXP-005 downstream tooling, later EXP-011 V0-vs-V1). Policy changes that alter classifications remain supervisor-gated regardless of what the metrics say.
 
-Standing guardrails per iteration: read-only over `VEGO-AI/` (verified by `git status -- VEGO-AI` each iteration); enhancements are analysis-side only; synthetic inputs stay labeled and isolated; evidence guard must PASS.
+Standing guardrails per iteration: Agents 1–4, Agent 4 policy/prompts/classifications, original evaluation logic, and baseline outputs remain immutable. Iteration 15 permits only the reviewed M1–M4B-1, adapter, schema, credential/logging, and test allowlist in `configs/protected-change-authorization-v1.json`; every other protected-path change fails. Synthetic inputs stay labeled and isolated, and the evidence guard must pass.
 
-Iteration 008 established atomic runner reliability. Iteration 009 preserved that contract while repairing observation/metric semantics. Iterations 010-013 are accepted reliability-only snapshots. Iteration 014 is the latest reliability-only coherence snapshot. None selects a default or authorizes live work.
+Iteration 008 established atomic runner reliability. Iteration 009 preserved that contract while repairing observation/metric semantics. Iterations 010-013 are accepted reliability-only snapshots. Iteration 014 is the coherence snapshot. Iteration 15 is the latest reliability-only unified-runtime parity and security snapshot. Legacy remains the default; no iteration selects a routing, verification, correction, accuracy, or model default.
 
 ## Loop Protocol (one iteration)
 
@@ -67,4 +67,4 @@ EXP-012 now consumes the validated EXP-005 full export and validation summary, r
 
 ## Cadence
 
-Iteration 014 is the latest accepted run and is `NEUTRAL`/`reliability_only` (coherence restoration) under the synchronized decision register. EXP-012 remains `NOT YET COMPUTABLE` at validated-safe N=0.
+Iteration 015 is the latest accepted state and is `NEUTRAL`/`reliability_only` (unified-runtime parity, security, and provenance) under the still-deferred decision register. Its controlled check covers 27 comparison rows with zero classification changes. EXP-012 remains `NOT YET COMPUTABLE` at validated-safe N=0.

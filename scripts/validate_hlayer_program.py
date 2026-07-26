@@ -4,8 +4,10 @@
 This validator bridges the historical replay-suite manifest and the versioned
 contract/conformance manifest without changing either runtime API.  It verifies
 their canonical hashes, the EXP-006 -> EXP-007 ObservationRecord boundary,
-decision/EXP-005 gates, the latest accepted iteration, protected paths, and the
-offline demonstration safety boundary.
+decision/EXP-005 gates, the latest accepted iteration, authorized protected
+changes, and the offline demonstration safety boundary. The original Phase 0
+fingerprints remain visible as historical evidence, but approved allowlisted
+M1-M4B-1 hardening changes are governed by the current authorization record.
 """
 
 from __future__ import annotations
@@ -19,8 +21,9 @@ import runpy
 import subprocess
 import sys
 import tempfile
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 REPO = Path(__file__).resolve().parents[1]
 SCRIPTS = REPO / "scripts"
@@ -29,6 +32,7 @@ if str(SCRIPTS) not in sys.path:
 
 import hlayer_harness as harness  # noqa: E402
 from build_hlayer_decision_snapshot import build_snapshot  # noqa: E402
+from check_hlayer_change_authorization import inspect as inspect_authorization  # noqa: E402
 from check_hlayer_protected_paths import check_boundary  # noqa: E402
 from hlayer_offline.common import _decision_snapshot as conformance_decision_snapshot  # noqa: E402
 from hlayer_offline.suite import DEFAULT_RUNNERS, validate_suite_stage  # noqa: E402
@@ -360,6 +364,66 @@ def validate_registry() -> dict[str, Any]:
     return {"registered": [f"EXP-{number:03d}" for number in range(6, 19)]}
 
 
+def resolve_protected_change_base(repo: Path) -> str:
+    """Select a usable local comparison base without requiring ``origin``.
+
+    CI can supply an exact base SHA. Normal clones prefer ``origin/main``.
+    Source archives and locally initialized repositories can still validate
+    against a local ``main`` branch, a parent commit, or (for a single-commit
+    repository) ``HEAD``.
+    """
+
+    candidates = [
+        os.environ.get("PR_BASE_SHA"),
+        os.environ.get("H_LAYER_CHANGE_BASE"),
+    ]
+    github_base = os.environ.get("GITHUB_BASE_REF")
+    if github_base:
+        candidates.extend((f"origin/{github_base}", github_base))
+    candidates.extend(("origin/main", "main", "HEAD^", "HEAD"))
+    seen: set[str] = set()
+    for candidate in candidates:
+        if not candidate or candidate in seen:
+            continue
+        seen.add(candidate)
+        result = subprocess.run(
+            ["git", "rev-parse", "--verify", f"{candidate}^{{commit}}"],
+            cwd=repo,
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+        if result.returncode == 0:
+            return candidate
+    raise ProgramValidationError(
+        "no usable Git comparison base; set PR_BASE_SHA or H_LAYER_CHANGE_BASE"
+    )
+
+
+def validate_protected_paths(repo: Path = REPO) -> dict[str, Any]:
+    """Return a structured protected-path result even when Git is unavailable."""
+
+    authorization = repo / "configs/protected-change-authorization-v1.json"
+    try:
+        base = resolve_protected_change_base(repo)
+        return inspect_authorization(repo, authorization, base)
+    except (OSError, ValueError, subprocess.CalledProcessError, ProgramValidationError) as exc:
+        return {
+            "schema_version": "1.0",
+            "base": None,
+            "merge_base": None,
+            "authorization": "configs/protected-change-authorization-v1.json",
+            "protected_changes": [],
+            "unauthorized_changes": [],
+            "forbidden_changes": [],
+            "hash_authorization_errors": [],
+            "authorization_expired": False,
+            "status": "FAIL",
+            "failures": [f"protected-path inspection unavailable: {exc}"],
+        }
+
+
 def run_checks() -> dict[str, Any]:
     checks: list[tuple[str, Callable[[], dict[str, Any]]]] = [
         ("decision_gate", validate_decision_gate),
@@ -376,7 +440,15 @@ def run_checks() -> dict[str, Any]:
             details[name] = check()
         except Exception as exc:  # collect all independent acceptance failures
             failures.append(f"{name}: {exc}")
-    protected = check_boundary(REPO, REPO / "docs/research/h-layer/phase-0-boundary-record.md")
+    historical_boundary = check_boundary(
+        REPO, REPO / "docs/research/h-layer/phase-0-boundary-record.md"
+    )
+    historical_boundary["enforcement_status"] = "HISTORICAL_ONLY"
+    historical_boundary["current_governor"] = (
+        "configs/protected-change-authorization-v1.json"
+    )
+    details["historical_phase0_boundary"] = historical_boundary
+    protected = validate_protected_paths()
     details["protected_paths"] = protected
     if protected["status"] != "PASS":
         failures.extend(f"protected_paths: {failure}" for failure in protected["failures"])

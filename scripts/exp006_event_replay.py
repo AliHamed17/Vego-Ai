@@ -11,6 +11,7 @@ import csv
 import glob
 import hashlib
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -26,8 +27,15 @@ from hlayer_harness import (
     write_json,
 )
 
-EVAL = REPO / "VEGO-AI" / "eval_output"
-RUN = REPO / "VEGO-AI" / "runs" / "20260614-122150" / "human"
+EVAL = Path(
+    os.environ.get("HLAYER_EVAL_OUTPUT_ROOT", REPO / "VEGO-AI" / "eval_output")
+).resolve()
+RUN = Path(
+    os.environ.get(
+        "HLAYER_RUN_HUMAN_ROOT",
+        REPO / "VEGO-AI" / "runs" / "20260614-122150" / "human",
+    )
+).resolve()
 OUT = experiment_output_dir("exp006")
 SETTINGS = ("cd_ch", "cd_pw", "ucd_ch", "ucd_pw")
 LOW_CERTAINTY = 0.75

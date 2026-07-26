@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "h_layer": {
+    "architecture_mode": "legacy",
+    "contract_version": "1.0",
+    "interaction_log_mode": "metadata_only",
+    "interaction_log": {
+      "retention_days": 30,
+      "max_bytes": 5242880,
+      "backups": 3,
+      "redaction_enabled": true,
+      "full_content_local_only": true
+    }
+  }
+}

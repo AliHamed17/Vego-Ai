@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import csv
+import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -16,6 +19,7 @@ REPO = Path(__file__).resolve().parents[2]
 SCRIPTS = REPO / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
+import exp005_label_review as exp005
 import exp007_dosage_replay as exp007
 import exp008_trigger_mining as exp008
 import exp009_seeded_conflict as exp009
@@ -23,6 +27,18 @@ import exp010_convergence_sweep as exp010
 import exp012_accuracy_baseline as exp012
 import hlayer_harness as harness
 from hlayer_offline.legacy_replay_adapter import adapt_reconstructed_row, event_type_of
+
+
+def protected_authorization_environment() -> dict[str, str]:
+    """Provide the subprocess with an explicit test-only external trust root."""
+
+    environment = os.environ.copy()
+    authorization = REPO / "configs" / "protected-change-authorization-v1.json"
+    portable_bytes = authorization.read_bytes().replace(b"\r\n", b"\n")
+    environment["H_LAYER_AUTHORIZATION_SHA256"] = hashlib.sha256(
+        portable_bytes
+    ).hexdigest()
+    return environment
 
 
 def deferred_decision_snapshot() -> dict:
@@ -113,6 +129,176 @@ def write_complete_suite_fixture(root: Path, *, run_id: str = "test-run") -> dic
         name: write_child_manifest(root, name, run_id=run_id)
         for name in harness.REQUIRED_EXPERIMENT_OUTPUTS
     }
+
+
+def write_zero_label_gate(root: Path) -> Path:
+    """Create an unlabeled synthetic interface fixture, never expert evidence."""
+    gate = root / "exp005-zero-label-fixture"
+    gate.mkdir(parents=True)
+    fields = [
+        "setting",
+        "pattern_id",
+        "pattern_description",
+        "original_agent4_classification",
+        "memory_informed_classification",
+        "generalization_safe_candidate",
+        "evaluation_leakage_status",
+        "expert_label",
+        "expert_rationale",
+        "reviewer_id",
+        "review_date",
+        "confidence",
+    ]
+    row = {
+        "setting": "fixture_setting",
+        "pattern_id": "SYNTHETIC_TEST_FIXTURE_P1",
+        "pattern_description": "Synthetic mechanism fixture; not expert evidence.",
+        "original_agent4_classification": "Occasional Variability",
+        "memory_informed_classification": "Occasional Variability",
+        "generalization_safe_candidate": "True",
+        "evaluation_leakage_status": "none",
+        "expert_label": "",
+        "expert_rationale": "",
+        "reviewer_id": "",
+        "review_date": "",
+        "confidence": "",
+    }
+    rows_path = gate / "exp005_label_review_full.csv"
+    with rows_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerow(row)
+    summary, errors = exp005.summarize_labels([row])
+    assert not errors
+    summary["generated_at"] = "2026-07-25T00:00:00+00:00"
+    harness.write_json(gate / "label_validation_summary.json", summary)
+    return gate
+
+
+def write_replay_inputs(root: Path) -> tuple[Path, Path]:
+    """Create minimal four-setting replay inputs for clone-safe integration tests."""
+    eval_root = root / "eval-output-fixture"
+    run_root = root / "run-human-fixture"
+    for setting in ("cd_ch", "cd_pw", "ucd_ch", "ucd_pw"):
+        setting_dir = eval_root / setting
+        setting_dir.mkdir(parents=True)
+        harness.write_json(
+            setting_dir / "agentA_run1_template_fixture.json",
+            {"guidelines": [{"id": "T1", "description": "initial"}]},
+        )
+        harness.write_json(
+            setting_dir / "agentA_run2_template_fixture.json",
+            {"guidelines": [{"id": "T1", "description": "revised"}]},
+        )
+        harness.write_json(
+            setting_dir / "agentB_run1_guidelines_fixture.json",
+            {
+                "reference_guidelines": [
+                    {
+                        "id": "G1",
+                        "guideline_name": "fixture one",
+                        "description": "initial",
+                        "mapping_certainty": 0.9,
+                    }
+                ]
+            },
+        )
+        revised_guidelines = {
+            "reference_guidelines": [
+                {
+                    "id": "G1",
+                    "guideline_name": "fixture one",
+                    "description": "revised",
+                    "mapping_certainty": 0.8,
+                },
+                {
+                    "id": "G2",
+                    "guideline_name": "fixture two",
+                    "description": "added",
+                    "mapping_certainty": 0.6,
+                },
+            ],
+            "questions_to_language_advisor": [{"id": "Q1", "related_template_ids": ["T1"]}],
+        }
+        harness.write_json(
+            setting_dir / "agentB_run2_guidelines_fixture.json",
+            revised_guidelines,
+        )
+        harness.write_json(
+            setting_dir / "agentB_best_guidelines_fixture.json",
+            revised_guidelines,
+        )
+        harness.write_json(
+            setting_dir / "agentC_case_1_fixture.json",
+            {
+                "case_id": "1",
+                "uncovered_fragments": ["fixture-uncovered"],
+                "potential_found": ["fixture-potential"],
+            },
+        )
+        harness.write_json(
+            setting_dir / "agentD_deviation_patterns_fixture.json",
+            {
+                "recurring_fragment_patterns": [{"id": "P1"}],
+                "recurring_guideline_patterns": [],
+            },
+        )
+        harness.write_json(
+            setting_dir / "agentD_variability_classes_fixture.json",
+            {
+                "variability_classifications": [
+                    {
+                        "pattern_id": "P1",
+                        "classification": "Occasional Variability",
+                        "confidence": "Medium",
+                        "requires_human_review": True,
+                        "flag_for_guidelines_update": False,
+                    }
+                ],
+                "questions_to_domain_advisor": [{"id": "QD1"}],
+                "questions_to_language_advisor": [],
+            },
+        )
+        queue_dir = run_root / setting
+        queue_dir.mkdir(parents=True)
+        (queue_dir / "human_review_queue.jsonl").write_text(
+            json.dumps(
+                {
+                    "review_id": f"fixture-{setting}",
+                    "related_guideline_id": "G1",
+                    "fixture_classification": "SYNTHETIC_NOT_EXPERT_EVIDENCE",
+                }
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+    return eval_root, run_root
+
+
+@pytest.fixture(scope="module", autouse=True)
+def clone_safe_hlayer_inputs() -> None:
+    """Bind the whole module to explicit synthetic fixtures in every clone."""
+    generated = REPO / "reports" / "generated"
+    generated.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".clone-safe-inputs-", dir=generated) as temp:
+        root = Path(temp)
+        gate = write_zero_label_gate(root)
+        eval_root, run_root = write_replay_inputs(root)
+        updates = {
+            "HLAYER_EXP005_DIR": str(gate),
+            "HLAYER_EVAL_OUTPUT_ROOT": str(eval_root),
+            "HLAYER_RUN_HUMAN_ROOT": str(run_root),
+        }
+        previous = {key: os.environ.get(key) for key in updates}
+        os.environ.update(updates)
+        try:
+            yield
+        finally:
+            for key, value in previous.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
 
 
 class AtomicPromotionTests(unittest.TestCase):
@@ -347,7 +533,7 @@ class ManifestIntegrityTests(unittest.TestCase):
                     )
 
     def test_exp005_gate_rejects_tampered_gate_and_reliability_sections(self) -> None:
-        source = REPO / "reports" / "generated" / "exp005_label_review"
+        source = Path(os.environ["HLAYER_EXP005_DIR"])
         for section in ("strict_gate", "reviewer_reliability"):
             with self.subTest(section=section), tempfile.TemporaryDirectory() as temp:
                 target = Path(temp)
@@ -550,20 +736,28 @@ class EvidenceGuardIntegrationTests(unittest.TestCase):
         shell = shutil.which("powershell") or shutil.which("pwsh")
         if not shell:
             self.skipTest("PowerShell is not available")
-        targets = [
-            REPO / "reports" / "generated" / "exp006" / "summary.json",
-            REPO / "reports" / "generated" / "hlayer_suite_manifest.json",
-        ]
-        before = {path: harness.sha256_file(path) if path.is_file() else None for path in targets}
-        with tempfile.TemporaryDirectory() as temp:
+        with (
+            tempfile.TemporaryDirectory() as output_temp,
+            tempfile.TemporaryDirectory() as counter_temp,
+        ):
+            generated = Path(output_temp) / "generated"
+            targets = [
+                generated / "exp006" / "summary.json",
+                generated / "hlayer_suite_manifest.json",
+            ]
+            before = {
+                path: harness.sha256_file(path) if path.is_file() else None for path in targets
+            }
             env = os.environ.copy()
-            env["HLAYER_TEST_GUARD_COUNTER"] = str(Path(temp) / "counter.txt")
+            env["HLAYER_TEST_GUARD_COUNTER"] = str(Path(counter_temp) / "counter.txt")
             proc = subprocess.run(
                 [
                     shell,
                     "-NoProfile",
                     "-File",
                     str(SCRIPTS / "build-hlayer-experiments.ps1"),
+                    "-GeneratedOutputRoot",
+                    str(generated),
                     "-ProtectedPathGuardScript",
                     str(SCRIPTS / "tests" / "fixtures" / "pass_then_fail_protected_guard.py"),
                 ],
@@ -575,15 +769,20 @@ class EvidenceGuardIntegrationTests(unittest.TestCase):
                 capture_output=True,
                 timeout=180,
             )
-        self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
-        self.assertRegex(
-            proc.stdout + proc.stderr, r"rechecking protected-path hashes before promotion"
-        )
-        after = {path: harness.sha256_file(path) if path.is_file() else None for path in targets}
-        self.assertEqual(
-            before, after, "failed pre-promotion protected guard changed canonical outputs"
-        )
-        self.assertFalse(list((REPO / "reports" / "generated").glob(".hlayer-stage-*")))
+            self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertRegex(
+                proc.stdout + proc.stderr,
+                r"rechecking protected-path hashes before promotion",
+            )
+            after = {
+                path: harness.sha256_file(path) if path.is_file() else None for path in targets
+            }
+            self.assertEqual(
+                before,
+                after,
+                "failed pre-promotion protected guard changed canonical outputs",
+            )
+            self.assertFalse(list(generated.glob(".hlayer-stage-*")))
 
     def test_three_identical_replays_have_identical_metrics_and_normalized_manifests(self) -> None:
         experiment_scripts = [
@@ -632,66 +831,94 @@ class EvidenceGuardIntegrationTests(unittest.TestCase):
         shell = shutil.which("powershell") or shutil.which("pwsh")
         if not shell:
             self.skipTest("PowerShell is not available")
-        targets = [
-            REPO / "reports" / "generated" / experiment / "summary.json"
-            for experiment in ("exp006", "exp007", "exp008", "exp009")
-        ]
-        before = {path: harness.sha256_file(path) if path.is_file() else None for path in targets}
-        proc = subprocess.run(
-            [
-                shell,
-                "-NoProfile",
-                "-File",
-                str(SCRIPTS / "build-hlayer-experiments.ps1"),
-                "-TestFailExperiment",
-                "exp007",
-            ],
-            cwd=REPO,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            capture_output=True,
-            timeout=180,
-        )
-        self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
-        self.assertRegex(proc.stdout + proc.stderr, r"Injected\s+test-only failure after exp007")
-        after = {path: harness.sha256_file(path) if path.is_file() else None for path in targets}
-        self.assertEqual(before, after, "failed EXP-007 changed or mixed canonical outputs")
-        self.assertFalse(list((REPO / "reports" / "generated").glob(".hlayer-stage-*")))
+        with tempfile.TemporaryDirectory() as output_temp:
+            generated = Path(output_temp) / "generated"
+            targets = [
+                generated / experiment / "summary.json"
+                for experiment in ("exp006", "exp007", "exp008", "exp009")
+            ]
+            before = {
+                path: harness.sha256_file(path) if path.is_file() else None for path in targets
+            }
+            proc = subprocess.run(
+                [
+                    shell,
+                    "-NoProfile",
+                    "-File",
+                    str(SCRIPTS / "build-hlayer-experiments.ps1"),
+                    "-GeneratedOutputRoot",
+                    str(generated),
+                    "-TestFailExperiment",
+                    "exp007",
+                ],
+                cwd=REPO,
+                env=protected_authorization_environment(),
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                capture_output=True,
+                timeout=180,
+            )
+            self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            combined = proc.stdout + proc.stderr
+            without_ansi = re.sub(r"\x1b\[[0-9;]*m", "", combined)
+            normalized = " ".join(without_ansi.split())
+            self.assertIn("Injected test-only failure after", normalized)
+            self.assertIn("exp007", normalized)
+            after = {
+                path: harness.sha256_file(path) if path.is_file() else None for path in targets
+            }
+            self.assertEqual(
+                before,
+                after,
+                "failed EXP-007 changed or mixed canonical outputs",
+            )
+            self.assertFalse(list(generated.glob(".hlayer-stage-*")))
 
     def test_nonzero_evidence_guard_prevents_promotion(self) -> None:
         shell = shutil.which("powershell") or shutil.which("pwsh")
         if not shell:
             self.skipTest("PowerShell is not available")
-        tracked_targets = [
-            REPO / "reports" / "generated" / "exp006" / "summary.json",
-            REPO / "reports" / "generated" / "hlayer_suite_manifest.json",
-        ]
-        before = {
-            path: harness.sha256_file(path) if path.is_file() else None for path in tracked_targets
-        }
-        proc = subprocess.run(
-            [
-                shell,
-                "-NoProfile",
-                "-File",
-                str(SCRIPTS / "build-hlayer-experiments.ps1"),
-                "-EvidenceGuardScript",
-                str(SCRIPTS / "tests" / "fixtures" / "failing_evidence_guard.py"),
-            ],
-            cwd=REPO,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            capture_output=True,
-            timeout=180,
-        )
-        self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
-        after = {
-            path: harness.sha256_file(path) if path.is_file() else None for path in tracked_targets
-        }
-        self.assertEqual(before, after, "nonzero evidence guard promoted staged outputs")
-        self.assertFalse(list((REPO / "reports" / "generated").glob(".hlayer-stage-*")))
+        with tempfile.TemporaryDirectory() as output_temp:
+            generated = Path(output_temp) / "generated"
+            tracked_targets = [
+                generated / "exp006" / "summary.json",
+                generated / "hlayer_suite_manifest.json",
+            ]
+            before = {
+                path: harness.sha256_file(path) if path.is_file() else None
+                for path in tracked_targets
+            }
+            proc = subprocess.run(
+                [
+                    shell,
+                    "-NoProfile",
+                    "-File",
+                    str(SCRIPTS / "build-hlayer-experiments.ps1"),
+                    "-GeneratedOutputRoot",
+                    str(generated),
+                    "-EvidenceGuardScript",
+                    str(SCRIPTS / "tests" / "fixtures" / "failing_evidence_guard.py"),
+                ],
+                cwd=REPO,
+                env=protected_authorization_environment(),
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                capture_output=True,
+                timeout=180,
+            )
+            self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            after = {
+                path: harness.sha256_file(path) if path.is_file() else None
+                for path in tracked_targets
+            }
+            self.assertEqual(
+                before,
+                after,
+                "nonzero evidence guard promoted staged outputs",
+            )
+            self.assertFalse(list(generated.glob(".hlayer-stage-*")))
 
 
 if __name__ == "__main__":

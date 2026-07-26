@@ -108,11 +108,13 @@ def test_feedback_crosswalk_uses_existing_schema_fields() -> None:
         evidence_refs=("fixture:one",),
         rationale="Synthetic fixture.",
         confidence="High",
+        notes="Independent fixture note.",
     )
     crosswalk = feedback.to_human_feedback_crosswalk()
     assert crosswalk["feedback_id"] == feedback.feedback_id
     assert crosswalk["review_signature"] == feedback.review_signature
     assert crosswalk["human_decision"] == feedback.human_decision
+    assert crosswalk["notes"] == "Independent fixture note."
 
 
 def test_feedback_review_id_must_match_existing_hrq_pattern() -> None:

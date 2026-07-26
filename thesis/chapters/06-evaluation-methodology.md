@@ -241,7 +241,30 @@ revision. If the external gate fails, no formal improvement claim is made.
 > **Figure 6.2.** Preregistered experiment and stopping sequence. See
 > `thesis/figures/fig-6-2-experiment-roadmap.mmd`.
 
-## 6.11 Summary
+## 6.11 Model reproducibility and comparison protocols
+
+The baseline's historical use of the mutable `gpt-4o` alias creates a
+reproducibility limitation: the committed output is frozen, but the exact dated
+snapshot served during the original calls is unknown. Two proposed protocols
+make that limitation explicit without rerunning or redefining B0.
+
+**EXP-028 — Model execution reproducibility and drift** records
+`ModelExecutionManifest-v1` for future authorized executions. The manifest
+captures requested and returned model identifiers, endpoint, SDK, prompt/input
+and configuration hashes, parameters, token use, retries, errors, timestamp,
+and system fingerprint when returned. It is a provenance protocol, not a model
+comparison, and it cannot alter prompts, settings, or classifications.
+
+**EXP-029 — Frozen candidate-model comparison** remains blocked. Its entry gate
+requires at least 20 generalization-safe adjudicated labels, completed reviewer
+agreement, a frozen policy and prompt version, supervisor approval, a sealed
+holdout, and a recorded cost limit. A candidate is run as a separate condition;
+it cannot replace `gpt-4o` as the default in the same experiment. Selection
+criteria and the statistical analysis must be preregistered before any
+candidate output is inspected. A favorable result would remain scoped to the
+evaluated dataset and protocol.
+
+## 6.12 Summary
 
 The methodology cleanly separates *mechanism validity* (established by the implemented pipeline, the passing verification suites recorded in the dated manifest, and its generated artifacts) from *empirical effect* (pending independent expert labels). It defines a bias- and leakage-controlled annotation study to obtain admissible ground truth, pre-commits to a sealed development/holdout discipline so that any future policy refinement is evaluated honestly, and establishes explicit evidence gates that link label counts to permitted claims.
 

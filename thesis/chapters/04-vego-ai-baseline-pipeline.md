@@ -111,3 +111,28 @@ The baseline is identified by tag `official-vego-ai-baseline` and commit
 `2eeccb1cbb2d01faa3e8ceb43466a52e0fee23cf`. Every later evaluation manifest
 records the relevant baseline hashes. A mismatch stops the evaluation rather
 than silently redefining B0.
+
+## 4.7 Baseline and model provenance after Iteration 15
+
+Iteration 15 adds two provenance interfaces without changing the four-agent
+pipeline. `BaselineLockManifest-v2` separates three questions that previous
+checks could conflate: whether the original tagged source is identifiable,
+whether the relocated working tree still has the expected semantic source
+content, and whether the controlled Agent 4 outputs remain byte-identical. A
+release fails locally when the controlled output set is absent or when any
+recorded hash differs. This makes a missing private artifact a blocking
+condition rather than a misleading skip.
+
+`ModelExecutionManifest-v1` records the requested model, returned model
+identifier when supplied by the SDK, endpoint, SDK version, prompt/input/config
+hashes, parameters, token usage, retry count, errors, timestamp, and system
+fingerprint when available. It deliberately records hashes and metadata rather
+than prompt content under the default `metadata_only` interaction-log policy.
+
+The historical baseline requested the mutable `gpt-4o` alias. The exact dated
+snapshot served for those calls was not recorded and therefore cannot be
+reconstructed retrospectively. Freezing the committed Agent 4 outputs is the
+only valid way to preserve B0. Iteration 15 keeps `gpt-4o` as the runtime
+default; it does not claim that a new call to the alias would reproduce the
+historical output. EXP-028 and EXP-029 are protocol-only responses to this
+limitation. They do not alter the baseline or authorize a candidate model.

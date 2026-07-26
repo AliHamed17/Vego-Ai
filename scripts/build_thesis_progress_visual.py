@@ -24,6 +24,10 @@ def render(data: dict) -> str:
     gate = data["labelGate"]
     program = data["programSnapshot"]
     stats = data["statisticalProtocol"]
+    runtime = data["runtimeHardening"]
+    parity = runtime["parityEvidence"]
+    security = runtime["securityBoundary"]
+    model = runtime["modelBoundary"]
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -103,6 +107,29 @@ section {{ padding:34px 0; scroll-margin-top:64px; }}
 .node span {{ display:block; margin-top:.35rem; color:var(--muted); font-size:.82rem; }}
 .arrow {{ text-align:center; color:var(--cyan); font-size:1.5rem; }}
 .no-overwrite {{ margin-top:12px; padding:10px 13px; border:1px dashed var(--red); color:#ffd0d0; border-radius:12px; text-align:center; }}
+.journey-grid {{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; }}
+.journey-node {{ min-height:170px; padding:14px; border:1px solid var(--line); border-top:4px solid var(--blue); border-radius:13px; background:var(--panel); position:relative; min-width:0; overflow-wrap:anywhere; }}
+.journey-node::after {{ content:"→"; position:absolute; right:-11px; top:47%; z-index:2; color:var(--cyan); font-size:1.25rem; }}
+.journey-node:last-child::after {{ display:none; }}
+.journey-node.legacy {{ border-top-color:var(--violet); }}
+.journey-node.unified {{ border-top-color:var(--cyan); }}
+.journey-node.parity {{ border-top-color:var(--green); }}
+.journey-node.human {{ border-top-color:var(--amber); }}
+.journey-node.gate {{ border-top-color:var(--red); }}
+.journey-node strong,.journey-node span,.journey-node small {{ display:block; }}
+.journey-node span {{ margin:.4rem 0; color:var(--muted); }}
+.journey-node small {{ color:var(--muted); }}
+.trust-grid {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:16px; }}
+.trust-boundary {{ min-height:145px; padding:14px; border-left:4px solid var(--cyan); background:var(--panel); min-width:0; overflow-wrap:anywhere; }}
+.trust-boundary strong,.trust-boundary span,.trust-boundary small {{ display:block; }}
+.trust-boundary span {{ margin:.38rem 0; color:var(--muted); }}
+.trust-boundary small {{ color:var(--muted); }}
+.protocol-grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:16px; }}
+.protocol {{ border:1px solid var(--line); border-top:4px solid var(--amber); border-radius:13px; padding:14px; background:var(--panel); color:var(--ink); min-width:0; text-align:left; cursor:pointer; }}
+.protocol.blocked {{ border-top-color:var(--red); }}
+.protocol strong,.protocol span,.protocol small {{ display:block; }}
+.protocol span {{ margin:.38rem 0; }}
+.protocol small {{ color:var(--muted); }}
 .grid2 {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }}
 .chart {{ min-height:280px; }}
 .chart-title {{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:16px; }}
@@ -177,6 +204,9 @@ footer {{ color:var(--muted); border-top:1px solid var(--line); padding:24px 0 4
   .step::after {{ display:none; }}
   .flow-grid {{ grid-template-columns:1fr; }}
   .arrow {{ transform:rotate(90deg); }}
+  .journey-grid {{ grid-template-columns:repeat(3,minmax(0,1fr)); }}
+  .journey-node::after {{ display:none; }}
+  .trust-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }}
   .roadmap {{ grid-template-columns:repeat(3,minmax(0,1fr)); }}
   .decision-grid,.risk-path {{ grid-template-columns:repeat(2,minmax(0,1fr)); }}
   .trace-row {{ grid-template-columns:86px minmax(0,1fr); }}
@@ -188,7 +218,7 @@ footer {{ color:var(--muted); border-top:1px solid var(--line); padding:24px 0 4
   header {{ padding-top:32px; }}
   .nav .shell {{ padding-inline:0; }}
   .nav button {{ margin-left:0; }}
-  .steps,.roadmap,.claims,.decision-grid,.risk-path,.funnel {{ grid-template-columns:1fr; }}
+  .steps,.journey-grid,.trust-grid,.protocol-grid,.roadmap,.claims,.decision-grid,.risk-path,.funnel {{ grid-template-columns:1fr; }}
   .step {{ min-height:110px; }}
   .detail dl {{ grid-template-columns:1fr; gap:.08rem; }}
   .detail dd {{ margin-bottom:.55rem; }}
@@ -223,7 +253,7 @@ footer {{ color:var(--muted); border-top:1px solid var(--line); padding:24px 0 4
 </header>
 <nav class="nav" aria-label="Page sections">
   <div class="shell">
-    <a href="#ladder">B0–B5</a><a href="#architecture">Architecture</a><a href="#evidence">Evidence</a><a href="#traceability">RQ map</a><a href="#decisions">Decisions</a><a href="#roadmap">Experiments</a><a href="#risks">Risks</a><a href="#accuracy">Accuracy gate</a><a href="#claims">Claims</a>
+    <a href="#ladder">B0–B5</a><a href="#architecture">Unified flow</a><a href="#security">Security + model</a><a href="#evidence">Evidence</a><a href="#traceability">RQ map</a><a href="#decisions">Decisions</a><a href="#roadmap">Experiments</a><a href="#risks">Risks</a><a href="#accuracy">Accuracy gate</a><a href="#claims">Claims</a>
     <button type="button" id="copy-context">Copy evidence context</button>
   </div>
 </nav>
@@ -245,28 +275,72 @@ footer {{ color:var(--muted); border-top:1px solid var(--line); padding:24px 0 4
   </section>
 
   <section id="architecture" aria-labelledby="architecture-title">
-    <h2 id="architecture-title">The baseline stays visible through the entire flow</h2>
-    <p class="section-intro">Human judgment is routed, captured, stored, and retrieved around the original result. The candidate comparison is parallel; there is no direct path back to overwrite Agent 4.</p>
+    <h2 id="architecture-title">One governed journey connects the frozen baseline to the evidence gate</h2>
+    <p class="section-intro">Iteration {program["latestAcceptedIteration"]} adds a unified contract path and fail-closed parity without replacing the legacy implementation. Human authority and empirical evidence remain separate gates.</p>
     <div class="panel">
-      <div class="flow-grid" role="img" aria-label="Agent 4 baseline flows to review queue, feedback, memory, advisory evidence, parallel comparison, and gated evaluation. No component overwrites Agent 4.">
-        <div class="node base"><strong>Agent 4 baseline</strong><span>{evidence["agent4Patterns"]["value"]} frozen pattern classifications</span></div>
-        <div class="arrow" aria-hidden="true">→</div>
-        <div class="node human"><strong>M1–M2 human review</strong><span>{evidence["reviewItems"]["value"]} queue items; structured decisions</span></div>
-        <div class="arrow" aria-hidden="true">→</div>
-        <div class="node memory"><strong>M3 judgment memory</strong><span>{evidence["reusableJudgments"]["value"]} reusable same-pattern records</span></div>
-        <div class="arrow" aria-hidden="true">→</div>
-        <div class="node memory"><strong>M4A advisory evidence</strong><span>{evidence["memoryAdviceItems"]["value"]} advice items; no AI change</span></div>
+      <div class="journey-grid" role="img" aria-label="Frozen Agent 4 output flows through the legacy human-judgment mechanism, unified contracts, fail-closed parity, explicit human authority, and the independent-label and model-evaluation gate.">
+        <div class="journey-node">
+          <strong>1 · Frozen B0</strong>
+          <span>Agent 4 · {evidence["agent4Patterns"]["value"]} classifications</span>
+          <small>Byte and provenance locks protect the official comparator.</small>
+        </div>
+        <div class="journey-node legacy">
+          <strong>2 · Legacy M1–M4B-1</strong>
+          <span>Default publication path</span>
+          <small>{evidence["reviewItems"]["value"]} review items → {evidence["reusableJudgments"]["value"]} legacy memory records → {evidence["comparisonRows"]["value"]} comparison rows.</small>
+        </div>
+        <div class="journey-node unified">
+          <strong>3 · Unified contracts</strong>
+          <span>Version {html.escape(runtime["contractVersion"])}</span>
+          <small>Stable validation and adapters preserve public artifacts and identifiers.</small>
+        </div>
+        <div class="journey-node parity">
+          <strong>4 · Fail-closed parity</strong>
+          <span>{parity["status"]} · {parity["artifactCount"]} artifacts</span>
+          <small>{parity["comparisonRowCount"]} rows, {parity["classificationChangeCount"]} classification changes. Any mismatch publishes legacy only.</small>
+        </div>
+        <div class="journey-node human">
+          <strong>5 · Human authority</strong>
+          <span>M-01–M-06 remain deferred</span>
+          <small>Timeout, conflict, missing evidence, or rejection preserves the baseline and parks the item.</small>
+        </div>
+        <div class="journey-node gate">
+          <strong>6 · Evidence + model gate</strong>
+          <span>{gate["generalizationSafeLabels"]}/{gate["candidateRows"]} safe labels</span>
+          <small>EXP-012 is not computable; EXP-029 cannot change the frozen <code>{html.escape(model["defaultModel"])}</code> default.</small>
+        </div>
       </div>
-      <div class="flow-grid" style="margin-top:8px" role="img" aria-label="Advisory evidence flows to a parallel comparison, expert labeling gate, and external evaluation.">
-        <div class="node eval"><strong>M4B-1 comparison</strong><span>{evidence["comparisonRows"]["value"]} rows; {evidence["memoryInformedChanges"]["value"]} candidate changes</span></div>
-        <div class="arrow" aria-hidden="true">→</div>
-        <div class="node human"><strong>EXP-019/020 labels</strong><span>Two reviewers and adjudication</span></div>
-        <div class="arrow" aria-hidden="true">→</div>
-        <div class="node eval"><strong>Development + holdout</strong><span>{gate["developmentRows"]} rows / {gate["sealedHoldoutRows"]} sealed rows</span></div>
-        <div class="arrow" aria-hidden="true">→</div>
-        <div class="node eval"><strong>External replication</strong><span>Minimum {gate["externalMinimum"]}; target {gate["externalTarget"]}</span></div>
+      <div class="no-overwrite">✕ No memory, advice, policy, timeout, evaluation, unified-runtime, or model path may overwrite the frozen Agent 4 output.</div>
+    </div>
+  </section>
+
+  <section id="security" aria-labelledby="security-title">
+    <h2 id="security-title">Security and model provenance wrap the runtime; they do not change its research result</h2>
+    <p class="section-intro">The controls make failures observable and reproducible. A passing snapshot is bounded evidence about the checked revision, not a permanent security guarantee.</p>
+    <div class="panel">
+      <div class="trust-grid" role="img" aria-label="Four trust boundaries protect inputs and output paths, credentials and model calls, interaction logs and private evidence, and CI release artifacts.">
+        <div class="trust-boundary">
+          <strong>Input + output boundary</strong>
+          <span>Schema, size, symlink, traversal, and overwrite checks</span>
+          <small>Unified mode writes only to authorized roots and never to baseline directories.</small>
+        </div>
+        <div class="trust-boundary">
+          <strong>Credential + model boundary</strong>
+          <span>Environment/project secrets only · <code>{html.escape(model["defaultModel"])}</code> frozen</span>
+          <small>{html.escape(model["executionManifest"])} records hashes, model metadata, retries, usage, and errors.</small>
+        </div>
+        <div class="trust-boundary">
+          <strong>Privacy + evidence boundary</strong>
+          <span>Logging default: <code>{html.escape(security["interactionLogDefault"])}</code></span>
+          <small>Full content is explicit opt-in, redacted, retained locally, and rotated.</small>
+        </div>
+        <div class="trust-boundary">
+          <strong>CI + release boundary</strong>
+          <span>Python/Node audits · secret scan · SBOM · locked installs</span>
+          <small>Pull-request CI is API-free and publication fails on required gate errors.</small>
+        </div>
       </div>
-      <div class="no-overwrite">✕ No memory, advice, policy, timeout, or evaluation path may overwrite the frozen Agent 4 output.</div>
+      <div class="protocol-grid" id="model-protocols" aria-label="Model provenance and comparison protocols"></div>
     </div>
   </section>
 
@@ -472,6 +546,29 @@ footer {{ color:var(--muted); border-top:1px solid var(--line); padding:24px 0 4
   $("label-funnel").innerHTML = funnelStages.map(item => `<div class="funnel-stage"><strong>${{item.value}}</strong><span>${{esc(item.label)}}</span></div>`).join("");
   $("empirical-label-state").textContent = `${{data.labelGate.generalizationSafeLabels}} of ${{data.labelGate.candidateRows}} candidate rows currently have admissible labels; status is ${{data.labelGate.accuracyStatus}}.`;
 
+  const modelRoot = $("model-protocols");
+  data.runtimeHardening.modelBoundary.protocols.forEach(item => {{
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `protocol ${{item.status === "Blocked" ? "blocked" : ""}}`;
+    button.dataset.id = item.id;
+    button.setAttribute("aria-pressed","false");
+    setContextData(button,{{
+      baselineIds:["B0","B1"],
+      experimentIds:[item.id],
+      chapterIds:item.chapterIds,
+      decisionIds:item.decisionIds
+    }});
+    button.innerHTML = `<strong>${{esc(item.id)}} · ${{esc(item.status)}}</strong><span>${{esc(item.title)}}</span><small>${{esc(item.gate)}} ${{esc(item.claimBoundary)}}</small>`;
+    button.addEventListener("click",() => activate(button,{{
+      baselines:["B0","B1"],
+      experiments:[item.id],
+      chapters:item.chapterIds,
+      decisions:item.decisionIds
+    }},`${{item.id}} is ${{item.status}}; ${{item.claimBoundary}}`,item.id));
+    modelRoot.appendChild(button);
+  }});
+
   const traceRoot = $("rq-traceability");
   data.researchFrame.traceability.forEach(item => {{
     const button = document.createElement("button");
@@ -576,6 +673,7 @@ footer {{ color:var(--muted); border-top:1px solid var(--line); padding:24px 0 4
     if (/^B[0-5]$/.test(id)) return selectBaseline(id,updateHash);
     const selectors = [
       [data.experiments,"#experiment-roadmap","experimentIds","experiments"],
+      [data.runtimeHardening.modelBoundary.protocols,"#model-protocols","experimentIds","experiments"],
       [data.decisionDependencies,"#decision-dependencies","decisionIds","decisions"],
       [data.researchFrame.traceability,"#rq-traceability","researchIds","research"],
       [data.riskGates,"#risk-path","riskIds","risks"]
@@ -613,6 +711,9 @@ footer {{ color:var(--muted); border-top:1px solid var(--line); padding:24px 0 4
       `Safe labels: ${{data.labelGate.generalizationSafeLabels}}/${{data.labelGate.candidateRows}}`,
       `Accuracy status: ${{data.labelGate.accuracyStatus}}`,
       `Memory-informed changes: ${{data.evidence.memoryInformedChanges.value}}/${{data.evidence.comparisonRows.value}}`,
+      `Runtime modes: legacy (default), unified, parity; controlled parity ${{data.runtimeHardening.parityEvidence.status}} on ${{data.runtimeHardening.parityEvidence.comparisonRowCount}} comparison rows`,
+      `Security snapshot: ${{data.runtimeHardening.securityBoundary.status}}; interaction logging default ${{data.runtimeHardening.securityBoundary.interactionLogDefault}}`,
+      `Model default: ${{data.runtimeHardening.modelBoundary.defaultModel}}; EXP-029 remains blocked`,
       "B0-B1 implemented; B2 human-gated; B3-B5 blocked or unapproved.",
       "No accuracy, generalization, reduced-effort, benchmark-superiority, clinical-performance, or automatic-mutation claim."
     ].join("\\n");

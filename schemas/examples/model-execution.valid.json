@@ -1,0 +1,30 @@
+{
+  "schema_version": "model-execution-manifest-v1",
+  "timestamp": "2026-07-25T10:00:00+00:00",
+  "agent": "agent4",
+  "skill": "classify",
+  "label": "agent4/classify",
+  "requested_model": "gpt-4o",
+  "returned_model": "gpt-4o-2024-11-20",
+  "endpoint": "chat.completions",
+  "sdk_version": "1.109.1",
+  "system_fingerprint": "fp_fixture",
+  "attempt": 1,
+  "retry_count": 0,
+  "config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "parameters": {"max_tokens": 16384},
+  "prompt_system_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "prompt_system_chars": 100,
+  "prompt_user_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "prompt_user_chars": 200,
+  "response_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "response_chars": 300,
+  "response_parsed": true,
+  "parse_error": null,
+  "api_error": null,
+  "token_usage": {
+    "prompt_tokens": 30,
+    "completion_tokens": 20,
+    "total_tokens": 50
+  }
+}

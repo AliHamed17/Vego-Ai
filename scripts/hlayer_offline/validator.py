@@ -48,7 +48,12 @@ def validate() -> dict[str, Any]:
 
     catalog = contract_catalog()
     checks["contract_catalog_version"] = catalog["schema_version"] == CONTRACT_SCHEMA_VERSION
-    checks["all_eight_contracts_cataloged"] = len(catalog["contracts"]) == 8
+    checks["all_eight_contracts_cataloged"] = len(catalog["contracts"]) >= 8
+    checks["canonical_runtime_contracts_cataloged"] = {
+        "AdviceRecord",
+        "ComparisonRecord",
+        "ArchitectureRunManifest",
+    }.issubset(catalog["contracts"])
 
     missing_lineage_blocked = False
     try:

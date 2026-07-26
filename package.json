@@ -1,0 +1,13 @@
+{
+  "name": "vego-ai-research-verification",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Locked browser verification dependencies for VEGO-AI research artifacts.",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "playwright": "1.61.1"
+  },
+  "scripts": {
+    "test:browser": "node scripts/tests/supervisor_package_browser_smoke.mjs && node scripts/tests/thesis_progress_browser_smoke.mjs"
+  }
+}

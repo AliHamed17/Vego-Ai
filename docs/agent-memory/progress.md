@@ -84,6 +84,7 @@ Track milestones, current work, and next steps here.
 | 2026-07-11 | Reliability iteration 011 and feedback generalizer proposal implemented | Done / NEUTRAL | Iteration 011 (`hlayer-20260711T102518Z-1ecc5dc68f`) snapshots the updated replay suite with decision snapshot synchronizations and the new offline `feedback_generalizer.py` script. |
 | 2026-07-11 | Reliability iteration 012 and supervisor pre-read synchronization completed | Done / NEUTRAL | Iteration 012 (`hlayer-20260711T123453Z-6cca11a0c8`) snapshots the updated replay suite with decision register snapshot synchronizations. |
 | 2026-07-24 | Thesis accuracy-evidence advancement package prepared | Done / pending human evidence | Added a canonical evidence snapshot and schemas, B0-B5 evidence ladder, claim/chapter traceability, EXP-019..027 preregistrations, reviewer and supervisor decision protocols, updated thesis chapters, an offline progress explainer, and an 87-page DOCX/PDF review draft. Current evidence remains 0/24 independent safe labels and 0/27 comparison changes; no accuracy or generalization claim is authorized. |
+| 2026-07-25 | Unified runtime and security hardening release verified | Done / governance-gated | Added canonical contracts, explicit legacy/unified/parity modes, fail-closed publication and comparison, locked dependencies, model/security provenance, and a 91-page manifest-bound review package. Final review hardening passes 113 VEGO-AI tests, 113 research tests plus 7 subtests, 46 offline tests, 18/18 evidence checks, controlled 27-row parity with 0 changes, dependency audits, and offline browser checks. Merge remains gated by independent approval and enforceable main protection. |
 
 
 ## Active Work
@@ -131,13 +132,14 @@ Track milestones, current work, and next steps here.
 | TASK-042 | 2026-07-04 | Open | Maintain the PhD extension idea log. | Add entries to `docs/research/phd-extension-ideas.md` while reading; medical-domain transfer is the preferred direction; Ali to check direct-track admin with Sigal. |
 | TASK-043 | 2026-07-04 | Open | Execute the MediVARIA study plan (MV-P0 groundwork). | Present `docs/research/medivaria/medivaria-study-plan.md` at the 2026-07-15 meeting (agenda section 8); get Iris/Arnon endorsement of the thesis-vs-IIA role split and the first clinical guideline domain; keep thesis scope education-only until submission. |
 | TASK-044 | 2026-07-05 | Open | Advance the H-layer mechanism experiment suite. | Harden atomic execution first; then rerun only approved protocols. EXP-009/010 already have provisional synthetic prototypes and await M-04. |
-| TASK-045 | 2026-07-05 | Open / gated | Run the H-layer improvement loop per iteration protocol. | Fourteen iterations are accepted; iteration 014 is the latest reliability-only `NEUTRAL` snapshot. Preserve iteration-009 Pareto semantics; `threshold_sev2` and K30/K35 remain comparison points only. Do not create iteration 015 for documentation work. |
+| TASK-045 | 2026-07-05 | Open / gated | Run the H-layer improvement loop per iteration protocol. | Fifteen iterations are accepted; iteration 015 is the latest reliability-only `NEUTRAL` snapshot. Preserve iteration-009 Pareto semantics; `threshold_sev2` and K30/K35 remain comparison points only. No accuracy or model default follows from iteration 015. |
 | TASK-046 | 2026-07-05 | Done / human-gated | Repair EXP-012 measurement scaffold. | Validated interface and canonical cross-check pass; safe N=0 remains `NOT YET COMPUTABLE`. Next change requires real human labels, not code inference. |
 | TASK-047 | 2026-07-10 | Blocked | Prepare passive H-layer shadow listener. | Offline design only until M-05 plus the separate five-file implementation authorization are recorded. |
 | TASK-048 | 2026-07-10 | Done / proposal-only | Prepare the offline Vector 1 feedback-generalization gate and safe July 15 CLI demo. | Current feedback yields `BLOCKED_NO_VERIFIED_FEEDBACK`; collect verified/adjudicated reusable records and M-05 authorization before any LLM or Agent B context work. |
 | TASK-049 | 2026-07-12 | Open (Phase 1 done) | Execute the H-layer enhancement plan (`docs/research/h-layer/enhancement-plan-2026-07-12.md`). | Phase 1 delivered: unified program overview, one-command gate, consistency fixes, and iteration-014 coherence repair. EXP-019/020 now have registered proposal protocols; execution remains human-gated. Run `.\scripts\verify-hlayer-all.ps1` before every finish. |
 | TASK-050 | 2026-07-24 | Done / human-gated | Prepare the thesis evidence-advancement and review package. | Ask Iris and Arnon to approve the contribution framing, blind-label protocol, two-reviewer/adjudicator roles, development/holdout boundary, policy-candidate gate, and external-replication claim gate. Then calibrate reviewers and collect the 24 independent safe labels. |
-| TASK-051 | 2026-07-24 | Publication authorized / in progress | Execute the continuation plan (`docs/research/continuation-plan-2026-07-24.md`). | The user authorized the existing PR #8 publication path, green-check wait, and squash merge. The package is manifest-bound and locally verified; after publication, send supervisor pre-reads and decision sheet, then follow the human-gated label spine. Track A (mid-August survey presentation), Track B (E6/E7/E8), and proposal-only Track C remain parallel workstreams. |
+| TASK-051 | 2026-07-24 | Done | Execute the continuation plan (`docs/research/continuation-plan-2026-07-24.md`). | PR #8 is the historical thesis evidence release. Its human-label and claim gates remain in force. |
+| TASK-052 | 2026-07-25 | In review / governance-gated | Publish unified runtime, baseline, model, security, infrastructure, and package hardening through PR #10. | Local release verification is green. Keep the PR open until exact-head review is clean, required CI passes, enforceable main protection is confirmed, and one separate collaborator approves. Never bypass these gates. |
 
 ## Completed Work
 
@@ -200,7 +202,7 @@ Track milestones, current work, and next steps here.
 
 ## Next Steps
 
-Note (2026-07-10): Phase 0 and iterations 008-010 are complete; iteration 010 is reliability-only and `NEUTRAL`. Active priorities are (a) use the isolated demo to record M-01..M-06; (b) keep iteration 011, live listener work, trusted-memory reuse, LLM synthesis, and Agent B context delivery blocked until their gates clear; (c) progress EXP-005 protocol/reviewer scheduling without inventing labels. The offline generalizer currently returns `BLOCKED_NO_VERIFIED_FEEDBACK` with zero candidates.
+Note (2026-07-25): Iteration 015 and the unified-runtime/security package are reliability-only and `NEUTRAL`. Active priorities are (a) complete PR #10 review and governance gates without bypass; (b) record M-01..M-06; and (c) progress EXP-005 reviewer scheduling without inventing labels. Live listeners, automatic correction, model replacement, trusted-memory reuse, and performance claims remain blocked.
 
 1. Run `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen` for supervised continuation prompts.
 2. Run `.\scripts\run-project-review.ps1 -UpdateReviewState` for structured review-only prompts.
@@ -213,7 +215,7 @@ Note (2026-07-10): Phase 0 and iterations 008-010 are complete; iteration 010 is
 9. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
 10. If EXP-003 shows enough safe labels and baseline errors that memory can plausibly address, write or update `docs/research/m4b1-policy-refinement-plan.md`; do not implement policy refinement before approval.
 11. Capture supervisor decisions on thesis framing, label protocol, target label count, leakage policy, and M4B-2 gating.
-12. Review and merge PR #6 for M4B schema hardening when ready.
+12. Keep PR #10 unmerged until exact-head review, required CI, branch protection, and one separate collaborator approval are all confirmed.
 13. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
 14. Run `.\scripts\build-progress-visualizations.ps1` to refresh the local Mermaid/HTML progress visualizations after progress or KPI updates.
 15. Run `.\scripts\build-e2e-progress-report.ps1` to refresh the full report and local web dashboard after progress, KPI, experiment, or review-state updates.

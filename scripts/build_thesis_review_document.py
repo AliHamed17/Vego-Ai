@@ -17,25 +17,22 @@ import tempfile
 import zipfile
 from datetime import datetime
 from pathlib import Path
-from typing import Iterable
 
 from docx import Document
-from docx.enum.section import WD_SECTION
 from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK, WD_LINE_SPACING
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 from PIL import Image, ImageDraw, ImageFont
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = (
     ROOT / "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json"
 )
 OUTPUT_DIR = ROOT / "thesis/output"
-DEFAULT_PACKAGE_DATE = "2026-07-24"
+DEFAULT_PACKAGE_DATE = "2026-07-25"
 FIGURE_DIR = ROOT / "thesis/figures/evidence-ready"
 FIGURE_MANIFEST = FIGURE_DIR / "figure-assets-v1.json"
 
@@ -447,8 +444,11 @@ def add_table(doc: Document, rows: list[list[str]]) -> None:
             paragraph.paragraph_format.space_before = Pt(0)
             paragraph.paragraph_format.space_after = Pt(0)
             paragraph.paragraph_format.line_spacing = 1.05
-            if r_index == 0:
-                paragraph.paragraph_format.keep_with_next = True
+            # Keep compact research tables together when they fit on the
+            # current or next page. Rows are already marked cantSplit; this
+            # additional chain prevents a header or single trailing row from
+            # being stranded across a page boundary.
+            paragraph.paragraph_format.keep_with_next = r_index < len(rows) - 1
             value = row_data[c_index] if c_index < len(row_data) else ""
             add_inline(paragraph, value)
             for run in paragraph.runs:
@@ -641,6 +641,7 @@ def figure_payload(data: dict) -> dict:
                 "accuracyStatus",
             )
         },
+        "runtimeHardening": data["runtimeHardening"],
     }
 
 
@@ -711,21 +712,40 @@ def render_figure_assets(data: dict) -> dict[str, Path]:
 
     image = Image.new("RGB", (1800, 900), bg)
     draw = ImageDraw.Draw(image)
-    draw.text((70, 45), "Reusable human judgment around a frozen baseline", font=font(42, True), fill=ink)
+    draw.text((70, 45), "Unified runtime journey around a frozen baseline", font=font(42, True), fill=ink)
+    runtime = data["runtimeHardening"]
+    parity = runtime["parityEvidence"]
+    model = runtime["modelBoundary"]
     nodes = [
-        ("Agent 4 baseline", f"{value('agent4Patterns')} frozen classifications", "#55a7ff"),
-        ("M1-M2 review", f"{value('reviewItems')} queue items and structured feedback", "#f6c85f"),
-        ("M3 memory", f"{value('reusableJudgments')} reusable same-pattern records", "#b59cff"),
-        ("M4A advice", f"{value('memoryAdviceItems')} candidate advice items", "#b59cff"),
         (
-            "M4B-1 comparison",
-            f"{value('comparisonRows')} rows; {value('memoryInformedChanges')} changes",
+            "1. Frozen Agent 4 baseline",
+            f"{value('agent4Patterns')} classifications; byte and provenance locked",
+            "#55a7ff",
+        ),
+        (
+            "2. Legacy M1-M4B-1",
+            f"default path; {value('reviewItems')} review items and {value('comparisonRows')} comparison rows",
+            "#b59cff",
+        ),
+        (
+            "3. Unified contracts",
+            f"version {runtime['contractVersion']}; deterministic adapters preserve public artifacts",
+            "#56d6d1",
+        ),
+        (
+            "4. Fail-closed parity",
+            f"{parity['artifactCount']} artifacts; {parity['comparisonRowCount']} rows; {parity['classificationChangeCount']} changes",
             "#68d391",
         ),
         (
-            "Expert evaluation",
-            f"{gate['generalizationSafeLabels']}/{gate['candidateRows']} safe labels; blocked",
+            "5. Human authority",
+            "M-01-M-06 deferred; timeout, conflict, or denial preserves the baseline",
             "#f6c85f",
+        ),
+        (
+            "6. Evidence and model gate",
+            f"{gate['generalizationSafeLabels']}/{gate['candidateRows']} safe labels; EXP-029 blocked; {model['defaultModel']} remains default",
+            "#ff7b7b",
         ),
     ]
     for index, (title, subtitle, color) in enumerate(nodes):
@@ -739,7 +759,7 @@ def render_figure_assets(data: dict) -> dict[str, Path]:
         elif row == 0:
             draw.text((x + 205, y + 215), "v", font=font(42, True), fill="#56d6d1")
     draw.rounded_rectangle((170, 790, 1630, 855), 14, outline="#ff7b7b", width=4)
-    draw.text((260, 804), "NO PATH MAY OVERWRITE AGENT 4 OR THE BASELINE", font=font(28, True), fill="#ffb5b5")
+    draw.text((210, 804), "NO RUNTIME, MEMORY, EVALUATION, OR MODEL PATH MAY OVERWRITE B0", font=font(28, True), fill="#ffb5b5")
     path = FIGURE_DIR / "human-judgment-architecture.png"
     image.save(path, format="PNG", optimize=False, compress_level=9)
     paths["architecture"] = path
@@ -775,7 +795,9 @@ def render_figure_assets(data: dict) -> dict[str, Path]:
         x = 70 + chart_index * 865
         draw.rounded_rectangle((x, 175, x + 790, 660), 18, fill=panel, outline=line, width=3)
         draw.text((x + 30, 205), title, font=font(28, True), fill=ink)
-        for index, ((label, value), color) in enumerate(zip(values, palette)):
+        for index, ((label, value), color) in enumerate(
+            zip(values, palette, strict=True)
+        ):
             y = 285 + index * 82
             draw.text((x + 30, y), label, font=font(20), fill=ink)
             draw.rounded_rectangle((x + 245, y + 2, x + 690, y + 29), 12, fill=bg, outline=line)
@@ -902,7 +924,12 @@ def add_picture_page(doc: Document, title: str, path: Path, caption: str) -> Non
     set_run_font(run, size=9, color=MUTED, italic=True)
 
 
-def add_cover(doc: Document, data: dict, revision: str) -> None:
+def add_cover(
+    doc: Document,
+    data: dict,
+    revision: str,
+    package_date: str,
+) -> None:
     for _ in range(4):
         p = doc.add_paragraph()
         p.paragraph_format.space_after = Pt(20)
@@ -926,9 +953,11 @@ def add_cover(doc: Document, data: dict, revision: str) -> None:
     meta = doc.add_paragraph()
     meta.alignment = WD_ALIGN_PARAGRAPH.CENTER
     meta.paragraph_format.space_after = Pt(22)
+    date_value = datetime.strptime(package_date, "%Y-%m-%d")
+    display_date = f"{date_value.day} {date_value.strftime('%B %Y')}"
     run = meta.add_run(
         "Prepared for supervisor review: Iris and Arnon\n"
-        "24 July 2026\n"
+        f"{display_date}\n"
         f"Source revision {revision[:12]}"
     )
     set_run_font(run, size=11, color=MUTED)
@@ -989,7 +1018,7 @@ def add_review_front_matter(doc: Document, data: dict, figures: dict[str, Path])
         doc,
         "Architecture and safety boundary",
         figures["architecture"],
-        "Figure R2. Human judgment surrounds the frozen baseline; no path overwrites Agent 4.",
+        "Figure R2. Legacy and unified paths meet at fail-closed parity; human, evidence, and model gates remain explicit.",
     )
     doc.add_page_break()
     add_picture_page(
@@ -1011,6 +1040,7 @@ def add_review_front_matter(doc: Document, data: dict, figures: dict[str, Path])
 def build(
     output_path: Path,
     source_revision: str | None = None,
+    package_date: str = DEFAULT_PACKAGE_DATE,
 ) -> Path:
     data = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
     revision = source_revision or data["sourceRevision"]
@@ -1022,7 +1052,7 @@ def build(
     figures = load_figure_assets(data)
     doc = Document()
     setup_document(doc, revision, data["generatedAt"])
-    add_cover(doc, data, revision)
+    add_cover(doc, data, revision, package_date)
     add_review_front_matter(doc, data, figures)
 
     for index, chapter in enumerate(CHAPTERS):
@@ -1074,13 +1104,13 @@ def main() -> int:
             return 1
         with tempfile.TemporaryDirectory(prefix="vego-thesis-docx-") as temp_dir:
             candidate = Path(temp_dir) / output.name
-            build(candidate, args.source_revision)
+            build(candidate, args.source_revision, args.package_date)
             if sha256_file(candidate) != sha256_file(output):
                 print(f"STALE: {output}")
                 return 1
         print(f"FRESH: {output}")
         return 0
-    result = build(output, args.source_revision)
+    result = build(output, args.source_revision, args.package_date)
     print(result)
     return 0
 

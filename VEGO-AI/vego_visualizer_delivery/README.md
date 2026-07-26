@@ -20,7 +20,7 @@ vego_visualizer_delivery/
 
 | Requirement | Notes |
 |-------------|-------|
-| **Python 3.9+** | Must be installed and on your PATH |
+| **Python 3.10+** | Must be installed and on your PATH |
 | **tkinter** | Bundled with Python on Windows & Linux. On macOS: `brew install python-tk@3.x` |
 | **Pillow** *(optional)* | Enables zoom/resize on PlantUML diagrams |
 | **Internet connection** | Diagrams are rendered via `plantuml.com` |

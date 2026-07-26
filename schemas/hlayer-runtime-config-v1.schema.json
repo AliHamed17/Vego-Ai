@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/hlayer-runtime-config-v1.schema.json",
+  "title": "HLayerRuntimeConfig-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "h_layer"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "h_layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "architecture_mode",
+        "contract_version",
+        "interaction_log_mode",
+        "interaction_log"
+      ],
+      "properties": {
+        "architecture_mode": {"enum": ["legacy", "unified", "parity"]},
+        "contract_version": {"const": "1.0"},
+        "interaction_log_mode": {
+          "enum": ["off", "metadata_only", "full_content"]
+        },
+        "interaction_log": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "retention_days",
+            "max_bytes",
+            "backups",
+            "redaction_enabled",
+            "full_content_local_only"
+          ],
+          "properties": {
+            "retention_days": {"type": "integer", "minimum": 1, "maximum": 365},
+            "max_bytes": {"type": "integer", "minimum": 1024},
+            "backups": {"type": "integer", "minimum": 1, "maximum": 20},
+            "redaction_enabled": {"const": true},
+            "full_content_local_only": {"const": true}
+          }
+        }
+      }
+    }
+  }
+}

@@ -27,9 +27,11 @@ This folder is for the scientific substance of the PhD work.
 | `h-layer/percolation-and-generalization-spec.md` | H-layer S7 memory storage, retrieval fallbacks, conflict resolution, and generalization boundaries. |
 | `h-layer/experiment-expansion-plan.md` | EXP-006..018 program: historical replay, provisional synthetic prototypes, parked evaluation, and planned conformance experiments. |
 | `h-layer/experiment-iteration-loop.md` | The run->analyze->enhance->rerun->compare improvement loop: protocol, metrics M-A/B/C (+future M-D accuracy), acceptance criteria, hypotheses. |
-| `h-layer/experiment-iteration-ledger.md` | Fourteen accepted iterations (001-014); 008-014 are reliability/contract/coherence snapshots. |
-| `h-layer/program-status-snapshot-v1.json` | Tracked manifest-derived status interface for Iteration 14, replay/conformance suites, EXP-005/012 gates, M-01..M-06, protected paths, and verification state. |
-| `thesis-evidence/` | Canonical B0-B5 thesis evidence ladder, EXP-019-027 preregistration, reviewer calibration, claim gates, chapter traceability, and risk register. |
+| `h-layer/experiment-iteration-ledger.md` | Fifteen accepted iterations (001-015); 008-015 are manifest-backed reliability, contract, coherence, parity, and security snapshots. |
+| `h-layer/program-status-snapshot-v1.json` | Tracked manifest-derived status interface for Iteration 15, replay/conformance suites, EXP-005/012 gates, M-01..M-06, protected-change authorization, and verification state. |
+| `hardening/` | Iteration 15 unified-runtime architecture, threat model, baseline/security/SBOM/release manifests, and verification runbook. |
+| `hardening/MODEL_EVALUATION_PROTOCOLS.md` | Proposed EXP-028 provenance and blocked EXP-029 frozen candidate-model comparison; `gpt-4o` remains default. |
+| `thesis-evidence/` | Canonical B0-B5 thesis evidence ladder, EXP-019-029 preregistration/model gates, reviewer calibration, claim gates, chapter traceability, and risk register. |
 | `h-layer/enhancement-plan-2026-07-12.md` | Comprehensive enhancement backlog from the 2026-07-12 verification sweep: Phase 1 (program overview, verify-all gate, consistency fixes, iteration-014 coherence repair) implemented; Phase 2/3 absorbed into the continuation plan. |
 | `continuation-plan-2026-07-24.md` | ACTIVE continuation plan after the evidence-ready thesis package: Phase 0 secure/commit, the human-gated label-campaign spine, parallel tracks (survey deadline, deferred enhancements, MediVARIA), thesis finalization trajectory. Read this for current sequencing. |
 | `h-layer/feedback-learning-rlhf-plan.md` | Gated H-layer feedback-learning research plan: offline Vector 1 proposal artifacts now; SFT/DPO only as separately authorized future work. |

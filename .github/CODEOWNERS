@@ -1,0 +1,12 @@
+# Advisory ownership. Independent approval remains a separate branch-rule gate.
+* @AliHamed17
+
+/VEGO-AI/framework/human_*.py @AliHamed17
+/VEGO-AI/framework/memory_*.py @AliHamed17
+/VEGO-AI/framework/hlayer_architecture.py @AliHamed17
+/VEGO-AI/framework/llm_client.py @AliHamed17
+/src/vego_hlayer/ @AliHamed17
+/schemas/ @AliHamed17
+/.github/workflows/ @AliHamed17
+/docs/research/hardening/ @AliHamed17
+/docs/research/thesis-evidence/ @AliHamed17

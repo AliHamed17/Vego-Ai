@@ -75,6 +75,9 @@ try {
     if ((await page.locator("#experiment-roadmap .exp").count()) !== 9) {
       failures.push(`${viewport.width}px: expected nine roadmap experiments`);
     }
+    if ((await page.locator("#model-protocols .protocol").count()) !== 2) {
+      failures.push(`${viewport.width}px: expected two model protocols`);
+    }
     if ((await page.locator("#rq-traceability .trace-row").count()) !== 7) {
       failures.push(`${viewport.width}px: expected seven RQ/hypothesis traceability rows`);
     }
@@ -139,6 +142,18 @@ try {
     failures.push("EXP-023 route did not cross-highlight B3");
   }
   await experimentRoute.close();
+
+  const modelRoute = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await modelRoute.goto(`${baseUrl}/VEGO-AI-Thesis-Baseline-Progress.html#EXP-029`, {
+    waitUntil: "networkidle",
+  });
+  if ((await modelRoute.locator('#model-protocols [data-id="EXP-029"]').getAttribute("aria-pressed")) !== "true") {
+    failures.push("direct #EXP-029 route failed");
+  }
+  if ((await modelRoute.locator('#baseline-steps [data-id="B0"]').getAttribute("class"))?.includes("is-related") !== true) {
+    failures.push("EXP-029 route did not cross-highlight B0");
+  }
+  await modelRoute.close();
 
   for (const entry of ["VEGO-AI-Research-Hub.html", "visualizations-gallery/index.html"]) {
     const page = await browser.newPage({ viewport: { width: 390, height: 844 } });

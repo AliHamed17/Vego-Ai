@@ -49,6 +49,21 @@ import json
 import logging
 from pathlib import Path
 
+try:
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+        require_cli_parity_success,
+    )
+except ImportError:  # pragma: no cover - package import fallback
+    from .hlayer_architecture import (  # type: ignore
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+        require_cli_parity_success,
+    )
+
 logger = logging.getLogger(__name__)
 
 _HERE = Path(__file__).resolve().parent
@@ -95,33 +110,21 @@ def validate_feedback(
     """
     Validate one feedback object. Returns a list of error strings ([] == valid).
 
-    Layer 1 — structural: JSON Schema (Draft-07) if `jsonschema` is installed;
-              otherwise a minimal required-field check.
+    Layer 1 — structural: mandatory JSON Schema (Draft-07).
     Layer 2 — business rule: any decision that is not a plain approval must carry
               a non-empty rationale.
     """
     errors: list[str] = []
 
     # Layer 1 — structural
-    try:
-        from jsonschema import Draft7Validator
-        schema = json.loads(Path(schema_path).read_text(encoding="utf-8"))
-        for e in sorted(Draft7Validator(schema).iter_errors(feedback),
-                        key=lambda x: list(x.path)):
-            loc = "/".join(str(p) for p in e.path) or "(root)"
-            errors.append(f"schema: {loc}: {e.message}")
-    except ImportError:
-        for req in ("feedback_id", "review_id", "review_signature",
-                    "expert_id", "timestamp", "human_decision"):
-            if req not in feedback:
-                errors.append(f"schema: missing required field '{req}'")
-        hd = feedback.get("human_decision")
-        if not isinstance(hd, dict):
-            errors.append("schema: human_decision must be an object")
-        else:
-            for req in ("decision_type", "confidence"):
-                if req not in hd:
-                    errors.append(f"schema: human_decision missing '{req}'")
+    from jsonschema import Draft7Validator
+
+    schema = json.loads(Path(schema_path).read_text(encoding="utf-8"))
+    for e in sorted(
+        Draft7Validator(schema).iter_errors(feedback), key=lambda x: list(x.path)
+    ):
+        loc = "/".join(str(p) for p in e.path) or "(root)"
+        errors.append(f"schema: {loc}: {e.message}")
 
     # Layer 2 — business rule: rationale required for non-approve decisions
     hd = feedback.get("human_decision") or {}
@@ -181,7 +184,13 @@ def _match(review_items: list[dict], feedback_items: list[dict]) -> tuple[list[d
     return items, report
 
 
-def attach_feedback(review_items: list[dict], feedback_items: list[dict]) -> list[dict]:
+def attach_feedback(
+    review_items: list[dict],
+    feedback_items: list[dict],
+    *,
+    architecture_mode: str = "legacy",
+    architecture_manifest: str | Path | None = None,
+) -> list[dict]:
     """
     Attach feedback to review items (by review_id, verifying review_signature).
 
@@ -191,7 +200,12 @@ def attach_feedback(review_items: list[dict], feedback_items: list[dict]) -> lis
     with no feedback keep status="pending".
     """
     items, _ = _match(review_items, feedback_items)
-    return items
+    return apply_stage_architecture(
+        "resolved",
+        items,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
+    ).output
 
 
 def report_feedback(review_items: list[dict], feedback_items: list[dict]) -> dict:
@@ -228,6 +242,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--out", required=True, help="output human_review_queue_resolved.jsonl")
     parser.add_argument("--schema", default=str(DEFAULT_FEEDBACK_SCHEMA),
                         help="human_feedback.schema.json (default: repo schemas/)")
+    add_architecture_arguments(parser)
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
@@ -247,9 +262,21 @@ def main(argv: list[str] | None = None) -> None:
         else:
             valid.append(fb)
 
-    items = attach_feedback(review_items, valid)
+    items = attach_feedback(
+        review_items,
+        valid,
+    )
     report = report_feedback(review_items, valid)
-    write_resolved_queue(items, args.out)
+    execution = publish_stage_output(
+        "resolved",
+        items,
+        output_path=args.out,
+        writer=write_resolved_queue,
+        architecture_mode=args.architecture_mode,
+        architecture_manifest=args.architecture_manifest,
+    )
+    require_cli_parity_success(execution)
+    items = execution.output
 
     print("\n=== Feedback attachment summary ===")
     print(f"review items     : {report['total_items']}")

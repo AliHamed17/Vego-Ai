@@ -1,0 +1,32 @@
+{
+  "binaryAudit": {
+    "evidence": "Tracked binaries are allowlisted and archive traversal/size checked.",
+    "status": "PASS"
+  },
+  "dependencyAudit": {
+    "details": {
+      "knownDirectExceptions": 0
+    },
+    "evidence": "Frozen Python and Node locks are mandatory; verify-source reruns pip-audit and npm audit.",
+    "status": "PASS"
+  },
+  "exceptions": [],
+  "inputHashes": {
+    "package-lock.json": "186f2bfecc4c4655ba4e12059c51b1abf993d5fd69a9cd9183328c898ca44c0e",
+    "pyproject.toml": "df543fefa2b8bf4939eed711fe9ae96d1ac2853512a26b012737c4b729523e4b",
+    "uv.lock": "ea82911194d8619b0f716d9493c5595c422227e76f5c30fdfa8ea195dbc1c72d"
+  },
+  "privacy": {
+    "evidence": "Interaction logs default to metadata_only; full_content is explicit opt-in and locally retained.",
+    "status": "PASS"
+  },
+  "schemaVersion": "SecurityPostureSnapshot-v1",
+  "secretScan": {
+    "evidence": "Clone-safe tree scan is enforced; history scan is a local release gate.",
+    "status": "PASS"
+  },
+  "staticAnalysis": {
+    "evidence": "Strict F/B/I/S/UP ratchet applies to the new hardening surface.",
+    "status": "PASS"
+  }
+}

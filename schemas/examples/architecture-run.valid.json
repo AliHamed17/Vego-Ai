@@ -1,0 +1,15 @@
+{
+  "contract": "ArchitectureRunManifest",
+  "run_id": "HLAYER-0123456789abcdef",
+  "stage": "comparison",
+  "architecture_mode": "parity",
+  "input_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "legacy_output_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "unified_output_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "published_output_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "parity_status": "match",
+  "normalization_rules": ["created_at", "generated_at", "run_id"],
+  "baseline_preserved": true,
+  "failure_state": null,
+  "schema_version": "1.0"
+}

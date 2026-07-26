@@ -44,7 +44,22 @@ try:  # reuse M3 retrieval and M1 helpers
     from human_review_queue import derive_domain_and_diagram
 except Exception:  # pragma: no cover
     from .human_judgment_memory import load_memory, search_memory  # type: ignore
-    from .human_review_queue import derive_domain_and_diagram      # type: ignore
+    from .human_review_queue import derive_domain_and_diagram  # type: ignore
+
+try:
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+        require_cli_parity_success,
+    )
+except ImportError:  # pragma: no cover - package import fallback
+    from .hlayer_architecture import (  # type: ignore
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+        require_cli_parity_success,
+    )
 
 logger = logging.getLogger(__name__)
 
@@ -227,8 +242,15 @@ def build_advice_items(
     return items
 
 
-def generate_report(items: list[dict], setting_id: str, provenance: dict) -> dict:
-    return {
+def generate_report(
+    items: list[dict],
+    setting_id: str,
+    provenance: dict,
+    *,
+    architecture_mode: str = "legacy",
+    architecture_manifest: str | Path | None = None,
+) -> dict:
+    report = {
         "schema_version": SCHEMA_VERSION,
         "setting_id": setting_id,
         "advice_mode": ADVICE_MODE,
@@ -236,6 +258,12 @@ def generate_report(items: list[dict], setting_id: str, provenance: dict) -> dic
         "provenance": provenance,
         "advice": items,
     }
+    return apply_stage_architecture(
+        "advice",
+        report,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
+    ).output
 
 
 def write_advice(report: dict, path: str | Path) -> int:
@@ -261,6 +289,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--memory", required=True, help="human_judgment_memory.jsonl")
     parser.add_argument("--out", required=True, help="output memory_advice.json")
     parser.add_argument("--setting", default=None, help="setting_id (default: derived from --out dir)")
+    add_architecture_arguments(parser)
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
@@ -279,8 +308,21 @@ def main(argv: list[str] | None = None) -> None:
     }
     items = build_advice_items(variability_classes, deviation_patterns, memory,
                                setting_id, provenance=provenance)
-    report = generate_report(items, setting_id, provenance)
-    write_advice(report, args.out)
+    report = generate_report(
+        items,
+        setting_id,
+        provenance,
+    )
+    execution = publish_stage_output(
+        "advice",
+        report,
+        output_path=args.out,
+        writer=write_advice,
+        architecture_mode=args.architecture_mode,
+        architecture_manifest=args.architecture_manifest,
+    )
+    require_cli_parity_success(execution)
+    report = execution.output
 
     by_strength: dict[str, int] = {}
     for it in items:

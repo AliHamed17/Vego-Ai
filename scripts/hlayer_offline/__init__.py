@@ -7,6 +7,9 @@ experiments; importing it cannot change baseline runtime behavior.
 
 from .contracts import (
     CONTRACT_SCHEMA_VERSION,
+    AdviceRecord,
+    ArchitectureRunManifest,
+    ComparisonRecord,
     CorrectionProposal,
     ExperimentRunManifest,
     FeedbackRecord,
@@ -28,6 +31,9 @@ from .suite import execute_suite
 
 __all__ = [
     "CONTRACT_SCHEMA_VERSION",
+    "AdviceRecord",
+    "ArchitectureRunManifest",
+    "ComparisonRecord",
     "CorrectionProposal",
     "ExperimentRunManifest",
     "FeedbackRecord",

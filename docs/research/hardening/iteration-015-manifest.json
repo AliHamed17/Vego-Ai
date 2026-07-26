@@ -1,0 +1,33 @@
+{
+  "claimBoundary": "Reliability and security evidence only. Accuracy, generalization, effort reduction, benchmark superiority, and clinical performance remain unproven.",
+  "date": "2026-07-25",
+  "decision": "KEEP",
+  "expectedEffect": "Improved compatibility, reproducibility, and fail-closed behavior; no change to classification or empirical performance.",
+  "generatedAt": "2026-07-25T12:00:01+00:00",
+  "guardrails": {
+    "accuracyClaimAllowed": false,
+    "agent4Changed": false,
+    "baselineOutputsChanged": false,
+    "classificationChanges": 0,
+    "exp005SafeLabels": 0
+  },
+  "hypothesis": "A versioned unified contract path can reproduce legacy M1-M4B-1 artifacts while strengthening security and provenance.",
+  "iteration": 15,
+  "iterationKind": "reliability_only",
+  "normalizedSha256": "52930728cff7c3152125713a6fa4a0ad69c04c74ad4de8884fc95b474c0b3f4b",
+  "results": {
+    "controlledComparisonRows": 27,
+    "controlledParity": "PASS",
+    "nodeDependencyAudit": "PASS",
+    "offlineTestsPassed": 46,
+    "pythonDependencyAudit": "PASS",
+    "scriptSubtestsPassed": 7,
+    "scriptTestsPassed": 113,
+    "securityAudit": "PASS",
+    "vegoTestsPassed": 113
+  },
+  "runId": "HLAYER-UNIFIED-HARDENING-V1",
+  "schemaVersion": "HLayerIterationManifest-v1",
+  "sourceRevision": "ace3baaf1d49225e7b8f763cb896caefeb4d3117",
+  "verdict": "NEUTRAL"
+}

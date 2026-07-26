@@ -7,19 +7,26 @@ existence and governance). This one checks *numeric consistency + frozen-state i
 so the sprawling EXP-001..005 / dashboard / evaluation-comparison reports cannot drift into
 contradicting each other before the thesis evidence is used.
 
-Read-only. No API/LLM. Exits non-zero if any present report violates an invariant.
+Read-only by default. No API/LLM. Exits non-zero if any present report violates
+an invariant. Pass ``--refresh`` to update ignored diagnostic snapshots.
 Missing (gitignored) reports are SKIPPED, not failed.
 
 Run:  python scripts/check_evidence_consistency.py
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VEGO = ROOT / "VEGO-AI"
+parser = argparse.ArgumentParser(description=__doc__)
+mode = parser.add_mutually_exclusive_group()
+mode.add_argument("--check", action="store_true", help="Read-only validation (default)")
+mode.add_argument("--refresh", action="store_true", help="Refresh ignored diagnostics")
+ARGS = parser.parse_args()
 
 PASS, FAIL, SKIP = "OK  ", "FAIL", "skip"
 results: list[tuple[str, str, str]] = []
@@ -172,18 +179,36 @@ print("-" * 60)
 print(f"{present - n_fail}/{present} present checks passed; "
       f"{sum(1 for s, _, _ in results if s == SKIP)} skipped (reports not generated).")
 if n_fail:
-    out_dir = ROOT / "reports" / "generated" / "evidence_consistency"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "latest.json").write_text(json.dumps({"status": "FAIL", "checks": report_items}, indent=2), encoding="utf-8")
-    md = ["# Evidence Consistency", "", "- Status: FAIL", ""]
-    md += [f"- [{item['status']}] {item['name']} {item['detail']}".rstrip() for item in report_items]
-    (out_dir / "latest.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    if ARGS.refresh:
+        out_dir = ROOT / "reports" / "generated" / "evidence_consistency"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "latest.json").write_text(
+            json.dumps({"status": "FAIL", "checks": report_items}, indent=2),
+            encoding="utf-8",
+        )
+        md = ["# Evidence Consistency", "", "- Status: FAIL", ""]
+        md += [
+            f"- [{item['status']}] {item['name']} {item['detail']}".rstrip()
+            for item in report_items
+        ]
+        (out_dir / "latest.md").write_text(
+            "\n".join(md) + "\n", encoding="utf-8"
+        )
     print("EVIDENCE CONSISTENCY: FAIL")
     sys.exit(1)
-out_dir = ROOT / "reports" / "generated" / "evidence_consistency"
-out_dir.mkdir(parents=True, exist_ok=True)
-(out_dir / "latest.json").write_text(json.dumps({"status": "PASS", "checks": report_items}, indent=2), encoding="utf-8")
-md = ["# Evidence Consistency", "", "- Status: PASS", ""]
-md += [f"- [{item['status']}] {item['name']} {item['detail']}".rstrip() for item in report_items]
-(out_dir / "latest.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+if ARGS.refresh:
+    out_dir = ROOT / "reports" / "generated" / "evidence_consistency"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "latest.json").write_text(
+        json.dumps({"status": "PASS", "checks": report_items}, indent=2),
+        encoding="utf-8",
+    )
+    md = ["# Evidence Consistency", "", "- Status: PASS", ""]
+    md += [
+        f"- [{item['status']}] {item['name']} {item['detail']}".rstrip()
+        for item in report_items
+    ]
+    (out_dir / "latest.md").write_text(
+        "\n".join(md) + "\n", encoding="utf-8"
+    )
 print("EVIDENCE CONSISTENCY: PASS")

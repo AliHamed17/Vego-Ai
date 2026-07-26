@@ -62,7 +62,28 @@ def write_trusted_manifest(path: Path, source: Path, record_ids: list[str]) -> N
 def test_current_prototype_records_are_ineligible_and_cli_exits_zero_when_blocked(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
-    source = REPO / "reports/generated/hlayer_prototype_feedback.json"
+    source = tmp_path / "prototype-feedback.json"
+    source.write_text(
+        json.dumps(
+            [
+                {
+                    "setting": "cd_ch",
+                    "subject": "guideline_G5",
+                    "decision": "Reject",
+                    "detail": "",
+                    "rationale": "Synthetic mechanism fixture; not expert evidence.",
+                },
+                {
+                    "setting": "cd_ch",
+                    "subject": "template_advisor",
+                    "decision": "Approve",
+                    "detail": "{construct_A}",
+                    "rationale": "Synthetic mechanism fixture; not expert evidence.",
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
     records = MODULE.load_feedback(source)
     package = MODULE.build_package(records, source_file_sha256=MODULE.sha256_file(source))
 

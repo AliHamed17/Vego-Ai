@@ -11,6 +11,7 @@ def test_isolated_validator_passes_and_preserves_protected_tree() -> None:
     result = validate()
     assert result["passed"] is True
     assert result["checks"]["all_eight_contracts_cataloged"]
+    assert result["checks"]["canonical_runtime_contracts_cataloged"]
     assert result["checks"]["e15_always_parked"]
     assert result["checks"]["protected_runtime_tree_unchanged"]
 

@@ -1,12 +1,10 @@
 """
 Minimal tests for the Human Feedback Manager (Milestone 2).
 
-Runs with no third-party dependency:
+Runs with the locked project environment:
     python tests/test_human_feedback_manager.py
 Also discoverable by pytest:
     pytest tests/test_human_feedback_manager.py
-
-Schema-validation assertions degrade gracefully if `jsonschema` is absent.
 """
 
 from __future__ import annotations
@@ -52,11 +50,11 @@ def _item(review_id="HRQ-ucd_ch-P4", sig="e7276994de70f031", status="pending"):
 
 def _feedback(review_id="HRQ-ucd_ch-P4", sig="e7276994de70f031",
               decision_type="valid_alternative", rationale="because it is valid",
-              fid="HF-1"):
+              fid="HF-1", notes=None):
     hd = {"decision_type": decision_type, "confidence": "High"}
     if rationale is not None:
         hd["rationale"] = rationale
-    return {
+    feedback = {
         "feedback_id": fid,
         "review_id": review_id,
         "review_signature": sig,
@@ -64,6 +62,9 @@ def _feedback(review_id="HRQ-ucd_ch-P4", sig="e7276994de70f031",
         "timestamp": "2026-06-11T12:00:00Z",
         "human_decision": hd,
     }
+    if notes is not None:
+        feedback["notes"] = notes
+    return feedback
 
 
 # ---------------------------------------------------------------------------
@@ -105,6 +106,38 @@ def test_attach_by_id_and_matching_signature():
     assert it["human_feedback"]["human_decision"]["decision_type"] == "valid_alternative"
 
 
+def test_plain_approval_round_trips_every_architecture_mode():
+    feedback = _feedback(
+        decision_type="approve_ai_decision",
+        rationale=None,
+        fid="HF-plain-approval",
+    )
+    for mode in ("legacy", "unified", "parity"):
+        items = hfm.attach_feedback(
+            [_item()],
+            [feedback],
+            architecture_mode=mode,
+        )
+        assert items[0]["status"] == "resolved"
+        assert items[0]["human_feedback"] == feedback
+
+
+def test_independent_notes_round_trip_every_architecture_mode():
+    feedback = _feedback(
+        rationale="Decision-specific rationale.",
+        notes="Independent reviewer note.",
+        fid="HF-independent-notes",
+    )
+    for mode in ("legacy", "unified", "parity"):
+        items = hfm.attach_feedback(
+            [_item()],
+            [feedback],
+            architecture_mode=mode,
+        )
+        assert items[0]["status"] == "resolved"
+        assert items[0]["human_feedback"] == feedback
+
+
 def test_signature_mismatch_not_applied():
     items = hfm.attach_feedback([_item()], [_feedback(sig="0000000000000000")])
     it = items[0]
@@ -139,11 +172,8 @@ def test_attach_does_not_mutate_input():
 # ---------------------------------------------------------------------------
 
 def test_resolved_items_validate_against_item_schema():
-    try:
-        from jsonschema import Draft7Validator
-    except ImportError:
-        print("    (skipped: jsonschema not installed)")
-        return
+    from jsonschema import Draft7Validator
+
     schema = json.loads(ITEM_SCHEMA.read_text(encoding="utf-8"))
     validator = Draft7Validator(schema)
     items = hfm.attach_feedback(

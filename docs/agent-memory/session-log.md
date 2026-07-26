@@ -2,134 +2,6 @@
 
 Chronological prompt history for Codex and Claude.
 
-## 2026-07-11 00:09 +03:00 - Codex - Finalize trusted-export and atomic publication gates
-
-- Request: Close adversarial review findings in the offline feedback flow.
-- Actions taken:
-  - Required a separately validated manifest binding the exact feedback export hash and eligible record IDs.
-  - Added full-package staging, rollback restoration, and preservation of rollback backups when restoration itself fails.
-  - Added regression tests for missing/invalid trust manifests, direct aliases, single promotion failure, and double rollback failure.
-  - Documented the non-authorizing trusted-export manifest shape.
-- Files changed:
-  - scripts/feedback_generalizer.py and scripts/tests/test_feedback_generalizer.py
-  - docs/research/h-layer/feedback-learning-rlhf-plan.md, prompt requirements/architecture, and trusted-feedback-export-manifest.template.json
-  - shared handoff, decisions, issues, current-state, and status surfaces
-- Commands/checks:
-  - python -m pytest scripts/tests/test_feedback_generalizer.py -q -> 16 passed
-  - python -m ruff check targeted generalizer files -> PASS
-  - adversarial independent re-review -> no remaining P0/P1
-  - program/offline/evidence validators -> PASS
-- Status: completed
-- Next steps: A human-governed trusted-feedback export validator/approval must produce the companion manifest before any record can enter offline synthesis; M-05 still blocks runtime delivery.
-
-## 2026-07-11 13:28 +03:00 - Codex - H-Layer Iteration 11 and Conforming Generalizer Implementation
-
-- Request: do extensive plan to continue
-- Actions taken:
-  - Hardened hlayer-prototype-scaffold.py override routing to prevent ordinary feedback memory pollution.
-  - Created and fully verified scripts/feedback_generalizer.py against the offline conformance unit test suite.
-  - Executed run-hlayer-iteration.ps1 to snap-shot and promote accepted Iteration 11.
-- Files changed:
-  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py
-  - scripts/feedback_generalizer.py
-  - docs/research/h-layer/experiment-iteration-ledger.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/resource-memory.md
-- Commands/checks:
-  - No commands/checks recorded
-- Status: completed
-- Next steps: Unknown
-
-## 2026-07-11 15:36 +03:00 - Codex - Supervisor Meeting Package Synchronization with Iteration 12
-
-- Request: do extensive plan to continue
-- Actions taken:
-  - Updated supervisor pre-reads, follow-up annexes, and decision register to reference Iteration 12 and the feedback_generalizer.py script.
-  - Re-executed build_hlayer_decision_snapshot.py, run_hlayer_conformance_suite.py, and run-hlayer-iteration.ps1 to generate Iteration 12.
-- Files changed:
-  - docs/research/meetings/2026-07-15-supervisor-executive-pre-read.md
-  - docs/research/meetings/2026-07-15-supervisor-follow-up-annex.md
-  - docs/research/meetings/2026-07-15-supervisor-decision-register.md
-  - docs/research/meetings/2026-07-15-full-progress-presentation-manifest.md
-  - docs/research/h-layer/experiment-iteration-ledger.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/codex-nextstep-handoff-prompt.md
-- Commands/checks:
-  - No commands/checks recorded
-- Status: completed
-- Next steps: Unknown
-
-## 2026-07-11 15:47 +03:00 - Codex - Ethics and IRB Data Sensitivity Audit
-
-- Request: make with huge plan an continue
-- Actions taken:
-  - Completed ethics-irb checklist using paper PDF and meeting transcript details.
-  - Updated artifact-audit log metadata pass status.
-  - Resolved ISS-004 in issues.md.
-  - Synchronized references in codex-nextstep-handoff-prompt.md.
-- Files changed:
-  - docs/research/ethics-irb.md
-  - docs/research/artifact-audit.md
-  - docs/agent-memory/issues.md
-  - docs/agent-memory/codex-nextstep-handoff-prompt.md
-  - docs/PROGRESS_TRACKER.md
-- Commands/checks:
-  - No commands/checks recorded
-- Status: completed
-- Next steps: Unknown
-
-## 2026-07-11 15:51 +03:00 - Codex - H-Layer Replay and Protocol References Updates
-
-- Request: make with huge plan an continue
-- Actions taken:
-  - Updated experiment-expansion-plan.md, experiment-iteration-loop.md, and supervisor-demo-runbook.md to reference Iteration 12.
-- Files changed:
-  - docs/research/h-layer/experiment-expansion-plan.md
-  - docs/research/h-layer/experiment-iteration-loop.md
-  - docs/research/h-layer/supervisor-demo-runbook.md
-- Commands/checks:
-  - No commands/checks recorded
-- Status: completed
-- Next steps: Unknown
-
-## 2026-07-11 15:56 +03:00 - Codex - Supervisor Meeting Preparation Plan Authoring
-
-- Request: do extensive plan
-- Actions taken:
-  - Created 2026-07-15-supervisor-meeting-preparation-plan.md.
-- Files changed:
-  - docs/research/meetings/2026-07-15-supervisor-meeting-preparation-plan.md
-- Commands/checks:
-  - No commands/checks recorded
-- Status: completed
-- Next steps: Unknown
-
-## 2026-07-11 16:00 +03:00 - Codex - Commit Feature branch changes
-
-- Request: do extensive plan to continue
-- Actions taken:
-  - Staged and committed all pending modifications and additions to the active feature branch agent/publish-hlayer-and-supervisor-package.
-- Files changed:
-  - No file changes recorded
-- Commands/checks:
-  - No commands/checks recorded
-- Status: completed
-- Next steps: Unknown
-
-## 2026-07-11 21:24 +03:00 - Gemini - Updated Codex Handoff Prompt
-
-- Request: give extensive prompt to codex for nextstep
-- Actions taken:
-  - Updated docs/agent-memory/codex-nextstep-handoff-prompt.md with detailed state, checks, Task A/B/C/D, and finish rules
-- Files changed:
-  - docs/agent-memory/codex-nextstep-handoff-prompt.md
-- Commands/checks:
-  - No commands/checks recorded
-- Status: completed
-- Next steps: Unknown
-
 ## 2026-07-14 12:38 +03:00 - Codex - Research Master Plan Package
 
 - Request: Create a complete evidence-driven VEGO-AI research, experiment, evaluation, visualization, enhancement, thesis, risk, reproducibility, timeline, and supervisor-decision plan without implementing feature code.
@@ -306,3 +178,252 @@ Chronological prompt history for Codex and Claude.
   - offline HTML browser smoke and repository privacy/protected-path checks -> PASS
 - Status: Locally complete; PR publication and green-check merge pending.
 - Next steps: Push PR #8, wait for all checks, squash-merge when green, then begin supervisor approval and independent reviewer calibration.
+
+## 2026-07-25 12:59 +03:00 - Fable (Claude) - Publish unified-runtime security-hardening branch to main
+
+- Request: Create PR for session changes; user directive: extensive enhancements, cyber/model/infra checks, good baseline, unified architecture, PR and merge to main.
+- Actions taken:
+  - Confirmed PR #8 (thesis evidence program + EXP-019..027 package) was squash-merged to main by the concurrent workflow
+  - Committed the settled final wave on agent/unified-runtime-security-hardening: iteration-015 hardening manifests, baseline lock v2, release manifest v3, CycloneDX SBOM, security posture snapshot, 2026-07-25 review DOCX, regenerated evidence snapshot/baseline/traceability, refreshed figures/hub/gallery (c52cce9)
+  - Regenerated the review-package manifest from the committed tree so the sourceTreeDirty=false schema gate holds (a591b1d)
+  - Security-bypass portion of the directive remains declined; SBOM/security-posture/privacy-scan cover the cyber-check ask within the rules
+- Files changed:
+  - docs/research/hardening/ (5 new manifests incl. sbom.cdx.json)
+  - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
+  - docs/research/thesis-evidence/ (snapshot, baseline, traceability, review manifest)
+  - thesis/figures/evidence-ready/, VEGO-AI-Research-Hub.html, VEGO-AI-Thesis-Baseline-Progress.html, visualizations-gallery/index.html
+- Commands/checks:
+  - git commit c52cce9 + a591b1d on agent/unified-runtime-security-hardening
+  - build_thesis_evidence_package.py + build_thesis_review_manifest.py (clean-tree regen)
+  - verify-hlayer-all full gate + push + PR + merge (after this entry)
+- Status: completed
+- Next steps: Push the branch, open the PR, merge to main (merge commit to preserve provenance-referenced revisions), close superseded PR #9, sync local main.
+
+## 2026-07-25 16:08 +03:00 - Codex - Unified runtime, security hardening, and thesis release
+
+- Request: Complete the unified runtime, cybersecurity, baseline, model, infrastructure, thesis, PR, and governance-gated merge plan.
+- Actions taken:
+  - Implemented canonical unified H-layer contracts, legacy/unified/parity modes, and fail-closed parity publication.
+  - Hardened dependency locking, credential/log privacy, output-path safety, archive scanning, provenance, and GitHub CI.
+  - Reconciled Iteration 15 as NEUTRAL reliability-only while preserving EXP-005 at 0/24 and M4B-1 at 0/27 changes.
+  - Built and visually verified the 91-page thesis review package and offline evidence view.
+  - Addressed all identified automated PR review findings without changing Agent 1-4 or baseline outputs.
+- Files changed:
+  - src/vego_hlayer/**
+  - VEGO-AI/framework human-review M1-M4B-1 files only
+  - scripts/** hardening, validation, manifest, and document tooling
+  - docs/research/** and docs/agent-memory/**
+  - thesis/**, VEGO-AI-Thesis-Baseline-Progress.html, .github/workflows/**
+- Commands/checks:
+  - 105 VEGO-AI tests passed
+  - 82 research-infrastructure tests plus 7 subtests passed
+  - 39 offline H-layer tests passed
+  - 18/18 evidence guard passed
+  - 91-page PDF rendered and inspected with zero structural errors
+  - security, privacy, dependency, browser, document, and provenance checks passed
+- Status: implementation-complete; publication pending final CI and human governance gates
+- Next steps: Push PR #10, resolve review threads, wait for CI, then obtain one independent human approval and plan-enabled main protection before squash merge.
+
+## 2026-07-25 22:17 +03:00 - Codex - Unified runtime final review and release hardening
+
+- Request: Continue the unified runtime, cybersecurity, baseline, model, infrastructure, thesis, PR, and merge workflow without bypassing human or repository gates.
+- Actions taken:
+  - Closed four exact-head review findings in logging privacy, retention, nested validation, and authority documentation.
+  - Added regression tests and reconciled the final verified inventory to 108 VEGO-AI, 92 research plus 7 subtests, and 41 offline H-layer tests.
+  - Regenerated the canonical HTML, DOCX, PDF, QA, portable manifests, and byte-identical share package.
+  - Preserved EXP-005 at 0/24, EXP-012 not computable, M4B-1 at 0/27 changes, Agent 4, baseline outputs, and legacy default behavior.
+- Files changed:
+  - VEGO-AI/framework/llm_client.py
+  - src/vego_hlayer/adapters.py
+  - tests and protected-change authorization
+  - docs/research/h-layer/program-status-snapshot-v1.json
+  - thesis evidence HTML, DOCX, manifests, and appendix
+- Commands/checks:
+  - Focused pytest and Ruff checks passed.
+  - verify-release.ps1 -Check passed.
+  - PDF render inspection passed: 91 pages, 23 sheets, zero errors.
+  - GitHub exact-head review follow-up pending after push.
+- Status: completed_with_external_merge_gates_pending
+- Next steps: Push the final head, resolve review threads, request a fresh exact-head review, wait for green CI, then merge only after branch protection and one separate collaborator approval are confirmed.
+
+## 2026-07-25 22:53 +03:00 - Codex - Close exact-head unified runtime review gaps
+
+- Request: Continue PR #10 hardening, repair remaining review findings, rebuild and verify the thesis package, and merge only if every governance gate passes.
+- Actions taken:
+  - Made artifact and manifest publication transactional with rollback and no stale official manifest
+  - Made parity type-safe through canonical JSON comparison
+  - Enumerated historical archive tree entries so renamed ZIP-family blobs remain auditable
+  - Regenerated source-bound HTML, figures, DOCX, PDF, QA, hardening manifest, and portable package provenance
+  - Passed the complete controlled, source, security, browser, document, and release gates
+  - Kept EXP-005 at 0/24, M4B-1 at 0/27 changes, Agent 4 unchanged, and merge governance unbypassed
+- Files changed:
+  - VEGO-AI/framework/hlayer_architecture.py and focused regression test
+  - src/vego_hlayer/runtime.py and offline parity regression
+  - scripts/security_audit.py and history regression
+  - configs/protected-change-authorization-v1.json
+  - thesis evidence HTML, figures, DOCX, and manifests
+  - docs/agent-memory current state, progress, issues, session and revert logs
+- Commands/checks:
+  - 33 focused regressions passed
+  - 108 VEGO-AI tests passed
+  - 92 research tests plus 7 subtests passed
+  - 41 offline H-layer tests passed
+  - 18/18 evidence checks passed
+  - verify-release.ps1 -Check passed
+  - 91-page PDF and 23 QA sheets passed with zero structural errors
+- Status: implementation and local verification complete; PR publication pending exact-head review and governance gates
+- Next steps: Push the final commits to PR #10, resolve and rerun exact-head review, wait for CI, then merge only after enforceable main protection and one separate collaborator approval are confirmed.
+
+## 2026-07-25 23:17 +03:00 - Codex - Close final PR review gaps and republish verified thesis package
+
+- Request: Continue unified runtime security hardening, fix all remaining review findings, verify the full release, and publish through PR #10 without bypassing governance gates.
+- Actions taken:
+  - Replaced predictable atomic temporary output with exclusive system-created temporary files and durable replacement.
+  - Rejected malformed resolved-feedback payloads before canonical adaptation.
+  - Added bounded recursive scanning of nested archives and tests for nested secrets and depth limits.
+  - Rebuilt the canonical thesis evidence snapshot, HTML, DOCX, local PDF, QA report, portable release manifest, and review provenance.
+  - Passed controlled parity, evidence, security, dependency, browser, document, and all test inventories.
+- Files changed:
+  - src/vego_hlayer/io_safety.py
+  - src/vego_hlayer/adapters.py
+  - scripts/security_audit.py
+  - scripts/tests/test_security_audit.py
+  - tests/hlayer_offline/test_io_safety.py
+  - tests/hlayer_offline/test_unified_runtime.py
+  - docs/research/thesis-evidence/*
+  - docs/research/hardening/release-manifest-v3.json
+  - VEGO-AI-Thesis-Baseline-Progress.html
+  - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
+- Commands/checks:
+  - uv run python -m pytest VEGO-AI/tests -q: 108 passed
+  - uv run python -m pytest scripts/tests -q: 92 passed plus 7 subtests
+  - uv run python -m pytest tests/hlayer_offline -q: 41 passed
+  - .\scripts\verify-release.ps1 -Check: PASS
+  - PDF structural QA: 91 pages, 23 sheets, zero errors
+- Status: implementation complete; publication gates pending
+- Next steps: Push exact head to PR #10, resolve the three review threads, request exact-head automated review, then merge only after green exact-head CI, enforceable branch protection, and one separate collaborator approval.
+
+## 2026-07-25 23:35 +03:00 - Codex - Bind external authorization trust and transactional CLI publication
+
+- Request: Continue PR #10 review hardening until the exact head is clean and merge gates can be audited.
+- Actions taken:
+  - Bound protected-change authorization to an externally stored SHA-256 in local Git configuration and a GitHub Actions repository variable.
+  - Made authorization self-edits fail closed and added negative tests.
+  - Made the standalone unified-runtime CLI stage, reserve, publish, and roll back the artifact/manifest pair transactionally.
+  - Made the targeted CLI test import-independent.
+  - Rebuilt and re-rendered the thesis package from the new source revision; 91-page PDF QA passed with zero errors.
+- Files changed:
+  - .github/workflows/supervisor-package.yml
+  - scripts/check_hlayer_change_authorization.py
+  - scripts/run_hlayer_architecture.py
+  - scripts/tests/test_change_authorization.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - docs/research/thesis-evidence/*
+  - docs/research/hardening/release-manifest-v3.json
+  - VEGO-AI-Thesis-Baseline-Progress.html
+  - thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-25.docx
+- Commands/checks:
+  - Focused authorization and CLI tests: 7 passed
+  - Ruff focused gate: PASS
+  - Protected-change authorization gate: PASS from external SHA-256
+  - PDF structural QA: 91 pages, 23 sheets, zero errors
+- Status: implementation complete; final exact-head release verification and GitHub review pending
+- Next steps: Run the full clean release gate, push the exact head, resolve all five review threads, request a fresh automated review, and merge only after exact-head CI, protection, and independent approval gates pass.
+
+## 2026-07-25 23:50 +03:00 - Codex - Repair clone-safe authorization integration tests
+
+- Request: Continue PR #10 until exact-head local and GitHub CI gates are green.
+- Actions taken:
+  - Diagnosed all four Linux Python matrix failures as missing external trust injection in two negative subprocess integration tests.
+  - Added a test-only environment helper that passes the portable authorization hash to those subprocesses without weakening the production gate.
+  - Verified the complete 92-test research suite plus 7 subtests with the developer local trust setting removed.
+  - Refreshed the portable release manifest source-tree hash.
+- Files changed:
+  - scripts/tests/test_hlayer_hardening.py
+  - docs/research/hardening/release-manifest-v3.json
+- Commands/checks:
+  - uv run python -m pytest scripts/tests -q with local trust unset: 92 passed plus 7 subtests
+  - build_hardening_manifests.py --check --require-controlled: PASS
+- Status: CI regression fixed locally; exact-head release verification and rerun pending
+- Next steps: Run verify-release on the final clean head, push, wait for exact-head CI, request exact-head review, then audit independent approval and branch protection before merge.
+
+## 2026-07-26 00:31 +03:00 - Codex - Exact-head security review and release verification
+
+- Request: Continue unified runtime, security, evidence, package, PR, and merge work without bypassing governance gates.
+- Actions taken:
+  - Fixed newline-safe Git path parsing for protected-change and security scans.
+  - Added bounded all-history blob secret inspection including deleted binary files.
+  - Added structured validation for malformed ai_decision and human_decision values.
+  - Reconciled Iteration 15 to 108 VEGO tests, 96 research tests plus 7 subtests, and 41 offline tests.
+  - Rebuilt the deterministic thesis HTML/DOCX/PDF package and verified all 91 PDF pages.
+  - Ran the clean exact-head release gate successfully.
+- Files changed:
+  - scripts/security_audit.py
+  - scripts/check_hlayer_change_authorization.py
+  - src/vego_hlayer/adapters.py
+  - scripts/tests/
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Commands/checks:
+  - python -m pytest targeted security/authorization/architecture tests: 16 passed
+  - scripts/verify-release.ps1 -Check: PASS
+  - PDF structural QA: 91 pages, 23 sheets, 0 errors
+- Status: completed; publication governance pending
+- Next steps: Push exact head, resolve review threads, obtain fresh exact-head review and green CI, then wait for enforceable main protection and one separate collaborator approval before squash merge.
+
+## 2026-07-26 01:00 +03:00 - Codex - Close final validation and provenance review findings
+
+- Request: Continue PR #10 through exact-head validation, publication, review, and merge gates.
+- Actions taken:
+  - Rejected malformed memory_matches before parity serialization
+  - Made protected-change base resolution clone-safe without weakening explicit invalid-base failure
+  - Converted missing and malformed runtime configuration into structured no-publication errors
+  - Corrected the final verified inventory to 108 VEGO tests, 102 research tests plus 7 subtests, and 41 offline tests
+  - Rebuilt and visually verified the 91-page thesis package with evidence gates intact
+- Files changed:
+  - src/vego_hlayer/adapters.py
+  - scripts/run_hlayer_architecture.py
+  - scripts/check_hlayer_change_authorization.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - scripts/tests/test_change_authorization.py
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Commands/checks:
+  - Focused validation tests: 16 passed
+  - scripts/verify-release.ps1 -Check: PASS
+  - Evidence consistency: 18/18
+  - Controlled parity: 27 rows, 0 classification changes
+  - PDF QA: 91 pages, 23 sheets, 0 errors
+- Status: implementation and local verification complete; GitHub governance pending
+- Next steps: Push exact head, resolve all review threads, request exact-head review, wait for exact-head CI, and merge only if branch protection and independent approval are enforced and satisfied.
+
+## 2026-07-26 01:13 +03:00 - Codex - Address exact-head envelope and archive review findings
+
+- Request: Continue PR #10 after fresh exact-head review found two additional security and validation edge cases.
+- Actions taken:
+  - Validated complete advice and comparison envelopes, including empty-record artifacts
+  - Detected ZIP payloads by magic bytes regardless of filename in current and historical scans
+  - Added three regression cases and reconciled the verified research inventory to 105 tests plus 7 subtests
+  - Rebuilt the thesis package and reverified all 91 PDF pages
+- Files changed:
+  - src/vego_hlayer/adapters.py
+  - scripts/security_audit.py
+  - scripts/tests/test_hlayer_architecture_cli.py
+  - scripts/tests/test_security_audit.py
+  - docs/research/h-layer/
+  - docs/research/hardening/
+  - docs/research/thesis-evidence/
+  - thesis/
+  - VEGO-AI-Thesis-Baseline-Progress.html
+- Commands/checks:
+  - Focused architecture and security regressions: 20 passed
+  - Controlled parity: 27 rows, 0 classification changes
+  - PDF QA: 91 pages, 23 sheets, 0 errors
+- Status: review fixes and package regeneration complete; final exact-head verification pending
+- Next steps: Run the full clean release gate, push exact head, resolve all review threads, request a fresh review, and audit CI, protection, and independent approval before merge.

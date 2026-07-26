@@ -4,11 +4,13 @@
 *.py text eol=lf
 *.ps1 text eol=crlf
 *.json text eol=lf
+*.toml text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
 *.txt text eol=lf
 *.html text eol=lf
 *.mmd text eol=lf
+uv.lock text eol=lf
 
 *.pdf binary
 *.docx binary

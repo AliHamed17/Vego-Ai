@@ -6,6 +6,7 @@ import csv
 import glob
 import json
 import math
+import os
 import re
 import sys
 from pathlib import Path
@@ -19,8 +20,15 @@ from hlayer_harness import (
     write_json,
 )
 
-EVAL = REPO / "VEGO-AI" / "eval_output"
-RUN = REPO / "VEGO-AI" / "runs" / "20260614-122150" / "human"
+EVAL = Path(
+    os.environ.get("HLAYER_EVAL_OUTPUT_ROOT", REPO / "VEGO-AI" / "eval_output")
+).resolve()
+RUN = Path(
+    os.environ.get(
+        "HLAYER_RUN_HUMAN_ROOT",
+        REPO / "VEGO-AI" / "runs" / "20260614-122150" / "human",
+    )
+).resolve()
 OUT = experiment_output_dir("exp008")
 SETTINGS = ("cd_ch", "cd_pw", "ucd_ch", "ucd_pw")
 UNIFORM_CAPS = (10, 20, 30, 35, 40)
@@ -76,7 +84,7 @@ def mine_setting(setting: str) -> tuple[list[dict], dict, set[Path]]:
         raise RuntimeError(f"No guideline versions found for {setting}")
 
     churn: dict[str, dict] = {}
-    for previous, current in zip(versions, versions[1:]):
+    for previous, current in zip(versions, versions[1:], strict=False):
         for guideline_id in sorted(set(current) - set(previous), key=natural_key):
             churn.setdefault(guideline_id, {"revisions": 0, "added_late": 0, "removed": 0})[
                 "added_late"

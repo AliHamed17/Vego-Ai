@@ -30,9 +30,9 @@ labels have been supplied.
 
 ## Supervisor-review outputs
 
-- `output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx` is the
+- `output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-<package-date>.docx` is the
   combined, evidence-gated review draft.
-- `../output/pdf/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.pdf` is the
+- `../output/pdf/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-<package-date>.pdf` is the
   rendered review copy (kept local/ignored).
 - `../VEGO-AI-Thesis-Baseline-Progress.html` is the self-contained interactive
   B0-B5 progress and experiment explainer.
@@ -40,11 +40,14 @@ labels have been supplied.
 Build and verify the review package with:
 
 ```powershell
-python scripts/build_thesis_review_document.py
+$packageDate = "2026-07-25"
+python scripts/build_thesis_review_document.py --package-date $packageDate
 python scripts/validate_thesis_review_document.py `
-  thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.docx `
-  --pdf output/pdf/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-2026-07-24.pdf
-python scripts/build_thesis_review_manifest.py --check
+  "thesis/output/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-$packageDate.docx" `
+  --pdf "output/pdf/VEGO-AI-MSc-Thesis-Evidence-Ready-Draft-$packageDate.pdf"
+python scripts/build_thesis_review_manifest.py `
+  --package-date $packageDate `
+  --check
 ```
 
 Refresh the reviewed figure assets only when their canonical data or renderer

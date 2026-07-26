@@ -1,2 +1,4 @@
-openai>=1.30.0
-chardet>=5.0.0
+chardet==7.4.3
+jsonschema==4.26.0
+openai==1.109.1
+tomli==2.2.1; python_version < '3.11'

@@ -49,6 +49,21 @@ import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
+try:
+    from hlayer_architecture import (
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+        require_cli_parity_success,
+    )
+except ImportError:  # pragma: no cover - package import fallback
+    from .hlayer_architecture import (  # type: ignore
+        add_architecture_arguments,
+        apply_stage_architecture,
+        publish_stage_output,
+        require_cli_parity_success,
+    )
+
 logger = logging.getLogger(__name__)
 
 SCHEMA_VERSION = "1.0.0"
@@ -103,7 +118,7 @@ def _evaluation_leakage_status(used_ids: list[str], memory_index: dict[str, dict
                                setting_id: str, pattern_id: str) -> str:
     if not used_ids:
         return "none"
-    saw_same_setting = saw_cross = saw_known = False
+    saw_same_setting = saw_cross = False
     for mid in used_ids:
         mem = memory_index.get(mid)
         if not mem:
@@ -112,7 +127,6 @@ def _evaluation_leakage_status(used_ids: list[str], memory_index: dict[str, dict
         s, p = prov.get("source_setting"), prov.get("source_pattern_id")
         if s is None:
             continue
-        saw_known = True
         if s == setting_id and p == pattern_id:
             return "same_pattern_memory_used"
         if s == setting_id:
@@ -253,8 +267,15 @@ def build_comparison_items(variability_classes: dict, memory_advice: dict,
     return items
 
 
-def generate_report(items: list[dict], setting_id: str, provenance: dict) -> dict:
-    return {
+def generate_report(
+    items: list[dict],
+    setting_id: str,
+    provenance: dict,
+    *,
+    architecture_mode: str = "legacy",
+    architecture_manifest: str | Path | None = None,
+) -> dict:
+    report = {
         "schema_version": SCHEMA_VERSION,
         "setting_id": setting_id,
         "mode": MODE,
@@ -264,6 +285,12 @@ def generate_report(items: list[dict], setting_id: str, provenance: dict) -> dic
         "provenance": provenance,
         "comparisons": items,
     }
+    return apply_stage_architecture(
+        "comparison",
+        report,
+        architecture_mode=architecture_mode,
+        architecture_manifest=architecture_manifest,
+    ).output
 
 
 def write_report(report: dict, path: str | Path) -> int:
@@ -289,6 +316,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--memory", required=True, help="human_judgment_memory.jsonl (M3)")
     parser.add_argument("--out", required=True, help="output memory_informed_comparison.json")
     parser.add_argument("--setting", default=None, help="setting_id (default: from --out dir)")
+    add_architecture_arguments(parser)
     args = parser.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
@@ -304,8 +332,21 @@ def main(argv: list[str] | None = None) -> None:
         "source_memory": str(args.memory),
     }
     items = build_comparison_items(variability_classes, memory_advice, memory, setting_id)
-    report = generate_report(items, setting_id, provenance)
-    write_report(report, args.out)
+    report = generate_report(
+        items,
+        setting_id,
+        provenance,
+    )
+    execution = publish_stage_output(
+        "comparison",
+        report,
+        output_path=args.out,
+        writer=write_report,
+        architecture_mode=args.architecture_mode,
+        architecture_manifest=args.architecture_manifest,
+    )
+    require_cli_parity_success(execution)
+    report = execution.output
 
     by_rule: dict[str, int] = {}
     differs = sum(1 for it in items if it["memory_informed_differs_from_original"])

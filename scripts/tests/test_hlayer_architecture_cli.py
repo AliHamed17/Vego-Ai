@@ -1,0 +1,531 @@
+from __future__ import annotations
+
+import json
+import subprocess
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+import pytest
+
+SCRIPTS = Path(__file__).resolve().parents[1]
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+import run_hlayer_architecture as architecture_cli  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def _review_item() -> dict:
+    return {
+        "review_id": "HRQ-ucd_ch-P1",
+        "review_signature": "0123456789abcdef",
+        "schema_version": "1.2.0",
+        "provenance": {
+            "source_system": "VEGO-AI",
+            "policy_version": "selective-intervention-v1",
+            "source_setting": "ucd_ch",
+        },
+        "setting_id": "ucd_ch",
+        "status": "pending",
+        "pattern_id": "P1",
+        "pipeline_stage": "agent4_classify_variability",
+        "ai_decision": {
+            "classification": "Occasional Variability",
+            "confidence": "Medium",
+            "flag_for_guidelines_update": False,
+            "requires_human_review": True,
+        },
+        "trigger_reasons": ["medium_confidence"],
+    }
+
+
+def test_parity_cli_publishes_legacy_shape_and_manifest(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    payload = [_review_item()]
+    source = tmp_path / "review.jsonl"
+    source.write_text(
+        "".join(json.dumps(item) + "\n" for item in payload),
+        encoding="utf-8",
+    )
+    output = tmp_path / "published.jsonl"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "review",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "parity",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert [json.loads(line) for line in output.read_text(encoding="utf-8").splitlines()] == payload
+    record = json.loads(manifest.read_text(encoding="utf-8"))
+    assert record["parity_status"] == "match"
+    assert record["baseline_preserved"] is True
+
+    failed_output = tmp_path / "failed-output.jsonl"
+    failed_manifest = tmp_path / "failed-manifest.json"
+    with monkeypatch.context() as scoped:
+        def fail_manifest(_manifest, _path):
+            raise OSError("fixture manifest staging failure")
+
+        scoped.setattr(architecture_cli, "write_manifest", fail_manifest)
+        exit_code = architecture_cli.main(
+            [
+                "--stage",
+                "review",
+                "--input",
+                str(source),
+                "--output",
+                str(failed_output),
+                "--manifest",
+                str(failed_manifest),
+                "--mode",
+                "parity",
+            ]
+        )
+    assert exit_code == 2
+    assert not failed_output.exists()
+    assert not failed_manifest.exists()
+
+    failed_output = tmp_path / "replace-failed-output.jsonl"
+    failed_manifest = tmp_path / "replace-failed-manifest.json"
+    real_replace = architecture_cli.os.replace
+    publication_replacements = 0
+
+    def fail_second_publication(source_path, destination_path):
+        nonlocal publication_replacements
+        if Path(destination_path) in {failed_output, failed_manifest}:
+            publication_replacements += 1
+            if publication_replacements == 2:
+                raise OSError("fixture manifest publication failure")
+        return real_replace(source_path, destination_path)
+
+    with monkeypatch.context() as scoped:
+        scoped.setattr(architecture_cli.os, "replace", fail_second_publication)
+        exit_code = architecture_cli.main(
+            [
+                "--stage",
+                "review",
+                "--input",
+                str(source),
+                "--output",
+                str(failed_output),
+                "--manifest",
+                str(failed_manifest),
+                "--mode",
+                "parity",
+            ]
+        )
+    assert exit_code == 2
+    assert not failed_output.exists()
+    assert not failed_manifest.exists()
+
+
+def test_cli_rejects_shared_output_and_manifest_before_publishing(tmp_path: Path) -> None:
+    payload = [_review_item()]
+    source = tmp_path / "review.jsonl"
+    source.write_text(json.dumps(payload[0]) + "\n", encoding="utf-8")
+    shared = tmp_path / "shared.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "review",
+            "--input",
+            str(source),
+            "--output",
+            str(shared),
+            "--manifest",
+            str(shared),
+            "--mode",
+            "parity",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert "must use different paths" in result.stderr
+    assert not shared.exists()
+
+
+def test_comparison_cli_reports_nested_shape_errors_without_traceback(
+    tmp_path: Path,
+) -> None:
+    payload = {
+        "schema_version": "1.0",
+        "setting_id": "ucd_ch",
+        "mode": "experimental",
+        "policy_version": "memory-informed-classifier-v1",
+        "ai_behavior_changed_in_baseline": False,
+        "generated_at": "2026-07-25T00:00:00Z",
+        "comparisons": [
+            {
+                "comparison_id": "CMP-ucd_ch-P1",
+                "setting_id": "ucd_ch",
+                "pattern_id": "P1",
+                "original_agent4_classification": "Occasional Variability",
+                "memory_informed_classification": {
+                    "classification": "Occasional Variability",
+                    "source": "original_agent4",
+                },
+                "memory_informed_differs_from_original": False,
+                "requires_human_review_after_memory": False,
+                "human_memory_used": [],
+                "evaluation_leakage_status": "none",
+                "rule_applied": "preserve_original",
+                "decision_trace": ["baseline preserved"],
+                "mode": "experimental",
+                "ai_behavior_changed_in_baseline": False,
+            }
+        ],
+        "provenance": {
+            "source_variability_classes": "fixture-classes.json",
+            "source_memory_advice": "fixture-advice.json",
+            "source_memory": "fixture-memory.jsonl",
+        },
+    }
+    source = tmp_path / "comparison.json"
+    source.write_text(json.dumps(payload), encoding="utf-8")
+    output = tmp_path / "published.json"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "comparison",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "unified",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert "memory_informed_comparison.schema.json" in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+@pytest.mark.parametrize(
+    ("stage", "payload", "expected"),
+    [
+        (
+            "review",
+            {
+                "review_id": "HRQ-ucd_ch-P1",
+                "review_signature": "0123456789abcdef",
+                "status": "pending",
+                "pattern_id": "P1",
+                "provenance": {"source": "fixture"},
+                "ai_decision": [],
+            },
+            "human_review_item.schema.json",
+        ),
+        (
+            "feedback",
+            {
+                "feedback_id": "FB-001",
+                "review_id": "HRQ-ucd_ch-P1",
+                "review_signature": "0123456789abcdef",
+                "expert_id": "reviewer-1",
+                "timestamp": "2026-07-25T00:00:00Z",
+                "human_decision": [],
+            },
+            "human_feedback.schema.json",
+        ),
+    ],
+)
+def test_cli_reports_decision_shape_errors_without_traceback(
+    tmp_path: Path,
+    stage: str,
+    payload: dict,
+    expected: str,
+) -> None:
+    source = tmp_path / f"{stage}.jsonl"
+    source.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+    output = tmp_path / "published.jsonl"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            stage,
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "unified",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert expected in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+def test_advice_cli_rejects_non_array_memory_matches(tmp_path: Path) -> None:
+    payload = {
+        "schema_version": "1.0",
+        "setting_id": "ucd_ch",
+        "advice_mode": "advisory_only",
+        "generated_at": "2026-07-25T00:00:00Z",
+        "advice": [
+            {
+                "setting_id": "ucd_ch",
+                "pattern_id": "P1",
+                "advice_strength": "none",
+                "memory_matches": {},
+                "has_conflicting_memory": False,
+                "advice_mode": "advisory_only",
+                "ai_classification_changed": False,
+            }
+        ],
+        "provenance": {
+            "source_memory_file": "fixture-memory.jsonl",
+            "source_agent4_files": {
+                "deviation_patterns": "fixture-patterns.json",
+                "variability_classes": "fixture-classes.json",
+            },
+        },
+    }
+    source = tmp_path / "advice.json"
+    source.write_text(json.dumps(payload), encoding="utf-8")
+    output = tmp_path / "published.json"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "advice",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "parity",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert "memory_advice.schema.json" in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+@pytest.mark.parametrize(
+    ("stage", "payload", "expected"),
+    [
+        (
+            "advice",
+            {"advice": []},
+            "memory_advice.schema.json",
+        ),
+        (
+            "comparison",
+            {"comparisons": []},
+            "memory_informed_comparison.schema.json",
+        ),
+    ],
+)
+def test_cli_rejects_incomplete_empty_envelopes(
+    tmp_path: Path,
+    stage: str,
+    payload: dict,
+    expected: str,
+) -> None:
+    source = tmp_path / f"{stage}.json"
+    source.write_text(json.dumps(payload), encoding="utf-8")
+    output = tmp_path / "published.json"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            stage,
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--mode",
+            "unified",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert expected in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+@pytest.mark.parametrize(
+    ("config_content", "expected"),
+    [
+        ("{not-json", "Expecting property name"),
+        ("[]", "H-layer runtime config must be an object"),
+        ('{"h_layer":[]}', "h_layer config must be an object"),
+    ],
+)
+def test_cli_reports_config_errors_without_traceback(
+    tmp_path: Path,
+    config_content: str,
+    expected: str,
+) -> None:
+    source = tmp_path / "review.jsonl"
+    source.write_text("{}\n", encoding="utf-8")
+    config = tmp_path / "runtime.json"
+    config.write_text(config_content, encoding="utf-8")
+    output = tmp_path / "published.jsonl"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "review",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--config",
+            str(config),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert expected in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+def test_cli_reports_missing_config_without_traceback(tmp_path: Path) -> None:
+    source = tmp_path / "review.jsonl"
+    source.write_text("{}\n", encoding="utf-8")
+    output = tmp_path / "published.jsonl"
+    manifest = tmp_path / "manifest.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "run_hlayer_architecture.py"),
+            "--stage",
+            "review",
+            "--input",
+            str(source),
+            "--output",
+            str(output),
+            "--manifest",
+            str(manifest),
+            "--config",
+            str(tmp_path / "missing.json"),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+    )
+    assert result.returncode == 2
+    assert "ERROR:" in result.stderr
+    assert "Traceback" not in result.stderr
+    assert not output.exists()
+    assert not manifest.exists()
+
+
+def test_parity_cli_path_preserves_legacy_when_adapter_drifts(monkeypatch) -> None:
+    payload = [_review_item()]
+
+    @dataclass(frozen=True)
+    class ChangedAdapter:
+        records: tuple[dict, ...] = ()
+
+        def to_legacy(self):
+            changed = json.loads(json.dumps(payload))
+            changed[0]["status"] = "resolved"
+            return changed
+
+    monkeypatch.setattr(
+        "vego_hlayer.runtime.adapt_legacy_artifact",
+        lambda stage, value: ChangedAdapter(),
+    )
+    execution = architecture_cli._execute_isolated("review", payload, "parity")
+    assert execution.manifest.parity_status == "mismatch"
+    assert execution.output == payload
+    assert execution.legacy_output == payload
+    assert execution.unified_output != payload
+
+
+def test_all_compatibility_clis_propagate_parity_mismatches() -> None:
+    framework = ROOT / "VEGO-AI" / "framework"
+    for name in (
+        "human_review_queue.py",
+        "human_feedback_manager.py",
+        "human_judgment_memory.py",
+        "memory_advisor.py",
+        "memory_informed_classifier.py",
+    ):
+        source = (framework / name).read_text(encoding="utf-8")
+        assert "require_cli_parity_success(execution)" in source, name

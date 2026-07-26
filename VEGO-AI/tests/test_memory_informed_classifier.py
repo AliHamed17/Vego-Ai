@@ -216,11 +216,7 @@ def test_policy_version_and_decision_trace_present():
 # ---------------------------------------------------------------------------
 
 def test_report_validates_against_schema():
-    try:
-        from jsonschema import Draft7Validator
-    except ImportError:
-        print("    (skipped: jsonschema not installed)")
-        return
+    from jsonschema import Draft7Validator
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     vc = _classes([_entry("P5", classification="Substantial Variability"),
                    _entry("P1", classification="Occasional Variability")])
@@ -236,28 +232,48 @@ def test_report_validates_against_schema():
     Draft7Validator(schema).validate(report)
 
 
-def test_schema_requires_core_nested_comparison_fields():
-    try:
-        from jsonschema import Draft7Validator
-    except ImportError:
-        print("    (skipped: jsonschema not installed)")
-        return
+def test_schema_rejects_missing_nested_memory_advice_fields():
+    from jsonschema import Draft7Validator
+    from jsonschema.exceptions import ValidationError
+
+    from vego_hlayer.contracts import ValidationError as ContractValidationError
+
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
-    vc = _classes([_entry("P5")])
-    adv = {"advice": [{"pattern_id": "P5", "advice_strength": "none",
-                       "memory_matches": [], "has_conflicting_memory": False}]}
-    items = mic.build_comparison_items(vc, adv, [], "ucd_ch")
-    broken = json.loads(json.dumps(items[0]))
-    broken["memory_informed_classification"].pop("source")
-    broken["memory_advice"].pop("memory_match_ids")
-    report = mic.generate_report([broken], "ucd_ch", {
+    item = _one(_classes([_entry()]), _advice(strength="none", matches=[]), [])
+    item["memory_advice"].pop("advice_strength")
+    prov = {
         "source_variability_classes": "vc.json",
         "source_memory_advice": "adv.json",
         "source_memory": "mem.jsonl",
-    })
-    errors = list(Draft7Validator(schema).iter_errors(report))
-    assert any("source" in error.message for error in errors)
-    assert any("memory_match_ids" in error.message for error in errors)
+    }
+    try:
+        report = mic.generate_report([item], "ucd_ch", prov)
+        Draft7Validator(schema).validate(report)
+    except (ValidationError, ContractValidationError):
+        return
+    raise AssertionError("schema accepted memory_advice without advice_strength")
+
+
+def test_schema_rejects_missing_nested_parallel_classification_fields():
+    from jsonschema import Draft7Validator
+    from jsonschema.exceptions import ValidationError
+
+    from vego_hlayer.contracts import ValidationError as ContractValidationError
+
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    item = _one(_classes([_entry()]), _advice(strength="none", matches=[]), [])
+    item["memory_informed_classification"].pop("source")
+    prov = {
+        "source_variability_classes": "vc.json",
+        "source_memory_advice": "adv.json",
+        "source_memory": "mem.jsonl",
+    }
+    try:
+        report = mic.generate_report([item], "ucd_ch", prov)
+        Draft7Validator(schema).validate(report)
+    except (ValidationError, ContractValidationError):
+        return
+    raise AssertionError("schema accepted a parallel classification without source")
 
 
 # ---------------------------------------------------------------------------

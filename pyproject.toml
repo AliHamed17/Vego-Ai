@@ -2,7 +2,28 @@
 name = "vego-ai-research"
 version = "0.1.0"
 description = "PhD research workspace for VEGO-AI agentic variability exploration."
-requires-python = ">=3.9"
+requires-python = ">=3.10"
+dependencies = [
+    "chardet==7.4.3",
+    "jsonschema==4.26.0",
+    "openai==1.109.1",
+    "tomli==2.2.1; python_version < '3.11'",
+]
+
+[dependency-groups]
+dev = [
+    "pip-audit==2.10.1",
+    "pytest==9.0.3",
+    "ruff==0.15.16",
+]
+thesis = [
+    "Pillow==12.3.0",
+    "pypdf==6.14.2",
+    "python-docx==1.2.0",
+]
+
+[tool.uv]
+package = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -13,7 +34,7 @@ markers = [
 
 [tool.ruff]
 line-length = 100
-target-version = "py39"
+target-version = "py310"
 extend-exclude = [
   "VEGO-AI/framework/get-pip.py",
   "data",
@@ -23,5 +44,10 @@ extend-exclude = [
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
-ignore = []
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"VEGO-AI/tests/**/*.py" = ["S101"]
+"scripts/tests/**/*.py" = ["S101"]
+"tests/**/*.py" = ["S101"]
 

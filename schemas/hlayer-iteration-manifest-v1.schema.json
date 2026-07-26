@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/hlayer-iteration-manifest-v1.schema.json",
+  "title": "HLayerIterationManifest-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "iteration",
+    "runId",
+    "date",
+    "generatedAt",
+    "sourceRevision",
+    "iterationKind",
+    "verdict",
+    "hypothesis",
+    "expectedEffect",
+    "guardrails",
+    "results",
+    "decision",
+    "claimBoundary",
+    "normalizedSha256"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "HLayerIterationManifest-v1"},
+    "iteration": {"const": 15},
+    "runId": {"const": "HLAYER-UNIFIED-HARDENING-V1"},
+    "date": {"const": "2026-07-25"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "sourceRevision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "iterationKind": {"const": "reliability_only"},
+    "verdict": {"const": "NEUTRAL"},
+    "hypothesis": {"type": "string", "minLength": 1},
+    "expectedEffect": {"type": "string", "minLength": 1},
+    "guardrails": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent4Changed",
+        "baselineOutputsChanged",
+        "classificationChanges",
+        "exp005SafeLabels",
+        "accuracyClaimAllowed"
+      ],
+      "properties": {
+        "agent4Changed": {"const": false},
+        "baselineOutputsChanged": {"const": false},
+        "classificationChanges": {"const": 0},
+        "exp005SafeLabels": {"const": 0},
+        "accuracyClaimAllowed": {"const": false}
+      }
+    },
+    "results": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "vegoTestsPassed",
+        "scriptTestsPassed",
+        "scriptSubtestsPassed",
+        "offlineTestsPassed",
+        "controlledComparisonRows",
+        "controlledParity",
+        "securityAudit",
+        "pythonDependencyAudit",
+        "nodeDependencyAudit"
+      ],
+      "properties": {
+        "vegoTestsPassed": {"type": "integer", "minimum": 1},
+        "scriptTestsPassed": {"type": "integer", "minimum": 1},
+        "scriptSubtestsPassed": {"type": "integer", "minimum": 0},
+        "offlineTestsPassed": {"type": "integer", "minimum": 1},
+        "controlledComparisonRows": {"const": 27},
+        "controlledParity": {"const": "PASS"},
+        "securityAudit": {"const": "PASS"},
+        "pythonDependencyAudit": {"const": "PASS"},
+        "nodeDependencyAudit": {"const": "PASS"}
+      }
+    },
+    "decision": {"const": "KEEP"},
+    "claimBoundary": {"type": "string", "minLength": 1},
+    "normalizedSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

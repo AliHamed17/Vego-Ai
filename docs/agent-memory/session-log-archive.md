@@ -3735,7 +3735,6 @@ Historical entries.
   - No commands/checks recorded
 - Status: completed
 - Next steps: Unknown
-
 ## 2026-07-10 14:39 +03:00 - Codex - Meeting Package Update
 
 - Request: proceed and enhance
@@ -3876,3 +3875,131 @@ Historical entries.
   - python scripts/feedback_generalizer.py -> BLOCKED_NO_VERIFIED_FEEDBACK, 0 candidates
 - Status: completed
 - Next steps: Record M-decisions and obtain real verified/adjudicated feedback before synthesis; no LLM or Agent B integration.
+
+## 2026-07-11 00:09 +03:00 - Codex - Finalize trusted-export and atomic publication gates
+
+- Request: Close adversarial review findings in the offline feedback flow.
+- Actions taken:
+  - Required a separately validated manifest binding the exact feedback export hash and eligible record IDs.
+  - Added full-package staging, rollback restoration, and preservation of rollback backups when restoration itself fails.
+  - Added regression tests for missing/invalid trust manifests, direct aliases, single promotion failure, and double rollback failure.
+  - Documented the non-authorizing trusted-export manifest shape.
+- Files changed:
+  - scripts/feedback_generalizer.py and scripts/tests/test_feedback_generalizer.py
+  - docs/research/h-layer/feedback-learning-rlhf-plan.md, prompt requirements/architecture, and trusted-feedback-export-manifest.template.json
+  - shared handoff, decisions, issues, current-state, and status surfaces
+- Commands/checks:
+  - python -m pytest scripts/tests/test_feedback_generalizer.py -q -> 16 passed
+  - python -m ruff check targeted generalizer files -> PASS
+  - adversarial independent re-review -> no remaining P0/P1
+  - program/offline/evidence validators -> PASS
+- Status: completed
+- Next steps: A human-governed trusted-feedback export validator/approval must produce the companion manifest before any record can enter offline synthesis; M-05 still blocks runtime delivery.
+
+## 2026-07-11 13:28 +03:00 - Codex - H-Layer Iteration 11 and Conforming Generalizer Implementation
+
+- Request: do extensive plan to continue
+- Actions taken:
+  - Hardened hlayer-prototype-scaffold.py override routing to prevent ordinary feedback memory pollution.
+  - Created and fully verified scripts/feedback_generalizer.py against the offline conformance unit test suite.
+  - Executed run-hlayer-iteration.ps1 to snap-shot and promote accepted Iteration 11.
+- Files changed:
+  - scripts/hlayer_prototype/hlayer-prototype-scaffold.py
+  - scripts/feedback_generalizer.py
+  - docs/research/h-layer/experiment-iteration-ledger.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/resource-memory.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:36 +03:00 - Codex - Supervisor Meeting Package Synchronization with Iteration 12
+
+- Request: do extensive plan to continue
+- Actions taken:
+  - Updated supervisor pre-reads, follow-up annexes, and decision register to reference Iteration 12 and the feedback_generalizer.py script.
+  - Re-executed build_hlayer_decision_snapshot.py, run_hlayer_conformance_suite.py, and run-hlayer-iteration.ps1 to generate Iteration 12.
+- Files changed:
+  - docs/research/meetings/2026-07-15-supervisor-executive-pre-read.md
+  - docs/research/meetings/2026-07-15-supervisor-follow-up-annex.md
+  - docs/research/meetings/2026-07-15-supervisor-decision-register.md
+  - docs/research/meetings/2026-07-15-full-progress-presentation-manifest.md
+  - docs/research/h-layer/experiment-iteration-ledger.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/codex-nextstep-handoff-prompt.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:47 +03:00 - Codex - Ethics and IRB Data Sensitivity Audit
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Completed ethics-irb checklist using paper PDF and meeting transcript details.
+  - Updated artifact-audit log metadata pass status.
+  - Resolved ISS-004 in issues.md.
+  - Synchronized references in codex-nextstep-handoff-prompt.md.
+- Files changed:
+  - docs/research/ethics-irb.md
+  - docs/research/artifact-audit.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/codex-nextstep-handoff-prompt.md
+  - docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:51 +03:00 - Codex - H-Layer Replay and Protocol References Updates
+
+- Request: make with huge plan an continue
+- Actions taken:
+  - Updated experiment-expansion-plan.md, experiment-iteration-loop.md, and supervisor-demo-runbook.md to reference Iteration 12.
+- Files changed:
+  - docs/research/h-layer/experiment-expansion-plan.md
+  - docs/research/h-layer/experiment-iteration-loop.md
+  - docs/research/h-layer/supervisor-demo-runbook.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 15:56 +03:00 - Codex - Supervisor Meeting Preparation Plan Authoring
+
+- Request: do extensive plan
+- Actions taken:
+  - Created 2026-07-15-supervisor-meeting-preparation-plan.md.
+- Files changed:
+  - docs/research/meetings/2026-07-15-supervisor-meeting-preparation-plan.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 16:00 +03:00 - Codex - Commit Feature branch changes
+
+- Request: do extensive plan to continue
+- Actions taken:
+  - Staged and committed all pending modifications and additions to the active feature branch agent/publish-hlayer-and-supervisor-package.
+- Files changed:
+  - No file changes recorded
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-11 21:24 +03:00 - Gemini - Updated Codex Handoff Prompt
+
+- Request: give extensive prompt to codex for nextstep
+- Actions taken:
+  - Updated docs/agent-memory/codex-nextstep-handoff-prompt.md with detailed state, checks, Task A/B/C/D, and finish rules
+- Files changed:
+  - docs/agent-memory/codex-nextstep-handoff-prompt.md
+- Commands/checks:
+  - No commands/checks recorded
+- Status: completed
+- Next steps: Unknown

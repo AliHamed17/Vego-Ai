@@ -15,11 +15,13 @@ import json
 import sys
 import tempfile
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "framework"))
 
-import human_review_queue as hrq            # noqa: E402
+import hlayer_architecture as architecture_bridge  # noqa: E402
+import human_review_queue as hrq  # noqa: E402
 import selective_intervention_policy as sip  # noqa: E402
 
 SCHEMA_PATH = ROOT / "schemas" / "human_review_item.schema.json"
@@ -215,7 +217,7 @@ def test_build_empty_when_all_high_no_flag():
 # Idempotency / dedup
 # ---------------------------------------------------------------------------
 
-def test_write_queue_idempotent_and_dedups():
+def test_write_queue_idempotent_and_dedups(monkeypatch):
     vc = _vc([
         {"pattern_id": "P4", "classification": "Substantial Variability",
          "confidence": "High", "evidence": "G16 -- x",
@@ -233,6 +235,177 @@ def test_write_queue_idempotent_and_dedups():
         # explicit duplicate input must still collapse to one
         n3 = hrq.write_queue(items + items, path)
         assert n3 == 1
+
+        manifest = Path(d) / "architecture-run.json"
+        called = False
+
+        def should_not_write(_payload, _path):
+            nonlocal called
+            called = True
+
+        try:
+            hrq.publish_stage_output(
+                "review",
+                items,
+                output_path=path,
+                writer=should_not_write,
+                architecture_manifest=path,
+            )
+        except ValueError as exc:
+            assert "different paths" in str(exc)
+        else:
+            raise AssertionError("output/manifest collision must fail closed")
+        assert called is False
+
+        def fail_writer(_payload, _path):
+            raise OSError("fixture writer failure")
+
+        try:
+            hrq.publish_stage_output(
+                "review",
+                items,
+                output_path=path,
+                writer=fail_writer,
+                architecture_manifest=manifest,
+            )
+        except OSError as exc:
+            assert "fixture writer failure" in str(exc)
+        else:
+            raise AssertionError("writer failure must propagate")
+        assert not manifest.exists()
+
+        execution = hrq.publish_stage_output(
+            "review",
+            items,
+            output_path=path,
+            writer=hrq.write_queue,
+            architecture_mode="parity",
+            architecture_manifest=manifest,
+        )
+        assert execution.output == items
+        assert path.exists()
+        assert json.loads(manifest.read_text(encoding="utf-8"))[
+            "parity_status"
+        ] == "match"
+        first_manifest = json.loads(manifest.read_text(encoding="utf-8"))
+        first_artifact_bytes = path.read_bytes()
+        first_manifest_bytes = manifest.read_bytes()
+        changed_items = json.loads(json.dumps(items))
+        changed_items[0]["ai_decision"]["justification"] = "Updated fixture rationale."
+        with monkeypatch.context() as scoped:
+            def fail_manifest(_manifest, _path):
+                raise OSError("fixture manifest failure")
+
+            scoped.setattr(architecture_bridge, "write_manifest", fail_manifest)
+            try:
+                hrq.publish_stage_output(
+                    "review",
+                    changed_items,
+                    output_path=path,
+                    writer=hrq.write_queue,
+                    architecture_mode="parity",
+                    architecture_manifest=manifest,
+                )
+            except OSError as exc:
+                assert "fixture manifest failure" in str(exc)
+            else:
+                raise AssertionError("manifest failure must propagate")
+        assert path.read_bytes() == first_artifact_bytes
+        assert manifest.read_bytes() == first_manifest_bytes
+
+        hrq.publish_stage_output(
+            "review",
+            changed_items,
+            output_path=path,
+            writer=hrq.write_queue,
+            architecture_mode="parity",
+            architecture_manifest=manifest,
+        )
+        second_manifest = json.loads(manifest.read_text(encoding="utf-8"))
+        persisted_item = json.loads(path.read_text(encoding="utf-8").strip())
+        assert persisted_item["ai_decision"]["justification"] == (
+            "Updated fixture rationale."
+        )
+        assert second_manifest["input_sha256"] != first_manifest["input_sha256"]
+        assert second_manifest["published_output_sha256"] != (
+            first_manifest["published_output_sha256"]
+        )
+
+        duplicate_execution = hrq.publish_stage_output(
+            "review",
+            changed_items + changed_items,
+            output_path=path,
+            writer=hrq.write_queue,
+            architecture_mode="parity",
+            architecture_manifest=manifest,
+        )
+        persisted_items = [
+            json.loads(line)
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        duplicate_manifest = json.loads(manifest.read_text(encoding="utf-8"))
+        assert duplicate_execution.output == persisted_items
+        assert len(duplicate_execution.output) == len(changed_items)
+        assert len(duplicate_execution.canonical_records) == len(changed_items)
+        assert duplicate_manifest["input_sha256"] != (
+            duplicate_manifest["published_output_sha256"]
+        )
+        assert duplicate_manifest["published_output_sha256"] == (
+            duplicate_execution.manifest.published_output_sha256
+        )
+
+
+def test_publication_rejects_symlinked_output_before_resolution():
+    vc = _vc([
+        {
+            "pattern_id": "P4",
+            "classification": "Substantial Variability",
+            "confidence": "High",
+            "evidence": "G16 -- x",
+            "flag_for_guidelines_update": True,
+            "requires_human_review": False,
+        },
+    ])
+    items = hrq.build_review_items(vc, _dp(), "ucd_ch")
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        actual = root / "actual.jsonl"
+        actual.write_text("preserve\n", encoding="utf-8")
+        alias = root / "alias.jsonl"
+        try:
+            alias.symlink_to(actual)
+        except OSError:
+            return
+        try:
+            hrq.publish_stage_output(
+                "review",
+                items,
+                output_path=alias,
+                writer=hrq.write_queue,
+            )
+        except ValueError as exc:
+            assert "symbolic links or reparse points" in str(exc)
+        else:
+            raise AssertionError("symlinked output must fail before publication")
+        assert actual.read_text(encoding="utf-8") == "preserve\n"
+
+
+def test_compatibility_cli_reports_parity_mismatch_as_failure():
+    mismatch = SimpleNamespace(
+        manifest=SimpleNamespace(parity_status="mismatch"),
+    )
+    try:
+        architecture_bridge.require_cli_parity_success(mismatch)
+    except SystemExit as exc:
+        assert exc.code == 1
+    else:
+        raise AssertionError("a parity mismatch must produce a nonzero CLI exit")
+
+    matching = SimpleNamespace(
+        manifest=SimpleNamespace(parity_status="match"),
+    )
+    assert architecture_bridge.require_cli_parity_success(matching) is None
 
 
 # ---------------------------------------------------------------------------

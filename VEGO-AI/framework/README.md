@@ -64,7 +64,7 @@ This is the **only place** that needs editing to point at a different dataset.
 
 ## Step 2 — Python environment
 
-Requires **Python 3.9+** (3.11+ recommended).
+Requires **Python 3.10+**. The locked CI matrix covers Python 3.10–3.13.
 
 **macOS / Linux**
 ```bash
@@ -111,8 +111,8 @@ set OPENAI_API_KEY=sk-proj-...
 $env:OPENAI_API_KEY="sk-proj-..."
 ```
 
-Set once per shell session. Alternatively, add `"api_key": "sk-proj-..."` directly
-in `run_config.json` (not recommended for shared or version-controlled projects).
+Set the environment variable once per shell session. Plaintext `api_key` values
+in `run_config.json` are rejected; use an environment or project secret only.
 
 ---
 
