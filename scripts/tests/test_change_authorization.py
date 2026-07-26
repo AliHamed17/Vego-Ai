@@ -39,10 +39,14 @@ def test_authorized_protected_content_is_hash_bound(
     monkeypatch.delenv(module.TRUSTED_HASH_ENV, raising=False)
     protected = tmp_path / "VEGO-AI" / "framework" / "llm_client.py"
     protected.parent.mkdir(parents=True)
-    protected.write_text("baseline\n", encoding="utf-8")
+    seed = tmp_path / "seed.txt"
+    seed.write_text("seed\n", encoding="utf-8")
     run_git(tmp_path, "init")
     run_git(tmp_path, "config", "user.email", "fixture@example.invalid")
     run_git(tmp_path, "config", "user.name", "Fixture")
+    run_git(tmp_path, "add", "seed.txt")
+    run_git(tmp_path, "commit", "-m", "seed")
+    protected.write_text("baseline\n", encoding="utf-8")
     run_git(tmp_path, "add", "VEGO-AI/framework/llm_client.py")
     run_git(tmp_path, "commit", "-m", "baseline")
 
@@ -59,7 +63,7 @@ def test_authorized_protected_content_is_hash_bound(
     }
     authorization.write_text(json.dumps(config), encoding="utf-8")
     trusted_hash = module._portable_sha256(authorization)
-    untrusted_result = module.inspect(tmp_path, authorization, "HEAD")
+    untrusted_result = module.inspect(tmp_path, authorization, "HEAD^")
     assert untrusted_result["status"] == "FAIL"
     assert untrusted_result["authorization_trusted"] is False
     assert any(
@@ -70,7 +74,7 @@ def test_authorized_protected_content_is_hash_bound(
         module.inspect(
             tmp_path,
             authorization,
-            "HEAD",
+            "HEAD^",
             trusted_authorization_sha256=trusted_hash,
         )["status"]
         == "PASS"
@@ -80,7 +84,7 @@ def test_authorized_protected_content_is_hash_bound(
     result = module.inspect(
         tmp_path,
         authorization,
-        "HEAD",
+        "HEAD^",
         trusted_authorization_sha256=trusted_hash,
     )
     assert result["status"] == "FAIL"
@@ -93,7 +97,7 @@ def test_authorized_protected_content_is_hash_bound(
     result = module.inspect(
         tmp_path,
         authorization,
-        "HEAD",
+        "HEAD^",
         trusted_authorization_sha256=trusted_hash,
     )
     assert result["status"] == "FAIL"
@@ -155,10 +159,14 @@ def test_canonical_runtime_paths_are_protected(tmp_path: Path) -> None:
     module = load_module()
     runtime = tmp_path / "src" / "vego_hlayer" / "runtime.py"
     runtime.parent.mkdir(parents=True)
-    runtime.write_text("baseline\n", encoding="utf-8")
+    seed = tmp_path / "seed.txt"
+    seed.write_text("seed\n", encoding="utf-8")
     run_git(tmp_path, "init", "-b", "main")
     run_git(tmp_path, "config", "user.email", "fixture@example.invalid")
     run_git(tmp_path, "config", "user.name", "Fixture")
+    run_git(tmp_path, "add", "seed.txt")
+    run_git(tmp_path, "commit", "-m", "seed")
+    runtime.write_text("baseline\n", encoding="utf-8")
     run_git(tmp_path, "add", "src/vego_hlayer/runtime.py")
     run_git(tmp_path, "commit", "-m", "baseline")
     runtime.write_text("unreviewed\n", encoding="utf-8")
@@ -178,7 +186,7 @@ def test_canonical_runtime_paths_are_protected(tmp_path: Path) -> None:
     result = module.inspect(
         tmp_path,
         authorization,
-        "HEAD",
+        "HEAD^",
         trusted_authorization_sha256=module._portable_sha256(authorization),
     )
     assert result["status"] == "FAIL"
@@ -189,10 +197,14 @@ def test_git_symlink_mode_cannot_reuse_an_authorized_hash(tmp_path: Path) -> Non
     module = load_module()
     protected = tmp_path / "src" / "vego_hlayer" / "runtime.py"
     protected.parent.mkdir(parents=True)
-    protected.write_text("baseline\n", encoding="utf-8")
+    seed = tmp_path / "seed.txt"
+    seed.write_text("seed\n", encoding="utf-8")
     run_git(tmp_path, "init", "-b", "main")
     run_git(tmp_path, "config", "user.email", "fixture@example.invalid")
     run_git(tmp_path, "config", "user.name", "Fixture")
+    run_git(tmp_path, "add", "seed.txt")
+    run_git(tmp_path, "commit", "-m", "seed")
+    protected.write_text("baseline\n", encoding="utf-8")
     run_git(tmp_path, "add", "src/vego_hlayer/runtime.py")
     run_git(tmp_path, "commit", "-m", "baseline")
 
@@ -231,7 +243,7 @@ def test_git_symlink_mode_cannot_reuse_an_authorized_hash(tmp_path: Path) -> Non
     result = module.inspect(
         tmp_path,
         authorization,
-        "HEAD",
+        "HEAD^",
         trusted_authorization_sha256=module._portable_sha256(authorization),
     )
     assert result["status"] == "FAIL"
@@ -262,6 +274,19 @@ def test_default_base_falls_back_to_local_main_without_remote(
 
     assert module.resolve_comparison_base(tmp_path) == "main"
     assert module.resolve_comparison_base(tmp_path, "origin/main") == "main"
+    run_git(tmp_path, "checkout", "main")
+    try:
+        module.resolve_comparison_base(tmp_path)
+    except ValueError as exc:
+        assert "no trusted ancestor" in str(exc)
+    else:
+        raise AssertionError("a single-commit checkout must fail closed")
+    try:
+        module.resolve_comparison_base(tmp_path, "main")
+    except ValueError as exc:
+        assert "distinct from HEAD" in str(exc)
+    else:
+        raise AssertionError("a comparison base resolving to HEAD must fail closed")
 
 
 def test_git_path_reader_preserves_newlines(monkeypatch, tmp_path: Path) -> None:

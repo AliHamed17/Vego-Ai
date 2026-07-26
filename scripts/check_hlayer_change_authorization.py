@@ -118,8 +118,9 @@ def resolve_comparison_base(repo: Path, requested_base: str | None = None) -> st
     """Resolve a usable comparison base without requiring an ``origin`` remote.
 
     An explicit non-default base remains fail-closed. The normal default may
-    fall back to CI-provided revisions, a local main branch, or a parent commit
-    so source archives and locally initialized repositories remain verifiable.
+    fall back to CI-provided revisions, a local main branch, or a parent commit.
+    A candidate resolving to ``HEAD`` is never usable because it would make the
+    committed-change comparison empty and bypass content authorization.
     """
 
     default_request = requested_base in {None, "", "origin/main"}
@@ -136,9 +137,21 @@ def resolve_comparison_base(repo: Path, requested_base: str | None = None) -> st
         github_base = os.environ.get("GITHUB_BASE_REF")
         if github_base:
             candidates.extend((f"origin/{github_base}", github_base))
-        candidates.extend(("origin/main", "main", "HEAD^", "HEAD"))
+        candidates.extend(("origin/main", "main", "HEAD^"))
 
     seen: set[str] = set()
+    head_result = subprocess.run(  # noqa: S603 - fixed Git arguments
+        [GIT or "git", "rev-parse", "--verify", "HEAD^{commit}"],
+        cwd=repo,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if head_result.returncode != 0:
+        raise ValueError("Git HEAD does not resolve")
+    head_commit = head_result.stdout.strip()
+    resolved_to_head = False
     for candidate in candidates:
         if not candidate or candidate in seen:
             continue
@@ -152,9 +165,21 @@ def resolve_comparison_base(repo: Path, requested_base: str | None = None) -> st
             encoding="utf-8",
         )
         if result.returncode == 0:
+            if result.stdout.strip() == head_commit:
+                resolved_to_head = True
+                continue
             return candidate
     if requested_base and not default_request:
+        if resolved_to_head:
+            raise ValueError(
+                "Git comparison base must resolve to a commit distinct from HEAD"
+            )
         raise ValueError(f"Git comparison base does not resolve: {requested_base}")
+    if resolved_to_head:
+        raise ValueError(
+            "no trusted ancestor is available; comparison bases resolving to HEAD "
+            "are rejected"
+        )
     raise ValueError(
         "no usable Git comparison base; set PR_BASE_SHA or H_LAYER_CHANGE_BASE"
     )
@@ -214,6 +239,12 @@ def inspect(
     authorized_hashes = config.get("authorized_content_sha256") or {}
     forbidden = list(config.get("forbidden_paths") or [])
     merge_base = _git(repo, "merge-base", base, "HEAD").strip()
+    head_commit = _git(repo, "rev-parse", "HEAD").strip()
+    if merge_base == head_commit:
+        raise ValueError(
+            "Git comparison merge base resolves to HEAD; a distinct trusted "
+            "ancestor is required"
+        )
     committed = _git_paths(
         repo,
         "diff",

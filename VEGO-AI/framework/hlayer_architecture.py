@@ -7,9 +7,11 @@ editable package install. It performs no work at import time.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import stat
 import sys
+from dataclasses import replace
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -122,6 +124,52 @@ def _validate_transaction_destination(target: Path, label: str) -> None:
         raise ValidationError(f"{label} must be a regular file")
 
 
+def _read_published_payload(stage: str, path: Path) -> Any:
+    """Reload the writer's actual artifact for provenance and return values."""
+
+    try:
+        if stage in {"review", "resolved", "memory"}:
+            return [
+                json.loads(line)
+                for line in path.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+        if stage in {"advice", "comparison"}:
+            return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValidationError(
+            f"artifact writer produced an unreadable {stage} artifact"
+        ) from exc
+    raise ValidationError(f"unsupported persisted artifact stage: {stage}")
+
+
+def _rebind_execution_to_published_artifact(
+    execution: ArchitectureExecution,
+    stage: str,
+    path: Path,
+    architecture_mode: str,
+) -> ArchitectureExecution:
+    """Bind output, canonical records, and output hash to writer-produced data."""
+
+    persisted = _read_published_payload(stage, path)
+    rebound = apply_architecture_mode(
+        stage,
+        persisted,
+        architecture_mode=architecture_mode,
+    )
+    manifest = replace(
+        execution.manifest,
+        published_output_sha256=rebound.manifest.published_output_sha256,
+    )
+    return ArchitectureExecution(
+        output=rebound.output,
+        legacy_output=execution.legacy_output,
+        unified_output=execution.unified_output,
+        canonical_records=rebound.canonical_records,
+        manifest=manifest,
+    )
+
+
 def _publish_artifact_manifest_pair(
     staged_output: Path,
     output: Path,
@@ -212,7 +260,14 @@ def publish_stage_output(
         output = _resolved_destination(output_path, "artifact output")
         _validate_transaction_destination(output, "artifact output")
         writer(execution.output, output)
-        return execution
+        if not output.is_file() or output.is_symlink():
+            raise ValidationError("artifact writer did not produce a regular file")
+        return _rebind_execution_to_published_artifact(
+            execution,
+            stage,
+            output,
+            architecture_mode,
+        )
 
     output = _resolved_destination(output_path, "artifact output")
     manifest = _resolved_destination(
@@ -230,6 +285,12 @@ def publish_stage_output(
         writer(execution.output, staged_output)
         if not staged_output.is_file() or staged_output.is_symlink():
             raise ValidationError("artifact writer did not produce a regular staged file")
+        execution = _rebind_execution_to_published_artifact(
+            execution,
+            stage,
+            staged_output,
+            architecture_mode,
+        )
         write_manifest(execution.manifest, staged_manifest)
         _publish_artifact_manifest_pair(
             staged_output,

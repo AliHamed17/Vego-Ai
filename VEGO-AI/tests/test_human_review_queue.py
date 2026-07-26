@@ -331,6 +331,30 @@ def test_write_queue_idempotent_and_dedups(monkeypatch):
             first_manifest["published_output_sha256"]
         )
 
+        duplicate_execution = hrq.publish_stage_output(
+            "review",
+            changed_items + changed_items,
+            output_path=path,
+            writer=hrq.write_queue,
+            architecture_mode="parity",
+            architecture_manifest=manifest,
+        )
+        persisted_items = [
+            json.loads(line)
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        duplicate_manifest = json.loads(manifest.read_text(encoding="utf-8"))
+        assert duplicate_execution.output == persisted_items
+        assert len(duplicate_execution.output) == len(changed_items)
+        assert len(duplicate_execution.canonical_records) == len(changed_items)
+        assert duplicate_manifest["input_sha256"] != (
+            duplicate_manifest["published_output_sha256"]
+        )
+        assert duplicate_manifest["published_output_sha256"] == (
+            duplicate_execution.manifest.published_output_sha256
+        )
+
 
 def test_publication_rejects_symlinked_output_before_resolution():
     vc = _vc([
