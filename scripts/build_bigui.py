@@ -8,6 +8,8 @@ import json
 import sys
 from pathlib import Path
 
+import jsonschema
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CATALOG = (
     ROOT
@@ -17,6 +19,12 @@ DEFAULT_CATALOG = (
     / "experiment-catalog-snapshot-v1.json"
 )
 DEFAULT_OUTPUT = ROOT / "VEGO-AI-Research-Hub.html"
+DEFAULT_INDEPENDENT_DECISIONS = (
+    ROOT / "docs/research/independent-evidence/decision-register.json"
+)
+INDEPENDENT_DECISION_SCHEMA = (
+    ROOT / "schemas/independent-evidence-decision-register-v1.schema.json"
+)
 
 TEMPLATE = r"""<!doctype html>
 <html lang="en" dir="ltr">
@@ -111,6 +119,10 @@ body[dir="rtl"] .system-node:not(:last-child)::after{content:"←"}
   content:"→";position:absolute;inset-inline-end:-12px;top:38%;z-index:2;color:var(--cyan)}
 body[dir="rtl"] .pipeline .step:not(:last-child)::after,
 body[dir="rtl"] .state-machine .step:not(:last-child)::after{content:"←"}
+.pipeline .step.complete{border-color:var(--green);background:rgba(105,219,157,.10)}
+.pipeline .step.current{border-color:var(--amber);background:rgba(255,200,87,.10)}
+.pipeline .step.sealed{border-style:dashed;color:var(--muted)}
+.pipeline .step small{display:block;margin-top:5px;color:var(--muted)}
 .metric-bars{display:grid;gap:10px}.metric-bar{display:grid;grid-template-columns:minmax(110px,1fr) 3fr auto;gap:10px;align-items:center}
 .bar-track{height:12px;background:#07141b;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
 .bar-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue))}
@@ -465,14 +477,17 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     <div class="section-head"><div><h2 id="independent-evidence-title">Independent evidence lab</h2>
       <p>The executable path from a blinded human judgment to classification, routing, generalization, and effort evidence.</p></div>
       <a class="benchmark-link" href="docs/research/independent-evidence/README.md">Open execution protocol</a></div>
+    <p class="boundary" id="independent-evidence-phase"></p>
     <div class="kpi-grid" id="independent-evidence-kpis"></div>
     <article class="panel" style="margin-top:14px">
       <h3>Real-evidence workflow</h3>
       <div class="pipeline" role="img" aria-label="Supervisor approval is followed by calibration, two independent reviews, agreement, adjudication, development evaluation, a frozen holdout pilot, and external replication.">
-        <div class="step">Approve protocol</div><div class="step">Calibrate 2 humans</div>
-        <div class="step">Blind 24-item review</div><div class="step">Agreement + adjudication</div>
-        <div class="step">Development N=16</div><div class="step">Sealed pilot N=8</div>
-        <div class="step">External replication</div>
+        <div class="step complete">Protocol approved<small>IE-01–IE-10 accepted</small></div>
+        <div class="step current">Calibrate 2 humans<small>current phase</small></div>
+        <div class="step sealed">Blind 24-item review<small>sealed until calibration freeze</small></div>
+        <div class="step sealed">Agreement + adjudication</div>
+        <div class="step sealed">Development N=16</div><div class="step sealed">Sealed pilot N=8</div>
+        <div class="step sealed">External replication</div>
       </div>
       <p class="boundary">Software prepares, validates, and measures the evidence. Only independent humans may supply or adjudicate the labels.</p>
     </article>
@@ -522,10 +537,12 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
 
 <footer><div class="shell">VEGO-AI BigUI · tracked sanitized tier by default · no external network runtime · research outcomes are read-only · <a href="VEGO-AI-Thesis-Baseline-Progress.html">historical thesis evidence view</a>.</div></footer>
 <script id="bigui-catalog" type="application/json">__CATALOG__</script>
+<script id="independent-evidence-decisions" type="application/json">__INDEPENDENT_DECISIONS__</script>
 <script>
 (() => {
   "use strict";
   const data = JSON.parse(document.getElementById("bigui-catalog").textContent);
+  const evidenceDecisions = JSON.parse(document.getElementById("independent-evidence-decisions").textContent);
   const $ = (id) => document.getElementById(id);
   const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
   const legacyMetrics = data.metricObservations || [];
@@ -1059,12 +1076,14 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   }
   function renderIndependentEvidence(){
     const p=data.programState;
+    const accepted=evidenceDecisions.decisions.filter(item=>item.outcome==="Accepted").length;
+    $("independent-evidence-phase").innerHTML=`<strong>Current phase: calibration.</strong> ${accepted}/10 IE decisions are accepted. The two three-case calibration packages may be released after reviewer consent; all 24 evaluation cases remain sealed until two valid calibration returns and a human instruction freeze exist.`;
     $("independent-evidence-kpis").innerHTML=[
+      kpi("Protocol decisions",`${accepted} / 10`,"<small>accepted · conversation recorded</small>"),
       kpi("Candidate rows",p.candidateLabels,"<small>blind evaluation set</small>"),
-      kpi("Independent reviewers","0 / 2","<small>human returns required</small>"),
+      kpi("Independent reviewers","0 / 2","<small>calibration returns required</small>"),
       kpi("Adjudicated labels",`${p.safeLabels} / ${p.candidateLabels}`,"<small>current safe gold set</small>"),
-      kpi("Accuracy / macro-F1","—","<small>null at safe N=0</small>"),
-      kpi("Current B1 class changes","0 / 27","<small>no positive delta is possible yet</small>")
+      kpi("Accuracy / macro-F1","—","<small>null at safe N=0</small>")
     ].join("");
     const later=[
       ["Unseen generalization","Freeze one candidate, open N=8 once, then replicate externally."],
@@ -1119,11 +1138,33 @@ def load_catalog(path: Path) -> dict:
     return value
 
 
+def load_independent_decisions(
+    path: Path = DEFAULT_INDEPENDENT_DECISIONS,
+) -> dict:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    schema = json.loads(INDEPENDENT_DECISION_SCHEMA.read_text(encoding="utf-8"))
+    jsonschema.Draft202012Validator(
+        schema,
+        format_checker=jsonschema.FormatChecker(),
+    ).validate(value)
+    return value
+
+
 def render(catalog: dict) -> str:
     embedded = json.dumps(
         catalog, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     ).replace("</", "<\\/")
-    return TEMPLATE.replace("__CATALOG__", embedded).replace("\r\n", "\n")
+    decisions = json.dumps(
+        load_independent_decisions(),
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).replace("</", "<\\/")
+    return (
+        TEMPLATE.replace("__CATALOG__", embedded)
+        .replace("__INDEPENDENT_DECISIONS__", decisions)
+        .replace("\r\n", "\n")
+    )
 
 
 def safe_output(path: Path, controlled: bool) -> Path:
@@ -1169,7 +1210,12 @@ def main() -> int:
         output.write_text(content, encoding="utf-8", newline="\n")
         print(f"WROTE: {output.relative_to(ROOT)}")
         return 0
-    except (OSError, ValueError, json.JSONDecodeError) as exc:
+    except (
+        OSError,
+        ValueError,
+        json.JSONDecodeError,
+        jsonschema.ValidationError,
+    ) as exc:
         print(f"BigUI HTML: FAIL: {exc}", file=sys.stderr)
         return 1
 
