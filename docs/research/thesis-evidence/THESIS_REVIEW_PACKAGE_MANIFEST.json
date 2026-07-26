@@ -2,14 +2,14 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-26T00:33:42+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
-  "packageRevision": "34851a05cdf0657b96fdee3f43ec8c7a1db0b551",
-  "sourceTreeHash": "57d76137adf63f73e14697444acfb8de47c160901de8f09ab674dff6d3b788aa",
+  "sourceRevision": "f940559fb6934e3a6046f3d058014d43f142beb8",
+  "packageRevision": "465cc3c64963d77dd63a56554d64c08b416c418b",
+  "sourceTreeHash": "402e647706e1e9d811373087edb902183e80daf87b333b3fc98a17d923232f57",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
+    "sha256": "563c036be9dcadf1ce5e98636986800289a895ae50df7924bb9db46ada781484",
     "bytes": 48267,
     "tracked": true
   },
@@ -22,7 +22,7 @@
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "133adf43b951916d26112b036b5e966295e7ec69ae05ffca70b239dc7a370a22",
+      "sha256": "8f93a324ff3d3e8b8ac884a29c23e46e1607e4cdd1712c061e9fd3d4be0e4995",
       "bytes": 81862,
       "tracked": true
     }
@@ -211,7 +211,7 @@
     },
     {
       "path": "scripts/validate_research_records.py",
-      "sha256": "dcb5fff68a30225c85f6e219437cc16407bbbf2f7c6ca2bc7f05e09cf8287191"
+      "sha256": "58f08db30b78d021a5f85e722b4c6da73b3612bce430bcc2ecdb2424d70aafd5"
     },
     {
       "path": "scripts/validate_thesis_content.py",
@@ -235,7 +235,7 @@
     },
     {
       "path": "scripts/verify-source.ps1",
-      "sha256": "6e6beb24cf181949bbf9aa446850ebb825e0087f48ca813a661b30d7b42fc481"
+      "sha256": "de8af9a7398554ed9ea16a65901991b4024de24c784760ba2d5e49705846b38b"
     },
     {
       "path": "scripts/visualization_agent.py",
