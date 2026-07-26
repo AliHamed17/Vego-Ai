@@ -3,7 +3,7 @@
   "surface": "dashboard",
   "title": "VEGO-AI BigUI Research Observatory",
   "description": "Catalog-driven research, architecture, and evidence status.",
-  "generatedAt": "2026-07-26T00:30:26+00:00",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
   "blocks": [
     {
       "type": "markdown",
@@ -177,7 +177,7 @@
     },
     {
       "id": "bigui-program",
-      "label": "EXP-030–EXP-036 protocols and metadata",
+      "label": "EXP-030–EXP-040 protocols and metadata",
       "path": "experiments/bigui-program-v1.json",
       "query": {
         "language": "sql",
@@ -221,6 +221,32 @@
       "query": {
         "language": "sql",
         "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/architecture-fixture-results-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "paper-baseline",
+      "label": "Reviewed paper-reported baseline values and comparison boundary",
+      "path": "docs/research/bigui/paper-baseline-snapshot-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/paper-baseline-snapshot-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "baseline-comparison",
+      "label": "EXP-037–EXP-040 baseline, comparison, and thesis-readiness results",
+      "path": "docs/research/bigui/baseline-comparison-results-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/baseline-comparison-results-v1.json.",
         "sql": "SELECT * FROM experiments;",
         "tables_used": [
           "experiments"

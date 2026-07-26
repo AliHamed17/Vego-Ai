@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ready",
-  "generatedAt": "2026-07-26T00:30:26+00:00",
+  "generatedAt": "2026-07-26T14:16:00+03:00",
   "datasets": {
     "program_state": [
       {
@@ -350,7 +350,7 @@
         "track": "Observatory integrity",
         "status": "Evaluation-ready",
         "evidence_class": "evaluation_ready",
-        "accepted_runs": 1,
+        "accepted_runs": 2,
         "claim_boundary": "Source-fidelity evidence only; it does not establish classification validity or human decision value.",
         "next_action": "Run the deterministic catalog fidelity gate on every refresh."
       },
@@ -419,6 +419,50 @@
         "accepted_runs": 3,
         "claim_boundary": "Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.",
         "next_action": "Benchmark current, 5×, and 10× fixtures with environment and cohort hashes."
+      },
+      {
+        "experiment_id": "EXP-037",
+        "title": "Paper baseline reconciliation",
+        "research_space": "MSc",
+        "track": "Paper and baseline alignment",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "The comparison reconciles versions and capabilities; it cannot prove higher classification accuracy than the paper.",
+        "next_action": "Keep the paper and repository baselines visibly separate and refresh only when either reviewed source changes."
+      },
+      {
+        "experiment_id": "EXP-038",
+        "title": "Architecture improvement scorecard",
+        "research_space": "MSc",
+        "track": "Architecture evidence",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Capability and reliability extension may be demonstrated; classification accuracy and human effort remain unmeasured.",
+        "next_action": "Use the scorecard as the thesis progress baseline and keep null empirical cells visible."
+      },
+      {
+        "experiment_id": "EXP-039",
+        "title": "Cross-experiment comparability and deltas",
+        "research_space": "Cross-program",
+        "track": "Metric comparison integrity",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Better is metric-specific; every positive delta must show its denominator, trade-off, evidence class, and guardrail.",
+        "next_action": "Reject incompatible pairs and expose valid routing, topology, and runtime deltas in BigUI."
+      },
+      {
+        "experiment_id": "EXP-040",
+        "title": "Thesis claim-readiness audit",
+        "research_space": "MSc",
+        "track": "Thesis alignment",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Readiness and traceability do not substitute for the missing independent observations.",
+        "next_action": "Use this audit to keep the thesis, catalog, and BigUI claim boundaries synchronized."
       }
     ],
     "evidence_counts": [
@@ -440,7 +484,7 @@
       },
       {
         "evidence_class": "offline",
-        "experiment_count": 13
+        "experiment_count": 17
       },
       {
         "evidence_class": "proposal",
