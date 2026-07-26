@@ -131,6 +131,51 @@ def review_return(
     }
 
 
+def calibration_return(
+    *,
+    manifest: dict,
+    slot: str,
+    reviewer_id: str,
+    disagree_first: bool = False,
+) -> dict:
+    records = []
+    for index in range(1, 4):
+        label = (
+            "Substantial Variability"
+            if index % 2
+            else "Occasional Variability"
+        )
+        if disagree_first and index == 1:
+            label = "Occasional Variability"
+        records.append(
+            {
+                "anonymousItemId": f"CAL-{index:02d}",
+                "expertLabel": label,
+                "expertRationale": "Human calibration fixture rationale",
+                "confidence": "High",
+                "reviewRequirement": (
+                    "Human review required"
+                    if index <= 2
+                    else "Automatic handling acceptable"
+                ),
+                "routingRationale": "Human calibration routing rationale",
+                "reviewPriority": "High" if index == 1 else "Medium",
+                "reviewDate": "2026-07-26",
+                "activeSeconds": float(15 + index),
+                "notes": "",
+            }
+        )
+    return {
+        "schemaVersion": "IndependentCalibrationReturn-v1",
+        "packageVersion": manifest["packageVersion"],
+        "reviewerSlot": slot,
+        "reviewerId": reviewer_id,
+        "sourceSheetSha256": manifest["source"]["sha256"],
+        "completedAt": "2026-07-26T12:00:00Z",
+        "records": records,
+    }
+
+
 def build_fixture(tmp_path: Path):
     builder = load_script("build_independent_evidence_package.py")
     source = tmp_path / "source.csv"
@@ -152,6 +197,9 @@ def test_blind_package_is_deterministic_separated_and_empty(tmp_path: Path) -> N
         "reviewerCount": 2,
         "suppliedLabels": 0,
     }
+    assert second["governance"]["programStage"] == "calibration_ready"
+    assert second["governance"]["acceptedDecisionCount"] == 10
+    assert second["governance"]["evaluationReleaseAuthorized"] is False
     assert builder.check(source, output) == second
     reviewer_1 = list(csv.DictReader((output / "reviewer_1_evaluation.csv").open()))
     reviewer_2 = list(csv.DictReader((output / "reviewer_2_evaluation.csv").open()))
@@ -268,6 +316,8 @@ def test_delivery_contains_no_private_mapping_or_labels(tmp_path: Path) -> None:
     publisher = load_script("publish_independent_evidence_package.py")
     destination = tmp_path / "delivery"
     manifest = publisher.refresh(package, destination)
+    assert manifest["deliveryStage"] == "calibration"
+    assert manifest["evaluationReleased"] is False
     assert manifest["suppliedLabels"] == 0
     assert manifest["privateMappingIncluded"] is False
     assert publisher.check(package, destination) == manifest
@@ -278,6 +328,77 @@ def test_delivery_contains_no_private_mapping_or_labels(tmp_path: Path) -> None:
     }
     assert not any("private" in path.casefold() for path in paths)
     assert not any("gold" in path.casefold() for path in paths)
+    assert not any("evaluation" in path.casefold() for path in paths)
+
+
+def test_calibration_pair_requires_human_freeze_before_evaluation_release(
+    tmp_path: Path,
+) -> None:
+    _builder, _source, package, manifest = build_fixture(tmp_path)
+    validator = load_script("validate_independent_calibration_returns.py")
+    left_path = tmp_path / "calibration-left.json"
+    right_path = tmp_path / "calibration-right.json"
+    left_path.write_text(
+        json.dumps(
+            calibration_return(
+                manifest=manifest,
+                slot="reviewer_1",
+                reviewer_id="human_reviewer_one",
+            )
+        ),
+        encoding="utf-8",
+    )
+    right_path.write_text(
+        json.dumps(
+            calibration_return(
+                manifest=manifest,
+                slot="reviewer_2",
+                reviewer_id="human_reviewer_two",
+                disagree_first=True,
+            )
+        ),
+        encoding="utf-8",
+    )
+    calibration_output = tmp_path / "calibration-validation"
+    report = validator.validate_pair(
+        package,
+        left_path,
+        right_path,
+        calibration_output,
+    )
+    assert report["status"] == "HUMAN_INSTRUCTION_FREEZE_REQUIRED"
+    assert report["classificationAgreement"]["agreementCount"] == 2
+    assert report["calibrationRowsExcludedFromPerformance"] is True
+    assert report["evaluationReleaseAuthorized"] is False
+
+    publisher = load_script("publish_independent_evidence_package.py")
+    with pytest.raises(ValueError, match="human instruction freeze"):
+        publisher.refresh(
+            package,
+            tmp_path / "evaluation-delivery",
+            stage="evaluation",
+        )
+
+    freezer = load_script("freeze_independent_calibration.py")
+    freeze_path = calibration_output / "calibration_instruction_freeze.json"
+    frozen = freezer.freeze(
+        pair_report_path=calibration_output / "calibration_pair_report.json",
+        output_path=freeze_path,
+        disposition="clarified",
+        reviewed_by="human_supervisor_role",
+        review_date="2026-07-26",
+        rationale="Human reviewed the calibration discrepancy.",
+        clarifications=["Clarified the boundary for insufficient context."],
+    )
+    assert frozen["evaluationReleaseAuthorized"] is True
+    delivery = publisher.refresh(
+        package,
+        tmp_path / "evaluation-delivery",
+        stage="evaluation",
+        freeze_path=freeze_path,
+    )
+    assert delivery["deliveryStage"] == "evaluation"
+    assert delivery["evaluationReleased"] is True
 
 
 def test_explicit_adjudication_freezes_gold_and_enables_development_metrics(

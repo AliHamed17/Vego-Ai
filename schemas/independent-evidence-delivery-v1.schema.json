@@ -7,10 +7,14 @@
   "required": [
     "schemaVersion",
     "deliveryDate",
+    "deliveryStage",
     "sourcePackageSha256",
+    "decisionRegisterSha256",
+    "calibrationFreezeSha256",
     "files",
     "privateMappingIncluded",
     "suppliedLabels",
+    "evaluationReleased",
     "claimBoundary"
   ],
   "properties": {
@@ -21,12 +25,31 @@
       "type": "string",
       "format": "date"
     },
+    "deliveryStage": {
+      "enum": [
+        "calibration",
+        "evaluation"
+      ]
+    },
     "sourcePackageSha256": {
       "$ref": "#/$defs/sha256"
     },
+    "decisionRegisterSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "calibrationFreezeSha256": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "files": {
       "type": "array",
-      "minItems": 12,
+      "minItems": 10,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -68,11 +91,45 @@
     "suppliedLabels": {
       "const": 0
     },
+    "evaluationReleased": {
+      "type": "boolean"
+    },
     "claimBoundary": {
       "type": "string",
       "minLength": 1
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "deliveryStage": {
+            "const": "calibration"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "calibrationFreezeSha256": {
+            "type": "null"
+          },
+          "evaluationReleased": {
+            "const": false
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "calibrationFreezeSha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "evaluationReleased": {
+            "const": true
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "sha256": {
       "type": "string",

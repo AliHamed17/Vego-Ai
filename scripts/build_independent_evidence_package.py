@@ -26,7 +26,13 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "reports/generated/exp002/expert_labeling_sheet.csv"
 DEFAULT_OUTPUT = ROOT / "reports/generated/independent_evidence_v1"
 SCHEMA = ROOT / "schemas/independent-evidence-package-v1.schema.json"
-PACKAGE_VERSION = "1.0.0"
+DECISION_SCHEMA = (
+    ROOT / "schemas/independent-evidence-decision-register-v1.schema.json"
+)
+DEFAULT_DECISIONS = (
+    ROOT / "docs/research/independent-evidence/decision-register.json"
+)
+PACKAGE_VERSION = "1.1.0"
 GENERATED_AT = "2026-07-26T00:00:00Z"
 PARTITION_SEED = 2026
 REVIEWER_SEEDS = (2027, 2028)
@@ -103,6 +109,22 @@ def load_source(path: Path) -> tuple[list[dict[str, str]], list[dict[str, str]]]
             f"found {len(safe)} and {len(calibration)}"
         )
     return safe, calibration
+
+
+def load_decisions(path: Path) -> dict[str, Any]:
+    decisions = json.loads(path.read_text(encoding="utf-8"))
+    schema = json.loads(DECISION_SCHEMA.read_text(encoding="utf-8"))
+    jsonschema.Draft202012Validator(
+        schema,
+        format_checker=jsonschema.FormatChecker(),
+    ).validate(decisions)
+    ids = [item["id"] for item in decisions["decisions"]]
+    expected = [f"IE-{index:02d}" for index in range(1, 11)]
+    if ids != expected:
+        raise ValueError(f"decision IDs must be ordered IE-01 through IE-10: {ids}")
+    if any(item["outcome"] != "Accepted" for item in decisions["decisions"]):
+        raise ValueError("all IE decisions must be Accepted for calibration release")
+    return decisions
 
 
 def public_item(row: dict[str, str], anonymous_id: str) -> dict[str, str]:
@@ -441,7 +463,12 @@ def write_gold_template(path: Path, items: list[dict[str, str]]) -> None:
             writer.writerow({"anonymous_item_id": item["anonymous_item_id"]})
 
 
-def write_docs(output: Path, source_sha: str) -> None:
+def write_docs(
+    output: Path,
+    source_sha: str,
+    decisions: dict[str, Any],
+) -> None:
+    policy = decisions["operationalPolicy"]
     (output / "README.md").write_text(
         """# Independent Evidence Package v1
 
@@ -497,20 +524,27 @@ Source package hash: `{source_sha}`.
         newline="\n",
     )
     (output / "SUPERVISOR_APPROVAL_CHECKLIST.md").write_text(
-        """# Supervisor approval checklist
+        f"""# Supervisor approval checklist
 
-Record before reviewer outreach:
+Recorded from the project owner's explicit statement on
+`{decisions['decisions'][0]['decisionDate']}`. Program stage:
+`{decisions['programStage']}`.
 
-- [ ] Reviewer roles and required expertise are approved.
-- [ ] Consent or ethics/IRB requirements are recorded.
-- [ ] Reviewer anonymity/pseudonym policy is recorded.
-- [ ] Approved transfer channel for reviewer returns is recorded.
-- [ ] Storage location and retention period are recorded.
-- [ ] Two reviewers will work independently.
-- [ ] Adjudicator role is identified.
-- [ ] The 16/8 private partition remains hidden.
-- [ ] No AI, memory, or synthetic label is treated as ground truth.
-- [ ] Accuracy claims remain blocked until adjudicated safe labels exist.
+- [x] IE-01 through IE-10 are recorded as Accepted.
+- [x] Reviewer eligibility: {policy['reviewerEligibility']}.
+- [x] Consent and ethics: {policy['consentAndEthics']}.
+- [x] Reviewer IDs: {policy['reviewerIds']}.
+- [x] Transfer channel: {policy['transferChannel']}.
+- [x] Storage: {policy['storageLocation']}.
+- [x] Retention: {policy['retentionPeriod']}.
+- [x] Reviewer independence: {policy['reviewerIndependence']}.
+- [x] Adjudicator: {policy['adjudicatorRole']}.
+- [x] The 16/8 private partition remains hidden.
+- [x] No AI, memory, or synthetic label is treated as ground truth.
+- [x] Accuracy claims remain blocked until adjudicated safe labels exist.
+
+Evaluation release remains blocked until two valid calibration returns and a
+human-frozen instruction manifest exist.
 """,
         encoding="utf-8",
         newline="\n",
@@ -537,8 +571,13 @@ record, never by editing the returned files.
     )
 
 
-def build(source: Path, output: Path) -> dict[str, Any]:
+def build(
+    source: Path,
+    output: Path,
+    decisions_path: Path = DEFAULT_DECISIONS,
+) -> dict[str, Any]:
     safe_rows, calibration_rows = load_source(source)
+    decisions = load_decisions(decisions_path)
     safe, calibration, private_rows = assign_items(safe_rows, calibration_rows)
     if output.exists():
         shutil.rmtree(output)
@@ -593,7 +632,7 @@ def build(source: Path, output: Path) -> dict[str, Any]:
     write_private_mapping(mapping, private_rows)
     write_adjudication(adjudication, safe)
     write_gold_template(gold, safe)
-    write_docs(output, source_sha)
+    write_docs(output, source_sha, decisions)
     generated.extend(
         [
             (output / "README.md", "local workflow", False, False),
@@ -620,6 +659,15 @@ def build(source: Path, output: Path) -> dict[str, Any]:
         "packageVersion": PACKAGE_VERSION,
         "generatedAt": GENERATED_AT,
         "source": {"path": rel(source), "sha256": source_sha},
+        "governance": {
+            "programStage": decisions["programStage"],
+            "decisionSetId": decisions["decisionSetId"],
+            "decisionRegisterPath": rel(decisions_path),
+            "decisionRegisterSha256": sha256_file(decisions_path),
+            "acceptedDecisionCount": len(decisions["decisions"]),
+            "calibrationReleaseAuthorized": True,
+            "evaluationReleaseAuthorized": False,
+        },
         "counts": {
             "candidateRows": 24,
             "calibrationRows": 3,
@@ -679,12 +727,16 @@ def build(source: Path, output: Path) -> dict[str, Any]:
     return manifest
 
 
-def check(source: Path, output: Path) -> dict[str, Any]:
+def check(
+    source: Path,
+    output: Path,
+    decisions_path: Path = DEFAULT_DECISIONS,
+) -> dict[str, Any]:
     if not output.is_dir():
         raise ValueError(f"package is missing: {output}")
     temporary = output.with_name(output.name + ".check")
     try:
-        expected = build(source, temporary)
+        expected = build(source, temporary, decisions_path)
         actual_path = output / "package_manifest.json"
         if not actual_path.is_file():
             raise ValueError("package_manifest.json is missing")
@@ -724,12 +776,13 @@ def main() -> int:
     action.add_argument("--check", action="store_true")
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--decisions", type=Path, default=DEFAULT_DECISIONS)
     args = parser.parse_args()
     try:
         if args.refresh:
-            manifest = build(args.source, args.output)
+            manifest = build(args.source, args.output, args.decisions)
         else:
-            manifest = check(args.source, args.output)
+            manifest = check(args.source, args.output, args.decisions)
         print(
             "Independent evidence package: PASS "
             f"({manifest['counts']['candidateRows']} evaluation rows, "

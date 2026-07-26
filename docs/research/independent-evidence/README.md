@@ -1,6 +1,6 @@
 # Independent Evidence Execution Program
 
-Status: **Evaluation-ready; pending two independent human reviewers.**
+Status: **Approved for calibration; pending two independent human reviewers.**
 
 This program turns the six requested value questions into measurements without
 copying VEGO-AI output into the ground truth.
@@ -31,8 +31,9 @@ repository creates expert labels.
 
 ## Execution order
 
-1. Iris and Arnon record reviewer-role, consent/ethics, anonymity, transfer,
-   retention, and adjudicator decisions.
+1. IE-01 through IE-10 are recorded as accepted in
+   `decision-register.json`. Provide the approved participant information and
+   obtain affirmative consent from each reviewer.
 2. Build the local blinded package:
 
    ```powershell
@@ -40,11 +41,39 @@ repository creates expert labels.
    python scripts\build_independent_evidence_package.py --check
    ```
 
-3. Send Reviewer 1 and Reviewer 2 only their own calibration page and the
-   reviewer instructions. Never send `private/`.
-4. Preserve both calibration returns unchanged. Discuss vocabulary problems and
-   freeze the instruction version before evaluation.
-5. Send each reviewer only their own 24-item evaluation page.
+3. Publish the calibration-only delivery and send Reviewer 1 and Reviewer 2
+   only their own calibration folder. Each folder includes the participant
+   information/consent document, reviewer instructions, and its offline page.
+   Never send `private/` or any evaluation file at this stage.
+
+   ```powershell
+   python scripts\publish_independent_evidence_package.py `
+     --refresh --stage calibration
+   ```
+4. Preserve both calibration returns unchanged and validate them:
+
+   ```powershell
+   python scripts\validate_independent_calibration_returns.py `
+     --reviewer-1 <reviewer-1-calibration-return.json> `
+     --reviewer-2 <reviewer-2-calibration-return.json>
+   ```
+
+5. Discuss vocabulary problems and record a human instruction freeze with
+   `freeze_independent_calibration.py`. Only then publish and send each
+   reviewer their own 24-item evaluation page.
+
+   ```powershell
+   python scripts\freeze_independent_calibration.py `
+     --disposition unchanged `
+     --reviewed-by <human-role-or-pseudonym> `
+     --review-date <YYYY-MM-DD> `
+     --rationale <human-reviewed-rationale>
+
+   python scripts\publish_independent_evidence_package.py `
+     --refresh --stage evaluation `
+     --calibration-freeze `
+       reports/generated/independent_evidence_v1/validation/calibration/calibration_instruction_freeze.json
+   ```
 6. Preserve both raw JSON returns unchanged and validate them:
 
    ```powershell

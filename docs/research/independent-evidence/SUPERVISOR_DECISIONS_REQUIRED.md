@@ -1,21 +1,31 @@
-# Decisions Required Before Reviewer Outreach
+# Independent-Evidence Decision Record
 
 Audience: Iris and Arnon.
 
-Record each item as `Accepted`, `Accepted with changes`, `Rejected`, or
-`Deferred`.
+All ten decisions were recorded as `Accepted` on 2026-07-26 after the project
+owner stated: “all accepted move to the next phase.” The machine-readable,
+auditable record and operational parameters are in
+[`decision-register.json`](decision-register.json).
 
-| ID | Exact decision requested | Current default |
+| ID | Decision | Outcome |
 | --- | --- | --- |
-| IE-01 | Approve the three classification labels and neutral reviewer context | Deferred |
-| IE-02 | Approve collecting an independent routing-need judgment and priority on every row | Deferred |
-| IE-03 | Confirm that both reviewers label all 24 evaluation rows independently | Deferred |
-| IE-04 | Define minimum reviewer expertise and permitted reviewer roles | Deferred |
-| IE-05 | Record consent/ethics requirements and approved participant information | Deferred |
-| IE-06 | Approve pseudonymous reviewer IDs, storage location, transfer channel, and retention period | Deferred |
-| IE-07 | Name the adjudicator role and confirm raw returns remain immutable | Deferred |
-| IE-08 | Approve the 16-development/8-sealed partition and the one-time holdout rule | Deferred |
-| IE-09 | Confirm macro-F1 as primary classification metric and net correction as primary paired metric | Deferred |
-| IE-10 | Confirm that paper comparison is reported as not directly comparable unless the same independent protocol can be reconstructed | Deferred |
+| IE-01 | Three classification labels and neutral reviewer context | Accepted |
+| IE-02 | Independent routing-need judgment and priority on every row | Accepted |
+| IE-03 | Both reviewers label all 24 evaluation rows independently | Accepted |
+| IE-04 | Two independent humans with domain-modeling assessment experience who did not create the evaluated predictions | Accepted |
+| IE-05 | Written participant information, affirmative consent, and compliance with applicable institutional ethics requirements | Accepted |
+| IE-06 | Pseudonymous IDs, private transfer, ignored local storage, and bounded retention | Accepted |
+| IE-07 | Separate supervisor-authorized human adjudicator; immutable raw returns | Accepted |
+| IE-08 | Hidden 16-development/8-sealed partition and one-time holdout | Accepted |
+| IE-09 | Macro-F1 primary classification metric and net correction primary paired metric | Accepted |
+| IE-10 | Paper comparison remains `Not directly comparable` unless an equivalent independent protocol is reconstructed | Accepted |
 
-No silence or incomplete entry is treated as approval.
+## Current authorization
+
+- Program stage: `calibration_ready`.
+- Calibration package release: authorized.
+- Evaluation package release: not yet authorized.
+- Evaluation release requires two valid calibration returns and a human-frozen
+  instruction manifest.
+- Accuracy, macro-F1, generalization, effort, paper-superiority, topology, and
+  routing-superiority claims remain unavailable.

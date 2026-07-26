@@ -9,6 +9,7 @@
     "packageVersion",
     "generatedAt",
     "source",
+    "governance",
     "counts",
     "randomization",
     "labelVocabulary",
@@ -43,6 +44,43 @@
         },
         "sha256": {
           "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "programStage",
+        "decisionSetId",
+        "decisionRegisterPath",
+        "decisionRegisterSha256",
+        "acceptedDecisionCount",
+        "calibrationReleaseAuthorized",
+        "evaluationReleaseAuthorized"
+      ],
+      "properties": {
+        "programStage": {
+          "const": "calibration_ready"
+        },
+        "decisionSetId": {
+          "const": "IE-01--IE-10"
+        },
+        "decisionRegisterPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decisionRegisterSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "acceptedDecisionCount": {
+          "const": 10
+        },
+        "calibrationReleaseAuthorized": {
+          "const": true
+        },
+        "evaluationReleaseAuthorized": {
+          "const": false
         }
       }
     },
