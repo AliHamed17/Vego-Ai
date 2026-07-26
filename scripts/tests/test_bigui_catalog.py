@@ -49,9 +49,9 @@ def test_catalog_is_complete_deterministic_and_schema_valid() -> None:
         schema, format_checker=jsonschema.FormatChecker()
     ).validate(tracked)
     assert [item["id"] for item in tracked["experiments"]] == [
-        f"EXP-{index:03d}" for index in range(37)
+        f"EXP-{index:03d}" for index in range(41)
     ]
-    assert len({item["id"] for item in tracked["experiments"]}) == 37
+    assert len({item["id"] for item in tracked["experiments"]}) == 41
 
 
 def test_catalog_zero_label_gate_keeps_empirical_metrics_null() -> None:
@@ -144,6 +144,47 @@ def test_architecture_fixture_results_are_bounded_and_pass() -> None:
     assert results["EXP-036"]["result"] is None
 
 
+def test_paper_and_current_baselines_are_reconciled_without_accuracy_claim() -> None:
+    builder = load_script("build_bigui_catalog.py")
+    catalog = builder.build_catalog()
+    paper = catalog["paperBaseline"]
+    comparison = catalog["baselineComparisonResults"]
+    assert paper["evaluationScope"]["caseModelTotal"] == 178
+    assert paper["phaseD"]["patternTotal"] == 26
+    assert comparison["currentBaseline"]["caseModelTotal"] == 179
+    assert comparison["currentBaseline"]["patternTotal"] == 27
+    exp037 = next(
+        item
+        for item in comparison["experiments"]
+        if item["experimentId"] == "EXP-037"
+    )
+    eligibility = next(
+        item
+        for item in exp037["metrics"]
+        if item["metricId"]
+        == "PAPER_CURRENT_CLASSIFICATION_COMPARISON_ELIGIBLE"
+    )
+    assert eligibility["value"] == 0
+    assert comparison["currentBaseline"]["safeLabels"] == 0
+
+
+def test_comparison_scorecard_keeps_empirical_dimensions_null() -> None:
+    builder = load_script("build_bigui_catalog.py")
+    comparison = builder.build_catalog()["baselineComparisonResults"]
+    exp038 = next(
+        item
+        for item in comparison["experiments"]
+        if item["experimentId"] == "EXP-038"
+    )
+    rows = {
+        item["dimension"]: item for item in exp038["details"]["scorecard"]
+    }
+    assert rows["human_judgment_capabilities"]["current"] == 1.0
+    assert rows["semantic_parity"]["current"] == 1.0
+    assert rows["classification_accuracy"]["current"] is None
+    assert rows["human_effort"]["current"] is None
+
+
 def test_bigui_html_is_fresh_offline_and_catalog_driven() -> None:
     builder = load_script("build_bigui.py")
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
@@ -151,7 +192,8 @@ def test_bigui_html_is_fresh_offline_and_catalog_driven() -> None:
     content = HTML_PATH.read_text(encoding="utf-8")
     assert "https://" not in content
     assert "http://" not in content
-    assert "EXP-036" in content
+    assert "EXP-040" in content
+    assert "Paper baseline and evidence of progress" in content
     assert "NOT YET COMPUTABLE" in content
     assert "Accepted run center" in content
     assert "Measured experiments first" in content

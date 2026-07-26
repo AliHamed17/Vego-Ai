@@ -76,13 +76,16 @@ async function verifyPage(viewport) {
     failures.push(`${viewport.width}px: overflow ${overflow}px ${JSON.stringify(wide)}`);
   }
   const assertions = [
-    ["#experiment-grid .experiment-card", 37, "experiment cards"],
+    ["#experiment-grid .experiment-card", 41, "experiment cards"],
+    ["#comparison-lanes .evidence-lane", 5, "baseline comparison lanes"],
+    ["#capability-matrix > div:not(.metric-meta)", 24, "capability matrix cells"],
+    ["#capability-matrix > .metric-meta", 1, "capability claim boundary"],
     ["#runtime-cards .arch-card", 3, "runtime cards"],
     ["#topology-cards .arch-card", 3, "topology cards"],
     ["#label-funnel .funnel-stage", 4, "label stages"],
     ["#accuracy-panels .empty-result", 4, "blank performance cards"],
     ["#paired-matrix .matrix-empty", 4, "blank paired cells"],
-    ["#source-grid .source-card", 7, "source cards"],
+    ["#source-grid .source-card", 9, "source cards"],
   ];
   for (const [selector, expected, label] of assertions) {
     const actual = await page.locator(selector).count();

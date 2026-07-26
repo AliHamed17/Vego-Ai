@@ -52,6 +52,13 @@ BIGUI_PROGRAM = ROOT / "experiments" / "bigui-program-v1.json"
 ARCHITECTURE_SUMMARY = (
     ROOT / "reports" / "generated" / "bigui_architecture" / "summary.json"
 )
+BASELINE_COMPARISON = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "baseline-comparison-results-v1.json"
+)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -916,6 +923,36 @@ def metrics_exp030(builder: RunBuilder, source: dict[str, Any]) -> None:
         )
 
 
+def metrics_baseline_comparison(
+    experiment_id: str,
+    builder: RunBuilder,
+    source: dict[str, Any],
+) -> None:
+    result = next(
+        item
+        for item in source["experiments"]
+        if item["experimentId"] == experiment_id
+    )
+    for row in result["metrics"]:
+        metric_id = row["metricId"]
+        title = metric_id.replace("_", " ").title()
+        builder.add(
+            metric_id,
+            row["value"],
+            row["numerator"],
+            row["denominator"],
+            row["unit"],
+            title=title,
+            formula=title.lower(),
+            direction=row["direction"],
+            dimensions=row.get("dimensions", {}),
+            grain="baseline comparison experiment",
+            analysis_method="deterministic source reconciliation",
+            claim_boundary=row["claimBoundary"],
+            required_evidence=row["evidenceClass"],
+        )
+
+
 def metrics_architecture(
     experiment_id: str,
     builder: RunBuilder,
@@ -1143,6 +1180,54 @@ def build_source_bundles() -> list[dict[str, Any]]:
                             "BASELINE_PRESERVED",
                             bool(result.get("baselinePreserved", True)),
                             "The experiment did not modify Agent 4 or baseline artifacts.",
+                        ),
+                    ],
+                )
+            )
+    if BASELINE_COMPARISON.is_file():
+        comparison = load_json(BASELINE_COMPARISON)
+        for experiment_id in ("EXP-037", "EXP-038", "EXP-039", "EXP-040"):
+            result = next(
+                item
+                for item in comparison["experiments"]
+                if item["experimentId"] == experiment_id
+            )
+            bundles.append(
+                make_bundle(
+                    experiment_id,
+                    BASELINE_COMPARISON,
+                    result["evidenceClass"],
+                    baseline,
+                    program,
+                    lambda builder, source, exp=experiment_id: (
+                        metrics_baseline_comparison(exp, builder, source)
+                    ),
+                    baseline_id=(
+                        "PAPER-B0"
+                        if experiment_id == "EXP-037"
+                        else "B0/B1"
+                    ),
+                    comparator_id={
+                        "EXP-037": "CURRENT-B0/B1",
+                        "EXP-038": "B1-EVIDENCE-SCORECARD",
+                        "EXP-039": "DECLARED-TREATMENTS",
+                        "EXP-040": "THESIS-CLAIM-GATES",
+                    }[experiment_id],
+                    verdict="CONFORMANCE_PASS",
+                    deterministic=True,
+                    architecture_mode="multi-mode",
+                    interface_version="BigUI-v3",
+                    claim_boundary=result["claimBoundary"],
+                    criteria=[
+                        (
+                            "EXECUTION_VALID",
+                            bool(result["executionValid"]),
+                            "The comparison experiment completed with schema-valid output.",
+                        ),
+                        (
+                            "EVIDENCE_BOUNDARY_PRESERVED",
+                            bool(result["passed"]),
+                            "Unsupported accuracy and effort deltas remain suppressed.",
                         ),
                     ],
                 )

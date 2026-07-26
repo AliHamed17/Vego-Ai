@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/baseline-comparison-results-v1.schema.json",
+  "title": "BaselineComparisonResults-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "paperBaseline",
+    "currentBaseline",
+    "comparisonLanes",
+    "experiments",
+    "sources",
+    "claimBoundary",
+    "normalizedSha256"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "BaselineComparisonResults-v1"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "paperBaseline": {"type": "object"},
+    "currentBaseline": {"type": "object"},
+    "comparisonLanes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "status",
+          "directlyComparable",
+          "explanation"
+        ],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "status": {
+            "enum": [
+              "demonstrated",
+              "contextual_only",
+              "not_yet_measurable"
+            ]
+          },
+          "directlyComparable": {"type": "boolean"},
+          "explanation": {"type": "string"}
+        }
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "experimentId",
+          "evidenceClass",
+          "executionValid",
+          "passed",
+          "metrics",
+          "claimBoundary"
+        ],
+        "properties": {
+          "experimentId": {
+            "enum": ["EXP-037", "EXP-038", "EXP-039", "EXP-040"]
+          },
+          "evidenceClass": {
+            "enum": ["historical", "mechanism", "offline", "synthetic"]
+          },
+          "executionValid": {"type": "boolean"},
+          "passed": {"type": "boolean"},
+          "metrics": {"type": "array", "items": {"type": "object"}},
+          "details": {"type": ["object", "array", "null"]},
+          "claimBoundary": {"type": "string"}
+        }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "claimBoundary": {"type": "string", "minLength": 1},
+    "normalizedSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

@@ -140,6 +140,8 @@ Invoke-Gate "evidence guard (read-only)" {
 Invoke-Gate "BigUI catalog, architecture fixtures, and observatory freshness" {
     uv run python scripts/build_bigui_architecture_snapshot.py --check
     if ($LASTEXITCODE -ne 0) { throw "BigUI architecture snapshot is stale" }
+    uv run python scripts/run_bigui_comparison_experiments.py --check
+    if ($LASTEXITCODE -ne 0) { throw "BigUI baseline comparison results are stale" }
     uv run python scripts/build_bigui_run_store.py --check
     if ($LASTEXITCODE -ne 0) { throw "BigUI accepted run store is stale" }
     uv run python scripts/build_bigui_catalog.py --check

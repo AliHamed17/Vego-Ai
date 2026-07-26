@@ -88,6 +88,7 @@ jobs:
             docs/research/bigui/experiment-catalog-snapshot-v1.json
           uv run python scripts/build_hardening_manifests.py --check
           uv run python scripts/build_bigui_architecture_snapshot.py --check
+          uv run python scripts/run_bigui_comparison_experiments.py --check
           uv run python scripts/build_bigui_run_store.py --check
           uv run python scripts/build_bigui_catalog.py --check
           uv run python scripts/build_bigui.py --check

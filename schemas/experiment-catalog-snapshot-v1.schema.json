@@ -11,6 +11,8 @@
     "publicationTier",
     "programState",
     "architectureVariants",
+    "paperBaseline",
+    "baselineComparisonResults",
     "experiments",
     "metricObservations",
     "metricDefinitionsV2",
@@ -64,10 +66,12 @@
       "maxItems": 6,
       "items": {"type": "object"}
     },
+    "paperBaseline": {"type": "object"},
+    "baselineComparisonResults": {"type": "object"},
     "experiments": {
       "type": "array",
-      "minItems": 37,
-      "maxItems": 37,
+      "minItems": 41,
+      "maxItems": 41,
       "items": {
         "type": "object",
         "additionalProperties": false,
