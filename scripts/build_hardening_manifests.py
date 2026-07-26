@@ -27,7 +27,7 @@ except ModuleNotFoundError:  # Python 3.10 compatibility
     import tomli as tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
-ITERATION_SOURCE_REVISION = "d44d81ac96e4a982114e2312862d2f7291140b26"
+ITERATION_SOURCE_REVISION = "b866fbf5c8c5c08dfbc5da6e0387e60a887eaa7f"
 OUTPUT_ROOT = ROOT / "docs" / "research" / "hardening"
 BASELINE_PATH = OUTPUT_ROOT / "baseline-lock-manifest-v2.json"
 SECURITY_PATH = OUTPUT_ROOT / "security-posture-snapshot-v1.json"

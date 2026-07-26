@@ -14,7 +14,7 @@
   "hypothesis": "A versioned unified contract path can reproduce legacy M1-M4B-1 artifacts while strengthening security and provenance.",
   "iteration": 15,
   "iterationKind": "reliability_only",
-  "normalizedSha256": "f42909fc522d0dc1c0293245c6105630076349225ba50115f5528cbddbf2c0b2",
+  "normalizedSha256": "3e791ac220102953bf7147afed06312a8281585069ea2e9974e28e4b3e9759fd",
   "results": {
     "controlledComparisonRows": 27,
     "controlledParity": "PASS",
@@ -28,6 +28,6 @@
   },
   "runId": "HLAYER-UNIFIED-HARDENING-V1",
   "schemaVersion": "HLayerIterationManifest-v1",
-  "sourceRevision": "d44d81ac96e4a982114e2312862d2f7291140b26",
+  "sourceRevision": "b866fbf5c8c5c08dfbc5da6e0387e60a887eaa7f",
   "verdict": "NEUTRAL"
 }
