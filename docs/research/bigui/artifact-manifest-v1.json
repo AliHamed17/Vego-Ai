@@ -3,7 +3,7 @@
   "surface": "dashboard",
   "title": "VEGO-AI BigUI Research Observatory",
   "description": "Catalog-driven research, architecture, and evidence status.",
-  "generatedAt": "2026-07-26T14:16:00+03:00",
+  "generatedAt": "2026-07-26T16:00:00+03:00",
   "blocks": [
     {
       "type": "markdown",
@@ -247,6 +247,45 @@
       "query": {
         "language": "sql",
         "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/baseline-comparison-results-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "experiment-evaluation-standard",
+      "label": "Canonical evaluation dimensions, baselines, parameters, gates, and statistical rules",
+      "path": "docs/research/bigui/experiment-evaluation-standard-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/experiment-evaluation-standard-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "experiment-benchmark",
+      "label": "All-experiment evaluation records, program analytics, findings, and recommendations",
+      "path": "docs/research/bigui/experiment-benchmark-snapshot-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from docs/research/bigui/experiment-benchmark-snapshot-v1.json.",
+        "sql": "SELECT * FROM experiments;",
+        "tables_used": [
+          "experiments"
+        ]
+      }
+    },
+    {
+      "id": "current-run-index",
+      "label": "Current accepted projection for each executed experiment; older bundles remain history",
+      "path": "experiments/current-run-index-v1.json",
+      "query": {
+        "language": "sql",
+        "description": "Read the normalized BigUI artifact snapshot derived from experiments/current-run-index-v1.json.",
         "sql": "SELECT * FROM experiments;",
         "tables_used": [
           "experiments"
