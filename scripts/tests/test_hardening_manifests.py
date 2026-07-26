@@ -65,6 +65,19 @@ def test_release_source_hash_includes_every_controlled_validator() -> None:
     assert "scripts/verify-controlled.ps1" in builder.SOURCE_EXTRA
 
 
+def test_release_manifest_avoids_embedding_artifact_hash_cycles() -> None:
+    builder = load_builder()
+    release_path = ROOT / "docs" / "research" / "hardening" / "release-manifest-v3.json"
+    payload = json.loads(builder.build_all(False)[release_path])
+
+    assert "VEGO-AI-Research-Hub.html" not in payload["trackedArtifacts"]
+    assert "VEGO-AI-Thesis-Baseline-Progress.html" not in payload["trackedArtifacts"]
+    assert (
+        "docs/research/h-layer/program-status-snapshot-v1.json"
+        in payload["trackedArtifacts"]
+    )
+
+
 def test_portable_text_hash_normalizes_checkout_line_endings(tmp_path: Path) -> None:
     builder = load_builder()
     lf = tmp_path / "lf.txt"

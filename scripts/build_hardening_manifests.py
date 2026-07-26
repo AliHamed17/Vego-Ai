@@ -544,10 +544,12 @@ def build_all(require_controlled: bool) -> dict[Path, str]:
         path.relative_to(ROOT).as_posix(): sha256_bytes(content.encode("utf-8"))
         for path, content in generated.items()
     }
+    # Keep embedding presentation artifacts out of this manifest. Both HTML
+    # files consume hardening state, so hashing them here would create a
+    # self-invalidating provenance cycle. The BigUI deployment snapshot and
+    # thesis review manifest own their respective presentation-package hashes.
     for path in (
         ROOT / "docs/research/h-layer/program-status-snapshot-v1.json",
-        ROOT / "VEGO-AI-Research-Hub.html",
-        ROOT / "VEGO-AI-Thesis-Baseline-Progress.html",
     ):
         if path.is_file():
             package_hashes[path.relative_to(ROOT).as_posix()] = sha256_file(path)
