@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-evaluation-v1.schema.json",
+  "title": "ExperimentEvaluation-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "experimentId",
+    "runId",
+    "executionValid",
+    "deterministic",
+    "engineeringTargetMet",
+    "evidenceAdmissible",
+    "resultVerdict",
+    "criteria",
+    "claimBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentEvaluation-v1"},
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "runId": {"type": "string", "minLength": 1},
+    "executionValid": {"type": "boolean"},
+    "deterministic": {"type": ["boolean", "null"]},
+    "engineeringTargetMet": {"type": ["boolean", "null"]},
+    "evidenceAdmissible": {"type": "boolean"},
+    "resultVerdict": {
+      "enum": [
+        "NOT_COMPUTABLE",
+        "PILOT_DESCRIPTIVE",
+        "CONFORMANCE_PASS",
+        "CONFORMANCE_FAIL",
+        "ENGINEERING_TARGET_MET",
+        "ENGINEERING_TARGET_NOT_MET",
+        "POSITIVE",
+        "NULL",
+        "MIXED",
+        "HARMFUL",
+        "INCONCLUSIVE",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "passed", "detail"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "passed": {"type": "boolean"},
+          "detail": {"type": "string", "minLength": 1}
+        }
+      },
+      "minItems": 1
+    },
+    "claimBoundary": {"type": "string", "minLength": 1}
+  }
+}

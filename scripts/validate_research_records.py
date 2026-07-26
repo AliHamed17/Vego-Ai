@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 import jsonschema
+from referencing import Registry, Resource
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = {
@@ -30,8 +31,18 @@ SCHEMAS = {
     "HLayerIterationManifest-v1": ROOT
     / "schemas/hlayer-iteration-manifest-v1.schema.json",
     "MetricObservation-v1": ROOT / "schemas/metric-observation-v1.schema.json",
+    "MetricObservation-v2": ROOT / "schemas/metric-observation-v2.schema.json",
+    "MetricDefinition-v1": ROOT / "schemas/metric-definition-v1.schema.json",
     "ExperimentRunEnvelope-v1": ROOT
     / "schemas/experiment-run-envelope-v1.schema.json",
+    "ExperimentRunEnvelope-v2": ROOT
+    / "schemas/experiment-run-envelope-v2.schema.json",
+    "ExperimentEvaluation-v1": ROOT
+    / "schemas/experiment-evaluation-v1.schema.json",
+    "RunAcceptanceRecord-v1": ROOT
+    / "schemas/run-acceptance-record-v1.schema.json",
+    "AcceptedExperimentRunBundle-v1": ROOT
+    / "schemas/accepted-experiment-run-bundle-v1.schema.json",
     "ArchitectureVariant-v1": ROOT
     / "schemas/architecture-variant-v1.schema.json",
     "ComparisonEligibility-v1": ROOT
@@ -41,12 +52,26 @@ SCHEMAS = {
     / "schemas/experiment-catalog-snapshot-v1.schema.json",
 }
 
+_ALL_SCHEMA_DOCUMENTS = [
+    json.loads(path.read_text(encoding="utf-8"))
+    for path in sorted((ROOT / "schemas").glob("*.schema.json"))
+]
+_SCHEMA_REGISTRY = Registry().with_resources(
+    [
+        (schema["$id"], Resource.from_contents(schema))
+        for schema in _ALL_SCHEMA_DOCUMENTS
+        if "$id" in schema
+    ]
+)
+
 
 def schema_errors(record: dict[str, Any], version: str) -> list[str]:
     schema_path = SCHEMAS[version]
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
     validator = jsonschema.Draft202012Validator(
-        schema, format_checker=jsonschema.FormatChecker()
+        schema,
+        registry=_SCHEMA_REGISTRY,
+        format_checker=jsonschema.FormatChecker(),
     )
     return [
         (
@@ -111,19 +136,47 @@ def semantic_errors(record: dict[str, Any]) -> list[str]:
         metric_ids = [item.get("metricId") for item in record["metricObservations"]]
         if len(metric_ids) != len(set(metric_ids)):
             errors.append("metricObservations must have unique metricId values")
+        v2_observation_ids = [
+            item.get("observationId")
+            for item in record.get("metricObservationsV2", [])
+        ]
+        if len(v2_observation_ids) != len(set(v2_observation_ids)):
+            errors.append(
+                "metricObservationsV2 must have unique observationId values"
+            )
         run_ids = [item.get("runId") for item in record["acceptedRuns"]]
+        bundle_run_ids = [
+            item["envelope"].get("runId")
+            for item in record.get("acceptedRunBundles", [])
+        ]
         run_keys = [
             (item.get("experimentId"), item.get("runId"))
             for item in record["acceptedRuns"]
+        ]
+        bundle_run_keys = [
+            (
+                item["envelope"].get("experimentId"),
+                item["envelope"].get("runId"),
+                item["envelope"].get("attemptId"),
+            )
+            for item in record.get("acceptedRunBundles", [])
         ]
         if len(run_keys) != len(set(run_keys)):
             errors.append(
                 "acceptedRuns must have unique experimentId and runId pairs"
             )
+        if len(bundle_run_keys) != len(set(bundle_run_keys)):
+            errors.append(
+                "acceptedRunBundles must have unique experimentId, runId, and "
+                "attemptId tuples"
+            )
         nested_groups = [
             ("architectureVariants", "ArchitectureVariant-v1"),
             ("metricObservations", "MetricObservation-v1"),
+            ("metricDefinitionsV2", "MetricDefinition-v1"),
+            ("metricObservationsV2", "MetricObservation-v2"),
             ("acceptedRuns", "ExperimentRunEnvelope-v1"),
+            ("acceptedRunBundles", "AcceptedExperimentRunBundle-v1"),
         ]
         for field, nested_version in nested_groups:
             for index, nested_record in enumerate(record[field]):
@@ -132,8 +185,8 @@ def semantic_errors(record: dict[str, Any]) -> list[str]:
                 for nested_error in semantic_errors(nested_record):
                     errors.append(f"{field}.{index}: {nested_error}")
 
-        known_metrics = set(metric_ids)
-        known_runs = set(run_ids)
+        known_metrics = set(metric_ids) | set(v2_observation_ids)
+        known_runs = set(run_ids) | set(bundle_run_ids)
         for experiment in record["experiments"]:
             missing_runs = sorted(set(experiment["acceptedRunIds"]) - known_runs)
             if missing_runs:

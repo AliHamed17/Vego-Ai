@@ -149,6 +149,16 @@ dialog::backdrop{background:rgba(0,0,0,.72)}.dialog-head{position:sticky;top:0;b
 .workspace-item strong,.source-card strong{color:var(--cyan)}.workspace-item p,.source-card p{color:var(--muted);margin:.25rem 0;overflow-wrap:anywhere}
 .workspace-item button{margin-top:6px;padding:6px 9px;border-radius:8px}
 .source-card code{display:block;color:var(--muted);overflow-wrap:anywhere;font-size:.72rem}
+.run-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.run-card{padding:15px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
+.run-card strong{color:var(--cyan)}.run-card p{margin:.3rem 0;color:var(--muted)}
+.run-card button{margin-top:8px;padding:7px 10px;border-radius:9px}
+.metric-table{width:100%;border-collapse:collapse}.metric-table th,.metric-table td{
+  padding:8px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+.metric-table td{color:var(--muted)}.result-lane{display:grid;gap:14px}
+.plot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.compact-bars{display:grid;gap:8px}.compact-row{display:grid;grid-template-columns:minmax(120px,1fr) 3fr auto;gap:9px;align-items:center}
+.compact-row small{color:var(--muted)}.engineering-miss{color:var(--amber)}
 .provenance-note{color:var(--muted);font-size:.8rem;margin-top:12px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
@@ -160,7 +170,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
 }
 @media(max-width:760px){
   .topbar-inner{align-items:flex-start}.nav{display:none}.brand{flex:1}.hero{grid-template-columns:1fr;padding-top:35px}
-  .kpi-grid,.two-col,.three-col,.runtime-grid,.topology-grid,.result-grid,.validity-grid{grid-template-columns:1fr}
+  .kpi-grid,.two-col,.three-col,.runtime-grid,.topology-grid,.result-grid,.validity-grid,.run-grid,.plot-grid{grid-template-columns:1fr}
   .experiment-grid{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters .search{grid-column:span 2}
   .system-map{display:flex;flex-direction:column;overflow:visible}.system-node{min-height:88px}
   .system-node:not(:last-child)::after{content:"↓";inset-inline-end:auto;left:50%;top:auto;bottom:-18px}
@@ -192,9 +202,10 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     <a class="brand" href="#overview"><span class="mark">V</span><span class="brand-text">VEGO-AI BigUI</span></a>
     <nav class="nav" aria-label="Research sections">
       <a href="#overview" data-i18n="navOverview">Overview</a>
+      <a href="#executed-results" data-i18n="navResults">Results</a>
+      <a href="#run-center">Runs</a>
       <a href="#architecture" data-i18n="navArchitecture">Architecture</a>
       <a href="#experiments" data-i18n="navExperiments">Experiments</a>
-      <a href="#results" data-i18n="navResults">Results</a>
       <a href="#evaluation" data-i18n="navEvaluation">Validity</a>
       <a href="#workspaces" data-i18n="navWorkspaces">MSc / PhD</a>
       <a href="#operations" data-i18n="navOperations">Operations</a>
@@ -209,25 +220,49 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   <header class="hero" id="overview">
     <div>
       <div class="eyebrow">VEGO-AI · ExperimentCatalogSnapshot-v1 · offline</div>
-      <h1 data-i18n="heroTitle">One operating surface for architecture, experiments, and evidence</h1>
-      <p class="lead" data-i18n="heroLead">Track every experiment from its question and gate to its accepted runs, metrics, limits, and next action. Mechanism readiness never substitutes for empirical validity.</p>
+      <h1 data-i18n="heroTitle">Measured experiments first. Architecture and evidence behind every result.</h1>
+      <p class="lead" data-i18n="heroLead">BigUI begins with accepted runs and measured outcomes, then connects each result to its experiment design, architecture, source hash, evaluation, and next action.</p>
       <p class="he-summary" lang="he">המערכת מרכזת את הארכיטקטורה, הניסויים, הראיות והמגבלות במקום אחד — בלי להציג נתוני מנגנון כהוכחת דיוק.</p>
       <div class="status-row" id="hero-status"></div>
     </div>
     <aside class="hero-gate" aria-label="Current evidence gate">
-      <strong data-i18n="gateTitle">Empirical gate is closed</strong>
+      <strong data-i18n="gateTitle">Current evaluation stage</strong>
       <p id="gate-summary"></p>
       <div class="boundary" data-i18n="gateBoundary">Agent 4 and the official baseline remain frozen. Empty performance panels are intentional.</div>
     </aside>
   </header>
 
   <section class="section" aria-labelledby="overview-title">
-    <div class="section-head"><div><h2 id="overview-title" data-i18n="overviewTitle">Research overview</h2><p data-i18n="overviewCopy">Current mechanism evidence, missing empirical evidence, and program blockers.</p></div></div>
+    <div class="section-head"><div><h2 id="overview-title" data-i18n="overviewTitle">Research baseline</h2><p data-i18n="overviewCopy">The frozen corpus and baseline against which every accepted result is interpreted.</p></div></div>
     <div class="kpi-grid" id="overview-kpis"></div>
     <div class="two-col" style="margin-top:14px">
       <article class="panel"><h3 data-i18n="safeNow">Safe to say now</h3><ul id="safe-claims"></ul></article>
       <article class="panel"><h3 data-i18n="notAllowed">Not allowed yet</h3><ul id="blocked-claims"></ul></article>
     </div>
+  </section>
+
+  <section class="section" id="executed-results" aria-labelledby="executed-results-title">
+    <div class="section-head"><div><h2 id="executed-results-title">Executed results</h2><p>Measured observations from accepted, privacy-safe run bundles. Engineering misses remain visible; an executed run is not automatically a positive result.</p></div></div>
+    <div class="kpi-grid" id="executed-kpis"></div>
+    <div class="plot-grid" style="margin-top:14px">
+      <article class="panel"><h3>EXP-006 · observed lifecycle profile</h3><div id="event-profile" class="compact-bars"></div></article>
+      <article class="panel"><h3>EXP-007 · routing workload and coverage</h3><div id="routing-plot" class="compact-bars"></div><p class="provenance-note">Overlapping reconstructed events; denominator 289 for the aggregate routing replay.</p></article>
+      <article class="panel"><h3>EXP-033 · controlled runtime parity</h3><div id="parity-result"></div></article>
+      <article class="panel"><h3>EXP-035 · authority and fault safety</h3><div id="fault-result"></div></article>
+      <article class="panel"><h3>EXP-036 · scale and latency</h3><div id="scale-result" class="compact-bars"></div></article>
+      <article class="panel"><h3>Empirical classification performance</h3><div class="empty">Intentionally empty: 0/24 independent safe labels. Accuracy, macro-F1, paired correction, and generalization are not computable.</div></article>
+    </div>
+  </section>
+
+  <section class="section" id="run-center" aria-labelledby="run-center-title">
+    <div class="section-head"><div><h2 id="run-center-title">Accepted run center</h2><p>One traceable run record per accepted experiment result, with metric definitions, source hashes, acceptance criteria, artifacts, and claim boundaries.</p></div><strong id="run-center-count"></strong></div>
+    <div class="filters">
+      <label class="search"><span>Find a run</span><input id="run-search" type="search" placeholder="EXP-007, routing, parity…" autocomplete="off"></label>
+      <label><span>Evidence</span><select id="run-evidence"><option value="">All</option></select></label>
+      <label><span>Execution</span><select id="run-execution"><option value="">All</option></select></label>
+      <label><span>History</span><select id="run-history"><option value="latest">Latest per experiment</option><option value="all">All accepted history</option></select></label>
+    </div>
+    <div id="run-grid" class="run-grid"></div>
   </section>
 
   <section class="section" id="architecture" aria-labelledby="architecture-title">
@@ -365,15 +400,28 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   const data = JSON.parse(document.getElementById("bigui-catalog").textContent);
   const $ = (id) => document.getElementById(id);
   const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-  const metrics = Object.fromEntries(data.metricObservations.map((item) => [item.metricId,item]));
+  const legacyMetrics = data.metricObservations || [];
+  const runMetrics = data.metricObservationsV2 || [];
+  const metrics = Object.fromEntries(legacyMetrics.map((item) => [item.metricId,item]));
+  const observations = Object.fromEntries(runMetrics.map((item) => [item.observationId,item]));
+  const metricSeries = runMetrics.reduce((index,item)=>{
+    (index[item.metricId] ||= []).push(item);return index;
+  },{});
   const experiments = Object.fromEntries(data.experiments.map((item) => [item.id,item]));
-  const runEntries = data.acceptedRuns.map((run,index) => ({...run,_key:`${index}|${run.experimentId}|${run.runId}`}));
+  const runEntries = (data.acceptedRunBundles || []).map((bundle,index) => ({
+    ...bundle.envelope,_bundle:bundle,_key:`${index}|${bundle.envelope.experimentId}|${bundle.envelope.runId}`
+  }));
+  const latestRunIdByExperiment = Object.fromEntries(Object.entries(runEntries.reduce((index,run)=>{
+    const current=index[run.experimentId];
+    if(!current||`${run.completedAt}|${run.runId}`>`${current.completedAt}|${current.runId}`)index[run.experimentId]=run;
+    return index;
+  },{})).map(([experimentId,run])=>[experimentId,run.runId]));
   const comparisonFields = data.comparisonRules.requiredMatchingFields;
   const i18n = {
     en:{navOverview:"Overview",navArchitecture:"Architecture",navExperiments:"Experiments",navResults:"Results",navEvaluation:"Validity",navWorkspaces:"MSc / PhD",navOperations:"Operations",print:"Print",
-      heroTitle:"One operating surface for architecture, experiments, and evidence",heroLead:"Track every experiment from its question and gate to its accepted runs, metrics, limits, and next action. Mechanism readiness never substitutes for empirical validity.",
-      gateTitle:"Empirical gate is closed",gateBoundary:"Agent 4 and the official baseline remain frozen. Empty performance panels are intentional.",
-      overviewTitle:"Research overview",overviewCopy:"Current mechanism evidence, missing empirical evidence, and program blockers.",safeNow:"Safe to say now",notAllowed:"Not allowed yet",
+      heroTitle:"Measured experiments first. Architecture and evidence behind every result.",heroLead:"BigUI begins with accepted runs and measured outcomes, then connects each result to its experiment design, architecture, source hash, evaluation, and next action.",
+      gateTitle:"Current evaluation stage",gateBoundary:"Agent 4 and the official baseline remain frozen. Empty performance panels are intentional.",
+      overviewTitle:"Research baseline",overviewCopy:"The frozen corpus and baseline against which every accepted result is interpreted.",safeNow:"Measured and supported now",notAllowed:"Requires independent evaluation",
       architectureTitle:"Architecture laboratory",architectureCopy:"The original pipeline stays read-only; every H-layer path is advisory, explicit, and fail-closed.",completeArchitecture:"Original-to-enhanced governed architecture",
       runtimeModes:"Legacy, unified, and parity modes",topologyOptions:"H-layer topology options A / B / C",artifactPipeline:"Artifact transformation pipeline",authorityFlow:"Human-authority state machine",topologyMetrics:"Topology structural trade-offs — EXP-034 fixture",
       experimentsTitle:"Experiment observatory",experimentsCopy:"Search EXP-000–EXP-036 and inspect design, gates, evidence, accepted runs, and the exact next action.",search:"Search",space:"Space",status:"Status",evidence:"Evidence",architecture:"Architecture",
@@ -383,8 +431,8 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       operationsTitle:"Operations and reproducibility",operationsCopy:"Freshness, hashes, tests, baseline integrity, privacy tier, and security controls are visible and machine-readable."},
     he:{navOverview:"סקירה",navArchitecture:"ארכיטקטורה",navExperiments:"ניסויים",navResults:"תוצאות",navEvaluation:"תוקף",navWorkspaces:"MSc / PhD",navOperations:"תפעול",print:"הדפסה",
       heroTitle:"משטח עבודה אחד לארכיטקטורה, ניסויים וראיות",heroLead:"מעקב אחר כל ניסוי — מהשאלה והשער ועד ריצות, מדדים, מגבלות והפעולה הבאה. מוכנות מנגנון אינה תחליף לתוקף אמפירי.",
-      gateTitle:"השער האמפירי סגור",gateBoundary:"Agent 4 וקו הבסיס הרשמי נשארים קפואים. לוחות הביצועים הריקים הם מכוונים.",
-      overviewTitle:"סקירת המחקר",overviewCopy:"ראיות המנגנון הקיימות, הראיות החסרות והחסמים.",safeNow:"מה מותר לומר כעת",notAllowed:"מה עדיין אסור לטעון",
+      gateTitle:"שלב ההערכה הנוכחי",gateBoundary:"Agent 4 וקו הבסיס הרשמי נשארים קפואים. לוחות הביצועים הריקים הם מכוונים.",
+      overviewTitle:"קו הבסיס המחקרי",overviewCopy:"הקורפוס וקו הבסיס הקפואים שלפיהם כל תוצאה מאושרת מתפרשת.",safeNow:"נמדד ונתמך כעת",notAllowed:"דורש הערכה בלתי תלויה",
       architectureTitle:"מעבדת הארכיטקטורה",architectureCopy:"הצינור המקורי לקריאה בלבד; שכבת H מייעצת, מפורשת ונכשלת בצורה בטוחה.",completeArchitecture:"הארכיטקטורה המלאה והמוגנת",
       runtimeModes:"מצבי Legacy, Unified ו-Parity",topologyOptions:"חלופות טופולוגיה A / B / C",artifactPipeline:"זרימת הארטיפקטים",authorityFlow:"מכונת מצבי סמכות אנושית",topologyMetrics:"פשרות מבניות — ניסוי EXP-034",
       experimentsTitle:"מצפה הניסויים",experimentsCopy:"חיפוש EXP-000–EXP-036 ובדיקה של תכנון, שערים, ראיות, ריצות והפעולה הבאה.",search:"חיפוש",space:"מרחב",status:"מצב",evidence:"ראיות",architecture:"ארכיטקטורה",
@@ -408,6 +456,10 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   }
 
   const fmt = (value) => value == null ? "—" : (typeof value === "number" && !Number.isInteger(value) ? value.toFixed(3) : String(value));
+  const series = (metricId,experimentId=null) => (metricSeries[metricId]||[]).filter(item=>
+    !experimentId||(item.experimentId===experimentId&&item.runId===latestRunIdByExperiment[experimentId])
+  );
+  const firstMetric = (metricId,experimentId=null) => series(metricId,experimentId)[0] || metrics[metricId];
   function metricFooter(item){
     if(!item) return "";
     const denominator=item.denominator == null ? "n/a" : fmt(item.denominator);
@@ -423,7 +475,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     $("hero-status").innerHTML=[
       `ITER-${String(p.latestAcceptedIteration).padStart(3,"0")} · ${p.iterationVerdict}`,
       `${data.experiments.length} experiments`,
-      `${data.acceptedRuns.length} accepted run records`,
+      `${data.runStoreSummary.uniqueExperimentRunCount} accepted experiment runs`,
       data.publicationTier.replaceAll("_"," ")
     ].map(value=>`<span class="chip">${esc(value)}</span>`).join("");
     $("overview-kpis").innerHTML=[
@@ -437,6 +489,103 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     $("blocked-claims").innerHTML=data.claimBoundaries.notAllowed.map(item=>`<li>${esc(item)}</li>`).join("");
   }
 
+  function compactBars(rows,maximum=null){
+    const max=maximum ?? Math.max(...rows.map(row=>Number(row.value)||0),1);
+    return rows.map(row=>`<div class="compact-row"><small>${esc(row.label)}</small>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.max(row.value==null?0:2,(Number(row.value)||0)/max*100)}%"></div></div>
+      <b>${esc(fmt(row.value))}</b></div>`).join("");
+  }
+
+  function renderExecutedResults(){
+    const s=data.runStoreSummary;
+    const parity=firstMetric("ARCH_SEMANTIC_PARITY_RATE","EXP-033");
+    const safety=firstMetric("SAFETY_FAULT_CASE_PASS_RATE","EXP-035");
+    $("executed-kpis").innerHTML=[
+      kpi("Executed experiments",`${s.experimentsWithAcceptedRuns}/${data.experiments.length}`,"<small>accepted, source-backed bundles</small>"),
+      kpi("Accepted runs",s.uniqueExperimentRunCount,"<small>one or more attempts per experiment</small>"),
+      kpi("Measured observations",s.metricObservationCount,"<small>MetricObservation-v2</small>"),
+      kpi("Runtime semantic parity",fmt(parity?.value),metricFooter(parity)),
+      kpi("Fault cases passed",safety?`${safety.numerator}/${safety.denominator}`:"—",metricFooter(safety))
+    ].join("");
+    $("event-profile").innerHTML=compactBars([
+      {label:"Reconstructed events",value:firstMetric("EVENT_TOTAL_RECONSTRUCTED","EXP-006")?.value},
+      {label:"Severity 2+",value:firstMetric("EVENT_SEV2PLUS","EXP-006")?.value},
+      {label:"Early stage",value:firstMetric("EVENT_EARLY_STAGE","EXP-006")?.value},
+      {label:"Uncertainty marked",value:firstMetric("EVENT_UNCERTAINTY_MARKED","EXP-006")?.value}
+    ]);
+    const modes=["threshold_sev3","threshold_sev2","threshold_sev1","every_decision"];
+    const routing=series("ROUTING_WEIGHTED_COVERAGE","EXP-007");
+    const load=series("ROUTING_EVENT_LOAD","EXP-007");
+    $("routing-plot").innerHTML=modes.map(mode=>{
+      const coverage=routing.find(item=>item.dimensions.mode===mode)?.value;
+      const burden=load.find(item=>item.dimensions.mode===mode)?.value;
+      return `<div><strong>${esc(mode)}</strong>${compactBars([
+        {label:"weighted coverage",value:coverage},{label:"event load",value:burden}
+      ],1)}</div>`;
+    }).join("");
+    $("parity-result").innerHTML=[
+      kpi("Semantic parity",fmt(firstMetric("ARCH_SEMANTIC_PARITY_RATE","EXP-033")?.value)),
+      kpi("Deterministic repetitions",fmt(firstMetric("ARCH_REPLAY_DETERMINISM","EXP-033")?.numerator)),
+      kpi("Classification changes",fmt(firstMetric("ARCH_CLASSIFICATION_CHANGES","EXP-033")?.value))
+    ].join("");
+    $("fault-result").innerHTML=safety?
+      `${kpi("Safe outcomes",`${safety.numerator}/${safety.denominator}`,metricFooter(safety))}
+       <p class="provenance-note">Finite synthetic fault catalog; this is conformance evidence, not a universal safety probability.</p>`:
+      '<div class="empty">No accepted safety observation.</div>';
+    const latency=series("ARCH_P95_RATIO_TO_LEGACY","EXP-036").filter(item=>item.dimensions.mode!=="legacy");
+    $("scale-result").innerHTML=compactBars(latency.map(item=>({
+      label:`${item.dimensions.fixture} · ${item.dimensions.mode}`,value:item.value
+    })),2.25)+`<p class="engineering-miss"><strong>Engineering verdict:</strong> the run was valid and deterministic, but not every preregistered latency target was met.</p>`;
+  }
+
+  function renderRunCenter(){
+    optionValues($("run-evidence"),runEntries.map(item=>item.evidenceClass));
+    optionValues($("run-execution"),runEntries.map(item=>item.executionStatus));
+    for(const id of ["run-search","run-evidence","run-execution","run-history"]){
+      $(id).addEventListener("input",filterRuns);$(id).addEventListener("change",filterRuns);
+    }
+    filterRuns();
+  }
+  function filterRuns(){
+    const query=$("run-search").value.trim().toLowerCase();
+    const evidence=$("run-evidence").value,execution=$("run-execution").value;
+    const history=$("run-history").value;
+    const latestKeys=new Set(Object.values(runEntries.reduce((index,run)=>{
+      const current=index[run.experimentId];
+      if(!current||`${run.completedAt}|${run.runId}`>`${current.completedAt}|${current.runId}`)index[run.experimentId]=run;
+      return index;
+    },{})).map(run=>run._key));
+    const filtered=runEntries.filter(run=>{
+      const experiment=experiments[run.experimentId];
+      const haystack=[run.experimentId,run.runId,experiment?.title,run.evidenceClass,run.manifestSchema].join(" ").toLowerCase();
+      return (history==="all"||latestKeys.has(run._key))&&(!query||haystack.includes(query))&&(!evidence||run.evidenceClass===evidence)&&(!execution||run.executionStatus===execution);
+    });
+    $("run-center-count").textContent=`${filtered.length} / ${runEntries.length}`;
+    $("run-grid").innerHTML=filtered.map(run=>`<article class="run-card"><div class="status-row">
+      <span class="id"><bdi dir="ltr">${esc(run.experimentId)}</bdi></span><span class="evidence-badge" data-evidence="${esc(run.evidenceClass)}">${esc(run.evidenceClass)}</span></div>
+      <strong>${esc(experiments[run.experimentId]?.title||run.experimentId)}</strong>
+      <p>${esc(run.runId)} · ${run.metricObservationIds.length} observations</p>
+      <div class="chips"><span class="chip">${esc(run.executionStatus)}</span><span class="chip">${esc(run.acceptanceStatus)}</span></div>
+      <button type="button" data-run="${esc(run._key)}">Inspect run</button></article>`).join("");
+    $("run-grid").querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>openRun(button.dataset.run)));
+  }
+  function openRun(key){
+    const run=runEntries.find(item=>item._key===key);if(!run)return;
+    const bundle=run._bundle;
+    $("dialog-title").innerHTML=`<bdi dir="ltr">${esc(run.experimentId)}</bdi> · ${esc(run.runId)}`;
+    $("dialog-body").innerHTML=`<div class="status-row"><span class="status-badge">${esc(run.acceptanceStatus)}</span>
+      <span class="evidence-badge" data-evidence="${esc(run.evidenceClass)}">${esc(run.evidenceClass)}</span><span class="chip">${esc(run.executionStatus)}</span></div>
+      <div class="detail-grid" style="margin-top:12px">
+      <div class="detail-block"><h3>Evaluation</h3><p>Execution valid: ${esc(run.evaluation.executionValid)}</p><p>Engineering target met: ${esc(run.evaluation.engineeringTargetMet)}</p><p>Verdict: ${esc(run.evaluation.resultVerdict)}</p></div>
+      <div class="detail-block"><h3>Provenance</h3><p>Manifest: ${esc(run.manifestPath)}</p><p>SHA-256: ${esc(run.manifestSha256)}</p><p>Source revision: ${esc(run.sourceRevision)}</p></div>
+      <div class="detail-block"><h3>Acceptance criteria</h3>${bundle.acceptance.criteriaOutcomes.map(item=>`<p class="${item.passed?"pass":"fail"}">${item.passed?"✓":"✕"} ${esc(item.id)} · ${esc(item.detail)}</p>`).join("")}</div>
+      <div class="detail-block"><h3>Artifacts</h3>${list(run.artifactRefs)}</div></div>
+      <div class="detail-block" style="margin-top:12px"><h3>Measured observations</h3><div style="overflow:auto"><table class="metric-table"><thead><tr><th>Metric</th><th>Value</th><th>Denominator</th><th>Dimensions</th></tr></thead><tbody>
+      ${bundle.metricObservations.map(item=>`<tr><td>${esc(item.metricId)}</td><td>${esc(fmt(item.value))} ${esc(item.unit)}</td><td>${esc(fmt(item.denominator))}</td><td>${esc(Object.entries(item.dimensions||{}).map(([k,v])=>`${k}=${v}`).join(", ")||"—")}</td></tr>`).join("")}
+      </tbody></table></div></div><div class="boundary" style="margin-top:12px">${esc(run.evaluation.claimBoundary)}</div>`;
+    if(!$("experiment-dialog").open)$("experiment-dialog").showModal();
+  }
+
   function renderArchitecture(){
     const runtime=data.architectureVariants.filter(item=>item.kind==="runtime_mode");
     const topologies=data.architectureVariants.filter(item=>item.kind==="h_layer_topology");
@@ -447,18 +596,18 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       <div class="metric-meta">${esc(item.claimBoundary)}</div></article>`).join("");
     $("runtime-cards").innerHTML=cards(runtime);
     $("topology-cards").innerHTML=cards(topologies);
-    const topologyIds=["A","B","C"];
+    const topologyIds=[["topology-a","A"],["topology-b","B"],["topology-c","C"]];
     const fields=[
-      ["HANDOFFS","Handoffs"],["CONTEXT_DUPLICATION","Context duplication"],
-      ["STATE_BOUNDARIES","State boundaries"],["FAILURE_BREADTH","Failure breadth"]
+      ["TOPOLOGY_HANDOFF_COUNT","Handoffs"],["TOPOLOGY_CONTEXT_BYTES","Context bytes"],
+      ["TOPOLOGY_STATE_BOUNDARIES","State boundaries"],["TOPOLOGY_FAILURE_BREADTH","Failure breadth"]
     ];
-    $("topology-bars").innerHTML=fields.map(([suffix,label])=>{
-      const values=topologyIds.map(id=>metrics[`TOPOLOGY_${id}_${suffix}`]?.value ?? 0);
+    $("topology-bars").innerHTML=fields.map(([metricId,label])=>{
+      const values=topologyIds.map(([id])=>series(metricId,"EXP-034").find(item=>item.dimensions.topology===id)?.value ?? 0);
       const max=Math.max(...values,1);
-      return `<div><strong>${esc(label)}</strong>${topologyIds.map((id,index)=>`<div class="metric-bar">
-        <span>Topology ${id}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.max(3,values[index]/max*100)}%"></div></div><b>${esc(values[index])}</b>
+      return `<div><strong>${esc(label)}</strong>${topologyIds.map(([id,short],index)=>`<div class="metric-bar">
+        <span>Topology ${short}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.max(3,values[index]/max*100)}%"></div></div><b>${esc(values[index])}</b>
       </div>`).join("")}</div>`;
-    }).join("")+metricFooter(metrics.TOPOLOGY_CONTRACT_EQUIVALENCE);
+    }).join("")+metricFooter(series("TOPOLOGY_TRACE_COMPLETENESS","EXP-034")[0]);
   }
 
   function optionValues(select,values){
@@ -503,7 +652,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   function openExperiment(id,updateHash=false){
     const item=experiments[id];if(!item)return;
     $("dialog-title").innerHTML=`<bdi dir="ltr">${esc(item.id)}</bdi> · ${esc(item.title)}`;
-    const observed=item.latestResult?.metricObservationIds.map(metricId=>metrics[metricId]).filter(Boolean)||[];
+    const observed=item.latestResult?.metricObservationIds.map(metricId=>observations[metricId]||metrics[metricId]).filter(Boolean)||[];
     $("dialog-body").innerHTML=`<div class="status-row"><span class="status-badge">${esc(item.status)}</span><span class="evidence-badge" data-evidence="${esc(item.evidenceClass)}">${esc(item.evidenceClass)}</span><span class="chip">${esc(item.researchSpace)}</span></div>
       <div class="detail-grid" style="margin-top:12px">
         <div class="detail-block"><h3>Research question</h3><p>${esc(item.researchQuestion)}</p></div>
@@ -540,7 +689,10 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     const right=runEntries.find(item=>item._key===$("compare-right").value);
     if(!left||!right){$("compare-result").innerHTML='<div class="empty">Choose two runs.</div>';return}
     if(left._key===right._key){$("compare-result").innerHTML='<div class="boundary fail">Choose two distinct run records.</div>';return}
-    const checks=comparisonFields.map(field=>({field,left:left.comparisonContext[field],right:right.comparisonContext[field],matches:left.comparisonContext[field]!=null&&right.comparisonContext[field]!=null&&left.comparisonContext[field]===right.comparisonContext[field]}));
+    const checks=[
+      {field:"experimentId",left:left.experimentId,right:right.experimentId,matches:left.experimentId===right.experimentId},
+      ...comparisonFields.map(field=>({field,left:left.comparisonContext[field],right:right.comparisonContext[field],matches:left.comparisonContext[field]!=null&&right.comparisonContext[field]!=null&&left.comparisonContext[field]===right.comparisonContext[field]}))
+    ];
     const eligible=checks.every(item=>item.matches);
     $("compare-result").innerHTML=`<div class="boundary ${eligible?"pass":"fail"}"><strong>${eligible?"Directly comparable":"Not directly comparable"}</strong><br>${eligible?"Every required comparison dimension matches.":"At least one required dimension is missing or differs; no delta chart is produced."}</div>
       <div style="overflow:auto"><table class="check-table"><thead><tr><th>Field</th><th>${esc(left.experimentId)}</th><th>${esc(right.experimentId)}</th><th>Match</th></tr></thead><tbody>
@@ -568,7 +720,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   }
   function renderOperations(){
     const security=metrics.OPS_SECURITY_CONTROLS_PASS;
-    const acceptedExperiments=new Set(data.acceptedRuns.map(run=>run.experimentId)).size;
+    const acceptedExperiments=data.runStoreSummary.experimentsWithAcceptedRuns;
     $("operations-kpis").innerHTML=[
       kpi("Source hashes",data.sources.length,"<small>validated on catalog refresh</small>"),
       kpi("Accepted-run coverage",`${acceptedExperiments}/${data.experiments.length}`,"<small>absence stays visible</small>"),
@@ -588,7 +740,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   $("dialog-close").addEventListener("click",()=>{$("experiment-dialog").close();if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("experiment-dialog").addEventListener("cancel",()=>{if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("language-toggle").addEventListener("click",()=>setLanguage(language==="en"?"he":"en"));
-  renderOverview();renderArchitecture();renderExperiments();renderResults();renderEvaluation();
+  renderOverview();renderExecutedResults();renderRunCenter();renderArchitecture();renderExperiments();renderResults();renderEvaluation();
   renderWorkspace("msc-workspace","MSc");renderWorkspace("phd-workspace","PhD");renderOperations();setLanguage(language);routeHash();
   window.addEventListener("hashchange",routeHash);
 })();

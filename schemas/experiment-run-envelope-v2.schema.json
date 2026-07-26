@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai/schemas/experiment-run-envelope-v2.schema.json",
+  "title": "ExperimentRunEnvelope-v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "experimentId",
+    "runId",
+    "attemptId",
+    "executionStatus",
+    "startedAt",
+    "completedAt",
+    "durationMilliseconds",
+    "manifestSchema",
+    "manifestPath",
+    "manifestSha256",
+    "acceptanceStatus",
+    "acceptedAt",
+    "evidenceClass",
+    "sourceRevision",
+    "inputHashes",
+    "outputHashes",
+    "metricObservationIds",
+    "metricDefinitionHashes",
+    "comparisonContext",
+    "artifactRefs",
+    "logRef",
+    "evaluation"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "ExperimentRunEnvelope-v2"},
+    "experimentId": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "runId": {"type": "string", "minLength": 1},
+    "attemptId": {"type": "string", "minLength": 1},
+    "executionStatus": {"enum": ["queued", "running", "succeeded", "failed", "cancelled"]},
+    "startedAt": {"type": ["string", "null"], "format": "date-time"},
+    "completedAt": {"type": ["string", "null"], "format": "date-time"},
+    "durationMilliseconds": {"type": ["number", "null"], "minimum": 0},
+    "manifestSchema": {"type": "string", "minLength": 1},
+    "manifestPath": {
+      "type": "string",
+      "minLength": 1,
+      "not": {"pattern": "^[A-Za-z]:\\\\|^file://"}
+    },
+    "manifestSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "acceptanceStatus": {"enum": ["accepted", "rejected", "quarantined", "pending"]},
+    "acceptedAt": {"type": ["string", "null"], "format": "date-time"},
+    "evidenceClass": {
+      "enum": [
+        "historical",
+        "mechanism",
+        "offline",
+        "synthetic",
+        "evaluation_ready",
+        "pilot",
+        "empirical"
+      ]
+    },
+    "sourceRevision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "inputHashes": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "outputHashes": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "metricObservationIds": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^OBS-METRIC-[A-Z0-9_.-]+-[0-9a-f]{12}$"},
+      "uniqueItems": true
+    },
+    "metricDefinitionHashes": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "comparisonContext": {
+      "type": "object",
+      "required": [
+        "datasetHash",
+        "partitionHash",
+        "baselineRevision",
+        "policyVersion",
+        "promptVersion",
+        "modelIdentifier",
+        "metricSchemaVersion",
+        "labelEligibility",
+        "leakageClass",
+        "evidenceClass",
+        "architectureMode",
+        "topology",
+        "interfaceVersion",
+        "pairedCohortHash"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "datasetHash": {"type": "string", "minLength": 1},
+        "partitionHash": {"type": "string", "minLength": 1},
+        "baselineRevision": {"type": "string", "minLength": 1},
+        "policyVersion": {"type": "string", "minLength": 1},
+        "promptVersion": {"type": "string", "minLength": 1},
+        "modelIdentifier": {"type": "string", "minLength": 1},
+        "metricSchemaVersion": {"const": "2.0"},
+        "labelEligibility": {"type": "string", "minLength": 1},
+        "leakageClass": {"type": "string", "minLength": 1},
+        "evidenceClass": {"type": "string", "minLength": 1},
+        "architectureMode": {"type": "string", "minLength": 1},
+        "topology": {"type": "string", "minLength": 1},
+        "interfaceVersion": {"type": "string", "minLength": 1},
+        "pairedCohortHash": {"type": "string", "minLength": 1}
+      }
+    },
+    "artifactRefs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "logRef": {"type": ["string", "null"]},
+    "evaluation": {"$ref": "experiment-evaluation-v1.schema.json"}
+  }
+}

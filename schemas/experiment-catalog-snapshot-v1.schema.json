@@ -13,8 +13,12 @@
     "architectureVariants",
     "experiments",
     "metricObservations",
+    "metricDefinitionsV2",
+    "metricObservationsV2",
     "comparisonRules",
     "acceptedRuns",
+    "acceptedRunBundles",
+    "runStoreSummary",
     "claimBoundaries",
     "translations",
     "sources"
@@ -173,6 +177,8 @@
       }
     },
     "metricObservations": {"type": "array", "items": {"type": "object"}},
+    "metricDefinitionsV2": {"type": "array", "items": {"type": "object"}},
+    "metricObservationsV2": {"type": "array", "items": {"type": "object"}},
     "comparisonRules": {
       "type": "object",
       "additionalProperties": false,
@@ -189,6 +195,35 @@
       }
     },
     "acceptedRuns": {"type": "array", "items": {"type": "object"}},
+    "acceptedRunBundles": {"type": "array", "items": {"type": "object"}},
+    "runStoreSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "bundleCount",
+        "acceptedAttemptCount",
+        "uniqueExperimentRunCount",
+        "uniqueRunIdCount",
+        "experimentsWithAcceptedRuns",
+        "metricObservationCount",
+        "experimentIds"
+      ],
+      "properties": {
+        "schemaVersion": {"const": "BigUIRunStoreSummary-v1"},
+        "bundleCount": {"type": "integer", "minimum": 0},
+        "acceptedAttemptCount": {"type": "integer", "minimum": 0},
+        "uniqueExperimentRunCount": {"type": "integer", "minimum": 0},
+        "uniqueRunIdCount": {"type": "integer", "minimum": 0},
+        "experimentsWithAcceptedRuns": {"type": "integer", "minimum": 0},
+        "metricObservationCount": {"type": "integer", "minimum": 0},
+        "experimentIds": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+          "uniqueItems": true
+        }
+      }
+    },
     "claimBoundaries": {
       "type": "object",
       "additionalProperties": false,

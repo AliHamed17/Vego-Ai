@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/run-log-event-v1.schema.json",
+  "title": "RunLogEvent-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sequence",
+    "timestamp",
+    "eventType",
+    "experimentId",
+    "runId",
+    "message"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "RunLogEvent-v1"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "run_started",
+        "source_validated",
+        "metrics_derived",
+        "acceptance_evaluated",
+        "run_completed",
+        "run_rejected"
+      ]
+    },
+    "experimentId": {
+      "type": "string",
+      "pattern": "^EXP-[0-9]{3}$"
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "details": {
+      "type": "object"
+    }
+  }
+}
