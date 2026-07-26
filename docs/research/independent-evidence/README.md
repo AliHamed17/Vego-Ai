@@ -114,4 +114,3 @@ All generated evidence and reviewer material is ignored:
 
 The tracked repository contains only schemas, validators, empty-package
 infrastructure, tests, and this protocol.
-
