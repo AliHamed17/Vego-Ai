@@ -2,14 +2,14 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-26T00:33:42+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "91e6214cd7d33ee01c5687801597b7d8dccff7ae",
-  "packageRevision": "b86ba03f913242e10f62407c9c11c2962d1ccc2a",
-  "sourceTreeHash": "1a7a30a5fcb0bff80c15e97c44a40df3952bd67550edb1d2d24bf9e7434545f3",
+  "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
+  "packageRevision": "395b2d63fd9b35e4b3890316db4dea363d813c4e",
+  "sourceTreeHash": "57d76137adf63f73e14697444acfb8de47c160901de8f09ab674dff6d3b788aa",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "6c80039db9394aee6f2a607508637b6796798ef808ea07fb30d6972900375445",
+    "sha256": "95deb6876d149daa6a89273d4dde366e1f96ef57cc803f6ad6cde2ac649c5bb3",
     "bytes": 48267,
     "tracked": true
   },
@@ -37,11 +37,11 @@
       "bytes": 1401639
     },
     "renderVerification": {
-      "status": "PASS",
+      "status": "NOT_RECORDED",
       "pdfPageCount": 91,
-      "renderedPageCount": 91,
-      "sheetCount": 23,
-      "qaReportSha256": "07b9821a4d82c65dad5e12d3be820d57098b3c347220e5822064271793d292d8"
+      "renderedPageCount": null,
+      "sheetCount": null,
+      "qaReportSha256": null
     }
   },
   "sourceFiles": [
@@ -131,7 +131,7 @@
     },
     {
       "path": "experiments/registry.md",
-      "sha256": "220fe30ce36238a23a0820972a750ffc72967458ce4982b7b1172d4b7fc37385"
+      "sha256": "5e0bcda1386d01c7f620f129c95994051b85390e8a09ff856730e936fabd9e0b"
     },
     {
       "path": "requirements-thesis.txt",
@@ -211,7 +211,7 @@
     },
     {
       "path": "scripts/validate_research_records.py",
-      "sha256": "7367006c821215049cb7dea2a2441f83fc09898690a5421044b7d2836df0a930"
+      "sha256": "dcb5fff68a30225c85f6e219437cc16407bbbf2f7c6ca2bc7f05e09cf8287191"
     },
     {
       "path": "scripts/validate_thesis_content.py",
@@ -227,7 +227,7 @@
     },
     {
       "path": "scripts/verify-controlled.ps1",
-      "sha256": "4962774299e89321c07596df345a2f33765ba122ab04fc69405da61695af1239"
+      "sha256": "49d91b7c833cc15b36bf0aada984c6c93489b1cf3411fbd1c11e58e569d2dae2"
     },
     {
       "path": "scripts/verify-release.ps1",
@@ -235,7 +235,7 @@
     },
     {
       "path": "scripts/verify-source.ps1",
-      "sha256": "8ec7a78f71a7a124df7d02c1ce7f822bd8536f2fd6285b8ac0e59bbea0407270"
+      "sha256": "6e6beb24cf181949bbf9aa446850ebb825e0087f48ca813a661b30d7b42fc481"
     },
     {
       "path": "scripts/visualization_agent.py",
@@ -327,7 +327,7 @@
     },
     {
       "path": "visualizations-gallery/build_gallery.py",
-      "sha256": "abf847e1197532bea8fa757c32d75c1f3b10703d257cfa7c3c2197fdba921f33"
+      "sha256": "dee21c88f8ccfbb4f299c6c64560ae98c12e5420ffb51fb98c1797ca27bb44ad"
     }
   ],
   "toolVersions": {
