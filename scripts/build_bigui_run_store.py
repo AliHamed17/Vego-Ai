@@ -12,6 +12,7 @@ import json
 import re
 import shutil
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -1199,10 +1200,14 @@ def write_local_bundle(bundle: dict[str, Any]) -> None:
                 "schemaVersion": "RunLogEvent-v1",
                 "sequence": 1,
                 "timestamp": envelope["completedAt"],
-                "phase": "acceptance",
-                "severity": "info",
-                "eventCode": "RUN_ACCEPTED",
-                "artifactRef": "acceptance.json",
+                "eventType": "run_completed",
+                "experimentId": envelope["experimentId"],
+                "runId": envelope["runId"],
+                "message": "Run completed and its privacy-safe projection was accepted.",
+                "details": {
+                    "acceptanceStatus": envelope["acceptanceStatus"],
+                    "artifactRef": "acceptance.json",
+                },
             },
             sort_keys=True,
         )
@@ -1212,7 +1217,19 @@ def write_local_bundle(bundle: dict[str, Any]) -> None:
     )
     if destination.exists():
         shutil.rmtree(destination)
-    staging.rename(destination)
+    last_error: PermissionError | None = None
+    for attempt in range(5):
+        try:
+            staging.rename(destination)
+            last_error = None
+            break
+        except PermissionError as exc:
+            last_error = exc
+            if destination.exists():
+                shutil.rmtree(destination)
+            time.sleep(0.05 * (attempt + 1))
+    if last_error is not None:
+        raise last_error
 
 
 def refresh() -> list[dict[str, Any]]:
