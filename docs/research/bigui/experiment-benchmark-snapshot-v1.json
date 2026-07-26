@@ -2,12 +2,12 @@
   "schemaVersion": "ExperimentBenchmarkSnapshot-v1",
   "generatedAt": "2026-07-26T16:00:00+03:00",
   "publicationTier": "tracked_sanitized",
-  "inputProjectionSha256": "023f952c1f9963944e5449c6d24da29407f13c4b26412fe3a0f2b6bf50c524de",
+  "inputProjectionSha256": "94617d8c7752751e8cffaf7a6598a491c5a56f0cfba5e974ce178bd4819a0d63",
   "standardSha256": "1b9a814e3498ac97ac5da84e5eb15894c15583c87456491af363c3a805e3c7c5",
   "programState": {
     "registeredExperiments": 41,
-    "acceptedBundles": 83,
-    "metricObservations": 785,
+    "acceptedBundles": 87,
+    "metricObservations": 800,
     "safeLabels": 0,
     "classificationChanges": 0,
     "baselineFrozen": true
@@ -4596,9 +4596,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 7,
+      "acceptedRunCount": 8,
       "observationCount": 7,
-      "historicalObservationCount": 49,
+      "historicalObservationCount": 56,
       "nullObservationCount": 0,
       "baseline": "MAS4MODELS paper-reported VEGO-AI evaluation",
       "comparator": "Current frozen repository and H-layer mechanism snapshot",
@@ -4622,18 +4622,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 32,
+          "denominator": 32,
           "value": 1.0,
-          "explanation": "28/28 accepted-run execution checks pass across 7 run bundles."
+          "explanation": "32/32 accepted-run execution checks pass across 8 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 22,
-          "denominator": 22,
+          "numerator": 25,
+          "denominator": 25,
           "value": 1.0,
-          "explanation": "22/22 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "25/25 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4744,9 +4744,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 7,
+      "acceptedRunCount": 8,
       "observationCount": 2,
-      "historicalObservationCount": 14,
+      "historicalObservationCount": 16,
       "nullObservationCount": 0,
       "baseline": "Original four-agent paper architecture",
       "comparator": "Current non-destructive H-layer architecture",
@@ -4770,18 +4770,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 32,
+          "denominator": 32,
           "value": 1.0,
-          "explanation": "28/28 accepted-run execution checks pass across 7 run bundles."
+          "explanation": "32/32 accepted-run execution checks pass across 8 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 22,
-          "denominator": 22,
+          "numerator": 25,
+          "denominator": 25,
           "value": 1.0,
-          "explanation": "22/22 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "25/25 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4847,9 +4847,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 7,
+      "acceptedRunCount": 8,
       "observationCount": 2,
-      "historicalObservationCount": 14,
+      "historicalObservationCount": 16,
       "nullObservationCount": 0,
       "baseline": "Declared treatment baseline inside each comparable experiment",
       "comparator": "Declared routing, topology, or runtime treatment",
@@ -4873,18 +4873,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 32,
+          "denominator": 32,
           "value": 1.0,
-          "explanation": "28/28 accepted-run execution checks pass across 7 run bundles."
+          "explanation": "32/32 accepted-run execution checks pass across 8 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 22,
-          "denominator": 22,
+          "numerator": 25,
+          "denominator": 25,
           "value": 1.0,
-          "explanation": "22/22 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "25/25 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -4950,9 +4950,9 @@
       "executionState": "executed",
       "eligibility": "eligible_now",
       "verdict": "MEASURED_PASS",
-      "acceptedRunCount": 7,
+      "acceptedRunCount": 8,
       "observationCount": 4,
-      "historicalObservationCount": 28,
+      "historicalObservationCount": 32,
       "nullObservationCount": 0,
       "baseline": "Paper and thesis claim set",
       "comparator": "Current accepted experiment evidence",
@@ -4976,18 +4976,18 @@
         "execution": {
           "status": "pass",
           "passed": true,
-          "numerator": 28,
-          "denominator": 28,
+          "numerator": 32,
+          "denominator": 32,
           "value": 1.0,
-          "explanation": "28/28 accepted-run execution checks pass across 7 run bundles."
+          "explanation": "32/32 accepted-run execution checks pass across 8 run bundles."
         },
         "reproducibility": {
           "status": "pass",
           "passed": true,
-          "numerator": 22,
-          "denominator": 22,
+          "numerator": 25,
+          "denominator": 25,
           "value": 1.0,
-          "explanation": "22/22 manifest, source, cohort, metric-version, and required determinism checks pass."
+          "explanation": "25/25 manifest, source, cohort, metric-version, and required determinism checks pass."
         },
         "safety": {
           "status": "not_applicable",
@@ -5611,7 +5611,7 @@
           "unit": "case models",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5622,7 +5622,7 @@
           "unit": "case models",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5633,7 +5633,7 @@
           "unit": "patterns",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5644,7 +5644,7 @@
           "unit": "patterns",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "Paper counts are historical version markers. They do not share an independent classification ground truth with the current H-layer."
         },
@@ -5655,7 +5655,7 @@
           "unit": "boolean",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "Current classification accuracy remains null at safe N=0; the paper's qualitative author assessment is not a compatible independent benchmark."
         }
@@ -5675,7 +5675,7 @@
           "unit": "claims",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "These claims are limited to mechanism readiness, compatibility, traceability, and baseline protection."
         },
@@ -5686,7 +5686,7 @@
           "unit": "claims",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "Independent labels, a frozen policy, and external replication remain required."
         },
@@ -5697,7 +5697,7 @@
           "unit": "hypotheses",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "No empirical thesis hypothesis is confirmed at safe N=0."
         },
@@ -5708,7 +5708,7 @@
           "unit": "records",
           "dimensions": {},
           "sourcePath": "docs/research/bigui/baseline-comparison-results-v1.json",
-          "sourceSha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+          "sourceSha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
           "observationDate": "2026-07-26",
           "claimBoundary": "Traceability completeness is not hypothesis confirmation."
         }
@@ -6126,7 +6126,7 @@
     },
     {
       "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sha256": "39e1d188a05972371ecf792eb8d049c0c998cfb5f6d1b025ee996f84979237a0",
+      "sha256": "7d18bec21cf6c97d13bfd7a3b26eb78f0fc89c5a01f0ed896bb6c8968629e1ea",
       "role": "Paper, architecture, comparison, and thesis-readiness results."
     }
   ]
