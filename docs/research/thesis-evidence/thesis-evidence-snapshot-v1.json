@@ -1,8 +1,8 @@
 {
   "schemaVersion": "ThesisEvidenceSnapshot-v1",
   "generatedAt": "2026-07-25T23:30:48+00:00",
-  "sourceRevision": "2e0d014bd9afc85097f2adbde5e98e5c9b18ca87",
-  "sourceTreeHash": "57d76137adf63f73e14697444acfb8de47c160901de8f09ab674dff6d3b788aa",
+  "sourceRevision": "f940559fb6934e3a6046f3d058014d43f142beb8",
+  "sourceTreeHash": "402e647706e1e9d811373087edb902183e80daf87b333b3fc98a17d923232f57",
   "canonicalSourcesDirty": false,
   "programSnapshot": {
     "path": "docs/research/h-layer/program-status-snapshot-v1.json",
@@ -1186,7 +1186,7 @@
     "requirements-thesis.txt": "508afc2fd4d4751973918868df3d03762dd7b969c3d6140e2e9d85cafa88cd60",
     "scripts/build_thesis_evidence_package.py": "30eee767cfbc81602d2341df33e6a419c9dd212be87afba3986f2d27420bbee8",
     "scripts/validate_thesis_evidence_package.py": "18201ede6bd007b07801aa4ded555a3ec33f13e9c55c24a2c80350e1c716c21f",
-    "scripts/validate_research_records.py": "dcb5fff68a30225c85f6e219437cc16407bbbf2f7c6ca2bc7f05e09cf8287191",
+    "scripts/validate_research_records.py": "58f08db30b78d021a5f85e722b4c6da73b3612bce430bcc2ecdb2424d70aafd5",
     "scripts/check_thesis_citations.py": "03946deee5e93f188e2cdb21abe0d247a7c4d69648fe2ca048a535c9d676666b",
     "scripts/validate_thesis_content.py": "8e3e4d08bb651d044a5aa63c7cff95e376d7f1c0a99fc0f615c561a482f83f39",
     "scripts/build_thesis_progress_visual.py": "9115ce4a16e4556cfd1c3858fcba23bc5ff9e68774c548cea7b7172d559181c6",
@@ -1210,7 +1210,7 @@
     "configs/protected-change-authorization-v1.json": "f96719bd850dc80459461d1e6ed1873c1f2b0913eed22df73568916391cca1d9",
     "scripts/build_hardening_manifests.py": "5e11b95a1c5ce3fcf98ac00e3e404a1ecbf8a88442860cb91812433371fef40b",
     "scripts/run_hlayer_architecture.py": "559dd30181753dd6d12d925c78ab9ff3410b252c520b5d1d62e23927313f9ce9",
-    "scripts/verify-source.ps1": "6e6beb24cf181949bbf9aa446850ebb825e0087f48ca813a661b30d7b42fc481",
+    "scripts/verify-source.ps1": "de8af9a7398554ed9ea16a65901991b4024de24c784760ba2d5e49705846b38b",
     "scripts/verify-controlled.ps1": "49d91b7c833cc15b36bf0aada984c6c93489b1cf3411fbd1c11e58e569d2dae2",
     "scripts/verify-release.ps1": "a93e708e097a0c8bf0446738ffd8ddd059773e40aeb36abad31e0e8c893ec9f5",
     "src/vego_hlayer/__init__.py": "7a10cd95ea118da0848e0b61a3ddd164ad49462c7f5328828d84b60780b16d3f",
