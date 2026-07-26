@@ -258,6 +258,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       <a href="#architecture" data-i18n="navArchitecture">Architecture</a>
       <a href="#experiments" data-i18n="navExperiments">Experiments</a>
       <a href="#evaluation" data-i18n="navEvaluation">Validity</a>
+      <a href="#independent-evidence">Evidence lab</a>
       <a href="#workspaces" data-i18n="navWorkspaces">MSc / PhD</a>
       <a href="#operations" data-i18n="navOperations">Operations</a>
     </nav>
@@ -458,6 +459,37 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
       <article class="panel"><h3>Retrieval validity</h3><div class="empty">Top-1/top-k relevance, scope correctness, conflict detection, and leakage rate await a blind audit.</div></article>
     </div>
     <article class="panel" style="margin-top:14px"><h3 data-i18n="validityRisks">Validity-threat heatmap</h3><div id="validity-grid" class="validity-grid"></div></article>
+  </section>
+
+  <section class="section" id="independent-evidence" aria-labelledby="independent-evidence-title">
+    <div class="section-head"><div><h2 id="independent-evidence-title">Independent evidence lab</h2>
+      <p>The executable path from a blinded human judgment to classification, routing, generalization, and effort evidence.</p></div>
+      <a class="benchmark-link" href="docs/research/independent-evidence/README.md">Open execution protocol</a></div>
+    <div class="kpi-grid" id="independent-evidence-kpis"></div>
+    <article class="panel" style="margin-top:14px">
+      <h3>Real-evidence workflow</h3>
+      <div class="pipeline" role="img" aria-label="Supervisor approval is followed by calibration, two independent reviews, agreement, adjudication, development evaluation, a frozen holdout pilot, and external replication.">
+        <div class="step">Approve protocol</div><div class="step">Calibrate 2 humans</div>
+        <div class="step">Blind 24-item review</div><div class="step">Agreement + adjudication</div>
+        <div class="step">Development N=16</div><div class="step">Sealed pilot N=8</div>
+        <div class="step">External replication</div>
+      </div>
+      <p class="boundary">Software prepares, validates, and measures the evidence. Only independent humans may supply or adjudicate the labels.</p>
+    </article>
+    <div class="two-col" style="margin-top:14px">
+      <article class="panel"><h3>What the 24-item review measures</h3>
+        <div class="capability-grid">
+          <div class="head">Question</div><div class="head">Independent target</div><div class="head">Metric</div>
+          <div>Classification</div><div>Adjudicated class</div><div>Accuracy · macro-F1</div>
+          <div>Review routing</div><div>Need + priority</div><div>Precision · recall · workload</div>
+          <div>Reliability</div><div>Two raw reviews</div><div>Agreement · Cohen κ</div>
+          <div>Annotation effort</div><div>Active seconds</div><div>Time distribution only</div>
+        </div>
+      </article>
+      <article class="panel"><h3>What requires a later experiment</h3>
+        <div id="independent-evidence-later" class="workspace-list"></div>
+      </article>
+    </div>
   </section>
 
   <section class="section" id="workspaces" aria-labelledby="workspaces-title">
@@ -1025,6 +1057,24 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
     ];
     $("validity-grid").innerHTML=risks.map(([title,copy,boundary,status])=>`<article class="risk-card"><span class="evidence-badge" data-evidence="${status==="active"?"blocked":"offline"}">${esc(status)}</span><h3>${esc(title)}</h3><p>${esc(copy)}</p><strong>${esc(boundary)}</strong></article>`).join("");
   }
+  function renderIndependentEvidence(){
+    const p=data.programState;
+    $("independent-evidence-kpis").innerHTML=[
+      kpi("Candidate rows",p.candidateLabels,"<small>blind evaluation set</small>"),
+      kpi("Independent reviewers","0 / 2","<small>human returns required</small>"),
+      kpi("Adjudicated labels",`${p.safeLabels} / ${p.candidateLabels}`,"<small>current safe gold set</small>"),
+      kpi("Accuracy / macro-F1","—","<small>null at safe N=0</small>"),
+      kpi("Current B1 class changes","0 / 27","<small>no positive delta is possible yet</small>")
+    ].join("");
+    const later=[
+      ["Unseen generalization","Freeze one candidate, open N=8 once, then replicate externally."],
+      ["Lower human effort","Run counterbalanced EXP-026; annotation time alone is insufficient."],
+      ["Paper superiority","Reconstruct an equivalent labeled cohort or report not directly comparable."],
+      ["Best topology","Use EXP-034 Pareto evidence plus M-02; no single weighted winner."],
+      ["Best routing rule","Use adjudicated routing targets, then freeze and test one rule."]
+    ];
+    $("independent-evidence-later").innerHTML=later.map(([title,copy])=>`<article class="workspace-item"><strong>${esc(title)}</strong><p>${esc(copy)}</p></article>`).join("");
+  }
   function renderWorkspace(id,space){
     const items=data.experiments.filter(item=>item.researchSpace===space&&Number(item.id.slice(-3))>=19);
     $(id).innerHTML=items.map(item=>`<article class="workspace-item"><strong><bdi dir="ltr">${item.id}</bdi> · ${esc(item.status)}</strong><p>${esc(item.title)}</p><button type="button" data-exp="${item.id}">Open</button></article>`).join("");
@@ -1052,7 +1102,7 @@ footer{padding:28px 0 45px;border-top:1px solid var(--line);color:var(--muted)}
   $("dialog-close").addEventListener("click",()=>{$("experiment-dialog").close();if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("experiment-dialog").addEventListener("cancel",()=>{if(location.hash.startsWith("#experiment-"))history.replaceState(null,"","#experiments")});
   $("language-toggle").addEventListener("click",()=>setLanguage(language==="en"?"he":"en"));
-  renderOverview();renderBaselineProgress();renderExperimentBenchmarks();renderExecutedResults();renderRunCenter();renderArchitecture();renderExperiments();renderResults();renderEvaluation();
+  renderOverview();renderBaselineProgress();renderExperimentBenchmarks();renderExecutedResults();renderRunCenter();renderArchitecture();renderExperiments();renderResults();renderEvaluation();renderIndependentEvidence();
   renderWorkspace("msc-workspace","MSc");renderWorkspace("phd-workspace","PhD");renderOperations();setLanguage(language);routeHash();
   window.addEventListener("hashchange",routeHash);
 })();
