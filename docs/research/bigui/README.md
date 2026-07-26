@@ -134,9 +134,10 @@ is verified.
   15 protocol/gated/parked, 22 measured passes, four measured partials,
   13 gated non-runs, and two parked records.
 - `CurrentRunIndex-v1` selects one deterministic current projection for each
-  of the 26 executed experiments while preserving all 116 accepted bundles and
-  1,071 source-linked metric observations as immutable history after the
-  2026-07-27 controlled refresh.
+  of the 26 executed experiments while preserving every accepted bundle and
+  source-linked metric observation as immutable history. The generated catalog
+  and deployment API report the current counts; this durable instruction does
+  not duplicate those changing values.
 - The 41 result views currently expose 97 distinct non-null metric families.
   EXP-003 remains `observed_null`; EXP-012 remains partially measured because
   its engineering gate fields are non-null while its classification metrics

@@ -12,6 +12,13 @@ RESULT_VIEWS = (
     / "bigui"
     / "experiment-result-views-v1.json"
 )
+CATALOG = (
+    ROOT
+    / "docs"
+    / "research"
+    / "bigui"
+    / "experiment-catalog-snapshot-v1.json"
+)
 
 
 def load_builder():
@@ -28,10 +35,13 @@ def load_builder():
 def test_result_views_are_deterministic_complete_and_schema_valid() -> None:
     builder = load_builder()
     tracked = json.loads(RESULT_VIEWS.read_text(encoding="utf-8"))
+    catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
     assert builder.build_result_views() == tracked
     assert tracked["summary"]["experimentCount"] == 41
     assert tracked["summary"]["currentAcceptedRunCount"] == 26
-    assert tracked["summary"]["historicalAcceptedRunCount"] == 116
+    assert tracked["summary"]["historicalAcceptedRunCount"] == len(
+        catalog["acceptedRunBundles"]
+    )
     assert [
         item["experimentId"] for item in tracked["resultViews"]
     ] == [f"EXP-{index:03d}" for index in range(41)]

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,6 +12,18 @@ const repoRoot = path.resolve(
   "..",
 );
 process.env.VEGO_REPO_ROOT = repoRoot;
+const catalog = JSON.parse(
+  fs.readFileSync(
+    path.join(
+      repoRoot,
+      "docs",
+      "research",
+      "bigui",
+      "experiment-catalog-snapshot-v1.json",
+    ),
+    "utf8",
+  ),
+);
 const app = require(path.join(repoRoot, "deploy", "ai-studio", "server.js"));
 const server = await new Promise((resolve) => {
   const listener = app.listen(0, "127.0.0.1", () => resolve(listener));
@@ -37,8 +50,14 @@ try {
   const program = await json("/api/v1/program");
   assert.equal(program.experimentCount, 41);
   assert.equal(program.currentAcceptedRunCount, 26);
-  assert.equal(program.historicalAcceptedRunCount, 116);
-  assert.equal(program.metricObservationCount, 1071);
+  assert.equal(
+    program.historicalAcceptedRunCount,
+    catalog.runStoreSummary.bundleCount,
+  );
+  assert.equal(
+    program.metricObservationCount,
+    catalog.runStoreSummary.metricObservationCount,
+  );
   assert.match(program.claimBoundary, /0\/24 safe labels/);
 
   const index = await json("/api/v1/experiments");
