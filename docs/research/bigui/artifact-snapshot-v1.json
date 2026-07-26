@@ -1,0 +1,455 @@
+{
+  "version": 1,
+  "status": "ready",
+  "generatedAt": "2026-07-26T00:30:26+00:00",
+  "datasets": {
+    "program_state": [
+      {
+        "accepted_iteration": 15,
+        "candidate_labels": 24,
+        "safe_labels": 0,
+        "comparison_rows": 27,
+        "classification_changes": 0
+      }
+    ],
+    "experiments": [
+      {
+        "experiment_id": "EXP-000",
+        "title": "Existing packaged results audit",
+        "research_space": "MSc",
+        "track": "Baseline integrity",
+        "status": "Documented — parked",
+        "evidence_class": "historical",
+        "accepted_runs": 0,
+        "claim_boundary": "Historical or parked record only; it is not current empirical evidence.",
+        "next_action": "Map existing paper results to reproducible records without copying controlled artifacts into Git."
+      },
+      {
+        "experiment_id": "EXP-001",
+        "title": "M4B-1 memory-informed parallel comparison experiment",
+        "research_space": "MSc",
+        "track": "Mechanism readiness",
+        "status": "Implemented",
+        "evidence_class": "mechanism",
+        "accepted_runs": 0,
+        "claim_boundary": "Mechanism readiness and baseline protection only; no accuracy or generalization claim.",
+        "next_action": "Initial run: 27 comparisons, 3 same-pattern expert labels, 0 generalization-safe expert labels, 0 memory-informed classification changes, 2 human-review-after-memory flags. No accuracy-improvement claim allowed yet."
+      },
+      {
+        "experiment_id": "EXP-002",
+        "title": "Expert label expansion and holdout evaluation",
+        "research_space": "MSc",
+        "track": "Evaluation infrastructure",
+        "status": "Evaluation-ready",
+        "evidence_class": "evaluation_ready",
+        "accepted_runs": 0,
+        "claim_boundary": "Protocol and tooling readiness only until independent evidence is supplied.",
+        "next_action": "Prepares independent expert labels for generalization-safe M4B-1 evaluation. No M4B-2, Agent 4, LLM/API, or baseline-output changes."
+      },
+      {
+        "experiment_id": "EXP-003",
+        "title": "Accuracy improvement evaluation",
+        "research_space": "MSc",
+        "track": "Evaluation infrastructure",
+        "status": "Pending expert input",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "The required human, evidence, or approval gate is closed.",
+        "next_action": "Evaluation-first path for accuracy improvement. Stops accuracy claims when there are fewer than 20 generalization-safe expert labels; no Agent 4, M4B-2, LLM/API, embedding, or baseline-output changes."
+      },
+      {
+        "experiment_id": "EXP-004",
+        "title": "Policy sensitivity simulation",
+        "research_space": "MSc",
+        "track": "Evaluation infrastructure",
+        "status": "Synthetic fixture",
+        "evidence_class": "synthetic",
+        "accepted_runs": 0,
+        "claim_boundary": "Synthetic fixture behavior only; never human or empirical validation.",
+        "next_action": "Tests candidate M4B-1.1-style policy variants under synthetic labels only. Not expert evidence; no Agent 4, M4B-2, LLM/API, embedding, eval_output, or baseline-output changes."
+      },
+      {
+        "experiment_id": "EXP-005",
+        "title": "Real-label accuracy evaluation and policy gate",
+        "research_space": "MSc",
+        "track": "Evaluation infrastructure",
+        "status": "Pending expert input",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "Zero safe labels means accuracy and macro-F1 remain not computable; labels are never inferred or prefilled.",
+        "next_action": "Prepares supervisor/expert labeling materials, validates filled labels, tracks reviewer/adjudication reliability, and blocks M4B-1.1/M4B-2 until at least 20 generalization-safe labels justify a deterministic policy change."
+      },
+      {
+        "experiment_id": "EXP-006",
+        "title": "H-Listen event replay",
+        "research_space": "Cross-program",
+        "track": "Observation, dosage, and verification",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "481 captured records plus 20 explicit gap records = 501 contract records. `11 queue items / 481 heterogeneous reconstructed lifecycle events` remains a count ratio only; no event-level visibility inference or linkage exists. Mechanism evidence only."
+      },
+      {
+        "experiment_id": "EXP-007",
+        "title": "S2 dosage-mode replay",
+        "research_space": "Cross-program",
+        "track": "Observation, dosage, and verification",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "`threshold_sev2`: event load 0.799, transaction load 0.796, weighted coverage 0.981, high-severity coverage 1.0. Aggregate coverage >=0.8 at load <=0.5 remains unmet. Pareto evidence only; no default."
+      },
+      {
+        "experiment_id": "EXP-008",
+        "title": "Early-trigger mining",
+        "research_space": "Cross-program",
+        "track": "Observation, dosage, and verification",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "Uniform K30 capture 0.75; K35 capture 0.85. Report the cap/capture trade-off only; no uniform or adaptive cap is approved."
+      },
+      {
+        "experiment_id": "EXP-009",
+        "title": "H-Verify seeded-conflict dry run",
+        "research_space": "Cross-program",
+        "track": "Observation, dosage, and verification",
+        "status": "Synthetic fixture",
+        "evidence_class": "synthetic",
+        "accepted_runs": 1,
+        "claim_boundary": "Synthetic fixture behavior only; never human or empirical validation.",
+        "next_action": "Assumption-driven `SYNTHETIC_NOT_HUMAN` rule test, isolated from real stores. It does not validate behavior on real expert mistakes; M-04 remains unrecorded."
+      },
+      {
+        "experiment_id": "EXP-010",
+        "title": "Convergence-bound sweep",
+        "research_space": "Cross-program",
+        "track": "Observation, dosage, and verification",
+        "status": "Synthetic fixture",
+        "evidence_class": "synthetic",
+        "accepted_runs": 1,
+        "claim_boundary": "Synthetic fixture behavior only; never human or empirical validation.",
+        "next_action": "Assumption-driven synthetic rule sweep. Resolution and escalation are separate outcomes; the run cannot approve a two-round bound."
+      },
+      {
+        "experiment_id": "EXP-011",
+        "title": "Version 0 vs Version 1 comparison",
+        "research_space": "Cross-program",
+        "track": "Evaluation infrastructure",
+        "status": "Documented — parked",
+        "evidence_class": "historical",
+        "accepted_runs": 0,
+        "claim_boundary": "Historical or parked record only; it is not current empirical evidence.",
+        "next_action": "Iris's V0/V1 + usability design; requires >=20 generalization-safe real labels via EXP-005 and supervisor go-ahead."
+      },
+      {
+        "experiment_id": "EXP-012",
+        "title": "Validated EXP-005 baseline interface (M-D)",
+        "research_space": "Cross-program",
+        "track": "Evaluation infrastructure",
+        "status": "Blocked",
+        "evidence_class": "blocked",
+        "accepted_runs": 1,
+        "claim_boundary": "The validated interface remains NOT YET COMPUTABLE at safe N=0.",
+        "next_action": "Reads the validated EXP-005 full export + validation summary, requires explicit safe/leakage/provenance fields, and matches the canonical EXP-003 evaluator at N=0. Generalization-safe M-D remains `NOT YET COMPUTABLE`; historical same-pattern pilot is excluded."
+      },
+      {
+        "experiment_id": "EXP-013",
+        "title": "Event-contract fidelity",
+        "research_space": "Cross-program",
+        "track": "Architecture conformance",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "Five fixture records schema-valid; captured/reconstructed lineage complete; E3/E9 gaps explicit; E15 parked. Fixture mechanism evidence only; no live-hook authorization."
+      },
+      {
+        "experiment_id": "EXP-014",
+        "title": "Replay determinism",
+        "research_space": "Cross-program",
+        "track": "Architecture conformance",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "Three normalized fixture replays produced identical hashes and no duplicate review-item IDs."
+      },
+      {
+        "experiment_id": "EXP-015",
+        "title": "Workload, bundling, and fairness",
+        "research_space": "Cross-program",
+        "track": "Architecture conformance",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "Fixed-denominator fixture comparison only; high-severity preservation, collision checks, aging, and deferred recovery reported. No approved cap or workload forecast."
+      },
+      {
+        "experiment_id": "EXP-016",
+        "title": "Authority and timeout safety",
+        "research_space": "Cross-program",
+        "track": "Architecture conformance",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "`SYNTHETIC_NOT_HUMAN` cases preserved baseline hashes, parked timeout/denial paths, and produced zero trusted-memory writes/correction applications. No implementation authority."
+      },
+      {
+        "experiment_id": "EXP-017",
+        "title": "Verification provenance",
+        "research_space": "Cross-program",
+        "track": "Architecture conformance",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "Deterministic-first four-family fixture trace passed; semantic checks absent; missing/conflicting cases require adjudication. M-04 remains unrecorded."
+      },
+      {
+        "experiment_id": "EXP-018",
+        "title": "Correction-proposal dry run",
+        "research_space": "Cross-program",
+        "track": "Architecture conformance",
+        "status": "Offline evidence",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Offline architecture or workload evidence only; no production approval or accuracy claim.",
+        "next_action": "Reproducible diff over a disposable copy with target hash/rollback; `applied=false`; repository fixture unchanged. No correction authorization."
+      },
+      {
+        "experiment_id": "EXP-019",
+        "title": "Reviewer calibration without evaluation leakage",
+        "research_space": "MSc",
+        "track": "MSc empirical evaluation",
+        "status": "Evaluation-ready",
+        "evidence_class": "evaluation_ready",
+        "accepted_runs": 0,
+        "claim_boundary": "Protocol and tooling readiness only until independent evidence is supplied.",
+        "next_action": "Uses the three excluded same-pattern rows to clarify the protocol. It supplies no performance or generalization evidence."
+      },
+      {
+        "experiment_id": "EXP-020",
+        "title": "Independent expert labeling of 24 safe candidates",
+        "research_space": "MSc",
+        "track": "MSc empirical evaluation",
+        "status": "Pending expert input",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "The required human, evidence, or approval gate is closed.",
+        "next_action": "Two blind reviewers plus adjudication. At 1-19 safe labels reporting is pilot-only; at 20-24 it is a small-sample MSc quantitative evaluation."
+      },
+      {
+        "experiment_id": "EXP-021",
+        "title": "Development-only baseline error characterization",
+        "research_space": "MSc",
+        "track": "MSc empirical evaluation",
+        "status": "Blocked",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "The required human, evidence, or approval gate is closed.",
+        "next_action": "The eight-row holdout remains sealed. No policy is selected in this experiment."
+      },
+      {
+        "experiment_id": "EXP-022",
+        "title": "Routing and retrieval validity audit",
+        "research_space": "MSc",
+        "track": "MSc empirical evaluation",
+        "status": "Blocked",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "The required human, evidence, or approval gate is closed.",
+        "next_action": "Tests targeting and relevance only; it cannot independently prove accuracy improvement or reduced effort."
+      },
+      {
+        "experiment_id": "EXP-023",
+        "title": "Deterministic policy development",
+        "research_space": "MSc",
+        "track": "MSc empirical evaluation",
+        "status": "Proposal — not approved",
+        "evidence_class": "proposal",
+        "accepted_runs": 0,
+        "claim_boundary": "Proposal only; not approved, implemented, or empirically validated.",
+        "next_action": "Entry requires at least three correctable development errors across at least two settings plus explicit supervisor approval. Output remains parallel and non-destructive."
+      },
+      {
+        "experiment_id": "EXP-024",
+        "title": "One-time sealed eight-row holdout pilot",
+        "research_space": "MSc",
+        "track": "MSc empirical evaluation",
+        "status": "Blocked",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "The required human, evidence, or approval gate is closed.",
+        "next_action": "N=8 is pilot-only. Policy cannot change after holdout inspection."
+      },
+      {
+        "experiment_id": "EXP-025",
+        "title": "External education-domain replication",
+        "research_space": "PhD",
+        "track": "PhD extension",
+        "status": "Proposal — not approved",
+        "evidence_class": "proposal",
+        "accepted_runs": 0,
+        "claim_boundary": "Proposal only; not approved, implemented, or empirically validated.",
+        "next_action": "Minimum N=30, target N=48. This is the only planned formal-improvement gate; every preregistered criterion must pass."
+      },
+      {
+        "experiment_id": "EXP-026",
+        "title": "Human-effort study",
+        "research_space": "PhD",
+        "track": "PhD extension",
+        "status": "Proposal — not approved",
+        "evidence_class": "proposal",
+        "accepted_runs": 0,
+        "claim_boundary": "Proposal only; not approved, implemented, or empirically validated.",
+        "next_action": "Queue counts are not effort evidence. No reduced-effort claim is allowed before this controlled study."
+      },
+      {
+        "experiment_id": "EXP-027",
+        "title": "Ablation and robustness",
+        "research_space": "PhD",
+        "track": "PhD extension",
+        "status": "Proposal — not approved",
+        "evidence_class": "proposal",
+        "accepted_runs": 0,
+        "claim_boundary": "Proposal only; not approved, implemented, or empirically validated.",
+        "next_action": "Runs only after the primary external analysis and cannot tune or rescue it."
+      },
+      {
+        "experiment_id": "EXP-028",
+        "title": "Model execution reproducibility and drift",
+        "research_space": "PhD",
+        "track": "Model evaluation",
+        "status": "Proposal — not approved",
+        "evidence_class": "proposal",
+        "accepted_runs": 0,
+        "claim_boundary": "Proposal only; not approved, implemented, or empirically validated.",
+        "next_action": "Descriptive protocol only. It does not select a model or establish accuracy. Historical GPT-4o alias snapshot remains unknown."
+      },
+      {
+        "experiment_id": "EXP-029",
+        "title": "Frozen candidate-model comparison",
+        "research_space": "PhD",
+        "track": "Model evaluation",
+        "status": "Blocked",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "The required human, evidence, or approval gate is closed.",
+        "next_action": "Requires >=20 safe labels, reviewer agreement/adjudication, frozen prompt/policy/partition, supervisor approval, and a cost ceiling. GPT-4o remains default."
+      },
+      {
+        "experiment_id": "EXP-030",
+        "title": "BigUI source fidelity and provenance",
+        "research_space": "Cross-program",
+        "track": "Observatory integrity",
+        "status": "Evaluation-ready",
+        "evidence_class": "evaluation_ready",
+        "accepted_runs": 0,
+        "claim_boundary": "Source-fidelity evidence only; it does not establish classification validity or human decision value.",
+        "next_action": "Run the deterministic catalog fidelity gate on every refresh."
+      },
+      {
+        "experiment_id": "EXP-031",
+        "title": "BigUI formative usability",
+        "research_space": "MSc",
+        "track": "Human-facing usability",
+        "status": "Proposal — not approved",
+        "evidence_class": "proposal",
+        "accepted_runs": 0,
+        "claim_boundary": "A 5–8 participant formative study supports interface refinement only.",
+        "next_action": "Approve consent, tasks, and anonymized local record handling."
+      },
+      {
+        "experiment_id": "EXP-032",
+        "title": "BigUI decision-support comparison",
+        "research_space": "MSc",
+        "track": "Decision-support value",
+        "status": "Blocked",
+        "evidence_class": "blocked",
+        "accepted_runs": 0,
+        "claim_boundary": "A value claim is permitted only for measured tasks and only if correctness improves without increasing overclaim errors.",
+        "next_action": "Complete EXP-031 and preregister the counterbalanced study."
+      },
+      {
+        "experiment_id": "EXP-033",
+        "title": "Full-corpus runtime parity",
+        "research_space": "Cross-program",
+        "track": "Architecture validation",
+        "status": "Offline design",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy.",
+        "next_action": "Run three repetitions over available controlled M1–M4B-1 artifacts."
+      },
+      {
+        "experiment_id": "EXP-034",
+        "title": "H-layer topology trade-off",
+        "research_space": "Cross-program",
+        "track": "Architecture validation",
+        "status": "Offline design",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "The result is a Pareto comparison and cannot approve a production topology.",
+        "next_action": "Run the deterministic topology simulator and report trade-offs without ranking a winner."
+      },
+      {
+        "experiment_id": "EXP-035",
+        "title": "Fault injection and authority safety",
+        "research_space": "Cross-program",
+        "track": "Safety validation",
+        "status": "Offline design",
+        "evidence_class": "offline",
+        "accepted_runs": 1,
+        "claim_boundary": "Fixture safety evidence only; it is not a guarantee against every future fault.",
+        "next_action": "Execute deterministic negative fixtures and preserve the legacy result on every mismatch."
+      },
+      {
+        "experiment_id": "EXP-036",
+        "title": "Scale, latency, and reproducibility",
+        "research_space": "Cross-program",
+        "track": "Operational evaluation",
+        "status": "Offline design",
+        "evidence_class": "offline",
+        "accepted_runs": 0,
+        "claim_boundary": "Operational overhead only; synthetic scale fixtures cannot support classification or effort claims.",
+        "next_action": "Benchmark current, 5×, and 10× fixtures with environment and cohort hashes."
+      }
+    ],
+    "evidence_counts": [
+      {
+        "evidence_class": "blocked",
+        "experiment_count": 9
+      },
+      {
+        "evidence_class": "evaluation_ready",
+        "experiment_count": 3
+      },
+      {
+        "evidence_class": "historical",
+        "experiment_count": 2
+      },
+      {
+        "evidence_class": "mechanism",
+        "experiment_count": 1
+      },
+      {
+        "evidence_class": "offline",
+        "experiment_count": 13
+      },
+      {
+        "evidence_class": "proposal",
+        "experiment_count": 6
+      },
+      {
+        "evidence_class": "synthetic",
+        "experiment_count": 3
+      }
+    ]
+  }
+}
