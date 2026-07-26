@@ -32,24 +32,39 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def determine_live_status(
+    live: dict[str, Any],
+    candidate_experiment_count: int,
+    candidate_catalog_sha256: str,
+) -> str:
+    if not live["reachable"]:
+        return "unreachable"
+    if (
+        live["experimentCount"] == candidate_experiment_count
+        and live.get("catalogSha256") == candidate_catalog_sha256
+    ):
+        return "current"
+    return "stale"
+
+
 def build_snapshot() -> dict[str, Any]:
     catalog = load_json(CATALOG)
     result_views = load_json(RESULT_VIEWS)
     live = load_json(LIVE_OBSERVATION)
     if live.get("schemaVersion") != "LiveDeploymentObservation-v1":
         raise ValueError("unexpected live deployment observation schema")
-    if live["experimentCount"] == len(catalog["experiments"]):
-        live_status = "current"
-    elif live["reachable"]:
-        live_status = "stale"
-    else:
-        live_status = "unreachable"
+    catalog_sha256 = sha256(CATALOG)
+    live_status = determine_live_status(
+        live,
+        len(catalog["experiments"]),
+        catalog_sha256,
+    )
     snapshot = {
         "schemaVersion": "DeploymentSnapshot-v1",
         "apiVersion": "v1",
         "publicationState": "candidate",
         "mainBranchRevision": None,
-        "catalogSha256": sha256(CATALOG),
+        "catalogSha256": catalog_sha256,
         "resultViewsSha256": sha256(RESULT_VIEWS),
         "deploymentPackageSha256": None,
         "experimentCount": len(catalog["experiments"]),

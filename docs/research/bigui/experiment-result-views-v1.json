@@ -200,16 +200,16 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-001-03b042052bbe",
-          "acceptedAt": "2026-07-26T22:15:01.2709669+00:00",
-          "evidenceClass": "mechanism",
-          "current": true
-        },
-        {
           "runId": "EXP-001-06419d6e3a5a",
           "acceptedAt": "2026-06-16T19:01:09.7551967+00:00",
           "evidenceClass": "mechanism",
           "current": false
+        },
+        {
+          "runId": "EXP-001-03b042052bbe",
+          "acceptedAt": "2026-07-26T22:15:01.2709669+00:00",
+          "evidenceClass": "mechanism",
+          "current": true
         }
       ],
       "measurementState": {
@@ -352,7 +352,7 @@
               "detail": "= 0; dimensions={}"
             }
           ],
-          "status": "Target met",
+          "status": "Unchanged",
           "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         }
       ],
@@ -494,7 +494,7 @@
         "whatWasTested": "RQ4",
         "whatHappened": "Initial run: 27 comparisons, 3 same-pattern expert labels, 0 generalization-safe expert labels, 0 memory-informed classification changes, 2 human-review-after-memory flags. No accuracy-improvement claim allowed yet.",
         "targetOutcome": "Benchmark verdict MEASURED_PASS; measurement state measured_complete.",
-        "progressStatus": "Target met",
+        "progressStatus": "Unchanged",
         "cannotInfer": "Mechanism readiness and baseline protection only; no accuracy or generalization claim."
       },
       "sources": [
@@ -551,16 +551,16 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-002-715cb7910d9c",
-          "acceptedAt": "2026-07-26T22:15:07.8292650+00:00",
-          "evidenceClass": "evaluation_ready",
-          "current": true
-        },
-        {
           "runId": "EXP-002-90ff2e7178b1",
           "acceptedAt": "2026-06-16T19:01:10.8182777+00:00",
           "evidenceClass": "evaluation_ready",
           "current": false
+        },
+        {
+          "runId": "EXP-002-715cb7910d9c",
+          "acceptedAt": "2026-07-26T22:15:07.8292650+00:00",
+          "evidenceClass": "evaluation_ready",
+          "current": true
         }
       ],
       "measurementState": {
@@ -1766,8 +1766,14 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-006-7d8abc08-73dc46ce",
-          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "runId": "EXP-006-7d8abc081553",
+          "acceptedAt": "2026-07-26T00:30:26+00:00",
+          "evidenceClass": "offline",
+          "current": false
+        },
+        {
+          "runId": "EXP-006-7d8abc08-cbf9dbed",
+          "acceptedAt": "2026-07-26T12:59:04.7683888+00:00",
           "evidenceClass": "offline",
           "current": false
         },
@@ -1778,22 +1784,16 @@
           "current": false
         },
         {
+          "runId": "EXP-006-7d8abc08-73dc46ce",
+          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "evidenceClass": "offline",
+          "current": false
+        },
+        {
           "runId": "EXP-006-7d8abc08-a289b7c3",
           "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
           "evidenceClass": "offline",
           "current": true
-        },
-        {
-          "runId": "EXP-006-7d8abc08-cbf9dbed",
-          "acceptedAt": "2026-07-26T12:59:04.7683888+00:00",
-          "evidenceClass": "offline",
-          "current": false
-        },
-        {
-          "runId": "EXP-006-7d8abc081553",
-          "acceptedAt": "2026-07-26T00:30:26+00:00",
-          "evidenceClass": "offline",
-          "current": false
         }
       ],
       "measurementState": {
@@ -1867,11 +1867,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-005306982A015C05",
+          "assessmentId": "PA-778FC77FBEB62C19",
           "experimentId": "EXP-006",
           "metricId": "EVENT_EARLY_STAGE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-006-7d8abc081553",
+          "leftRunId": "EXP-006-7d8abc08-73dc46ce",
           "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -1884,11 +1884,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-4A8DED31980CD0E9",
+          "assessmentId": "PA-3256FC6010DE8296",
           "experimentId": "EXP-006",
           "metricId": "EVENT_SEV2PLUS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-006-7d8abc081553",
+          "leftRunId": "EXP-006-7d8abc08-73dc46ce",
           "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -1901,11 +1901,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-735CB3476E6B5BEA",
+          "assessmentId": "PA-45F025BEA53777D5",
           "experimentId": "EXP-006",
           "metricId": "EVENT_TOTAL_RECONSTRUCTED",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-006-7d8abc081553",
+          "leftRunId": "EXP-006-7d8abc08-73dc46ce",
           "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -1918,11 +1918,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-8831553ECCC57A01",
+          "assessmentId": "PA-E22E36F7C4AD8C48",
           "experimentId": "EXP-006",
           "metricId": "EVENT_UNCERTAINTY_MARKED",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-006-7d8abc081553",
+          "leftRunId": "EXP-006-7d8abc08-73dc46ce",
           "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -1935,11 +1935,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-9085F772F0ED7FA6",
+          "assessmentId": "PA-2314C170DFBD049A",
           "experimentId": "EXP-006",
           "metricId": "MECH_QUEUE_TO_EVENT_COUNT_RATIO",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-006-7d8abc081553",
+          "leftRunId": "EXP-006-7d8abc08-73dc46ce",
           "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -1952,11 +1952,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D27D4092717207EB",
+          "assessmentId": "PA-5730748650E948A7",
           "experimentId": "EXP-006",
           "metricId": "MECH_REVIEW_QUEUE_ITEMS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-006-7d8abc081553",
+          "leftRunId": "EXP-006-7d8abc08-73dc46ce",
           "rightRunId": "EXP-006-7d8abc08-a289b7c3",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2224,8 +2224,8 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-007-1d1e4922-4a938423",
-          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "runId": "EXP-007-1d1e4922f274",
+          "acceptedAt": "2026-07-26T00:30:26+00:00",
           "evidenceClass": "offline",
           "current": false
         },
@@ -2242,16 +2242,16 @@
           "current": false
         },
         {
+          "runId": "EXP-007-1d1e4922-4a938423",
+          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "evidenceClass": "offline",
+          "current": false
+        },
+        {
           "runId": "EXP-007-1d1e4922-fa9872e5",
           "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
           "evidenceClass": "offline",
           "current": true
-        },
-        {
-          "runId": "EXP-007-1d1e4922f274",
-          "acceptedAt": "2026-07-26T00:30:26+00:00",
-          "evidenceClass": "offline",
-          "current": false
         }
       ],
       "measurementState": {
@@ -2325,11 +2325,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-EC235281B530E48D",
+          "assessmentId": "PA-BD636F81420CBAA1",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_BUNDLING_REDUCTION",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-007-1d1e4922f274",
+          "leftRunId": "EXP-007-1d1e4922-4a938423",
           "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2342,11 +2342,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-0411AB029944E131",
+          "assessmentId": "PA-D763889E098D9B5C",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_EVENT_LOAD",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-007-1d1e4922f274",
+          "leftRunId": "EXP-007-1d1e4922-4a938423",
           "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2380,16 +2380,16 @@
               "detail": "<= 0.5; dimensions={\"mode\": \"threshold_sev3\", \"setting\": \"ALL\"}"
             }
           ],
-          "status": "Regressed",
+          "status": "Unchanged",
           "explanation": "Compared 6 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-7DFFB7E14A7E8894",
+          "assessmentId": "PA-0D87E67B09384CDF",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_HIGH_SEVERITY_COVERAGE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-007-1d1e4922f274",
+          "leftRunId": "EXP-007-1d1e4922-4a938423",
           "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2413,16 +2413,16 @@
               "detail": "= 1.0; dimensions={\"mode\": \"threshold_sev3\", \"setting\": \"ALL\"}"
             }
           ],
-          "status": "Regressed",
+          "status": "Unchanged",
           "explanation": "Compared 6 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-190C887C5AF43AD6",
+          "assessmentId": "PA-819B30D528EBFF1B",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_TRANSACTION_LOAD",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-007-1d1e4922f274",
+          "leftRunId": "EXP-007-1d1e4922-4a938423",
           "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2435,11 +2435,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-9514E5128641460E",
+          "assessmentId": "PA-73B1D07C2EA2658A",
           "experimentId": "EXP-007",
           "metricId": "ROUTING_WEIGHTED_COVERAGE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-007-1d1e4922f274",
+          "leftRunId": "EXP-007-1d1e4922-4a938423",
           "rightRunId": "EXP-007-1d1e4922-fa9872e5",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2648,7 +2648,7 @@
         "whatWasTested": "RQ2 (dosage calibration)",
         "whatHappened": "`threshold_sev2`: event load 0.799, transaction load 0.796, weighted coverage 0.981, high-severity coverage 1.0. Aggregate coverage >=0.8 at load <=0.5 remains unmet. Pareto evidence only; no default.",
         "targetOutcome": "Benchmark verdict MEASURED_PARTIAL; measurement state measured_complete.",
-        "progressStatus": "Regressed",
+        "progressStatus": "Unchanged",
         "cannotInfer": "Offline architecture or workload evidence only; no production approval or accuracy claim."
       },
       "sources": [
@@ -2705,20 +2705,8 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-008-de19666d-245f75e2",
-          "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
-          "evidenceClass": "offline",
-          "current": false
-        },
-        {
-          "runId": "EXP-008-de19666d-3b3b6f7e",
-          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
-          "evidenceClass": "offline",
-          "current": true
-        },
-        {
-          "runId": "EXP-008-de19666d-70c3984b",
-          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "runId": "EXP-008-de19666dc016",
+          "acceptedAt": "2026-07-26T00:30:26+00:00",
           "evidenceClass": "offline",
           "current": false
         },
@@ -2729,10 +2717,22 @@
           "current": false
         },
         {
-          "runId": "EXP-008-de19666dc016",
-          "acceptedAt": "2026-07-26T00:30:26+00:00",
+          "runId": "EXP-008-de19666d-245f75e2",
+          "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
           "evidenceClass": "offline",
           "current": false
+        },
+        {
+          "runId": "EXP-008-de19666d-70c3984b",
+          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "evidenceClass": "offline",
+          "current": false
+        },
+        {
+          "runId": "EXP-008-de19666d-3b3b6f7e",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "offline",
+          "current": true
         }
       ],
       "measurementState": {
@@ -2806,11 +2806,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-7A164B264A18CF25",
+          "assessmentId": "PA-94FEAC07C4BF4585",
           "experimentId": "EXP-008",
           "metricId": "TRIGGER_CAP_CAPTURE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-008-de19666dc016",
+          "leftRunId": "EXP-008-de19666d-70c3984b",
           "rightRunId": "EXP-008-de19666d-3b3b6f7e",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2823,11 +2823,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-5F5B89EE9EFB28B7",
+          "assessmentId": "PA-93620D5BA4FACDC7",
           "experimentId": "EXP-008",
           "metricId": "TRIGGER_MAX_ADDED_LOAD",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-008-de19666dc016",
+          "leftRunId": "EXP-008-de19666d-70c3984b",
           "rightRunId": "EXP-008-de19666d-3b3b6f7e",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -2975,14 +2975,8 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-009-5bea318e-096eb0cb",
-          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
-          "evidenceClass": "synthetic",
-          "current": true
-        },
-        {
-          "runId": "EXP-009-5bea318e-302e7b83",
-          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "runId": "EXP-009-5bea318ee21d",
+          "acceptedAt": "2026-07-26T00:30:26+00:00",
           "evidenceClass": "synthetic",
           "current": false
         },
@@ -2999,10 +2993,16 @@
           "current": false
         },
         {
-          "runId": "EXP-009-5bea318ee21d",
-          "acceptedAt": "2026-07-26T00:30:26+00:00",
+          "runId": "EXP-009-5bea318e-302e7b83",
+          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
           "evidenceClass": "synthetic",
           "current": false
+        },
+        {
+          "runId": "EXP-009-5bea318e-096eb0cb",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "synthetic",
+          "current": true
         }
       ],
       "measurementState": {
@@ -3076,11 +3076,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-106EA9940C07E5EE",
+          "assessmentId": "PA-E097C3E472729117",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_DETECTION_RECALL",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-009-5bea318ee21d",
+          "leftRunId": "EXP-009-5bea318e-302e7b83",
           "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3093,11 +3093,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D6772FB97D246B9A",
+          "assessmentId": "PA-5A2976A3DC217CC6",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_FALSE_NEGATIVES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-009-5bea318ee21d",
+          "leftRunId": "EXP-009-5bea318e-302e7b83",
           "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3110,11 +3110,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-3BA840DAD9D64356",
+          "assessmentId": "PA-EC85174A5E911A5C",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_FALSE_POSITIVES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-009-5bea318ee21d",
+          "leftRunId": "EXP-009-5bea318e-302e7b83",
           "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3127,11 +3127,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-6A80DCA96CD9D3D5",
+          "assessmentId": "PA-30BDACACF6239F24",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_FINAL_STATUS_COUNT",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-009-5bea318ee21d",
+          "leftRunId": "EXP-009-5bea318e-302e7b83",
           "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3144,11 +3144,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-55B9F4991095824B",
+          "assessmentId": "PA-1C20BF04A0E84C05",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_SPECIFICITY",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-009-5bea318ee21d",
+          "leftRunId": "EXP-009-5bea318e-302e7b83",
           "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3161,11 +3161,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-1D5E80A8E4FB6C22",
+          "assessmentId": "PA-8CEF03F36E56B848",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_TRUE_NEGATIVES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-009-5bea318ee21d",
+          "leftRunId": "EXP-009-5bea318e-302e7b83",
           "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3178,11 +3178,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-A493C83E4DFAE301",
+          "assessmentId": "PA-6A21329E9E26007F",
           "experimentId": "EXP-009",
           "metricId": "HVERIFY_TRUE_POSITIVES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-009-5bea318ee21d",
+          "leftRunId": "EXP-009-5bea318e-302e7b83",
           "rightRunId": "EXP-009-5bea318e-096eb0cb",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3485,20 +3485,8 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-010-10dedea4-060a8858",
-          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
-          "evidenceClass": "synthetic",
-          "current": true
-        },
-        {
-          "runId": "EXP-010-10dedea4-13b74472",
-          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
-          "evidenceClass": "synthetic",
-          "current": false
-        },
-        {
-          "runId": "EXP-010-10dedea4-44066e25",
-          "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
+          "runId": "EXP-010-10dedea4647c",
+          "acceptedAt": "2026-07-26T00:30:26+00:00",
           "evidenceClass": "synthetic",
           "current": false
         },
@@ -3509,10 +3497,22 @@
           "current": false
         },
         {
-          "runId": "EXP-010-10dedea4647c",
-          "acceptedAt": "2026-07-26T00:30:26+00:00",
+          "runId": "EXP-010-10dedea4-44066e25",
+          "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
           "evidenceClass": "synthetic",
           "current": false
+        },
+        {
+          "runId": "EXP-010-10dedea4-13b74472",
+          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "evidenceClass": "synthetic",
+          "current": false
+        },
+        {
+          "runId": "EXP-010-10dedea4-060a8858",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "synthetic",
+          "current": true
         }
       ],
       "measurementState": {
@@ -3586,11 +3586,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-66D24F73670A96B7",
+          "assessmentId": "PA-7D1E8C3F0A53A973",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_ADJUDICATION_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-010-10dedea4647c",
+          "leftRunId": "EXP-010-10dedea4-13b74472",
           "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3603,11 +3603,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-E9F022060136F8C0",
+          "assessmentId": "PA-8940EAAAB36FECDB",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_NO_CONFLICT_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-010-10dedea4647c",
+          "leftRunId": "EXP-010-10dedea4-13b74472",
           "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3620,11 +3620,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-203C2CF26845F9AF",
+          "assessmentId": "PA-93804E04BD6B57AA",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_RESOLVED_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-010-10dedea4647c",
+          "leftRunId": "EXP-010-10dedea4-13b74472",
           "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -3637,11 +3637,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-393092ECB0BEC7B2",
+          "assessmentId": "PA-9F6451C24AD89576",
           "experimentId": "EXP-010",
           "metricId": "CONVERGENCE_TIMEOUT_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-010-10dedea4647c",
+          "leftRunId": "EXP-010-10dedea4-13b74472",
           "rightRunId": "EXP-010-10dedea4-060a8858",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4046,20 +4046,8 @@
       },
       "historicalRuns": [
         {
-          "runId": "EXP-012-95c4dc03-5e68843f",
-          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
-          "evidenceClass": "evaluation_ready",
-          "current": true
-        },
-        {
-          "runId": "EXP-012-95c4dc03-ce433519",
-          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
-          "evidenceClass": "evaluation_ready",
-          "current": false
-        },
-        {
-          "runId": "EXP-012-b489f6b6-b5055baf",
-          "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
+          "runId": "EXP-012-b489f6b64930",
+          "acceptedAt": "2026-07-26T00:30:26+00:00",
           "evidenceClass": "evaluation_ready",
           "current": false
         },
@@ -4070,10 +4058,22 @@
           "current": false
         },
         {
-          "runId": "EXP-012-b489f6b64930",
-          "acceptedAt": "2026-07-26T00:30:26+00:00",
+          "runId": "EXP-012-b489f6b6-b5055baf",
+          "acceptedAt": "2026-07-26T14:04:40.3433140+00:00",
           "evidenceClass": "evaluation_ready",
           "current": false
+        },
+        {
+          "runId": "EXP-012-95c4dc03-ce433519",
+          "acceptedAt": "2026-07-26T22:19:06.7064423+00:00",
+          "evidenceClass": "evaluation_ready",
+          "current": false
+        },
+        {
+          "runId": "EXP-012-95c4dc03-5e68843f",
+          "acceptedAt": "2026-07-26T23:01:04.7719799+00:00",
+          "evidenceClass": "evaluation_ready",
+          "current": true
         }
       ],
       "measurementState": {
@@ -4153,11 +4153,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-686D145E44BAAF4F",
+          "assessmentId": "PA-A38EB8C4728D270C",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_ACCURACY_B0",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -4170,11 +4170,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-E38DFF401A527F35",
+          "assessmentId": "PA-6CD9AE320EEC96A9",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_ACCURACY_B1",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -4187,11 +4187,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-C5E474B4B4A02DAB",
+          "assessmentId": "PA-7DAFBB4A564BAFB7",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_MACRO_F1_B0",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -4204,11 +4204,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-05778178BBB3A4E1",
+          "assessmentId": "PA-B1B0E78864A715E4",
           "experimentId": "EXP-012",
           "metricId": "CLASSIFICATION_MACRO_F1_B1",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -4221,11 +4221,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-5BB7D7C64CB98139",
+          "assessmentId": "PA-F1FA24F6F0EE291D",
           "experimentId": "EXP-012",
           "metricId": "EVALUATOR_CROSSCHECK_PASS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4238,11 +4238,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-2D7066D0838A44EF",
+          "assessmentId": "PA-F8C65C45CE379D4D",
           "experimentId": "EXP-012",
           "metricId": "LABEL_GENERALIZATION_SAFE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4255,11 +4255,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-00AD29274898DAA1",
+          "assessmentId": "PA-776D9F4F9AF639D1",
           "experimentId": "EXP-012",
           "metricId": "LABEL_SUPPLIED",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4272,11 +4272,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-8A8FC94E2855D593",
+          "assessmentId": "PA-E87AF406855CC5F0",
           "experimentId": "EXP-012",
           "metricId": "PAIRED_NET_CORRECTION",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-012-b489f6b64930",
+          "leftRunId": "EXP-012-95c4dc03-ce433519",
           "rightRunId": "EXP-012-95c4dc03-5e68843f",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -4586,11 +4586,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-6222A70CCA4A3A79",
+          "assessmentId": "PA-C6E14101428B1F60",
           "experimentId": "EXP-013",
           "metricId": "CONTRACT_E15_PARKED",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-013-abd2c4789581",
+          "leftRunId": "EXP-013-abd2c478-58ce1aa5",
           "rightRunId": "EXP-013-abd2c478-a78bef4c",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4603,11 +4603,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-A7A20C39DD3EAF3E",
+          "assessmentId": "PA-6AF3EE42EB297B2B",
           "experimentId": "EXP-013",
           "metricId": "CONTRACT_EXPLICIT_GAPS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-013-abd2c4789581",
+          "leftRunId": "EXP-013-abd2c478-58ce1aa5",
           "rightRunId": "EXP-013-abd2c478-a78bef4c",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4620,11 +4620,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-8A9E6E87C841BA65",
+          "assessmentId": "PA-D6836DF209D2AD12",
           "experimentId": "EXP-013",
           "metricId": "CONTRACT_LINEAGE_COMPLETE_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-013-abd2c4789581",
+          "leftRunId": "EXP-013-abd2c478-58ce1aa5",
           "rightRunId": "EXP-013-abd2c478-a78bef4c",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4637,11 +4637,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-B19BB50D367B610C",
+          "assessmentId": "PA-60DE99281764ECCF",
           "experimentId": "EXP-013",
           "metricId": "CONTRACT_SCHEMA_VALID_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-013-abd2c4789581",
+          "leftRunId": "EXP-013-abd2c478-58ce1aa5",
           "rightRunId": "EXP-013-abd2c478-a78bef4c",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4934,11 +4934,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-182D494A760305FB",
+          "assessmentId": "PA-D943C6756FF104FB",
           "experimentId": "EXP-014",
           "metricId": "REPLAY_DUPLICATE_REVIEW_ITEMS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-014-693ce3afcf0e",
+          "leftRunId": "EXP-014-693ce3af-3f1f574c",
           "rightRunId": "EXP-014-693ce3af-f93d907c",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -4951,11 +4951,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-C580D3A42E8BEF89",
+          "assessmentId": "PA-09C448DD7A24AB39",
           "experimentId": "EXP-014",
           "metricId": "REPLAY_IDENTICAL_RUNS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-014-693ce3afcf0e",
+          "leftRunId": "EXP-014-693ce3af-3f1f574c",
           "rightRunId": "EXP-014-693ce3af-f93d907c",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -5119,7 +5119,7 @@
         "nonNullObservationCount": 8,
         "nonNullMetricCount": 4,
         "nullMetricIds": [],
-        "comparisonEligibleMetricCount": 4,
+        "comparisonEligibleMetricCount": 0,
         "claimEligibleMetricCount": 4,
         "status": "measured_complete"
       },
@@ -5184,71 +5184,71 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-140A2A539A72490E",
+          "assessmentId": "PA-29BE39EB17A3AD65",
           "experimentId": "EXP-015",
           "metricId": "WORKLOAD_BUNDLE_COLLISIONS",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-015-dabe22c7ca1a",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-015-dabe22c7-30c6eb65",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
+          "absoluteDelta": null,
           "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [],
-          "status": "Unchanged",
-          "explanation": "Compared 2 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "A non-null current result exists, but no prior comparable run or explicit guardrail is available for a progress delta."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-96739C9403EE9119",
+          "assessmentId": "PA-BDE8480F3756C753",
           "experimentId": "EXP-015",
           "metricId": "WORKLOAD_DEFERRED_RECOVERY",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-015-dabe22c7ca1a",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-015-dabe22c7-30c6eb65",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [],
-          "status": "Unchanged",
-          "explanation": "Compared 2 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "A non-null current result exists, but no prior comparable run or explicit guardrail is available for a progress delta."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-F888F6A306802D00",
+          "assessmentId": "PA-A6B7EE6410575334",
           "experimentId": "EXP-015",
           "metricId": "WORKLOAD_HIGH_SEVERITY_COVERAGE",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-015-dabe22c7ca1a",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-015-dabe22c7-30c6eb65",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [],
-          "status": "Unchanged",
-          "explanation": "Compared 2 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "A non-null current result exists, but no prior comparable run or explicit guardrail is available for a progress delta."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-5E90506F64D61750",
+          "assessmentId": "PA-D82459CB38D59ABD",
           "experimentId": "EXP-015",
           "metricId": "WORKLOAD_SELECTED_LOAD",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-015-dabe22c7ca1a",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-015-dabe22c7-30c6eb65",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [],
-          "status": "Unchanged",
-          "explanation": "Compared 2 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "A non-null current result exists, but no prior comparable run or explicit guardrail is available for a progress delta."
         }
       ],
       "visualizationSpecs": [
@@ -5390,7 +5390,7 @@
         "whatWasTested": "H-layer workload design",
         "whatHappened": "Fixed-denominator fixture comparison only; high-severity preservation, collision checks, aging, and deferred recovery reported. No approved cap or workload forecast.",
         "targetOutcome": "Benchmark verdict MEASURED_PASS; measurement state measured_complete.",
-        "progressStatus": "Unchanged",
+        "progressStatus": "Not measured",
         "cannotInfer": "Offline architecture or workload evidence only; no production approval or accuracy claim."
       },
       "sources": [
@@ -5536,15 +5536,15 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-081617824C88C811",
+          "assessmentId": "PA-546B48F1662858F5",
           "experimentId": "EXP-016",
           "metricId": "AUTHORITY_CORRECTION_APPLICATIONS",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-016-2e9b44d98fbe",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-016-15f6f442-27b7ac47",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.0,
+          "absoluteDelta": null,
           "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
@@ -5555,20 +5555,20 @@
             }
           ],
           "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "explanation": "The current accepted run was assessed against its declared engineering guardrail; no prior comparable run is required."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-BA61B7AEF10ECD4D",
+          "assessmentId": "PA-6F3082F983DED146",
           "experimentId": "EXP-016",
           "metricId": "AUTHORITY_SAFE_CASE_RATE",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-016-2e9b44d98fbe",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-016-15f6f442-27b7ac47",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
             {
@@ -5578,19 +5578,19 @@
             }
           ],
           "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "explanation": "The current accepted run was assessed against its declared engineering guardrail; no prior comparable run is required."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-B2DB33B823D0E9B9",
+          "assessmentId": "PA-C15BB1FF349BC46F",
           "experimentId": "EXP-016",
           "metricId": "AUTHORITY_TRUSTED_MEMORY_WRITES",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-016-2e9b44d98fbe",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-016-15f6f442-27b7ac47",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.0,
+          "absoluteDelta": null,
           "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
@@ -5601,7 +5601,7 @@
             }
           ],
           "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "explanation": "The current accepted run was assessed against its declared engineering guardrail; no prior comparable run is required."
         }
       ],
       "visualizationSpecs": [
@@ -5788,7 +5788,7 @@
         "nonNullObservationCount": 2,
         "nonNullMetricCount": 2,
         "nullMetricIds": [],
-        "comparisonEligibleMetricCount": 2,
+        "comparisonEligibleMetricCount": 0,
         "claimEligibleMetricCount": 2,
         "status": "measured_complete"
       },
@@ -5853,37 +5853,37 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-14CA5D11FCCBDEED",
+          "assessmentId": "PA-CC1C5B2336AA24D0",
           "experimentId": "EXP-017",
           "metricId": "VERIFY_EXPECTED_OUTCOME_RATE",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-017-9b18b744df2f",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-017-9b18b744-1e71dcbb",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [],
-          "status": "Unchanged",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "A non-null current result exists, but no prior comparable run or explicit guardrail is available for a progress delta."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-72DBF89CE081057B",
+          "assessmentId": "PA-653D7E82BB2B5FA3",
           "experimentId": "EXP-017",
           "metricId": "VERIFY_SOURCE_FAMILY_COUNT",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-017-9b18b744df2f",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-017-9b18b744-1e71dcbb",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [],
-          "status": "Unchanged",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "A non-null current result exists, but no prior comparable run or explicit guardrail is available for a progress delta."
         }
       ],
       "visualizationSpecs": [
@@ -5957,7 +5957,7 @@
         "whatWasTested": "H-Verify provenance",
         "whatHappened": "Deterministic-first four-family fixture trace passed; semantic checks absent; missing/conflicting cases require adjudication. M-04 remains unrecorded.",
         "targetOutcome": "Benchmark verdict MEASURED_PASS; measurement state measured_complete.",
-        "progressStatus": "Unchanged",
+        "progressStatus": "Not measured",
         "cannotInfer": "Offline architecture or workload evidence only; no production approval or accuracy claim."
       },
       "sources": [
@@ -6103,15 +6103,15 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-0DD15236CEECAAC2",
+          "assessmentId": "PA-3C04D6B269668600",
           "experimentId": "EXP-018",
           "metricId": "PROPOSAL_APPLICATIONS",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-018-5ac1af7096b9",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-018-5ac1af70-2beaaafa",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.0,
+          "absoluteDelta": null,
           "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
@@ -6122,20 +6122,20 @@
             }
           ],
           "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "explanation": "The current accepted run was assessed against its declared engineering guardrail; no prior comparable run is required."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-A164C631F14F6014",
+          "assessmentId": "PA-9BFF2C3721E92C80",
           "experimentId": "EXP-018",
           "metricId": "PROPOSAL_DIFF_REPRODUCIBLE",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-018-5ac1af7096b9",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-018-5ac1af70-2beaaafa",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
             {
@@ -6145,19 +6145,19 @@
             }
           ],
           "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "explanation": "The current accepted run was assessed against its declared engineering guardrail; no prior comparable run is required."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-ADEB4306786977E7",
+          "assessmentId": "PA-FAE84980BC13E5FF",
           "experimentId": "EXP-018",
           "metricId": "PROPOSAL_SOURCE_HASH_CHANGED",
-          "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-018-5ac1af7096b9",
+          "comparisonFamily": "guardrail",
+          "leftRunId": null,
           "rightRunId": "EXP-018-5ac1af70-2beaaafa",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.0,
+          "absoluteDelta": null,
           "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
@@ -6168,7 +6168,7 @@
             }
           ],
           "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "explanation": "The current accepted run was assessed against its declared engineering guardrail; no prior comparable run is required."
         }
       ],
       "visualizationSpecs": [
@@ -8392,6 +8392,12 @@
       },
       "historicalRuns": [
         {
+          "runId": "EXP-030-87dbd95035e4",
+          "acceptedAt": "2026-07-26T00:00:00+03:00",
+          "evidenceClass": "offline",
+          "current": false
+        },
+        {
           "runId": "EXP-030-14de98205c33",
           "acceptedAt": "2026-07-26T14:16:00+03:00",
           "evidenceClass": "offline",
@@ -8400,12 +8406,6 @@
         {
           "runId": "EXP-030-7c239462b5c4",
           "acceptedAt": "2026-07-26T14:16:00+03:00",
-          "evidenceClass": "offline",
-          "current": false
-        },
-        {
-          "runId": "EXP-030-87dbd95035e4",
-          "acceptedAt": "2026-07-26T00:00:00+03:00",
           "evidenceClass": "offline",
           "current": false
         },
@@ -8487,11 +8487,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-8986C7E3B87A3E13",
+          "assessmentId": "PA-F4E86D01E0A5C69B",
           "experimentId": "EXP-030",
           "metricId": "CATALOG_REFERENCE_RESOLUTION",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-030-87dbd95035e4",
+          "leftRunId": "EXP-030-7c239462b5c4",
           "rightRunId": "EXP-030-9aef5ac80b7e",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -8504,11 +8504,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-5FC553D6C74BC4E7",
+          "assessmentId": "PA-922DE4AED235A851",
           "experimentId": "EXP-030",
           "metricId": "CATALOG_SOURCE_HASH_AGREEMENT",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-030-87dbd95035e4",
+          "leftRunId": "EXP-030-7c239462b5c4",
           "rightRunId": "EXP-030-9aef5ac80b7e",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -8521,11 +8521,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-2ADF522ED0FB3BD6",
+          "assessmentId": "PA-C79C55FBC4DB05AB",
           "experimentId": "EXP-030",
           "metricId": "CATALOG_METRIC_REDERIVATION",
           "comparisonFamily": "none",
-          "leftRunId": "EXP-030-87dbd95035e4",
+          "leftRunId": "EXP-030-7c239462b5c4",
           "rightRunId": "EXP-030-9aef5ac80b7e",
           "comparabilityVerdict": "Not measured",
           "mismatches": [],
@@ -8538,11 +8538,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-6CD19C907CF0A545",
+          "assessmentId": "PA-ADD31EC052EE8266",
           "experimentId": "EXP-030",
           "metricId": "BIGUI_DEFINITION_FIELD_COMPLETENESS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-030-87dbd95035e4",
+          "leftRunId": "EXP-030-7c239462b5c4",
           "rightRunId": "EXP-030-9aef5ac80b7e",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -8555,11 +8555,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-FDBF57877B396E6F",
+          "assessmentId": "PA-F909AB2586D6644A",
           "experimentId": "EXP-030",
           "metricId": "BIGUI_DEFINITION_ID_UNIQUENESS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-030-87dbd95035e4",
+          "leftRunId": "EXP-030-7c239462b5c4",
           "rightRunId": "EXP-030-9aef5ac80b7e",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9252,11 +9252,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-A1F4290639BEE03C",
+          "assessmentId": "PA-ED0118BBA130A879",
           "experimentId": "EXP-033",
           "metricId": "ARCH_SEMANTIC_PARITY_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-033-a9de44bc668d",
+          "leftRunId": "EXP-033-18cdf667a154",
           "rightRunId": "EXP-033-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9270,16 +9270,16 @@
               "detail": "= 1.0; dimensions={}"
             }
           ],
-          "status": "Target met",
+          "status": "Unchanged",
           "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-895404A451CB24F5",
+          "assessmentId": "PA-FB8CF5D0FD890844",
           "experimentId": "EXP-033",
           "metricId": "ARCH_REPLAY_DETERMINISM",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-033-a9de44bc668d",
+          "leftRunId": "EXP-033-18cdf667a154",
           "rightRunId": "EXP-033-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9293,16 +9293,16 @@
               "detail": "= 1.0; dimensions={}"
             }
           ],
-          "status": "Target met",
+          "status": "Unchanged",
           "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-5929F4618FBE9D4B",
+          "assessmentId": "PA-46513DA01623EEAD",
           "experimentId": "EXP-033",
           "metricId": "ARCH_BASELINE_PRESERVATION",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-033-a9de44bc668d",
+          "leftRunId": "EXP-033-18cdf667a154",
           "rightRunId": "EXP-033-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9316,16 +9316,16 @@
               "detail": "= 1.0; dimensions={}"
             }
           ],
-          "status": "Target met",
+          "status": "Unchanged",
           "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-9B510468070BBAF8",
+          "assessmentId": "PA-C56DE9744E33ED65",
           "experimentId": "EXP-033",
           "metricId": "ARCH_CLASSIFICATION_CHANGES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-033-a9de44bc668d",
+          "leftRunId": "EXP-033-18cdf667a154",
           "rightRunId": "EXP-033-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9339,7 +9339,7 @@
               "detail": "= 0; dimensions={}"
             }
           ],
-          "status": "Target met",
+          "status": "Unchanged",
           "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         }
       ],
@@ -9478,7 +9478,7 @@
         "whatWasTested": "Are legacy, unified, and parity modes semantically equivalent over the current controlled H-layer artifacts?",
         "whatHappened": "Three deterministic repetitions over equivalent immutable inputs passed semantic parity with zero baseline changes. Mechanism evidence only.",
         "targetOutcome": "Benchmark verdict MEASURED_PASS; measurement state measured_complete.",
-        "progressStatus": "Target met",
+        "progressStatus": "Unchanged",
         "cannotInfer": "Mechanism-equivalence evidence only; zero semantic differences does not establish accuracy."
       },
       "sources": [
@@ -9636,11 +9636,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-4743781D88107196",
+          "assessmentId": "PA-857C24358C4D491C",
           "experimentId": "EXP-034",
           "metricId": "TOPOLOGY_HANDOFF_COUNT",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-034-a9de44bc668d",
+          "leftRunId": "EXP-034-18cdf667a154",
           "rightRunId": "EXP-034-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9653,11 +9653,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-E8A948965DDD7995",
+          "assessmentId": "PA-8C96630938A2BB69",
           "experimentId": "EXP-034",
           "metricId": "TOPOLOGY_CONTEXT_BYTES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-034-a9de44bc668d",
+          "leftRunId": "EXP-034-18cdf667a154",
           "rightRunId": "EXP-034-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9670,11 +9670,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-A574C2DB98C33E91",
+          "assessmentId": "PA-C834C841165F60F0",
           "experimentId": "EXP-034",
           "metricId": "TOPOLOGY_STATE_BOUNDARIES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-034-a9de44bc668d",
+          "leftRunId": "EXP-034-18cdf667a154",
           "rightRunId": "EXP-034-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9687,11 +9687,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-F8CF55C8D7E7F028",
+          "assessmentId": "PA-9707607343B13D6B",
           "experimentId": "EXP-034",
           "metricId": "TOPOLOGY_FAILURE_BREADTH",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-034-a9de44bc668d",
+          "leftRunId": "EXP-034-18cdf667a154",
           "rightRunId": "EXP-034-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9704,11 +9704,11 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D1B8E98CF3B779A9",
+          "assessmentId": "PA-66CB0BC8C3B65D6F",
           "experimentId": "EXP-034",
           "metricId": "TOPOLOGY_TRACE_COMPLETENESS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-034-a9de44bc668d",
+          "leftRunId": "EXP-034-18cdf667a154",
           "rightRunId": "EXP-034-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -9721,16 +9721,16 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-C84118F27968BFD7",
+          "assessmentId": "PA-06BAF370BE6304EB",
           "experimentId": "EXP-034",
           "metricId": "TOPOLOGY_P95_LATENCY_MS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-034-a9de44bc668d",
+          "leftRunId": "EXP-034-18cdf667a154",
           "rightRunId": "EXP-034-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -0.049433333,
-          "relativeDelta": -0.566030534,
+          "absoluteDelta": -0.005166667,
+          "relativeDelta": -0.11996904,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10041,7 +10041,7 @@
         "nonNullObservationCount": 11,
         "nonNullMetricCount": 6,
         "nullMetricIds": [],
-        "comparisonEligibleMetricCount": 6,
+        "comparisonEligibleMetricCount": 2,
         "claimEligibleMetricCount": 6,
         "status": "measured_complete"
       },
@@ -10106,11 +10106,11 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-C8218BFD2448B781",
+          "assessmentId": "PA-9AB4CF5BA0893977",
           "experimentId": "EXP-035",
           "metricId": "SAFETY_FAULT_CASE_PASS_RATE",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-035-a9de44bc668d",
+          "leftRunId": "EXP-035-18cdf667a154",
           "rightRunId": "EXP-035-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -10124,16 +10124,16 @@
               "detail": "= 1.0; dimensions={}"
             }
           ],
-          "status": "Target met",
+          "status": "Unchanged",
           "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-FC69A60B129DB787",
+          "assessmentId": "PA-4FE7AE2779EA6FF4",
           "experimentId": "EXP-035",
           "metricId": "SAFETY_FAULT_OUTCOME_COUNT",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-035-a9de44bc668d",
+          "leftRunId": "EXP-035-18cdf667a154",
           "rightRunId": "EXP-035-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
@@ -10146,16 +10146,16 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-5A5B2748233F1255",
+          "assessmentId": "PA-DD09B97B79B1365C",
           "experimentId": "EXP-035",
           "metricId": "SAFETY_BASELINE_PRESERVATION",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-035-a9de44bc668d",
+          "leftRunId": "EXP-035-18cdf667a154",
           "rightRunId": "EXP-035-1f9c08220e10",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
             {
@@ -10164,20 +10164,20 @@
               "detail": "= 1.0; dimensions={}"
             }
           ],
-          "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "The run contexts match, but no non-null observations share the same metric grain and dimensions."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-049AF154829DEB79",
+          "assessmentId": "PA-FBB62BDB82C4A3C5",
           "experimentId": "EXP-035",
           "metricId": "SAFETY_TRUSTED_MEMORY_WRITES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-035-a9de44bc668d",
+          "leftRunId": "EXP-035-18cdf667a154",
           "rightRunId": "EXP-035-1f9c08220e10",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
+          "absoluteDelta": null,
           "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
@@ -10187,20 +10187,20 @@
               "detail": "= 0; dimensions={}"
             }
           ],
-          "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "The run contexts match, but no non-null observations share the same metric grain and dimensions."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-52A447E68F8CE89A",
+          "assessmentId": "PA-F0C8AE15B79E67BC",
           "experimentId": "EXP-035",
           "metricId": "SAFETY_CORRECTION_APPLICATIONS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-035-a9de44bc668d",
+          "leftRunId": "EXP-035-18cdf667a154",
           "rightRunId": "EXP-035-1f9c08220e10",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
+          "absoluteDelta": null,
           "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
@@ -10210,21 +10210,21 @@
               "detail": "= 0; dimensions={}"
             }
           ],
-          "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "The run contexts match, but no non-null observations share the same metric grain and dimensions."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-0478C1BCA8F529FF",
+          "assessmentId": "PA-EBBE63F004D1EF0C",
           "experimentId": "EXP-035",
           "metricId": "SAFETY_PARK_OR_ESCALATE_ACCURACY",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-035-a9de44bc668d",
+          "leftRunId": "EXP-035-18cdf667a154",
           "rightRunId": "EXP-035-1f9c08220e10",
-          "comparabilityVerdict": "Eligible",
+          "comparabilityVerdict": "Not measured",
           "mismatches": [],
-          "absoluteDelta": 0.0,
-          "relativeDelta": 0.0,
+          "absoluteDelta": null,
+          "relativeDelta": null,
           "confidenceInterval": null,
           "guardrails": [
             {
@@ -10233,8 +10233,8 @@
               "detail": "= 1.0; dimensions={}"
             }
           ],
-          "status": "Target met",
-          "explanation": "Compared 1 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
+          "status": "Not measured",
+          "explanation": "The run contexts match, but no non-null observations share the same metric grain and dimensions."
         }
       ],
       "visualizationSpecs": [
@@ -10441,7 +10441,7 @@
         "whatWasTested": "Do malformed, duplicate, missing, late, conflicting, and timed-out inputs fail safely?",
         "whatHappened": "The finite fault catalog passed baseline preservation, zero unsafe memory writes, zero correction applications, and correct park/escalate behavior.",
         "targetOutcome": "Benchmark verdict MEASURED_PASS; measurement state measured_complete.",
-        "progressStatus": "Target met",
+        "progressStatus": "Unchanged",
         "cannotInfer": "Fixture safety evidence only; it is not a guarantee against every future fault."
       },
       "sources": [
@@ -10600,16 +10600,16 @@
       "progressAssessments": [
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-EBAF58A40DD2274B",
+          "assessmentId": "PA-B00D905002B256AA",
           "experimentId": "EXP-036",
           "metricId": "ARCH_P50_LATENCY_MS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-036-a9de44bc668d",
+          "leftRunId": "EXP-036-18cdf667a154",
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -3.738783333,
-          "relativeDelta": -0.234219739,
+          "absoluteDelta": -3.561583333,
+          "relativeDelta": -0.225623488,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10617,16 +10617,16 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-FC6234DA92D52349",
+          "assessmentId": "PA-35D9CABD160A4AFA",
           "experimentId": "EXP-036",
           "metricId": "ARCH_P95_LATENCY_MS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-036-a9de44bc668d",
+          "leftRunId": "EXP-036-18cdf667a154",
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -7.514644444,
-          "relativeDelta": -0.330876248,
+          "absoluteDelta": -7.146155556,
+          "relativeDelta": -0.319840745,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10634,16 +10634,16 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-D6C5E2CAED49740A",
+          "assessmentId": "PA-0A15BC816560BD06",
           "experimentId": "EXP-036",
           "metricId": "ARCH_THROUGHPUT_RPS",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-036-a9de44bc668d",
+          "leftRunId": "EXP-036-18cdf667a154",
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 532.450222222,
-          "relativeDelta": 0.140494611,
+          "absoluteDelta": 161.446111111,
+          "relativeDelta": 0.038801412,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",
@@ -10651,16 +10651,16 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-93A218101FC75AA9",
+          "assessmentId": "PA-AD40EED02C7CE78B",
           "experimentId": "EXP-036",
           "metricId": "ARCH_PEAK_MEMORY_BYTES",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-036-a9de44bc668d",
+          "leftRunId": "EXP-036-18cdf667a154",
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 149786.222222222,
-          "relativeDelta": 0.345691802,
+          "absoluteDelta": 148908.888888889,
+          "relativeDelta": 0.342972553,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Regressed",
@@ -10668,16 +10668,16 @@
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-849E3E32EC4C0136",
+          "assessmentId": "PA-C885994D937B954F",
           "experimentId": "EXP-036",
           "metricId": "ARCH_MEMORY_RATIO_TO_LEGACY",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-036-a9de44bc668d",
+          "leftRunId": "EXP-036-18cdf667a154",
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": 0.004968111,
-          "relativeDelta": 0.004978708,
+          "absoluteDelta": 0.004011,
+          "relativeDelta": 0.004015704,
           "confidenceInterval": null,
           "guardrails": [
             {
@@ -10721,21 +10721,21 @@
               "detail": "<= 1.5; dimensions={\"fixture\": \"SYNTHETIC_5X\", \"mode\": \"parity\"}"
             }
           ],
-          "status": "Target met",
+          "status": "Regressed",
           "explanation": "Compared 9 matched observation grain(s) from the two accepted runs. A progress label is not an accuracy claim."
         },
         {
           "schemaVersion": "ProgressAssessment-v1",
-          "assessmentId": "PA-A91B1E8A55487E12",
+          "assessmentId": "PA-AF91ACEE521C0A77",
           "experimentId": "EXP-036",
           "metricId": "ARCH_P95_RATIO_TO_LEGACY",
           "comparisonFamily": "historical_run",
-          "leftRunId": "EXP-036-a9de44bc668d",
+          "leftRunId": "EXP-036-18cdf667a154",
           "rightRunId": "EXP-036-1f9c08220e10",
           "comparabilityVerdict": "Eligible",
           "mismatches": [],
-          "absoluteDelta": -0.025624444,
-          "relativeDelta": -0.025434278,
+          "absoluteDelta": -0.024107444,
+          "relativeDelta": -0.023964621,
           "confidenceInterval": null,
           "guardrails": [],
           "status": "Improved",

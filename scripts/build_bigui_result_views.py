@@ -9,6 +9,7 @@ import json
 import math
 import sys
 from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -125,6 +126,75 @@ def observation_key(observation: dict[str, Any]) -> tuple[str, str]:
     return observation["metricId"], dimensions
 
 
+def metric_definition_mismatches(
+    left_observations: list[dict[str, Any]],
+    right_observations: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Return definition-hash differences for otherwise matching metric grains."""
+    left_index = {
+        observation_key(item): item
+        for item in left_observations
+    }
+    mismatches: list[dict[str, Any]] = []
+    for right in right_observations:
+        left = left_index.get(observation_key(right))
+        if left is None:
+            continue
+        left_hash = left.get("metricDefinitionSha256")
+        right_hash = right.get("metricDefinitionSha256")
+        if left_hash != right_hash:
+            mismatches.append(
+                {
+                    "field": "metricDefinitionSha256",
+                    "left": left_hash,
+                    "right": right_hash,
+                }
+            )
+    return mismatches
+
+
+def accepted_bundle_sort_key(
+    bundle: dict[str, Any],
+) -> tuple[datetime, str, str]:
+    """Sort accepted bundles chronologically with stable deterministic ties."""
+    envelope = bundle["envelope"]
+    accepted_at = envelope.get("acceptedAt")
+    if not isinstance(accepted_at, str) or not accepted_at:
+        raise ValueError(
+            f"accepted run {envelope.get('runId')} has no acceptedAt timestamp"
+        )
+    try:
+        parsed = datetime.fromisoformat(accepted_at.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(
+            f"accepted run {envelope.get('runId')} has invalid acceptedAt: "
+            f"{accepted_at}"
+        ) from exc
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return (
+        parsed.astimezone(timezone.utc),
+        accepted_at,
+        envelope["runId"],
+    )
+
+
+def previous_accepted_bundle(
+    bundles: list[dict[str, Any]],
+    current_bundle: dict[str, Any],
+) -> dict[str, Any] | None:
+    """Select the accepted bundle immediately before the current run."""
+    ordered = sorted(bundles, key=accepted_bundle_sort_key)
+    current_run_id = current_bundle["envelope"]["runId"]
+    for index, bundle in enumerate(ordered):
+        if bundle["envelope"]["runId"] == current_run_id:
+            return ordered[index - 1] if index else None
+    raise ValueError(
+        "current accepted run is missing from its bundle set: "
+        f"{current_run_id}"
+    )
+
+
 def finite_number(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
@@ -177,7 +247,7 @@ def metric_target_status(
     if "missed" in statuses and "met" in statuses:
         return "Mixed", guardrails
     if statuses == {"missed"}:
-        return "Regressed", guardrails
+        return "Target missed", guardrails
     return None, guardrails
 
 
@@ -241,7 +311,15 @@ def assessment_for_metric(
     if previous_bundle is None:
         base["comparisonFamily"] = "guardrail"
         base["comparabilityVerdict"] = "Eligible"
-        if target_status is not None:
+        if target_status == "Target missed":
+            base["status"] = "Not eligible"
+            base["comparabilityVerdict"] = "Not eligible"
+            base["explanation"] = (
+                "The current accepted run missed its declared engineering "
+                "guardrail. Without a prior comparable run, that miss is not "
+                "classified as a regression."
+            )
+        elif target_status is not None:
             base["status"] = target_status
             base["explanation"] = (
                 "The current accepted run was assessed against its declared "
@@ -275,6 +353,19 @@ def assessment_for_metric(
         for item in previous_bundle["metricObservations"]
         if item["metricId"] == metric_id and finite_number(item.get("value"))
     }
+    definition_mismatches = metric_definition_mismatches(
+        list(previous_index.values()),
+        current_numeric,
+    )
+    if definition_mismatches:
+        base["comparabilityVerdict"] = "Not directly comparable"
+        base["mismatches"] = definition_mismatches
+        base["status"] = "Not directly comparable"
+        base["explanation"] = (
+            "The runs reuse the same metric grain with different metric "
+            "definitions; no delta is calculated."
+        )
+        return base
     pairs = [
         (previous_index[observation_key(item)], item)
         for item in current_numeric
@@ -293,9 +384,7 @@ def assessment_for_metric(
     delta = stable_delta(raw_delta)
     relative = stable_delta(raw_delta / abs(left_mean)) if left_mean else None
     direction = current_numeric[0].get("direction")
-    if target_status in {"Target met", "Mixed", "Regressed"}:
-        status = target_status
-    elif math.isclose(delta, 0.0, abs_tol=1e-12):
+    if math.isclose(delta, 0.0, abs_tol=1e-12):
         status = "Unchanged"
     elif direction == "lower_is_better":
         status = "Improved" if delta < 0 else "Regressed"
@@ -697,7 +786,10 @@ def build_result_views() -> dict[str, Any]:
 
     for experiment in catalog["experiments"]:
         experiment_id = experiment["id"]
-        bundles = bundles_by_experiment[experiment_id]
+        bundles = sorted(
+            bundles_by_experiment[experiment_id],
+            key=accepted_bundle_sort_key,
+        )
         current_bundle = (
             bundle_index[(experiment_id, current_ids[experiment_id])]
             if experiment_id in current_ids
@@ -705,14 +797,7 @@ def build_result_views() -> dict[str, Any]:
         )
         previous_bundle = None
         if current_bundle is not None:
-            previous_candidates = [
-                bundle
-                for bundle in bundles
-                if bundle["envelope"]["runId"]
-                != current_bundle["envelope"]["runId"]
-            ]
-            if previous_candidates:
-                previous_bundle = previous_candidates[-1]
+            previous_bundle = previous_accepted_bundle(bundles, current_bundle)
         observations = (
             current_bundle["metricObservations"] if current_bundle else []
         )

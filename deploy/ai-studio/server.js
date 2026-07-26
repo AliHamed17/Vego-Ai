@@ -242,10 +242,25 @@ app.get("/api/v1/comparisons/eligibility", (request, response) => {
       mismatches.push({ field, left: leftValue, right: rightValue });
     }
   }
-  const eligible = mismatches.length === 0 && leftRunId !== rightRunId;
   const leftMetrics = new Map(
     left.metricObservations.map((item) => [runKey(item), item])
   );
+  for (const item of right.metricObservations) {
+    const previous = leftMetrics.get(runKey(item));
+    if (
+      previous &&
+      previous.metricDefinitionSha256 !== item.metricDefinitionSha256
+    ) {
+      mismatches.push({
+        field: "metricDefinitionSha256",
+        metricId: item.metricId,
+        dimensions: item.dimensions || {},
+        left: previous.metricDefinitionSha256,
+        right: item.metricDefinitionSha256,
+      });
+    }
+  }
+  const eligible = mismatches.length === 0 && leftRunId !== rightRunId;
   const deltas = eligible
     ? right.metricObservations.flatMap((item) => {
         const previous = leftMetrics.get(runKey(item));

@@ -41,6 +41,13 @@ async function json(pathname, expectedStatus = 200) {
   return response.json();
 }
 
+function runKeyForTest(observation) {
+  return `${observation.metricId}|${JSON.stringify(
+    observation.dimensions || {},
+    Object.keys(observation.dimensions || {}).sort(),
+  )}`;
+}
+
 try {
   const health = await json("/api/health");
   assert.equal(health.status, "ok");
@@ -89,6 +96,50 @@ try {
   assert.equal(ineligible.status, "Not directly comparable");
   assert.ok(ineligible.mismatches.some((item) => item.field === "experimentId"));
   assert.equal(ineligible.deltas.length, 0);
+
+  const exp030Runs = await json("/api/v1/experiments/EXP-030/runs");
+  let definitionMismatchPair = null;
+  for (let leftIndex = 0; leftIndex < exp030Runs.data.length; leftIndex += 1) {
+    for (
+      let rightIndex = leftIndex + 1;
+      rightIndex < exp030Runs.data.length;
+      rightIndex += 1
+    ) {
+      const leftRun = exp030Runs.data[leftIndex];
+      const rightRun = exp030Runs.data[rightIndex];
+      const leftDefinitions = new Map(
+        leftRun.metricObservations.map((item) => [
+          runKeyForTest(item),
+          item.metricDefinitionSha256,
+        ]),
+      );
+      const differs = rightRun.metricObservations.some(
+        (item) =>
+          leftDefinitions.has(runKeyForTest(item)) &&
+          leftDefinitions.get(runKeyForTest(item)) !==
+            item.metricDefinitionSha256,
+      );
+      if (differs) {
+        definitionMismatchPair = [
+          leftRun.envelope.runId,
+          rightRun.envelope.runId,
+        ];
+        break;
+      }
+    }
+    if (definitionMismatchPair) break;
+  }
+  assert.ok(definitionMismatchPair);
+  const definitionMismatch = await json(
+    `/api/v1/comparisons/eligibility?leftRunId=${encodeURIComponent(definitionMismatchPair[0])}&rightRunId=${encodeURIComponent(definitionMismatchPair[1])}`,
+  );
+  assert.equal(definitionMismatch.eligible, false);
+  assert.ok(
+    definitionMismatch.mismatches.some(
+      (item) => item.field === "metricDefinitionSha256",
+    ),
+  );
+  assert.equal(definitionMismatch.deltas.length, 0);
 
   const missing = await json(
     "/api/v1/comparisons/eligibility?leftRunId=missing&rightRunId=missing-too",

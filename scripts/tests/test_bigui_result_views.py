@@ -131,3 +131,120 @@ def test_comparison_mismatch_refuses_a_delta() -> None:
     assert mismatches == [
         {"field": "datasetHash", "left": "same", "right": "different"}
     ]
+
+
+def test_metric_definition_mismatch_refuses_same_grain_delta() -> None:
+    builder = load_builder()
+    shared = {
+        "metricId": "CATALOG_COMPLETENESS",
+        "dimensions": {"scope": "definitions"},
+        "value": 1.0,
+    }
+    left = {**shared, "metricDefinitionSha256": "a" * 64}
+    right = {**shared, "metricDefinitionSha256": "b" * 64}
+
+    assert builder.metric_definition_mismatches([left], [right]) == [
+        {
+            "field": "metricDefinitionSha256",
+            "left": "a" * 64,
+            "right": "b" * 64,
+        }
+    ]
+
+
+def test_assessment_refuses_delta_when_metric_definition_changed() -> None:
+    builder = load_builder()
+    context = {
+        field: "same" for field in builder.REQUIRED_COMPARISON_FIELDS
+    }
+    base_observation = {
+        "metricId": "CATALOG_COMPLETENESS",
+        "dimensions": {"scope": "definitions"},
+        "value": 1.0,
+        "direction": "higher_is_better",
+        "confidenceInterval": None,
+    }
+    left = {
+        "envelope": {
+            "runId": "left",
+            "comparisonContext": context,
+        },
+        "metricObservations": [
+            {**base_observation, "metricDefinitionSha256": "a" * 64}
+        ],
+    }
+    right = {
+        "envelope": {
+            "runId": "right",
+            "comparisonContext": context,
+        },
+        "metricObservations": [
+            {**base_observation, "metricDefinitionSha256": "b" * 64}
+        ],
+    }
+
+    assessment = builder.assessment_for_metric(
+        "EXP-030",
+        "CATALOG_COMPLETENESS",
+        right,
+        left,
+        {"engineeringSignals": []},
+    )
+
+    assert assessment["comparabilityVerdict"] == "Not directly comparable"
+    assert assessment["status"] == "Not directly comparable"
+    assert assessment["absoluteDelta"] is None
+    assert assessment["relativeDelta"] is None
+    assert assessment["mismatches"][0]["field"] == "metricDefinitionSha256"
+
+
+def test_previous_run_is_selected_by_acceptance_time() -> None:
+    builder = load_builder()
+    catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+    bundles = [
+        item
+        for item in catalog["acceptedRunBundles"]
+        if item["envelope"]["experimentId"] == "EXP-006"
+    ]
+    current_run_id = next(
+        item["runId"]
+        for item in catalog["currentRunIndex"]["currentRuns"]
+        if item["experimentId"] == "EXP-006"
+    )
+    current = next(
+        item for item in bundles if item["envelope"]["runId"] == current_run_id
+    )
+    ordered = sorted(bundles, key=builder.accepted_bundle_sort_key)
+    current_index = next(
+        index
+        for index, item in enumerate(ordered)
+        if item["envelope"]["runId"] == current_run_id
+    )
+
+    assert current_index > 0
+    assert (
+        builder.previous_accepted_bundle(bundles, current)["envelope"]["runId"]
+        == ordered[current_index - 1]["envelope"]["runId"]
+    )
+
+
+def test_unchanged_progress_is_not_labeled_regressed_when_guardrail_is_missed() -> None:
+    builder = load_builder()
+    payload = builder.build_result_views()
+    exp007 = next(
+        item
+        for item in payload["resultViews"]
+        if item["experimentId"] == "EXP-007"
+    )
+    unchanged = [
+        assessment
+        for assessment in exp007["progressAssessments"]
+        if assessment["absoluteDelta"] == 0
+        and any(
+            guardrail["status"] == "missed"
+            for guardrail in assessment["guardrails"]
+        )
+    ]
+
+    assert unchanged
+    assert all(item["status"] == "Unchanged" for item in unchanged)

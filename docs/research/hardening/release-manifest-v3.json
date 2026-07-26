@@ -160,6 +160,7 @@
     "scripts/tests/fixtures/pass_then_fail_protected_guard.py",
     "scripts/tests/supervisor_package_browser_smoke.mjs",
     "scripts/tests/test_bigui_catalog.py",
+    "scripts/tests/test_bigui_deployment_snapshot.py",
     "scripts/tests/test_bigui_result_views.py",
     "scripts/tests/test_bigui_run_store.py",
     "scripts/tests/test_build_hlayer_decision_snapshot.py",
@@ -201,7 +202,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "ad6fceef7fb332386891ff0e51d339a01bf04dd9e738be8a7d45e3c015b2fa36",
+  "sourceTreeSha256": "b6a8896a2ab76808cabbc70c9336f7cf9613d1ef9b6753ffb77e934489334346",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
