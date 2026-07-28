@@ -113,12 +113,12 @@ M4B-2 · Agent 4 changes · LLM/API calls · embeddings · policy v1.1 · baseli
 
 ## 7b. Recent activity (latest session-log entries)
 <!-- AUTO:activity:start -->
+- 2026-07-27 09:39 +03:00 - Codex - Evaluation Phase Implementation Plan & Supervisor Sign-off Checklist
 - 2026-07-26 20:45 +03:00 - Codex - Advance independent evidence study to calibration
 - 2026-07-26 18:36 +03:00 - Codex - Independent expert evidence evaluation pipeline
 - 2026-07-26 17:14 +03:00 - Codex - Evaluate all experiments and publish benchmark BigUI
 - 2026-07-26 14:55 +03:00 - Codex - Add paper-aligned experiment comparison evidence
 - 2026-07-26 13:30 +03:00 - Codex - Execute experiments and publish results-first BigUI
-- 2026-07-26 01:13 +03:00 - Codex - Address exact-head envelope and archive review findings
 <!-- AUTO:activity:end -->
 
 ---

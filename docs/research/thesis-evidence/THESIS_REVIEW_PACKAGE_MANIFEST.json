@@ -2,14 +2,14 @@
   "schemaVersion": "ThesisReviewPackageManifest-v1",
   "generatedAt": "2026-07-26T00:33:42+00:00",
   "packageDate": "2026-07-25",
-  "sourceRevision": "717b2fa078815a68a5d571f20d8c1db5ce185e3a",
-  "packageRevision": "23d0ba727215e09a8e7ca9aaedb15298060f1b89",
-  "sourceTreeHash": "23242aec25a89cbefaf66ad58534322c3a2493f8af31fc4014e102ebdae392b1",
+  "sourceRevision": "886c5fbbaab5f1b5021b6661c5a9542a6bc3a934",
+  "packageRevision": "7878f93ad27f1109ab891e4889b6f2f17f78c11a",
+  "sourceTreeHash": "c2998ffdf54d235db0af1a1f76890c2927f2537524fb0d7b40f86381422e9bc0",
   "canonicalSourcesDirtyAtGeneration": false,
   "claimBoundary": "Mechanism, traceability, governance, and evaluation readiness only. At 0/24 supplied independent labels, empirical performance metrics remain null; accuracy improvement, generalization, reduced human effort, and benchmark superiority are not established.",
   "evidenceSnapshot": {
     "path": "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json",
-    "sha256": "1677a665c7ae3d0edda9899fddb0fe4d3e7d7bdff610e8d549be5681d57e26bc",
+    "sha256": "e5b5c38c5bd6e4b7e2c340d9220a45075585b556f2b1c35e24da662407222a43",
     "bytes": 48267,
     "tracked": true
   },
@@ -22,7 +22,7 @@
     },
     "interactiveHtml": {
       "path": "VEGO-AI-Thesis-Baseline-Progress.html",
-      "sha256": "08504cd68778fdb5037a7981c04112b23385f9c9946ebb902183d1b496b59b14",
+      "sha256": "89861a4493b5d7e0a6af8ab15ff758118ddd4184cda2fea52a38b72a390a82f5",
       "bytes": 81862,
       "tracked": true
     }
@@ -51,7 +51,7 @@
     },
     {
       "path": "configs/protected-change-authorization-v1.json",
-      "sha256": "f96719bd850dc80459461d1e6ed1873c1f2b0913eed22df73568916391cca1d9"
+      "sha256": "54d2f919c52598fab1ac83ef8901d4f36b5145bd61e7507e159282b1afb0e6bb"
     },
     {
       "path": "docs/research/accuracy-improvement-plan.md",
@@ -83,7 +83,7 @@
     },
     {
       "path": "docs/research/supervisor-label-approval-pack.md",
-      "sha256": "8165442fdff772de3415c1778f007071127f9e9a42eeef37d2254b320ccf7b74"
+      "sha256": "f4e3316d7e45bd50db87525ea8272c9ad43ebe044706b45b7f99c55843ffa85b"
     },
     {
       "path": "experiments/EXP-019-reviewer-calibration/README.md",

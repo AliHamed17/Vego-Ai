@@ -1,6 +1,15 @@
 # Revert Log
 
 Record file changes and rollback notes here.
+## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
+
+- Files added:
+  - `docs/research/evaluation-run-guide.md`
+  - `docs/research/supervisor-label-approval-checklist.md`
+- Files updated:
+  - `docs/research/supervisor-label-approval-pack.md` (appended sign-off checklist reference section 8)
+- Git branch: `feature/evaluation-phase` created and active.
+- Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
 
 ## 2026-06-29 12:27 +03:00 - Codex - Thesis Chapter 7 Progress
 
@@ -584,4 +593,42 @@ Record file changes and rollback notes here.
   - scripts/publish_independent_evidence_package.py
   - VEGO-AI-Research-Hub.html
 - Rollback note: Revert the calibration-phase commits; the baseline, Agent 4, private mapping, expert-label count, and evaluation results were not changed.
+- Git commit: none recorded by script.
+
+## 2026-07-27 09:39 +03:00 - Codex - Evaluation Phase Implementation Plan & Supervisor Sign-off Checklist
+
+- Files changed:
+  - docs/research/evaluation-run-guide.md,docs/research/supervisor-label-approval-checklist.md,docs/research/supervisor-label-approval-pack.md
+- Rollback note: Delete docs/research/evaluation-run-guide.md and docs/research/supervisor-label-approval-checklist.md, revert docs/research/supervisor-label-approval-pack.md, and checkout main.
+- Git commit: none recorded by script.
+
+## 2026-07-28 14:02 +03:00 - Claude - Evaluation phase: component verdicts, advisory analyst, Iris matrix, full-eval runner
+
+- Files changed:
+  - scripts/build_agent_contribution_report.py
+  - scripts/tests/test_agent_contribution_report.py
+  - scripts/hlayer_llm_analyst.py
+  - scripts/run-full-evaluation.ps1
+  - docs/research/iris-july1-implementation-matrix.md
+  - docs/research/comprehensive-evaluation-plan-2026-07-26.md
+  - configs/protected-change-authorization-v1.json
+  - docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json
+  - docs/research/bigui/experiment-catalog-snapshot-v1.json
+  - VEGO-AI-Research-Hub.html
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert commits aeddc13, 886c5fb, d59a3df, fa48953 plus the memory-finish commit; the trusted-SHA git config and repo variable stay at 54d2f919 (cacfab7 record).
+- Git commit: none recorded by script.
+
+## 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
+
+- Files changed:
+  - scripts/build_agent_contribution_report.py
+  - scripts/tests/test_agent_contribution_report.py
+  - scripts/hlayer_llm_analyst.py
+  - scripts/run-full-evaluation.ps1
+  - docs/research/iris-july1-implementation-matrix.md
+- Rollback note: Revert commits d86b8d4 (review fixes) and merge commit 796acfc; earlier evaluation-phase commits listed in the previous entry.
 - Git commit: none recorded by script.

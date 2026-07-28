@@ -2,36 +2,6 @@
 
 Chronological prompt history for Codex and Claude.
 
-## 2026-07-14 12:38 +03:00 - Codex - Research Master Plan Package
-
-- Request: Create a complete evidence-driven VEGO-AI research, experiment, evaluation, visualization, enhancement, thesis, risk, reproducibility, timeline, and supervisor-decision plan without implementing feature code.
-- Actions taken:
-  - Audited live counts, label gate, architecture, canonical experiment IDs, decisions, and status drift.
-  - Created a 12-file planning package using RMP-EVAL-00..09 to avoid canonical EXP-ID collisions.
-  - Embedded 13 Mermaid diagrams and defined evidence, claim, acceptance, and implementation boundaries.
-  - Validated required files, balanced fences, claim wording, protected paths, and the 18-check evidence guard.
-- Files changed:
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\README.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\MASTER_RESEARCH_PLAN.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\EXPERIMENT_ROADMAP.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\ARCHITECTURE_AND_FLOWS.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\VISUALIZATION_PLAN.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\EVALUATION_PLAN.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\ENHANCEMENT_BACKLOG.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\THESIS_STRUCTURE.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\SUPERVISOR_DECISIONS.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\RISK_AND_VALIDITY_REGISTER.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\REPRODUCIBILITY_CHECKLIST.md
-  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\TIMELINE_AND_MILESTONES.md
-- Commands/checks:
-  - refresh-tracking.ps1 -Pull
-  - direct evidence and manifest audits
-  - python scripts/check_evidence_consistency.py
-  - documentation completeness/fence/claim scans
-  - git diff --name-status on protected paths
-- Status: completed
-- Next steps: Reconcile iteration-013 metadata; obtain supervisor approval for the blind protocol; appoint two reviewers; pilot 3-5 rows; label all 24 safe rows; freeze gold labels; then run leakage-safe evaluation and error analysis.
-
 ## 2026-07-20 20:40 +03:00 - Fable (Claude) - Enhancement plan 2026-07-12 Phase 1: program overview, verify-all gate, coherence repair
 
 - Request: Extensive plan to extend/enhance everything - more features, fix breaks, more efficiency - then implement it E2E. (Credential/security-bypass request declined; all governance gates kept.)
@@ -555,3 +525,72 @@ Chronological prompt history for Codex and Claude.
   - validate_independent_calibration_returns.py --check-gate
 - Status: Calibration-ready; 10/10 decisions accepted, 0/2 calibration returns, 0/24 labels, evaluation release unauthorized.
 - Next steps: Provide each selected independent reviewer the participant information and only their three-case calibration folder; collect the two immutable JSON returns; validate them; then obtain a human instruction freeze before evaluation release.
+
+## 2026-07-27 09:39 +03:00 - Codex - Evaluation Phase Implementation Plan & Supervisor Sign-off Checklist
+
+- Request: make huge plan / make sure it will work
+- Actions taken:
+  - Created implementation plan, created branch feature/evaluation-phase, added evaluation run guide and supervisor sign-off checklist, verified tests and evidence consistency
+- Files changed:
+  - docs/research/evaluation-run-guide.md,docs/research/supervisor-label-approval-checklist.md,docs/research/supervisor-label-approval-pack.md
+- Commands/checks:
+  - pytest VEGO-AI/tests,python scripts/check_evidence_consistency.py
+- Status: completed
+- Next steps: Unknown
+
+## 2026-07-28 14:02 +03:00 - Claude - Evaluation phase: component verdicts, advisory analyst, Iris matrix, full-eval runner
+
+- Request: Full project/thesis enhancement: per-experiment evaluation vs the paper architecture, progress benchmark, per-agent purpose/value verdicts with real evidence, LLM added to understand program logic, Iris July-1 points on the real implementation, E2E test, full final report.
+- Actions taken:
+  - Built scripts/build_agent_contribution_report.py: per-component evidence-based verdicts (6 contributing, 2 partial, 1 not-yet-measurable); A1 agreement 0.778-0.875 within paper range, A2 guideline F1 0.267-0.545 below paper 0.70-0.88 (weakest measured link)
+  - Built scripts/hlayer_llm_analyst.py: advisory-only analyst, LLM mode via hardened framework client, deterministic fallback; writes only reports/generated/llm_analyst/
+  - Wrote docs/research/iris-july1-implementation-matrix.md mapping all 12 July-1 directives to real implementations with honest status
+  - Built scripts/run-full-evaluation.ps1 (gate -> benchmark -> contribution -> overview -> analyst); PASSES end to end
+  - Fixed cross-branch trusted-authorization drift by adopting the cacfab7 record version (matches CI variable); recorded ISS-019
+  - Re-anchored thesis evidence snapshot (--source-revision HEAD), BigUI catalog, and research hub; all 16 verification checks pass
+- Files changed:
+  - scripts/build_agent_contribution_report.py
+  - scripts/tests/test_agent_contribution_report.py
+  - scripts/hlayer_llm_analyst.py
+  - scripts/run-full-evaluation.ps1
+  - docs/research/iris-july1-implementation-matrix.md
+  - docs/research/comprehensive-evaluation-plan-2026-07-26.md
+  - configs/protected-change-authorization-v1.json
+  - docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json
+  - docs/research/bigui/experiment-catalog-snapshot-v1.json
+  - VEGO-AI-Research-Hub.html
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+- Commands/checks:
+  - .\scripts\run-full-evaluation.ps1 -> FULL EVALUATION PASSED (gate 16/16, benchmark PASS, contribution PASS, overview PASS, analyst PASS)
+  - python -m pytest scripts/tests/test_bigui_catalog.py -q -> 11 passed
+  - python scripts/validate_thesis_evidence_package.py -> PASS
+- Status: completed
+- Next steps: Push feature/evaluation-phase, PR to main, merge per standing authorization; human-gated: 24-row label campaign, M-01..M-06 decisions, mid-August survey presentation.
+
+
+## 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
+
+- Request: Continue: full enhancement with real per-agent answers, E2E working system, Iris points implemented, full report.
+- Actions taken:
+  - Ran a 19-agent adversarial review workflow over the new evaluation-phase code: 16 findings confirmed, 2 refuted
+  - Rewrote build_agent_contribution_report.py so every signal is read from its cited artifact or omitted (exp001 totals.*, exp009 synthetic_* keys, exp006 ratio semantics, exp016/018 real keys); verdicts carry explicit categories and degrade to NOT-YET-MEASURABLE without inputs; headline and weakest links computed from data (A2 F1 floor corrected to 0.267)
+  - Added hermetic fresh-clone test proving no fabricated signals; 3/3 tests pass
+  - Hardened run-full-evaluation.ps1 (stale LASTEXITCODE crash-as-PASS fixed, per-stage logs) and hlayer_llm_analyst.py (untrusted-data quarantine, sanitized markdown, redacted fallback reason, dict validation)
+  - Fixed Iris matrix D1 (removed nonexistent shadow-writer claim; live capture is SPEC'D + HUMAN-GATED) and D1/D2 visibility numbers to the artifact's item-to-event ratio semantics
+  - Merged origin/main into feature/evaluation-phase (PR #15 was CONFLICTING; branch had diverged at PR #6); resolved all 12 conflicts to our superset side; tree differs from main by exactly the intended 22 files
+  - Full evaluation PASSED end to end after every change round
+- Files changed:
+  - scripts/build_agent_contribution_report.py
+  - scripts/tests/test_agent_contribution_report.py
+  - scripts/hlayer_llm_analyst.py
+  - scripts/run-full-evaluation.ps1
+  - docs/research/iris-july1-implementation-matrix.md
+- Commands/checks:
+  - .\scripts\run-full-evaluation.ps1 -> FULL EVALUATION PASSED (three consecutive green runs incl. post-merge)
+  - python -m pytest scripts/tests/test_agent_contribution_report.py -q -> 3 passed
+  - git merge origin/main -> resolved, tree delta vs main = 22 intended files
+- Status: completed
+- Next steps: Await PR #15 CI, merge to main per standing authorization, deliver final report. Human-gated: 24-row label campaign, M-01..M-06, mid-August survey.

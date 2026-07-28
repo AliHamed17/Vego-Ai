@@ -14,11 +14,19 @@ $generated = Get-Date -Format "yyyy-MM-dd HH:mm zzz"
 function Invoke-GitValue {
     param([Parameter(Mandatory = $true)][string[]]$GitArgs)
 
-    $output = & git -C $repoRoot @GitArgs 2>&1
-    if ($LASTEXITCODE -ne 0) {
+    try {
+        $oldEA = $ErrorActionPreference
+        $ErrorActionPreference = 'Continue'
+        $output = & git -C $repoRoot @GitArgs 2>$null
+        $ErrorActionPreference = $oldEA
+        if ($LASTEXITCODE -ne 0) {
+            return "Unknown"
+        }
+        return (($output | Out-String).Trim())
+    }
+    catch {
         return "Unknown"
     }
-    return (($output | Out-String).Trim())
 }
 
 function Read-TextOrEmpty {

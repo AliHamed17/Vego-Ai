@@ -1,7 +1,7 @@
 # VEGO-AI Experiment Benchmark Analytics Report
 
 Generated: `2026-07-26T16:00:00+03:00`
-Input projection: `245266e00a127bf9f4f47c54849b9b84daa759986c7d28989e9e38aab85e5adf`
+Input projection: `12f9a488674272fc622f319ed13ce94b736bb39e6773fcf59f5a085a9c96628b`
 
 ## Technical summary
 

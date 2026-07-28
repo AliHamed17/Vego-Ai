@@ -155,3 +155,11 @@ After labels return:
 - [ ] `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream` is executed.
 - [ ] `python scripts\check_evidence_consistency.py` passes.
 - [ ] `docs/PROGRESS_TRACKER.md`, the E2E dashboard, and Chapter 7 are refreshed from the real-label outputs.
+
+## 8. Checklist for Supervisor Sign‑off
+
+Refer to the dedicated checklist file:
+
+- [Supervisor Sign‑off Checklist](../supervisor-label-approval-checklist.md)
+
+Please complete the checklist before proceeding with labeling.
