@@ -15,17 +15,30 @@ $repoRoot = Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")
 Set-Location $repoRoot
 $env:PYTHONUTF8 = "1"
 
+$logDir = Join-Path $repoRoot (Join-Path "reports" (Join-Path "generated" (Join-Path "full_evaluation" (Get-Date -Format "yyyyMMddTHHmmss"))))
+New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+
 $results = [System.Collections.Generic.List[object]]::new()
 function Invoke-Stage {
     param([string]$Name, [scriptblock]$Body, [string]$Kind = "evidence")
     $sw = [System.Diagnostics.Stopwatch]::StartNew()
-    & $Body *> $null
+    $log = Join-Path $logDir (($Name -replace "[^A-Za-z0-9._-]", "-") + ".log")
+    # $LASTEXITCODE is only set by native commands / explicit `exit`; reset it so a
+    # stage that throws before running anything cannot inherit the previous PASS.
+    $global:LASTEXITCODE = $null
+    $threw = $false
+    try {
+        & $Body *> $log
+    } catch {
+        $_ | Out-String | Add-Content -Path $log
+        $threw = $true
+    }
     $code = $LASTEXITCODE
     $sw.Stop()
     $results.Add([pscustomobject]@{
         Stage   = $Name
         Kind    = $Kind
-        Result  = if ($code -eq 0) { "PASS" } else { "FAIL" }
+        Result  = if (-not $threw -and $code -eq 0) { "PASS" } else { "FAIL" }
         Seconds = [math]::Round($sw.Elapsed.TotalSeconds, 1)
     })
 }
@@ -52,6 +65,7 @@ Invoke-Stage "program analyst (advisory)" { python scripts\hlayer_llm_analyst.py
 Write-Host ""
 Write-Host "Full program evaluation" -ForegroundColor Cyan
 $results | Format-Table -AutoSize | Out-String | Write-Host
+Write-Host "Per-stage logs: $logDir"
 
 Write-Host "Read the answers here:" -ForegroundColor Cyan
 Write-Host "  components & verdicts : reports\generated\agent_contribution\agent_contribution.md"
