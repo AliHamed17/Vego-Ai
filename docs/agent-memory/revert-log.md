@@ -632,3 +632,10 @@ Record file changes and rollback notes here.
   - docs/research/iris-july1-implementation-matrix.md
 - Rollback note: Revert commits d86b8d4 (review fixes) and merge commit 796acfc; earlier evaluation-phase commits listed in the previous entry.
 - Git commit: none recorded by script.
+
+## 2026-07-28 19:14 +03:00 - Claude - Enhanced supervisor deck for 29 July, with a fact-check that corrected two published figures
+
+- Files changed:
+  - docs/agent-memory/issues.md
+- Rollback note: The deck is an external deliverable in Downloads; only docs/agent-memory/issues.md changed in the repo (revert that single file to undo).
+- Git commit: none recorded by script.

@@ -594,3 +594,23 @@ Chronological prompt history for Codex and Claude.
   - git merge origin/main -> resolved, tree delta vs main = 22 intended files
 - Status: completed
 - Next steps: Await PR #15 CI, merge to main per standing authorization, deliver final report. Human-gated: 24-row label campaign, M-01..M-06, mid-August survey.
+
+## 2026-07-28 19:14 +03:00 - Claude - Enhanced supervisor deck for 29 July, with a fact-check that corrected two published figures
+
+- Request: Enhance the 29 July PPTX: architecture visualizations, one compacted architecture slide, a slide per component, interaction/sequence flows, Iris checklist, timeline, benchmark, evaluation criteria, questions, next steps.
+- Actions taken:
+  - Rebuilt the supervisor deck as 52 native-shape slides (VEGO-AI-Progress-Review-2026-07-29-ENHANCED.pptx, delivered to Downloads): one compacted whole-architecture slide, was/changed/now, authority model, 13 per-component slides, 5 UML sequence diagrams, agent interaction matrix, evaluation rubric, verdict scoreboard, paper-reference-band plot, claim ladder, timeline, benchmark, dosage, Iris D1-D12 checklist, blockers, questions, next steps
+  - Ran a 4-agent fact-check of every planned figure against repo artifacts: 35 confirmed, 10 corrected
+  - Recorded ISS-021: tracked docs say '179 student models' but 179 is scored ranking rows with 14 duplicate case_ids; correct counts are 83 distinct models / 165 model-setting evaluations / 179 scored rows
+  - Recorded ISS-020: the benchmark analytics report claims EXP-036 meets its latency target while the pinned artifact records engineeringTargetMet=false, with confidence intervals that do not bracket their own point estimates
+  - Corrected in the deck: EXP-033 parity is 15 runs (5 fixture artifacts x 3 repetitions) not 15 artifacts; the K=30/35 capture sweep is EXP-008 not EXP-007; research test count is 143 not 113; the '9 experiments on 5 July' baseline is unsupported and was replaced with the citable 6-in-late-June figure
+  - Ran two visual-QA agent sweeps over all 52 rendered slides: 3 blockers, 6 majors and 12 minors found and fixed (component-template title duplication, verdict overflow, sequence-label lifeline crossings, chart axis/number formats, contrast)
+- Files changed:
+  - docs/agent-memory/issues.md
+- Commands/checks:
+  - node deck/build.js -> 52 slides
+  - validate.py -> All validations PASSED
+  - PowerPoint COM export -> 52 slides rendered for QA
+  - python scripts/check_evidence_consistency.py -> PASS
+- Status: completed
+- Next steps: Present 29 July. Fix ISS-020/ISS-021 in the tracked docs before those figures enter a thesis chapter.
