@@ -2,7 +2,7 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-26 by Codex (experiment benchmark, immutable run history, and results-first BigUI)
+**Last Updated:** 2026-07-28 by Claude (evaluation phase: per-component verdicts, advisory LLM analyst, Iris coverage matrix, one-command full evaluation)
 
 ---
 
@@ -16,6 +16,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 * **Accuracy Verdict:** *Accuracy improvement cannot be evaluated yet* (0 generalization-safe real labels exist). The EXP-005 gate now gates the PARKED evaluation track only - not framework-track doc/spec work.
 * **Thesis evidence package (2026-07-25):** a B0-B5 evidence ladder, canonical evidence snapshot, claim/chapter traceability, EXP-019..029 gated protocols, a 91-page review DOCX/PDF, and offline baseline-progress HTML are prepared and manifest-bound. This improves reliability and evaluation rigor; it does not establish an accuracy gain.
 * **All-experiment benchmark (2026-07-26):** EXP-000..040 are evaluated with seven independent dimensions. Twenty-six experiments have current source-backed runs: 22 `MEASURED_PASS`, four `MEASURED_PARTIAL`, 13 `GATED_NOT_RUN`, and two `PARKED_NO_RUN`. `CurrentRunIndex-v1` identifies the current projection while 73 accepted bundles and 690 observations remain immutable history. Current accuracy evidence is still zero.
+* **Evaluation phase (2026-07-28, Claude):** `scripts/run-full-evaluation.ps1` chains the 16-check gate -> benchmark -> per-component contribution report -> program overview/charts -> advisory analyst and PASSES end to end. `scripts/build_agent_contribution_report.py` gives every agent/component an evidence-based verdict (6 contributing, 2 partial, 1 not-yet-measurable): A1 fixture agreement 0.778-0.875 sits within the paper range, A2 guideline F1 0.267-0.545 sits below the paper's 0.70-0.88 (weakest measured link; H-layer churn triage is the designed compensation). `scripts/hlayer_llm_analyst.py` adds an ADVISORY-ONLY narrative (LLM via hardened client when a key exists, deterministic otherwise). `docs/research/iris-july1-implementation-matrix.md` maps all 12 July-1 directives to real implementations. Thesis snapshot, BigUI catalog, and research hub re-anchored to the new canonical revision. No accuracy claim anywhere; EXP-005 gate unchanged at 0/24.
 
 ---
 

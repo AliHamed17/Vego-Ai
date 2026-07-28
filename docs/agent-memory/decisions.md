@@ -355,3 +355,11 @@ Durable decisions for this project.
 - Decision: Reject generated-output paths under repository `VEGO-AI/` and `.git/` for both the generalizer and demo.
 - Reason: M-02 through M-05 remain deferred, current prototype records are informal/unadjudicated, EXP-005 has zero valid safe labels, and automatic prompt/context delivery would cross the protected decision boundary.
 - Consequence: The current generalizer result is `BLOCKED_NO_VERIFIED_FEEDBACK` with zero candidate rules. Any LLM synthesis, trusted-memory reuse, Agent B context delivery, or live listener work requires new evidence and explicit authorization.
+
+## 2026-07-28 - One-Command Full Evaluation and Component Verdict Standard
+
+- Decision: `scripts/run-full-evaluation.ps1` is the canonical end-to-end evaluation entry: 16-check verification gate -> experiment benchmark (--refresh) -> per-component contribution report -> program overview/charts -> advisory analyst. Evidence stages gate the exit code; the analyst stage is advisory and never gates.
+- Decision: Per-agent/component value questions are answered only by `scripts/build_agent_contribution_report.py` verdicts (CONTRIBUTING / PARTIAL / NOT-YET-MEASURABLE), each backed by named measured signals with N and source paths, plus an explicit "verdict changes if" condition. Narrative layers (LLM analyst) must carry the ADVISORY banner and may never introduce numbers absent from the cited artifacts.
+- Decision: When canonical sources legitimately change, re-anchor derived artifacts in this order: commit sources -> `build_thesis_evidence_package.py --source-revision HEAD` + review manifest -> `build_bigui_catalog.py --source-revision <full sha>` -> `build_bigui.py` -> commit. Skipping the catalog/HTML step leaves determinism tests failing (and pytest can stall for minutes computing a difflib diff of the multi-megabyte research hub HTML).
+- Reason: The 2026-07-28 evaluation phase surfaced each of these as a real failure mode while wiring the pipeline end to end.
+- Consequence: Continuation prompts can run one command for the full program verdict; component claims stay evidence-bound while the EXP-005 gate holds at 0/24 labels.

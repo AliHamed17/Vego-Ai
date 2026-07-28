@@ -601,3 +601,23 @@ Record file changes and rollback notes here.
   - docs/research/evaluation-run-guide.md,docs/research/supervisor-label-approval-checklist.md,docs/research/supervisor-label-approval-pack.md
 - Rollback note: Delete docs/research/evaluation-run-guide.md and docs/research/supervisor-label-approval-checklist.md, revert docs/research/supervisor-label-approval-pack.md, and checkout main.
 - Git commit: none recorded by script.
+
+## 2026-07-28 14:02 +03:00 - Claude - Evaluation phase: component verdicts, advisory analyst, Iris matrix, full-eval runner
+
+- Files changed:
+  - scripts/build_agent_contribution_report.py
+  - scripts/tests/test_agent_contribution_report.py
+  - scripts/hlayer_llm_analyst.py
+  - scripts/run-full-evaluation.ps1
+  - docs/research/iris-july1-implementation-matrix.md
+  - docs/research/comprehensive-evaluation-plan-2026-07-26.md
+  - configs/protected-change-authorization-v1.json
+  - docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json
+  - docs/research/bigui/experiment-catalog-snapshot-v1.json
+  - VEGO-AI-Research-Hub.html
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+- Rollback note: Revert commits aeddc13, 886c5fb, d59a3df, fa48953 plus the memory-finish commit; the trusted-SHA git config and repo variable stay at 54d2f919 (cacfab7 record).
+- Git commit: none recorded by script.

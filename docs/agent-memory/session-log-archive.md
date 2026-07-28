@@ -4003,3 +4003,34 @@ Historical entries.
   - No commands/checks recorded
 - Status: completed
 - Next steps: Unknown
+
+## 2026-07-14 12:38 +03:00 - Codex - Research Master Plan Package
+
+- Request: Create a complete evidence-driven VEGO-AI research, experiment, evaluation, visualization, enhancement, thesis, risk, reproducibility, timeline, and supervisor-decision plan without implementing feature code.
+- Actions taken:
+  - Audited live counts, label gate, architecture, canonical experiment IDs, decisions, and status drift.
+  - Created a 12-file planning package using RMP-EVAL-00..09 to avoid canonical EXP-ID collisions.
+  - Embedded 13 Mermaid diagrams and defined evidence, claim, acceptance, and implementation boundaries.
+  - Validated required files, balanced fences, claim wording, protected paths, and the 18-check evidence guard.
+- Files changed:
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\README.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\MASTER_RESEARCH_PLAN.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\EXPERIMENT_ROADMAP.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\ARCHITECTURE_AND_FLOWS.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\VISUALIZATION_PLAN.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\EVALUATION_PLAN.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\ENHANCEMENT_BACKLOG.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\THESIS_STRUCTURE.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\SUPERVISOR_DECISIONS.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\RISK_AND_VALIDITY_REGISTER.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\REPRODUCIBILITY_CHECKLIST.md
+  - C:\Users\ahamed\Claude\Projects\vego-ai\artifacts\research_master_plan\TIMELINE_AND_MILESTONES.md
+- Commands/checks:
+  - refresh-tracking.ps1 -Pull
+  - direct evidence and manifest audits
+  - python scripts/check_evidence_consistency.py
+  - documentation completeness/fence/claim scans
+  - git diff --name-status on protected paths
+- Status: completed
+- Next steps: Reconcile iteration-013 metadata; obtain supervisor approval for the blind protocol; appoint two reviewers; pilot 3-5 rows; label all 24 safe rows; freeze gold labels; then run leakage-safe evaluation and error analysis.
+
