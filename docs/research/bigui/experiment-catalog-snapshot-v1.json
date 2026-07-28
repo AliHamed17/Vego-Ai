@@ -1162,7 +1162,7 @@
       }
     ],
     "generatedAt": "2026-07-26T14:16:00+03:00",
-    "normalizedSha256": "3e555fb4f6642919a6d1efb8e32c543fe10cbd65aea58869a235620805793851",
+    "normalizedSha256": "b9cba6f9be4c5aeebd795f70b5e58ed91825976eadaea677725c619deb51f396",
     "paperBaseline": {
       "caseModels": 178,
       "occasional": 18,
@@ -1175,7 +1175,7 @@
     "sources": {
       "docs/research/bigui/architecture-fixture-results-v1.json": "7fcf650512b37dfb7063b48c5fef95d73d7b8db36a268926d6178329aef73ba5",
       "docs/research/bigui/paper-baseline-snapshot-v1.json": "78b6701caea4feee131980e2e8ae84f436451e53853ca0e779a0d161a6ad966a",
-      "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "1677a665c7ae3d0edda9899fddb0fe4d3e7d7bdff610e8d549be5681d57e26bc",
+      "docs/research/thesis-evidence/thesis-evidence-snapshot-v1.json": "e5b5c38c5bd6e4b7e2c340d9220a45075585b556f2b1c35e24da662407222a43",
       "experiments/accepted-runs": "8cc33fdd800964cfc729e5d4ba15dbf8400bccb23de3c9834de54fc494ffa26e",
       "experiments/current-run-index-v1.json#comparison-dependencies": "99115846282369e33d9bc312b4bdc487acdc7762438036ca887dad0373f682db"
     }
@@ -1488,7 +1488,7 @@
     "schemaVersion": "ExperimentBenchmarkSnapshot-v1",
     "generatedAt": "2026-07-26T16:00:00+03:00",
     "publicationTier": "tracked_sanitized",
-    "inputProjectionSha256": "245266e00a127bf9f4f47c54849b9b84daa759986c7d28989e9e38aab85e5adf",
+    "inputProjectionSha256": "12f9a488674272fc622f319ed13ce94b736bb39e6773fcf59f5a085a9c96628b",
     "standardSha256": "1b9a814e3498ac97ac5da84e5eb15894c15583c87456491af363c3a805e3c7c5",
     "programState": {
       "registeredExperiments": 41,
@@ -7612,7 +7612,7 @@
       },
       {
         "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-        "sha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+        "sha256": "86a54b0fcf67c8d0b01a6245a6177af99d1f8a972e3e2f29a50e6d48a83f40e3",
         "role": "Paper, architecture, comparison, and thesis-readiness results."
       }
     ]
@@ -80175,7 +80175,7 @@
     {
       "id": "baseline-comparison",
       "path": "docs/research/bigui/baseline-comparison-results-v1.json",
-      "sha256": "b6c7098fe93788cdd0cea2b65c9d50f2edc90c25dd20d086aad9cde6eb4d167e",
+      "sha256": "86a54b0fcf67c8d0b01a6245a6177af99d1f8a972e3e2f29a50e6d48a83f40e3",
       "role": "EXP-037–EXP-040 baseline, comparison, and thesis-readiness results"
     },
     {
@@ -80187,7 +80187,7 @@
     {
       "id": "experiment-benchmark",
       "path": "docs/research/bigui/experiment-benchmark-snapshot-v1.json",
-      "sha256": "ce721d6413f23ca7ec7cea648321b41181ee5df9a245bfd73b1bb08a2d8b4e55",
+      "sha256": "64d6ec4abe23927b8131b520a5e31d3a9525d7bf50f218a343de67acdfdc2b60",
       "role": "All-experiment evaluation records, program analytics, findings, and recommendations"
     },
     {
