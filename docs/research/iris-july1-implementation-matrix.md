@@ -1,0 +1,26 @@
+# Iris July-1 Directives - Real-Implementation Coverage Matrix
+
+Last updated: 2026-07-26 by Fable (Claude). Sources: `docs/research/meetings/2026-07-01-supervisor-meeting-iris.md` (verified notes), `docs/video1832857678.transcript.he.md` (transcript), and the artifacts cited per row. Status legend: IMPLEMENTED (running code/artifacts), OFFLINE-IMPLEMENTED (running, but replay/fixtures pending live authorization), SPEC+MEASURED (designed and quantified, execution human-gated), HUMAN-GATED (only a person can advance it).
+
+| # | Iris/Arnon directive (2026-07-01) | Implementation | Status | Evidence |
+| --- | --- | --- | --- | --- |
+| D1 | Human layer = continuous listener over BOTH circles (artifact + Q&A) | E1-E14 event contract + EXP-006 replay reconstructs the full stream from real baseline artifacts; authorized `h_layer_shadow_writer.py` + `observation_record.schema.json` for live capture | OFFLINE-IMPLEMENTED (live shadow awaits M-05) | 481 events reconstructed, 43x the old queue's visibility (`reports/generated/exp006/`); shadow writer in the reviewed allowlist |
+| D2 | Intervene EARLY, not only post-Agent-4 | Early-stage events (E1-E4, E9, E12) are first-class in the contract and triage; early-stage share measured | OFFLINE-IMPLEMENTED | EXP-006 stage attribution; old M1 saw 2.3% of observable events |
+| D3 | Rename M->H; decide agents-vs-skills | H1/H2/H3 naming across all new research docs; skills map with options A/B/C (B recommended) awaiting her decision M-02 | IMPLEMENTED (docs) + HUMAN-GATED (decision) | `docs/research/h-layer/skills-map.md`; decision register M-02 unrecorded |
+| D4 | Defer M4; separate framework/evaluation diagrams | M4A/M4B-1 repositioned as evaluation instruments; two diagrams; evaluation track parked behind EXP-005 | IMPLEMENTED | `docs/architecture/framework-diagram.md` + `evaluation-diagram.md`; benchmark evidence classes |
+| D5 | Human expert is a REAL person, never simulated | All feedback paths require reviewer identity; synthetic anything is tagged `SYNTHETIC_NOT_HUMAN` and hard-excluded from trusted memory (schema-enforced) | IMPLEMENTED (enforced by schemas + tests) | gold-label schema rejects synthetic reviewers; feedback generalizer blocks unverified records (iteration 011) |
+| D6 | Configurable intervention dosage | Four dosage modes implemented and MEASURED (every_decision / threshold sev1-3 / first-N / silent) with load-vs-coverage trade-offs and Pareto frontier | OFFLINE-IMPLEMENTED (default choice = M-03, hers) | EXP-007: sev2 coverage 1.0 at load 0.799; target load<=0.5 unmet - decision input, not silent gap |
+| D7 | Bidirectional interfaces | Bidirectional S4/S5 dialogue + approval loops in the contract and diagrams; interface-direction inventory | SPEC+MEASURED (offline traces) | skills map section 5; EXP-009 dialogue traces |
+| D8 | Learning beyond save/retrieve, correcting Agents 1-4 | S6/S7 implemented fail-closed: correction-proposal dry runs, trusted-manifest-gated feedback generalizer; zero unauthorized writes proven | OFFLINE-IMPLEMENTED (activation = M-05 + verified feedback) | EXP-018 (0 applications), EXP-016 (0 trusted writes), generalizer `BLOCKED_NO_VERIFIED_FEEDBACK` |
+| D9 | Anti-sycophancy: verify expert input against sources, question not comply | S5 H-Verify deterministic rule set + dialogue traces; escalation to adjudication; fixture recall/specificity 1.0/1.0 | OFFLINE-IMPLEMENTED (real wrong-expert trials await M-04 source-set approval) | EXP-009 metrics + `reports/generated/exp009/dialogue_traces.json` |
+| D10 | Convergence: bounded interaction | Round-bound sweep implemented; 2-round policy is the pilot candidate (explicitly "not an approved default") | OFFLINE-IMPLEMENTED | EXP-010 `two_round_status`; timeout paths park items, baseline preserved (EXP-016) |
+| D11 | July-15 deliverables: skills map + prompt requirements (not prompts) | Both delivered plus the six detail specs and the meeting/supervisor packages (July-15 and July-21 rounds) | IMPLEMENTED | `docs/research/h-layer/skills-map.md`, `prompt-requirements.md`, supervisor packages + 23-slide deck |
+| D12 | Literature survey (Pnina course) + PhD idea log, medical preferred | Taxonomy extended (agentic HITL, RLHF/RL+LLM, memory/learning, anti-sycophancy, dosage, CDSS branches); idea log with MediVARIA as the active medical vehicle | IMPLEMENTED (docs) + HUMAN-GATED (mid-August presentation is Ali's) | `docs/research/literature-review-taxonomy.md`; `docs/research/phd-extension-ideas.md`; `docs/research/medivaria/medivaria-study-plan.md` |
+
+## The Honest Bottom Line
+
+Every one of the twelve directives has a running implementation or a measured design on real data; none is only words. The three things that only humans can advance, exactly as Iris framed them:
+
+1. Decisions M-01..M-06 (architecture option, dosage default, H-Verify source set, live-shadow authorization) - unrecorded; everything above stays provisional until she records them.
+2. The 24-row independent label campaign (two reviewers + adjudication) - unlocks every quality verdict at once.
+3. The mid-August literature-survey presentation (course obligation).
