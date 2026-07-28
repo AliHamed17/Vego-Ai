@@ -555,3 +555,15 @@ Chronological prompt history for Codex and Claude.
   - validate_independent_calibration_returns.py --check-gate
 - Status: Calibration-ready; 10/10 decisions accepted, 0/2 calibration returns, 0/24 labels, evaluation release unauthorized.
 - Next steps: Provide each selected independent reviewer the participant information and only their three-case calibration folder; collect the two immutable JSON returns; validate them; then obtain a human instruction freeze before evaluation release.
+
+## 2026-07-27 09:39 +03:00 - Codex - Evaluation Phase Implementation Plan & Supervisor Sign-off Checklist
+
+- Request: make huge plan / make sure it will work
+- Actions taken:
+  - Created implementation plan, created branch feature/evaluation-phase, added evaluation run guide and supervisor sign-off checklist, verified tests and evidence consistency
+- Files changed:
+  - docs/research/evaluation-run-guide.md,docs/research/supervisor-label-approval-checklist.md,docs/research/supervisor-label-approval-pack.md
+- Commands/checks:
+  - pytest VEGO-AI/tests,python scripts/check_evidence_consistency.py
+- Status: completed
+- Next steps: Unknown
