@@ -621,3 +621,14 @@ Record file changes and rollback notes here.
   - docs/agent-memory/decisions.md
 - Rollback note: Revert commits aeddc13, 886c5fb, d59a3df, fa48953 plus the memory-finish commit; the trusted-SHA git config and repo variable stay at 54d2f919 (cacfab7 record).
 - Git commit: none recorded by script.
+
+## 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
+
+- Files changed:
+  - scripts/build_agent_contribution_report.py
+  - scripts/tests/test_agent_contribution_report.py
+  - scripts/hlayer_llm_analyst.py
+  - scripts/run-full-evaluation.ps1
+  - docs/research/iris-july1-implementation-matrix.md
+- Rollback note: Revert commits d86b8d4 (review fixes) and merge commit 796acfc; earlier evaluation-phase commits listed in the previous entry.
+- Git commit: none recorded by script.

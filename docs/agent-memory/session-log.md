@@ -570,3 +570,27 @@ Chronological prompt history for Codex and Claude.
 - Status: completed
 - Next steps: Push feature/evaluation-phase, PR to main, merge per standing authorization; human-gated: 24-row label campaign, M-01..M-06 decisions, mid-August survey presentation.
 
+
+## 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
+
+- Request: Continue: full enhancement with real per-agent answers, E2E working system, Iris points implemented, full report.
+- Actions taken:
+  - Ran a 19-agent adversarial review workflow over the new evaluation-phase code: 16 findings confirmed, 2 refuted
+  - Rewrote build_agent_contribution_report.py so every signal is read from its cited artifact or omitted (exp001 totals.*, exp009 synthetic_* keys, exp006 ratio semantics, exp016/018 real keys); verdicts carry explicit categories and degrade to NOT-YET-MEASURABLE without inputs; headline and weakest links computed from data (A2 F1 floor corrected to 0.267)
+  - Added hermetic fresh-clone test proving no fabricated signals; 3/3 tests pass
+  - Hardened run-full-evaluation.ps1 (stale LASTEXITCODE crash-as-PASS fixed, per-stage logs) and hlayer_llm_analyst.py (untrusted-data quarantine, sanitized markdown, redacted fallback reason, dict validation)
+  - Fixed Iris matrix D1 (removed nonexistent shadow-writer claim; live capture is SPEC'D + HUMAN-GATED) and D1/D2 visibility numbers to the artifact's item-to-event ratio semantics
+  - Merged origin/main into feature/evaluation-phase (PR #15 was CONFLICTING; branch had diverged at PR #6); resolved all 12 conflicts to our superset side; tree differs from main by exactly the intended 22 files
+  - Full evaluation PASSED end to end after every change round
+- Files changed:
+  - scripts/build_agent_contribution_report.py
+  - scripts/tests/test_agent_contribution_report.py
+  - scripts/hlayer_llm_analyst.py
+  - scripts/run-full-evaluation.ps1
+  - docs/research/iris-july1-implementation-matrix.md
+- Commands/checks:
+  - .\scripts\run-full-evaluation.ps1 -> FULL EVALUATION PASSED (three consecutive green runs incl. post-merge)
+  - python -m pytest scripts/tests/test_agent_contribution_report.py -q -> 3 passed
+  - git merge origin/main -> resolved, tree delta vs main = 22 intended files
+- Status: completed
+- Next steps: Await PR #15 CI, merge to main per standing authorization, deliver final report. Human-gated: 24-row label campaign, M-01..M-06, mid-August survey.
