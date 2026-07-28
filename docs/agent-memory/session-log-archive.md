@@ -4033,4 +4033,3 @@ Historical entries.
   - git diff --name-status on protected paths
 - Status: completed
 - Next steps: Reconcile iteration-013 metadata; obtain supervisor approval for the blind protocol; appoint two reviewers; pilot 3-5 rows; label all 24 safe rows; freeze gold labels; then run leakage-safe evaluation and error analysis.
-
