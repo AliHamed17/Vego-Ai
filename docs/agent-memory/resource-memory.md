@@ -92,6 +92,8 @@ Dry-run command:
 | `PRES-004` | Supervisor meeting structured notes | `docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md` | Extracted |
 | `PRES-005` | Supervisor Zoom demo deck (2026-06-17) | `artifacts/supervisor_demo_2026-06-17/` | Used |
 | `PRES-006` | Presentation plan (2026-07-01) | `docs/presentation-plan-2026-07-01.md` | Planning |
+| `PRES-007` | August supervisor presentation/video-call checklist | `docs/research/meetings/2026-08-05-supervisor-presentation-checklist.md` | Outline/preflight complete; PPTX/PDF and live rehearsal pending |
+| `PRES-008` | July 29 requirements closure audit | `docs/research/phd-proposal/iris-requirements-closure-audit.md` | 44/44 controlled; acceptance gates explicit |
 
 Key meeting insights captured in `PRES-004`:
 - Two VEGO-AI communication types (artifact + Q&A)
@@ -181,6 +183,7 @@ Experiment registry: `experiments/registry.md`
 | `hlayer_prototype/hlayer-prototype-scaffold.py` | Isolated offline supervisor interaction demo with non-trusted outputs | July 15 demo preflight/session using a temporary output directory |
 | `validate_hlayer_program.py` | End-to-end replay/conformance/decision/demo/protected-boundary validation | Before H-layer status claims or supervisor demos |
 | `validate_hlayer_offline.py` | EXP-013–018 contract/conformance validation | After offline contract or fixture changes |
+| `validate_iris_requirements_closure.py` | IRIS-EXP-01..04 traceability, presentation, claim, and weekly-control validator | Before/after supervisor-package changes; `--all --refresh` writes ignored diagnostics |
 
 ## Dashboards & Visualizations
 

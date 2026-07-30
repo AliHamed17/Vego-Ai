@@ -11,7 +11,8 @@ Track milestones, current work, and next steps here.
 | Date | Milestone | Status | Notes |
 | --- | --- | --- | --- |
 | 2026-07-30 | July 29 supervisor evidence preserved | Done | Ten machine-derived working-evidence artifacts preserved on `docs/iris-july29-phd-execution` in commit `3d0beca`; human bilingual/speaker review remains open. |
-| 2026-07-30 | Doctoral requirements-closure control package | In progress | Implemented the 19/15/10 master register, RQ decision pack, three-study contract, legacy crosswalk, claim/RACI/RAID controls, proposal `v0.1`, pre-read, and decision templates; supervisor approval is pending. |
+| 2026-07-30 | Doctoral requirements-closure control package | Done / supervisor gates pending | Implemented the 19/15/10 master register, RQ decision pack, three-study contract, legacy crosswalk, claim/RACI/RAID controls, proposal `v0.1`, pre-read, and decision templates; supervisor approval is pending. |
+| 2026-07-30 | Iris requirements assurance and presentation controls | Done / human runs pending | Added the 44-item call-time/evidence/acceptance audit, 12-checkpoint video-call checklist, IRIS-EXP-01..04 protocols, deterministic validator/tests, and weekly propagation preflight; synchronized SQ wording and removed an unsupported four-hour-completion claim. Traceability/claim checks pass; live rehearsal and first weekly cycle are not run. |
 | 2026-07-30 | Private PhD Drive and native literature workbook | Done (initial tranche) | Created the Ali-owned nine-folder structure and six-tab Google Sheet; external sharing, database searches, screening, and access verification remain pending. |
 | 2026-07-30 | MIMIC metadata/governance tranche | Done (metadata only) | Recorded 25 CSVs, 39.65 GiB, missing `NOTEEVENTS`, provenance gaps, three data zones, and a 0/6 medical readiness verdict without inspecting patient rows. |
 | 2026-07-30 | Recurring supervision calendar acceptance | Done | Ali accepted; Ali, Iris, and Arnon are confirmed accepted for Wednesday 09:00-10:00 Asia/Jerusalem through October 7. |
@@ -211,12 +212,13 @@ Track milestones, current work, and next steps here.
 Note (2026-07-30): The July 29 package is a controlled working baseline, not a supervisor-approved proposal. The exact pre-read, Drive, and Sheet have not been shared. Medical work is blocked at 0/6 gates and EXP-005 remains 0/24.
 
 1. Ali reviews the exact August 5 supervisor package and authorizes any external sharing.
-2. At the August 5 meeting, record decisions on RQ wording, the three-study map, Plan A/B labels, literature categories, medical-route ownership, Penina dates, and the official-process inquiry.
-3. Record every supervisor decision within 24 hours in the decision/change log and update all affected artifacts.
-4. Execute the literature database searches, log exact queries and dates, deduplicate, screen, verify paper identities and claims, and prepare the August 12 synthesis.
-5. Complete bilingual Hebrew/English and speaker review before using direct transcript quotations or final attribution.
-6. Obtain written department/Graduate Studies confirmation of the candidacy deadline, reviewer count, nomination path, committee rules, and presentation requirements.
-7. Keep patient-row inspection, medical computation, external APIs, and pilots blocked until all six medical entry gates pass.
-8. Run the August 26 medical go/no-go; default the September proposal to Plan B if any critical prerequisite remains unproved.
-9. Appoint two independent EXP-005 reviewers plus an adjudicator and collect the 24 generalization-safe labels without inferring or prefilling any value.
-10. Refresh dashboards, evidence checks, project health, and agent memory after each implementation tranche.
+2. Confirm meeting logistics, build the current presentation from the checklist, add source notes, render/inspect it, and complete a dated human rehearsal; simulated outcomes never enter the real decision log.
+3. At the August 5 meeting, record decisions on RQ wording, the three-study map, Plan A/B labels, literature categories, medical-route ownership, Penina dates, and the official-process inquiry.
+4. Record every supervisor decision within 24 hours in the decision/change log and update all affected artifacts.
+5. Execute the literature database searches, log exact queries and dates, deduplicate, screen, verify paper identities and claims, and prepare the August 12 synthesis.
+6. Complete bilingual Hebrew/English and speaker review before using direct transcript quotations or final attribution.
+7. Obtain written department/Graduate Studies confirmation of the candidacy deadline, reviewer count, nomination path, committee rules, and presentation requirements.
+8. Keep patient-row inspection, medical computation, external APIs, and pilots blocked until all six medical entry gates pass.
+9. Run the August 26 medical go/no-go; default the September proposal to Plan B if any critical prerequisite remains unproved.
+10. Appoint two independent EXP-005 reviewers plus an adjudicator and collect the 24 generalization-safe labels without inferring or prefilling any value.
+11. Refresh dashboards, evidence checks, project health, and agent memory after each implementation tranche.

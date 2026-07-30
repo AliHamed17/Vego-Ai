@@ -11,6 +11,9 @@ This directory turns the requirements from the 29 July 2026 supervisor call into
 3. [`proposal-v0.1.md`](./proposal-v0.1.md) — initial six-section proposal draft.
 4. [`legacy-rq-crosswalk.md`](./legacy-rq-crosswalk.md) — maps earlier MSc, PhD-roadmap, evidence, and MediVARIA questions into the new three-subquestion hierarchy.
 5. [`../meetings/2026-08-05-supervisor-pre-read.md`](../meetings/2026-08-05-supervisor-pre-read.md) — concise supervisor-facing pre-read.
+6. [`iris-requirements-closure-audit.md`](./iris-requirements-closure-audit.md) — point-by-point `R/A/Q` readiness audit with call times, evidence, presentation checks, and remaining gates.
+7. [`../meetings/2026-08-05-supervisor-presentation-checklist.md`](../meetings/2026-08-05-supervisor-presentation-checklist.md) — 12-checkpoint video-call outline, full requirement coverage, decision worksheet, preflight, and closeout.
+8. [`iris-alignment-experiment-register.md`](./iris-alignment-experiment-register.md) — separate non-production assurance series for traceability, presentation readiness, claim boundaries, and weekly propagation.
 
 ## Canonical working research architecture
 

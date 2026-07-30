@@ -375,7 +375,7 @@ Relevant evidence:
 
 ### 5.4 Medical preliminary-results boundary
 
-Current medical material consists of proposed mappings, use-case concepts, literature branches, and the completed four-hour metadata/schema-only MIMIC audit. That audit observed 25 CSVs totaling 39.65 GiB, missing `NOTEEVENTS`, and unresolved provenance; it inspected no patient rows and is not a medical result. Education/software-modeling metrics cannot be relabeled as medical results. No partner, clinician panel, approved dataset, ethics path, or restricted technical environment is evidenced as ready by this draft.
+Current medical material consists of proposed mappings, use-case concepts, literature branches, and a documented bounded metadata/schema-only MIMIC audit. That audit observed 25 CSVs totaling 39.65 GiB, missing `NOTEEVENTS`, and unresolved provenance; it inspected no patient rows and is not a medical result. The planned maximum was four hours, but no start/end or elapsed-time record exists, so this draft does not claim a completed four-hour run. Education/software-modeling metrics cannot be relabeled as medical results. No partner, clinician panel, approved dataset, ethics path, or restricted technical environment is evidenced as ready by this draft.
 
 ## 6. Work plan and timeline
 
@@ -417,7 +417,7 @@ The September and October dates are working targets from the supervisor discussi
 | Risk | Mitigation |
 | --- | --- |
 | Medical dependency makes the doctorate infeasible | Same RQs under Plan B; time-bound route decision |
-| Deep medical learning delays proposal | Completed four-hour metadata/schema audit boundary and stop rule |
+| Deep medical learning delays proposal | Bounded metadata/schema audit boundary, future timing record, and stop rule |
 | Evidence claims outrun data | Claim/evidence table and 0/24 boundary |
 | Human availability blocks empirical work | Continue Studies 1–2, literature, and proposal; schedule reviewers explicitly |
 | Restricted-data misuse | Approved environment only; no repository copy; no online/commercial LLM |

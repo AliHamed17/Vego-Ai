@@ -11,9 +11,9 @@ Status: Working research contract for supervisor review; question wording, study
 
 ### Working subquestions
 
-1. **SQ1 — Selective intervention:** When and how should agentic AI assessment request human judgment so that important uncertainty is addressed without imposing unnecessary expert burden?
-2. **SQ2 — Governed knowledge reuse:** How can human judgment be represented, validated, reconciled, and stored as governed knowledge so it can be reused transparently without unsafe generalization or loss of human authority?
-3. **SQ3 — Evaluation and transfer:** How should the approach be evaluated for assessment quality, consistency, traceability, and expert effort across domains, using software/modeling first and healthcare only when the required gates permit?
+1. **SQ1 — Selective intervention:** When and how should an agentic assessment system request human judgment so that important uncertainties are addressed without unnecessary expert burden?
+2. **SQ2 — Governed knowledge reuse:** How should expert judgments be represented, validated, reconciled, and stored so they can be reused transparently without unsafe generalization or loss of human authority?
+3. **SQ3 — Evaluation and transfer:** To what extent does the resulting framework improve assessment quality, consistency, traceability, and expert effort across domains, first in software/modeling and, when governance and access permit, in healthcare?
 
 These questions are deliberately domain-neutral. The software/modeling program can answer all three. Medicine is an optional evaluation context, not a prerequisite for the doctorate.
 

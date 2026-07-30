@@ -2,6 +2,10 @@
 
 > Complete and share before the weekly meeting. Keep the main pre-read to one or two pages; link evidence instead of pasting it. Replace every placeholder. Do not mark an item complete without its acceptance evidence.
 
+First live-cycle status: **NOT RUN**
+
+A template is not evidence that the weekly discipline has been executed. After the first real cycle, replace the status only when the dated pre-read, meeting read-back, and post-meeting propagation record all exist.
+
 ## Meeting metadata
 
 - Meeting date/time/timezone:
@@ -25,7 +29,7 @@
 
 **Most important evidence link:**
 
-## Last commitment read-back
+## Previous commitment read-back
 
 | Field | Entry |
 | --- | --- |
@@ -38,7 +42,7 @@
 | Reason if not accepted |  |
 | Carry forward? | No / Yes, with explicit rationale |
 
-## Evidence completed this week
+## Completed evidence this week
 
 | Evidence/artifact | Requirement/action/ question IDs | Claim ID and state | Acceptance check result | Reviewer/status | Link |
 | --- | --- | --- | --- | --- | --- |
@@ -50,7 +54,7 @@ Rules:
 - A draft artifact is not automatically accepted.
 - EXP-005 must remain shown as **0/24** until validated independent labels actually exist.
 
-## Proposal writing delta
+## Proposal delta
 
 | Proposal area | Previous state | This week’s concrete change | Remaining gap | Evidence/link |
 | --- | --- | --- | --- | --- |
@@ -106,7 +110,7 @@ Do not use paper count alone as progress; summarize the synthesis or gap clarifi
 
 **Binding rule:** if any G1–G6 gate lacks a documented owner, evidence path, or feasible completion date at 2026-08-26 23:59 Asia/Jerusalem, Plan B becomes active automatically on 2026-08-27. All six gates must pass before row-level access is considered, and separate downstream integrity, pilot, and export controls still apply. Silence, expected access, viewer permission, verbal interest, or an invitation does not satisfy readiness.
 
-## RAID changes
+## Blocker and RAID changes
 
 | RAID ID | New fact or change | Impact | Owner | Action/due | Evidence |
 | --- | --- | --- | --- | --- | --- |
@@ -114,7 +118,7 @@ Do not use paper count alone as progress; summarize the synthesis or gap clarifi
 
 List only changed or decision-relevant entries. Do not repeat unchanged background.
 
-## Decisions requested from Iris and Arnon
+## Decision requested from Iris and Arnon
 
 | Decision ID | Exact question | Recommended option | Alternatives | Consequence if deferred | Needed by |
 | --- | --- | --- | --- | --- | --- |
@@ -147,7 +151,7 @@ Only one task is the weekly commitment. Other work may continue, but it cannot o
 5. **2 minutes:** agree one task, owner, due date, and definition of done.
 6. **1 minute:** read back decisions and corrections.
 
-## Post-meeting read-back
+## Decision read-back and post-meeting capture
 
 - Last commitment outcome:
 - Decisions accepted/changed/deferred:

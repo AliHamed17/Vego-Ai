@@ -17,6 +17,8 @@ Detailed pack:
 - [`../phd-proposal/2026-07-29-doctoral-execution-plan.md`](../phd-proposal/2026-07-29-doctoral-execution-plan.md)
 - [`../phd-proposal/proposal-v0.1.md`](../phd-proposal/proposal-v0.1.md)
 - [`../phd-proposal/legacy-rq-crosswalk.md`](../phd-proposal/legacy-rq-crosswalk.md)
+- [`../phd-proposal/iris-requirements-closure-audit.md`](../phd-proposal/iris-requirements-closure-audit.md)
+- [`./2026-08-05-supervisor-presentation-checklist.md`](./2026-08-05-supervisor-presentation-checklist.md)
 
 ## Recommended research-question set
 
@@ -77,7 +79,7 @@ Please record **Approve**, **Approve with correction**, **Defer**, or **Reject**
 6. the proposed 26 August fallback decision date;
 7. the existing evidence-boundary wording;
 8. the initial literature-review scope;
-9. the completed four-hour, metadata/schema-only MIMIC boundary and continued prohibition on patient-row inspection; and
+9. the documented bounded metadata/schema-only MIMIC boundary, the absence of elapsed-time evidence, and continued prohibition on patient-row inspection; and
 10. owners for medical feasibility and university-process verification.
 
 ## Immediate next outputs after the decision

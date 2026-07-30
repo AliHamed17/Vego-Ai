@@ -8,6 +8,12 @@ for the maintenance flow see §8. Auto regions are refreshed by `python scripts/
 > recommends one umbrella RQ plus three mapped subquestions/studies. The wording, Plan A/B labels, and study
 > architecture remain pending Iris/Arnon approval. The August 5 pre-read is prepared but not recorded as sent.
 
+> **Iris requirements assurance (2026-07-30):** all 44 controls have call-time, evidence, presentation,
+> and remaining-gate locators. Readiness is 2 verified complete, 6 implemented awaiting human acceptance,
+> 22 partial, 5 open, and 9 blocked. IRIS-EXP-01 traceability and IRIS-EXP-03 claim checks pass;
+> IRIS-EXP-02 still requires a human rehearsal and IRIS-EXP-04 still requires a real weekly cycle.
+> No current August/candidacy deck or blanket “all requirements complete” claim is authorized.
+
 > **Evidence and feasibility boundary:** the July 1 redirect and July 24 continuation are preserved as
 > legacy/absorbed plans. EXP-005 remains at 0/24 and no improvement claim is authorized. Medical work is
 > NO-GO at 0/6 entry gates; the MIMIC review was metadata-only and inspected no patient rows. If any critical
@@ -70,6 +76,12 @@ Stable tags: `official-vego-ai-baseline` · `research-state-m4a-clean` · `resea
 | EXP-011 | V0/V1 evaluation | parked | architecture + labels + supervisor go-ahead required |
 | EXP-012 | validated baseline interface | repaired / cross-check PASS | safe N=0 → `NOT YET COMPUTABLE`; no evidence claim |
 | EXP-013–018 | architecture-conformance series | offline fixture runs + validator pass | scoped mechanism/safety evidence; atomic iteration acceptance separate |
+
+The separate non-production `IRIS-EXP-01`–`IRIS-EXP-04` assurance series checks
+requirements traceability, supervisor-presentation readiness, claim language,
+and weekly change propagation. It does not extend the canonical scientific
+experiment catalog or supply accuracy, generalization, effort, medical, or
+supervisor-approval evidence.
 
 ## 4. Thesis (`thesis/chapters/`)
 | Drafted (10) | Remaining quantitative completion |

@@ -207,7 +207,7 @@ No proposal milestone depends on obtaining a positive result. Negative and null 
 
 Purpose: keep the research questions realistic without turning proposal drafting into medical-domain training.
 
-Status: **the initial four-hour metadata/schema audit was completed on 30 July 2026; no patient row was inspected.**
+Status: **the initial bounded metadata/schema audit was documented on 30 July 2026; no patient row was inspected. The intended maximum was four hours, but start/end or elapsed-time evidence was not recorded, so four-hour completion is not claimed.**
 
 - four hours maximum for the initial tranche;
 - metadata, file manifest, index, schema, and process-mining feasibility questions only;
@@ -303,7 +303,7 @@ Research and writing continue while candidacy/reviewer scheduling proceeds.
 | Risk | Trigger | Control | Owner |
 | --- | --- | --- | --- |
 | Medical route blocks PhD | Expert/data/access gate lacks proof | Common core + Plan B; 26 Aug proposed fallback decision | Ali + supervisors |
-| Medical familiarization consumes proposal time | Exceeds the completed four-hour metadata/schema audit or requires deep domain study | Stop rule; record unanswered questions for experts | Ali |
+| Medical familiarization consumes proposal time | Moves beyond the bounded metadata/schema scope, lacks a timing record, or requires deep domain study | Stop rule; record start/end for any future time box and preserve unanswered questions for experts | Ali |
 | Evidence overclaim | Quantitative/medical wording without eligible evidence | 0/24 boundary; claim/evidence review; explicit “not yet computable” | Ali |
 | Privacy/tooling breach | Restricted material considered for online tooling/export | Approved environment and local/offline tooling gate; no data in repo | Institution + team |
 | Literature becomes descriptive | Paper-by-paper summaries without synthesis | Grouping, gap-to-contribution fields, monthly synthesis memo | Ali |

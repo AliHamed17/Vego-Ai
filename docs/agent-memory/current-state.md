@@ -2,13 +2,13 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-30 by Codex (July 29 doctoral requirements-closure and proposal-control tranche)
+**Last Updated:** 2026-07-30 by Codex (Iris requirements assurance and presentation-control tranche)
 
 ---
 
 ## 1. Quick Status (< 10 lines)
 * Branch `docs/iris-july29-phd-execution` preserves the ten July 29 machine-derived evidence artifacts in commit `3d0beca`; production VEGO-AI behavior is unchanged.
-* The July 29 requirements and action registers are the bilingual-review-pending working authority: 19/19 requirements, 15/15 actions, and 10/10 open questions are controlled in one master register.
+* The bilingual-review-pending July 29 registers control all 19 requirements, 15 actions, and 10 questions; the closure audit has `44/44` locators, with **2 verified complete, 6 awaiting human acceptance, 22 partial, 5 open, and 9 blocked**.
 * The recommended architecture is one umbrella RQ plus three subquestions: selective intervention, governed knowledge reuse, and evaluation/transfer. Iris and Arnon approval remains pending for the August 5 checkpoint.
 * Plan A is a staged medical extension; Plan B completes the doctorate in software/modeling. Any unproved critical medical prerequisite on August 26 triggers Plan B for the September proposal.
 * Proposal `v0.1`, the RQ decision pack, three-study contract, legacy crosswalk, claim register, RACI/RAID register, pre-read, and governance templates now form the first controlled tranche.
@@ -16,7 +16,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 * Ali, Iris, and Arnon are confirmed accepted on the recurring Wednesday 09:00-10:00 Asia/Jerusalem calendar event through October 7.
 * The metadata-only MIMIC audit observed 25 CSVs totaling 39.65 GiB versus 26 official MIMIC-III v1.4 tables; `NOTEEVENTS` and provenance are unresolved. No patient rows were inspected.
 * Medical readiness is **NO-GO at 0/6 entry gates**. EXP-005 remains blocked at 0/24 generalization-safe labels; no medical, accuracy, or generalization gain is claimed.
-* September/October dates remain provisional until the department confirms the official process, deadline, reviewers, committee, and presentation rules.
+* IRIS-EXP-01/03 pass; IRIS-EXP-02 awaits live rehearsal and IRIS-EXP-04 awaits the first weekly cycle. No current August/candidacy deck is claimed, and September/October dates remain provisional pending official confirmation.
 
 ---
 
@@ -51,18 +51,20 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 | **ISS-024** | High | The official candidacy process, deadline, reviewer count, committee rules, and presentation requirements are unverified. | Obtain written confirmation from the department or Graduate Studies coordinator. |
 | **ISS-025** | High | The shared MIMIC resource has 25 observed CSVs rather than 26 official tables and lacks canonical provenance. | Reconcile the manifest inside an authorized VDI only after all six entry gates pass. |
 | **ISS-026** | Medium | The private PhD Drive and literature Sheet are not shared or access-tested. | Ali reviews the exact package, then explicitly authorizes sharing and recipient access checks. |
+| **ISS-027** | High | No current July-29/August supervisor PPTX/PDF, presenter notes, rendered QA, or live rehearsal exists; candidacy presentation rules are also unverified. | Confirm logistics, build from the current checklist, add source notes, render/inspect, run a human rehearsal, and archive only after Ali review. |
 
 ---
 
 ## 4. Next Action
 1. **Ali review gate:** inspect the exact August 5 pre-read, RQ pack, proposal, Drive structure, and literature Sheet before any external sharing.
 2. **August 5 decision gate:** obtain and record Iris/Arnon decisions on the one-plus-three hierarchy, study map, Plan A/B labels, literature categories, medical owner, Penina dates, and official-process owner.
-3. **Literature tranche:** execute the recorded searches, deduplicate, screen, verify identities/claims, and prepare the August 12 synthesis without treating tools as evidence.
-4. **Transcript gate:** complete bilingual and speaker review; continue using paraphrases only until then.
-5. **EXP-005 gate:** appoint two independent reviewers plus an adjudicator and collect the 24 safe labels; do not infer or prefill labels.
-6. **Medical gate:** keep all row-level work blocked at 0/6 and collect only documentary proof for the six prerequisites.
-7. **August 26 fallback:** run the medical go/no-go review and default the September proposal to Plan B if any critical prerequisite remains unproved.
-8. **Administrative gate:** obtain written confirmation of the official candidacy process and rebaseline within one working day if required.
+3. **Presentation gate:** turn the 12-checkpoint outline into the exact meeting artifact only after logistics are confirmed; add source notes, render QA, and complete a dated human rehearsal without copying simulated outcomes into the decision log.
+4. **Literature tranche:** execute the recorded searches, deduplicate, screen, verify identities/claims, and prepare the August 12 synthesis without treating tools as evidence.
+5. **Transcript gate:** complete bilingual and speaker review; continue using paraphrases only until then.
+6. **EXP-005 gate:** appoint two independent reviewers plus an adjudicator and collect the 24 safe labels; do not infer or prefill labels.
+7. **Medical gate:** keep all row-level work blocked at 0/6 and collect only documentary proof for the six prerequisites.
+8. **August 26 fallback:** run the medical go/no-go review and default the September proposal to Plan B if any critical prerequisite remains unproved.
+9. **Administrative gate:** obtain written confirmation of the official candidacy process and rebaseline within one working day if required.
 
 ---
 

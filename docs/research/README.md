@@ -7,6 +7,8 @@ This folder is for the scientific substance of the PhD work.
 | `phd-proposal/README.md` | **ACTIVE WORKING AUTHORITY:** July 29 requirements-closure and PhD-proposal execution package; supervisor approval and bilingual transcript review remain explicit gates. |
 | `phd-proposal/2026-07-29-doctoral-execution-plan.md` | Successor execution plan covering the one-plus-three RQ architecture, three studies, Plan A/B, milestones, resources, and acceptance gates. |
 | `phd-proposal/master-traceability-register.md` | Lead-control register for all R-01..R-19, A-01..A-15, and Q-01..Q-10. |
+| `phd-proposal/iris-requirements-closure-audit.md` | Point-by-point call-time, evidence, presentation, acceptance, and remaining-gate audit for all 44 July 29 controls. |
+| `phd-proposal/iris-alignment-experiment-register.md` | Separate IRIS-EXP-01..04 assurance program; does not change the canonical EXP-000..040 catalog or empirical evidence. |
 | `phd-proposal/2026-08-05-rq-decision-pack.md` | Exact recommended umbrella RQ and three subquestions, alternate wording variants, study map, Plan A/B comparison, and decisions requested from Iris and Arnon. |
 | `phd-proposal/three-study-contract.md` | Per-study contract for question, method, evidence, artifact, metrics, contribution, dependencies, fallback, risks, and publication target. |
 | `phd-proposal/legacy-rq-crosswalk.md` | Explicit disposition of the research-plan, thesis Chapter 3, PhD-optimization, and MediVARIA legacy questions. |
@@ -20,6 +22,8 @@ This folder is for the scientific substance of the PhD work.
 | `phd-proposal/university-process-verification-checklist.md` | Written-confirmation checklist for deadline, reviewers, nomination, committee, presentation, and submission rules. |
 | `phd-proposal/penina-course-outline-and-proposal-reuse-map.md` | Course-presentation outline mapped to reusable proposal sections and evidence boundaries. |
 | `meetings/2026-08-05-supervisor-pre-read.md` | Supervisor-facing pre-read prepared for Ali review; it is not recorded as sent. |
+| `meetings/2026-08-05-supervisor-presentation-checklist.md` | Current 12-checkpoint supervisor video-call outline, R-01..R-19 coverage, decision worksheet, experiment checks, claim preflight, and closeout. |
+| `../templates/weekly-supervisor-pre-read.md` | Reusable previous-commitment, evidence, blocker, decision, proposal-delta, one-task, and post-meeting read-back control. |
 | `meetings/2026-07-29-iris-requirements-register.md` | July 29 working requirements authority (R-01..R-19), derived from machine evidence and awaiting bilingual/speaker confirmation. |
 | `meetings/2026-07-29-iris-supervisor-action-register.md` | July 29 working action and decision authority (A-01..A-15 and Q-01..Q-10), subject to the same review gate. |
 | `governance/README.md` | Doctoral data boundary, medical readiness, MIMIC metadata audit, Clalit request, and derived-artifact provenance controls. |

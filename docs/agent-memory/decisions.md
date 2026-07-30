@@ -380,3 +380,14 @@ Durable decisions for this project.
 - Decision: Keep five claim states (`Established`, `Preliminary`, `Planned`, `Blocked`, `Partner-dependent`) and preserve EXP-005 at 0/24 until independent real labels exist.
 - Decision: Require Ali review of the exact private Drive, native literature Sheet, proposal, and pre-read before any external sharing. Literature searches and screening are not complete merely because the workbook exists.
 - Decision: Treat September and October dates as working targets until written department or Graduate Studies confirmation arrives.
+
+## 2026-07-30 - Iris Requirements Assurance and Presentation Controls
+
+- Decision: Distinguish control coverage from accepted completion. The closure audit has 44/44 locators, while current readiness is 2 verified complete, 6 implemented awaiting human acceptance, 22 partial, 5 open, and 9 blocked.
+- Decision: Synchronize the exact recommended umbrella RQ and SQ1-SQ3 wording across the master register, study contract, proposal, decision pack, and execution plan. This fixes internal drift but does not create supervisor approval.
+- Decision: Use a separate `IRIS-EXP-01`–`IRIS-EXP-04` assurance register so presentation/process checks do not alter the canonical `EXP-000`–`EXP-040` scientific catalog or empirical evidence.
+- Decision: Treat IRIS-EXP-01 traceability and IRIS-EXP-03 claim-boundary results as PASS; treat IRIS-EXP-02 as ready pending a human rehearsal and IRIS-EXP-04 as ready pending the first real weekly cycle.
+- Decision: Replace the unsupported “completed four-hour MIMIC audit” statement with the evidenced formulation: bounded metadata/schema audit documented; no patient rows inspected; elapsed time not recorded.
+- Decision: Do not reuse July 15/21 decks unchanged. A current August/candidacy presentation requires the 12-checkpoint outline, `[Sources]` notes, rendered QA, a dated rehearsal, and Ali’s exact-package review.
+- Reason: Independent call, traceability, and presentation audits found inconsistent question wording, stale presentation material, absent current deck/rehearsal evidence, and an unsupported elapsed-time claim.
+- Consequence: The supervisor package can now be checked deterministically without overstating completion. Supervisor decisions, live usability, literature execution, shared access, university rules, EXP-005, and medical gates remain human/external work.

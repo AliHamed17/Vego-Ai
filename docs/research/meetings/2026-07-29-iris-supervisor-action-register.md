@@ -2,6 +2,8 @@
 
 > **Status:** Transcript-backed action register. Owners/dates remain ‘inferred’ or ‘working target’ where the call did not explicitly formalize them.
 
+The action statuses below preserve the call-time extraction state. They are not a live completion dashboard. Current implementation and acceptance state belongs in the [master traceability register](../phd-proposal/master-traceability-register.md) and [closure audit](../phd-proposal/iris-requirements-closure-audit.md).
+
 ## Actions
 
 | ID | Origin | Owner | Action | Due | Status | Requirements | Evidence |

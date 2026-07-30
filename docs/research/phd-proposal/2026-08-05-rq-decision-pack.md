@@ -112,7 +112,7 @@ The working proposal will state:
 - The independent-evidence program currently has 0 of 2 reviewer returns and 0 of 24 adjudicated generalization-safe labels.
 - Accuracy, macro-F1, effort reduction, generalization, and superiority are not yet computable.
 - There are no clinical results.
-- The completed MIMIC work is a four-hour metadata/schema audit only; it inspected no patient rows and does not select or validate a study dataset.
+- The documented MIMIC work is a bounded metadata/schema audit only; it inspected no patient rows and does not select or validate a study dataset. Four elapsed hours are not claimed because no start/end record exists.
 - MediVARIA is a candidate medical transfer vehicle, not an approved or completed PhD study.
 
 Related evidence:
@@ -135,7 +135,7 @@ Please record one outcome per row: **Approve**, **Approve with correction**, **D
 | D-RQ-06 | Use 26 August as the proposed medical-route decision gate | Approve or replace with a date | Pending |
 | D-RQ-07 | Accept the evidence-boundary wording in section 6 | Approve | Pending |
 | D-RQ-08 | Treat the existing literature taxonomy as the seed scope and refine its exact review method next | Approve with correction | Pending |
-| D-RQ-09 | Confirm the completed four-hour, metadata/schema-only MIMIC boundary and continued prohibition on patient-row inspection | Approve, narrow, or defer | Pending |
+| D-RQ-09 | Confirm the bounded metadata/schema-only MIMIC boundary and continued prohibition on patient-row inspection; require timing evidence for future time-box claims | Approve, narrow, or defer | Pending |
 | D-RQ-10 | Assign an owner to verify university candidacy rules and dates | Name owner and source | Pending |
 
 ## 8. Read-back checklist
