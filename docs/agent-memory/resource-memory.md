@@ -2,7 +2,36 @@
 
 This file is the compact shared resource index for Codex and Claude. It points agents to reusable research resources without forcing every prompt to reload downloaded source files.
 
-Last updated: 2026-07-11 by Codex.
+Last updated: 2026-07-30 by Codex.
+
+## July 29 Doctoral Execution Program
+
+Local control package:
+
+- `docs/research/phd-proposal/README.md`
+- `docs/research/phd-proposal/master-traceability-register.md`
+- `docs/research/phd-proposal/2026-08-05-rq-decision-pack.md`
+- `docs/research/phd-proposal/three-study-contract.md`
+- `docs/research/phd-proposal/proposal-v0.1.md`
+- `docs/research/meetings/2026-08-05-supervisor-pre-read.md`
+- `docs/research/governance/medical-readiness-scorecard.md`
+- `docs/research/governance/mimic-metadata-audit-2026-07-30.md`
+
+External working resources:
+
+| Resource | URL | Current boundary |
+| --- | --- | --- |
+| Private Ali-owned PhD working folder | https://drive.google.com/drive/folders/1Och2Vlux87uqk6QZy0F4xr2WhfzY_cd- | Nine-folder structure created; not shared or sent pending Ali review. |
+| Native literature workbook | https://docs.google.com/spreadsheets/d/1tVAM10bxlmL7_8SbgDgN5BRfAR2f5Q4pGvQmx-Ypp4A/edit | Six tabs and six seed records created; searches and screening are not yet executed. |
+| Supplied MIMIC source folder | https://drive.google.com/drive/folders/1_RheL2DUcicQLGXJyY_soUb91zn9XLsz | Source/viewer resource only; leave unchanged and do not treat file visibility as authorization. |
+
+Operational state:
+
+- Branch: `docs/iris-july29-phd-execution`.
+- Preserved evidence commit: `3d0beca`.
+- Recurring calendar: Wednesday 09:00-10:00 Asia/Jerusalem through the October 7 occurrence; Ali, Iris, and Arnon accepted.
+- Medical readiness: 0/6; no patient-row inspection or medical computation is authorized.
+- External sharing: Ali must review and authorize the exact package first.
 
 ## HITL / Human-AI Resource Pack
 

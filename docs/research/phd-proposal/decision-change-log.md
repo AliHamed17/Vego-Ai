@@ -1,0 +1,20 @@
+# Doctoral Program Decision and Change Log
+
+Status: **active internal control; supervisor and institutional decisions remain pending unless explicitly recorded**
+
+The template for new entries is
+[`../../templates/supervisor-decision-change-log.md`](../../templates/supervisor-decision-change-log.md).
+Working defaults are not approvals.
+
+| ID | Date | Decision or change | Authority/status | Rationale/evidence | Affected artifacts | Supersedes | Next verification |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| DC-001 | 2026-07-30 | Adopt the July 29 requirements/action registers as working authority. | Ali internal control; bilingual/speaker confirmation pending | Latest meeting package contains R-01..R-19, A-01..A-15, and Q-01..Q-10. | Master traceability, successor plan, proposal package | Earlier sequencing only; not historical evidence | Human review of transcript-derived requirements |
+| DC-002 | 2026-07-30 | Mark the July 1 redirect and July 24 continuation plans legacy/absorbed. | Ali internal control | One successor prevents conflicting active sequencing while preserving their evidence gates. | Research index and legacy plan headers | Active labels in both older plans | Supervisor review of successor architecture |
+| DC-003 | 2026-07-30 | Use one umbrella RQ plus SQ1-SQ3 as the recommended working hierarchy. | Recommendation; supervisor decision pending | July 29 requirement R-01 and the authorized execution plan. | RQ pack, research plan, proposal, study contract, crosswalk | Multiple active five/six-question sets | Iris/Arnon exact-wording decision |
+| DC-004 | 2026-07-30 | Define Plan A as staged medical extension and Plan B as complete software/modeling execution. | Working default; supervisor confirmation pending | Prevents partner/data dependency from blocking the doctorate. | Proposal, study contract, readiness scorecard, RAID | Medicine-first dependency interpretations | Iris/Arnon Plan A/B decision |
+| DC-005 | 2026-07-30 | Set 2026-08-26 as the internal medical fallback checkpoint. | Internal control date; not a university/supervisor deadline | Allows the September proposal to converge on an executable path. | Execution plan, RAID, master register | None | Medical gate review and recorded outcome |
+| DC-006 | 2026-07-30 | Create a private Ali-owned Drive workspace and keep the supplied MIMIC folder separate/read-only. | Implemented; sharing pending Ali review | Enforces source/working/restricted separation. | Drive manifest, data boundary | Ad hoc source-folder editing | Minimum-access sharing test after Ali review |
+| DC-007 | 2026-07-30 | Import the literature workbook as a native Google Sheet with explicit table/dropdown semantics. | Implemented | Satisfies the one-paper-per-row evidence-control interface. | Literature protocol and workbook | No prior workbook | Execute searches and first screening pass |
+| DC-008 | 2026-07-30 | Accept the weekly recurring VEGO-AI supervision calendar series. | Implemented by Ali's calendar response | Calendar master shows Wednesday 09:00-10:00 Asia/Jerusalem; Iris, Arnon, and Ali accepted. | Weekly cadence and pre-read process | Ali `needsAction` state | Verify next occurrence and use pre-read workflow |
+| DC-009 | 2026-07-30 | Keep supervisor distribution and Drive sharing behind Ali's exact-package review. | Binding internal release gate | Prevents premature external distribution of machine-derived or provisional material. | Pre-read, proposal, Drive permissions | None | Ali reviews and authorizes exact release |
+| DC-010 | 2026-07-30 | Use six mandatory pre-row-level medical gates: use-case, people, authorization, ethics/privacy, environment, and protocol. | Binding internal safety control; external approvals remain pending | Separates entry authority from downstream integrity, pilot, and export checks and enforces NO-GO at 0/6. | Medical scorecard, execution/study contracts, templates, Clalit request, provenance and data-boundary controls | Earlier draft eight-item readiness checklist | Collect proof for G1–G6; no row-level work until all six pass |

@@ -2,21 +2,21 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-28 by Claude (evaluation phase: per-component verdicts, advisory LLM analyst, Iris coverage matrix, one-command full evaluation)
+**Last Updated:** 2026-07-30 by Codex (July 29 doctoral requirements-closure and proposal-control tranche)
 
 ---
 
 ## 1. Quick Status (< 10 lines)
-* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. PR #8 records the thesis evidence release; PR #10 is the unified-runtime dependency; stacked PR #11 is the BigUI experiment-platform publication route. Live GitHub remains authoritative for review and merge state.
-* Two constraints are active: offline H-layer architecture/experiment hardening and the EXP-005 human-label gate for the parked evaluation track.
-* The machine-derived July 1 meeting record supports a **framework-first** direction pending participant confirmation. M-02 through M-05 have no recorded outcomes.
-* July skills, prompt requirements, and six detailed specifications are **provisional drafts**, not approved interfaces. `allowed-touch-proposal.md` is also unapproved.
-* **Research Loop:** Fifteen iterations (001-015) are accepted. Iterations 001-007 are historical/pre-manifest; 008-015 are manifest-backed. Iteration 015 (`HLAYER-UNIFIED-HARDENING-V1`) is the latest reliability-only snapshot, verdict `NEUTRAL`. It introduces legacy/unified/parity infrastructure but selects no empirical or model default. EXP-013-018 conformance remains offline-only and authorizes no live listener.
-* **MediVARIA draft added (2026-07-04):** a provisional PhD/future-work proposal exists, but it is not supervisor-endorsed clinical work. MSc evidence remains education-only; there is no patient data or clinical-performance evidence in this repo.
-* **Accuracy Verdict:** *Accuracy improvement cannot be evaluated yet* (0 generalization-safe real labels exist). The EXP-005 gate now gates the PARKED evaluation track only - not framework-track doc/spec work.
-* **Thesis evidence package (2026-07-25):** a B0-B5 evidence ladder, canonical evidence snapshot, claim/chapter traceability, EXP-019..029 gated protocols, a 91-page review DOCX/PDF, and offline baseline-progress HTML are prepared and manifest-bound. This improves reliability and evaluation rigor; it does not establish an accuracy gain.
-* **All-experiment benchmark (2026-07-26):** EXP-000..040 are evaluated with seven independent dimensions. Twenty-six experiments have current source-backed runs: 22 `MEASURED_PASS`, four `MEASURED_PARTIAL`, 13 `GATED_NOT_RUN`, and two `PARKED_NO_RUN`. `CurrentRunIndex-v1` identifies the current projection while 73 accepted bundles and 690 observations remain immutable history. Current accuracy evidence is still zero.
-* **Evaluation phase (2026-07-28, Claude):** `scripts/run-full-evaluation.ps1` chains the 16-check gate -> benchmark -> per-component contribution report -> program overview/charts -> advisory analyst and PASSES end to end. `scripts/build_agent_contribution_report.py` gives every agent/component an evidence-based verdict (6 contributing, 2 partial, 1 not-yet-measurable): A1 fixture agreement 0.778-0.875 sits within the paper range, A2 guideline F1 0.267-0.545 sits below the paper's 0.70-0.88 (weakest measured link; H-layer churn triage is the designed compensation). `scripts/hlayer_llm_analyst.py` adds an ADVISORY-ONLY narrative (LLM via hardened client when a key exists, deterministic otherwise). `docs/research/iris-july1-implementation-matrix.md` maps all 12 July-1 directives to real implementations. Thesis snapshot, BigUI catalog, and research hub re-anchored to the new canonical revision. No accuracy claim anywhere; EXP-005 gate unchanged at 0/24.
+* Branch `docs/iris-july29-phd-execution` preserves the ten July 29 machine-derived evidence artifacts in commit `3d0beca`; production VEGO-AI behavior is unchanged.
+* The July 29 requirements and action registers are the bilingual-review-pending working authority: 19/19 requirements, 15/15 actions, and 10/10 open questions are controlled in one master register.
+* The recommended architecture is one umbrella RQ plus three subquestions: selective intervention, governed knowledge reuse, and evaluation/transfer. Iris and Arnon approval remains pending for the August 5 checkpoint.
+* Plan A is a staged medical extension; Plan B completes the doctorate in software/modeling. Any unproved critical medical prerequisite on August 26 triggers Plan B for the September proposal.
+* Proposal `v0.1`, the RQ decision pack, three-study contract, legacy crosswalk, claim register, RACI/RAID register, pre-read, and governance templates now form the first controlled tranche.
+* A private Ali-owned nine-folder PhD working Drive and native six-tab literature Sheet exist. They have not been shared or sent; searches and screening are prepared but not yet executed.
+* Ali, Iris, and Arnon are confirmed accepted on the recurring Wednesday 09:00-10:00 Asia/Jerusalem calendar event through October 7.
+* The metadata-only MIMIC audit observed 25 CSVs totaling 39.65 GiB versus 26 official MIMIC-III v1.4 tables; `NOTEEVENTS` and provenance are unresolved. No patient rows were inspected.
+* Medical readiness is **NO-GO at 0/6 entry gates**. EXP-005 remains blocked at 0/24 generalization-safe labels; no medical, accuracy, or generalization gain is claimed.
+* September/October dates remain provisional until the department confirms the official process, deadline, reviewers, committee, and presentation rules.
 
 ---
 
@@ -46,16 +46,23 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 | **ISS-007** | Medium | Evaluation leakage risk if same-pattern rows are claimed as generalization. | Keep same-pattern rows strictly for mechanism validation. |
 | **ISS-012/013**| Medium | False-accuracy-narrative risk (synthetic vs real accuracy); weak evidence from one-reviewer. | Require κ & adjudication; quote real label status in reports. |
 | **ISS-014** | High | M-01 through M-06 are unrecorded; no architecture/default/live authorization can be inferred. | Record explicit outcomes with Iris and Arnon; silence remains deferred. |
+| **ISS-022** | High | July 29 Hebrew ASR, English translation, and speaker attribution remain machine-derived. | Complete bilingual and diarization review before direct quotation or final attribution. |
+| **ISS-023** | High | Medical readiness is 0/6 mandatory entry gates, with all accountable Plan A roles and approvals unproved. | Name owners and collect use-case, people, authorization, ethics/privacy, environment, and protocol evidence. |
+| **ISS-024** | High | The official candidacy process, deadline, reviewer count, committee rules, and presentation requirements are unverified. | Obtain written confirmation from the department or Graduate Studies coordinator. |
+| **ISS-025** | High | The shared MIMIC resource has 25 observed CSVs rather than 26 official tables and lacks canonical provenance. | Reconcile the manifest inside an authorized VDI only after all six entry gates pass. |
+| **ISS-026** | Medium | The private PhD Drive and literature Sheet are not shared or access-tested. | Ali reviews the exact package, then explicitly authorizes sharing and recipient access checks. |
 
 ---
 
 ## 4. Next Action
-1. **Human evidence gate:** approve the blind-label protocol, appoint two independent reviewers plus an adjudicator, and calibrate on the three excluded same-pattern rows.
-2. **EXP-020:** collect the 24 generalization-safe labels without exposing the 16/8 development/holdout split to reviewers; supplied labels remain 0 and must never be inferred or prefilled.
-3. **Decision gate:** record M-01..M-06. Until then, keep architecture, dosage, H-Verify, authority, and timeout choices provisional.
-4. **Offline advancement:** preserve iterations 008-015 atomic contracts and metric semantics. Iteration 15 is reliability-only; do not interpret it as an accuracy or generalization result.
-5. **Policy gate:** perform development-only error analysis before proposing one deterministic candidate; open the sealed eight-row holdout only after the policy and hashes are frozen.
-6. **Phase 4:** remain blocked until M-05 plus a separate exact-file implementation authorization.
+1. **Ali review gate:** inspect the exact August 5 pre-read, RQ pack, proposal, Drive structure, and literature Sheet before any external sharing.
+2. **August 5 decision gate:** obtain and record Iris/Arnon decisions on the one-plus-three hierarchy, study map, Plan A/B labels, literature categories, medical owner, Penina dates, and official-process owner.
+3. **Literature tranche:** execute the recorded searches, deduplicate, screen, verify identities/claims, and prepare the August 12 synthesis without treating tools as evidence.
+4. **Transcript gate:** complete bilingual and speaker review; continue using paraphrases only until then.
+5. **EXP-005 gate:** appoint two independent reviewers plus an adjudicator and collect the 24 safe labels; do not infer or prefill labels.
+6. **Medical gate:** keep all row-level work blocked at 0/6 and collect only documentary proof for the six prerequisites.
+7. **August 26 fallback:** run the medical go/no-go review and default the September proposal to Plan B if any critical prerequisite remains unproved.
+8. **Administrative gate:** obtain written confirmation of the official candidacy process and rebaseline within one working day if required.
 
 ---
 
@@ -105,7 +112,10 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 <details>
 <summary><b>6.4 PhD Research Trajectory (Direct Track)</b></summary>
 
-* **Topic:** Reusable human judgment for governed human-AI co-reasoning in AI-assisted domain model assessment.
-* **Phased Roadmap:** P0 (MSc Gate) -> P1 (Baseline taxonomy) -> P2 (Reuse validity) -> P3 (Policy v1.1 refinement on 16 dev / 8 holdout) -> P4 (Broader medical/class cohorts) -> P5 (Framework synthesis).
-* **Iris Action Items:** (1) Define agent skills mapping (A1-A4), (2) Specify prompt/context requirements, (3) Define interface contracts, (4) Separate framework/evaluation phases.
+* **Topic:** Reusable human judgment for auditable, reliable, and transferable human-AI co-reasoning in agentic assessment.
+* **Canonical working hierarchy:** one umbrella RQ plus SQ1 selective intervention, SQ2 governed knowledge reuse, and SQ3 evaluation/transfer.
+* **Study map:** Study 1 intervention architecture; Study 2 judgment lifecycle; Study 3 evaluation and transfer.
+* **Plans:** Plan A adds a gated medical transfer pilot; Plan B completes all questions through software/modeling and non-clinical replication.
+* **Control interfaces:** master traceability, RQ crosswalk, three-study contract, five-state claim register, six-gate medical scorecard, weekly pre-read, and decision/change log.
+* **Decision dates:** August 5 supervisor checkpoint; August 26 medical go/no-go; September/October proposal checkpoints are provisional pending official confirmation.
 </details>

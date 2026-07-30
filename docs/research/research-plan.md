@@ -1,19 +1,29 @@
 # Research Plan
 
+Status (2026-07-30): working successor architecture for the 2026-08-05
+supervisor decision. It is not an approved supervisor decision until recorded
+in the decision/change log. The complete control package is indexed in
+`docs/research/phd-proposal/README.md`.
+
 ## Topic
 
-Reusable human judgment in AI-assisted domain modeling and model assessment.
+Reusable human judgment in agentic AI assessment of domain-specific artifacts
+and processes.
 
 ## Main Research Question
 
-How can reusable human judgment be captured, governed, and evaluated so that AI-assisted domain model
-assessment can move from one-off expert correction toward auditable human-AI co-reasoning?
+How can reusable human judgment be captured, governed, and reused in agentic AI
+assessment of domain-specific artifacts and processes to support auditable,
+reliable, and transferable human-AI co-reasoning?
 
 ## Contribution Statement
 
-This research contributes a human-AI co-reasoning approach for AI-assisted domain model assessment, in which
-human judgment is selectively triggered, structurally captured, stored as reusable knowledge, and evaluated
-under explicit evidence gates before any automated behavior change is allowed.
+This research contributes a domain-neutral human-AI co-reasoning framework in
+which human judgment is selectively requested, structurally captured,
+validated and reconciled, stored with provenance, reused transparently, and
+evaluated under explicit evidence gates. VEGO-AI software/modeling evidence is
+the common core. A medical transfer is conditional Plan A evidence, never the
+sole basis of the doctorate.
 
 ## Core Problem
 
@@ -25,21 +35,23 @@ This project studies how human review can move from episodic validation to reusa
 
 | Element | VEGO-AI Framing |
 | --- | --- |
-| Problem | AI-assisted model assessment needs expert judgment, but one-off review does not scale or accumulate knowledge. |
-| Gap | Existing human-in-the-loop and XAI work often explains or corrects individual decisions without preserving reusable modeling judgment. |
-| Artifact | VEGO-AI human-AI co-reasoning layer: selective intervention policy, human review queue, feedback manager, and human judgment memory. |
+| Problem | Agentic assessment needs expert judgment, but one-off review neither scales nor accumulates governed knowledge. |
+| Gap | Existing human-in-the-loop and XAI work often explains or corrects individual decisions without preserving reusable, provenance-rich domain judgment. This gap remains a working proposition until the systematic literature search tests it. |
+| Artifact | Domain-neutral H-layer: selective-intervention policy, structured-feedback lifecycle, conflict and authority controls, and reusable human-judgment memory. |
 | Mechanisms | Trigger review selectively, capture decisions structurally, preserve provenance, detect conflicts, retrieve prior judgments with explainable matching, and present them as advisory evidence before behavior-changing reuse. |
-| Evaluation path | Compare baseline VEGO-AI against staged human-review and memory-assisted conditions, then analyze accuracy, consistency, effort, conflict handling, and thesis-level validity threats. |
+| Evaluation path | Compare staged intervention and judgment-reuse conditions using assessment quality, consistency, traceability, expert effort, reliability, conflict handling, and validity threats. Accuracy or generalization results remain blocked until real expert labels and the registered evidence gates exist. |
 
 ## Research Questions
 
-| ID | Question | Evidence Needed |
+| ID | Question | Study and evidence path |
 | --- | --- | --- |
-| RQ1 | How does VEGO-AI identify and classify variability across domain models before human intervention? | Existing evaluation outputs, case-level scores, Agent D classes, baseline agreement metrics. |
-| RQ2 | Which AI classifications require human judgment, and can selective intervention reduce unnecessary expert effort? | Human Review Queue trigger reasons, queue size, coverage of uncertain or guideline-sensitive cases. |
-| RQ3 | Can human feedback be captured with enough structure and provenance to support audit, conflict detection, and future reuse? | Human feedback schema, resolved queue records, validation tests, conflict cases. |
-| RQ4 | Can reusable human judgment memory support later variability interpretation first as advisory evidence and then, under controlled conditions, as a deterministic memory-informed comparison? | M4A memory advice reports, planned C4B experiment, memory-informed comparison results, leakage status, comparison to non-memory conditions. |
-| RQ5 | How should this artifact be positioned within human-in/on-the-loop AI, XAI, expert feedback, AI-assisted modeling, and design-science literature? | Literature-review taxonomy, claim/evidence table, thesis discussion. |
+| SQ1 | When and how should an agentic assessment system request human judgment so that important uncertainties are addressed without unnecessary expert burden? | Study 1: event/trigger analysis, intervention-policy comparison, offline conformance testing, and existing VEGO-AI model cases. |
+| SQ2 | How should expert judgments be represented, validated, reconciled, and stored so they can be reused transparently without unsafe generalization or loss of human authority? | Study 2: structured-feedback cases, provenance/conflict tests, expert review, and safe memory-retrieval/reuse analysis. |
+| SQ3 | To what extent does the resulting framework improve assessment quality, consistency, traceability, and expert effort across domains, first in software/modeling and, when governance and access permit, in healthcare? | Study 3: controlled comparisons, real expert labels, paired outcomes, workload/usability evidence, and external replication. Plan B completes this in software/modeling; Plan A may add a gated medical transfer pilot. |
+
+All former RQ, SQ, P-RQ, and MV-RQ identifiers are retained with explicit
+dispositions in `docs/research/phd-proposal/legacy-rq-crosswalk.md`. They are
+not parallel active hierarchies.
 
 ## Current Mechanism State
 
@@ -61,15 +73,28 @@ This project studies how human review can move from episodic validation to reusa
 - Research OS registers for artifact audit, provenance, and publishability.
 - Thesis drafts under `thesis/chapters/`, including a guarded Chapter 7 current-evidence draft.
 - PhD control page: `docs/research/phd-thesis-optimization-plan.md`.
+- Active doctoral execution package:
+  `docs/research/phd-proposal/README.md`.
+- Medical/data controls: `docs/research/governance/README.md`.
 - Supervisor EXP-005 approval pack: `docs/research/supervisor-label-approval-pack.md`.
 - Controlled local artifacts including root paper/IRB material, model files, analysis outputs, and evaluation outputs remain ignored until audit.
 
 ## Near-Term Milestones
 
-1. Review `docs/research/supervisor-label-approval-pack.md` with the supervisor.
-2. Approve reviewer plan, consent/anonymity handling, evidence target, and claim boundary.
-3. Collect blind EXP-005 labels for the 24 generalization-safe rows.
-4. Rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream`.
-5. Update Chapter 7 with real-label accuracy, macro-F1, paired-correctness, reliability, and limitations.
-6. Use `docs/research/phd-thesis-optimization-plan.md` to decide the PhD continuation path after real errors are known.
-7. Keep M4B-1.1, M4B-2, Agent 4 behavior changes, LLM/API calls, embeddings, and baseline overwrites blocked until real labels and explicit approval exist.
+1. Complete and review the 2026-08-05 RQ decision pack, three-study contract,
+   Plan A/B comparison, literature workbook, bounded MIMIC audit, and
+   supervisor pre-read by 2026-08-04 18:00 Asia/Jerusalem.
+2. Record supervisor decisions within one working day; do not rewrite a working
+   recommendation as approval.
+3. Execute the reproducible literature search and first screening pass by
+   2026-08-12, then connect every supported gap to a study and contribution.
+4. Preserve the EXP-005 campaign at 0/24 until real independent labels are
+   supplied under its approved protocol. Only then run the downstream
+   evaluation and claim checks.
+5. Run the medical go/no-go on 2026-08-26. Any unproven critical gate defaults
+   the September proposal to Plan B and leaves Plan A as a conditional annex.
+6. Converge proposal versions against the provisional September/October
+   checkpoints while the department confirms the official process and date.
+7. Keep M4B-1.1, M4B-2, Agent 4 behavior changes, online LLM/API processing of
+   restricted data, embeddings, and baseline overwrites blocked until their
+   separate evidence and approval gates pass.

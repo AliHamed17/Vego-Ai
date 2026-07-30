@@ -1,6 +1,7 @@
 # Revert Log
 
 Record file changes and rollback notes here.
+
 ## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
 
 - Files added:
@@ -10,139 +11,6 @@ Record file changes and rollback notes here.
   - `docs/research/supervisor-label-approval-pack.md` (appended sign-off checklist reference section 8)
 - Git branch: `feature/evaluation-phase` created and active.
 - Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
-
-## 2026-06-29 12:27 +03:00 - Codex - Thesis Chapter 7 Progress
-
-- Files changed:
-  - thesis/chapters/07-experimental-results.md
-  - thesis/outline.md
-  - docs/research/thesis-structure-map.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/PROGRESS_TRACKER.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-- Rollback note: Revert the Chapter 7 draft and related tracker/memory/outline edits; regenerate dashboards to restore prior progress counts.
-- Git commit: none recorded by script.
-
-## 2026-06-29 15:09 +03:00 - Codex - Supervisor EXP-005 Approval Pack
-
-- Files changed:
-  - docs/research/supervisor-label-approval-pack.md
-  - docs/research/expert-labeling-protocol.md
-  - thesis/outline.md
-  - docs/PROGRESS_TRACKER.md
-  - docs/research/README.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - scripts/build-progress-tracker.py
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-- Rollback note: Revert the supervisor approval pack, protocol/tracker/outline/memory edits, and the chapter-count filter in build-progress-tracker.py; regenerate dashboards to restore prior reports.
-- Git commit: none recorded by script.
-
-## 2026-06-29 15:20 +03:00 - Codex - PhD Thesis Optimization And Claude Collaboration
-
-- Files changed:
-  - docs/research/phd-thesis-optimization-plan.md
-  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
-  - CLAUDE.md
-  - docs/research/README.md
-  - docs/research/research-plan.md
-  - docs/research/thesis-structure-map.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/resource-memory.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-- Rollback note: Revert the new PhD optimization and Claude prompt docs plus the related research-plan, Claude, thesis-map, and memory edits; regenerate dashboards/wiki outputs.
-- Git commit: none recorded by script.
-
-## 2026-06-29 15:39 +03:00 - Codex - Doctoral Capability Alignment
-
-- Files changed:
-  - docs/research/phd-thesis-optimization-plan.md
-  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
-  - docs/operations/alignment-control.md
-  - docs/architecture/project-map.md
-  - docs/architecture/README.md
-  - README.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-- Rollback note: Revert the doctoral capability stack/prompt/alignment/architecture/README/memory edits and regenerate dashboards/wiki outputs.
-- Git commit: none recorded by script.
-
-## 2026-06-29 16:33 +03:00 - Codex - Architecture Health Verification
-
-- Files changed:
-  - docs/PROGRESS_TRACKER.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/dashboards/status-snapshot.generated.md
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-  - reports/generated/project_review/latest-review.md
-  - reports/generated/project_review/latest-review.json
-  - reports/generated/project_review/review-dashboard.html
-  - reports/generated/evidence_consistency/latest.json
-  - reports/generated/evidence_consistency/latest.md
-- Rollback note: No architecture patch was applied. Regenerated reports can be rebuilt from scripts if needed.
-- Git commit: none recorded by script.
-
-## 2026-06-29 16:35 +03:00 - Codex - E2E Dashboard Path Rendering Fix
-
-- Files changed:
-  - scripts/build-e2e-progress-report.ps1
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-  - docs/dashboards/status-snapshot.generated.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - reports/generated/project_review/latest-review.md
-  - reports/generated/project_review/latest-review.json
-  - reports/generated/project_review/review-dashboard.html
-  - reports/generated/evidence_consistency/latest.json
-  - reports/generated/evidence_consistency/latest.md
-- Rollback note: Revert scripts/build-e2e-progress-report.ps1 and regenerate E2E/wiki outputs if the Markdown rendering change is not wanted.
-- Git commit: none recorded by script.
-
-## 2026-06-29 23:42 +03:00 - Codex - Architecture Health Recheck
-
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/PROGRESS_TRACKER.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/dashboards/status-snapshot.generated.md
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-  - reports/generated/project_review/latest-review.md
-  - reports/generated/project_review/latest-review.json
-  - reports/generated/project_review/review-dashboard.html
-  - reports/generated/evidence_consistency/latest.json
-  - reports/generated/evidence_consistency/latest.md
-- Rollback note: No source architecture patch was applied in this recheck. Regenerated outputs can be rebuilt from scripts.
-- Git commit: none recorded by script.
 
 ## 2026-07-03 23:20 +03:00 - Codex - Hebrew MP4 transcript
 
@@ -638,4 +506,16 @@ Record file changes and rollback notes here.
 - Files changed:
   - docs/agent-memory/issues.md
 - Rollback note: The deck is an external deliverable in Downloads; only docs/agent-memory/issues.md changed in the repo (revert that single file to undo).
+- Git commit: none recorded by script.
+
+## 2026-07-30 15:10 +03:00 - Codex - Implement July 29 doctoral requirements-closure program
+
+- Files changed:
+  - docs/research/
+  - docs/templates/weekly-supervisor-pre-read.md
+  - docs/templates/supervisor-decision-change-log.md
+  - docs/agent-memory/
+  - docs/dashboards/
+  - docs/PROGRESS_TRACKER.md
+- Rollback note: Revert the implementation commit that follows this entry to remove the July 29 doctoral-control tranche; keep evidence commit 3d0beca if the machine-derived source package must remain preserved. External Drive and Sheet changes require separate owner-controlled archival or deletion and are not reverted by Git.
 - Git commit: none recorded by script.

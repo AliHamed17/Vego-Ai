@@ -1,18 +1,27 @@
 # PhD Extension Idea Log
 
-Last updated: 2026-07-04 by Fable (Claude).
+Last updated: 2026-07-30 (status reconciliation; original ideas retained).
 
 Purpose: lightweight idea log, NOT a commitment. Per Arnon's instruction in the 2026-07-01 meeting (transcript 33:05-33:22), collect extension ideas while reading; each must later be reviewed and approved with Iris. Sizing context from the same meeting: an MSc thesis is roughly one journal paper / one small study; a doctorate is roughly three studies / three-four journal papers, and the thesis can serve as the preliminary-results study inside the larger PhD research.
 
 Governance: every idea below is subject to the gates in `docs/operations/alignment-control.md` - the EXP-005 real-label gate, the no-accuracy-claim boundary, the parked evaluation track, and the protected VEGO-AI source paths. No evaluation activity for any idea starts without supervisor approval.
 
-Preferred direction: **medical-domain transfer** is the extension Iris and Arnon explicitly said they would be most interested in (transcript 33:36-33:49).
+Current disposition: medical-domain transfer is a **conditional Plan A
+extension**, not a dependency of the doctorate. Plan B must answer the same
+three successor subquestions through software/modeling and non-clinical
+replication. The governing plan and legacy-question mapping are
+`docs/research/phd-proposal/2026-07-29-doctoral-execution-plan.md` and
+`docs/research/phd-proposal/legacy-rq-crosswalk.md`.
 
 ## Seed Ideas
 
-### 1. H-layer transfer to medical model assessment (preferred) - NOW ACTIVE AS MediVARIA
+### 1. H-layer transfer to medical model assessment (conditional Plan A only)
 
-- Status update (2026-07-04): this idea has materialized as **MediVARIA** - a one-page technical proposal (TRL 3 -> TRL 5, 3 years, IIA Applied Research track, medical partner TBD) transferring VEGO-AI to clinical guideline adherence (justified clinical variability vs. erroneous deviations, with structured rationale). Full study plan: `docs/research/medivaria/medivaria-study-plan.md` (MV-RQ1-MV-RQ6, phases MV-P0..MV-P5). Ideas 2, 3, and 5 below now have their natural clinical setting inside MediVARIA. Boundary: education-domain TRL3 metrics are not clinical evidence; no MediVARIA performance claims exist yet; supervisor endorsement (MV-P0 gate) is pending.
+- Status update (2026-07-30): **MediVARIA** remains a conditional planning
+  annex with a partner TBD. It may be used only after the medical readiness
+  gate passes; otherwise the September proposal follows Plan B. Its education-
+  domain baseline metrics are not clinical evidence, and no MediVARIA
+  performance claim exists.
 - Research question: can the H-layer architecture (listener, dosage-configured intervention, verified expert feedback, judgment memory) transfer from student domain-model assessment to medical-domain model/knowledge assessment, and what changes are forced by the domain?
 - Required evidence: a medical modeling corpus or partner dataset; domain-expert availability; a mapping of the E1-E14 event catalog (pipeline + human-feedback lifecycle; E15-equivalent evaluation events stay in the gated clinical evaluation track) onto the medical pipeline; ethics/IRB clearance appropriate to medical data.
 - Possible study: replicate the framework Version-0/Version-1 comparison in a medical modeling course or clinical-guideline modeling setting; measure expert-effort and review-quality differences against the original domain.

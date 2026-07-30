@@ -2,6 +2,13 @@
 
 Last updated: 2026-07-04 by Fable (Claude) - MediVARIA domain-transfer note after the roadmap; content otherwise 2026-06-29 by Codex.
 
+Status update (2026-07-30): **LEGACY / ABSORBED.** The active working hierarchy is
+one umbrella RQ plus SQ1-SQ3 in
+`docs/research/phd-proposal/2026-08-05-rq-decision-pack.md`. P-RQ1 through P-RQ5
+remain historical identifiers and are explicitly disposed in
+`docs/research/phd-proposal/legacy-rq-crosswalk.md`; they are not a second active
+question set.
+
 Purpose: align Claude, Codex, and the local VEGO-AI workspace around a stronger PhD thesis trajectory while
 preserving the current MSc thesis evidence boundary. This plan enhances the research structure and baseline
 framing; it does not authorize Agent 4 changes, M4B-2, LLM/API calls, embeddings, baseline overwrites, or

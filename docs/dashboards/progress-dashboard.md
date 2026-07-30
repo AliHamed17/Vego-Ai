@@ -1,22 +1,25 @@
 # Progress Dashboard
 
-Last curated update: 2026-07-10.
+Last curated update: 2026-07-30.
 
 ## Executive Snapshot
 
-The machine-derived July 1 record supports a FRAMEWORK-FIRST direction pending participant confirmation. The July 15 package and H-layer specifications are provisional; M-02 through M-05 are not recorded. Ten H-layer iterations are accepted: iteration 008 reliability-only, iteration 009 metric/contract repair, and iteration 010 reliability-only are `NEUTRAL`. The canonical replay runner contains six experiments. EXP-009/010 remain provisional synthetic prototypes, EXP-011 is parked, and EXP-012 stops at safe N=0 / `NOT YET COMPUTABLE`. Live listener and prompt/context integration work remain blocked.
+The July 29 requirements-closure program is the current working authority, subject to bilingual and supervisor confirmation. All 19 requirements, 15 actions, and 10 open questions are controlled. The recommended one-plus-three research architecture, three studies, Plan A/B, proposal `v0.1`, and August 5 pre-read are prepared but not approved or sent. A private PhD Drive and native literature Sheet exist but have not been shared. Medical readiness is NO-GO at 0/6 gates; the metadata-only MIMIC audit inspected no patient rows. EXP-005 remains 0/24, so no accuracy, generalization, or clinical-performance gain is claimed.
 
 Run `.\scripts\build-progress-visualizations.ps1` for generated Mermaid status charts and a local HTML progress dashboard at `docs/dashboards/progress-visualizations.generated.html`.
 Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report and local web page at `reports/generated/e2e_dashboard/index.html`.
 
 | Area | Status | Evidence | Next Action |
 | --- | --- | --- | --- |
-| July 2026 supervisor redirect | Yellow / awaiting decisions | Machine-derived notes, enhanced evidence appendix, decision register, provisional skills/specs, and split diagrams. | Confirm M-01; record M-02..M-05 before selecting defaults or architecture. |
+| July 29 doctoral control package | Yellow / awaiting supervisor decisions | `docs/research/phd-proposal/`: 19/15/10 master register, exact one-plus-three RQ recommendation, three-study contract, legacy crosswalk, claim/RACI/RAID registers, proposal `v0.1`, and August 5 pre-read. | Ali reviews the exact package; Iris and Arnon decide the RQs, studies, Plan A/B, owners, literature categories, and dates. |
+| Private Drive and literature workbook | Green for initial structure; sharing/search pending | Ali-owned nine-folder Drive and native six-tab Sheet are recorded in `drive-workspace-manifest.md`; no external share or completed search is claimed. | Ali authorizes exact recipients, then execute and log database searches and screening. |
+| Medical readiness and MIMIC audit | Blocked / 0 of 6 gates | `medical-readiness-scorecard.md` and metadata-only audit: 25 CSVs, 39.65 GiB, missing `NOTEEVENTS`, no patient-row inspection. | Collect all six prerequisite proofs; default to Plan B on August 26 if any critical gate remains open. |
+| July 1 redirect and July 24 continuation | Legacy / absorbed | Both files retain their evidence and safety gates but point to the July 29 successor program. | Use the legacy RQ and decision crosswalks; do not treat older plans as active authority. |
 | Phase 0 truth/governance reconciliation | Complete | `docs/research/h-layer/phase-0-boundary-record.md`; source reconciliation, generated memory/wiki refreshes, focused tests, and protected-path checks pass. | Preserve unrelated changes and keep runtime work gated by recorded authorization. |
 | Offline experiment program | Yellow / gated | Ten accepted iterations; iteration 009 repairs contracts/metrics, iteration 010 is a reliability-only rerun, and the separate conformance suite passes offline. | Preserve the six-experiment replay contract; keep iteration 011 and live integration blocked until their gates clear. |
 | Passive shadow listener | Blocked | `allowed-touch-proposal.md` and template are proposals only. | Require M-05 plus separate exact-file authorization; default-off/fail-open if later approved. |
-| MediVARIA PhD-track study plan | Yellow (draft; MV-P0 supervisor endorsement pending 2026-07-15) | `docs/research/medivaria/medivaria-study-plan.md` (2026-07-04): clinical transfer mapping, MV-RQ1-6, MV-P0..P5, clinical claim boundaries; one-pager archived ignored. Education-domain TRL3 metrics are not clinical evidence; no MediVARIA performance claims exist. | Present at 2026-07-15 (agenda section 8); confirm role split and first clinical guideline domain with Iris/Arnon. |
-| Source baseline | Historical baseline available; current tree dirty | Safe GitHub baseline and tagged historical states exist; current branch is `agent/publish-hlayer-and-supervisor-package` at `134ce86` with local changes. | Preserve the dirty tree; compare protected fingerprints before/after offline work. |
+| MediVARIA PhD-track study plan | Conditional Plan A proposal | `docs/research/medivaria/medivaria-study-plan.md`: clinical transfer mapping and legacy questions; no clinical-performance evidence exists. | Crosswalk to SQ3 and keep operational work blocked until the six medical gates pass. |
+| Source baseline | Documentation branch; production unchanged | Branch `docs/iris-july29-phd-execution`; ten July 29 evidence artifacts preserved in commit `3d0beca`. | Stage only intended research, tracking, and generated documentation paths; verify protected behavior remains untouched. |
 | M1 Human Review Queue | Green | Implemented and tested. | Use as upstream evidence for artifact manifest. |
 | M2 Human Feedback Manager | Green | Implemented and tested. | Include schema/docs/tests in artifact manifest. |
 | M3 Human Judgment Memory | Green | Tag `milestone-m3-human-judgment-memory`. | Reference tag in thesis evidence. |
@@ -46,16 +49,15 @@ Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report a
 
 | Priority | Work Item | Owner | Status |
 | --- | --- | --- | --- |
-| P1 | Review and merge PR #6 schema hardening if clean. | Codex / reviewer | Open |
-| P1 | Use release artifact bundle for external technical review. | Research lead / agents | Available |
-| P1 | Record M-01..M-06; keep unaccepted architecture/dosage/verifier choices configurable. | Iris, Arnon, Ali | Awaiting meeting |
-| P1 | Preserve iteration-009 metric semantics and iteration-010 reliability snapshot; keep iteration 011 and live prompt/context work gated. | Research agents | Blocked on decisions |
+| P1 | Review the exact August 5 package before any external share. | Ali | Human review |
+| P1 | Decide RQ wording, three-study map, Plan A/B labels, medical owner, literature categories, Penina dates, and administrative owner. | Iris, Arnon, Ali | Awaiting August 5 |
+| P1 | Record decisions and proposal deltas within 24 hours. | Ali | Awaiting decisions |
+| P1 | Execute reproducible literature searches, deduplication, screening, identity/claim verification, and synthesis. | Ali | Ready to start |
+| P1 | Obtain written official candidacy-process and deadline confirmation. | Department / Graduate Studies owner | Open |
+| P1 | Maintain medical NO-GO at 0/6 and prepare the August 26 fallback review. | Ali + named gate owners | Blocked |
+| P1 | Complete bilingual/speaker review before quotations or final attribution. | Ali + bilingual reviewer | Open |
 | P1 | Approve EXP-005 protocol and schedule two human reviewers; never prefill labels. | Supervisors / research lead | Human-gated |
-| P1 | Keep M4B-2 and Agent 4/LLM behavior blocked. | All agents | Active rule |
-| P1 | Enforce Codex isolation for VEGO-AI milestone implementation paths on `main`. | Codex | Active rule |
-| P2 | Complete metadata-only audit for deferred artifacts. | Research lead / agents | In progress |
-| P2 | Fill EXP-000 evidence mapping. | Research lead / agents | In progress |
-| P3 | Grant Atlassian Rovo access for live Confluence sync. | User | Blocked |
+| P2 | Refresh project memory, dashboards, local wiki outbox, and health evidence after each tranche. | Codex / Claude | Active rule |
 
 ## Confluence Tracking
 

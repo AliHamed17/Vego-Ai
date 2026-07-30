@@ -614,3 +614,29 @@ Chronological prompt history for Codex and Claude.
   - python scripts/check_evidence_consistency.py -> PASS
 - Status: completed
 - Next steps: Present 29 July. Fix ISS-020/ISS-021 in the tracked docs before those figures enter a thesis chapter.
+
+## 2026-07-30 15:10 +03:00 - Codex - Implement July 29 doctoral requirements-closure program
+
+- Request: Implement the VEGO-AI July 29 requirements-closure and PhD proposal execution plan.
+- Actions taken:
+  - Preserved ten machine-derived July 29 evidence artifacts on a dedicated documentation branch.
+  - Implemented the 44-item master traceability program, one-plus-three RQ package, three-study contract, Plan A/B controls, proposal v0.1, literature protocol, pre-read, RACI/RAID, claims, decisions, and templates.
+  - Created the private nine-folder Google Drive workspace and native six-tab literature workbook without external sharing.
+  - Accepted and verified the recurring supervision calendar series.
+  - Completed a metadata-only MIMIC audit and aligned all medical controls to six mandatory entry gates at 0/6 with downstream integrity, pilot, and export controls.
+  - Updated research indexes, project memory, issue/decision/resource records, executive tracker, and dashboards.
+- Files changed:
+  - docs/research/
+  - docs/templates/weekly-supervisor-pre-read.md
+  - docs/templates/supervisor-decision-change-log.md
+  - docs/agent-memory/
+  - docs/dashboards/
+  - docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - git diff --check
+  - custom 44-item/table/link/RQ/gate validation
+  - python scripts/check_evidence_consistency.py --check: 18/18 PASS
+  - python scripts/validate_research_records.py schemas/examples docs/research/bigui/experiment-catalog-snapshot-v1.json: PASS
+  - scripts/research-health.ps1: PASS
+- Status: completed; supervisor, bilingual, literature-execution, administrative, EXP-005, and medical gates remain open
+- Next steps: Ali reviews the exact package before sharing; record August 5 supervisor decisions; execute the literature protocol; obtain bilingual and university-process confirmation; keep medical work blocked at 0/6 and default to Plan B on August 26 if any critical gate remains unproved.

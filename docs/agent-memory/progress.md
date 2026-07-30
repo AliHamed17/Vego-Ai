@@ -10,6 +10,11 @@ Track milestones, current work, and next steps here.
 
 | Date | Milestone | Status | Notes |
 | --- | --- | --- | --- |
+| 2026-07-30 | July 29 supervisor evidence preserved | Done | Ten machine-derived working-evidence artifacts preserved on `docs/iris-july29-phd-execution` in commit `3d0beca`; human bilingual/speaker review remains open. |
+| 2026-07-30 | Doctoral requirements-closure control package | In progress | Implemented the 19/15/10 master register, RQ decision pack, three-study contract, legacy crosswalk, claim/RACI/RAID controls, proposal `v0.1`, pre-read, and decision templates; supervisor approval is pending. |
+| 2026-07-30 | Private PhD Drive and native literature workbook | Done (initial tranche) | Created the Ali-owned nine-folder structure and six-tab Google Sheet; external sharing, database searches, screening, and access verification remain pending. |
+| 2026-07-30 | MIMIC metadata/governance tranche | Done (metadata only) | Recorded 25 CSVs, 39.65 GiB, missing `NOTEEVENTS`, provenance gaps, three data zones, and a 0/6 medical readiness verdict without inspecting patient rows. |
+| 2026-07-30 | Recurring supervision calendar acceptance | Done | Ali accepted; Ali, Iris, and Arnon are confirmed accepted for Wednesday 09:00-10:00 Asia/Jerusalem through October 7. |
 | 2026-06-11 | Basic shared memory created | Done | Added Codex and Claude root instructions plus memory logs. |
 | 2026-06-11 | Memory upgraded for per-prompt progress tracking | Done | Added current-state and progress tracking so future prompts can orient quickly. |
 | 2026-06-11 | Scripted prompt memory pull/update added | Done | Added PowerShell scripts to generate compiled memory and append prompt summaries. |
@@ -203,32 +208,15 @@ Track milestones, current work, and next steps here.
 
 ## Next Steps
 
-Note (2026-07-25): Iteration 015 and the unified-runtime/security package are reliability-only and `NEUTRAL`. Active priorities are (a) complete PR #10 review and governance gates without bypass; (b) record M-01..M-06; and (c) progress EXP-005 reviewer scheduling without inventing labels. Live listeners, automatic correction, model replacement, trusted-memory reuse, and performance claims remain blocked.
+Note (2026-07-30): The July 29 package is a controlled working baseline, not a supervisor-approved proposal. The exact pre-read, Drive, and Sheet have not been shared. Medical work is blocked at 0/6 gates and EXP-005 remains 0/24.
 
-1. Run `.\scripts\run-codex-next-step.ps1 -RefreshWiki -RunHealth -NoOpen` for supervised continuation prompts.
-2. Run `.\scripts\run-project-review.ps1 -UpdateReviewState` for structured review-only prompts.
-3. Run `.\scripts\open-vego-workbench.ps1` for daily local review, or `.\scripts\open-vego-workbench.ps1 -Gui` when the visualizer is needed.
-4. Fill `reports/generated/exp005_label_review/exp005_label_review_blind.csv` with at least 20 generalization-safe expert labels, preferably 30-50.
-5. Use `reports/generated/exp005_label_review/exp005_adjudication_sheet.csv` for reviewer-2 or supervisor adjudication before treating results as strong quantitative evidence.
-6. Rerun `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <filled-sheet> -RunDownstream` and review `reports/generated/exp005_label_review/label_validation_summary.json`.
-7. Review `reports/generated/exp005_label_review/evidence_verdict.md`, `reproducibility_manifest.json`, and the EXP-005 real-label policy gate plus rerun EXP-003/EXP-004 generated outputs before any M4B-1.1 design change.
-8. Use `docs/research/m4b1-synthetic-policy-candidate-review.md` only as a design discussion aid after real labels exist; it is not real evidence.
-9. Keep M4B-2, Agent 4 calls, LLM/API calls, embeddings, baseline output overwrites, and non-read-only visualizer behavior changes blocked.
-10. If EXP-003 shows enough safe labels and baseline errors that memory can plausibly address, write or update `docs/research/m4b1-policy-refinement-plan.md`; do not implement policy refinement before approval.
-11. Capture supervisor decisions on thesis framing, label protocol, target label count, leakage policy, and M4B-2 gating.
-12. Keep PR #10 unmerged until exact-head review, required CI, branch protection, and one separate collaborator approval are all confirmed.
-13. Keep `docs/dashboards/` current after meaningful progress, KPI, result, or Confluence status changes.
-14. Run `.\scripts\build-progress-visualizations.ps1` to refresh the local Mermaid/HTML progress visualizations after progress or KPI updates.
-15. Run `.\scripts\build-e2e-progress-report.ps1` to refresh the full report and local web dashboard after progress, KPI, experiment, or review-state updates.
-16. Run `.\scripts\build-confluence-wiki.ps1` to refresh the runtime dashboard snapshot, progress visualizations, E2E report, wiki outbox, and manual sync pack.
-17. Run `.\scripts\dashboard-health.ps1 -RequireOutbox` after building the Confluence outbox.
-18. Keep `docs/operations/progress-update-architecture.md` aligned when the progress update or scheduled check-in flow changes.
-19. Keep `docs/architecture/progress-update-diagram.md` aligned with the operations contract when the update architecture changes.
-20. Use `literature/hitl-resource-pack/` when writing Chapter 2 or discussing future EXP-005 labeling tools; rerun `.\scripts\download-hitl-resources.ps1` when source downloads need refreshing.
-21. Use `docs/operations/alignment-control.md` as the short alignment checkpoint before project-status or thesis-claim updates.
-22. Run `python scripts\check_evidence_consistency.py` before evidence claims, review summaries, or supervisor-facing status reports.
-23. Grant Atlassian Rovo access to cloud `724252a1-a5b7-45a5-b6ec-27a8292197ec`.
-24. Create/update the four Confluence child pages from the outbox/manual sync pack and store their IDs in ignored local config.
-25. Audit data/IRB sensitivity before publishing or sharing deferred artifacts.
-26. Convert existing package results into evidence entries under `EXP-000`.
-27. Continue running the prompt start/end memory and wiki sync scripts for every meaningful prompt.
+1. Ali reviews the exact August 5 supervisor package and authorizes any external sharing.
+2. At the August 5 meeting, record decisions on RQ wording, the three-study map, Plan A/B labels, literature categories, medical-route ownership, Penina dates, and the official-process inquiry.
+3. Record every supervisor decision within 24 hours in the decision/change log and update all affected artifacts.
+4. Execute the literature database searches, log exact queries and dates, deduplicate, screen, verify paper identities and claims, and prepare the August 12 synthesis.
+5. Complete bilingual Hebrew/English and speaker review before using direct transcript quotations or final attribution.
+6. Obtain written department/Graduate Studies confirmation of the candidacy deadline, reviewer count, nomination path, committee rules, and presentation requirements.
+7. Keep patient-row inspection, medical computation, external APIs, and pilots blocked until all six medical entry gates pass.
+8. Run the August 26 medical go/no-go; default the September proposal to Plan B if any critical prerequisite remains unproved.
+9. Appoint two independent EXP-005 reviewers plus an adjudicator and collect the 24 generalization-safe labels without inferring or prefilling any value.
+10. Refresh dashboards, evidence checks, project health, and agent memory after each implementation tranche.

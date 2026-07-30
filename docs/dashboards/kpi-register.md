@@ -1,6 +1,6 @@
 # KPI Register
 
-Last curated update: 2026-07-10 by Codex. Dated validation rows are historical until rerun; the current worktree is dirty.
+Last curated update: 2026-07-30 by Codex. Dated implementation/test rows remain historical until rerun; this tranche changes research documentation and controls, not production VEGO-AI behavior.
 
 ## Status Legend
 
@@ -15,6 +15,12 @@ Last curated update: 2026-07-10 by Codex. Dated validation rows are historical u
 
 | KPI | Current Value | Target | Status | Evidence | Next Action |
 | --- | --- | --- | --- | --- | --- |
+| July 29 control traceability | 19/19 requirements, 15/15 actions, and 10/10 open questions appear exactly once with owner, due date/gate, evidence, and acceptance check. | Maintain 44/44 controlled items with no ownerless open item. | Green | `docs/research/phd-proposal/master-traceability-register.md` | Update item status and evidence after each decision or completed action; never silently remove an item. |
+| Research architecture | Exactly one recommended umbrella RQ and three mapped subquestions/studies are documented; supervisor approval is pending. | Iris and Arnon approve or revise the hierarchy, with every legacy RQ disposition retained. | Yellow | `2026-08-05-rq-decision-pack.md`, `three-study-contract.md`, `legacy-rq-crosswalk.md` | Record the August 5 decision and propagate it within 24 hours. |
+| Literature operating system | Private native six-tab Sheet with six seeded records, controlled lists, separate authors/researcher fields, and recorded protocol exists; searches are not executed. | Reproducible queries, verified identities, deduplication, screening reasons, taxonomy coverage, and critical synthesis. | Yellow | `drive-workspace-manifest.md`, `literature-review-protocol.md` | Run the databases and record real counts/dates; do not treat tools or unverified candidates as research evidence. |
+| Medical readiness | 0/6 mandatory entry gates passed; no row-level work authorized. | 6/6 evidenced and approved before any patient/event/encounter row is inspected. | Blocked | `docs/research/governance/medical-readiness-scorecard.md` | Collect use-case, people, authorization, ethics/privacy, environment, and protocol proof; apply August 26 Plan B fallback. |
+| Supervision cadence | Ali, Iris, and Arnon accepted the Wednesday 09:00-10:00 Asia/Jerusalem recurring event through the October 7 occurrence. | Accepted recurring cadence and evidence-led weekly pre-read/decision cycle. | Green | Calendar verification recorded in proposal package | Ali reviews the exact pre-read before it is sent; record decisions within 24 hours. |
+| July 29 transcript review | 1195 Hebrew and bilingual segments are preserved as machine-derived working evidence; bilingual/speaker review is pending. | Human-reviewed language and attribution before quotations or final external release. | Yellow | July 29 meeting evidence package and `ISS-022` | Complete bilingual and diarization review; use paraphrases meanwhile. |
 | Research spine clarity | Reusable human judgment is the explicit MSc/PhD research spine. | Research docs, roadmap, thesis outline, and claim/evidence table stay aligned. | Green | `docs/research/research-plan.md`, `thesis/outline.md` | Keep M4B design tied to reusable human judgment. |
 | Implemented co-reasoning milestone | M1, M2, M3, M4A, and M4B-1 are implemented; M4B-1 remains experimental/parallel-only. | EXP-001/C4B evidence before any improvement claim; no M4B-2. | Green | Tags `milestone-m3-human-judgment-memory`, `milestone-m4a-memory-advisory`, `research-state-m4b1-deterministic-comparison`; `docs/research/m4b-conditional-approval.md` | Review PR #6 schema hardening, then prepare controlled evaluation. |
 | Test suite health | Historical 93-test pass; not rerun for the current dirty worktree. | All tracked tests pass before publishing. | Yellow | `python -m pytest VEGO-AI\tests -q` on 2026-06-14 after PR #7 merge | Rerun before reporting a current count or after authorized runtime work. |
