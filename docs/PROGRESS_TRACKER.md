@@ -124,12 +124,12 @@ M4B-2 · Agent 4 changes · LLM/API calls · embeddings · policy v1.1 · baseli
 
 ## 7b. Recent activity (latest session-log entries)
 <!-- AUTO:activity:start -->
+- 2026-07-30 16:21 +03:00 - Codex - Iris requirements assurance and presentation controls
 - 2026-07-30 15:10 +03:00 - Codex - Implement July 29 doctoral requirements-closure program
 - 2026-07-28 19:14 +03:00 - Claude - Enhanced supervisor deck for 29 July, with a fact-check that corrected two published figures
 - 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
 - 2026-07-28 14:02 +03:00 - Claude - Evaluation phase: component verdicts, advisory analyst, Iris matrix, full-eval runner
 - 2026-07-27 09:39 +03:00 - Codex - Evaluation Phase Implementation Plan & Supervisor Sign-off Checklist
-- 2026-07-26 20:45 +03:00 - Codex - Advance independent evidence study to calibration
 <!-- AUTO:activity:end -->
 
 ---

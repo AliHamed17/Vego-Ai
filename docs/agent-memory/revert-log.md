@@ -519,3 +519,13 @@ Record file changes and rollback notes here.
   - docs/PROGRESS_TRACKER.md
 - Rollback note: Revert the implementation commit that follows this entry to remove the July 29 doctoral-control tranche; keep evidence commit 3d0beca if the machine-derived source package must remain preserved. External Drive and Sheet changes require separate owner-controlled archival or deletion and are not reverted by Git.
 - Git commit: none recorded by script.
+
+## 2026-07-30 16:21 +03:00 - Codex - Iris requirements assurance and presentation controls
+
+- Files changed:
+  - docs/research and docs/templates supervisor-control artifacts
+  - experiments/IRIS-EXP-01 through IRIS-EXP-04
+  - scripts/validate_iris_requirements_closure.py and focused tests
+  - docs/agent-memory and docs/PROGRESS_TRACKER.md
+- Rollback note: Revert commit 28ece6e to remove the Iris assurance tranche. Ignored generated diagnostics can be deleted separately; no external sharing or source-data mutation occurred.
+- Git commit: none recorded by script.

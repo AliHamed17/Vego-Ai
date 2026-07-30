@@ -640,3 +640,26 @@ Chronological prompt history for Codex and Claude.
   - scripts/research-health.ps1: PASS
 - Status: completed; supervisor, bilingual, literature-execution, administrative, EXP-005, and medical gates remain open
 - Next steps: Ali reviews the exact package before sharing; record August 5 supervisor decisions; execute the literature protocol; obtain bilingual and university-process confirmation; keep medical work blocked at 0/6 and default to Plan B on August 26 if any critical gate remains unproved.
+
+## 2026-07-30 16:21 +03:00 - Codex - Iris requirements assurance and presentation controls
+
+- Request: Add extra experiments and presentation/video-call checks so every July 29 Iris requirement is traced, checked, and reported honestly.
+- Actions taken:
+  - Audited all 44 controls and current presentation assets
+  - Added IRIS-EXP-01 through IRIS-EXP-04 and deterministic validation
+  - Created the closure audit, presentation checklist, and weekly propagation control
+  - Synchronized canonical RQ wording and corrected the unsupported four-hour audit claim
+  - Ran focused tests, evidence consistency, research health, and project health
+- Files changed:
+  - docs/research and docs/templates supervisor-control artifacts
+  - experiments/IRIS-EXP-01 through IRIS-EXP-04
+  - scripts/validate_iris_requirements_closure.py and focused tests
+  - docs/agent-memory and docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - python scripts/validate_iris_requirements_closure.py --all --refresh
+  - python -m pytest scripts/tests/test_iris_requirements_closure.py -q
+  - python scripts/check_evidence_consistency.py
+  - scripts/research-health.ps1 and scripts/project-health.ps1
+  - git diff --check
+- Status: completed-with-human-and-external-gates
+- Next steps: Ali reviews the exact package; confirm meeting logistics; build and rehearse the current deck; obtain Iris/Arnon decisions; run the first weekly cycle; keep EXP-005 and medical gates closed until real evidence exists.
