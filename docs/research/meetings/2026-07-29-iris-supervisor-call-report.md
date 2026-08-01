@@ -8,11 +8,11 @@
 - **Duration:** 46:26.283
 - **Visible participants:** Iris Reinhartz-Berger, Arnon Sturm, Ali Hamed
 - **Primary evidence:** M4A/MP4 recording; 1,195 aligned transcript segments
-- **Attribution:** Iris is high-confidence for the opening guidance; later female directive turns are medium/high where supported by grammar, turn-taking, and named-address cues.
+- **Attribution:** Only S-0001–S-0006 are currently high-confidence named Iris turns. Later turns remain supervisor-side statements until human speaker adjudication.
 
 ## Executive summary (English)
 
-The call converts the current VEGO-AI work into a concrete PhD-proposal execution plan. Iris’s central requirement is a coherent hierarchy: one overarching research question, three subquestions, and a study/method/artifact mapping for each. The proposal should include motivation, literature, questions, methods/artifacts, preliminary results, and a timeline; it must demonstrate novelty, doctoral scale, and feasibility.
+The call converts the current VEGO-AI work into a concrete PhD-proposal execution plan. The central supervisor requirement is a coherent hierarchy: one overarching research question, three subquestions, and a study/method/artifact mapping for each. The proposal should include motivation, literature, questions, methods/artifacts, preliminary results, and a timeline; it must demonstrate novelty, doctoral scale, and feasibility.
 
 The agreed research posture is deliberately resilient. Questions must be domain-neutral. Software engineering/modeling is the evidence-backed baseline; medicine is a conditional evaluation setting that depends on clinicians, data, permissions, and access. Current preliminary results must not be presented as medical results. Medical familiarization should be shallow and time-boxed—enough to inspect MIMIC/data and keep the questions medically meaningful, but not enough to derail the proposal. Restricted medical environments require local/offline LLMs, non-transferable purpose-bound access, and no movement of data outside the VDI.
 
@@ -31,17 +31,28 @@ The immediate checkpoint is operational: draft the main question and three subqu
 | Time | Summary | Evidence |
 | --- | --- | --- |
 | 00:00–03:08 | Iris outlines proposal architecture: one umbrella question, subquestions/studies, explicit methods/artifacts, and six proposal content areas. | [S-0001](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0001)–[S-0018](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0018) |
-| 03:08–10:08 | Candidacy purpose/process, doctoral adequacy, short presentation, parallel work, and a late-September availability target are discussed as guidance rather than verified policy. | [S-0019](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0019)–[S-0184](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0184) |
+| 03:08–10:10 | Candidacy purpose/process, doctoral adequacy, short presentation, parallel work, and a late-September availability target are discussed as guidance rather than verified policy. | [S-0019](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0019)–[S-0185](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0185) |
 | 10:10–14:25 | Penina-course reuse and two possible medical/software structures are discussed; the team leans toward a staged option but keeps the question structure central. | [S-0186](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0186)–[S-0267](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0267) |
-| 14:25–20:08 | Arnon emphasizes domain-neutral questions and medical access risk; Iris reviews four possible medical collaboration routes and states that clinicians/people are needed in addition to data. | [S-0268](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0268)–[S-0427](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0427) |
+| 14:25–20:08 | The supervisor-side discussion emphasizes domain-neutral questions and medical access risk, reviews four possible medical collaboration routes, and states that clinicians/people are needed in addition to data. | [S-0268](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0268)–[S-0427](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0427) |
 | 20:08–24:01 | The team confirms domain-neutral wording, software engineering as the feasible baseline, medical risk management, and short weekly task-focused meetings pending schedule changes. | [S-0428](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0428)–[S-0531](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0531) |
-| 24:01–30:34 | Iris defines next-meeting outputs and the three-part Excel literature matrix, makes it a living PhD resource, sets an early-October working target, and asks for a shared Drive. | [S-0532](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0532)–[S-0739](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0739) |
+| 24:01–30:34 | Supervisor-side guidance defines next-meeting outputs and the three-part Excel literature matrix, makes it a living PhD resource, sets an early-October working target, and asks for a shared Drive. | [S-0532](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0532)–[S-0739](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0739) |
 | 30:34–33:36 | Medical familiarization is time-boxed: inspect MIMIC/data only enough to ground the questions, use Claude for high-level understanding, and stop before a medical-domain rabbit hole threatens the September milestone. | [S-0740](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0740)–[S-0819](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0819) |
 | 33:36–37:54 | Drive access and Wednesday 09:00 cadence are arranged in principle. Restricted data must stay in the VDI; commercial/online LLMs are disallowed, with local LLMs as the later technical path. | [S-0820](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0820)–[S-0921](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0921) |
 | 37:54–44:26 | Clalit data/access constraints, MIMIC folder organization, viewer-only sharing, separate working directories, resource review, next-meeting outputs, and a need to clarify the Clalit request are covered. | [S-0922](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-0922)–[S-1086](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-1086) |
-| 44:26–46:25 | Iris reads a fast-moving Clalit update after sending the MediVARIA one-pager; another innovation partner is already involved. She commits to keep Ali in the loop and closes with the decisive fallback instruction: focus the proposal on both Plan A and Plan B. | [S-1087](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-1087)–[S-1195](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-1195) |
+| 44:26–46:25 | A supervisor-side speaker reads a fast-moving Clalit update after the MediVARIA one-pager, reports another innovation partner, commits to keep Ali in the loop, and closes with the fallback instruction to cover both Plan A and Plan B. Named attribution remains pending. | [S-1087](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-1087)–[S-1195](./2026-07-29-iris-supervisor-bilingual-transcript.he-en.md#s-1195) |
 
-## Iris requirements — consolidated
+### Priority ranges for human review
+
+The chronological table covers all `S-0001`–`S-1195` segments, but coverage is not equivalent to human verification. The following ranges are underrepresented in the current requirement/action/question locators and must receive priority during bilingual and speaker adjudication:
+
+- `S-0053`–`S-0126`: candidacy outcomes, review mechanics, and possible follow-up examination;
+- `S-0150`–`S-0185`: milestone language and the reported supervisor-availability constraint;
+- `S-0891`–`S-0972`: medical-data assertions, Clalit scale/content statements, and MIMIC organization; and
+- `S-1058`–`S-1152`: external-partner update, unclear retrieval terminology, proposed meeting timing, and the reported second innovation partner.
+
+Until reviewed, these ranges remain meeting-statement evidence. They must not be converted into verified policy, confirmed partner status, final speaker attribution, or direct quotation.
+
+## Supervisor requirements — consolidated; named attribution pending
 
 1. Build one main research question and three subquestions, each mapped to a study, method, evidence/data, and artifact.
 2. Write the six proposal content areas and demonstrate novelty, doctoral scope, feasibility, skills/resources, and schedule.

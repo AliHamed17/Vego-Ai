@@ -2,7 +2,7 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-30 by Codex (Iris requirements assurance and presentation-control tranche)
+**Last Updated:** 2026-08-01 by Codex (enhanced Iris Zoom-to-submission closure tranche)
 
 ---
 
@@ -16,7 +16,9 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 * Ali, Iris, and Arnon are confirmed accepted on the recurring Wednesday 09:00-10:00 Asia/Jerusalem calendar event through October 7.
 * The metadata-only MIMIC audit observed 25 CSVs totaling 39.65 GiB versus 26 official MIMIC-III v1.4 tables; `NOTEEVENTS` and provenance are unresolved. No patient rows were inspected.
 * Medical readiness is **NO-GO at 0/6 entry gates**. EXP-005 remains blocked at 0/24 generalization-safe labels; no medical, accuracy, or generalization gain is claimed.
-* IRIS-EXP-01/03 pass; IRIS-EXP-02 awaits live rehearsal and IRIS-EXP-04 awaits the first weekly cycle. No current August/candidacy deck is claimed, and September/October dates remain provisional pending official confirmation.
+* A deterministic preliminary ledger covers S-0001–S-1195: 910 machine-linked segments and 285 conservative human-review placeholders. Separate Reviewer A/B and third-person adjudication inputs now feed a fail-closed merger; human bilingual/speaker review remains 0/1,195 segments plus 0/1 full-media record per reviewer, and no adjudicated output exists.
+* The August 5 supervisor package is built locally as a 12-slide English core plus nine-slide appendix, 21/21 source-note sections, 21/21 native renders inspected, PDF export, review workbook, and offline backup. Human timed/adversarial rehearsal, Ali release approval, sharing, and both access tests remain pending; this is not the candidacy deck.
+* IRIS-EXP-01–10 now separate structure, readiness, and closure. Structure passes; readiness and closure must fail while human review, rehearsal, delivery, decisions, acceptance, approval, and submission evidence are missing. Submission closure now requires one exact schema-valid receipt hash-bound to authorization, package, external receipt, and issued certificate; the tracked template is `NOT_SUBMITTED`. September/October dates remain provisional pending official confirmation.
 
 ---
 
@@ -46,19 +48,19 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 | **ISS-007** | Medium | Evaluation leakage risk if same-pattern rows are claimed as generalization. | Keep same-pattern rows strictly for mechanism validation. |
 | **ISS-012/013**| Medium | False-accuracy-narrative risk (synthetic vs real accuracy); weak evidence from one-reviewer. | Require κ & adjudication; quote real label status in reports. |
 | **ISS-014** | High | M-01 through M-06 are unrecorded; no architecture/default/live authorization can be inferred. | Record explicit outcomes with Iris and Arnon; silence remains deferred. |
-| **ISS-022** | High | July 29 Hebrew ASR, English translation, and speaker attribution remain machine-derived. | Complete bilingual and diarization review before direct quotation or final attribution. |
+| **ISS-022** | High | July 29 Hebrew ASR, English translation, and speaker attribution remain machine-derived; the separate two-reviewer/adjudication interface is ready but contains 0/1,195 segment reviews and 0/1 full-media record per reviewer. | Complete independent Reviewer A/B returns and third-person disagreement adjudication through the fail-closed merge workflow before direct quotation or final attribution. |
 | **ISS-023** | High | Medical readiness is 0/6 mandatory entry gates, with all accountable Plan A roles and approvals unproved. | Name owners and collect use-case, people, authorization, ethics/privacy, environment, and protocol evidence. |
 | **ISS-024** | High | The official candidacy process, deadline, reviewer count, committee rules, and presentation requirements are unverified. | Obtain written confirmation from the department or Graduate Studies coordinator. |
 | **ISS-025** | High | The shared MIMIC resource has 25 observed CSVs rather than 26 official tables and lacks canonical provenance. | Reconcile the manifest inside an authorized VDI only after all six entry gates pass. |
 | **ISS-026** | Medium | The private PhD Drive and literature Sheet are not shared or access-tested. | Ali reviews the exact package, then explicitly authorizes sharing and recipient access checks. |
-| **ISS-027** | High | No current July-29/August supervisor PPTX/PDF, presenter notes, rendered QA, or live rehearsal exists; candidacy presentation rules are also unverified. | Confirm logistics, build from the current checklist, add source notes, render/inspect, run a human rehearsal, and archive only after Ali review. |
+| **ISS-027** | High | The current August 5 PPTX/PDF, source notes, control appendix, workbook, and automated/render QA exist locally; human timed/adversarial rehearsal, Ali release approval, delivery, and Iris/Arnon access tests remain unproved. Candidacy presentation rules and its separate deck also remain unverified. | Ali reviews the exact frozen package; run and record both human rehearsals; correct and rerender if needed; then share only with authorization and record two recipient access tests. |
 
 ---
 
 ## 4. Next Action
 1. **Ali review gate:** inspect the exact August 5 pre-read, RQ pack, proposal, Drive structure, and literature Sheet before any external sharing.
 2. **August 5 decision gate:** obtain and record Iris/Arnon decisions on the one-plus-three hierarchy, study map, Plan A/B labels, literature categories, medical owner, Penina dates, and official-process owner.
-3. **Presentation gate:** turn the 12-checkpoint outline into the exact meeting artifact only after logistics are confirmed; add source notes, render QA, and complete a dated human rehearsal without copying simulated outcomes into the decision log.
+3. **Presentation gate:** Ali reviews the exact frozen local package; complete dated timed and adversarial human rehearsals, correct/rerender any defects, and record authorized delivery plus Iris/Arnon access tests without copying simulated outcomes into the real decision log.
 4. **Literature tranche:** execute the recorded searches, deduplicate, screen, verify identities/claims, and prepare the August 12 synthesis without treating tools as evidence.
 5. **Transcript gate:** complete bilingual and speaker review; continue using paraphrases only until then.
 6. **EXP-005 gate:** appoint two independent reviewers plus an adjudicator and collect the 24 safe labels; do not infer or prefill labels.

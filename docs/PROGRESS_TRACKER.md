@@ -8,11 +8,17 @@ for the maintenance flow see §8. Auto regions are refreshed by `python scripts/
 > recommends one umbrella RQ plus three mapped subquestions/studies. The wording, Plan A/B labels, and study
 > architecture remain pending Iris/Arnon approval. The August 5 pre-read is prepared but not recorded as sent.
 
-> **Iris requirements assurance (2026-07-30):** all 44 controls have call-time, evidence, presentation,
-> and remaining-gate locators. Readiness is 2 verified complete, 6 implemented awaiting human acceptance,
-> 22 partial, 5 open, and 9 blocked. IRIS-EXP-01 traceability and IRIS-EXP-03 claim checks pass;
-> IRIS-EXP-02 still requires a human rehearsal and IRIS-EXP-04 still requires a real weekly cycle.
-> No current August/candidacy deck or blanket “all requirements complete” claim is authorized.
+> **Enhanced Iris requirements assurance (2026-08-01):** all 44 controls have call-time, evidence,
+> presentation, and remaining-gate locators. Readiness remains 2 verified complete, 6 implemented awaiting
+> human acceptance, 22 partial, 5 open, and 9 blocked. A deterministic preliminary ledger covers all 1,195
+> machine segments (910 control-linked; 285 human-review placeholders), with a separate fail-closed Reviewer
+> A/B and adjudication merger; segment and full-media human review remain 0/1,195 and 0/1 per reviewer. IRIS-EXP-01–10 now distinguish structure, readiness, and closure: structure passes, but readiness and
+> closure remain non-zero until the required human/external evidence exists. The local August 5 package has a
+> 12-slide core, nine-slide appendix, PPTX/PDF, 21 source-note sections, review workbook, visual QA, and backup;
+> human rehearsal, Ali release approval, delivery, access tests, and supervisor acceptance remain open. It is
+> not the candidacy deck. Submission closure requires a schema-valid receipt bound to the package, external
+> receipt, authorization evidence, and issued certificate; the tracked template is `NOT_SUBMITTED`. No blanket
+> “all requirements complete” claim is authorized.
 
 > **Evidence and feasibility boundary:** the July 1 redirect and July 24 continuation are preserved as
 > legacy/absorbed plans. EXP-005 remains at 0/24 and no improvement claim is authorized. Medical work is
@@ -124,12 +130,12 @@ M4B-2 · Agent 4 changes · LLM/API calls · embeddings · policy v1.1 · baseli
 
 ## 7b. Recent activity (latest session-log entries)
 <!-- AUTO:activity:start -->
+- 2026-08-01 13:47 +03:00 - Codex - Iris closure reachability and receipt hardening
+- 2026-08-01 13:27 +03:00 - Codex - Enhanced Iris Zoom-to-submission closure tranche
 - 2026-07-30 16:21 +03:00 - Codex - Iris requirements assurance and presentation controls
 - 2026-07-30 15:10 +03:00 - Codex - Implement July 29 doctoral requirements-closure program
 - 2026-07-28 19:14 +03:00 - Claude - Enhanced supervisor deck for 29 July, with a fact-check that corrected two published figures
 - 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
-- 2026-07-28 14:02 +03:00 - Claude - Evaluation phase: component verdicts, advisory analyst, Iris matrix, full-eval runner
-- 2026-07-27 09:39 +03:00 - Codex - Evaluation Phase Implementation Plan & Supervisor Sign-off Checklist
 <!-- AUTO:activity:end -->
 
 ---

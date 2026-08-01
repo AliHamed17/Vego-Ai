@@ -1,6 +1,6 @@
 # Iris Requirements Closure Audit
 
-Last updated: 2026-07-30
+Last updated: 2026-08-01
 
 Scope: 29 July 2026 supervisor call controls `R-01`–`R-19`, `A-01`–`A-15`, and `Q-01`–`Q-10`.
 
@@ -9,12 +9,12 @@ Scope: 29 July 2026 supervisor call controls `R-01`–`R-19`, `A-01`–`A-15`, a
 - **Capture and control coverage:** `44/44` items are present, owned, evidence-linked, and assigned an acceptance gate.
 - **Readiness after this implementation tranche:** `2` verified complete, `6` implemented awaiting human acceptance, `22` partial, `5` open, and `9` blocked.
 - **Recorded post-call supervisor acceptance:** `0/19` requirements. The working architecture is prepared for decision; it is not recorded as approved.
-- **Presentation coverage:** `19/19` requirements are mapped into the August supervisor checklist. No July-29-aligned PPTX/PDF or candidacy deck is claimed to exist.
+- **Presentation coverage:** `19/19` requirements and all `44/44` baseline controls are reachable from the locally built 12-slide core plus nine-slide appendix. The 21-slide PPTX/PDF, source-linked notes, visual QA, and offline backup exist; human rehearsal, Ali release approval, delivery, recipient access tests, and the separate candidacy deck remain open.
 - **Current empirical gates:** EXP-005 remains `0/24` generalization-safe labels and `0/2` independent reviewer returns. Medical readiness remains `0/6` mandatory entry gates.
 
 The defensible release statement is:
 
-> The July 29 requirements are fully captured and controlled, and the first documentation and governance tranche is implemented. Supervisor approval, literature execution, live presentation rehearsal, shared-access tests, university confirmation, empirical labels, and all medical gates remain open where identified below.
+> The July 29 requirements are fully captured and controlled, and the documentation, machine-coverage ledger, assurance interfaces, and local August 5 presentation package are implemented. Full bilingual/speaker adjudication, supervisor approval, literature execution, live presentation rehearsal, shared-access tests, university confirmation, empirical labels, and all medical gates remain open where identified below.
 
 It is not yet defensible to say that all Iris requirements have been completed and accepted.
 
@@ -27,7 +27,8 @@ Primary sources:
 - [requirements register](../meetings/2026-07-29-iris-requirements-register.md);
 - [action and open-question register](../meetings/2026-07-29-iris-supervisor-action-register.md);
 - [bilingual machine transcript](../meetings/2026-07-29-iris-supervisor-bilingual-transcript.he-en.md);
-- [provenance manifest](../meetings/2026-07-29-iris-supervisor-provenance-manifest.md); and
+- [provenance manifest](../meetings/2026-07-29-iris-supervisor-provenance-manifest.md);
+- [separate human-review/adjudication workflow](../meetings/2026-07-29-iris-zoom-human-review-workflow.md); and
 - [master traceability register](./master-traceability-register.md).
 
 ## Closure classifications

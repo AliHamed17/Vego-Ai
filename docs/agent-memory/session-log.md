@@ -663,3 +663,60 @@ Chronological prompt history for Codex and Claude.
   - git diff --check
 - Status: completed-with-human-and-external-gates
 - Next steps: Ali reviews the exact package; confirm meeting logistics; build and rehearse the current deck; obtain Iris/Arnon decisions; run the first weekly cycle; keep EXP-005 and medical gates closed until real evidence exists.
+
+## 2026-08-01 13:27 +03:00 - Codex - Enhanced Iris Zoom-to-submission closure tranche
+
+- Request: Implement the Enhanced Iris Zoom-to-Submission 100% Closure Plan without fabricating human, supervisor, medical, or submission evidence.
+- Actions taken:
+  - Built deterministic preliminary coverage for all 1,195 call segments and a five-sheet human-review workbook.
+  - Added independent extraction, implementation, acceptance, and ongoing-control dimensions for all 44 baseline controls.
+  - Built the 12-slide English core plus nine-slide appendix, PPTX/PDF, notes, QA evidence, adversarial worksheet, and local backup.
+  - Added IRIS-EXP-05 through IRIS-EXP-10, SCI-EXP crosswalk, external-fact, governance, delivery, rehearsal, and certificate controls.
+  - Extended the validator with fail-closed structure, readiness, and closure modes plus artifact/hash/QA checks.
+  - Preserved all human and external gates as pending and made no production VEGO-AI or patient-data change.
+- Files changed:
+  - docs/research/meetings and docs/research/phd-proposal Iris closure artifacts
+  - experiments/IRIS-EXP-05 through IRIS-EXP-10
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx and local ignored PDF/workbook/backup
+  - scripts/build_iris_zoom_disposition_ledger.py and scripts/validate_iris_requirements_closure.py with focused tests
+  - docs/agent-memory, docs/dashboards, and docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - pytest focused closure tests: 11 passed
+  - ruff: pass
+  - ledger --check: 1,195 rows verified
+  - closure validator structure: pass
+  - closure validator readiness and closure: expected exit 1 on open human/external gates
+  - evidence consistency: 18/18 pass
+  - changed Markdown links and tables: pass
+  - slides_test.py with bundled runtime: pass, no overflow
+  - PPTX/PDF/XLSX/ZIP structure and hashes: pass
+  - git diff --check: pass
+- Status: Implemented locally and structurally validated; readiness and closure intentionally remain blocked on human/external evidence.
+- Next steps: Ali reviews the exact frozen package; complete full dual bilingual review/adjudication and timed/adversarial human rehearsal; authorize delivery and record Iris/Arnon access tests; obtain explicit meeting decisions before any closure claim.
+
+## 2026-08-01 13:47 +03:00 - Codex - Iris closure reachability and receipt hardening
+
+- Request: Close final assurance-design gaps found during independent review without creating human or submission evidence.
+- Actions taken:
+  - Separated immutable preliminary coverage from dual-review and third-person adjudication outputs through a fail-closed deterministic merger.
+  - Added header-only Reviewer A, Reviewer B, and adjudication inputs plus a documented full-media review record.
+  - Validated all 44 independent status rows and the exact 2/6/22/5/9 implementation distribution.
+  - Replaced filename-only submission evidence with an exact schema-valid and hash-bound authorized receipt contract.
+  - Refreshed provenance and governance while keeping the adjudicated ledger, receipt, and certificate unissued.
+- Files changed:
+  - scripts/build_iris_zoom_adjudicated_ledger.py and focused tests
+  - docs/research/meetings July 29 human-review workflow and header-only return templates
+  - schemas/iris-authorized-submission-receipt-v1.schema.json and pending receipt template
+  - IRIS validator, EXP-10 protocol, certificate, governance, provenance, and shared tracking
+- Commands/checks:
+  - focused closure/ledger tests: 17 passed
+  - ruff: pass
+  - preliminary ledger check: pass
+  - adjudication interface check: valid pending state, no outputs
+  - structure: exit 0
+  - readiness and closure: expected exit 1
+  - evidence consistency: 18/18 pass
+  - changed Markdown links/tables and JSON parse: pass
+  - git diff --check: pass
+- Status: Final closure interfaces implemented; human review, rehearsal, supervisor acceptance, authorized receipt, and submission remain pending.
+- Next steps: Complete both 1,195-segment plus full-media reviewer returns and third-person adjudication; run human rehearsals; obtain Ali delivery authorization, recipient access tests, explicit supervisor decisions, proposal approval, and a real authorized submission receipt before issuing a certificate.

@@ -1,4 +1,5 @@
 * text=auto
+.gitattributes text eol=lf
 
 *.md text eol=lf
 *.py text eol=lf
@@ -11,6 +12,7 @@
 *.html text eol=lf
 *.mmd text eol=lf
 uv.lock text eol=lf
+docs/research/meetings/2026-07-29-iris-zoom-*.csv text eol=lf
 
 *.pdf binary
 *.docx binary

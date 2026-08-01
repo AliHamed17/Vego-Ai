@@ -1,6 +1,8 @@
 # Iris Requirements Register — 29 July 2026 Supervisor Call
 
-> **Status:** Evidence-linked working register. Human bilingual review and full diarization remain pending.
+> **Status:** Immutable call-time extraction snapshot. Human bilingual review and full diarization remain pending.
+
+> **Snapshot rule:** Preserve the substantive rows below as the 29 July interpretation record. Do not use this file to record later implementation or acceptance changes; record those only in the [master traceability register](../phd-proposal/master-traceability-register.md), with corrections linked through the decision/change process.
 
 This register uses **Iris requirement** only where visual, grammatical, or conversational evidence supports attribution. Medium-confidence items are worded as supervisor-side requirements and retain a confirmation field. Dates described in the call are working targets unless explicitly verified elsewhere.
 

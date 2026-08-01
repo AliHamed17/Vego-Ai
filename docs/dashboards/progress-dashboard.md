@@ -1,10 +1,10 @@
 # Progress Dashboard
 
-Last curated update: 2026-07-30.
+Last curated update: 2026-08-01.
 
 ## Executive Snapshot
 
-The July 29 requirements-closure program is the current working authority, subject to bilingual and supervisor confirmation. All 19 requirements, 15 actions, and 10 open questions are controlled. The recommended one-plus-three research architecture, three studies, Plan A/B, proposal `v0.1`, and August 5 pre-read are prepared but not approved or sent. A private PhD Drive and native literature Sheet exist but have not been shared. Medical readiness is NO-GO at 0/6 gates; the metadata-only MIMIC audit inspected no patient rows. EXP-005 remains 0/24, so no accuracy, generalization, or clinical-performance gain is claimed.
+The July 29 requirements-closure program is the current working authority, subject to bilingual and supervisor confirmation. All 19 requirements, 15 actions, and 10 open questions are controlled. A deterministic preliminary ledger accounts for all 1,195 machine segments, but bilingual/speaker review and adjudication remain 0/1,195. The recommended one-plus-three architecture, three studies, Plan A/B, proposal `v0.1`, and August 5 pre-read remain unapproved and unsent. The August 5 supervisor package is built locally as a 12-slide English core plus nine-slide appendix, with 21/21 source-note sections, PDF, visual QA, review workbook, and offline backup; human rehearsal, Ali release approval, delivery, access tests, and supervisor decisions remain open. Medical readiness is NO-GO at 0/6 gates, and EXP-005 remains 0/24, so no accuracy, generalization, or clinical-performance gain is claimed.
 
 Run `.\scripts\build-progress-visualizations.ps1` for generated Mermaid status charts and a local HTML progress dashboard at `docs/dashboards/progress-visualizations.generated.html`.
 Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report and local web page at `reports/generated/e2e_dashboard/index.html`.
@@ -12,6 +12,8 @@ Run `.\scripts\build-e2e-progress-report.ps1` for the full E2E progress report a
 | Area | Status | Evidence | Next Action |
 | --- | --- | --- | --- |
 | July 29 doctoral control package | Yellow / awaiting supervisor decisions | `docs/research/phd-proposal/`: 19/15/10 master register, exact one-plus-three RQ recommendation, three-study contract, legacy crosswalk, claim/RACI/RAID registers, proposal `v0.1`, and August 5 pre-read. | Ali reviews the exact package; Iris and Arnon decide the RQs, studies, Plan A/B, owners, literature categories, and dates. |
+| July 29 call extraction and assurance | Structure green / human gates blocked | S-0001–S-1195 preliminary CSV/JSON and review workbook; 910 machine-linked rows, 285 human-review placeholders; separate Reviewer A/B and third-person merge interface; IRIS-EXP-01–10 validator. | Complete both 1,195-segment reviews plus one full-media record per reviewer and adjudicate every disagreement; readiness/closure remain non-zero meanwhile. |
+| August 5 supervisor presentation | Local construction and automated/render QA green; human delivery readiness yellow | 21-slide PPTX/PDF, 21/21 source-note sections, 44/44 control reachability, 21/21 PowerPoint-native renders inspected, local backup. | Ali reviews the exact package; run timed and adversarial human rehearsals; then authorize delivery and record Iris/Arnon access tests. |
 | Private Drive and literature workbook | Green for initial structure; sharing/search pending | Ali-owned nine-folder Drive and native six-tab Sheet are recorded in `drive-workspace-manifest.md`; no external share or completed search is claimed. | Ali authorizes exact recipients, then execute and log database searches and screening. |
 | Medical readiness and MIMIC audit | Blocked / 0 of 6 gates | `medical-readiness-scorecard.md` and metadata-only audit: 25 CSVs, 39.65 GiB, missing `NOTEEVENTS`, no patient-row inspection. | Collect all six prerequisite proofs; default to Plan B on August 26 if any critical gate remains open. |
 | July 1 redirect and July 24 continuation | Legacy / absorbed | Both files retain their evidence and safety gates but point to the July 29 successor program. | Use the legacy RQ and decision crosswalks; do not treat older plans as active authority. |

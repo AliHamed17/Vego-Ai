@@ -1,6 +1,8 @@
 # Actions and Open Issues — 29 July 2026 Supervisor Call
 
-> **Status:** Transcript-backed action register. Owners/dates remain ‘inferred’ or ‘working target’ where the call did not explicitly formalize them.
+> **Status:** Immutable call-time extraction snapshot. Owners/dates remain ‘inferred’ or ‘working target’ where the call did not explicitly formalize them.
+
+> **Snapshot rule:** Preserve the substantive rows below as the 29 July interpretation record. Do not use this file to record later implementation or acceptance changes; record those only in the [master traceability register](../phd-proposal/master-traceability-register.md), with corrections linked through the decision/change process.
 
 The action statuses below preserve the call-time extraction state. They are not a live completion dashboard. Current implementation and acceptance state belongs in the [master traceability register](../phd-proposal/master-traceability-register.md) and [closure audit](../phd-proposal/iris-requirements-closure-audit.md).
 

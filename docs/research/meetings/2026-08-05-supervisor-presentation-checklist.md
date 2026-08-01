@@ -1,6 +1,6 @@
 # 5 August Supervisor Presentation and Video-Call Checklist
 
-Status: **production-ready outline; no PPTX/PDF is recorded as built, reviewed, rehearsed, or sent.**
+Status: **PPTX/PDF built and locally QA-tested; Ali review, human rehearsal, sharing, delivery, access tests, and supervisor acceptance remain pending.**
 
 Live rehearsal status: **NOT RUN**
 
@@ -27,16 +27,15 @@ This is the August weekly supervisor package, not the later candidacy presentati
 | P-11 | 11. Prioritized decisions | Decide architecture first; assign rather than debate every external unknown. | Mandatory bundle: RQ wording, study map, Plan A/B, Plan-B answerability, evidence boundary. | Record exact outcomes |
 | P-12 | 12. Read-back and one next task | Repeat decisions, corrections, one owner, due date, and definition of done. | Silence/ambiguity is `Deferred`; no inferred acceptance. | Close the meeting |
 
-Appendices, if discussion requires them:
+Built appendices, if discussion requires them:
 
-- full `R-01`–`R-19` timestamp crosswalk;
-- legacy-RQ crosswalk;
-- claim register;
-- three-study contract;
-- literature field dictionary and taxonomy;
-- MIMIC expected-versus-observed manifest;
-- Iris-alignment experiment register;
-- administrative unknowns and six medical gates.
+- `A1`–`A2`: all `R-01`–`R-19` controls and current states;
+- `A3`–`A4`: all `A-01`–`A-15` actions and current states;
+- `A5`: all `Q-01`–`Q-10` questions and current states;
+- `A6`: five claim-state boundaries;
+- `A7`: machine alignment `1,195`, control-linked `910`, dual-reviewed `0`;
+- `A8`: SCI experiment-to-study crosswalk; and
+- `A9`: exact package and release gates.
 
 ## Requirement coverage matrix
 
@@ -111,37 +110,39 @@ Recommended experimental sequence for discussion:
 
 The separate [Iris-alignment experiment register](../phd-proposal/iris-alignment-experiment-register.md) validates traceability, presentation readiness, claim discipline, and weekly change propagation. It does not add outcome evidence to the canonical `EXP-000`–`EXP-040` research catalog.
 
+The [adversarial Q&A worksheet](./2026-08-05-supervisor-adversarial-qa-worksheet.md) is prepared with 12 mandatory challenge questions. Human Q&A rehearsal remains `NOT RUN`.
+
 ## Before the meeting
 
 Content:
 
 - [ ] Ali reviews the exact pre-read, RQ pack, proposal, closure audit, workbook view, and presentation outline.
-- [ ] The four canonical question strings are identical across all core artifacts.
-- [ ] Every slide maps to at least one requirement, claim, and source.
-- [ ] Each non-trivial speaker note contains a `[Sources]` block with repository path and call timestamp where applicable.
-- [ ] Every result uses the correct claim state.
-- [ ] The progress slide distinguishes narrow verified actions from partial/blocked requirements.
-- [ ] The decision slide prioritizes architecture and evidence boundary.
-- [ ] The closeout slide contains one task, owner, due date, and definition of done.
+- [x] The four canonical question strings are identical across the current deck and decision artifacts; supervisor approval is still pending.
+- [x] Every slide maps to controlled requirements/claims and source notes.
+- [x] Each of 21 speaker-note sections contains a `[Sources]` block with repository paths and call timestamps where applicable.
+- [x] Every result uses the correct claim state.
+- [x] The progress slide distinguishes narrow verified actions from partial/blocked requirements.
+- [x] The decision slide prioritizes architecture and evidence boundary.
+- [x] The closeout slide contains one task, owner, due date, evidence path, fallback, and definition of done.
 
 Logistics and delivery:
 
 - [ ] Confirm duration, language, delivery format, screen-sharing owner, and discussion buffer for this weekly meeting.
 - [ ] Confirm candidacy and Penina presentation rules separately.
-- [ ] Build PPTX/PDF only from this current package; do not reuse July 15/21 decks unchanged.
-- [ ] Render and visually inspect every slide for overflow, font size, contrast, tables, titles, links, footers, and numbering.
+- [x] Build PPTX/PDF only from this current package; do not reuse July 15/21 decks unchanged.
+- [x] Render and visually inspect every slide for overflow, font size, contrast, tables, titles, links, footers, and numbering.
 - [ ] Rehearse to the verified duration with discussion buffer.
-- [ ] Prepare an offline copy.
-- [ ] Record version, source revision, SHA-256 hashes, and review status.
+- [x] Prepare a local offline backup containing the exact PPTX, PDF, and review workbook; delivery authorization remains separate.
+- [x] Record version, source revision, SHA-256 hashes, and review status.
 - [ ] Test every intended Drive/workbook link using the intended recipient accounts after Ali authorizes sharing.
-- [ ] Do not send or share until Ali authorizes the exact package.
+- [x] Do not send or share until Ali authorizes the exact package; the delivery record remains `NOT SHARED / NOT DELIVERED`.
 
 Safety:
 
-- [ ] No patient rows, restricted screenshots, credentials, private contacts, or unreviewed raw transcript extracts appear.
-- [ ] No direct transcript quotation appears.
-- [ ] Later supervisor-side segments are not attributed with certainty to Iris.
-- [ ] Source Drive remains unchanged and viewer/read-only.
+- [x] No patient rows, restricted screenshots, credentials, private contacts, or unreviewed raw transcript extracts appear.
+- [x] No direct transcript quotation appears.
+- [x] Later supervisor-side segments are not attributed with certainty to Iris.
+- [x] Source Drive remains unchanged and viewer/read-only.
 
 ## During the meeting
 

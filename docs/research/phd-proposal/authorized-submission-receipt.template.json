@@ -1,0 +1,32 @@
+{
+  "$schema": "../../../schemas/iris-authorized-submission-receipt-v1.schema.json",
+  "schema_version": "IrisAuthorizedSubmissionReceipt-v1",
+  "status": "NOT_SUBMITTED",
+  "submission": {
+    "route": "",
+    "submitted_at": "",
+    "receipt_id": "",
+    "submitted_by": "",
+    "recipient_authority": ""
+  },
+  "authorization": {
+    "authorized": false,
+    "authority": "",
+    "authorized_at": "",
+    "evidence_path": "",
+    "evidence_sha256": ""
+  },
+  "package": {
+    "path": "",
+    "sha256": ""
+  },
+  "receipt_artifact": {
+    "path": "",
+    "sha256": ""
+  },
+  "certificate_binding": {
+    "certificate_id": "",
+    "certificate_path": "docs/research/phd-proposal/iris-closure-certificate-template.md",
+    "certificate_sha256": ""
+  }
+}

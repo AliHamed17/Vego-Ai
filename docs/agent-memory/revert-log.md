@@ -529,3 +529,24 @@ Record file changes and rollback notes here.
   - docs/agent-memory and docs/PROGRESS_TRACKER.md
 - Rollback note: Revert commit 28ece6e to remove the Iris assurance tranche. Ignored generated diagnostics can be deleted separately; no external sharing or source-data mutation occurred.
 - Git commit: none recorded by script.
+
+## 2026-08-01 13:27 +03:00 - Codex - Enhanced Iris Zoom-to-submission closure tranche
+
+- Files changed:
+  - docs/research/meetings and docs/research/phd-proposal Iris closure artifacts
+  - experiments/IRIS-EXP-05 through IRIS-EXP-10
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx and local ignored PDF/workbook/backup
+  - scripts/build_iris_zoom_disposition_ledger.py and scripts/validate_iris_requirements_closure.py with focused tests
+  - docs/agent-memory, docs/dashboards, and docs/PROGRESS_TRACKER.md
+- Rollback note: Revert the focused implementation commit to remove tracked closure docs, protocols, validator changes, and PPTX. Delete only the dated ignored local PDF, workbook, backup, and generated QA outputs if those local derivatives must also be withdrawn. Do not alter raw Zoom media, ASR, source Drive, production VEGO-AI behavior, EXP-005 labels, or patient data.
+- Git commit: none recorded by script.
+
+## 2026-08-01 13:47 +03:00 - Codex - Iris closure reachability and receipt hardening
+
+- Files changed:
+  - scripts/build_iris_zoom_adjudicated_ledger.py and focused tests
+  - docs/research/meetings July 29 human-review workflow and header-only return templates
+  - schemas/iris-authorized-submission-receipt-v1.schema.json and pending receipt template
+  - IRIS validator, EXP-10 protocol, certificate, governance, provenance, and shared tracking
+- Rollback note: Revert the final closure-interface commit to remove the human-review merger, header-only returns, receipt schema/template, and associated validator controls. Do not delete raw media, preliminary ledgers, local presentation artifacts, or any future real human/receipt evidence without separate owner approval.
+- Git commit: none recorded by script.

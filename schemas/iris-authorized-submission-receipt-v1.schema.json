@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/iris-authorized-submission-receipt-v1.schema.json",
+  "title": "Iris Authorized Submission Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "submission",
+    "authorization",
+    "package",
+    "receipt_artifact",
+    "certificate_binding"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "IrisAuthorizedSubmissionReceipt-v1"
+    },
+    "status": {
+      "enum": ["NOT_SUBMITTED", "VERIFIED"]
+    },
+    "submission": {
+      "$ref": "#/$defs/submission"
+    },
+    "authorization": {
+      "$ref": "#/$defs/authorization"
+    },
+    "package": {
+      "$ref": "#/$defs/hashedArtifact"
+    },
+    "receipt_artifact": {
+      "$ref": "#/$defs/hashedArtifact"
+    },
+    "certificate_binding": {
+      "$ref": "#/$defs/certificateBinding"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "VERIFIED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "submission": {
+            "$ref": "#/$defs/completedSubmission"
+          },
+          "authorization": {
+            "$ref": "#/$defs/completedAuthorization"
+          },
+          "package": {
+            "$ref": "#/$defs/completedHashedArtifact"
+          },
+          "receipt_artifact": {
+            "$ref": "#/$defs/completedHashedArtifact"
+          },
+          "certificate_binding": {
+            "$ref": "#/$defs/completedCertificateBinding"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "submission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "route",
+        "submitted_at",
+        "receipt_id",
+        "submitted_by",
+        "recipient_authority"
+      ],
+      "properties": {
+        "route": {"type": "string"},
+        "submitted_at": {"type": "string"},
+        "receipt_id": {"type": "string"},
+        "submitted_by": {"type": "string"},
+        "recipient_authority": {"type": "string"}
+      }
+    },
+    "completedSubmission": {
+      "allOf": [
+        {"$ref": "#/$defs/submission"},
+        {
+          "properties": {
+            "route": {"minLength": 1},
+            "submitted_at": {"format": "date-time", "minLength": 1},
+            "receipt_id": {"minLength": 1},
+            "submitted_by": {"minLength": 1},
+            "recipient_authority": {"minLength": 1}
+          }
+        }
+      ]
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorized",
+        "authority",
+        "authorized_at",
+        "evidence_path",
+        "evidence_sha256"
+      ],
+      "properties": {
+        "authorized": {"type": "boolean"},
+        "authority": {"type": "string"},
+        "authorized_at": {"type": "string"},
+        "evidence_path": {"type": "string"},
+        "evidence_sha256": {"type": "string"}
+      }
+    },
+    "completedAuthorization": {
+      "allOf": [
+        {"$ref": "#/$defs/authorization"},
+        {
+          "properties": {
+            "authorized": {"const": true},
+            "authority": {"minLength": 1},
+            "authorized_at": {"format": "date-time", "minLength": 1},
+            "evidence_path": {"minLength": 1},
+            "evidence_sha256": {"pattern": "^[A-Fa-f0-9]{64}$"}
+          }
+        }
+      ]
+    },
+    "hashedArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string"},
+        "sha256": {"type": "string"}
+      }
+    },
+    "completedHashedArtifact": {
+      "allOf": [
+        {"$ref": "#/$defs/hashedArtifact"},
+        {
+          "properties": {
+            "path": {"minLength": 1},
+            "sha256": {"pattern": "^[A-Fa-f0-9]{64}$"}
+          }
+        }
+      ]
+    },
+    "certificateBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["certificate_id", "certificate_path", "certificate_sha256"],
+      "properties": {
+        "certificate_id": {"type": "string"},
+        "certificate_path": {"type": "string"},
+        "certificate_sha256": {"type": "string"}
+      }
+    },
+    "completedCertificateBinding": {
+      "allOf": [
+        {"$ref": "#/$defs/certificateBinding"},
+        {
+          "properties": {
+            "certificate_id": {"minLength": 1},
+            "certificate_path": {"minLength": 1},
+            "certificate_sha256": {"pattern": "^[A-Fa-f0-9]{64}$"}
+          }
+        }
+      ]
+    }
+  }
+}

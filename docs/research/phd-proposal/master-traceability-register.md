@@ -1,6 +1,6 @@
 # PhD Proposal Master Traceability Register
 
-Last updated: 2026-07-30
+Last updated: 2026-08-01
 Control status: Internal working baseline; supervisor confirmation and bilingual review remain pending.
 
 Verified implementation snapshot:
@@ -104,3 +104,56 @@ Study 1 implements the SQ1 intervention architecture; Study 2 implements the SQ2
 - Actions present: A-01 through A-15.
 - Open questions present: Q-01 through Q-10.
 - A row is not complete merely because a draft artifact exists; its acceptance check and human gate still apply.
+
+## Independent status dimensions — canonical companion view
+
+This keyed view is part of the master register and separates extraction, implementation, acceptance, and recurring-control state for every baseline row. The prose `Status` field in the main tables remains useful context, but it must not be used alone to infer acceptance. Human transcript review is currently `0/1,195`; therefore every control remains machine-extracted until Reviewer A, Reviewer B, and adjudication are evidenced.
+
+Implementation totals in this snapshot preserve the audited baseline: `2` acceptance checks passed, `6` evidence-ready/awaiting acceptance, `22` partial, `5` not started/open, and `9` not started/blocked. Requirement acceptance remains `0/19`.
+
+| ID | Extraction | Implementation | Acceptance | Ongoing control |
+| --- | --- | --- | --- | --- |
+| R-01 | Machine-only; dual review pending | Evidence ready | Pending Iris/Arnon decision | 5 Aug checkpoint; Ali; exact wording plus decision log |
+| R-02 | Machine-only; dual review pending | Evidence ready | Pending Iris/Arnon decision | 5 Aug checkpoint; Ali; study-contract decision |
+| R-03 | Machine-only; dual review pending | Evidence ready | Pending Iris/Arnon decision | Each proposal version; Ali; six-area completeness evidence |
+| R-04 | Machine-only; dual review pending | Partial | Pending Iris/Arnon adequacy review | Weekly proposal delta; Ali; novelty/scale/resource evidence |
+| R-05 | Machine-only; dual review pending | Not started — blocked | Pending authoritative candidacy rules | On official-process response; A-14 owner; candidacy checklist |
+| R-06 | Machine-only; dual review pending | Partial | Pending first accepted weekly cycle | Weekly; Ali; pre-read, proposal delta, and closeout record |
+| R-07 | Machine-only; dual review pending | Evidence ready | Pending Iris/Arnon decision | Each RQ revision; Ali; Plan B answerability check |
+| R-08 | Machine-only; dual review pending | Evidence ready | Pending Iris/Arnon claim-boundary decision | Every release; Ali; claim register and evidence check |
+| R-09 | Machine-only; dual review pending | Partial | Pending medical-route/fallback decision | 26 Aug gate; Ali/supervisors; G1–G6 scorecard |
+| R-10 | Machine-only; dual review pending | Partial | Pending Iris/Arnon decision | 5 Aug and 26 Aug; Ali; Plan A/B and fallback log |
+| R-11 | Machine-only; dual review pending | Partial | Pending human audit review | 26 Aug gate; Ali; bounded metadata-audit record |
+| R-12 | Machine-only; dual review pending | Not started — blocked | Pending authorized data/security owner | Before any restricted work; owner unfilled; approved data-flow evidence |
+| R-13 | Machine-only; dual review pending | Partial | Pending task-focused-cycle acceptance; recurrence evidenced | Weekly Wednesday; Ali; pre-read/read-back/one-task evidence |
+| R-14 | Machine-only; dual review pending | Partial | Pending Ali package review and supervisor receipt | Per supervisor checkpoint; Ali; exact package manifest |
+| R-15 | Machine-only; dual review pending | Partial | Pending taxonomy/workbook acceptance | Weekly during review; Ali; one-row-per-paper validation |
+| R-16 | Machine-only; dual review pending | Partial | Pending synthesis acceptance | Weekly during review; Ali; search/screening/gap evidence |
+| R-17 | Machine-only; dual review pending | Partial | Pending Ali sharing authorization and two access tests | Before delivery; Ali; permission and source-integrity record |
+| R-18 | Machine-only; dual review pending | Partial | Pending official dates and supervisor acceptance | Weekly schedule review; Ali; authoritative-date/change evidence |
+| R-19 | Machine-only; dual review pending | Partial | Pending course/date/provenance review | At course milestones; Ali; reuse map and source evidence |
+| A-01 | Machine-only; dual review pending | Partial | Pending Iris/Arnon decision | 5 Aug checkpoint; Ali; RQ/study package |
+| A-02 | Machine-only; dual review pending | Partial | Pending executed-search evidence | Weekly literature tranche; Ali; dated search log |
+| A-03 | Machine-only; dual review pending | Acceptance check passed | Pending supervisor acceptance of scope | Weekly literature maintenance; Ali; workbook row validation |
+| A-04 | Machine-only; dual review pending | Partial | Pending Ali authorization and access confirmation | Before sharing; Ali; permission/access-test evidence |
+| A-05 | Machine-only; dual review pending | Partial | Pending source receipt and usage-authority verification | On source-owner response; accountable owner; inventory/permission proof |
+| A-06 | Machine-only; dual review pending | Acceptance check passed | Confirmed for calendar recurrence only | Weekly; host/Ali; recurrence plus meeting outcome record |
+| A-07 | Machine-only; dual review pending | Partial | Pending first complete one-task cycle | Weekly; Ali; accepted evidence and next-task record |
+| A-08 | Machine-only; dual review pending | Partial | Pending audit timing and human review | 26 Aug gate; Ali; metadata-only audit evidence |
+| A-09 | Machine-only; dual review pending | Not started — blocked | Pending named medical/governance owners | 26 Aug gate; supervisors/owners; G1–G6 proof |
+| A-10 | Machine-only; dual review pending | Partial | Pending Plan A/B decision | 5 Aug and 26 Aug; Ali; fallback decision record |
+| A-11 | Machine-only; dual review pending | Partial | Pending written environment/model authority | Before restricted processing; security owner; approved-model register |
+| A-12 | Machine-only; dual review pending | Partial | Pending developed-draft review | Weekly to September target; Ali; versioned proposal/checklist |
+| A-13 | Machine-only; dual review pending | Not started | Pending official route and submission evidence | On confirmed deadline; Ali; approved package and receipt |
+| A-14 | Machine-only; dual review pending | Not started | Pending Graduate Studies response | Immediate inquiry; assigned owner; authoritative policy evidence |
+| A-15 | Machine-only; dual review pending | Not started — blocked | Pending written partner event/status | On partner response; external owner; invitation/minutes evidence |
+| Q-01 | Machine-only; dual review pending | Not started | Pending Iris/Arnon decision | 5 Aug checkpoint; supervisors; exact wording outcome |
+| Q-02 | Machine-only; dual review pending | Not started — blocked | Pending medical-role decision | 26 Aug gate; supervisors/clinical owner; route evidence |
+| Q-03 | Machine-only; dual review pending | Evidence ready | Pending Iris/Arnon decision | 5 Aug checkpoint; supervisors; fallback outcome |
+| Q-04 | Machine-only; dual review pending | Not started | Pending literature-taxonomy decision | 5 Aug/next literature review; supervisors; field decision |
+| Q-05 | Machine-only; dual review pending | Not started — blocked | Pending authoritative dataset/governance decision | Before experiment design; data owner; license/access/ethics proof |
+| Q-06 | Machine-only; dual review pending | Not started — blocked | Pending institutional model approval | Before model use; security owner; offline-model approval/test |
+| Q-07 | Machine-only; dual review pending | Partial | Pending Drive sharing/access portion; calendar confirmed | Before delivery; Ali/host; permission and access-test record |
+| Q-08 | Machine-only; dual review pending | Not started | Pending authoritative candidacy-policy response | Immediate inquiry; A-14 owner; dated official evidence |
+| Q-09 | Machine-only; dual review pending | Not started — blocked | Pending clinical use-case/partner prerequisites | Before partner request; clinical owner; approved one-page brief |
+| Q-10 | Machine-only; dual review pending | Not started — blocked | Pending accountable partner clarification | On partner response; Iris/team; invitation/minutes/mechanism record |
