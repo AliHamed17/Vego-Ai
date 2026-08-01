@@ -7,7 +7,7 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 ---
 
 ## 1. Quick Status (< 10 lines)
-* Branch `docs/iris-july29-phd-execution` preserves the ten July 29 evidence artifacts in `3d0beca`, the initial Iris assurance tranche in `28ece6e`, and the enhanced closure package in `18c0f2b`; production VEGO-AI behavior is unchanged.
+* Branch `docs/iris-july29-phd-execution` preserves the ten July 29 evidence artifacts in `3d0beca`, the initial assurance tranche in `28ece6e`, the enhanced closure package in `18c0f2b`, and the next-step execution snapshot in `9a9279f`; production VEGO-AI behavior is unchanged.
 * The bilingual-review-pending July 29 registers control all 19 requirements, 15 actions, and 10 questions; the closure audit has `44/44` locators, with **2 verified complete, 6 awaiting human acceptance, 22 partial, 5 open, and 9 blocked**.
 * The recommended architecture is one umbrella RQ plus three subquestions: selective intervention, governed knowledge reuse, and evaluation/transfer. Iris and Arnon approval remains pending for the August 5 checkpoint.
 * Plan A is a staged medical extension; Plan B completes the doctorate in software/modeling. Any unproved critical medical prerequisite on August 26 triggers Plan B for the September proposal.
