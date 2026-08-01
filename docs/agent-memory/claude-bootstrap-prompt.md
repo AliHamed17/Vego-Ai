@@ -9,7 +9,7 @@ Workspace root:
 C:\Users\ahamed\vego-ai
 
 GitHub repository:
-https://github.com/AliHamed17/Vego-Ai
+https://github.com/AliHamed17/vego-ai-research
 
 Your job is to collaborate on this project with full awareness of the shared project memory, research architecture, Git history, and safety rules. Treat the project as a PhD research workspace, not just a code folder.
 
@@ -72,7 +72,7 @@ CURRENT KNOWN STATE
 - The workspace is a Git repository.
 - The main branch is `main`.
 - The branch tracks `origin/main`.
-- The private GitHub repo is `AliHamed17/Vego-Ai`.
+- The private GitHub repo is `AliHamed17/vego-ai-research`.
 - A safe baseline has already been pushed to GitHub.
 - Safe baseline merge commit: `76e7277`.
 - Latest memory/publish documentation commit after that may exist; check `git log --oneline -5`.
