@@ -2,7 +2,7 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-08-01 by Codex (enhanced Iris Zoom-to-submission closure tranche)
+**Last Updated:** 2026-08-01 by Codex (Iris next-step execution-control implementation)
 
 ---
 
@@ -17,7 +17,8 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 * The metadata-only MIMIC audit observed 25 CSVs totaling 39.65 GiB versus 26 official MIMIC-III v1.4 tables; `NOTEEVENTS` and provenance are unresolved. No patient rows were inspected.
 * Medical readiness is **NO-GO at 0/6 entry gates**. EXP-005 remains blocked at 0/24 generalization-safe labels; no medical, accuracy, or generalization gain is claimed.
 * A deterministic preliminary ledger covers S-0001–S-1195: 910 machine-linked segments and 285 conservative human-review placeholders. Separate Reviewer A/B and third-person adjudication inputs now feed a fail-closed merger; human bilingual/speaker review remains 0/1,195 segments plus 0/1 full-media record per reviewer, and no adjudicated output exists.
-* The August 5 supervisor package is built locally as a 12-slide English core plus nine-slide appendix, 21/21 source-note sections, 21/21 native renders inspected, PDF export, review workbook, and offline backup. Human timed/adversarial rehearsal, Ali release approval, sharing, and both access tests remain pending; this is not the candidacy deck.
+* The August 5 supervisor package is built locally as a 12-slide English core plus nine-slide appendix, 21/21 source-note sections, 21/21 native renders inspected, PDF export, and review workbook. The PPTX title/footer defects are corrected; the prior offline ZIP is explicitly stale and must be rebuilt only after rehearsal and freeze. Human timed/adversarial rehearsal, Ali release approval, sharing, and both access tests remain pending; this is not the candidacy deck.
+* A canonical 29-work-package August 1-October 7 execution board, supervisor release runbook, Zoom reviewer operations guide, literature execution register, proposal v0.2 working draft, university-inquiry draft, and ten-sheet companion workbook now operationalize the next steps. Board structure passes with 18 blocked, 6 partial, and 5 planned work packages; no pending evidence was promoted.
 * IRIS-EXP-01–10 now separate structure, readiness, and closure. Structure passes; readiness and closure must fail while human review, rehearsal, delivery, decisions, acceptance, approval, and submission evidence are missing. Submission closure now requires one exact schema-valid receipt hash-bound to authorization, package, external receipt, and issued certificate; the tracked template is `NOT_SUBMITTED`. September/October dates remain provisional pending official confirmation.
 
 ---
@@ -55,10 +56,12 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 | **ISS-026** | Medium | The private PhD Drive and literature Sheet are not shared or access-tested. | Ali reviews the exact package, then explicitly authorizes sharing and recipient access checks. |
 | **ISS-027** | High | The current August 5 PPTX/PDF, source notes, control appendix, workbook, and automated/render QA exist locally; human timed/adversarial rehearsal, Ali release approval, delivery, and Iris/Arnon access tests remain unproved. Candidacy presentation rules and its separate deck also remain unverified. | Ali reviews the exact frozen package; run and record both human rehearsals; correct and rerender if needed; then share only with authorization and record two recipient access tests. |
 
+| **ISS-028** | Medium | The prior local offline ZIP contains the superseded PPTX/PDF and is marked stale/invalidated; readiness now verifies ZIP member hashes instead of trusting a filename or manifest hash alone. | Rebuild and re-hash the ZIP only after the exact package passes human rehearsal and RG-04 freeze. |
+
 ---
 
 ## 4. Next Action
-1. **Ali review gate:** inspect the exact August 5 pre-read, RQ pack, proposal, Drive structure, and literature Sheet before any external sharing.
+1. **Ali review gate:** inspect the exact August 5 pre-read, corrected PPTX/PDF, RQ pack, proposal, Drive structure, literature Sheet, release runbook, and execution workbook before any external sharing.
 2. **August 5 decision gate:** obtain and record Iris/Arnon decisions on the one-plus-three hierarchy, study map, Plan A/B labels, literature categories, medical owner, Penina dates, and official-process owner.
 3. **Presentation gate:** Ali reviews the exact frozen local package; complete dated timed and adversarial human rehearsals, correct/rerender any defects, and record authorized delivery plus Iris/Arnon access tests without copying simulated outcomes into the real decision log.
 4. **Literature tranche:** execute the recorded searches, deduplicate, screen, verify identities/claims, and prepare the August 12 synthesis without treating tools as evidence.

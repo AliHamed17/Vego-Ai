@@ -8,6 +8,8 @@ Last updated: 2026-08-01
 - Built format: 12-slide English core plus 9-slide evidence appendix, with presenter notes on all 21 slides
 - Planned duration: maximum 11-minute core, subject to meeting confirmation
 - Canonical current status: [master traceability register](../phd-proposal/master-traceability-register.md)
+- Release control: [supervisor release gate and runbook](./2026-08-05-supervisor-release-gate-and-runbook.md)
+- Current implementation evidence: [1 August implementation manifest](../phd-proposal/next-step-implementation-manifest-2026-08-01.md)
 
 This manifest maps the `44` baseline controls (`19 R + 15 A + 10 Q`) to the built presentation. A mapping proves reachability in the local package; it does not prove human transcript review, live rehearsal, delivery, recipient access, supervisor decision, or acceptance.
 
@@ -15,14 +17,14 @@ This manifest maps the `44` baseline controls (`19 R + 15 A + 10 Q`) to the buil
 
 | Component | Required state before delivery | Current state | Version/hash/evidence |
 | --- | --- | --- | --- |
-| PPTX | Built from current controlled sources; Ali review still required before sharing | BUILT LOCALLY; 21 slides | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; 96,137 bytes; SHA-256 `E32ADF8B48FAC5DA4033E8259A8248384FC48A23326F569B9C7DB015EF34E9E3` |
-| PDF | Exported from final PPTX and visually checked | BUILT; 21 pages | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; 332,486 bytes; SHA-256 `83A99566411C5565800D83DEEBA255E2B5EB568EB25526AEA5FB89D0AA9F6D78` |
+| PPTX | Built from current controlled sources; Ali review still required before sharing | BUILT LOCALLY; 21 slides; native title/footer corrections and machine-alignment wording applied | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; 100,216 bytes; SHA-256 `35D351A2609AD354CAE3078A6ABDFEDA6837248B399A4A54DB725FE487D7686F` |
+| PDF | Exported from the corrected PPTX and visually checked | BUILT LOCALLY; 21 pages | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; 332,495 bytes; SHA-256 `F1FEFAD1F87E36F3A0823DE01C50F2C02D26D1B62ED2BB87768CC43CD2C12FF1` |
 | Presenter notes | Complete, timed, and source-linked | 21/21 source-linked notes; human timed rehearsal pending | PPTX contains 21 `[Sources]` sections |
 | Bilingual evidence appendix | Human-reviewed before quotation or named attribution | BUILT AS MACHINE-ONLY REVIEW INTERFACE; `0` dual-reviewed rows; no direct quotations | `outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx`; SHA-256 `7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295` |
 | Decision worksheet | D-RQ-01–D-RQ-10 ready for exact outcomes | BUILT in core and pre-read; `0/10` outcomes recorded | [presentation checklist](./2026-08-05-supervisor-presentation-checklist.md) |
 | Source/citation manifest | Paths, timestamps, revisions, and hashes current | BUILT for local package; external facts retain their verification states | PPTX notes plus [source provenance](./2026-07-29-iris-supervisor-provenance-manifest.md) |
-| Rendered-slide QA report | Every final slide inspected | PASS: 21/21 PowerPoint-native renders inspected; automated overflow test passed | [rehearsal record](./2026-08-05-supervisor-rehearsal-record.md) |
-| Local offline backup | Exact PPTX, PDF, and review workbook; not a delivery event | BUILT LOCALLY; NOT SHARED | `outputs/iris-closure-2026-08-01/VEGO-AI-August5-Supervisor-Package-local-backup.zip`; SHA-256 `AAD3065C157A9C2056DAD687E26451A7D6941626AB9E7A77D177831F483420B3` |
+| Rendered-slide QA report | Every final slide inspected | PASS: 21/21 slide renders inspected; padded-canvas overflow test passed; corrected appendix slides confirmed through native PowerPoint PDF output | [implementation manifest](../phd-proposal/next-step-implementation-manifest-2026-08-01.md) |
+| Local offline backup | Exact PPTX, PDF, and review workbook; not a delivery event | STALE - invalidated by the corrected PPTX/PDF; rebuild required after human rehearsal and RG-04 freeze | Prior ZIP hash `AAD3065C157A9C2056DAD687E26451A7D6941626AB9E7A77D177831F483420B3`; must not be delivered |
 | Delivery/access record | Ali authorization plus Iris/Arnon access tests | NOT SHARED / NOT TESTED | [delivery/access record](./2026-08-05-supervisor-delivery-access-record.md) |
 
 ## Built checkpoints, slide appendices, and evidence aliases

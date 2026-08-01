@@ -14,7 +14,7 @@ for the maintenance flow see §8. Auto regions are refreshed by `python scripts/
 > machine segments (910 control-linked; 285 human-review placeholders), with a separate fail-closed Reviewer
 > A/B and adjudication merger; segment and full-media human review remain 0/1,195 and 0/1 per reviewer. IRIS-EXP-01–10 now distinguish structure, readiness, and closure: structure passes, but readiness and
 > closure remain non-zero until the required human/external evidence exists. The local August 5 package has a
-> 12-slide core, nine-slide appendix, PPTX/PDF, 21 source-note sections, review workbook, visual QA, and backup;
+> 12-slide core, nine-slide appendix, corrected PPTX/PDF, 21 source-note sections, review workbook, and visual QA; the prior backup is stale and awaits post-rehearsal freeze/rebuild;
 > human rehearsal, Ali release approval, delivery, access tests, and supervisor acceptance remain open. It is
 > not the candidacy deck. Submission closure requires a schema-valid receipt bound to the package, external
 > receipt, authorization evidence, and issued certificate; the tracked template is `NOT_SUBMITTED`. No blanket
@@ -130,12 +130,12 @@ M4B-2 · Agent 4 changes · LLM/API calls · embeddings · policy v1.1 · baseli
 
 ## 7b. Recent activity (latest session-log entries)
 <!-- AUTO:activity:start -->
+- 2026-08-01 18:13 +03:00 - Codex - Implement Iris next-step execution controls
 - 2026-08-01 13:47 +03:00 - Codex - Iris closure reachability and receipt hardening
 - 2026-08-01 13:27 +03:00 - Codex - Enhanced Iris Zoom-to-submission closure tranche
 - 2026-07-30 16:21 +03:00 - Codex - Iris requirements assurance and presentation controls
 - 2026-07-30 15:10 +03:00 - Codex - Implement July 29 doctoral requirements-closure program
 - 2026-07-28 19:14 +03:00 - Claude - Enhanced supervisor deck for 29 July, with a fact-check that corrected two published figures
-- 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
 <!-- AUTO:activity:end -->
 
 ---

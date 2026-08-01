@@ -9,7 +9,7 @@ Scope: 29 July 2026 supervisor call controls `R-01`–`R-19`, `A-01`–`A-15`, a
 - **Capture and control coverage:** `44/44` items are present, owned, evidence-linked, and assigned an acceptance gate.
 - **Readiness after this implementation tranche:** `2` verified complete, `6` implemented awaiting human acceptance, `22` partial, `5` open, and `9` blocked.
 - **Recorded post-call supervisor acceptance:** `0/19` requirements. The working architecture is prepared for decision; it is not recorded as approved.
-- **Presentation coverage:** `19/19` requirements and all `44/44` baseline controls are reachable from the locally built 12-slide core plus nine-slide appendix. The 21-slide PPTX/PDF, source-linked notes, visual QA, and offline backup exist; human rehearsal, Ali release approval, delivery, recipient access tests, and the separate candidacy deck remain open.
+- **Presentation coverage:** `19/19` requirements and all `44/44` baseline controls are reachable from the locally built 12-slide core plus nine-slide appendix. The corrected 21-slide PPTX/PDF, source-linked notes, visual QA, and review workbook exist; the prior offline ZIP is stale/invalidated and must be rebuilt after rehearsal and freeze. Human rehearsal, Ali release approval, delivery, recipient access tests, and the separate candidacy deck remain open.
 - **Current empirical gates:** EXP-005 remains `0/24` generalization-safe labels and `0/2` independent reviewer returns. Medical readiness remains `0/6` mandatory entry gates.
 
 The defensible release statement is:

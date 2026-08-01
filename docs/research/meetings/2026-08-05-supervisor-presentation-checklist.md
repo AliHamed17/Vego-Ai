@@ -132,7 +132,7 @@ Logistics and delivery:
 - [x] Build PPTX/PDF only from this current package; do not reuse July 15/21 decks unchanged.
 - [x] Render and visually inspect every slide for overflow, font size, contrast, tables, titles, links, footers, and numbering.
 - [ ] Rehearse to the verified duration with discussion buffer.
-- [x] Prepare a local offline backup containing the exact PPTX, PDF, and review workbook; delivery authorization remains separate.
+- [ ] Rebuild the local offline backup after human rehearsal and RG-04 freeze; the prior ZIP is stale/invalidated and must not be delivered.
 - [x] Record version, source revision, SHA-256 hashes, and review status.
 - [ ] Test every intended Drive/workbook link using the intended recipient accounts after Ali authorizes sharing.
 - [x] Do not send or share until Ali authorizes the exact package; the delivery record remains `NOT SHARED / NOT DELIVERED`.

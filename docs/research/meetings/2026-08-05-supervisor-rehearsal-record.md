@@ -10,12 +10,12 @@ This is an evidence form, not proof of rehearsal. Complete it only during real r
 
 | Field | Recorded value |
 | --- | --- |
-| PPTX path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; 21 slides; `E32ADF8B48FAC5DA4033E8259A8248384FC48A23326F569B9C7DB015EF34E9E3` |
-| PDF path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; 21 pages; `83A99566411C5565800D83DEEBA255E2B5EB568EB25526AEA5FB89D0AA9F6D78` |
+| PPTX path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; corrected local candidate; 21 slides; `35D351A2609AD354CAE3078A6ABDFEDA6837248B399A4A54DB725FE487D7686F` |
+| PDF path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; native PowerPoint export; 21 pages; `F1FEFAD1F87E36F3A0823DE01C50F2C02D26D1B62ED2BB87768CC43CD2C12FF1` |
 | Notes path/version/SHA-256 | Embedded in the PPTX; 21/21 slides contain a `[Sources]` section; same PPTX hash above |
 | Evidence appendix path/version/SHA-256 | `outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx`; machine-only review interface; `7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295` |
 | Presentation manifest version/SHA-256 | [current working manifest](./2026-08-05-supervisor-presentation-manifest.md); final document hash belongs in the provenance manifest |
-| Repository revision | Tracked closure package frozen in `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`; local ignored PDF/XLSX/ZIP remain hash-bound in the provenance manifest |
+| Repository revision | `NOT FROZEN`; record the committed candidate revision only after human rehearsal corrections and RG-04 |
 | Planned meeting duration/language | English 12-slide core; target maximum 11 minutes; appendix on demand; human timing not measured |
 
 ## Participants and run metadata
@@ -94,6 +94,8 @@ Automated preflight defects closed before this record was updated:
 | REH-DEF-01 | High | Slides A2, A4, A6 | Replace unstable native appendix tables with deterministic text-and-grid layouts and shorten the claim-state title | Ali/Codex | CLOSED | 21/21 PowerPoint-native renders inspected after rebuild |
 | REH-DEF-02 | Medium | Slide 7 | Shorten the literature title to prevent subtitle overlap | Ali/Codex | CLOSED | Native render clean; overflow test passed |
 | REH-DEF-03 | Low | Slide 12 | Widen footer number box so `12` is not clipped | Ali/Codex | CLOSED | Native render displays `12`; overflow test passed |
+| REH-DEF-04 | High | Slides A2, A4 and 11 | Rebuild clipped appendix-title runs and the two-digit slide-11 footer in native PowerPoint | Ali/Codex | CLOSED | Direct 1600x900 PowerPoint exports show both complete appendix titles and footer `11`; PDF parity and overflow test passed |
+| REH-DEF-05 | Medium | Slide A7 | Qualify alignment as machine-only in the title so it cannot imply bilingual human review | Ali/Codex | CLOSED | Direct 1600x900 PowerPoint export shows “Machine alignment”; review remains visibly `0` |
 
 - Final rehearsal verdict: `NOT RUN`
 - Automated preflight verdict: `PASS`

@@ -22,8 +22,8 @@ Do not populate recipient sharing rows until Ali approves the exact hashed packa
 
 | Component | Path/link | Version | Bytes | SHA-256 | Review state |
 | --- | --- | --- | ---: | --- | --- |
-| PPTX | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx` | Local QA build; 21 slides | 96,137 | `E32ADF8B48FAC5DA4033E8259A8248384FC48A23326F569B9C7DB015EF34E9E3` | AUTOMATED QA PASS; ALI REVIEW PENDING |
-| PDF | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf` | PowerPoint export; 21 pages | 332,486 | `83A99566411C5565800D83DEEBA255E2B5EB568EB25526AEA5FB89D0AA9F6D78` | AUTOMATED QA PASS; ALI REVIEW PENDING |
+| PPTX | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx` | Corrected local QA build; 21 slides | 100,216 | `35D351A2609AD354CAE3078A6ABDFEDA6837248B399A4A54DB725FE487D7686F` | AUTOMATED QA PASS; ALI REVIEW PENDING |
+| PDF | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf` | PowerPoint export; 21 pages | 332,495 | `F1FEFAD1F87E36F3A0823DE01C50F2C02D26D1B62ED2BB87768CC43CD2C12FF1` | AUTOMATED QA PASS; ALI REVIEW PENDING |
 | Presenter notes | Embedded in PPTX | 21/21 source-linked notes | included above | same as PPTX | AUTOMATED SOURCE-MARKER CHECK PASS; HUMAN REHEARSAL PENDING |
 | Bilingual appendix | `outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx` | 1,195 machine-preliminary rows | 146,350 | `7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295` | STRUCTURE PASS; DUAL REVIEW `0/1,195` |
 | Decision worksheet | Core slides 11–12 plus [presentation checklist](./2026-08-05-supervisor-presentation-checklist.md) | Working decision interface | — | recorded through package/provenance hashes | BUILT; OUTCOMES `0/10` |
@@ -31,9 +31,9 @@ Do not populate recipient sharing rows until Ali approves the exact hashed packa
 | Citation/source manifest | 21 PPTX `[Sources]` note sections plus [provenance manifest](./2026-07-29-iris-supervisor-provenance-manifest.md) | Current working package | — | record final document hash in provenance before sharing | STRUCTURE PASS |
 | Rehearsal record | [record](./2026-08-05-supervisor-rehearsal-record.md) | Automated preflight record | — | record final document hash in provenance before sharing | AUTOMATED PREFLIGHT PASS; HUMAN REHEARSAL NOT RUN |
 
-- Repository revision: tracked closure package frozen in `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`; local ignored derivatives remain hash-bound in the provenance manifest
+- Repository revision: `NOT FROZEN`; the corrected candidate must be bound to a committed revision at RG-04
 - Package freeze time: `NOT FROZEN`
-- Offline-backup location and hash: `outputs/iris-closure-2026-08-01/VEGO-AI-August5-Supervisor-Package-local-backup.zip`; 477,215 bytes; SHA-256 `AAD3065C157A9C2056DAD687E26451A7D6941626AB9E7A77D177831F483420B3`; local only, not shared
+- Offline-backup state: `STALE / INVALIDATED`; the prior ZIP at `outputs/iris-closure-2026-08-01/VEGO-AI-August5-Supervisor-Package-local-backup.zip` predates the corrected PPTX/PDF and must be rebuilt after rehearsal and RG-04; it is local and was not shared
 
 ## Delivery event
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import sys
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -83,16 +84,38 @@ def test_master_parser_keeps_canonical_rows_before_companion_status_view() -> No
 
 def test_presentation_readiness_requires_artifacts_hashes_qa_and_human_gates() -> None:
     result = MODULE.RUNNERS["IRIS-EXP-08"]()
-    readiness_names = {check.name for check in result.readiness_checks}
+    readiness_checks = {check.name: check for check in result.readiness_checks}
+    readiness_names = set(readiness_checks)
 
     assert {
         "controlled PPTX, PDF, review workbook, and backup exist",
-        "current package hashes match the manifest and provenance record",
+        "current package hashes and backup members match controlled artifacts",
         "visual QA is bound to the current PPTX/PDF hashes",
         "dated four-role live rehearsal is complete",
         "Iris and Arnon delivery/access tests pass",
     } <= readiness_names
+    assert not readiness_checks[
+        "current package hashes and backup members match controlled artifacts"
+    ].passed
     assert not result.passed_for_mode("readiness")
+
+
+def test_offline_backup_members_must_match_current_artifacts(tmp_path: Path) -> None:
+    artifacts = tuple(
+        tmp_path / name
+        for name in ("package.pptx", "package.pdf", "review.xlsx")
+    )
+    for index, artifact in enumerate(artifacts):
+        artifact.write_bytes(f"artifact-{index}".encode())
+    backup = tmp_path / "backup.zip"
+    with zipfile.ZipFile(backup, "w") as archive:
+        for artifact in artifacts:
+            archive.write(artifact, artifact.name)
+
+    assert MODULE.backup_members_match(backup, artifacts)
+
+    artifacts[0].write_bytes(b"corrected presentation")
+    assert not MODULE.backup_members_match(backup, artifacts)
 
 
 def test_submission_receipt_template_is_structured_pending_evidence() -> None:

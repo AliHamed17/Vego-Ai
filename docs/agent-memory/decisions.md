@@ -404,3 +404,13 @@ Durable decisions for this project.
 - Decision: A submission filename or placeholder cannot satisfy closure. IRIS-EXP-10 requires one exact schema-valid `authorized-submission-receipt.json` whose verified route, zoned time, receipt ID, submitted-package hash, external-receipt hash, authorization evidence, and issued-certificate binding all validate.
 - Reason: The enhanced plan requires media-to-control completeness, evidence-honest delivery assurance, and a signed route to submission without allowing automated structure checks to impersonate human or institutional evidence.
 - Consequence: The program can report `structure` PASS while `readiness` and `closure` correctly return non-zero. A 100% certificate remains ineligible until every human, external, acceptance, approval, and receipt gate is evidenced.
+
+## 2026-08-01 - Iris Next-Step Execution Interfaces and Release Integrity
+
+- Decision: Operationalize the August 1-October 7 program as a canonical 29-work-package JSON board plus a human-readable ten-sheet workbook; the workbook is a companion view and does not replace the master traceability register or board.
+- Decision: Keep Reviewer A/B inputs blind and separate, validate partial batches without treating them as reviewed truth, require one full-media row per reviewer, and require a distinct adjudicator for every disagreement.
+- Decision: Treat the university inquiry, proposal v0.2, literature search register, release runbook, role assignments, rehearsals, sharing, access tests, supervisor outcomes, and submission records as prepared interfaces only until the named human or external evidence exists.
+- Decision: Correct appendix-title and slide-11 footer defects in native PowerPoint, rerender the changed slides, and bind the final PPTX/PDF hashes before release review.
+- Decision: Invalidate the earlier offline ZIP after any package correction. Readiness must parse the current backup status and compare each required ZIP member hash with the current PPTX, PDF, and review workbook; matching a stale ZIP filename or outer hash is insufficient.
+- Reason: The user requested implementation of the full next-step plan while preserving an evidence-honest boundary between locally automatable work and human, supervisor, institutional, medical, and submission gates.
+- Consequence: Local structure can be complete and testable now, while human rehearsal, delivery, transcript adjudication, decisions, labels, medical authorization, proposal approval, and submission remain visibly blocked.

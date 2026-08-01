@@ -1,5 +1,5 @@
 <!--
-last_updated: 2026-07-30
+last_updated: 2026-08-01
 staleness_threshold_days: 7
 -->
 
@@ -11,7 +11,8 @@ Track project issues here. Keep active issues near the top.
 
 | ID | Date | Source | Severity | Impact | Effort | Status | Summary | Next Step |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| ISS-027 | 2026-07-30 | Codex (presentation audit) | High | High | Human rehearsal + authorized delivery | Open / production portion remediated 2026-08-01 | The August 5 PPTX/PDF, 21 source-note sections, 44-control appendix, review workbook, native-render QA, and local backup now exist. Human timed and adversarial rehearsal, Ali exact-package approval, delivery, Iris/Arnon access tests, and the separately governed candidacy deck remain unproved; candidacy rules are still unverified. | Freeze the exact package after Ali review, run both dated human rehearsals, correct and rerender defects, then share only with authorization and record two independent recipient access tests. |
+| ISS-028 | 2026-08-01 | Codex (release integrity audit) | Medium | Medium | Rebuild after human freeze | Open / fail-closed | The existing local offline ZIP contains the superseded presentation package. It is marked `STALE / INVALIDATED`, and readiness now compares the ZIP member hashes with the current PPTX, PDF, and review workbook. | Do not deliver it. Rebuild the ZIP only after the corrected package passes human rehearsal and RG-04 freeze, then refresh manifests and hashes. |
+| ISS-027 | 2026-07-30 | Codex (presentation audit) | High | High | Human rehearsal + authorized delivery | Open / production portion remediated 2026-08-01 | The corrected August 5 PPTX/PDF, 21 source-note sections, 44-control appendix, review workbook, and native-render QA now exist. The prior backup is stale. Human timed and adversarial rehearsal, Ali exact-package approval, delivery, Iris/Arnon access tests, and the separately governed candidacy deck remain unproved; candidacy rules are still unverified. | Freeze the exact package after Ali review, run both dated human rehearsals, rebuild the backup, then share only with authorization and record two independent recipient access tests. |
 | ISS-026 | 2026-07-30 | Codex (July 29 closure) | Medium | High | Human review | Open | The private Ali-owned PhD Drive and native literature Sheet exist but have not been shared, sent, or recipient-access-tested. | Ali reviews the exact package and explicitly authorizes sharing; then verify each intended recipient's access. |
 | ISS-025 | 2026-07-30 | Codex (metadata audit) | High | High | Governance + authorized VDI | Blocked | The shared MIMIC resource contains 25 observed CSVs totaling 39.65 GiB versus 26 official MIMIC-III v1.4 tables; `NOTEEVENTS`, workbook authority, checksums, environment, parameters, and input-to-output provenance are unresolved. | Keep rows untouched. After all six medical gates pass, reconcile the canonical manifest inside the approved VDI. |
 | ISS-024 | 2026-07-30 | Codex (July 29 closure) | High | High | External confirmation | Open | The official candidacy deadline, reviewer count, nomination process, committee rules, and presentation requirements are unverified. | Obtain written department or Graduate Studies confirmation and rebaseline within one working day if dates differ. |

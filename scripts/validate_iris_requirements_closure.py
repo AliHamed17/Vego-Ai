@@ -22,6 +22,7 @@ import json
 import re
 import subprocess
 import sys
+import zipfile
 from collections import Counter
 from dataclasses import asdict, dataclass
 from datetime import datetime
@@ -261,6 +262,31 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest().upper()
+
+
+def backup_members_match(
+    backup: Path, artifacts: tuple[Path, ...]
+) -> bool:
+    """Return whether required backup members match the current artifacts."""
+    if not backup.is_file() or any(not artifact.is_file() for artifact in artifacts):
+        return False
+    try:
+        with zipfile.ZipFile(backup) as archive:
+            members = [member for member in archive.infolist() if not member.is_dir()]
+            by_name = {Path(member.filename).name: member for member in members}
+            required_names = {artifact.name for artifact in artifacts}
+            if len(by_name) != len(members) or not required_names <= set(by_name):
+                return False
+            for artifact in artifacts:
+                digest = hashlib.sha256()
+                with archive.open(by_name[artifact.name]) as stream:
+                    for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                        digest.update(chunk)
+                if digest.hexdigest().upper() != sha256(artifact):
+                    return False
+    except (OSError, zipfile.BadZipFile):
+        return False
+    return True
 
 
 def valid_sha256(value: object) -> bool:
@@ -1326,12 +1352,33 @@ def exp08() -> Result:
         path.exists() and path.stat().st_size > 0 for path in package_paths
     )
     provenance = read(PROVENANCE_MANIFEST)
-    package_hashes_current = package_artifacts_exist and all(
-        path.name in manifest
-        and sha256(path) in manifest
-        and path.name in provenance
-        and sha256(path) in provenance
-        for path in package_paths
+    backup_status_lines = [
+        line
+        for line in (*manifest.splitlines(), *delivery.splitlines())
+        if line.startswith("| Local offline backup |")
+        or line.startswith("- Offline-backup state:")
+    ]
+    backup_marked_current = len(backup_status_lines) == 2 and all(
+        "CURRENT" in line.upper()
+        and "STALE" not in line.upper()
+        and "INVALIDATED" not in line.upper()
+        for line in backup_status_lines
+    )
+    backup_content_current = backup_members_match(
+        LOCAL_PACKAGE_BACKUP,
+        (PRESENTATION_DECK, PRESENTATION_PDF, REVIEW_WORKBOOK),
+    )
+    package_hashes_current = (
+        package_artifacts_exist
+        and backup_marked_current
+        and backup_content_current
+        and all(
+            path.name in manifest
+            and sha256(path) in manifest
+            and path.name in provenance
+            and sha256(path) in provenance
+            for path in package_paths
+        )
     )
     qa_bound_to_current_package = (
         package_artifacts_exist
@@ -1398,10 +1445,10 @@ def exp08() -> Result:
                 "one or more controlled local package artifacts are missing",
             ),
             check(
-                "current package hashes match the manifest and provenance record",
+                "current package hashes and backup members match controlled artifacts",
                 package_hashes_current,
-                "PPTX, PDF, workbook, and backup hashes match both records",
-                "one or more package hashes are missing or stale",
+                "PPTX, PDF, workbook, and backup hashes match both records; backup members match the current artifacts",
+                "package status, hashes, or backup members are missing, stale, or inconsistent",
             ),
             check(
                 "visual QA is bound to the current PPTX/PDF hashes",

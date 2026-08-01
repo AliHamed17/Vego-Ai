@@ -550,3 +550,15 @@ Record file changes and rollback notes here.
   - IRIS validator, EXP-10 protocol, certificate, governance, provenance, and shared tracking
 - Rollback note: Revert the final closure-interface commit to remove the human-review merger, header-only returns, receipt schema/template, and associated validator controls. Do not delete raw media, preliminary ledgers, local presentation artifacts, or any future real human/receipt evidence without separate owner approval.
 - Git commit: `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`.
+
+## 2026-08-01 18:13 +03:00 - Codex - Implement Iris next-step execution controls
+
+- Files changed:
+  - docs/research/phd-proposal and docs/research/meetings execution artifacts
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx
+  - scripts/validate_aug1_oct7_execution_program.py and tests
+  - scripts/validate_iris_zoom_review_batches.py and tests
+  - scripts/validate_iris_requirements_closure.py and tests
+  - docs/agent-memory and dashboard status files
+- Rollback note: Revert the two final documentation commits; ignored workbook/PDF/previews can be removed locally if no longer required.
+- Git commit: none recorded by script.

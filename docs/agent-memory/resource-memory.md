@@ -2,7 +2,34 @@
 
 This file is the compact shared resource index for Codex and Claude. It points agents to reusable research resources without forcing every prompt to reload downloaded source files.
 
-Last updated: 2026-07-30 by Codex.
+Last updated: 2026-08-01 by Codex.
+
+## Iris Next-Step Execution Program
+
+Canonical and operator interfaces:
+
+- `docs/research/phd-proposal/aug1-oct7-execution-control-board.json`
+- `docs/research/phd-proposal/aug1-oct7-execution-control-board.md`
+- `docs/research/phd-proposal/next-step-implementation-manifest-2026-08-01.md`
+- `docs/research/meetings/2026-08-05-supervisor-release-gate-and-runbook.md`
+- `docs/research/meetings/2026-07-29-iris-zoom-reviewer-operations.md`
+- `docs/research/phd-proposal/literature-search-execution-register.md`
+- `docs/research/phd-proposal/proposal-v0.2-working-draft.md`
+- `docs/research/phd-proposal/university-process-inquiry-draft.md`
+
+Local companion output:
+
+- `outputs/iris-next-step-2026-08-01-implementation/VEGO-AI-Iris-Next-Step-Execution-Control-2026-08-01.xlsx` (ignored; exact hash is recorded in the implementation manifest)
+
+Validators:
+
+- `scripts/validate_aug1_oct7_execution_program.py`
+- `scripts/validate_iris_zoom_review_batches.py`
+- `scripts/validate_iris_requirements_closure.py` (IRIS-EXP-08 also verifies offline-ZIP member hashes)
+
+Current boundary: board structure is valid; all assignee, reviewer, rehearsal,
+release, access, supervisor, medical, expert-label, approval, and submission
+evidence fields remain human/external gates.
 
 ## July 29 Doctoral Execution Program
 

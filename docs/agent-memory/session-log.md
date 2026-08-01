@@ -720,3 +720,29 @@ Chronological prompt history for Codex and Claude.
   - git diff --check: pass
 - Status: Final closure interfaces implemented; human review, rehearsal, supervisor acceptance, authorized receipt, and submission remain pending.
 - Next steps: Complete both 1,195-segment plus full-media reviewer returns and third-person adjudication; run human rehearsals; obtain Ali delivery authorization, recipient access tests, explicit supervisor decisions, proposal approval, and a real authorized submission receipt before issuing a certificate.
+
+## 2026-08-01 18:13 +03:00 - Codex - Implement Iris next-step execution controls
+
+- Request: Implement the approved VEGO-AI Iris requirements next-step execution plan.
+- Actions taken:
+  - Created a canonical 29-work-package board with exact 44-control and experiment traceability
+  - Added fail-closed reviewer, evidence, dependency, readiness, and closure validation
+  - Built release, literature, proposal, university inquiry, and companion workbook interfaces
+  - Corrected and natively inspected the August 5 presentation
+  - Invalidated the superseded backup without simulating human or external evidence
+- Files changed:
+  - docs/research/phd-proposal and docs/research/meetings execution artifacts
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx
+  - scripts/validate_aug1_oct7_execution_program.py and tests
+  - scripts/validate_iris_zoom_review_batches.py and tests
+  - scripts/validate_iris_requirements_closure.py and tests
+  - docs/agent-memory and dashboard status files
+- Commands/checks:
+  - pytest focused Iris execution and ledger suites
+  - ruff check focused validators and tests
+  - slides_test.py corrected PPTX
+  - check_evidence_consistency.py
+  - validate_research_records.py
+  - board structure/readiness/closure and Zoom partial/complete validators
+- Status: implemented locally; human and external gates pending
+- Next steps: Ali reviews the exact package, names roles, runs both rehearsals, authorizes sharing/access tests, and records August 5 decisions; transcript, literature, EXP-005, medical, university, approval, and submission gates remain open.
