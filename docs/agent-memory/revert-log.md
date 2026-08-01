@@ -539,7 +539,7 @@ Record file changes and rollback notes here.
   - scripts/build_iris_zoom_disposition_ledger.py and scripts/validate_iris_requirements_closure.py with focused tests
   - docs/agent-memory, docs/dashboards, and docs/PROGRESS_TRACKER.md
 - Rollback note: Revert the focused implementation commit to remove tracked closure docs, protocols, validator changes, and PPTX. Delete only the dated ignored local PDF, workbook, backup, and generated QA outputs if those local derivatives must also be withdrawn. Do not alter raw Zoom media, ASR, source Drive, production VEGO-AI behavior, EXP-005 labels, or patient data.
-- Git commit: none recorded by script.
+- Git commit: `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`.
 
 ## 2026-08-01 13:47 +03:00 - Codex - Iris closure reachability and receipt hardening
 
@@ -549,4 +549,4 @@ Record file changes and rollback notes here.
   - schemas/iris-authorized-submission-receipt-v1.schema.json and pending receipt template
   - IRIS validator, EXP-10 protocol, certificate, governance, provenance, and shared tracking
 - Rollback note: Revert the final closure-interface commit to remove the human-review merger, header-only returns, receipt schema/template, and associated validator controls. Do not delete raw media, preliminary ledgers, local presentation artifacts, or any future real human/receipt evidence without separate owner approval.
-- Git commit: none recorded by script.
+- Git commit: `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`.

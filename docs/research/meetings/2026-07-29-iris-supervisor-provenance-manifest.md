@@ -2,9 +2,9 @@
 
 > **Status:** Complete local machine-transcription package; human bilingual review and full diarization pending.
 
-- Integrity refresh: `2026-08-01T13:46:42+03:00`
-- Repository base revision at refresh: `2f4e9c8b2722581376b1e2bf65ea09ae27ab3a36`
-- Working-tree note: the hashes below identify the exact files, including uncommitted governance updates; the base revision alone does not contain those updates.
+- Integrity refresh: `2026-08-01T13:52:57+03:00`
+- Repository base revision at refresh: `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`
+- Working-tree note: the tracked closure package was frozen in this revision. The local PDF, review workbook, and backup ZIP remain intentionally ignored but are bound below by exact hashes. This provenance binding may be committed in a later descendant without changing the frozen package paths.
 
 The integrity refresh revalidated the immutable raw media, ASR, and machine-translation hashes without changing those files. Derived call and governance artifacts received new hashes after their controlled documentation updates.
 
@@ -32,9 +32,9 @@ The integrity refresh revalidated the immutable raw media, ASR, and machine-tran
 | Master traceability register | C:\Users\ahamed\vego-ai\docs\research\phd-proposal\master-traceability-register.md | 38720 | 2026-08-01T13:15:23.138820+03:00 | A570D55B8E70B21A5C1242EDA4E3F47960A9101D5EC9E5D23D4C0CFC24E19525 | Canonical current control status with independent extraction, implementation, acceptance, and ongoing-control dimensions |
 | Closure audit | C:\Users\ahamed\vego-ai\docs\research\phd-proposal\iris-requirements-closure-audit.md | 25076 | 2026-08-01T13:45:48.012792+03:00 | 3865F26ED3F3A812F5EB093CABB88E1FAD65815118F7FBD54BE0A2588317E033 | Canonical 44-control readiness audit and evidence-bounded release statement |
 | Presentation/control manifest | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-08-05-supervisor-presentation-manifest.md | 11600 | 2026-08-01T13:21:12.695543+03:00 | FB0BF9DA61CF4ABF245F0476B2CCF8FF34F016BF37FA4824B3228B9CC3A3A1BC | Built-package map for all 44 baseline controls; human release gates remain open |
-| Rehearsal record | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-08-05-supervisor-rehearsal-record.md | 7396 | 2026-08-01T13:13:18.138909+03:00 | 4C62D08136540B6AC9ABAF69853AC46FC6D4A56869BB54709ADD7457FD59DEDC | Automated/render preflight PASS; human timed and adversarial rehearsals NOT RUN |
+| Rehearsal record | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-08-05-supervisor-rehearsal-record.md | 7437 | 2026-08-01T13:52:33.439512+03:00 | 87CFFF33FE9EC545D32FD5B21A033AC5F5B1BDCF146B20A717EAF064535186D6 | Automated/render preflight PASS; human timed and adversarial rehearsals NOT RUN |
 | Adversarial Q&A worksheet | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-08-05-supervisor-adversarial-qa-worksheet.md | 5931 | 2026-08-01T13:13:10.413993+03:00 | F7168A86AC627C46BDEED75019E2777E9928324B21674E49B30A13E199EEEF32 | Twelve evidence-bound challenge prompts; human run NOT RUN |
-| Delivery/access record | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-08-05-supervisor-delivery-access-record.md | 4932 | 2026-08-01T13:14:18.636491+03:00 | CCAFDCE2AC9EC26D7C466A31A6480CDF3C952079C1EDECD04BBD7AF700E34DAB | Exact local package hashes recorded; package NOT SHARED and access NOT TESTED |
+| Delivery/access record | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-08-05-supervisor-delivery-access-record.md | 4982 | 2026-08-01T13:52:33.440514+03:00 | 76EAF07BF9E26F9B47D430591838B191F931EAAFF233DBD0CDA77920A12B8AB4 | Exact local package hashes recorded; package NOT SHARED and access NOT TESTED |
 | Supervisor presentation PPTX | C:\Users\ahamed\vego-ai\presentations\VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx | 96137 | 2026-08-01T13:06:09.435344+03:00 | E32ADF8B48FAC5DA4033E8259A8248384FC48A23326F569B9C7DB015EF34E9E3 | 12-slide English core plus nine-slide appendix; 21 source-note sections; local build only |
 | Supervisor presentation PDF | C:\Users\ahamed\vego-ai\presentations\VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf | 332486 | 2026-08-01T13:06:35.583253+03:00 | 83A99566411C5565800D83DEEBA255E2B5EB568EB25526AEA5FB89D0AA9F6D78 | PowerPoint export of the exact 21-slide PPTX; local build only |
 | Zoom human-review workbook | C:\Users\ahamed\vego-ai\outputs\iris-closure-2026-08-01\Iris_Zoom_Review_Ledger_2026-07-29.xlsx | 146350 | 2026-08-01T12:41:39.532937+03:00 | 7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295 | 1,195-row machine-only review interface; human review/adjudication pending |

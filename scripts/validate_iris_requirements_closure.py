@@ -72,6 +72,9 @@ REVIEWER_B_TEMPLATE = (
 ADJUDICATION_TEMPLATE = (
     ROOT / "docs/research/meetings/2026-07-29-iris-zoom-adjudication.csv"
 )
+HUMAN_REVIEW_WORKFLOW = (
+    ROOT / "docs/research/meetings/2026-07-29-iris-zoom-human-review-workflow.md"
+)
 ADJUDICATED_CSV = (
     ROOT / "docs/research/meetings/2026-07-29-iris-zoom-adjudicated-ledger.csv"
 )
@@ -1167,9 +1170,56 @@ def exp07() -> Result:
         check=False,
     ).stdout
     working_tree_dirty = bool(status_output.strip())
-    revision_distinction = bool(base_match) and base_match.group(1) == head and (
+    package_revision = base_match.group(1) if base_match else ""
+    package_revision_is_ancestor = bool(package_revision) and subprocess.run(
+        ["git", "merge-base", "--is-ancestor", package_revision, head],
+        cwd=ROOT,
+        capture_output=True,
+        timeout=10,
+        check=False,
+    ).returncode == 0
+    frozen_package_paths = (
+        MACHINE_JSONL,
+        REQUIREMENT_REGISTER,
+        ACTION_REGISTER,
+        LEDGER_CSV,
+        LEDGER_JSON,
+        REVIEWER_A_TEMPLATE,
+        REVIEWER_B_TEMPLATE,
+        ADJUDICATION_TEMPLATE,
+        HUMAN_REVIEW_WORKFLOW,
+        ADJUDICATED_BUILDER,
+        MASTER,
+        CLOSURE,
+        GOVERNANCE_CONTROL,
+        CLOSURE_CERTIFICATE,
+        PRESENTATION_MANIFEST,
+        PRESENTATION_DECK,
+        SUBMISSION_RECEIPT_SCHEMA,
+        SUBMISSION_RECEIPT_TEMPLATE,
+    )
+    package_unchanged_from_revision = (
+        package_revision_is_ancestor
+        and subprocess.run(
+            [
+                "git",
+                "diff",
+                "--quiet",
+                package_revision,
+                "--",
+                *(str(path.relative_to(ROOT)) for path in frozen_package_paths),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            timeout=20,
+            check=False,
+        ).returncode
+        == 0
+    )
+    revision_distinction = package_unchanged_from_revision and (
         not working_tree_dirty
         or "base revision alone does not contain those updates" in provenance
+        or "provenance binding may be committed in a later descendant" in provenance
     )
     broader_paths = (
         MASTER,
@@ -1220,10 +1270,10 @@ def exp07() -> Result:
             (merge_check.stdout + merge_check.stderr).strip(),
         ),
         check(
-            "provenance distinguishes base revision from uncommitted working state",
+            "provenance identifies an unchanged committed package revision and qualifies working state",
             revision_distinction,
-            "base revision matches HEAD and working-tree qualification is explicit",
-            "base revision/working-tree provenance is missing or ambiguous",
+            "package revision is an ancestor, frozen package paths are unchanged, and working state is explicit",
+            "package revision, frozen-path comparison, or working-state provenance is missing or stale",
         ),
     )
     return Result(
@@ -1246,10 +1296,10 @@ def exp07() -> Result:
         ),
         closure_checks=(
             check(
-                "closure package is committed with a clean working tree",
-                not working_tree_dirty and bool(base_match) and base_match.group(1) == head,
-                "provenance base equals committed HEAD and working tree is clean",
-                "package remains an uncommitted or dirty working state",
+                "closure package is unchanged from its committed package revision with a clean working tree",
+                not working_tree_dirty and package_unchanged_from_revision,
+                "frozen package paths match the committed package revision and the working tree is clean",
+                "package paths changed after the recorded revision or the working tree is dirty",
             ),
         ),
         evidence_boundary=(

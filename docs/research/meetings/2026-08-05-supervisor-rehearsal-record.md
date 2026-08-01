@@ -15,7 +15,7 @@ This is an evidence form, not proof of rehearsal. Complete it only during real r
 | Notes path/version/SHA-256 | Embedded in the PPTX; 21/21 slides contain a `[Sources]` section; same PPTX hash above |
 | Evidence appendix path/version/SHA-256 | `outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx`; machine-only review interface; `7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295` |
 | Presentation manifest version/SHA-256 | [current working manifest](./2026-08-05-supervisor-presentation-manifest.md); final document hash belongs in the provenance manifest |
-| Repository revision | Base `2f4e9c8b2722581376b1e2bf65ea09ae27ab3a36`; current implementation is an uncommitted controlled tranche |
+| Repository revision | Tracked closure package frozen in `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`; local ignored PDF/XLSX/ZIP remain hash-bound in the provenance manifest |
 | Planned meeting duration/language | English 12-slide core; target maximum 11 minutes; appendix on demand; human timing not measured |
 
 ## Participants and run metadata

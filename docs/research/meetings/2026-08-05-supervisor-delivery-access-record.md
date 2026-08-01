@@ -31,7 +31,7 @@ Do not populate recipient sharing rows until Ali approves the exact hashed packa
 | Citation/source manifest | 21 PPTX `[Sources]` note sections plus [provenance manifest](./2026-07-29-iris-supervisor-provenance-manifest.md) | Current working package | — | record final document hash in provenance before sharing | STRUCTURE PASS |
 | Rehearsal record | [record](./2026-08-05-supervisor-rehearsal-record.md) | Automated preflight record | — | record final document hash in provenance before sharing | AUTOMATED PREFLIGHT PASS; HUMAN REHEARSAL NOT RUN |
 
-- Repository revision: base `2f4e9c8b2722581376b1e2bf65ea09ae27ab3a36`; implementation tranche not yet frozen in a commit
+- Repository revision: tracked closure package frozen in `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`; local ignored derivatives remain hash-bound in the provenance manifest
 - Package freeze time: `NOT FROZEN`
 - Offline-backup location and hash: `outputs/iris-closure-2026-08-01/VEGO-AI-August5-Supervisor-Package-local-backup.zip`; 477,215 bytes; SHA-256 `AAD3065C157A9C2056DAD687E26451A7D6941626AB9E7A77D177831F483420B3`; local only, not shared
 
