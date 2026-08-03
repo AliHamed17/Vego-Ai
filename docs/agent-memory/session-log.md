@@ -570,7 +570,6 @@ Chronological prompt history for Codex and Claude.
 - Status: completed
 - Next steps: Push feature/evaluation-phase, PR to main, merge per standing authorization; human-gated: 24-row label campaign, M-01..M-06 decisions, mid-August survey presentation.
 
-
 ## 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
 
 - Request: Continue: full enhancement with real per-agent answers, E2E working system, Iris points implemented, full report.
@@ -594,3 +593,199 @@ Chronological prompt history for Codex and Claude.
   - git merge origin/main -> resolved, tree delta vs main = 22 intended files
 - Status: completed
 - Next steps: Await PR #15 CI, merge to main per standing authorization, deliver final report. Human-gated: 24-row label campaign, M-01..M-06, mid-August survey.
+
+## 2026-07-28 19:14 +03:00 - Claude - Enhanced supervisor deck for 29 July, with a fact-check that corrected two published figures
+
+- Request: Enhance the 29 July PPTX: architecture visualizations, one compacted architecture slide, a slide per component, interaction/sequence flows, Iris checklist, timeline, benchmark, evaluation criteria, questions, next steps.
+- Actions taken:
+  - Rebuilt the supervisor deck as 52 native-shape slides (VEGO-AI-Progress-Review-2026-07-29-ENHANCED.pptx, delivered to Downloads): one compacted whole-architecture slide, was/changed/now, authority model, 13 per-component slides, 5 UML sequence diagrams, agent interaction matrix, evaluation rubric, verdict scoreboard, paper-reference-band plot, claim ladder, timeline, benchmark, dosage, Iris D1-D12 checklist, blockers, questions, next steps
+  - Ran a 4-agent fact-check of every planned figure against repo artifacts: 35 confirmed, 10 corrected
+  - Recorded ISS-021: tracked docs say '179 student models' but 179 is scored ranking rows with 14 duplicate case_ids; correct counts are 83 distinct models / 165 model-setting evaluations / 179 scored rows
+  - Recorded ISS-020: the benchmark analytics report claims EXP-036 meets its latency target while the pinned artifact records engineeringTargetMet=false, with confidence intervals that do not bracket their own point estimates
+  - Corrected in the deck: EXP-033 parity is 15 runs (5 fixture artifacts x 3 repetitions) not 15 artifacts; the K=30/35 capture sweep is EXP-008 not EXP-007; research test count is 143 not 113; the '9 experiments on 5 July' baseline is unsupported and was replaced with the citable 6-in-late-June figure
+  - Ran two visual-QA agent sweeps over all 52 rendered slides: 3 blockers, 6 majors and 12 minors found and fixed (component-template title duplication, verdict overflow, sequence-label lifeline crossings, chart axis/number formats, contrast)
+- Files changed:
+  - docs/agent-memory/issues.md
+- Commands/checks:
+  - node deck/build.js -> 52 slides
+  - validate.py -> All validations PASSED
+  - PowerPoint COM export -> 52 slides rendered for QA
+  - python scripts/check_evidence_consistency.py -> PASS
+- Status: completed
+- Next steps: Present 29 July. Fix ISS-020/ISS-021 in the tracked docs before those figures enter a thesis chapter.
+
+## 2026-07-30 15:10 +03:00 - Codex - Implement July 29 doctoral requirements-closure program
+
+- Request: Implement the VEGO-AI July 29 requirements-closure and PhD proposal execution plan.
+- Actions taken:
+  - Preserved ten machine-derived July 29 evidence artifacts on a dedicated documentation branch.
+  - Implemented the 44-item master traceability program, one-plus-three RQ package, three-study contract, Plan A/B controls, proposal v0.1, literature protocol, pre-read, RACI/RAID, claims, decisions, and templates.
+  - Created the private nine-folder Google Drive workspace and native six-tab literature workbook without external sharing.
+  - Accepted and verified the recurring supervision calendar series.
+  - Completed a metadata-only MIMIC audit and aligned all medical controls to six mandatory entry gates at 0/6 with downstream integrity, pilot, and export controls.
+  - Updated research indexes, project memory, issue/decision/resource records, executive tracker, and dashboards.
+- Files changed:
+  - docs/research/
+  - docs/templates/weekly-supervisor-pre-read.md
+  - docs/templates/supervisor-decision-change-log.md
+  - docs/agent-memory/
+  - docs/dashboards/
+  - docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - git diff --check
+  - custom 44-item/table/link/RQ/gate validation
+  - python scripts/check_evidence_consistency.py --check: 18/18 PASS
+  - python scripts/validate_research_records.py schemas/examples docs/research/bigui/experiment-catalog-snapshot-v1.json: PASS
+  - scripts/research-health.ps1: PASS
+- Status: completed; supervisor, bilingual, literature-execution, administrative, EXP-005, and medical gates remain open
+- Next steps: Ali reviews the exact package before sharing; record August 5 supervisor decisions; execute the literature protocol; obtain bilingual and university-process confirmation; keep medical work blocked at 0/6 and default to Plan B on August 26 if any critical gate remains unproved.
+
+## 2026-07-30 16:21 +03:00 - Codex - Iris requirements assurance and presentation controls
+
+- Request: Add extra experiments and presentation/video-call checks so every July 29 Iris requirement is traced, checked, and reported honestly.
+- Actions taken:
+  - Audited all 44 controls and current presentation assets
+  - Added IRIS-EXP-01 through IRIS-EXP-04 and deterministic validation
+  - Created the closure audit, presentation checklist, and weekly propagation control
+  - Synchronized canonical RQ wording and corrected the unsupported four-hour audit claim
+  - Ran focused tests, evidence consistency, research health, and project health
+- Files changed:
+  - docs/research and docs/templates supervisor-control artifacts
+  - experiments/IRIS-EXP-01 through IRIS-EXP-04
+  - scripts/validate_iris_requirements_closure.py and focused tests
+  - docs/agent-memory and docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - python scripts/validate_iris_requirements_closure.py --all --refresh
+  - python -m pytest scripts/tests/test_iris_requirements_closure.py -q
+  - python scripts/check_evidence_consistency.py
+  - scripts/research-health.ps1 and scripts/project-health.ps1
+  - git diff --check
+- Status: completed-with-human-and-external-gates
+- Next steps: Ali reviews the exact package; confirm meeting logistics; build and rehearse the current deck; obtain Iris/Arnon decisions; run the first weekly cycle; keep EXP-005 and medical gates closed until real evidence exists.
+
+## 2026-08-01 13:27 +03:00 - Codex - Enhanced Iris Zoom-to-submission closure tranche
+
+- Request: Implement the Enhanced Iris Zoom-to-Submission 100% Closure Plan without fabricating human, supervisor, medical, or submission evidence.
+- Actions taken:
+  - Built deterministic preliminary coverage for all 1,195 call segments and a five-sheet human-review workbook.
+  - Added independent extraction, implementation, acceptance, and ongoing-control dimensions for all 44 baseline controls.
+  - Built the 12-slide English core plus nine-slide appendix, PPTX/PDF, notes, QA evidence, adversarial worksheet, and local backup.
+  - Added IRIS-EXP-05 through IRIS-EXP-10, SCI-EXP crosswalk, external-fact, governance, delivery, rehearsal, and certificate controls.
+  - Extended the validator with fail-closed structure, readiness, and closure modes plus artifact/hash/QA checks.
+  - Preserved all human and external gates as pending and made no production VEGO-AI or patient-data change.
+- Files changed:
+  - docs/research/meetings and docs/research/phd-proposal Iris closure artifacts
+  - experiments/IRIS-EXP-05 through IRIS-EXP-10
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx and local ignored PDF/workbook/backup
+  - scripts/build_iris_zoom_disposition_ledger.py and scripts/validate_iris_requirements_closure.py with focused tests
+  - docs/agent-memory, docs/dashboards, and docs/PROGRESS_TRACKER.md
+- Commands/checks:
+  - pytest focused closure tests: 11 passed
+  - ruff: pass
+  - ledger --check: 1,195 rows verified
+  - closure validator structure: pass
+  - closure validator readiness and closure: expected exit 1 on open human/external gates
+  - evidence consistency: 18/18 pass
+  - changed Markdown links and tables: pass
+  - slides_test.py with bundled runtime: pass, no overflow
+  - PPTX/PDF/XLSX/ZIP structure and hashes: pass
+  - git diff --check: pass
+- Status: Implemented locally and structurally validated; readiness and closure intentionally remain blocked on human/external evidence.
+- Next steps: Ali reviews the exact frozen package; complete full dual bilingual review/adjudication and timed/adversarial human rehearsal; authorize delivery and record Iris/Arnon access tests; obtain explicit meeting decisions before any closure claim.
+
+## 2026-08-01 13:47 +03:00 - Codex - Iris closure reachability and receipt hardening
+
+- Request: Close final assurance-design gaps found during independent review without creating human or submission evidence.
+- Actions taken:
+  - Separated immutable preliminary coverage from dual-review and third-person adjudication outputs through a fail-closed deterministic merger.
+  - Added header-only Reviewer A, Reviewer B, and adjudication inputs plus a documented full-media review record.
+  - Validated all 44 independent status rows and the exact 2/6/22/5/9 implementation distribution.
+  - Replaced filename-only submission evidence with an exact schema-valid and hash-bound authorized receipt contract.
+  - Refreshed provenance and governance while keeping the adjudicated ledger, receipt, and certificate unissued.
+- Files changed:
+  - scripts/build_iris_zoom_adjudicated_ledger.py and focused tests
+  - docs/research/meetings July 29 human-review workflow and header-only return templates
+  - schemas/iris-authorized-submission-receipt-v1.schema.json and pending receipt template
+  - IRIS validator, EXP-10 protocol, certificate, governance, provenance, and shared tracking
+- Commands/checks:
+  - focused closure/ledger tests: 17 passed
+  - ruff: pass
+  - preliminary ledger check: pass
+  - adjudication interface check: valid pending state, no outputs
+  - structure: exit 0
+  - readiness and closure: expected exit 1
+  - evidence consistency: 18/18 pass
+  - changed Markdown links/tables and JSON parse: pass
+  - git diff --check: pass
+- Status: Final closure interfaces implemented; human review, rehearsal, supervisor acceptance, authorized receipt, and submission remain pending.
+- Next steps: Complete both 1,195-segment plus full-media reviewer returns and third-person adjudication; run human rehearsals; obtain Ali delivery authorization, recipient access tests, explicit supervisor decisions, proposal approval, and a real authorized submission receipt before issuing a certificate.
+
+## 2026-08-01 18:13 +03:00 - Codex - Implement Iris next-step execution controls
+
+- Request: Implement the approved VEGO-AI Iris requirements next-step execution plan.
+- Actions taken:
+  - Created a canonical 29-work-package board with exact 44-control and experiment traceability
+  - Added fail-closed reviewer, evidence, dependency, readiness, and closure validation
+  - Built release, literature, proposal, university inquiry, and companion workbook interfaces
+  - Corrected and natively inspected the August 5 presentation
+  - Invalidated the superseded backup without simulating human or external evidence
+- Files changed:
+  - docs/research/phd-proposal and docs/research/meetings execution artifacts
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx
+  - scripts/validate_aug1_oct7_execution_program.py and tests
+  - scripts/validate_iris_zoom_review_batches.py and tests
+  - scripts/validate_iris_requirements_closure.py and tests
+  - docs/agent-memory and dashboard status files
+- Commands/checks:
+  - pytest focused Iris execution and ledger suites
+  - ruff check focused validators and tests
+  - slides_test.py corrected PPTX
+  - check_evidence_consistency.py
+  - validate_research_records.py
+  - board structure/readiness/closure and Zoom partial/complete validators
+- Status: implemented locally; human and external gates pending
+- Next steps: Ali reviews the exact package, names roles, runs both rehearsals, authorizes sharing/access tests, and records August 5 decisions; transcript, literature, EXP-005, medical, university, approval, and submission gates remain open.
+
+## 2026-08-03 22:27 +03:00 - Claude - Independent audit + fix pass on the Iris Zoom-closure supervisor package
+
+- Request: Make sure everything delivered is high quality and 100% correct; fix all confirmed defects.
+- Actions taken:
+  - Ran a 5-lane, 21-agent independent audit workflow (adversarial-verified, 0 refuted) plus hands-on verification of the actual test/validator/hash state, not the prior session's self-reported narration
+  - Confirmed real defects: 2/23 tests failing, IRIS-EXP-07/08 both FAIL at structure mode (should never happen), 9/31 (then discovered a 10th missing row) stale provenance-manifest hashes, 4 stale verified hashes in the execution control board JSON, R-04 appendix slide-mapping contradicted itself and pointed at slides with no matching content, A-03/A-06 appendix mapping omitted slide 2, the deck's only vocabulary legend (Claim states) never defined the Verified/Awaiting/Partial/Open/Blocked terms actually used throughout the appendix and bar chart, and G1-G6 was reused for two unrelated gate schemes
+  - Fixed the live PPTX (v10): added a doctoral-adequacy caption to slide 10, corrected R-04's appendix mapping to slide 10 only, corrected A-03/A-06 to include slide 2, added a control-status legend caption to slide 18; verified only those 4 slides changed and all 21 render cleanly with no overflow/overlap
+  - Regenerated PDF, all 21 slide PNGs, and the schema-valid render manifest for v10
+  - Generated the previously-missing docs/research/meetings/2026-08-05-supervisor-source-manifest.json (was causing a hard test failure)
+  - Rebuilt all 32 provenance-manifest rows (added the previously-untracked machine-gap-ledger.csv row) and fixed the 4 stale execution-control-board hashes
+  - Renamed the colliding G1-G6 gate labels to AG0-AG6 in THESIS_ACCURACY_EVIDENCE_ADVANCEMENT_PLAN.md with an explicit disambiguation note
+  - Result: 22/23 tests pass (up from 21/23); only one structure-mode check remains FAIL by design (IRIS-EXP-07's commit-bound package-revision check), which requires an explicit commit authorization I did not have
+- Files changed:
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf
+  - outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/*.PNG
+  - docs/research/meetings/2026-08-05-supervisor-render-manifest.json
+  - docs/research/meetings/2026-08-05-supervisor-source-manifest.json
+  - docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md
+  - docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md
+  - docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md
+  - docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md
+  - docs/research/phd-proposal/aug1-oct7-execution-control-board.json
+  - docs/research/thesis-evidence/THESIS_ACCURACY_EVIDENCE_ADVANCEMENT_PLAN.md
+  - docs/agent-memory/current-state.md
+- Commands/checks:
+  - python -m pytest scripts/tests/test_iris_requirements_closure.py scripts/tests/test_iris_zoom_disposition_ledger.py scripts/tests/test_supervisor_source_manifest.py -q -> 22 passed, 1 failed (commit-bound check, by design)
+  - python scripts/validate_iris_requirements_closure.py --all --mode structure -> IRIS-EXP-07 down to 1 FAIL (was 2), IRIS-EXP-08 0 FAIL (was 1)
+  - python scripts/validate_aug1_oct7_execution_program.py -> PASS [structure] 29 work packages, 0 issues
+  - python scripts/build_supervisor_source_manifest.py --check -> verified
+  - PowerPoint COM render of all 21 v10 slides -> no overflow/overlap found
+- Status: completed
+- Next steps: The one remaining structure-mode FAIL requires committing the working tree so the provenance manifest's cited base revision matches real committed content; needs explicit user go-ahead to commit. All other audit-confirmed defects are fixed.
+
+## 2026-08-03 22:XX +03:00 - Claude - Commit the fix pass and merge the Iris closure workstream into main
+
+- Request: "push all to main; give me here all files we need to use to deliver"
+- Actions taken:
+  - Committed the audit fix pass (`bf45c98`), bound provenance to that commit (`0456cff`), gitignored a stray tool-cache dir that was making the tree look dirty to the closure validator (`e637f0d`), and refreshed the detached source manifest (`ef12f6f`) — all 10 IRIS-EXP structure checks now PASS (36/36 focused tests pass)
+  - Pushed the branch, opened PR #16 (docs/iris-july29-phd-execution -> main, 209+ commits), and resolved real merge conflicts against main in the shared memory files (this session's earlier evaluation-phase merge and this Iris workstream had both independently edited the same orientation files)
+  - Resolved every conflict by combining both sides' content rather than picking one, since both workstreams' information is real and current
+- Status: completed
+- Next steps: Confirm PR #16 CI passes, then merge; report the delivery-file list to the user.

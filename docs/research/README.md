@@ -4,7 +4,30 @@ This folder is for the scientific substance of the PhD work.
 
 | File | Purpose |
 | --- | --- |
-| `extension-plan-2026-07-supervisor-redirect.md` | ACTIVE PROVISIONAL PLAN: framework-first direction pending participant confirmation and M-02..M-05 outcomes. |
+| `phd-proposal/README.md` | **ACTIVE WORKING AUTHORITY:** July 29 requirements-closure and PhD-proposal execution package; supervisor approval and bilingual transcript review remain explicit gates. |
+| `phd-proposal/2026-07-29-doctoral-execution-plan.md` | Successor execution plan covering the one-plus-three RQ architecture, three studies, Plan A/B, milestones, resources, and acceptance gates. |
+| `phd-proposal/master-traceability-register.md` | Lead-control register for all R-01..R-19, A-01..A-15, and Q-01..Q-10. |
+| `phd-proposal/iris-requirements-closure-audit.md` | Point-by-point call-time, evidence, presentation, acceptance, and remaining-gate audit for all 44 July 29 controls. |
+| `phd-proposal/iris-alignment-experiment-register.md` | Separate IRIS-EXP-01..04 assurance program; does not change the canonical EXP-000..040 catalog or empirical evidence. |
+| `phd-proposal/2026-08-05-rq-decision-pack.md` | Exact recommended umbrella RQ and three subquestions, alternate wording variants, study map, Plan A/B comparison, and decisions requested from Iris and Arnon. |
+| `phd-proposal/three-study-contract.md` | Per-study contract for question, method, evidence, artifact, metrics, contribution, dependencies, fallback, risks, and publication target. |
+| `phd-proposal/legacy-rq-crosswalk.md` | Explicit disposition of the research-plan, thesis Chapter 3, PhD-optimization, and MediVARIA legacy questions. |
+| `phd-proposal/proposal-v0.1.md` | Initial six-part doctoral proposal manuscript with five-state claim boundaries and conditional medical transfer. |
+| `phd-proposal/claim-register.md` | Established, Preliminary, Planned, Blocked, and Partner-dependent claims with evidence and approval boundaries. |
+| `phd-proposal/resource-raci-raid-register.md` | Owners, decision rights, dependencies, resources, risks, assumptions, issues, and August 26 fallback controls. |
+| `phd-proposal/drive-workspace-manifest.md` | Private nine-folder Drive and native literature-Sheet IDs, permissions, ownership, and no-sharing state. |
+| `phd-proposal/literature-review-protocol.md` | Reproducible databases, concepts, search window, screening, identity verification, synthesis, and evidence-class rules. |
+| `phd-proposal/decision-change-log.md` | Current decisions, pending decisions, affected artifacts, and superseded wording. |
+| `phd-proposal/legacy-decision-disposition.md` | Explicit carry-forward, absorption, or supersession of July 15 M-01..M-06. |
+| `phd-proposal/university-process-verification-checklist.md` | Written-confirmation checklist for deadline, reviewers, nomination, committee, presentation, and submission rules. |
+| `phd-proposal/penina-course-outline-and-proposal-reuse-map.md` | Course-presentation outline mapped to reusable proposal sections and evidence boundaries. |
+| `meetings/2026-08-05-supervisor-pre-read.md` | Supervisor-facing pre-read prepared for Ali review; it is not recorded as sent. |
+| `meetings/2026-08-05-supervisor-presentation-checklist.md` | Current 12-checkpoint supervisor video-call outline, R-01..R-19 coverage, decision worksheet, experiment checks, claim preflight, and closeout. |
+| `../templates/weekly-supervisor-pre-read.md` | Reusable previous-commitment, evidence, blocker, decision, proposal-delta, one-task, and post-meeting read-back control. |
+| `meetings/2026-07-29-iris-requirements-register.md` | July 29 working requirements authority (R-01..R-19), derived from machine evidence and awaiting bilingual/speaker confirmation. |
+| `meetings/2026-07-29-iris-supervisor-action-register.md` | July 29 working action and decision authority (A-01..A-15 and Q-01..Q-10), subject to the same review gate. |
+| `governance/README.md` | Doctoral data boundary, medical readiness, MIMIC metadata audit, Clalit request, and derived-artifact provenance controls. |
+| `extension-plan-2026-07-supervisor-redirect.md` | **LEGACY / ABSORBED:** July 1 framework-first redirect. Its experiment, human-label, approval, and claim gates remain binding where the successor plan cites them. |
 | `meetings/2026-07-01-supervisor-meeting-iris.md` | Canonical machine-derived July 1 record with D1-D12 evidence matrix; participant verification is pending. |
 | `meetings/2026-07-01-supervisor-evidence-appendix.md` | Selected timestamped Hebrew machine-ASR evidence with unverified English paraphrases. |
 | `meetings/2026-07-01-supervisor-provenance-manifest.md` | Local-source inventory, SHA-256 hashes, transformation chain, and privacy boundary. |
@@ -35,14 +58,14 @@ This folder is for the scientific substance of the PhD work.
 | `independent-evidence/` | Approved calibration-stage two-reviewer ground-truth workflow, participant information/consent, metric contract, and decision record for classification, routing, holdout, effort, topology, and paper-comparison claims. |
 | `thesis-evidence/` | Canonical B0-B5 thesis evidence ladder, EXP-019-029 preregistration/model gates, reviewer calibration, claim gates, chapter traceability, and risk register. |
 | `h-layer/enhancement-plan-2026-07-12.md` | Comprehensive enhancement backlog from the 2026-07-12 verification sweep: Phase 1 (program overview, verify-all gate, consistency fixes, iteration-014 coherence repair) implemented; Phase 2/3 absorbed into the continuation plan. |
-| `continuation-plan-2026-07-24.md` | ACTIVE continuation plan after the evidence-ready thesis package: Phase 0 secure/commit, the human-gated label-campaign spine, parallel tracks (survey deadline, deferred enhancements, MediVARIA), thesis finalization trajectory. Read this for current sequencing. |
+| `continuation-plan-2026-07-24.md` | **LEGACY / ABSORBED:** July 24 continuation plan. Its EXP-005, leakage, independent-review, and evidence gates are preserved; current sequencing lives in `phd-proposal/`. |
 | `h-layer/feedback-learning-rlhf-plan.md` | Gated H-layer feedback-learning research plan: offline Vector 1 proposal artifacts now; SFT/DPO only as separately authorized future work. |
 | `h-layer/supervisor-demo-runbook.md` | July 15 isolated H-layer interaction-demo preflight, walkthrough, decision bridge, and abort conditions. |
 | `h-layer/trusted-feedback-export-manifest.template.json` | Non-authorizing template for the hash-bound human-approved input gate required by the offline S7 proposal generator. |
-| `phd-extension-ideas.md` | Lightweight PhD extension idea log; medical-domain transfer is the preferred direction. |
-| `medivaria/medivaria-study-plan.md` | MediVARIA: medical-domain transfer of VEGO-AI + H-layer (PhD track; IIA TRL 3->5 proposal); study questions MV-RQ1-6, phases, clinical claim boundaries. |
-| `research-plan.md` | Big-picture research plan and questions. |
-| `phd-thesis-optimization-plan.md` | MSc-to-PhD thesis trajectory, baseline enhancement strategy, and Claude/Codex collaboration model. |
+| `phd-extension-ideas.md` | Legacy idea log; medical transfer is now a conditional Plan A extension, not a doctoral dependency. |
+| `medivaria/medivaria-study-plan.md` | Conditional Plan A planning annex. MV-RQ1-6 are legacy questions crosswalked into the approved-or-pending one-plus-three hierarchy; no clinical work is authorized. |
+| `research-plan.md` | Working one-umbrella-RQ plus three-subquestion research architecture pending supervisor approval. |
+| `phd-thesis-optimization-plan.md` | Legacy MSc-to-PhD roadmap. P-RQ1..P-RQ5 are retained for provenance and crosswalked into the successor hierarchy. |
 | `methodology.md` | Method, pipeline, metrics, and evaluation strategy. |
 | `literature-review-taxonomy.md` | Taxonomy for positioning reusable human judgment in related work. |
 | `thesis-structure-map.md` | Compact thesis spine linking M1-M4B-1, EXP-001..EXP-005, HITL literature, evidence limits, and PhD extension. |

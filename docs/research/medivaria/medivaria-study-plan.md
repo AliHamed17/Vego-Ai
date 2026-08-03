@@ -1,8 +1,16 @@
 # MediVARIA Study Plan - Medical-Domain Transfer of VEGO-AI + H-Layer
 
-Last updated: 2026-07-04 by Fable (Claude). Status: PLANNING DRAFT for supervisor review (Iris + Arnon); no data work, no implementation, no partner commitments are made by this document.
+Last updated: 2026-07-04 by Fable (Claude).
 
-Sources: `MediVARIA_OnePage_v1.docx` (one-page technical proposal, archived ignored at `artifacts/medivaria/MediVARIA_OnePage_v1.docx`; tracked summary below), `docs/research/extension-plan-2026-07-supervisor-redirect.md` (active plan), `docs/research/phd-extension-ideas.md` (idea 1), `docs/research/phd-thesis-optimization-plan.md` (P-RQ5, optimization-roadmap P4/P5).
+Status update (2026-07-30): **CONDITIONAL PLAN A ANNEX / NOT ACTIVE
+IMPLEMENTATION.** The medical route may add a transfer pilot only after all six
+gates in `docs/research/governance/medical-readiness-scorecard.md` pass. If any
+critical prerequisite remains unproven on 2026-08-26, the proposal defaults to
+Plan B. MV-RQ1 through MV-RQ6 are legacy questions crosswalked in
+`docs/research/phd-proposal/legacy-rq-crosswalk.md`; no data work, clinical
+claim, implementation, or partner commitment is authorized here.
+
+Sources: `MediVARIA_OnePage_v1.docx` (one-page technical proposal, archived ignored at `artifacts/medivaria/MediVARIA_OnePage_v1.docx`; tracked summary below), `docs/research/extension-plan-2026-07-supervisor-redirect.md` (legacy plan), `docs/research/phd-extension-ideas.md` (idea 1), `docs/research/phd-thesis-optimization-plan.md` (legacy P-RQ5, optimization-roadmap P4/P5).
 
 Phase-namespace note: "redirect-plan P0-P6", "optimization-roadmap P0-P5", and "MV-P0..MV-P5" are three different numbering schemes; every cross-file phase reference in this document is qualified with its plan name.
 

@@ -124,3 +124,4 @@ desktop.ini
 .~lock.*
 *.tmp
 *.backup.pptx
+.cache/

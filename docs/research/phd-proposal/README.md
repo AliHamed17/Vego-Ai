@@ -1,0 +1,55 @@
+# PhD Proposal Working Package
+
+Status: **working package for supervisor review; no research question, medical route, dataset, partner, approval, or formal deadline is recorded as approved by these files.**
+
+This directory turns the requirements from the 29 July 2026 supervisor call into a single proposal architecture: one umbrella research question, exactly three subquestions, three mapped studies, and two execution paths. The package is deliberately evidence-bounded. Software engineering/modeling is the current research baseline; medicine is a conditional transfer setting and has no reported result in this repository.
+
+## Start here
+
+1. [`2026-08-05-rq-decision-pack.md`](./2026-08-05-rq-decision-pack.md) — recommended wording, two wording variants, study mapping, and decisions requested from Iris and Arnon.
+2. [`2026-07-29-doctoral-execution-plan.md`](./2026-07-29-doctoral-execution-plan.md) — end-to-end work plan, resources, gates, dependencies, risks, and provisional milestones.
+3. [`proposal-v0.1.md`](./proposal-v0.1.md) — initial six-section proposal draft.
+4. [`legacy-rq-crosswalk.md`](./legacy-rq-crosswalk.md) — maps earlier MSc, PhD-roadmap, evidence, and MediVARIA questions into the new three-subquestion hierarchy.
+5. [`../meetings/2026-08-05-supervisor-pre-read.md`](../meetings/2026-08-05-supervisor-pre-read.md) — concise supervisor-facing pre-read.
+6. [`iris-requirements-closure-audit.md`](./iris-requirements-closure-audit.md) — point-by-point `R/A/Q` readiness audit with call times, evidence, presentation checks, and remaining gates.
+7. [`../meetings/2026-08-05-supervisor-presentation-checklist.md`](../meetings/2026-08-05-supervisor-presentation-checklist.md) — 12-checkpoint video-call outline, full requirement coverage, decision worksheet, preflight, and closeout.
+8. [`iris-alignment-experiment-register.md`](./iris-alignment-experiment-register.md) — separate non-production assurance series for traceability, presentation readiness, claim boundaries, and weekly propagation.
+
+## Canonical working research architecture
+
+**Umbrella research question**
+
+How can reusable human judgment be captured, governed, and reused in agentic AI assessment of domain-specific artifacts and processes to support auditable, reliable, and transferable human–AI co-reasoning?
+
+| ID | Canonical working subquestion | Study |
+| --- | --- | --- |
+| SQ1 — Selective intervention | When and how should an agentic assessment system request human judgment so that important uncertainties are addressed without unnecessary expert burden? | Study 1 — intervention architecture |
+| SQ2 — Governed knowledge reuse | How should expert judgments be represented, validated, reconciled, and stored so they can be reused transparently without unsafe generalization or loss of human authority? | Study 2 — judgment lifecycle |
+| SQ3 — Evaluation and transfer | To what extent does the resulting framework improve assessment quality, consistency, traceability, and expert effort across domains, first in software/modeling and, when governance and access permit, in healthcare? | Study 3 — evaluation and transfer |
+
+This is the working recommendation, not a supervisor-approved wording. Alternate phrasings are wording options for the same four conceptual slots; they are not additional research questions.
+
+## Plan A and Plan B
+
+- **Plan A — conditional medical transfer:** construct Studies 1 and 2, evaluate the complete framework first in software/modeling, and extend Study 3 to healthcare only after expert, data, access, ethics, privacy, infrastructure, and approved-local-LLM gates are evidenced.
+- **Plan B — guaranteed non-medical completion:** answer the same umbrella question and three subquestions by evaluating the complete framework in software/modeling and a second software/modeling setting, dataset, diagram family, reviewer panel, or institution.
+
+The fallback does not change the research questions; it changes the second evaluation setting. The medical route must never sit on the only path to doctoral completion.
+
+## Binding evidence boundaries
+
+- The current independent-evidence state is **0 of 24 adjudicated generalization-safe labels** and **0 of 2 independent reviewer returns**. Accuracy, macro-F1, generalization, effort-reduction, and superiority claims are not yet computable.
+- Current results are software-engineering/modeling mechanism and evidence-readiness results. There are no clinical-performance results.
+- MIMIC and MediVARIA are planning or familiarization resources, not approved datasets or completed studies.
+- No patient data belongs in this repository. Restricted data must remain in its institutionally approved environment and must not be sent to a commercial or online-connected LLM.
+- The recurring master event is verified as accepted by Ali, Iris, and Arnon: Wednesday 09:00–10:00 Asia/Jerusalem through the 2026-10-07 occurrence.
+- Formal candidacy dates, reviewer count, committee rules, Drive receipt, and external-partner access must still be independently confirmed.
+
+## Source hierarchy
+
+1. [`../meetings/2026-07-29-iris-requirements-register.md`](../meetings/2026-07-29-iris-requirements-register.md)
+2. [`../meetings/2026-07-29-iris-supervisor-action-register.md`](../meetings/2026-07-29-iris-supervisor-action-register.md)
+3. [`../meetings/2026-07-29-iris-supervisor-call-report.md`](../meetings/2026-07-29-iris-supervisor-call-report.md)
+4. Current repository evidence, especially [`../phd-thesis-optimization-plan.md`](../phd-thesis-optimization-plan.md), [`../independent-evidence/README.md`](../independent-evidence/README.md), and [`../literature-review-taxonomy.md`](../literature-review-taxonomy.md)
+
+The underlying Hebrew ASR and English translation are machine-derived. Human bilingual review and full diarization remain pending. These proposal files use evidence-linked paraphrases only; they contain no direct quotations from the call.

@@ -11,6 +11,11 @@ Durable decisions for this project.
 
 | Date | Title | Status | Notes / Superseded By |
 |---|---|---|---|
+| 2026-08-03 | Independent Audit Standard for the Iris Closure Package | Active | 21-agent adversarial audit found 0 refuted findings; restored all 10 IRIS-EXP structure checks to PASS. |
+| 2026-07-30 | July 29 Requirements-Closure Authority | Active working authority | The 19 requirements, 15 actions, and 10 open questions control the successor program, subject to bilingual confirmation and supervisor decisions. |
+| 2026-07-30 | One-Plus-Three Research Architecture | Recommended, pending approval | One umbrella RQ and SQ1 selective intervention, SQ2 governed knowledge reuse, and SQ3 evaluation/transfer map to three studies. |
+| 2026-07-30 | Plan A / Plan B and August 26 Fallback | Active working default | Plan A is a gated medical extension; Plan B completes through software/modeling and becomes the September default if any critical medical prerequisite is unproved. |
+| 2026-07-30 | Three-Zone PhD Data Boundary | Active | Repository metadata/aggregate evidence, private working Drive, and restricted VDI are separated; patient rows and restricted derivatives never enter Git, ordinary Drive, or online LLMs. |
 | 2026-06-11 | Shared Agent Memory | Active | Uses AGENTS.md, CLAUDE.md, and docs/agent-memory/ |
 | 2026-06-11 | Current-State First Workflow | Active | Stored in current-state.md and progress.md |
 | 2026-06-11 | Scripted Prompt Memory | Active | start/finish scripts for memory updates |
@@ -363,3 +368,57 @@ Durable decisions for this project.
 - Decision: When canonical sources legitimately change, re-anchor derived artifacts in this order: commit sources -> `build_thesis_evidence_package.py --source-revision HEAD` + review manifest -> `build_bigui_catalog.py --source-revision <full sha>` -> `build_bigui.py` -> commit. Skipping the catalog/HTML step leaves determinism tests failing (and pytest can stall for minutes computing a difflib diff of the multi-megabyte research hub HTML).
 - Reason: The 2026-07-28 evaluation phase surfaced each of these as a real failure mode while wiring the pipeline end to end.
 - Consequence: Continuation prompts can run one command for the full program verdict; component claims stay evidence-bound while the EXP-005 gate holds at 0/24 labels.
+
+## 2026-07-30 - July 29 Doctoral Requirements-Closure and Proposal Program
+
+- Decision: Treat the July 29 requirement/action/open-question registers as the successor working authority. The July 1 redirect and July 24 continuation remain preserved as absorbed legacy plans; no older file is silently deleted.
+- Decision: Recommend exactly one umbrella research question plus SQ1 selective intervention, SQ2 governed knowledge reuse, and SQ3 evaluation/transfer, mapped one-to-one to intervention architecture, judgment lifecycle, and evaluation/transfer studies.
+- Decision: Keep the working wording provisional until Iris and Arnon decide it. The August 5 pre-read is prepared but not recorded as shared or sent.
+- Decision: Use Plan A as a staged medical extension and Plan B as a complete software/modeling route. If any critical medical prerequisite remains unproved on August 26, use Plan B in the September proposal and retain Plan A only as a conditional annex.
+- Decision: Enforce six sequential pre-row-level medical gates: use-case, people, authorization, ethics/privacy, environment, and protocol. Current readiness is 0/6; integrity, pilot, and export controls are downstream and cannot replace an entry gate.
+- Decision: Maintain three data zones: repository for metadata/schemas/proposal/aggregate evidence; private working Drive for collaborative documents; restricted VDI for patient-level data, clinical derivatives, approved local tools, and audit logs.
+- Decision: Keep the supplied MIMIC folder unchanged and viewer/source-only. The metadata audit records 25 CSVs and 39.65 GiB versus 26 official tables, with `NOTEEVENTS` and provenance unresolved; no patient rows were inspected.
+- Decision: Keep five claim states (`Established`, `Preliminary`, `Planned`, `Blocked`, `Partner-dependent`) and preserve EXP-005 at 0/24 until independent real labels exist.
+- Decision: Require Ali review of the exact private Drive, native literature Sheet, proposal, and pre-read before any external sharing. Literature searches and screening are not complete merely because the workbook exists.
+- Decision: Treat September and October dates as working targets until written department or Graduate Studies confirmation arrives.
+
+## 2026-07-30 - Iris Requirements Assurance and Presentation Controls
+
+- Decision: Distinguish control coverage from accepted completion. The closure audit has 44/44 locators, while current readiness is 2 verified complete, 6 implemented awaiting human acceptance, 22 partial, 5 open, and 9 blocked.
+- Decision: Synchronize the exact recommended umbrella RQ and SQ1-SQ3 wording across the master register, study contract, proposal, decision pack, and execution plan. This fixes internal drift but does not create supervisor approval.
+- Decision: Use a separate `IRIS-EXP-01`–`IRIS-EXP-04` assurance register so presentation/process checks do not alter the canonical `EXP-000`–`EXP-040` scientific catalog or empirical evidence.
+- Decision: Treat IRIS-EXP-01 traceability and IRIS-EXP-03 claim-boundary results as PASS; treat IRIS-EXP-02 as ready pending a human rehearsal and IRIS-EXP-04 as ready pending the first real weekly cycle.
+- Decision: Replace the unsupported “completed four-hour MIMIC audit” statement with the evidenced formulation: bounded metadata/schema audit documented; no patient rows inspected; elapsed time not recorded.
+- Decision: Do not reuse July 15/21 decks unchanged. A current August/candidacy presentation requires the 12-checkpoint outline, `[Sources]` notes, rendered QA, a dated rehearsal, and Ali’s exact-package review.
+- Reason: Independent call, traceability, and presentation audits found inconsistent question wording, stale presentation material, absent current deck/rehearsal evidence, and an unsupported elapsed-time claim.
+- Consequence: The supervisor package can now be checked deterministically without overstating completion. Supervisor decisions, live usability, literature execution, shared access, university rules, EXP-005, and medical gates remain human/external work.
+
+## 2026-08-01 - Enhanced Iris Zoom-to-Submission Closure Controls
+
+- Decision: Preserve the raw media, ASR, translation, and July 29 R/A/Q registers as immutable evidence/snapshots; use the 1,195-row ledger as a machine-only review interface until two independent bilingual reviews and adjudication are recorded.
+- Decision: Keep the first 910 control-linked segments distinct from 285 conservative `Human-review-needed` placeholders. A preliminary disposition is not a reviewed translation, speaker attribution, substantive-clause disposition, or acceptance.
+- Decision: Separate extraction, implementation, acceptance, and ongoing-control state in the master register. A drafted or built artifact cannot satisfy supervisor acceptance, and silence cannot close a control.
+- Decision: Extend assurance through IRIS-EXP-10 and require three fail-closed modes: `structure` may pass on deterministic artifacts; `readiness` also requires current human rehearsal/delivery/access evidence; `closure` additionally requires adjudication, final dispositions, approvals, and submission evidence.
+- Decision: Treat SCI-EXP-01–06 as proposal aliases crosswalked to the canonical EXP registry, not as independent result IDs. No new accuracy, generalization, effort, usability, medical, or transfer result is created.
+- Decision: The August 5 supervisor presentation is a separate controlled artifact from the later candidacy presentation. The local PPTX/PDF, notes, appendix, workbook, visual QA, and backup establish construction only; human rehearsal, Ali release approval, sharing, access, meeting decisions, and acceptance remain open.
+- Decision: Keep reviewer returns and adjudication separate from the byte-reproducible preliminary ledger. The merger may emit an authoritative adjudicated ledger only after both distinct reviewers supply all 1,195 segment rows plus full-media evidence and a third person resolves every disagreement.
+- Decision: A submission filename or placeholder cannot satisfy closure. IRIS-EXP-10 requires one exact schema-valid `authorized-submission-receipt.json` whose verified route, zoned time, receipt ID, submitted-package hash, external-receipt hash, authorization evidence, and issued-certificate binding all validate.
+- Reason: The enhanced plan requires media-to-control completeness, evidence-honest delivery assurance, and a signed route to submission without allowing automated structure checks to impersonate human or institutional evidence.
+- Consequence: The program can report `structure` PASS while `readiness` and `closure` correctly return non-zero. A 100% certificate remains ineligible until every human, external, acceptance, approval, and receipt gate is evidenced.
+
+## 2026-08-01 - Iris Next-Step Execution Interfaces and Release Integrity
+
+- Decision: Operationalize the August 1-October 7 program as a canonical 29-work-package JSON board plus a human-readable ten-sheet workbook; the workbook is a companion view and does not replace the master traceability register or board.
+- Decision: Keep Reviewer A/B inputs blind and separate, validate partial batches without treating them as reviewed truth, require one full-media row per reviewer, and require a distinct adjudicator for every disagreement.
+- Decision: Treat the university inquiry, proposal v0.2, literature search register, release runbook, role assignments, rehearsals, sharing, access tests, supervisor outcomes, and submission records as prepared interfaces only until the named human or external evidence exists.
+- Decision: Correct appendix-title and slide-11 footer defects in native PowerPoint, rerender the changed slides, and bind the final PPTX/PDF hashes before release review.
+- Decision: Invalidate the earlier offline ZIP after any package correction. Readiness must parse the current backup status and compare each required ZIP member hash with the current PPTX, PDF, and review workbook; matching a stale ZIP filename or outer hash is insufficient.
+- Reason: The user requested implementation of the full next-step plan while preserving an evidence-honest boundary between locally automatable work and human, supervisor, institutional, medical, and submission gates.
+- Consequence: Local structure can be complete and testable now, while human rehearsal, delivery, transcript adjudication, decisions, labels, medical authorization, proposal approval, and submission remain visibly blocked.
+
+## 2026-08-03 - Independent Audit Standard for the Iris Closure Package
+
+- Decision: Before reporting any package as "high quality" or "100% correct," an independent audit must reproduce the claim from source — run the actual tests/validators, recompute hashes, and visually inspect rendered artifacts — rather than trust prior session narration. A 21-agent adversarial audit (0 findings refuted) is the standard applied here and should be repeated after any future large edit pass on this package.
+- Decision: All 10 IRIS-EXP structure-mode checks must pass at all times going forward; a stale provenance hash, a missing detached manifest, or an uncommitted frozen-package path is treated as a structure-mode regression to fix immediately, not a readiness/closure-only concern.
+- Reason: The 2026-08-03 audit found the prior "Structure passes" claim in this file was false against the live repository (9 of 31 provenance hashes stale, 2 test failures, IRIS-EXP-07/08 both FAIL), because a documentation edit pass changed frozen-package files without re-running the provenance/manifest builders afterward.
+- Consequence: `bf45c98` (fix pass) + `0456cff` (provenance rebinding) + `e637f0d` (.gitignore) + `ef12f6f` (source-manifest refresh) restore all 10 structure checks to PASS. Readiness and closure remain correctly non-zero pending human evidence.

@@ -1,0 +1,3060 @@
+{
+  "schemaVersion": "VegoExecutionControlBoard-v1",
+  "programId": "VEGO-AI-IRIS-CLOSURE-2026-08-01--2026-10-07",
+  "title": "VEGO-AI Iris requirements closure and proposal execution program",
+  "baselineAt": "2026-08-01T00:00:00+03:00",
+  "timezone": "Asia/Jerusalem",
+  "window": {
+    "startAt": "2026-08-01T00:00:00+03:00",
+    "endAt": "2026-10-07T23:59:00+03:00"
+  },
+  "claimBoundary": "This board controls work and evidence. It does not create human review, supervisor acceptance, expert labels, medical authorization, recipient access, rehearsal, approval, or submission evidence.",
+  "completionPolicy": {
+    "silenceIsAcceptance": false,
+    "denominatorIsDynamic": true,
+    "finalStatuses": [
+      "accepted",
+      "accepted_ongoing",
+      "accepted_after_correction",
+      "superseded_approved",
+      "not_applicable_approved"
+    ],
+    "blockingStatuses": [
+      "planned",
+      "in_progress",
+      "partial",
+      "evidence_ready",
+      "acceptance_check_passed",
+      "blocked"
+    ],
+    "medicalFallback": {
+      "checkpointAt": "2026-08-26T23:59:00+03:00",
+      "requiredGateCount": 6,
+      "rule": "If any G1-G6 medical gate lacks its required evidence at the checkpoint, Plan B becomes the committed execution path and Plan A remains a conditional annex."
+    }
+  },
+  "roles": [
+    {
+      "id": "ALI",
+      "title": "Program lead and proposal author",
+      "kind": "internal_human",
+      "filled": true,
+      "name": "Ali"
+    },
+    {
+      "id": "IRIS",
+      "title": "Supervisor and academic approver",
+      "kind": "internal_human",
+      "filled": true,
+      "name": "Iris"
+    },
+    {
+      "id": "ARNON",
+      "title": "Supervisor and academic approver",
+      "kind": "internal_human",
+      "filled": true,
+      "name": "Arnon"
+    },
+    {
+      "id": "ZOOM_REVIEWER_B",
+      "title": "Independent Hebrew-English call reviewer",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "ZOOM_ADJUDICATOR",
+      "title": "Bilingual call adjudicator",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "IRIS_ROLE_REVIEWER",
+      "title": "Adversarial rehearsal reviewer acting in the Iris role",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "ARNON_ROLE_REVIEWER",
+      "title": "Adversarial rehearsal reviewer acting in the Arnon role",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "REHEARSAL_RECORDER",
+      "title": "Rehearsal evidence recorder",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "DOMAIN_REVIEWER_1",
+      "title": "Independent software-modeling reviewer 1",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "DOMAIN_REVIEWER_2",
+      "title": "Independent software-modeling reviewer 2",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "LABEL_ADJUDICATOR",
+      "title": "Independent label adjudicator",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "METHODS_REVIEWER",
+      "title": "Statistics and methods reviewer",
+      "kind": "human_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "EXTERNAL_REPLICATION_OWNER",
+      "title": "Authorized Plan B replication owner or panel",
+      "kind": "external_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "CLINICAL_OWNER",
+      "title": "Clinical use-case owner",
+      "kind": "external_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "DATA_CUSTODIAN",
+      "title": "Data custodian and authorization owner",
+      "kind": "external_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "PRIVACY_ETHICS_OWNER",
+      "title": "Privacy, ethics, or legal authority",
+      "kind": "external_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "VDI_ADMIN",
+      "title": "Approved restricted-environment administrator",
+      "kind": "external_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "GRADUATE_COORDINATOR",
+      "title": "Authorized university process contact",
+      "kind": "external_gate",
+      "filled": false,
+      "name": null
+    },
+    {
+      "id": "LOCAL_VALIDATOR",
+      "title": "Deterministic local artifact validator",
+      "kind": "tool",
+      "filled": true,
+      "name": "Local deterministic validation"
+    }
+  ],
+  "coverageRequirements": {
+    "controlIds": [
+      "R-01",
+      "R-02",
+      "R-03",
+      "R-04",
+      "R-05",
+      "R-06",
+      "R-07",
+      "R-08",
+      "R-09",
+      "R-10",
+      "R-11",
+      "R-12",
+      "R-13",
+      "R-14",
+      "R-15",
+      "R-16",
+      "R-17",
+      "R-18",
+      "R-19",
+      "A-01",
+      "A-02",
+      "A-03",
+      "A-04",
+      "A-05",
+      "A-06",
+      "A-07",
+      "A-08",
+      "A-09",
+      "A-10",
+      "A-11",
+      "A-12",
+      "A-13",
+      "A-14",
+      "A-15",
+      "Q-01",
+      "Q-02",
+      "Q-03",
+      "Q-04",
+      "Q-05",
+      "Q-06",
+      "Q-07",
+      "Q-08",
+      "Q-09",
+      "Q-10"
+    ],
+    "assuranceExperimentIds": [
+      "IRIS-EXP-01",
+      "IRIS-EXP-02",
+      "IRIS-EXP-03",
+      "IRIS-EXP-04",
+      "IRIS-EXP-05",
+      "IRIS-EXP-06",
+      "IRIS-EXP-07",
+      "IRIS-EXP-08",
+      "IRIS-EXP-09",
+      "IRIS-EXP-10"
+    ],
+    "canonicalExperimentIds": [
+      "EXP-005",
+      "EXP-019",
+      "EXP-020",
+      "EXP-021",
+      "EXP-022",
+      "EXP-023",
+      "EXP-024",
+      "EXP-025",
+      "EXP-026",
+      "EXP-027"
+    ]
+  },
+  "coverageMap": {
+    "controls": {
+      "R-01": [
+        "WP-007",
+        "WP-017"
+      ],
+      "R-02": [
+        "WP-007",
+        "WP-017"
+      ],
+      "R-03": [
+        "WP-007",
+        "WP-017"
+      ],
+      "R-04": [
+        "WP-007",
+        "WP-026"
+      ],
+      "R-05": [
+        "WP-010",
+        "WP-026"
+      ],
+      "R-06": [
+        "WP-008",
+        "WP-023"
+      ],
+      "R-07": [
+        "WP-017",
+        "WP-019"
+      ],
+      "R-08": [
+        "WP-017",
+        "WP-025"
+      ],
+      "R-09": [
+        "WP-018",
+        "WP-019"
+      ],
+      "R-10": [
+        "WP-018",
+        "WP-019"
+      ],
+      "R-11": [
+        "WP-001",
+        "WP-018"
+      ],
+      "R-12": [
+        "WP-001",
+        "WP-018"
+      ],
+      "R-13": [
+        "WP-007",
+        "WP-008"
+      ],
+      "R-14": [
+        "WP-009",
+        "WP-015"
+      ],
+      "R-15": [
+        "WP-009",
+        "WP-015"
+      ],
+      "R-16": [
+        "WP-009",
+        "WP-015"
+      ],
+      "R-17": [
+        "WP-006",
+        "WP-010"
+      ],
+      "R-18": [
+        "WP-010",
+        "WP-026"
+      ],
+      "R-19": [
+        "WP-010"
+      ],
+      "A-01": [
+        "WP-007",
+        "WP-017"
+      ],
+      "A-02": [
+        "WP-009"
+      ],
+      "A-03": [
+        "WP-009",
+        "WP-015"
+      ],
+      "A-04": [
+        "WP-006",
+        "WP-010"
+      ],
+      "A-05": [
+        "WP-001",
+        "WP-006"
+      ],
+      "A-06": [
+        "WP-007"
+      ],
+      "A-07": [
+        "WP-008"
+      ],
+      "A-08": [
+        "WP-001",
+        "WP-018"
+      ],
+      "A-09": [
+        "WP-018"
+      ],
+      "A-10": [
+        "WP-019"
+      ],
+      "A-11": [
+        "WP-018"
+      ],
+      "A-12": [
+        "WP-025"
+      ],
+      "A-13": [
+        "WP-028",
+        "WP-029"
+      ],
+      "A-14": [
+        "WP-010",
+        "WP-026"
+      ],
+      "A-15": [
+        "WP-010",
+        "WP-018"
+      ],
+      "Q-01": [
+        "WP-007",
+        "WP-017"
+      ],
+      "Q-02": [
+        "WP-018"
+      ],
+      "Q-03": [
+        "WP-019"
+      ],
+      "Q-04": [
+        "WP-009"
+      ],
+      "Q-05": [
+        "WP-001",
+        "WP-018"
+      ],
+      "Q-06": [
+        "WP-018"
+      ],
+      "Q-07": [
+        "WP-006",
+        "WP-007"
+      ],
+      "Q-08": [
+        "WP-010",
+        "WP-026"
+      ],
+      "Q-09": [
+        "WP-010",
+        "WP-018"
+      ],
+      "Q-10": [
+        "WP-007",
+        "WP-010"
+      ]
+    },
+    "assuranceExperiments": {
+      "IRIS-EXP-01": [
+        "WP-001",
+        "WP-004"
+      ],
+      "IRIS-EXP-02": [
+        "WP-005"
+      ],
+      "IRIS-EXP-03": [
+        "WP-017",
+        "WP-024"
+      ],
+      "IRIS-EXP-04": [
+        "WP-008"
+      ],
+      "IRIS-EXP-05": [
+        "WP-001"
+      ],
+      "IRIS-EXP-06": [
+        "WP-002",
+        "WP-003"
+      ],
+      "IRIS-EXP-07": [
+        "WP-001"
+      ],
+      "IRIS-EXP-08": [
+        "WP-004",
+        "WP-005",
+        "WP-006"
+      ],
+      "IRIS-EXP-09": [
+        "WP-007",
+        "WP-008"
+      ],
+      "IRIS-EXP-10": [
+        "WP-029"
+      ]
+    },
+    "canonicalExperiments": {
+      "EXP-005": [
+        "WP-011",
+        "WP-013"
+      ],
+      "EXP-019": [
+        "WP-011",
+        "WP-012"
+      ],
+      "EXP-020": [
+        "WP-011",
+        "WP-013"
+      ],
+      "EXP-021": [
+        "WP-014"
+      ],
+      "EXP-022": [
+        "WP-014"
+      ],
+      "EXP-023": [
+        "WP-016"
+      ],
+      "EXP-024": [
+        "WP-020"
+      ],
+      "EXP-025": [
+        "WP-021"
+      ],
+      "EXP-026": [
+        "WP-022"
+      ],
+      "EXP-027": [
+        "WP-022"
+      ]
+    }
+  },
+  "modeRequirements": {
+    "readinessWorkPackageIds": [
+      "WP-001",
+      "WP-004",
+      "WP-005",
+      "WP-006"
+    ],
+    "closureWorkPackageIds": [
+      "WP-001",
+      "WP-002",
+      "WP-003",
+      "WP-004",
+      "WP-005",
+      "WP-006",
+      "WP-007",
+      "WP-008",
+      "WP-009",
+      "WP-010",
+      "WP-011",
+      "WP-012",
+      "WP-013",
+      "WP-014",
+      "WP-015",
+      "WP-016",
+      "WP-017",
+      "WP-018",
+      "WP-019",
+      "WP-020",
+      "WP-021",
+      "WP-022",
+      "WP-023",
+      "WP-024",
+      "WP-025",
+      "WP-026",
+      "WP-027",
+      "WP-028",
+      "WP-029"
+    ],
+    "requiredClosureEvidenceKinds": [
+      "human_call_adjudication",
+      "supervisor_acceptance",
+      "medical_or_plan_b_decision",
+      "proposal_approval",
+      "authorized_submission_receipt",
+      "closure_certificate"
+    ]
+  },
+  "dependencyTypes": {
+    "WP-002<-WP-001": "hard",
+    "WP-003<-WP-002": "hard",
+    "WP-004<-WP-001": "hard",
+    "WP-005<-WP-004": "hard",
+    "WP-006<-WP-004": "hard",
+    "WP-006<-WP-005": "hard",
+    "WP-007<-WP-006": "hard",
+    "WP-008<-WP-007": "hard",
+    "WP-009<-WP-007": "status_snapshot",
+    "WP-010<-WP-007": "status_snapshot",
+    "WP-011<-WP-007": "hard",
+    "WP-012<-WP-011": "hard",
+    "WP-013<-WP-012": "hard",
+    "WP-014<-WP-013": "conditional",
+    "WP-015<-WP-009": "hard",
+    "WP-015<-WP-010": "status_snapshot",
+    "WP-016<-WP-014": "conditional",
+    "WP-017<-WP-008": "status_snapshot",
+    "WP-017<-WP-015": "status_snapshot",
+    "WP-018<-WP-017": "status_snapshot",
+    "WP-019<-WP-018": "hard",
+    "WP-020<-WP-016": "conditional",
+    "WP-021<-WP-019": "hard",
+    "WP-021<-WP-020": "status_snapshot",
+    "WP-022<-WP-011": "status_snapshot",
+    "WP-022<-WP-015": "status_snapshot",
+    "WP-023<-WP-017": "status_snapshot",
+    "WP-023<-WP-019": "status_snapshot",
+    "WP-024<-WP-013": "status_snapshot",
+    "WP-024<-WP-023": "hard",
+    "WP-025<-WP-021": "status_snapshot",
+    "WP-025<-WP-022": "status_snapshot",
+    "WP-025<-WP-023": "hard",
+    "WP-025<-WP-024": "hard",
+    "WP-026<-WP-025": "hard",
+    "WP-027<-WP-026": "hard",
+    "WP-028<-WP-027": "hard",
+    "WP-029<-WP-028": "hard"
+  },
+  "gateEvidenceBindings": {
+    "GATE-WP001-01": {
+      "requiredEvidenceKinds": [
+        "provenance_manifest"
+      ],
+      "requiredApproverRoles": [
+        "ALI"
+      ]
+    },
+    "GATE-WP002-01": {
+      "requiredEvidenceKinds": [
+        "human_call_adjudication",
+        "full_media_human_review"
+      ],
+      "requiredApproverRoles": [
+        "ALI",
+        "ZOOM_REVIEWER_B",
+        "ZOOM_ADJUDICATOR"
+      ]
+    },
+    "GATE-WP002-02": {
+      "requiredEvidenceKinds": [
+        "human_call_adjudication"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP003-01": {
+      "requiredEvidenceKinds": [
+        "adjudicated_call_report",
+        "adjudicated_control_register"
+      ],
+      "requiredApproverRoles": [
+        "ZOOM_ADJUDICATOR"
+      ]
+    },
+    "GATE-WP004-01": {
+      "requiredEvidenceKinds": [
+        "presentation_pptx",
+        "presentation_pdf",
+        "presentation_manifest"
+      ],
+      "requiredApproverRoles": [
+        "ALI"
+      ]
+    },
+    "GATE-WP005-01": {
+      "requiredEvidenceKinds": [
+        "visual_qa",
+        "human_rehearsal"
+      ],
+      "requiredApproverRoles": [
+        "ALI",
+        "IRIS_ROLE_REVIEWER",
+        "ARNON_ROLE_REVIEWER",
+        "REHEARSAL_RECORDER"
+      ]
+    },
+    "GATE-WP006-01": {
+      "requiredEvidenceKinds": [
+        "delivery_access"
+      ],
+      "requiredApproverRoles": [
+        "ALI"
+      ]
+    },
+    "GATE-WP006-02": {
+      "requiredEvidenceKinds": [
+        "delivery_access"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP007-01": {
+      "requiredEvidenceKinds": [
+        "supervisor_acceptance",
+        "meeting_readback"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP008-01": {
+      "requiredEvidenceKinds": [
+        "supervisor_written_confirmation",
+        "decision_propagation"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP009-01": {
+      "requiredEvidenceKinds": [
+        "literature_search_execution"
+      ],
+      "requiredApproverRoles": [
+        "ALI"
+      ]
+    },
+    "GATE-WP010-01": {
+      "requiredEvidenceKinds": [
+        "external_process_response"
+      ],
+      "requiredApproverRoles": [
+        "GRADUATE_COORDINATOR"
+      ]
+    },
+    "GATE-WP011-01": {
+      "requiredEvidenceKinds": [
+        "supervisor_acceptance",
+        "approved_preregistration"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP011-02": {
+      "requiredEvidenceKinds": [
+        "approved_preregistration"
+      ],
+      "requiredApproverRoles": [
+        "PRIVACY_ETHICS_OWNER"
+      ]
+    },
+    "GATE-WP012-01": {
+      "requiredEvidenceKinds": [
+        "human_calibration_returns",
+        "human_instruction_freeze"
+      ],
+      "requiredApproverRoles": [
+        "DOMAIN_REVIEWER_1",
+        "DOMAIN_REVIEWER_2"
+      ]
+    },
+    "GATE-WP013-01": {
+      "requiredEvidenceKinds": [
+        "human_label_returns",
+        "human_adjudicated_labels"
+      ],
+      "requiredApproverRoles": [
+        "DOMAIN_REVIEWER_1",
+        "DOMAIN_REVIEWER_2",
+        "LABEL_ADJUDICATOR"
+      ]
+    },
+    "GATE-WP014-01": {
+      "requiredEvidenceKinds": [
+        "development_analysis"
+      ],
+      "requiredApproverRoles": [
+        "LABEL_ADJUDICATOR",
+        "METHODS_REVIEWER"
+      ]
+    },
+    "GATE-WP015-01": {
+      "requiredEvidenceKinds": [
+        "plan_b_candidate_register"
+      ],
+      "requiredApproverRoles": [
+        "EXTERNAL_REPLICATION_OWNER"
+      ]
+    },
+    "GATE-WP016-01": {
+      "requiredEvidenceKinds": [
+        "policy_or_stop_decision"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP017-01": {
+      "requiredEvidenceKinds": [
+        "supervisor_acceptance"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP018-01": {
+      "requiredEvidenceKinds": [
+        "medical_or_plan_b_decision"
+      ],
+      "requiredApproverRoles": [
+        "CLINICAL_OWNER",
+        "DATA_CUSTODIAN",
+        "PRIVACY_ETHICS_OWNER",
+        "VDI_ADMIN",
+        "METHODS_REVIEWER"
+      ]
+    },
+    "GATE-WP019-01": {
+      "requiredEvidenceKinds": [
+        "medical_or_plan_b_decision"
+      ],
+      "requiredApproverRoles": [
+        "EXTERNAL_REPLICATION_OWNER"
+      ]
+    },
+    "GATE-WP019-02": {
+      "requiredEvidenceKinds": [
+        "medical_or_plan_b_decision"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP020-01": {
+      "requiredEvidenceKinds": [
+        "sealed_holdout_pilot"
+      ],
+      "requiredApproverRoles": [
+        "ALI",
+        "METHODS_REVIEWER"
+      ]
+    },
+    "GATE-WP021-01": {
+      "requiredEvidenceKinds": [
+        "external_replication_protocol"
+      ],
+      "requiredApproverRoles": [
+        "EXTERNAL_REPLICATION_OWNER"
+      ]
+    },
+    "GATE-WP021-02": {
+      "requiredEvidenceKinds": [
+        "external_replication_protocol"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON",
+        "METHODS_REVIEWER"
+      ]
+    },
+    "GATE-WP022-01": {
+      "requiredEvidenceKinds": [
+        "approved_preregistration"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON",
+        "METHODS_REVIEWER"
+      ]
+    },
+    "GATE-WP022-02": {
+      "requiredEvidenceKinds": [
+        "approved_preregistration"
+      ],
+      "requiredApproverRoles": [
+        "PRIVACY_ETHICS_OWNER"
+      ]
+    },
+    "GATE-WP023-01": {
+      "requiredEvidenceKinds": [
+        "proposal_version"
+      ],
+      "requiredApproverRoles": [
+        "ALI"
+      ]
+    },
+    "GATE-WP024-01": {
+      "requiredEvidenceKinds": [
+        "claim_boundary_audit"
+      ],
+      "requiredApproverRoles": [
+        "METHODS_REVIEWER"
+      ]
+    },
+    "GATE-WP025-01": {
+      "requiredEvidenceKinds": [
+        "proposal_version"
+      ],
+      "requiredApproverRoles": [
+        "ALI"
+      ]
+    },
+    "GATE-WP026-01": {
+      "requiredEvidenceKinds": [
+        "external_process_response"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP026-02": {
+      "requiredEvidenceKinds": [
+        "external_process_response"
+      ],
+      "requiredApproverRoles": [
+        "GRADUATE_COORDINATOR"
+      ]
+    },
+    "GATE-WP027-01": {
+      "requiredEvidenceKinds": [
+        "proposal_approval"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP028-01": {
+      "requiredEvidenceKinds": [
+        "submission_candidate"
+      ],
+      "requiredApproverRoles": [
+        "ALI"
+      ]
+    },
+    "GATE-WP029-01": {
+      "requiredEvidenceKinds": [
+        "closure_certificate"
+      ],
+      "requiredApproverRoles": [
+        "IRIS",
+        "ARNON"
+      ]
+    },
+    "GATE-WP029-02": {
+      "requiredEvidenceKinds": [
+        "authorized_submission_receipt"
+      ],
+      "requiredApproverRoles": [
+        "GRADUATE_COORDINATOR"
+      ]
+    }
+  },
+  "workPackages": [
+    {
+      "id": "WP-001",
+      "title": "Reconcile sources, hashes, segment coverage, and provenance",
+      "phase": "Aug 1-2 evidence reconciliation",
+      "ownerRoles": [
+        "ALI"
+      ],
+      "dueAt": "2026-08-02T12:00:00+03:00",
+      "dependsOn": [],
+      "status": "partial",
+      "deliverables": [
+        {
+          "id": "DEL-WP001-01",
+          "description": "1,195-row preliminary disposition ledger",
+          "locator": "docs/research/meetings/2026-07-29-iris-zoom-preliminary-disposition.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP001-01"
+          ]
+        },
+        {
+          "id": "DEL-WP001-02",
+          "description": "Current source and derived provenance manifest",
+          "locator": "docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP001-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP001-01",
+          "description": "All 1,195 segment IDs and the 46:26.283 timeline are represented without unexplained gaps",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP001-02",
+          "description": "Raw-source and tracked derived hashes are current and historical registers are identified as snapshots",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP001-01",
+          "kind": "machine_ledger",
+          "locator": "docs/research/meetings/2026-07-29-iris-zoom-preliminary-disposition.json",
+          "state": "present_unverified",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP001-02",
+          "kind": "provenance_manifest",
+          "locator": "docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md",
+          "state": "present_unverified",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP001-01",
+          "kind": "internal",
+          "description": "Ali reviews the reconciled machine baseline",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-002",
+      "title": "Dual-review and adjudicate the complete bilingual Zoom record",
+      "phase": "Aug 1-3 bilingual review",
+      "ownerRoles": [
+        "ALI",
+        "ZOOM_REVIEWER_B",
+        "ZOOM_ADJUDICATOR",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-08-03T18:00:00+03:00",
+      "dependsOn": [
+        "WP-001"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP002-01",
+          "description": "Dual-reviewed and adjudicated 1,195-row ledger",
+          "locator": "docs/research/meetings/2026-07-29-iris-zoom-adjudicated-ledger.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP002-01"
+          ]
+        },
+        {
+          "id": "DEL-WP002-02",
+          "description": "Full-media review records for both reviewers",
+          "locator": "docs/research/meetings/2026-07-29-iris-zoom-full-media-review.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP002-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP002-01",
+          "description": "1,195 of 1,195 segments are independently reviewed and every disagreement is adjudicated",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP002-02",
+          "description": "Zero uncategorized segments, zero orphan substantive clauses, and all named quotations have confirmed attribution",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP002-01",
+          "kind": "human_call_adjudication",
+          "locator": "docs/research/meetings/2026-07-29-iris-zoom-adjudicated-ledger.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP002-02",
+          "kind": "full_media_human_review",
+          "locator": "docs/research/meetings/2026-07-29-iris-zoom-full-media-review.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP002-01",
+          "kind": "human",
+          "description": "Independent Reviewer B and bilingual adjudicator complete their work",
+          "ownerRole": "ZOOM_ADJUDICATOR",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP002-02",
+          "kind": "human",
+          "description": "Iris or Arnon confirms any disputed attribution assigned to them",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-003",
+      "title": "Regenerate the bilingual transcript, call report, and R-A-Q registers",
+      "phase": "Aug 3-4 adjudicated package",
+      "ownerRoles": [
+        "ALI"
+      ],
+      "dueAt": "2026-08-04T10:00:00+03:00",
+      "dependsOn": [
+        "WP-002"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP003-01",
+          "description": "Adjudicated bilingual transcript and full call report",
+          "locator": "docs/research/meetings/2026-07-29-iris-supervisor-call-report.adjudicated.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP003-01"
+          ]
+        },
+        {
+          "id": "DEL-WP003-02",
+          "description": "Regenerated requirements, actions, questions, and provenance",
+          "locator": "docs/research/meetings/2026-07-29-iris-adjudicated-control-register.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP003-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP003-01",
+          "description": "Every substantive clause maps to a stable control or an explicit non-control classification",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP003-02",
+          "description": "No direct quotation or certain named attribution relies on machine-only evidence",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP003-01",
+          "kind": "adjudicated_call_report",
+          "locator": "docs/research/meetings/2026-07-29-iris-supervisor-call-report.adjudicated.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP003-02",
+          "kind": "adjudicated_control_register",
+          "locator": "docs/research/meetings/2026-07-29-iris-adjudicated-control-register.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP003-01",
+          "kind": "human",
+          "description": "The adjudicated ledger is complete and released for derivation",
+          "ownerRole": "ZOOM_ADJUDICATOR",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-004",
+      "title": "Build the August 5 supervisor presentation package",
+      "phase": "Aug 2-4 supervisor package",
+      "ownerRoles": [
+        "ALI"
+      ],
+      "dueAt": "2026-08-04T12:00:00+03:00",
+      "dependsOn": [
+        "WP-001"
+      ],
+      "status": "partial",
+      "deliverables": [
+        {
+          "id": "DEL-WP004-01",
+          "description": "English 12-slide PPTX",
+          "locator": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP004-01"
+          ]
+        },
+        {
+          "id": "DEL-WP004-02",
+          "description": "Matching PDF",
+          "locator": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP004-02"
+          ]
+        },
+        {
+          "id": "DEL-WP004-03",
+          "description": "Notes, bilingual evidence appendix, decision worksheet, and control manifest",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP004-03"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP004-01",
+          "description": "Exactly 12 core slides fit an 11-minute delivery and all controls are reachable in core or appendix",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP004-02",
+          "description": "0/24 labels, 0/6 medical gates, and 25/26 MIMIC tables remain visible with correct claim boundaries",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP004-01",
+          "kind": "presentation_pptx",
+          "locator": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx",
+          "state": "verified",
+          "sha256": "7765132b6406796afe802887a9cc69b9a903843bdcbec606c517738d91421d24",
+          "verifiedAt": "2026-08-01T18:09:00+03:00",
+          "verifiedByRole": "LOCAL_VALIDATOR",
+          "approvedByRoles": []
+        },
+        {
+          "id": "EV-WP004-02",
+          "kind": "presentation_pdf",
+          "locator": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf",
+          "state": "verified",
+          "sha256": "a8e296911f734477add5005bf02c305dfca4c9e897532da510a3d629e700f7ec",
+          "verifiedAt": "2026-08-01T18:09:00+03:00",
+          "verifiedByRole": "LOCAL_VALIDATOR",
+          "approvedByRoles": []
+        },
+        {
+          "id": "EV-WP004-03",
+          "kind": "presentation_manifest",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md",
+          "state": "present_unverified",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP004-01",
+          "kind": "internal",
+          "description": "Ali approves the exact content and evidence boundaries",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-005",
+      "title": "Render, inspect, and rehearse the exact presentation",
+      "phase": "Aug 4 presentation assurance",
+      "ownerRoles": [
+        "ALI",
+        "IRIS_ROLE_REVIEWER",
+        "ARNON_ROLE_REVIEWER",
+        "REHEARSAL_RECORDER"
+      ],
+      "dueAt": "2026-08-04T15:00:00+03:00",
+      "dependsOn": [
+        "WP-004"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP005-01",
+          "description": "Rendered-slide and visual-QA evidence bound to the current PPTX/PDF hashes",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP005-01"
+          ]
+        },
+        {
+          "id": "DEL-WP005-02",
+          "description": "Timed and adversarial rehearsal record",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP005-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP005-01",
+          "description": "Fonts, overflow, contrast, tables, citations, Hebrew RTL, notes, PPTX, PDF, screen sharing, and offline backup pass",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP005-02",
+          "description": "One timed rehearsal and one adversarial Q-and-A rehearsal are completed by four distinct roles",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP005-01",
+          "kind": "visual_qa",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md",
+          "state": "verified",
+          "sha256": "11ed4436e1b843014a868036be3e5516120e68302ac815e316e95da19af07eb4",
+          "verifiedAt": "2026-08-01T18:09:00+03:00",
+          "verifiedByRole": "LOCAL_VALIDATOR",
+          "approvedByRoles": []
+        },
+        {
+          "id": "EV-WP005-02",
+          "kind": "human_rehearsal",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md",
+          "state": "present_unverified",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP005-01",
+          "kind": "human",
+          "description": "Presenter, two adversarial role reviewers, and recorder complete the rehearsal",
+          "ownerRole": "REHEARSAL_RECORDER",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-006",
+      "title": "Approve, deliver, and access-test the exact supervisor package",
+      "phase": "Aug 4 controlled delivery",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-08-04T18:00:00+03:00",
+      "dependsOn": [
+        "WP-004",
+        "WP-005"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP006-01",
+          "description": "Hash-bound local backup and delivery/access record",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP006-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP006-01",
+          "description": "Ali reviews the exact delivered version before sharing",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP006-02",
+          "description": "Iris and Arnon independently pass access tests and delivery metadata records version, hash, permissions, and time",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP006-01",
+          "kind": "delivery_access",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md",
+          "state": "present_unverified",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP006-01",
+          "kind": "human",
+          "description": "Ali approves the exact package",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP006-02",
+          "kind": "external",
+          "description": "Both supervisors independently verify recipient access",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-007",
+      "title": "Obtain and read back August 5 supervisor decisions",
+      "phase": "Aug 5 meeting",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-08-05T10:00:00+03:00",
+      "dependsOn": [
+        "WP-006"
+      ],
+      "status": "planned",
+      "deliverables": [
+        {
+          "id": "DEL-WP007-01",
+          "description": "D-RQ-01 through D-RQ-10 outcomes and exact read-back",
+          "locator": "docs/research/phd-proposal/decision-change-log.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP007-01"
+          ]
+        },
+        {
+          "id": "DEL-WP007-02",
+          "description": "Exactly one primary next task with definition of done",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-minutes.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP007-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP007-01",
+          "description": "Mandatory D-RQ-01 through 05 and D-RQ-07 receive explicit outcomes; silence remains Deferred",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP007-02",
+          "description": "RQ wording, Plan A-B, claim boundaries, owners, due dates, and one next task are read back",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP007-01",
+          "kind": "supervisor_acceptance",
+          "locator": "docs/research/phd-proposal/decision-change-log.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP007-02",
+          "kind": "meeting_readback",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-minutes.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP007-01",
+          "kind": "human",
+          "description": "Iris and Arnon explicitly disposition the requested decisions",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-008",
+      "title": "Issue minutes and propagate decisions within 24 hours",
+      "phase": "Aug 6 closeout",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-08-06T10:00:00+03:00",
+      "dependsOn": [
+        "WP-007"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP008-01",
+          "description": "Bilingual evidence-linked minutes and written confirmation record",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-minutes.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP008-01"
+          ]
+        },
+        {
+          "id": "DEL-WP008-02",
+          "description": "Propagation and stale-wording audit",
+          "locator": "docs/research/phd-proposal/decision-change-log.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP008-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP008-01",
+          "description": "Written confirmation or correction is obtained and every affected artifact is updated without silent deletion",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP008-02",
+          "description": "Structure and readiness validators are rerun on the exact archived package",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP008-01",
+          "kind": "supervisor_written_confirmation",
+          "locator": "docs/research/meetings/2026-08-05-supervisor-minutes.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP008-02",
+          "kind": "decision_propagation",
+          "locator": "docs/research/phd-proposal/decision-change-log.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP008-01",
+          "kind": "human",
+          "description": "Supervisors confirm or correct the minutes in writing",
+          "ownerRole": "ARNON",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-009",
+      "title": "Execute and log the first literature searches and screening pass",
+      "phase": "Aug 6-12 literature execution",
+      "ownerRoles": [
+        "ALI"
+      ],
+      "dueAt": "2026-08-12T18:00:00+03:00",
+      "dependsOn": [
+        "WP-007"
+      ],
+      "status": "partial",
+      "deliverables": [
+        {
+          "id": "DEL-WP009-01",
+          "description": "Executed search log, deduplication, screening, and verified seed identities",
+          "locator": "docs/research/phd-proposal/literature-execution-log.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP009-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP009-01",
+          "description": "Queries, databases, dates, deduplication, inclusion, exclusion, and quality decisions are reproducible",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP009-01",
+          "kind": "literature_search_execution",
+          "locator": "docs/research/phd-proposal/literature-execution-log.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP009-01",
+          "kind": "internal",
+          "description": "Ali verifies paper identities and authors-versus-researcher separation",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-010",
+      "title": "Deliver proposal v0.2, Clalit brief, Penina map, and process inquiries",
+      "phase": "Aug 6-12 proposal and dependencies",
+      "ownerRoles": [
+        "ALI",
+        "GRADUATE_COORDINATOR",
+        "CLINICAL_OWNER"
+      ],
+      "dueAt": "2026-08-12T18:00:00+03:00",
+      "dependsOn": [
+        "WP-007"
+      ],
+      "status": "partial",
+      "deliverables": [
+        {
+          "id": "DEL-WP010-01",
+          "description": "Proposal v0.2",
+          "locator": "docs/research/phd-proposal/proposal-v0.2.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP010-01"
+          ]
+        },
+        {
+          "id": "DEL-WP010-02",
+          "description": "Completed Clalit research request",
+          "locator": "docs/research/governance/clalit-research-request.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP010-02"
+          ]
+        },
+        {
+          "id": "DEL-WP010-03",
+          "description": "Penina and university-process response record",
+          "locator": "docs/research/phd-proposal/external-process-response-register.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP010-03"
+          ]
+        },
+        {
+          "id": "DEL-WP010-04",
+          "description": "Current proposal v0.2 working draft recorded as partial writing evidence only",
+          "locator": "docs/research/phd-proposal/proposal-v0.2-working-draft.md",
+          "evidenceRequired": false,
+          "evidenceIds": [
+            "EV-WP010-04"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP010-01",
+          "description": "Proposal v0.2 includes approved-or-clearly-pending RQs, studies, methods, resources, risks, and claim boundaries",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP010-02",
+          "description": "External dates, requirements, availability, and access claims are verified or explicitly marked unverified",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP010-01",
+          "kind": "proposal_version",
+          "locator": "docs/research/phd-proposal/proposal-v0.2.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP010-02",
+          "kind": "partner_request",
+          "locator": "docs/research/governance/clalit-research-request.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP010-03",
+          "kind": "external_process_response",
+          "locator": "docs/research/phd-proposal/external-process-response-register.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP010-04",
+          "kind": "proposal_working_draft",
+          "locator": "docs/research/phd-proposal/proposal-v0.2-working-draft.md",
+          "state": "verified",
+          "sha256": "d2a5e05b7feb47e4365a7257e41556770e743b9abda74e5173edc15b76adbbbb",
+          "verifiedAt": "2026-08-01T18:00:00+03:00",
+          "verifiedByRole": "LOCAL_VALIDATOR",
+          "approvedByRoles": []
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP010-01",
+          "kind": "external",
+          "description": "Authorized university and course contacts provide written responses",
+          "ownerRole": "GRADUATE_COORDINATOR",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-011",
+      "title": "Freeze the human-evidence protocol and supervisor decisions",
+      "phase": "Aug 5-6 scientific governance",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON",
+        "METHODS_REVIEWER"
+      ],
+      "dueAt": "2026-08-06T18:00:00+03:00",
+      "dependsOn": [
+        "WP-007"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP011-01",
+          "description": "D-E01 through D-E07 explicit outcomes",
+          "locator": "docs/research/thesis-evidence/SUPERVISOR_EVIDENCE_DECISIONS.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP011-01"
+          ]
+        },
+        {
+          "id": "DEL-WP011-02",
+          "description": "Approved preregistration and any canonical amendments for SCI-EXP gaps",
+          "locator": "docs/research/thesis-evidence/PREREGISTRATION_EXP019_027.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP011-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP011-01",
+          "description": "Vocabulary, consent, thresholds, policy gate, one-time holdout, formal claim rule, and effort-study scope are explicit",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP011-02",
+          "description": "The four-arm, full reuse-matrix, and longitudinal additions are approved amendments or remain visibly blocked",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP011-01",
+          "kind": "supervisor_acceptance",
+          "locator": "docs/research/thesis-evidence/SUPERVISOR_EVIDENCE_DECISIONS.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP011-02",
+          "kind": "approved_preregistration",
+          "locator": "docs/research/thesis-evidence/PREREGISTRATION_EXP019_027.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP011-01",
+          "kind": "human",
+          "description": "Iris and Arnon approve or correct the scientific protocol",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP011-02",
+          "kind": "external",
+          "description": "Applicable ethics and participant-handling requirements are confirmed",
+          "ownerRole": "PRIVACY_ETHICS_OWNER",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-012",
+      "title": "Run EXP-019 independent reviewer calibration",
+      "phase": "Aug 6-12 human calibration",
+      "ownerRoles": [
+        "DOMAIN_REVIEWER_1",
+        "DOMAIN_REVIEWER_2",
+        "LABEL_ADJUDICATOR"
+      ],
+      "dueAt": "2026-08-12T18:00:00+03:00",
+      "dependsOn": [
+        "WP-011"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP012-01",
+          "description": "Two immutable three-row calibration returns and pair report",
+          "locator": "reports/generated/independent_evidence_v1/validation/calibration/calibration_pair_report.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP012-01"
+          ]
+        },
+        {
+          "id": "DEL-WP012-02",
+          "description": "Human-frozen instruction manifest and EXP-020 go-defer decision",
+          "locator": "reports/generated/independent_evidence_v1/validation/calibration/calibration_instruction_freeze.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP012-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP012-01",
+          "description": "Two distinct eligible humans complete all three excluded rows and both return hashes are frozen",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP012-02",
+          "description": "Calibration remains generalization-unsafe and transfers no label into evaluation",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP012-01",
+          "kind": "human_calibration_returns",
+          "locator": "reports/generated/independent_evidence_v1/validation/calibration/calibration_pair_report.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP012-02",
+          "kind": "human_instruction_freeze",
+          "locator": "reports/generated/independent_evidence_v1/validation/calibration/calibration_instruction_freeze.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP012-01",
+          "kind": "human",
+          "description": "Two independent reviewers provide valid calibration returns",
+          "ownerRole": "DOMAIN_REVIEWER_1",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-013",
+      "title": "Run EXP-020 independent labeling and adjudication",
+      "phase": "Aug 12-19 human evidence",
+      "ownerRoles": [
+        "DOMAIN_REVIEWER_1",
+        "DOMAIN_REVIEWER_2",
+        "LABEL_ADJUDICATOR"
+      ],
+      "dueAt": "2026-08-19T12:00:00+03:00",
+      "dependsOn": [
+        "WP-012"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP013-01",
+          "description": "Two immutable 24-row blind returns and pre-adjudication agreement",
+          "locator": "reports/generated/independent_evidence_v1/validation/reviewer_agreement.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP013-01"
+          ]
+        },
+        {
+          "id": "DEL-WP013-02",
+          "description": "Adjudicated GoldLabelRecord-v2 set and manifest",
+          "locator": "reports/generated/independent_evidence_v1/gold/gold_labels.csv",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP013-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP013-01",
+          "description": "AI output, memory advice, leakage class, and 16-8 partition remain hidden during review",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP013-02",
+          "description": "Kappa precedes adjudication; raw returns remain immutable; all gold rows have human provenance",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP013-03",
+          "description": "At 0 labels metrics are null, at 1-19 pilot-only, and at 20-24 quantitative reporting retains small-sample limitations",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP013-01",
+          "kind": "human_label_returns",
+          "locator": "reports/generated/independent_evidence_v1/validation/reviewer_agreement.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP013-02",
+          "kind": "human_adjudicated_labels",
+          "locator": "reports/generated/independent_evidence_v1/gold/gold_labels.csv",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP013-01",
+          "kind": "human",
+          "description": "Two independent reviewers and a distinct adjudicator complete the evidence set",
+          "ownerRole": "LABEL_ADJUDICATOR",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-014",
+      "title": "Run EXP-021 and EXP-022 development-only analyses",
+      "phase": "Aug 19 development evidence",
+      "ownerRoles": [
+        "ALI",
+        "METHODS_REVIEWER"
+      ],
+      "dueAt": "2026-08-19T18:00:00+03:00",
+      "dependsOn": [
+        "WP-013"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP014-01",
+          "description": "Development error taxonomy, confusion matrices, and correctability register",
+          "locator": "reports/generated/independent_evidence_v1/evaluation/development_report.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP014-01"
+          ]
+        },
+        {
+          "id": "DEL-WP014-02",
+          "description": "Routing and retrieval validity report",
+          "locator": "reports/generated/independent_evidence_v1/evaluation/routing_retrieval_validity.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP014-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP014-01",
+          "description": "At least 20 safe labels exist before quantitative analysis and only the 16 development rows are opened",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP014-02",
+          "description": "The eight-row holdout remains sealed and every error traces to adjudicated rationale",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP014-03",
+          "description": "Retrieval denominators, exclusions, conflicts, scope, provenance, and negative findings remain visible",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP014-01",
+          "kind": "development_analysis",
+          "locator": "reports/generated/independent_evidence_v1/evaluation/development_report.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP014-02",
+          "kind": "routing_retrieval_analysis",
+          "locator": "reports/generated/independent_evidence_v1/evaluation/routing_retrieval_validity.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP014-01",
+          "kind": "human",
+          "description": "At least 20 safe adjudicated labels are frozen",
+          "ownerRole": "LABEL_ADJUDICATOR",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-015",
+      "title": "Complete synthesis, methods, resources, and Plan B candidates",
+      "phase": "Aug 12-19 proposal synthesis",
+      "ownerRoles": [
+        "ALI",
+        "METHODS_REVIEWER",
+        "EXTERNAL_REPLICATION_OWNER"
+      ],
+      "dueAt": "2026-08-19T18:00:00+03:00",
+      "dependsOn": [
+        "WP-009",
+        "WP-010"
+      ],
+      "status": "partial",
+      "deliverables": [
+        {
+          "id": "DEL-WP015-01",
+          "description": "Critical literature synthesis and gap-to-study matrix",
+          "locator": "docs/research/phd-proposal/critical-literature-gap-matrix.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP015-01"
+          ]
+        },
+        {
+          "id": "DEL-WP015-02",
+          "description": "Methods, metrics, validity, RACI, publication outputs, and two Plan B candidates",
+          "locator": "docs/research/phd-proposal/plan-b-replication-candidate-register.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP015-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP015-01",
+          "description": "Every claimed gap maps to an RQ, study, experiment, contribution, metric, risk, and fallback",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP015-02",
+          "description": "At least two non-medical replication candidates are assessed and one authorized route has a named owner and schedule",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP015-01",
+          "kind": "critical_literature_synthesis",
+          "locator": "docs/research/phd-proposal/critical-literature-gap-matrix.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP015-02",
+          "kind": "plan_b_candidate_register",
+          "locator": "docs/research/phd-proposal/plan-b-replication-candidate-register.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP015-01",
+          "kind": "external",
+          "description": "An authorized non-medical context and owner are confirmed",
+          "ownerRole": "EXTERNAL_REPLICATION_OWNER",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-016",
+      "title": "Freeze one EXP-023 policy candidate or record a justified stop",
+      "phase": "Aug 20-26 scientific gate",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON",
+        "METHODS_REVIEWER"
+      ],
+      "dueAt": "2026-08-26T12:00:00+03:00",
+      "dependsOn": [
+        "WP-014"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP016-01",
+          "description": "Approved PolicyCandidateRecord-v1 or explicit stop record",
+          "locator": "reports/generated/independent_evidence_v1/policy/policy_candidate.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP016-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP016-01",
+          "description": "At least three correctable development errors span at least two settings and advice is relevant, scope-correct, conflict-free, and safe",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP016-02",
+          "description": "Exactly one deterministic parallel_proposal_only candidate is hash-frozen or work stops",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP016-03",
+          "description": "Baseline and protected runtime remain unchanged",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP016-01",
+          "kind": "policy_or_stop_decision",
+          "locator": "reports/generated/independent_evidence_v1/policy/policy_candidate.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP016-01",
+          "kind": "human",
+          "description": "Iris and Arnon approve the explicit candidate or stop decision",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-017",
+      "title": "Produce proposal v0.3 and freeze the approved research architecture",
+      "phase": "Aug 26 proposal checkpoint",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-08-26T18:00:00+03:00",
+      "dependsOn": [
+        "WP-008",
+        "WP-015"
+      ],
+      "status": "partial",
+      "deliverables": [
+        {
+          "id": "DEL-WP017-01",
+          "description": "Proposal v0.3",
+          "locator": "docs/research/phd-proposal/proposal-v0.3.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP017-01"
+          ]
+        },
+        {
+          "id": "DEL-WP017-02",
+          "description": "Supervisor-approved RQ and three-study architecture freeze",
+          "locator": "docs/research/phd-proposal/research-architecture-freeze.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP017-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP017-01",
+          "description": "Exactly one umbrella RQ and three SQs map to studies, methods, evidence, artifacts, metrics, fallbacks, and publications",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP017-02",
+          "description": "Every RQ remains answerable under Plan B and unsupported result language is excluded",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP017-01",
+          "kind": "proposal_version",
+          "locator": "docs/research/phd-proposal/proposal-v0.3.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP017-02",
+          "kind": "supervisor_acceptance",
+          "locator": "docs/research/phd-proposal/research-architecture-freeze.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP017-01",
+          "kind": "human",
+          "description": "Iris and Arnon approve or correct the RQ-study architecture",
+          "ownerRole": "ARNON",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-018",
+      "title": "Run the six-gate medical go-no-go review",
+      "phase": "Aug 26 medical checkpoint",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON",
+        "CLINICAL_OWNER",
+        "DATA_CUSTODIAN",
+        "PRIVACY_ETHICS_OWNER",
+        "VDI_ADMIN",
+        "METHODS_REVIEWER"
+      ],
+      "dueAt": "2026-08-26T23:59:00+03:00",
+      "dependsOn": [
+        "WP-017"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP018-01",
+          "description": "Evidence-linked G1-G6 readiness decision",
+          "locator": "docs/research/governance/medical-readiness-scorecard.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP018-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP018-01",
+          "description": "Use case, people, authorization, ethics/privacy, environment, and protocol each have authoritative evidence",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP018-02",
+          "description": "At 0-5 of 6, no patient-row work starts and Plan B activates; only 6 of 6 permits later downstream review",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP018-01",
+          "kind": "medical_or_plan_b_decision",
+          "locator": "docs/research/governance/medical-readiness-scorecard.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP018-01",
+          "kind": "external",
+          "description": "Clinical, data, ethics, environment, and methods authorities supply G1-G6 evidence",
+          "ownerRole": "DATA_CUSTODIAN",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-019",
+      "title": "Commit Plan B or preserve an evidence-backed conditional Plan A",
+      "phase": "Aug 27 route activation",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON",
+        "EXTERNAL_REPLICATION_OWNER"
+      ],
+      "dueAt": "2026-08-27T12:00:00+03:00",
+      "dependsOn": [
+        "WP-018"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP019-01",
+          "description": "Logged route decision, Plan B context, owner, reviewer route, and revised schedule",
+          "locator": "docs/research/phd-proposal/plan-route-decision.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP019-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP019-01",
+          "description": "Plan B activates automatically if any G1-G6 gate lacks an owner, evidence path, or feasible completion date at the checkpoint; medical access remains outside the critical path",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP019-02",
+          "description": "Any Plan A continuation is conditional, 6/6 evidenced, and cannot silently displace Plan B milestones",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP019-01",
+          "kind": "medical_or_plan_b_decision",
+          "locator": "docs/research/phd-proposal/plan-route-decision.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP019-01",
+          "kind": "external",
+          "description": "The selected non-medical corpus and reviewer route are authorized",
+          "ownerRole": "EXTERNAL_REPLICATION_OWNER",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP019-02",
+          "kind": "human",
+          "description": "Supervisors confirm or correct the route wording",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-020",
+      "title": "Run the one-time EXP-024 sealed holdout pilot if eligible",
+      "phase": "September preliminary evidence",
+      "ownerRoles": [
+        "ALI",
+        "METHODS_REVIEWER"
+      ],
+      "dueAt": "2026-09-09T18:00:00+03:00",
+      "dependsOn": [
+        "WP-016"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP020-01",
+          "description": "One-time eight-row holdout report and EvaluationRunManifest-v2",
+          "locator": "reports/generated/independent_evidence_v1/evaluation/sealed_holdout_report.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP020-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP020-01",
+          "description": "Policy, partition, labels, baseline, and source hashes match before the holdout is opened once",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP020-02",
+          "description": "No policy revision follows outcome inspection and N=8 remains explicitly pilot-only",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP020-01",
+          "kind": "sealed_holdout_pilot",
+          "locator": "reports/generated/independent_evidence_v1/evaluation/sealed_holdout_report.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP020-01",
+          "kind": "internal",
+          "description": "An approved frozen policy manifest and unchanged protected hashes exist",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-021",
+      "title": "Freeze EXP-025 Plan B replication protocol and launch readiness",
+      "phase": "September transfer preparation",
+      "ownerRoles": [
+        "ALI",
+        "EXTERNAL_REPLICATION_OWNER",
+        "DOMAIN_REVIEWER_1",
+        "DOMAIN_REVIEWER_2",
+        "LABEL_ADJUDICATOR",
+        "METHODS_REVIEWER"
+      ],
+      "dueAt": "2026-09-15T18:00:00+03:00",
+      "dependsOn": [
+        "WP-019",
+        "WP-020"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP021-01",
+          "description": "Authorized corpus, construct-comparability record, reviewer route, and frozen EXP-025 preregistration",
+          "locator": "docs/research/thesis-evidence/EXP025_PLAN_B_PROTOCOL.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP021-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP021-01",
+          "description": "New external N is at least 30, target 48, with two independent reviewers and adjudication planned before collection",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP021-02",
+          "description": "Formal claim criteria predeclare paired bootstrap, exact McNemar, macro-F1 non-decline, subgroup safety, and unchanged hashes",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP021-01",
+          "kind": "external_replication_protocol",
+          "locator": "docs/research/thesis-evidence/EXP025_PLAN_B_PROTOCOL.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP021-01",
+          "kind": "external",
+          "description": "Corpus use and the independent external reviewer route are authorized",
+          "ownerRole": "EXTERNAL_REPLICATION_OWNER",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP021-02",
+          "kind": "human",
+          "description": "Methods reviewer and supervisors approve the frozen protocol",
+          "ownerRole": "METHODS_REVIEWER",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-022",
+      "title": "Preregister human-effort, four-arm, reuse-matrix, and longitudinal studies",
+      "phase": "September protocol convergence",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON",
+        "METHODS_REVIEWER",
+        "PRIVACY_ETHICS_OWNER"
+      ],
+      "dueAt": "2026-09-15T18:00:00+03:00",
+      "dependsOn": [
+        "WP-011",
+        "WP-015"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP022-01",
+          "description": "Approved canonical protocol amendments or new IDs for SCI-EXP-01 through 03 and EXP-026",
+          "locator": "docs/research/thesis-evidence/scientific-protocol-amendments.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP022-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP022-01",
+          "description": "Four intervention arms, compatible-conflicting-stale-under-specified reuse, longitudinal timepoints, attrition, revocation, and counterbalanced effort measures are frozen before data",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP022-02",
+          "description": "Human effort uses consented timestamped tasks and never substitutes queue counts for time saved",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP022-01",
+          "kind": "approved_preregistration",
+          "locator": "docs/research/thesis-evidence/scientific-protocol-amendments.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP022-01",
+          "kind": "human",
+          "description": "Supervisors and methods reviewer approve canonical protocol scope",
+          "ownerRole": "ARNON",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP022-02",
+          "kind": "external",
+          "description": "Participant ethics and consent route is approved before human data collection",
+          "ownerRole": "PRIVACY_ETHICS_OWNER",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-023",
+      "title": "Complete problem, gap, RQs, and methods sections",
+      "phase": "Sep 2 proposal convergence",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-09-02T18:00:00+03:00",
+      "dependsOn": [
+        "WP-017",
+        "WP-019"
+      ],
+      "status": "planned",
+      "deliverables": [
+        {
+          "id": "DEL-WP023-01",
+          "description": "Internally complete problem, gap, RQ, and methods sections",
+          "locator": "docs/research/phd-proposal/proposal-v0.5.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP023-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP023-01",
+          "description": "RQ-study-method-evidence mappings are complete and Plan B is the committed path when fallback fired",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP023-01",
+          "kind": "proposal_version",
+          "locator": "docs/research/phd-proposal/proposal-v0.5.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP023-01",
+          "kind": "internal",
+          "description": "Ali completes the cross-reference audit",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-024",
+      "title": "Complete preliminary-evidence and claim-boundary sections",
+      "phase": "Sep 9 proposal convergence",
+      "ownerRoles": [
+        "ALI",
+        "METHODS_REVIEWER"
+      ],
+      "dueAt": "2026-09-09T18:00:00+03:00",
+      "dependsOn": [
+        "WP-013",
+        "WP-023"
+      ],
+      "status": "planned",
+      "deliverables": [
+        {
+          "id": "DEL-WP024-01",
+          "description": "Evidence and claim-boundary section with current EXP-005-020 and medical gate states",
+          "locator": "docs/research/phd-proposal/preliminary-evidence-and-claims.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP024-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP024-01",
+          "description": "Null, negative, blocked, and incomplete evidence is retained and no result claim exceeds the current safe-label gate",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP024-01",
+          "kind": "claim_boundary_audit",
+          "locator": "docs/research/phd-proposal/preliminary-evidence-and-claims.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP024-01",
+          "kind": "human",
+          "description": "Methods reviewer approves the statistical and claim interpretation",
+          "ownerRole": "METHODS_REVIEWER",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-025",
+      "title": "Produce the developed proposal draft v0.7",
+      "phase": "Sep 16 developed draft",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-09-16T18:00:00+03:00",
+      "dependsOn": [
+        "WP-021",
+        "WP-022",
+        "WP-023",
+        "WP-024"
+      ],
+      "status": "planned",
+      "deliverables": [
+        {
+          "id": "DEL-WP025-01",
+          "description": "Full proposal v0.7 with resources, ethics, validity, risks, timeline, and references",
+          "locator": "docs/research/phd-proposal/proposal-v0.7.md",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP025-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP025-01",
+          "description": "Every required proposal section is present and all scientific, medical, effort, and external claims have evidence-state labels",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP025-01",
+          "kind": "proposal_version",
+          "locator": "docs/research/phd-proposal/proposal-v0.7.md",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP025-01",
+          "kind": "internal",
+          "description": "Ali completes citation, link, table, and evidence consistency checks",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-026",
+      "title": "Resolve supervisor comments and verify institutional rules",
+      "phase": "Sep 23 review closure",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON",
+        "GRADUATE_COORDINATOR"
+      ],
+      "dueAt": "2026-09-23T18:00:00+03:00",
+      "dependsOn": [
+        "WP-025"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP026-01",
+          "description": "Resolved-comment register and authoritative process checklist",
+          "locator": "docs/research/phd-proposal/proposal-comment-resolution.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP026-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP026-01",
+          "description": "All comments are resolved or explicitly deferred with owners and institutional deadline, audience, reviewer, committee, format, and route are authoritative",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP026-01",
+          "kind": "external_process_response",
+          "locator": "docs/research/phd-proposal/proposal-comment-resolution.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP026-01",
+          "kind": "human",
+          "description": "Iris and Arnon complete proposal review",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP026-02",
+          "kind": "external",
+          "description": "Authorized university contact verifies the process",
+          "ownerRole": "GRADUATE_COORDINATOR",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-027",
+      "title": "Obtain target supervisor proposal sign-off",
+      "phase": "Sep 25 sign-off target",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON"
+      ],
+      "dueAt": "2026-09-25T18:00:00+03:00",
+      "dependsOn": [
+        "WP-026"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP027-01",
+          "description": "Hash-bound supervisor approval or correction record",
+          "locator": "docs/research/phd-proposal/proposal-supervisor-approval.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP027-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP027-01",
+          "description": "Both supervisors explicitly approve, correct, or defer with a due date; silence cannot satisfy sign-off",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP027-01",
+          "kind": "proposal_approval",
+          "locator": "docs/research/phd-proposal/proposal-supervisor-approval.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP027-01",
+          "kind": "human",
+          "description": "Iris and Arnon provide explicit written sign-off",
+          "ownerRole": "ARNON",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-028",
+      "title": "Build and validate submission candidate v1.0",
+      "phase": "Sep 30 submission candidate",
+      "ownerRoles": [
+        "ALI"
+      ],
+      "dueAt": "2026-09-30T18:00:00+03:00",
+      "dependsOn": [
+        "WP-027"
+      ],
+      "status": "planned",
+      "deliverables": [
+        {
+          "id": "DEL-WP028-01",
+          "description": "Proposal v1.0, bibliography, appendices, manifests, and authorized-route checklist",
+          "locator": "docs/research/phd-proposal/submission-candidate-v1.0-manifest.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP028-01"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP028-01",
+          "description": "References, appendices, links, tables, source hashes, claim boundaries, and package hashes pass",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP028-01",
+          "kind": "submission_candidate",
+          "locator": "docs/research/phd-proposal/submission-candidate-v1.0-manifest.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP028-01",
+          "kind": "internal",
+          "description": "Ali reviews the exact package and validators pass",
+          "ownerRole": "ALI",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    },
+    {
+      "id": "WP-029",
+      "title": "Close authorized submission and issue the closure certificate",
+      "phase": "Oct 7 submission or approval buffer",
+      "ownerRoles": [
+        "ALI",
+        "IRIS",
+        "ARNON",
+        "GRADUATE_COORDINATOR"
+      ],
+      "dueAt": "2026-10-07T18:00:00+03:00",
+      "dependsOn": [
+        "WP-028"
+      ],
+      "status": "blocked",
+      "deliverables": [
+        {
+          "id": "DEL-WP029-01",
+          "description": "Verified authorized submission receipt bound to the exact package",
+          "locator": "docs/research/phd-proposal/authorized-submission-receipt.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP029-01"
+          ]
+        },
+        {
+          "id": "DEL-WP029-02",
+          "description": "Issued closure certificate with final denominator and allowed final states only",
+          "locator": "docs/research/phd-proposal/iris-closure-certificate.json",
+          "evidenceRequired": true,
+          "evidenceIds": [
+            "EV-WP029-02"
+          ]
+        }
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "AC-WP029-01",
+          "description": "The authorized route, package hash, external receipt, approval, and submission time are independently verifiable",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "AC-WP029-02",
+          "description": "Every discovered control is in an allowed final state and any new instruction invalidates an earlier certificate until resolved",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-WP029-01",
+          "kind": "authorized_submission_receipt",
+          "locator": "docs/research/phd-proposal/authorized-submission-receipt.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        },
+        {
+          "id": "EV-WP029-02",
+          "kind": "closure_certificate",
+          "locator": "docs/research/phd-proposal/iris-closure-certificate.json",
+          "state": "pending",
+          "sha256": null,
+          "verifiedAt": null,
+          "verifiedByRole": null
+        }
+      ],
+      "gates": [
+        {
+          "id": "GATE-WP029-01",
+          "kind": "human",
+          "description": "Iris and Arnon approve the exact final package and closure disposition",
+          "ownerRole": "IRIS",
+          "state": "pending",
+          "evidenceIds": []
+        },
+        {
+          "id": "GATE-WP029-02",
+          "kind": "external",
+          "description": "Authorized university route returns a verifiable receipt",
+          "ownerRole": "GRADUATE_COORDINATOR",
+          "state": "pending",
+          "evidenceIds": []
+        }
+      ]
+    }
+  ]
+}

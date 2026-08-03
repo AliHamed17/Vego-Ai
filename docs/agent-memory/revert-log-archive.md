@@ -1395,3 +1395,201 @@ Historical entries.
   - docs/agent-memory/compiled-memory.md
 - Rollback note: Memory log only; no VEGO behavior files changed.
 - Git commit: none recorded by script.
+
+## 2026-06-29 12:27 +03:00 - Codex - Thesis Chapter 7 Progress
+
+- Files changed:
+  - thesis/chapters/07-experimental-results.md
+  - thesis/outline.md
+  - docs/research/thesis-structure-map.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/PROGRESS_TRACKER.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+- Rollback note: Revert the Chapter 7 draft and related tracker/memory/outline edits; regenerate dashboards to restore prior progress counts.
+- Git commit: none recorded by script.
+
+## 2026-06-29 15:09 +03:00 - Codex - Supervisor EXP-005 Approval Pack
+
+- Files changed:
+  - docs/research/supervisor-label-approval-pack.md
+  - docs/research/expert-labeling-protocol.md
+  - thesis/outline.md
+  - docs/PROGRESS_TRACKER.md
+  - docs/research/README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - scripts/build-progress-tracker.py
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+- Rollback note: Revert the supervisor approval pack, protocol/tracker/outline/memory edits, and the chapter-count filter in build-progress-tracker.py; regenerate dashboards to restore prior reports.
+- Git commit: none recorded by script.
+
+## 2026-06-29 15:20 +03:00 - Codex - PhD Thesis Optimization And Claude Collaboration
+
+- Files changed:
+  - docs/research/phd-thesis-optimization-plan.md
+  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
+  - CLAUDE.md
+  - docs/research/README.md
+  - docs/research/research-plan.md
+  - docs/research/thesis-structure-map.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/resource-memory.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+- Rollback note: Revert the new PhD optimization and Claude prompt docs plus the related research-plan, Claude, thesis-map, and memory edits; regenerate dashboards/wiki outputs.
+- Git commit: none recorded by script.
+
+## 2026-06-29 15:39 +03:00 - Codex - Doctoral Capability Alignment
+
+- Files changed:
+  - docs/research/phd-thesis-optimization-plan.md
+  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
+  - docs/operations/alignment-control.md
+  - docs/architecture/project-map.md
+  - docs/architecture/README.md
+  - README.md
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+  - docs/confluence/outbox/
+  - docs/confluence/manual-sync-pack.generated.md
+- Rollback note: Revert the doctoral capability stack/prompt/alignment/architecture/README/memory edits and regenerate dashboards/wiki outputs.
+- Git commit: none recorded by script.
+
+## 2026-06-29 16:33 +03:00 - Codex - Architecture Health Verification
+
+- Files changed:
+  - docs/PROGRESS_TRACKER.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+  - docs/dashboards/status-snapshot.generated.md
+  - docs/confluence/outbox/
+  - docs/confluence/manual-sync-pack.generated.md
+  - reports/generated/project_review/latest-review.md
+  - reports/generated/project_review/latest-review.json
+  - reports/generated/project_review/review-dashboard.html
+  - reports/generated/evidence_consistency/latest.json
+  - reports/generated/evidence_consistency/latest.md
+- Rollback note: No architecture patch was applied. Regenerated reports can be rebuilt from scripts if needed.
+- Git commit: none recorded by script.
+
+## 2026-06-29 16:35 +03:00 - Codex - E2E Dashboard Path Rendering Fix
+
+- Files changed:
+  - scripts/build-e2e-progress-report.ps1
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+  - docs/confluence/outbox/
+  - docs/confluence/manual-sync-pack.generated.md
+  - docs/dashboards/status-snapshot.generated.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - reports/generated/project_review/latest-review.md
+  - reports/generated/project_review/latest-review.json
+  - reports/generated/project_review/review-dashboard.html
+  - reports/generated/evidence_consistency/latest.json
+  - reports/generated/evidence_consistency/latest.md
+- Rollback note: Revert scripts/build-e2e-progress-report.ps1 and regenerate E2E/wiki outputs if the Markdown rendering change is not wanted.
+- Git commit: none recorded by script.
+
+## 2026-06-29 23:42 +03:00 - Codex - Architecture Health Recheck
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/progress.md
+  - docs/agent-memory/session-log.md
+  - docs/PROGRESS_TRACKER.md
+  - docs/dashboards/progress-visualizations.generated.md
+  - docs/dashboards/progress-visualizations.generated.html
+  - docs/dashboards/e2e-dashboard.generated.md
+  - reports/generated/e2e_dashboard/index.html
+  - docs/dashboards/status-snapshot.generated.md
+  - docs/confluence/outbox/
+  - docs/confluence/manual-sync-pack.generated.md
+  - reports/generated/project_review/latest-review.md
+  - reports/generated/project_review/latest-review.json
+  - reports/generated/project_review/review-dashboard.html
+  - reports/generated/evidence_consistency/latest.json
+  - reports/generated/evidence_consistency/latest.md
+- Rollback note: No source architecture patch was applied in this recheck. Regenerated outputs can be rebuilt from scripts.
+- Git commit: none recorded by script.
+
+## 2026-07-03 23:20 +03:00 - Codex - Hebrew MP4 transcript
+
+- Files changed:
+  - docs/video1832857678.transcript.he.md
+  - docs/video1832857678.transcript.he.txt
+  - docs/video1832857678.transcript.he.srt
+- Rollback note: Delete docs/video1832857678.transcript.he.md, docs/video1832857678.transcript.he.txt, and docs/video1832857678.transcript.he.srt to remove the generated transcript outputs.
+- Git commit: none recorded by script.
+
+## 2026-07-03 23:56 +03:00 - Codex - Fable supervisor redirect prompt
+
+- Files changed:
+  - docs/prompts/fable-supervisor-redirect-plan-prompt.md
+- Rollback note: Delete docs/prompts/fable-supervisor-redirect-plan-prompt.md to remove this Fable handoff prompt.
+- Git commit: none recorded by script.
+
+## 2026-07-04 00:10 +03:00 - Codex - Archival Test
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+- Rollback note: None
+- Git commit: none recorded by script.
+
+## 2026-07-04 00:11 +03:00 - Codex - Memory and Resource Enhancement Completion
+
+- Files changed:
+  - scripts/agent-memory-start.ps1,scripts/agent-memory-finish.ps1,scripts/memory-health.ps1,scripts/search-memory.ps1,scripts/process-meeting.ps1,docs/agent-memory/current-state.md,docs/agent-memory/decisions.md,docs/agent-memory/issues.md,docs/agent-memory/resource-memory.md,docs/agent-memory/memory-index.md,docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md
+- Rollback note: Revert changes using Git
+- Git commit: none recorded by script.
+
+## 2026-07-04 - Fable (Claude) - July 2026 Supervisor Redirect Package
+
+- Files added:
+  - `docs/research/meetings/2026-07-01-supervisor-meeting-iris.md`
+  - `docs/research/extension-plan-2026-07-supervisor-redirect.md`
+  - `docs/research/h-layer/skills-map.md`
+  - `docs/research/h-layer/prompt-requirements.md`
+  - `docs/research/phd-extension-ideas.md`
+  - `docs/architecture/framework-diagram.md`
+  - `docs/architecture/evaluation-diagram.md`
+- Files updated:
+  - `docs/research/literature-review-taxonomy.md` (July 2026 supervisor-redirect section)
+  - `docs/research/README.md`, `docs/architecture/README.md`, `docs/architecture/project-map.md` (index links)
+  - `docs/agent-memory/current-state.md` (redirect pointers in sections 1 and 4; header attribution; relative link fix), `docs/agent-memory/progress.md` (milestone, TASK-040..042, Next Steps note), `docs/agent-memory/decisions.md`, `docs/agent-memory/review-state.md` (redirect note + Last Updated), `docs/agent-memory/session-log.md` (finish-script entry), `docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md` (superseded-by annotation and date correction), `docs/operations/alignment-control.md` (redirect pointer), `docs/PROGRESS_TRACKER.md` (redirect banner), `docs/dashboards/progress-dashboard.md` (redirect status row)
+- Rollback note: delete the seven added files and revert the listed updated docs to their pre-2026-07-04 versions. No file under `VEGO-AI/` was touched; `git status` confirms docs-only changes for this work.
+- Commands run: mermaid-cli render checks (both diagrams PASS); `python scripts/check_evidence_consistency.py` (18/18 PASS); `scripts/refresh-tracking.ps1 -Viz`; `scripts/build-confluence-wiki.ps1`; `scripts/dashboard-health.ps1 -RequireOutbox` - results recorded in the 2026-07-04 session-log entry written by `agent-memory-finish.ps1`.
+
+## 2026-07-04 - Fable (Claude) - MediVARIA Study Plan Integration
+
+- Files added:
+  - `docs/research/medivaria/medivaria-study-plan.md`
+  - ignored: `artifacts/medivaria/MediVARIA_OnePage_v1.docx` (archived source proposal)
+- Files updated:
+  - `docs/research/phd-extension-ideas.md` (idea 1 -> ACTIVE AS MediVARIA)
+  - `docs/research/extension-plan-2026-07-supervisor-redirect.md` (P6 row)
+  - `docs/research/literature-review-taxonomy.md` (MediVARIA branches subsection)
+  - `docs/research/h-layer/skills-map.md` (open question 8)
+  - `docs/research/thesis-structure-map.md` (Future PhD Extension section)
+  - `docs/research/phd-thesis-optimization-plan.md` (domain-transfer note after roadmap)
+  - `docs/research/README.md` (index row)
+  - `docs/agent-memory/current-state.md`, `progress.md` (milestone + TASK-043), `decisions.md`, `session-log.md` (finish-script entry)
+  - `docs/dashboards/progress-dashboard.md` (MediVARIA row)
+- Rollback note: delete `docs/research/medivaria/` and the ignored archive, and revert the listed updated docs to their pre-MediVARIA 2026-07-04 versions. No file under `VEGO-AI/` was touched.
+- Commands run: docx text extraction (python-docx, scratchpad); `python scripts/check_evidence_consistency.py`; `scripts/refresh-tracking.ps1 -Viz`; `scripts/build-confluence-wiki.ps1`; `scripts/dashboard-health.ps1 -RequireOutbox` - results in the 2026-07-04 MediVARIA session-log entry.

@@ -2,7 +2,11 @@
 
 Last updated: 2026-07-10.
 
-Status: **ACTIVE PROVISIONAL PLAN.** Read this file first for the July 2026 supervisor redirect, then use the July 15 decision register for current approval state. M-02 through M-05 are not recorded; no detailed architecture, dosage, H-Verify, authority, timeout, or live-hook choice is approved.
+Status update (2026-07-30): **LEGACY / ABSORBED.** The active working authority is
+`docs/research/phd-proposal/2026-07-29-doctoral-execution-plan.md`. This file remains
+the historical July 1 redirect record. Its EXP-005, participant-confirmation,
+approval, protected-path, and no-unsupported-claim gates remain binding; none of
+its unrecorded choices became approved merely because the plan was absorbed.
 
 Sources: `docs/research/meetings/2026-07-01-supervisor-meeting-iris.md` (canonical machine-derived notes awaiting participant confirmation), `docs/video1832857678.transcript.he.md` (machine transcript, primary source).
 

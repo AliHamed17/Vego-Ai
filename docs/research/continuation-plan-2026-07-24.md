@@ -1,6 +1,11 @@
 # Continuation Plan - 2026-07-24 (Post Evidence-Ready Thesis Package)
 
-Last updated: 2026-07-24 by Fable (Claude). Status: ACTIVE. Successor to `docs/research/h-layer/enhancement-plan-2026-07-12.md` (Phase 2/3 items absorbed here) and companion to the evidence ladder and EXP-019-027 protocols.
+Last updated: 2026-07-24 by Fable (Claude).
+
+Status update (2026-07-30): **LEGACY / ABSORBED.** Current doctoral sequencing is
+controlled by `docs/research/phd-proposal/2026-07-29-doctoral-execution-plan.md`.
+This plan's EXP-005, independent-review, leakage-control, sealed-holdout, and
+evidence-claim gates are preserved and remain binding.
 
 ## 0. Where We Stand
 

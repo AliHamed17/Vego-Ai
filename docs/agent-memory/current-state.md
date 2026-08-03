@@ -2,11 +2,30 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-07-28 by Claude (evaluation phase: per-component verdicts, advisory LLM analyst, Iris coverage matrix, one-command full evaluation)
+**Last Updated:** 2026-08-03 by Claude (independent audit of the Aug-1/Aug-3 Iris closure package + fix pass). The separate VEGO-AI H-layer evaluation-phase workstream below was last updated 2026-07-28 by Claude.
+
+This file now tracks two largely independent workstreams in the same repo: the Iris/PhD-proposal supervisor-closure workstream (branch `docs/iris-july29-phd-execution`) and the VEGO-AI H-layer architecture-evaluation workstream (merged via PR #15). Sections below are grouped by workstream where they diverge.
 
 ---
 
-## 1. Quick Status (< 10 lines)
+## 1. Quick Status
+
+### 1a. Iris / PhD-proposal supervisor-closure workstream
+* Branch `docs/iris-july29-phd-execution` preserves the ten July 29 evidence artifacts in `3d0beca`, the initial assurance tranche in `28ece6e`, the enhanced closure package in `18c0f2b`, and the next-step execution snapshot in `9a9279f`; production VEGO-AI behavior is unchanged.
+* The bilingual-review-pending July 29 registers control all 19 requirements, 15 actions, and 10 questions; the closure audit has `44/44` locators, with **2 verified complete, 6 awaiting human acceptance, 22 partial, 5 open, and 9 blocked**.
+* The recommended architecture is one umbrella RQ plus three subquestions: selective intervention, governed knowledge reuse, and evaluation/transfer. Iris and Arnon approval remains pending for the August 5 checkpoint.
+* Plan A is a staged medical extension; Plan B completes the doctorate in software/modeling. Any unproved critical medical prerequisite on August 26 triggers Plan B for the September proposal.
+* Proposal `v0.1`, the RQ decision pack, three-study contract, legacy crosswalk, claim register, RACI/RAID register, pre-read, and governance templates now form the first controlled tranche.
+* A private Ali-owned nine-folder PhD working Drive and native six-tab literature Sheet exist. They have not been shared or sent; searches and screening are prepared but not yet executed.
+* Ali, Iris, and Arnon are confirmed accepted on the recurring Wednesday 09:00-10:00 Asia/Jerusalem calendar event through October 7.
+* The metadata-only MIMIC audit observed 25 CSVs totaling 39.65 GiB versus 26 official MIMIC-III v1.4 tables; `NOTEEVENTS` and provenance are unresolved. No patient rows were inspected.
+* Medical readiness is **NO-GO at 0/6 entry gates**. EXP-005 remains blocked at 0/24 generalization-safe labels; no medical, accuracy, or generalization gain is claimed.
+* A deterministic preliminary ledger covers S-0001–S-1195: 910 machine-linked segments and 285 conservative human-review placeholders. Separate Reviewer A/B and third-person adjudication inputs now feed a fail-closed merger; human bilingual/speaker review remains 0/1,195 segments plus 0/1 full-media record per reviewer, and no adjudicated output exists.
+* The August 5 supervisor package is built locally as a 12-slide English core plus nine-slide appendix, 21/21 source-note sections, 21/21 native renders inspected, PDF export, and review workbook. The PPTX title/footer defects are corrected; the prior offline ZIP is explicitly stale and must be rebuilt only after rehearsal and freeze. Human timed/adversarial rehearsal, Ali release approval, sharing, and both access tests remain pending; this is not the candidacy deck.
+* A canonical 29-work-package August 1-October 7 execution board, supervisor release runbook, Zoom reviewer operations guide, literature execution register, proposal v0.2 working draft, university-inquiry draft, and ten-sheet companion workbook now operationalize the next steps. Board structure passes with 18 blocked, 6 partial, and 5 planned work packages; no pending evidence was promoted.
+* IRIS-EXP-01–10 now separate structure, readiness, and closure. All 10 pass structure mode as of commit `ef12f6f` (2026-08-03 fix-pass: `bf45c98` fixed the confirmed defects, `0456cff` bound provenance to that commit, `e637f0d` gitignored a stray tool-cache dir that was making the tree look dirty, `ef12f6f` refreshed the detached source manifest); readiness and closure still correctly fail while human review, rehearsal, delivery, decisions, acceptance, approval, and submission evidence are missing. Submission closure requires one exact schema-valid receipt hash-bound to authorization, package, external receipt, and issued certificate; the tracked template is `NOT_SUBMITTED`. September/October dates remain provisional pending official confirmation.
+
+### 1b. VEGO-AI H-layer architecture-evaluation workstream
 * Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. PR #8 records the thesis evidence release; PR #10 is the unified-runtime dependency; stacked PR #11 is the BigUI experiment-platform publication route. Live GitHub remains authoritative for review and merge state.
 * Two constraints are active: offline H-layer architecture/experiment hardening and the EXP-005 human-label gate for the parked evaluation track.
 * The machine-derived July 1 meeting record supports a **framework-first** direction pending participant confirmation. M-02 through M-05 have no recorded outcomes.
@@ -46,16 +65,28 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 | **ISS-007** | Medium | Evaluation leakage risk if same-pattern rows are claimed as generalization. | Keep same-pattern rows strictly for mechanism validation. |
 | **ISS-012/013**| Medium | False-accuracy-narrative risk (synthetic vs real accuracy); weak evidence from one-reviewer. | Require κ & adjudication; quote real label status in reports. |
 | **ISS-014** | High | M-01 through M-06 are unrecorded; no architecture/default/live authorization can be inferred. | Record explicit outcomes with Iris and Arnon; silence remains deferred. |
+| **ISS-022** | High | July 29 Hebrew ASR, English translation, and speaker attribution remain machine-derived; the separate two-reviewer/adjudication interface is ready but contains 0/1,195 segment reviews and 0/1 full-media record per reviewer. | Complete independent Reviewer A/B returns and third-person disagreement adjudication through the fail-closed merge workflow before direct quotation or final attribution. |
+| **ISS-023** | High | Medical readiness is 0/6 mandatory entry gates, with all accountable Plan A roles and approvals unproved. | Name owners and collect use-case, people, authorization, ethics/privacy, environment, and protocol evidence. |
+| **ISS-024** | High | The official candidacy process, deadline, reviewer count, committee rules, and presentation requirements are unverified. | Obtain written confirmation from the department or Graduate Studies coordinator. |
+| **ISS-025** | High | The shared MIMIC resource has 25 observed CSVs rather than 26 official tables and lacks canonical provenance. | Reconcile the manifest inside an authorized VDI only after all six entry gates pass. |
+| **ISS-026** | Medium | The private PhD Drive and literature Sheet are not shared or access-tested. | Ali reviews the exact package, then explicitly authorizes sharing and recipient access checks. |
+| **ISS-027** | High | The current August 5 PPTX/PDF, source notes, control appendix, workbook, and automated/render QA exist locally; human timed/adversarial rehearsal, Ali release approval, delivery, and Iris/Arnon access tests remain unproved. Candidacy presentation rules and its separate deck also remain unverified. | Ali reviews the exact frozen package; run and record both human rehearsals; correct and rerender if needed; then share only with authorization and record two recipient access tests. |
+
+| **ISS-028** | Medium | The prior local offline ZIP contains the superseded PPTX/PDF and is marked stale/invalidated; readiness now verifies ZIP member hashes instead of trusting a filename or manifest hash alone. | Rebuild and re-hash the ZIP only after the exact package passes human rehearsal and RG-04 freeze. |
+| **ISS-029** | Medium | 2026-08-03 independent audit (Claude) found and fixed: 9/31 (then 10/32, after adding a missing gap-ledger row) stale provenance-manifest hashes, 4 stale "verified" hashes in the execution control board, a missing detached source manifest causing 2 test failures, a false "Structure passes" claim (IRIS-EXP-07/08 both FAILed structure mode), R-04's contradictory/unsupported appendix slide mapping, A-03/A-06's incomplete appendix slide mapping, an undefined control-status vocabulary on the deck's claim-states slide, and a G1-G6 label collision between the medical gates and `THESIS_ACCURACY_EVIDENCE_ADVANCEMENT_PLAN.md` (renamed to `AG0-AG6` there). All fixed; PPTX rebuilt as v10 (`7765132B...`), PDF/renders/manifests regenerated. One structure-mode check remains FAIL by design: `IRIS-EXP-07`'s "provenance identifies an unchanged committed package revision" requires the frozen package paths (deck, master register, presentation manifest, etc.) to exactly match a real git commit, and this branch has uncommitted changes on top of `a55aee8`. | Commit the current working tree (24+ files) and re-cite that commit as the provenance base revision; only then does IRIS-EXP-07 fully pass structure mode. Requires explicit go-ahead to commit. |
 
 ---
 
 ## 4. Next Action
-1. **Human evidence gate:** approve the blind-label protocol, appoint two independent reviewers plus an adjudicator, and calibrate on the three excluded same-pattern rows.
-2. **EXP-020:** collect the 24 generalization-safe labels without exposing the 16/8 development/holdout split to reviewers; supplied labels remain 0 and must never be inferred or prefilled.
-3. **Decision gate:** record M-01..M-06. Until then, keep architecture, dosage, H-Verify, authority, and timeout choices provisional.
-4. **Offline advancement:** preserve iterations 008-015 atomic contracts and metric semantics. Iteration 15 is reliability-only; do not interpret it as an accuracy or generalization result.
-5. **Policy gate:** perform development-only error analysis before proposing one deterministic candidate; open the sealed eight-row holdout only after the policy and hashes are frozen.
-6. **Phase 4:** remain blocked until M-05 plus a separate exact-file implementation authorization.
+1. **Ali review gate:** inspect the exact August 5 pre-read, corrected PPTX/PDF, RQ pack, proposal, Drive structure, literature Sheet, release runbook, and execution workbook before any external sharing.
+2. **August 5 decision gate:** obtain and record Iris/Arnon decisions on the one-plus-three hierarchy, study map, Plan A/B labels, literature categories, medical owner, Penina dates, and official-process owner.
+3. **Presentation gate:** Ali reviews the exact frozen local package; complete dated timed and adversarial human rehearsals, correct/rerender any defects, and record authorized delivery plus Iris/Arnon access tests without copying simulated outcomes into the real decision log.
+4. **Literature tranche:** execute the recorded searches, deduplicate, screen, verify identities/claims, and prepare the August 12 synthesis without treating tools as evidence.
+5. **Transcript gate:** complete bilingual and speaker review; continue using paraphrases only until then.
+6. **EXP-005 gate:** appoint two independent reviewers plus an adjudicator and collect the 24 safe labels; do not infer or prefill labels.
+7. **Medical gate:** keep all row-level work blocked at 0/6 and collect only documentary proof for the six prerequisites.
+8. **August 26 fallback:** run the medical go/no-go review and default the September proposal to Plan B if any critical prerequisite remains unproved.
+9. **Administrative gate:** obtain written confirmation of the official candidacy process and rebaseline within one working day if required.
 
 ---
 
@@ -105,7 +136,10 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 <details>
 <summary><b>6.4 PhD Research Trajectory (Direct Track)</b></summary>
 
-* **Topic:** Reusable human judgment for governed human-AI co-reasoning in AI-assisted domain model assessment.
-* **Phased Roadmap:** P0 (MSc Gate) -> P1 (Baseline taxonomy) -> P2 (Reuse validity) -> P3 (Policy v1.1 refinement on 16 dev / 8 holdout) -> P4 (Broader medical/class cohorts) -> P5 (Framework synthesis).
-* **Iris Action Items:** (1) Define agent skills mapping (A1-A4), (2) Specify prompt/context requirements, (3) Define interface contracts, (4) Separate framework/evaluation phases.
+* **Topic:** Reusable human judgment for auditable, reliable, and transferable human-AI co-reasoning in agentic assessment.
+* **Canonical working hierarchy:** one umbrella RQ plus SQ1 selective intervention, SQ2 governed knowledge reuse, and SQ3 evaluation/transfer.
+* **Study map:** Study 1 intervention architecture; Study 2 judgment lifecycle; Study 3 evaluation and transfer.
+* **Plans:** Plan A adds a gated medical transfer pilot; Plan B completes all questions through software/modeling and non-clinical replication.
+* **Control interfaces:** master traceability, RQ crosswalk, three-study contract, five-state claim register, six-gate medical scorecard, weekly pre-read, and decision/change log.
+* **Decision dates:** August 5 supervisor checkpoint; August 26 medical go/no-go; September/October proposal checkpoints are provisional pending official confirmation.
 </details>

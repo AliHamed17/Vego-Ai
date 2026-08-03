@@ -1,16 +1,21 @@
 * text=auto
+.gitattributes text eol=lf
 
 *.md text eol=lf
 *.py text eol=lf
 *.ps1 text eol=crlf
 *.json text eol=lf
+*.jsonl text eol=lf
 *.toml text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
 *.txt text eol=lf
 *.html text eol=lf
 *.mmd text eol=lf
+*.mjs text eol=lf
 uv.lock text eol=lf
+docs/research/meetings/2026-07-29-iris-zoom-*.csv text eol=lf
+docs/research/meetings/2026-07-29-iris-supervisor-bilingual-transcript.he-en.md whitespace=-trailing-space
 
 *.pdf binary
 *.docx binary

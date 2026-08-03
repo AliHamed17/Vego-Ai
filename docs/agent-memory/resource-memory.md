@@ -2,7 +2,63 @@
 
 This file is the compact shared resource index for Codex and Claude. It points agents to reusable research resources without forcing every prompt to reload downloaded source files.
 
-Last updated: 2026-07-11 by Codex.
+Last updated: 2026-08-01 by Codex.
+
+## Iris Next-Step Execution Program
+
+Canonical and operator interfaces:
+
+- `docs/research/phd-proposal/aug1-oct7-execution-control-board.json`
+- `docs/research/phd-proposal/aug1-oct7-execution-control-board.md`
+- `docs/research/phd-proposal/next-step-implementation-manifest-2026-08-01.md`
+- `docs/research/meetings/2026-08-05-supervisor-release-gate-and-runbook.md`
+- `docs/research/meetings/2026-07-29-iris-zoom-reviewer-operations.md`
+- `docs/research/phd-proposal/literature-search-execution-register.md`
+- `docs/research/phd-proposal/proposal-v0.2-working-draft.md`
+- `docs/research/phd-proposal/university-process-inquiry-draft.md`
+
+Local companion output:
+
+- `outputs/iris-next-step-2026-08-01-implementation/VEGO-AI-Iris-Next-Step-Execution-Control-2026-08-01.xlsx` (ignored; exact hash is recorded in the implementation manifest)
+
+Validators:
+
+- `scripts/validate_aug1_oct7_execution_program.py`
+- `scripts/validate_iris_zoom_review_batches.py`
+- `scripts/validate_iris_requirements_closure.py` (IRIS-EXP-08 also verifies offline-ZIP member hashes)
+
+Current boundary: board structure is valid; all assignee, reviewer, rehearsal,
+release, access, supervisor, medical, expert-label, approval, and submission
+evidence fields remain human/external gates.
+
+## July 29 Doctoral Execution Program
+
+Local control package:
+
+- `docs/research/phd-proposal/README.md`
+- `docs/research/phd-proposal/master-traceability-register.md`
+- `docs/research/phd-proposal/2026-08-05-rq-decision-pack.md`
+- `docs/research/phd-proposal/three-study-contract.md`
+- `docs/research/phd-proposal/proposal-v0.1.md`
+- `docs/research/meetings/2026-08-05-supervisor-pre-read.md`
+- `docs/research/governance/medical-readiness-scorecard.md`
+- `docs/research/governance/mimic-metadata-audit-2026-07-30.md`
+
+External working resources:
+
+| Resource | URL | Current boundary |
+| --- | --- | --- |
+| Private Ali-owned PhD working folder | https://drive.google.com/drive/folders/1Och2Vlux87uqk6QZy0F4xr2WhfzY_cd- | Nine-folder structure created; not shared or sent pending Ali review. |
+| Native literature workbook | https://docs.google.com/spreadsheets/d/1tVAM10bxlmL7_8SbgDgN5BRfAR2f5Q4pGvQmx-Ypp4A/edit | Six tabs and six seed records created; searches and screening are not yet executed. |
+| Supplied MIMIC source folder | https://drive.google.com/drive/folders/1_RheL2DUcicQLGXJyY_soUb91zn9XLsz | Source/viewer resource only; leave unchanged and do not treat file visibility as authorization. |
+
+Operational state:
+
+- Branch: `docs/iris-july29-phd-execution`.
+- Preserved evidence commit: `3d0beca`.
+- Recurring calendar: Wednesday 09:00-10:00 Asia/Jerusalem through the October 7 occurrence; Ali, Iris, and Arnon accepted.
+- Medical readiness: 0/6; no patient-row inspection or medical computation is authorized.
+- External sharing: Ali must review and authorize the exact package first.
 
 ## HITL / Human-AI Resource Pack
 
@@ -63,6 +119,11 @@ Dry-run command:
 | `PRES-004` | Supervisor meeting structured notes | `docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md` | Extracted |
 | `PRES-005` | Supervisor Zoom demo deck (2026-06-17) | `artifacts/supervisor_demo_2026-06-17/` | Used |
 | `PRES-006` | Presentation plan (2026-07-01) | `docs/presentation-plan-2026-07-01.md` | Planning |
+| `PRES-007` | August supervisor presentation/video-call checklist | `docs/research/meetings/2026-08-05-supervisor-presentation-checklist.md` | Local 21-slide PPTX/PDF and automated/render QA complete; human rehearsal, Ali release approval, delivery, and access pending |
+| `PRES-008` | July 29 requirements closure audit | `docs/research/phd-proposal/iris-requirements-closure-audit.md` | 44/44 controlled; acceptance gates explicit |
+| `PRES-009` | August 5 supervisor decisions deck | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx` | 12-slide English core plus nine-slide appendix; 21/21 source notes; local construction only |
+| `PRES-010` | July 29 Zoom human-review workbook | `outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx` | 1,195 machine-only rows; 910 control-linked, 285 human-review-needed; dual review/adjudication 0/1,195 |
+| `PRES-011` | August 5 presentation/rehearsal/delivery manifests | `docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md` | Local package/QA recorded; human rehearsal, delivery, and access forms remain open |
 
 Key meeting insights captured in `PRES-004`:
 - Two VEGO-AI communication types (artifact + Q&A)
@@ -152,6 +213,10 @@ Experiment registry: `experiments/registry.md`
 | `hlayer_prototype/hlayer-prototype-scaffold.py` | Isolated offline supervisor interaction demo with non-trusted outputs | July 15 demo preflight/session using a temporary output directory |
 | `validate_hlayer_program.py` | End-to-end replay/conformance/decision/demo/protected-boundary validation | Before H-layer status claims or supervisor demos |
 | `validate_hlayer_offline.py` | EXP-013–018 contract/conformance validation | After offline contract or fixture changes |
+| `build_iris_zoom_disposition_ledger.py` | Deterministic S-0001–S-1195 preliminary CSV/JSON builder | Before bilingual review imports; `--check` proves tracked machine projection is current |
+| `build_iris_zoom_adjudicated_ledger.py` | Fail-closed merger for two complete independent reviewer returns, full-media evidence, and third-person disagreement adjudication | `--check` validates a pending or completed interface without writing; no adjudicated output exists at 0/1,195 |
+| `validate_iris_requirements_closure.py` | IRIS-EXP-01..10 validator with fail-closed `structure`, `readiness`, and `closure` modes | Before/after supervisor-package changes; readiness/closure must remain non-zero while required human/external evidence is absent; `--refresh` writes ignored diagnostics |
+| `iris-authorized-submission-receipt-v1.schema.json` | Exact authorized submission, package, receipt, authorization, and certificate-binding contract | Closure only; the tracked pending template is `NOT_SUBMITTED` and never counts as evidence |
 
 ## Dashboards & Visualizations
 

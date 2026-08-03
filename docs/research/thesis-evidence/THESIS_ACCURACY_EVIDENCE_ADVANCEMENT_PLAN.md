@@ -230,15 +230,19 @@ A null or negative result is retained and discussed; it is never tuned away.
 
 ## 9. Acceptance gates
 
+These `AG0`-`AG6` accuracy-evidence gates are a distinct scale from the medical `G1`-`G6` entry
+gates used elsewhere in the PhD proposal package (`docs/research/governance/medical-readiness-scorecard.md`
+and its dependents); the two schemes govern unrelated decisions and must not be conflated.
+
 | Gate | Opens when | Work allowed |
 | --- | --- | --- |
-| G0 Protocol | Supervisor records approval | Send blind sheets |
-| G1 Calibration | Two reviewers complete EXP-019 | Begin independent labeling |
-| G2 Gold labels | Two returns plus adjudication are frozen | Quantitative MSc analysis if safe N >= 20 |
-| G3 Development suitability | At least three correctable errors across two settings | Submit one policy candidate for approval |
-| G4 Policy freeze | Supervisor accepts a concrete record | Open holdout once |
-| G5 Holdout | One-time run is complete | Decide whether external replication is justified |
-| G6 External | N >= 30 and preregistered criteria pass | Formal improvement claim may be considered |
+| AG0 Protocol | Supervisor records approval | Send blind sheets |
+| AG1 Calibration | Two reviewers complete EXP-019 | Begin independent labeling |
+| AG2 Gold labels | Two returns plus adjudication are frozen | Quantitative MSc analysis if safe N >= 20 |
+| AG3 Development suitability | At least three correctable errors across two settings | Submit one policy candidate for approval |
+| AG4 Policy freeze | Supervisor accepts a concrete record | Open holdout once |
+| AG5 Holdout | One-time run is complete | Decide whether external replication is justified |
+| AG6 External | N >= 30 and preregistered criteria pass | Formal improvement claim may be considered |
 
 Silence, ambiguity, or an incomplete record is `Deferred`; it never opens a gate.
 

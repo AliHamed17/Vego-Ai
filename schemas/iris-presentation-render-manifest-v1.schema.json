@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vego-ai.local/schemas/iris-presentation-render-manifest-v1.schema.json",
+  "title": "Iris supervisor presentation render manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "evidence_boundary",
+    "package",
+    "renderer",
+    "expected_slide_count",
+    "slides",
+    "montage",
+    "visual_review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "IrisPresentationRenderManifest-v1"
+    },
+    "status": {
+      "enum": ["PENDING_FINAL_RENDER", "VERIFIED"]
+    },
+    "evidence_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "package": {
+      "$ref": "#/$defs/package"
+    },
+    "renderer": {
+      "$ref": "#/$defs/renderer"
+    },
+    "expected_slide_count": {
+      "const": 21
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/slide"
+      }
+    },
+    "montage": {
+      "$ref": "#/$defs/artifact"
+    },
+    "visual_review": {
+      "$ref": "#/$defs/visual_review"
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9A-F]{64}$"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "type": "string"
+        }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pptx", "pdf", "repository_revision"],
+      "properties": {
+        "pptx": {
+          "$ref": "#/$defs/artifact"
+        },
+        "pdf": {
+          "$ref": "#/$defs/artifact"
+        },
+        "repository_revision": {
+          "type": "string"
+        }
+      }
+    },
+    "renderer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "environment", "rendered_at"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "rendered_at": {
+          "type": "string"
+        }
+      }
+    },
+    "slide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "number",
+        "path",
+        "bytes",
+        "sha256",
+        "visual_result",
+        "inspector",
+        "reviewed_at"
+      ],
+      "properties": {
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 21
+        },
+        "path": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "visual_result": {
+          "enum": ["PASS", "FAIL"]
+        },
+        "inspector": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string"
+        }
+      }
+    },
+    "visual_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "overall_result",
+        "inspector",
+        "reviewed_at",
+        "open_defect_count",
+        "notes"
+      ],
+      "properties": {
+        "overall_result": {
+          "enum": ["PENDING", "PASS", "FAIL"]
+        },
+        "inspector": {
+          "type": "string"
+        },
+        "reviewed_at": {
+          "type": "string"
+        },
+        "open_defect_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "VERIFIED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "slides": {
+            "minItems": 21,
+            "maxItems": 21
+          },
+          "visual_review": {
+            "properties": {
+              "overall_result": {
+                "const": "PASS"
+              },
+              "open_defect_count": {
+                "const": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -11,203 +11,15 @@ Record file changes and rollback notes here.
 - Git branch: `feature/evaluation-phase` created and active.
 - Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
 
-## 2026-06-29 12:27 +03:00 - Codex - Thesis Chapter 7 Progress
-
-- Files changed:
-  - thesis/chapters/07-experimental-results.md
-  - thesis/outline.md
-  - docs/research/thesis-structure-map.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/PROGRESS_TRACKER.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-- Rollback note: Revert the Chapter 7 draft and related tracker/memory/outline edits; regenerate dashboards to restore prior progress counts.
-- Git commit: none recorded by script.
-
-## 2026-06-29 15:09 +03:00 - Codex - Supervisor EXP-005 Approval Pack
-
-- Files changed:
-  - docs/research/supervisor-label-approval-pack.md
-  - docs/research/expert-labeling-protocol.md
-  - thesis/outline.md
-  - docs/PROGRESS_TRACKER.md
-  - docs/research/README.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - scripts/build-progress-tracker.py
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-- Rollback note: Revert the supervisor approval pack, protocol/tracker/outline/memory edits, and the chapter-count filter in build-progress-tracker.py; regenerate dashboards to restore prior reports.
-- Git commit: none recorded by script.
-
-## 2026-06-29 15:20 +03:00 - Codex - PhD Thesis Optimization And Claude Collaboration
-
-- Files changed:
-  - docs/research/phd-thesis-optimization-plan.md
-  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
-  - CLAUDE.md
-  - docs/research/README.md
-  - docs/research/research-plan.md
-  - docs/research/thesis-structure-map.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/resource-memory.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-- Rollback note: Revert the new PhD optimization and Claude prompt docs plus the related research-plan, Claude, thesis-map, and memory edits; regenerate dashboards/wiki outputs.
-- Git commit: none recorded by script.
-
-## 2026-06-29 15:39 +03:00 - Codex - Doctoral Capability Alignment
-
-- Files changed:
-  - docs/research/phd-thesis-optimization-plan.md
-  - docs/agent-memory/claude-phd-thesis-collaboration-prompt.md
-  - docs/operations/alignment-control.md
-  - docs/architecture/project-map.md
-  - docs/architecture/README.md
-  - README.md
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-- Rollback note: Revert the doctoral capability stack/prompt/alignment/architecture/README/memory edits and regenerate dashboards/wiki outputs.
-- Git commit: none recorded by script.
-
-## 2026-06-29 16:33 +03:00 - Codex - Architecture Health Verification
-
-- Files changed:
-  - docs/PROGRESS_TRACKER.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/dashboards/status-snapshot.generated.md
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-  - reports/generated/project_review/latest-review.md
-  - reports/generated/project_review/latest-review.json
-  - reports/generated/project_review/review-dashboard.html
-  - reports/generated/evidence_consistency/latest.json
-  - reports/generated/evidence_consistency/latest.md
-- Rollback note: No architecture patch was applied. Regenerated reports can be rebuilt from scripts if needed.
-- Git commit: none recorded by script.
-
-## 2026-06-29 16:35 +03:00 - Codex - E2E Dashboard Path Rendering Fix
-
-- Files changed:
-  - scripts/build-e2e-progress-report.ps1
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-  - docs/dashboards/status-snapshot.generated.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - reports/generated/project_review/latest-review.md
-  - reports/generated/project_review/latest-review.json
-  - reports/generated/project_review/review-dashboard.html
-  - reports/generated/evidence_consistency/latest.json
-  - reports/generated/evidence_consistency/latest.md
-- Rollback note: Revert scripts/build-e2e-progress-report.ps1 and regenerate E2E/wiki outputs if the Markdown rendering change is not wanted.
-- Git commit: none recorded by script.
-
-## 2026-06-29 23:42 +03:00 - Codex - Architecture Health Recheck
-
-- Files changed:
-  - docs/agent-memory/current-state.md
-  - docs/agent-memory/progress.md
-  - docs/agent-memory/session-log.md
-  - docs/PROGRESS_TRACKER.md
-  - docs/dashboards/progress-visualizations.generated.md
-  - docs/dashboards/progress-visualizations.generated.html
-  - docs/dashboards/e2e-dashboard.generated.md
-  - reports/generated/e2e_dashboard/index.html
-  - docs/dashboards/status-snapshot.generated.md
-  - docs/confluence/outbox/
-  - docs/confluence/manual-sync-pack.generated.md
-  - reports/generated/project_review/latest-review.md
-  - reports/generated/project_review/latest-review.json
-  - reports/generated/project_review/review-dashboard.html
-  - reports/generated/evidence_consistency/latest.json
-  - reports/generated/evidence_consistency/latest.md
-- Rollback note: No source architecture patch was applied in this recheck. Regenerated outputs can be rebuilt from scripts.
-- Git commit: none recorded by script.
-
-## 2026-07-03 23:20 +03:00 - Codex - Hebrew MP4 transcript
-
-- Files changed:
-  - docs/video1832857678.transcript.he.md
-  - docs/video1832857678.transcript.he.txt
-  - docs/video1832857678.transcript.he.srt
-- Rollback note: Delete docs/video1832857678.transcript.he.md, docs/video1832857678.transcript.he.txt, and docs/video1832857678.transcript.he.srt to remove the generated transcript outputs.
-- Git commit: none recorded by script.
-
-## 2026-07-03 23:56 +03:00 - Codex - Fable supervisor redirect prompt
-
-- Files changed:
-  - docs/prompts/fable-supervisor-redirect-plan-prompt.md
-- Rollback note: Delete docs/prompts/fable-supervisor-redirect-plan-prompt.md to remove this Fable handoff prompt.
-- Git commit: none recorded by script.
-
-## 2026-07-04 00:10 +03:00 - Codex - Archival Test
-
-- Files changed:
-  - docs/agent-memory/current-state.md
-- Rollback note: None
-- Git commit: none recorded by script.
-
-## 2026-07-04 00:11 +03:00 - Codex - Memory and Resource Enhancement Completion
-
-- Files changed:
-  - scripts/agent-memory-start.ps1,scripts/agent-memory-finish.ps1,scripts/memory-health.ps1,scripts/search-memory.ps1,scripts/process-meeting.ps1,docs/agent-memory/current-state.md,docs/agent-memory/decisions.md,docs/agent-memory/issues.md,docs/agent-memory/resource-memory.md,docs/agent-memory/memory-index.md,docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md
-- Rollback note: Revert changes using Git
-- Git commit: none recorded by script.
-
-## 2026-07-04 - Fable (Claude) - July 2026 Supervisor Redirect Package
+## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
 
 - Files added:
-  - `docs/research/meetings/2026-07-01-supervisor-meeting-iris.md`
-  - `docs/research/extension-plan-2026-07-supervisor-redirect.md`
-  - `docs/research/h-layer/skills-map.md`
-  - `docs/research/h-layer/prompt-requirements.md`
-  - `docs/research/phd-extension-ideas.md`
-  - `docs/architecture/framework-diagram.md`
-  - `docs/architecture/evaluation-diagram.md`
+  - `docs/research/evaluation-run-guide.md`
+  - `docs/research/supervisor-label-approval-checklist.md`
 - Files updated:
-  - `docs/research/literature-review-taxonomy.md` (July 2026 supervisor-redirect section)
-  - `docs/research/README.md`, `docs/architecture/README.md`, `docs/architecture/project-map.md` (index links)
-  - `docs/agent-memory/current-state.md` (redirect pointers in sections 1 and 4; header attribution; relative link fix), `docs/agent-memory/progress.md` (milestone, TASK-040..042, Next Steps note), `docs/agent-memory/decisions.md`, `docs/agent-memory/review-state.md` (redirect note + Last Updated), `docs/agent-memory/session-log.md` (finish-script entry), `docs/agent-memory/meeting-notes/2026-07-03-supervisor-meeting.md` (superseded-by annotation and date correction), `docs/operations/alignment-control.md` (redirect pointer), `docs/PROGRESS_TRACKER.md` (redirect banner), `docs/dashboards/progress-dashboard.md` (redirect status row)
-- Rollback note: delete the seven added files and revert the listed updated docs to their pre-2026-07-04 versions. No file under `VEGO-AI/` was touched; `git status` confirms docs-only changes for this work.
-- Commands run: mermaid-cli render checks (both diagrams PASS); `python scripts/check_evidence_consistency.py` (18/18 PASS); `scripts/refresh-tracking.ps1 -Viz`; `scripts/build-confluence-wiki.ps1`; `scripts/dashboard-health.ps1 -RequireOutbox` - results recorded in the 2026-07-04 session-log entry written by `agent-memory-finish.ps1`.
-
-## 2026-07-04 - Fable (Claude) - MediVARIA Study Plan Integration
-
-- Files added:
-  - `docs/research/medivaria/medivaria-study-plan.md`
-  - ignored: `artifacts/medivaria/MediVARIA_OnePage_v1.docx` (archived source proposal)
-- Files updated:
-  - `docs/research/phd-extension-ideas.md` (idea 1 -> ACTIVE AS MediVARIA)
-  - `docs/research/extension-plan-2026-07-supervisor-redirect.md` (P6 row)
-  - `docs/research/literature-review-taxonomy.md` (MediVARIA branches subsection)
-  - `docs/research/h-layer/skills-map.md` (open question 8)
-  - `docs/research/thesis-structure-map.md` (Future PhD Extension section)
-  - `docs/research/phd-thesis-optimization-plan.md` (domain-transfer note after roadmap)
-  - `docs/research/README.md` (index row)
-  - `docs/agent-memory/current-state.md`, `progress.md` (milestone + TASK-043), `decisions.md`, `session-log.md` (finish-script entry)
-  - `docs/dashboards/progress-dashboard.md` (MediVARIA row)
-- Rollback note: delete `docs/research/medivaria/` and the ignored archive, and revert the listed updated docs to their pre-MediVARIA 2026-07-04 versions. No file under `VEGO-AI/` was touched.
-- Commands run: docx text extraction (python-docx, scratchpad); `python scripts/check_evidence_consistency.py`; `scripts/refresh-tracking.ps1 -Viz`; `scripts/build-confluence-wiki.ps1`; `scripts/dashboard-health.ps1 -RequireOutbox` - results in the 2026-07-04 MediVARIA session-log entry.
+  - `docs/research/supervisor-label-approval-pack.md` (appended sign-off checklist reference section 8)
+- Git branch: `feature/evaluation-phase` created and active.
+- Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
 
 ## 2026-07-05 - Fable (Claude) - H-Layer Mechanism Experiment Suite (EXP-006..008)
 
@@ -632,3 +444,90 @@ Record file changes and rollback notes here.
   - docs/research/iris-july1-implementation-matrix.md
 - Rollback note: Revert commits d86b8d4 (review fixes) and merge commit 796acfc; earlier evaluation-phase commits listed in the previous entry.
 - Git commit: none recorded by script.
+
+## 2026-07-28 19:14 +03:00 - Claude - Enhanced supervisor deck for 29 July, with a fact-check that corrected two published figures
+
+- Files changed:
+  - docs/agent-memory/issues.md
+- Rollback note: The deck is an external deliverable in Downloads; only docs/agent-memory/issues.md changed in the repo (revert that single file to undo).
+- Git commit: none recorded by script.
+
+## 2026-07-30 15:10 +03:00 - Codex - Implement July 29 doctoral requirements-closure program
+
+- Files changed:
+  - docs/research/
+  - docs/templates/weekly-supervisor-pre-read.md
+  - docs/templates/supervisor-decision-change-log.md
+  - docs/agent-memory/
+  - docs/dashboards/
+  - docs/PROGRESS_TRACKER.md
+- Rollback note: Revert the implementation commit that follows this entry to remove the July 29 doctoral-control tranche; keep evidence commit 3d0beca if the machine-derived source package must remain preserved. External Drive and Sheet changes require separate owner-controlled archival or deletion and are not reverted by Git.
+- Git commit: none recorded by script.
+
+## 2026-07-30 16:21 +03:00 - Codex - Iris requirements assurance and presentation controls
+
+- Files changed:
+  - docs/research and docs/templates supervisor-control artifacts
+  - experiments/IRIS-EXP-01 through IRIS-EXP-04
+  - scripts/validate_iris_requirements_closure.py and focused tests
+  - docs/agent-memory and docs/PROGRESS_TRACKER.md
+- Rollback note: Revert commit 28ece6e to remove the Iris assurance tranche. Ignored generated diagnostics can be deleted separately; no external sharing or source-data mutation occurred.
+- Git commit: none recorded by script.
+
+## 2026-08-01 13:27 +03:00 - Codex - Enhanced Iris Zoom-to-submission closure tranche
+
+- Files changed:
+  - docs/research/meetings and docs/research/phd-proposal Iris closure artifacts
+  - experiments/IRIS-EXP-05 through IRIS-EXP-10
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx and local ignored PDF/workbook/backup
+  - scripts/build_iris_zoom_disposition_ledger.py and scripts/validate_iris_requirements_closure.py with focused tests
+  - docs/agent-memory, docs/dashboards, and docs/PROGRESS_TRACKER.md
+- Rollback note: Revert the focused implementation commit to remove tracked closure docs, protocols, validator changes, and PPTX. Delete only the dated ignored local PDF, workbook, backup, and generated QA outputs if those local derivatives must also be withdrawn. Do not alter raw Zoom media, ASR, source Drive, production VEGO-AI behavior, EXP-005 labels, or patient data.
+- Git commit: `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`.
+
+## 2026-08-01 13:47 +03:00 - Codex - Iris closure reachability and receipt hardening
+
+- Files changed:
+  - scripts/build_iris_zoom_adjudicated_ledger.py and focused tests
+  - docs/research/meetings July 29 human-review workflow and header-only return templates
+  - schemas/iris-authorized-submission-receipt-v1.schema.json and pending receipt template
+  - IRIS validator, EXP-10 protocol, certificate, governance, provenance, and shared tracking
+- Rollback note: Revert the final closure-interface commit to remove the human-review merger, header-only returns, receipt schema/template, and associated validator controls. Do not delete raw media, preliminary ledgers, local presentation artifacts, or any future real human/receipt evidence without separate owner approval.
+- Git commit: `18c0f2b1cf2170dec6ba7b6a4edfcd2869394051`.
+
+## 2026-08-01 18:13 +03:00 - Codex - Implement Iris next-step execution controls
+
+- Files changed:
+  - docs/research/phd-proposal and docs/research/meetings execution artifacts
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx
+  - scripts/validate_aug1_oct7_execution_program.py and tests
+  - scripts/validate_iris_zoom_review_batches.py and tests
+  - scripts/validate_iris_requirements_closure.py and tests
+  - docs/agent-memory and dashboard status files
+- Rollback note: Revert the two final documentation commits; ignored workbook/PDF/previews can be removed locally if no longer required.
+- Git commit: none recorded by script.
+
+## 2026-08-03 22:27 +03:00 - Claude - Independent audit + fix pass on the Iris Zoom-closure supervisor package
+
+- Files changed:
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf
+  - outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/*.PNG
+  - docs/research/meetings/2026-08-05-supervisor-render-manifest.json
+  - docs/research/meetings/2026-08-05-supervisor-source-manifest.json
+  - docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md
+  - docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md
+  - docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md
+  - docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md
+  - docs/research/phd-proposal/aug1-oct7-execution-control-board.json
+  - docs/research/thesis-evidence/THESIS_ACCURACY_EVIDENCE_ADVANCEMENT_PLAN.md
+  - docs/agent-memory/current-state.md
+- Rollback note: All changes are in the uncommitted working tree of branch docs/iris-july29-phd-execution; git diff/git status shows every touched path; nothing has been committed or pushed.
+- Git commit: none recorded by script.
+
+## 2026-08-03 22:XX +03:00 - Claude - Merge Iris closure workstream into main, resolving shared-memory-file conflicts
+
+- Files changed:
+  - docs/PROGRESS_TRACKER.md, docs/agent-memory/current-state.md, docs/agent-memory/decisions.md, docs/agent-memory/issues.md, docs/agent-memory/revert-log.md, docs/agent-memory/session-log.md, docs/agent-memory/session-log-archive.md (all conflict-resolved by combining both sides' content, not overwriting either)
+- Rollback note: This is a merge commit combining `docs/iris-july29-phd-execution` (209+ commits) into `main` alongside the already-merged evaluation-phase work (PR #15). Revert the merge commit to undo; the source branch remains available at `origin/docs/iris-july29-phd-execution` for cherry-picking if a partial revert is ever needed.
+- Git commit: recorded as the merge commit for PR #16.
