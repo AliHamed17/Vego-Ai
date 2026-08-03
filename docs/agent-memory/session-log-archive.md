@@ -4135,4 +4135,3 @@ Historical entries.
   - PPTX template fidelity PASS; all 23 deck PDF pages and both pre-read pages visually inspected
 - Status: completed
 - Next steps: Create explicit commits, publish the dated share folder and SHA-256 manifest, push the feature branch, update draft PR #8, and wait for review; do not merge or cross the EXP-005/M-05 gates.
-

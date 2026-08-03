@@ -506,4 +506,3 @@ Record file changes and rollback notes here.
   - scripts/verify-source.ps1 (renormalized only)
 - Rollback note: Merge commit a78c1bf on main; feature branch docs/iris-july29-phd-execution retained (not deleted) at commit 20b04fc for reference.
 - Git commit: none recorded by script.
-

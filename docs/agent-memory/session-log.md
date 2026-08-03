@@ -777,4 +777,3 @@ Chronological prompt history for Codex and Claude.
   - gh run view <id> --json conclusion -> success (both the feature branch's final push and main's resulting merge commit)
 - Status: completed
 - Next steps: Deliver the 14-file supervisor package list to the user (already gathered with current hashes/sizes). Remaining pending items are unchanged: human rehearsal, EXP-005 real labels, supervisor RQ decisions, delivery/access tests -- none of these are blocked by anything fixed in this session.
-

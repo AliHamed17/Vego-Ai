@@ -1646,4 +1646,3 @@ Historical entries.
   - `docs/agent-memory/progress.md` (inserted milestone row)
 - Rollback note: delete the seven added files and the generated prototype run JSON; revert `docs/research/README.md` and `docs/agent-memory/progress.md`. Baseline code under `VEGO-AI/` remains completely clean; no baseline behavior changes.
 - Commands run: `python -m compileall -q scripts/hlayer_prototype/` (PASS); `python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --dry-run` (PASS); `python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --test-conflict` (PASS).
-
