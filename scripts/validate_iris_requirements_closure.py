@@ -1957,12 +1957,6 @@ def exp08() -> Result:
             "Drive visibility or metadata is still conflated with ACL/authorization",
         ),
         check(
-            "detached presentation source manifest is current and hash-bound",
-            source_manifest_current,
-            source_manifest_detail,
-            source_manifest_detail or "source manifest is missing or stale",
-        ),
-        check(
             "render-manifest schema and pending template preserve the final-render gate",
             render_interface_ready,
             "schema exists and the template remains PENDING_FINAL_RENDER",
@@ -1979,6 +1973,12 @@ def exp08() -> Result:
         ),
         checks=checks,
         readiness_checks=(
+            check(
+                "detached presentation source manifest is current and hash-bound",
+                source_manifest_current,
+                source_manifest_detail,
+                source_manifest_detail or "source manifest is missing or stale",
+            ),
             check(
                 "controlled PPTX, PDF, review workbook, and backup exist",
                 package_artifacts_exist,
