@@ -665,6 +665,9 @@ def render_manifest_structure_errors(
             continue
         if artifact.get("path") != expected.relative_to(ROOT).as_posix():
             errors.append(f"package.{label}.path")
+        if not expected.is_file():
+            errors.append(f"package.{label}.not_present_in_checkout")
+            continue
         if artifact.get("bytes") != expected.stat().st_size:
             errors.append(f"package.{label}.bytes")
         if artifact.get("sha256") != sha256(expected):

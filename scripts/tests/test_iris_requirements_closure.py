@@ -6,6 +6,8 @@ import sys
 import zipfile
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "scripts/validate_iris_requirements_closure.py"
 SPEC = importlib.util.spec_from_file_location(
@@ -145,6 +147,11 @@ def test_presentation_readiness_requires_artifacts_hashes_qa_and_human_gates() -
 
 
 def test_render_manifest_template_is_pending_and_verified_record_is_hash_bound() -> None:
+    if not MODULE.PRESENTATION_PDF.is_file():
+        pytest.skip(
+            "PDF is gitignored and only present on the machine that rendered it; "
+            "this hash-binding check needs the real local artifact."
+        )
     template = MODULE.read_json(MODULE.PRESENTATION_RENDER_TEMPLATE)
     record = MODULE.read_json(MODULE.PRESENTATION_RENDER_RECORD)
 
