@@ -2,9 +2,9 @@
 
 > **Status:** Complete local machine-transcription package; human bilingual review and full diarization pending.
 
-- Integrity refresh: `2026-08-04T00:12:51.095306+03:00`
-- Repository base revision at refresh: `a55aee8b3a49909763ad06a1599dc2f67b53808f` (the independent-audit fix-pass commit; all frozen package paths below are byte-identical to this commit)
-- Working-tree note: the working tree carries further uncommitted documentation/deck fixes on top of this revision (the 2026-08-03 independent-audit fix pass); it is not the human RG-04 release freeze. The local PDF and workbooks remain intentionally ignored and are bound below by exact hashes; the older backup ZIP is explicitly stale. Any post-rehearsal package correction requires a new artifact hash and base revision. A provenance-only descendant may record this binding without changing the controlled package paths.
+- Integrity refresh: `2026-08-04T00:16:02.781123+03:00`
+- Repository base revision at refresh: `bf45c98955308ffbec96e92fce061a29956ecf96` (the independent-audit fix-pass commit; all frozen package paths below are byte-identical to this commit)
+- Working-tree note: the working tree matches this revision for every frozen package path; it is not the human RG-04 release freeze. The local PDF and workbooks remain intentionally ignored and are bound below by exact hashes; the older backup ZIP is explicitly stale. Any post-rehearsal package correction requires a new artifact hash and base revision. A provenance-only descendant may record this binding without changing the controlled package paths.
 
 The integrity refresh revalidated the immutable raw media, ASR, and machine-translation hashes without changing those files. Derived call and governance artifacts received new hashes after their controlled documentation updates.
 
