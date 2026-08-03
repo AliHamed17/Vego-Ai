@@ -1593,3 +1593,57 @@ Historical entries.
   - `docs/dashboards/progress-dashboard.md` (MediVARIA row)
 - Rollback note: delete `docs/research/medivaria/` and the ignored archive, and revert the listed updated docs to their pre-MediVARIA 2026-07-04 versions. No file under `VEGO-AI/` was touched.
 - Commands run: docx text extraction (python-docx, scratchpad); `python scripts/check_evidence_consistency.py`; `scripts/refresh-tracking.ps1 -Viz`; `scripts/build-confluence-wiki.ps1`; `scripts/dashboard-health.ps1 -RequireOutbox` - results in the 2026-07-04 MediVARIA session-log entry.
+
+## 2026-07-05 - Fable (Claude) - H-Layer Mechanism Experiment Suite (EXP-006..008)
+
+- Files added:
+  - `docs/research/h-layer/experiment-expansion-plan.md`
+  - `scripts/exp006_event_replay.py`, `scripts/exp007_dosage_replay.py`, `scripts/exp008_trigger_mining.py`, `scripts/build-hlayer-experiments.ps1`
+  - `experiments/EXP-006-hlayer-event-replay/README.md`, `experiments/EXP-007-dosage-mode-replay/README.md`, `experiments/EXP-008-early-trigger-mining/README.md`
+  - ignored: `reports/generated/exp006/`, `exp007/`, `exp008/`, `reports/generated/hlayer_experiments_summary.md`
+- Files updated:
+  - `experiments/registry.md` (EXP-006..011 rows), `docs/dashboards/results-dashboard.md` (three result rows + header), `docs/research/README.md` (plan row), `docs/research/meetings/2026-07-15-meeting-package.md` (results headlines section), `docs/agent-memory/progress.md` (milestone + TASK-044), `docs/agent-memory/session-log.md` (finish-script entry)
+- Rollback note: delete the added scripts/READMEs/plan and generated reports; revert the five updated tracked docs. Scripts are strictly read-only over `VEGO-AI/eval_output` and `VEGO-AI/runs`; `git status -- VEGO-AI` confirms no VEGO-AI change.
+- Commands run: `.\scripts\build-hlayer-experiments.ps1` (EXP-006: 481 events; EXP-007: 289/235/91/0; EXP-008: 167 unstable / 160 never reviewed); evidence guard and health checks in the session-log entry.
+
+## 2026-07-05 - Fable (Claude) - H-Layer Improvement Loop + Iteration 2
+
+- Files added:
+  - `docs/research/h-layer/experiment-iteration-loop.md`, `docs/research/h-layer/experiment-iteration-ledger.md`
+  - `scripts/hlayer_iteration_compare.py`, `scripts/run-hlayer-iteration.ps1`
+  - ignored: `reports/generated/hlayer_iterations/iter_001/` (snapshot), `iter_002/` (v2 results + iteration_report.md)
+- Files updated:
+  - `scripts/exp006_event_replay.py` (severity model 0-3, severity_mass/sev2plus metrics), `scripts/exp007_dosage_replay.py` (v2 severity-cutoff modes + weighted/high-sev coverage + efficiency), `scripts/exp008_trigger_mining.py` (churn-trigger sweep t=1..3)
+  - `docs/research/h-layer/experiment-expansion-plan.md` companion linkage via loop doc; `docs/research/README.md` (two index rows); `experiments/registry.md` (EXP-007 v2 row); `experiments/EXP-007-dosage-mode-replay/README.md` (iteration results); `docs/research/meetings/2026-07-15-meeting-package.md` (v2 headline); `docs/agent-memory/progress.md` (TASK-045); `docs/agent-memory/session-log.md` (finish entry)
+- Rollback note: delete the four added files and iteration snapshots; revert the three experiment scripts to their v1 versions (iteration 001 snapshot preserves v1 outputs) and the listed docs. `git status -- VEGO-AI` clean; evidence guard PASS.
+- Commands run: `.\scripts\run-hlayer-iteration.ps1` (iteration 2: suite PASS, compare PASS, guardrails PASS).
+
+## 2026-07-05 - Fable (Claude) - Iteration 3 (H4 Rank-And-Cap) + EXP-012 Accuracy-Baseline Scaffold
+
+- Files added:
+  - `scripts/exp012_accuracy_baseline.py`
+  - `experiments/EXP-012-accuracy-baseline-scaffold/README.md`
+  - ignored: `reports/generated/exp012/`, `reports/generated/hlayer_iterations/iter_003/`
+- Files updated:
+  - `scripts/exp008_trigger_mining.py` (H4 rank-and-cap sweep K=10/20/30), `scripts/hlayer_iteration_compare.py` (M-D delta rows + rank-and-cap rows), `scripts/build-hlayer-experiments.ps1` and `scripts/run-hlayer-iteration.ps1` (wired EXP-012 into the suite)
+  - `docs/research/h-layer/experiment-iteration-ledger.md` (iteration 3 row), `docs/research/h-layer/experiment-iteration-loop.md` (M-D activation section), `experiments/registry.md` (EXP-012 row), `docs/dashboards/results-dashboard.md`, `docs/research/meetings/2026-07-15-meeting-package.md`, `docs/agent-memory/progress.md` (TASK-046), `docs/agent-memory/session-log.md` (finish entry)
+- Rollback note: delete the two added files and iteration/exp012 generated reports; revert the six updated tracked docs and three updated scripts (iter_002 snapshot preserves pre-H4/EXP-012 outputs). `git status -- VEGO-AI` clean; EXP-012 reimplements EXP-003 logic read-only, never imports/executes `VEGO-AI/analysis/`.
+- Commands run: `.\scripts\run-hlayer-iteration.ps1` (iteration 3: suite PASS incl. EXP-012, compare PASS, VEGO-AI-clean guardrail, evidence guard exit 0). Key result: pilot accuracy baseline 0.6667 (N=3, same-pattern, NOT evidence); generalization-safe baseline 0 rows, "NOT YET COMPUTABLE".
+
+### 2026-07-10 - Codex - H-Layer Phase P2 Detailed Specifications and Prototype Scaffold
+
+- Files added:
+  - `docs/research/h-layer/listener-hook-catalog.md`
+  - `docs/research/h-layer/dosage-and-triage-spec.md`
+  - `docs/research/h-layer/elicitation-interface-spec.md`
+  - `docs/research/h-layer/hverify-anti-sycophancy-spec.md`
+  - `docs/research/h-layer/integration-and-feedback-spec.md`
+  - `docs/research/h-layer/percolation-and-generalization-spec.md`
+  - `scripts/hlayer_prototype/hlayer-prototype-scaffold.py`
+  - ignored: `reports/generated/hlayer_prototype_run.json`
+- Files updated:
+  - `docs/research/README.md` (index updated to reference specifications)
+  - `docs/agent-memory/progress.md` (inserted milestone row)
+- Rollback note: delete the seven added files and the generated prototype run JSON; revert `docs/research/README.md` and `docs/agent-memory/progress.md`. Baseline code under `VEGO-AI/` remains completely clean; no baseline behavior changes.
+- Commands run: `python -m compileall -q scripts/hlayer_prototype/` (PASS); `python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --dry-run` (PASS); `python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --test-conflict` (PASS).
+

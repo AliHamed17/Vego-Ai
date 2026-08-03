@@ -2,57 +2,6 @@
 
 Chronological prompt history for Codex and Claude.
 
-## 2026-07-20 20:40 +03:00 - Fable (Claude) - Enhancement plan 2026-07-12 Phase 1: program overview, verify-all gate, coherence repair
-
-- Request: Extensive plan to extend/enhance everything - more features, fix breaks, more efficiency - then implement it E2E. (Credential/security-bypass request declined; all governance gates kept.)
-- Actions taken:
-  - Declined the bypass-security/credentials instruction and stated why (protects accounts and thesis defensibility); all work stayed inside the governance gates
-  - Ran a full verification sweep of the matured stack (94+49 tests, conformance, validators, evidence guard, health checks) and produced a verified findings list F1-F8 (subagent workflow hit session limits, analysis done inline)
-  - Wrote the comprehensive enhancement plan (docs/research/h-layer/enhancement-plan-2026-07-12.md): backlog E1-E11 across fixes/features/efficiency with phases and effort
-  - Implemented Phase 1: unified program overview builder joining replay suite + conformance + program validation + gate + decisions + 14 iterations + metric trajectories (JSON/MD/CSV, read-only, drift-tolerant) with 4 new pytest cases; one-command verification gate verify-hlayer-all.ps1; ledger/loop-doc consistency fixes; stray .pyc cleanup
-  - The new gate immediately caught real drift (F8): my earlier out-of-band suite recon run desynced iter_013 from the promoted suite; repaired per protocol with accepted iteration 014 (reliability_only coherence snapshot) and recorded the coherence rule in the loop doc
-  - Final E2E proof: verify-hlayer-all -WithOverview = 9/9 PASS
-- Files changed:
-  - docs/research/h-layer/enhancement-plan-2026-07-12.md
-  - scripts/build_hlayer_program_overview.py
-  - scripts/tests/test_build_hlayer_program_overview.py
-  - scripts/verify-hlayer-all.ps1
-  - docs/research/h-layer/experiment-iteration-ledger.md
-  - docs/research/h-layer/experiment-iteration-loop.md
-  - docs/dashboards/results-dashboard.md
-  - docs/research/README.md
-  - docs/agent-memory/progress.md (TASK-049)
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - verify-hlayer-all.ps1 first run: FAIL on program validator (found F8)
-  - run-hlayer-iteration.ps1 -> iteration 014 promoted (suite hlayer-20260720T173308Z-d79047f5e2)
-  - verify-hlayer-all.ps1 -WithOverview rerun: 9/9 PASS (protected paths, VEGO-AI clean, evidence 18/18, offline+program validators, conformance EXP-013..018, pytest 94 + 53, overview)
-  - python -m pytest scripts/tests/test_build_hlayer_program_overview.py: 4 passed
-- Status: completed
-- Next steps: Phase 2 (E6 perf lane, E7 wiki wiring of the overview, E8 overview HTML) after the 2026-07-15 meeting; Phase 3 EXP-019/020 need registered protocols first; standing rule: verify-hlayer-all.ps1 before every finish, suite reruns only through run-hlayer-iteration.ps1.
-
-## 2026-07-20 22:22 +03:00 - Codex - July 21 Supervisor Package And Repository Hardening
-
-- Request: Implement the complete July 21 Iris and Arnon supervisor package, reconcile Iteration 14 truth, harden visualization and verification entry points, and publish the reviewed branch without merging.
-- Actions taken:
-  - Reconciled all active research/status surfaces to accepted Iteration 14 and preserved M-01 through M-06 as deferred/unconfirmed.
-  - Built the self-contained EN/HE guided puzzle HTML, 23-slide supervisor deck, deck PDF, and two-page decision worksheet from canonical data.
-  - Rebuilt the offline visualization gallery and research hub, added package/privacy/browser validators, and hardened the one-command verification gate with saved diagnostics.
-  - Ran the final unsuppressed gate: protected paths, evidence consistency, offline/program validators, EXP-013 through EXP-018, 94 VEGO-AI tests, 53 script tests, package/browser/gallery/privacy/health/Git checks all passed.
-- Files changed:
-  - ProgramStatusSnapshot v1, Iteration 14 ledger/registry/tracker/dashboard/handoff surfaces, and safe future-proposal rewrites.
-  - VEGO-AI-July1-PointByPoint-EN-HE.html plus July 21 canonical package data, Markdown records, deck source/output, and PDF builders.
-  - Visualization gallery/research hub, CI workflow, privacy check, browser smoke test, package validator, and verify-hlayer-all.ps1.
-  - Agent memory session/revert logs and archives; archive conservation was verified with zero missing or changed historical entries.
-- Commands/checks:
-  - python -m pytest VEGO-AI\tests -q -> 94 passed
-  - python -m pytest scripts\tests -q -> 53 passed
-  - .\scripts\verify-hlayer-all.ps1 -WithOverview -> all 16 checks passed
-  - browser smoke across 320/390/768/1024/1440, EN/HE, Guided/Explore, direct hashes, gallery/hub -> PASS
-  - PPTX template fidelity PASS; all 23 deck PDF pages and both pre-read pages visually inspected
-- Status: completed
-- Next steps: Create explicit commits, publish the dated share folder and SHA-256 manifest, push the feature branch, update draft PR #8, and wait for review; do not merge or cross the EXP-005/M-05 gates.
-
 ## 2026-07-24 20:24 +03:00 - Codex - Thesis accuracy-evidence advancement package
 
 - Request: Enhance the thesis and establish an evidence-gated path toward independently validated accuracy improvement without fabricating results.
@@ -789,3 +738,43 @@ Chronological prompt history for Codex and Claude.
   - Resolved every conflict by combining both sides' content rather than picking one, since both workstreams' information is real and current
 - Status: completed
 - Next steps: Confirm PR #16 CI passes, then merge; report the delivery-file list to the user.
+
+## 2026-08-04 00:47 +03:00 - Claude - Push Iris workstream to main: merge-conflict resolution and CI hardening
+
+- Request: User authorized 'push all to main' after the independent-audit fix pass, and asked for the list of files needed to deliver.
+- Actions taken:
+  - Resolved 7 real merge conflicts between docs/iris-july29-phd-execution and origin/main (PR #15 evaluation-phase work already merged) by combining both sides content in current-state.md, issues.md, decisions.md, revert-log.md, session-log.md, session-log-archive.md, PROGRESS_TRACKER.md
+  - Completed the merge commit, then found and fixed a regression I had introduced in the earlier fix-all pass: a stale test fixture in test_iris_zoom_adjudicated_ledger.py that never included the new MEDIA-TIMELINE evidence markers
+  - Pushed the branch and opened real CI on it for the first time ever (it had never run before); found and fixed 6 distinct CI-blocking defects: (1) render_manifest_structure_errors crashed with FileNotFoundError on the gitignored PDF instead of failing closed, (2) build_supervisor_source_manifest.py crashed on gitignored outputs/ workbooks with no test-level guard, (3) missing .gitattributes eol=lf rule for .jsonl caused Windows core.autocrlf to corrupt the raw ASR machine.jsonl transcript on any fresh checkout, breaking IRIS-EXP-05/07 hash checks, (4) IRIS-EXP-08's structure-mode checks tuple wrongly included a check that requires gitignored local evidence (moved it to readiness_checks), (5) the evaluation-phase hardening manifest (release-manifest-v3.json) was stale after merging in new Iris schemas/tests, and needed rebuilding via the locked uv environment (raw system python gave wrong dependency versions), (6) git diff --check hygiene failures from pre-existing trailing blank lines in 3 files and an intentional Markdown hard-break convention in the bilingual transcript that needed a gitattributes whitespace override, plus a stale hash-bound provenance-manifest base-revision citation
+  - Verified every fix by creating fresh git worktrees (git worktree add --detach HEAD) that exactly simulate a bare CI checkout with no gitignored artifacts, rather than trusting my long-lived local checkout which had its own line-ending drift from the declared .gitattributes policy
+  - Pushed 6 additional fix commits; CI went green (all 4 Python-version jobs + source-security-and-documents job); merged PR #16 into main via a regular merge commit; verified CI green on main's resulting commit a78c1bf
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/session-log-archive.md
+  - docs/PROGRESS_TRACKER.md
+  - scripts/tests/test_iris_zoom_adjudicated_ledger.py
+  - scripts/validate_iris_requirements_closure.py
+  - scripts/tests/test_iris_requirements_closure.py
+  - scripts/tests/test_supervisor_source_manifest.py
+  - .gitattributes
+  - docs/research/hardening/release-manifest-v3.json
+  - docs/agent-memory/revert-log-archive.md
+  - docs/research/governance/drive-boundary-verification-2026-08-03.md
+  - docs/research/meetings/2026-07-29-iris-supervisor-asr.he.srt
+  - docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md
+  - pyproject.toml (renormalized only)
+  - scripts/tests/bigui_browser_smoke.mjs (renormalized only)
+  - scripts/verify-controlled.ps1 (renormalized only)
+  - scripts/verify-source.ps1 (renormalized only)
+- Commands/checks:
+  - python -m pytest VEGO-AI/tests scripts/tests tests/hlayer_offline -q  (via uv run, in a fresh worktree matching CI) -> 343 passed, 3 skipped
+  - python scripts/validate_iris_requirements_closure.py --all --mode structure -> all 10 IRIS-EXP PASS in fresh worktree
+  - gh pr merge 16 --merge
+  - gh run view <id> --json conclusion -> success (both the feature branch's final push and main's resulting merge commit)
+- Status: completed
+- Next steps: Deliver the 14-file supervisor package list to the user (already gathered with current hashes/sizes). Remaining pending items are unchanged: human rehearsal, EXP-005 real labels, supervisor RQ decisions, delivery/access tests -- none of these are blocked by anything fixed in this session.
+

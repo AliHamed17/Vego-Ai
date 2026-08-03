@@ -1,15 +1,6 @@
 # Revert Log
 
 Record file changes and rollback notes here.
-## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
-
-- Files added:
-  - `docs/research/evaluation-run-guide.md`
-  - `docs/research/supervisor-label-approval-checklist.md`
-- Files updated:
-  - `docs/research/supervisor-label-approval-pack.md` (appended sign-off checklist reference section 8)
-- Git branch: `feature/evaluation-phase` created and active.
-- Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
 
 ## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
 
@@ -21,58 +12,15 @@ Record file changes and rollback notes here.
 - Git branch: `feature/evaluation-phase` created and active.
 - Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
 
-## 2026-07-05 - Fable (Claude) - H-Layer Mechanism Experiment Suite (EXP-006..008)
+## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
 
 - Files added:
-  - `docs/research/h-layer/experiment-expansion-plan.md`
-  - `scripts/exp006_event_replay.py`, `scripts/exp007_dosage_replay.py`, `scripts/exp008_trigger_mining.py`, `scripts/build-hlayer-experiments.ps1`
-  - `experiments/EXP-006-hlayer-event-replay/README.md`, `experiments/EXP-007-dosage-mode-replay/README.md`, `experiments/EXP-008-early-trigger-mining/README.md`
-  - ignored: `reports/generated/exp006/`, `exp007/`, `exp008/`, `reports/generated/hlayer_experiments_summary.md`
+  - `docs/research/evaluation-run-guide.md`
+  - `docs/research/supervisor-label-approval-checklist.md`
 - Files updated:
-  - `experiments/registry.md` (EXP-006..011 rows), `docs/dashboards/results-dashboard.md` (three result rows + header), `docs/research/README.md` (plan row), `docs/research/meetings/2026-07-15-meeting-package.md` (results headlines section), `docs/agent-memory/progress.md` (milestone + TASK-044), `docs/agent-memory/session-log.md` (finish-script entry)
-- Rollback note: delete the added scripts/READMEs/plan and generated reports; revert the five updated tracked docs. Scripts are strictly read-only over `VEGO-AI/eval_output` and `VEGO-AI/runs`; `git status -- VEGO-AI` confirms no VEGO-AI change.
-- Commands run: `.\scripts\build-hlayer-experiments.ps1` (EXP-006: 481 events; EXP-007: 289/235/91/0; EXP-008: 167 unstable / 160 never reviewed); evidence guard and health checks in the session-log entry.
-
-## 2026-07-05 - Fable (Claude) - H-Layer Improvement Loop + Iteration 2
-
-- Files added:
-  - `docs/research/h-layer/experiment-iteration-loop.md`, `docs/research/h-layer/experiment-iteration-ledger.md`
-  - `scripts/hlayer_iteration_compare.py`, `scripts/run-hlayer-iteration.ps1`
-  - ignored: `reports/generated/hlayer_iterations/iter_001/` (snapshot), `iter_002/` (v2 results + iteration_report.md)
-- Files updated:
-  - `scripts/exp006_event_replay.py` (severity model 0-3, severity_mass/sev2plus metrics), `scripts/exp007_dosage_replay.py` (v2 severity-cutoff modes + weighted/high-sev coverage + efficiency), `scripts/exp008_trigger_mining.py` (churn-trigger sweep t=1..3)
-  - `docs/research/h-layer/experiment-expansion-plan.md` companion linkage via loop doc; `docs/research/README.md` (two index rows); `experiments/registry.md` (EXP-007 v2 row); `experiments/EXP-007-dosage-mode-replay/README.md` (iteration results); `docs/research/meetings/2026-07-15-meeting-package.md` (v2 headline); `docs/agent-memory/progress.md` (TASK-045); `docs/agent-memory/session-log.md` (finish entry)
-- Rollback note: delete the four added files and iteration snapshots; revert the three experiment scripts to their v1 versions (iteration 001 snapshot preserves v1 outputs) and the listed docs. `git status -- VEGO-AI` clean; evidence guard PASS.
-- Commands run: `.\scripts\run-hlayer-iteration.ps1` (iteration 2: suite PASS, compare PASS, guardrails PASS).
-
-## 2026-07-05 - Fable (Claude) - Iteration 3 (H4 Rank-And-Cap) + EXP-012 Accuracy-Baseline Scaffold
-
-- Files added:
-  - `scripts/exp012_accuracy_baseline.py`
-  - `experiments/EXP-012-accuracy-baseline-scaffold/README.md`
-  - ignored: `reports/generated/exp012/`, `reports/generated/hlayer_iterations/iter_003/`
-- Files updated:
-  - `scripts/exp008_trigger_mining.py` (H4 rank-and-cap sweep K=10/20/30), `scripts/hlayer_iteration_compare.py` (M-D delta rows + rank-and-cap rows), `scripts/build-hlayer-experiments.ps1` and `scripts/run-hlayer-iteration.ps1` (wired EXP-012 into the suite)
-  - `docs/research/h-layer/experiment-iteration-ledger.md` (iteration 3 row), `docs/research/h-layer/experiment-iteration-loop.md` (M-D activation section), `experiments/registry.md` (EXP-012 row), `docs/dashboards/results-dashboard.md`, `docs/research/meetings/2026-07-15-meeting-package.md`, `docs/agent-memory/progress.md` (TASK-046), `docs/agent-memory/session-log.md` (finish entry)
-- Rollback note: delete the two added files and iteration/exp012 generated reports; revert the six updated tracked docs and three updated scripts (iter_002 snapshot preserves pre-H4/EXP-012 outputs). `git status -- VEGO-AI` clean; EXP-012 reimplements EXP-003 logic read-only, never imports/executes `VEGO-AI/analysis/`.
-- Commands run: `.\scripts\run-hlayer-iteration.ps1` (iteration 3: suite PASS incl. EXP-012, compare PASS, VEGO-AI-clean guardrail, evidence guard exit 0). Key result: pilot accuracy baseline 0.6667 (N=3, same-pattern, NOT evidence); generalization-safe baseline 0 rows, "NOT YET COMPUTABLE".
-
-### 2026-07-10 - Codex - H-Layer Phase P2 Detailed Specifications and Prototype Scaffold
-
-- Files added:
-  - `docs/research/h-layer/listener-hook-catalog.md`
-  - `docs/research/h-layer/dosage-and-triage-spec.md`
-  - `docs/research/h-layer/elicitation-interface-spec.md`
-  - `docs/research/h-layer/hverify-anti-sycophancy-spec.md`
-  - `docs/research/h-layer/integration-and-feedback-spec.md`
-  - `docs/research/h-layer/percolation-and-generalization-spec.md`
-  - `scripts/hlayer_prototype/hlayer-prototype-scaffold.py`
-  - ignored: `reports/generated/hlayer_prototype_run.json`
-- Files updated:
-  - `docs/research/README.md` (index updated to reference specifications)
-  - `docs/agent-memory/progress.md` (inserted milestone row)
-- Rollback note: delete the seven added files and the generated prototype run JSON; revert `docs/research/README.md` and `docs/agent-memory/progress.md`. Baseline code under `VEGO-AI/` remains completely clean; no baseline behavior changes.
-- Commands run: `python -m compileall -q scripts/hlayer_prototype/` (PASS); `python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --dry-run` (PASS); `python scripts/hlayer_prototype/hlayer-prototype-scaffold.py --test-conflict` (PASS).
+  - `docs/research/supervisor-label-approval-pack.md` (appended sign-off checklist reference section 8)
+- Git branch: `feature/evaluation-phase` created and active.
+- Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
 
 ## 2026-07-10 - Codex - Research Loop Iterations 4, 5, and 6
 
@@ -531,3 +479,31 @@ Record file changes and rollback notes here.
   - docs/PROGRESS_TRACKER.md, docs/agent-memory/current-state.md, docs/agent-memory/decisions.md, docs/agent-memory/issues.md, docs/agent-memory/revert-log.md, docs/agent-memory/session-log.md, docs/agent-memory/session-log-archive.md (all conflict-resolved by combining both sides' content, not overwriting either)
 - Rollback note: This is a merge commit combining `docs/iris-july29-phd-execution` (209+ commits) into `main` alongside the already-merged evaluation-phase work (PR #15). Revert the merge commit to undo; the source branch remains available at `origin/docs/iris-july29-phd-execution` for cherry-picking if a partial revert is ever needed.
 - Git commit: recorded as the merge commit for PR #16.
+
+## 2026-08-04 00:47 +03:00 - Claude - Push Iris workstream to main: merge-conflict resolution and CI hardening
+
+- Files changed:
+  - docs/agent-memory/current-state.md
+  - docs/agent-memory/issues.md
+  - docs/agent-memory/decisions.md
+  - docs/agent-memory/revert-log.md
+  - docs/agent-memory/session-log.md
+  - docs/agent-memory/session-log-archive.md
+  - docs/PROGRESS_TRACKER.md
+  - scripts/tests/test_iris_zoom_adjudicated_ledger.py
+  - scripts/validate_iris_requirements_closure.py
+  - scripts/tests/test_iris_requirements_closure.py
+  - scripts/tests/test_supervisor_source_manifest.py
+  - .gitattributes
+  - docs/research/hardening/release-manifest-v3.json
+  - docs/agent-memory/revert-log-archive.md
+  - docs/research/governance/drive-boundary-verification-2026-08-03.md
+  - docs/research/meetings/2026-07-29-iris-supervisor-asr.he.srt
+  - docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md
+  - pyproject.toml (renormalized only)
+  - scripts/tests/bigui_browser_smoke.mjs (renormalized only)
+  - scripts/verify-controlled.ps1 (renormalized only)
+  - scripts/verify-source.ps1 (renormalized only)
+- Rollback note: Merge commit a78c1bf on main; feature branch docs/iris-july29-phd-execution retained (not deleted) at commit 20b04fc for reference.
+- Git commit: none recorded by script.
+
