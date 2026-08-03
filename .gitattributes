@@ -14,6 +14,7 @@
 *.mmd text eol=lf
 uv.lock text eol=lf
 docs/research/meetings/2026-07-29-iris-zoom-*.csv text eol=lf
+docs/research/meetings/2026-07-29-iris-supervisor-bilingual-transcript.he-en.md whitespace=-trailing-space
 
 *.pdf binary
 *.docx binary

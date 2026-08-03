@@ -2,8 +2,8 @@
 
 > **Status:** Complete local machine-transcription package; human bilingual review and full diarization pending.
 
-- Integrity refresh: `2026-08-03T22:16:52.618368+03:00`
-- Repository base revision at refresh: `bf45c98955308ffbec96e92fce061a29956ecf96` (the independent-audit fix-pass commit; all frozen package paths below are byte-identical to this commit)
+- Integrity refresh: `2026-08-04T00:09:58.407852+03:00`
+- Repository base revision at refresh: `a55aee8b3a49909763ad06a1599dc2f67b53808f` (the independent-audit fix-pass commit; all frozen package paths below are byte-identical to this commit)
 - Working-tree note: the working tree carries further uncommitted documentation/deck fixes on top of this revision (the 2026-08-03 independent-audit fix pass); it is not the human RG-04 release freeze. The local PDF and workbooks remain intentionally ignored and are bound below by exact hashes; the older backup ZIP is explicitly stale. Any post-rehearsal package correction requires a new artifact hash and base revision. A provenance-only descendant may record this binding without changing the controlled package paths.
 
 The integrity refresh revalidated the immutable raw media, ASR, and machine-translation hashes without changing those files. Derived call and governance artifacts received new hashes after their controlled documentation updates.
@@ -16,7 +16,7 @@ The integrity refresh revalidated the immutable raw media, ASR, and machine-tran
 | Primary audio | C:\Users\ahamed\OneDrive - Parallel Wireless\Documents\Zoom\2026-07-29 09.03.44 Iris Reinhartz-Berger's Personal Meeting Room\audio1589041291.m4a | 31536858 | 2026-07-29T09:58:45.438393+03:00 | D4F98015CCBB7BAEBD76B8A7259D3A9FD57C0BAA6579EB538C19EA0FFE6B7D84 | ASR source |
 | Primary video | C:\Users\ahamed\OneDrive - Parallel Wireless\Documents\Zoom\2026-07-29 09.03.44 Iris Reinhartz-Berger's Personal Meeting Room\video1589041291.mp4 | 288382283 | 2026-07-29T09:58:45.395192+03:00 | 11692B3777914CB4BCF8DC0CFAE909878E762149AE3CA2F031A16C4EC6473A77 | Visual participant/speaker review |
 | Hebrew ASR JSONL | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-07-29-iris-supervisor-asr.he.jsonl | 279463 | 2026-07-30T13:46:13.515365+03:00 | 952918CA15A36AC08E481C503D469E01BC00AA1A7554C97EF1D552EA2E2EC29B | Preserved timestamped machine source |
-| Hebrew SRT | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-07-29-iris-supervisor-asr.he.srt | 88204 | 2026-07-30T13:46:13.558362+03:00 | CAF1F6B85D119CA47E11619A2EFBA11D5B4B7C76A208F885BB7C1AEBE304CB9E | Subtitle draft |
+| Hebrew SRT | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-07-29-iris-supervisor-asr.he.srt | 88203 | 2026-08-04T00:08:59.965795+03:00 | B1049B2D02F6EA348FE24E111A1140778C7E53C7D644D722EA35FCB68C545572 | Subtitle draft |
 | Hebrew text | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-07-29-iris-supervisor-asr.he.txt | 82214 | 2026-07-30T13:46:13.562470+03:00 | 40EBD629FB1A851718F3A07C5E145757A9FB51ABC67012DD95519642EF8DE6A1 | Readable ASR draft |
 | ASR metadata | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-07-29-iris-supervisor-asr.he.metadata.json | 530 | 2026-07-30T13:46:13.568505+03:00 | 98EA57E87E6B0F30E521E2027C49E2AC874148705A3987FE86B15FBDD233B6DE | Engine/model settings |
 | Bilingual machine JSONL | C:\Users\ahamed\vego-ai\docs\research\meetings\2026-07-29-iris-supervisor-asr.he-en.machine.jsonl | 355737 | 2026-07-30T13:48:46.832673+03:00 | 9BF59566AF1177CDC633EB58DF7A193EC4E4889A8BBE9ACD8BBBDB661534BA59 | Aligned local English translation |

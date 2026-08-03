@@ -40,4 +40,3 @@ authorized content-hash comparison.
 Folder visibility, download capability, or `current_user_can_share=false` must
 never be used as a substitute for either of the last two gates. Until both are
 verified, medical readiness remains blocked and no row-level work is allowed.
-

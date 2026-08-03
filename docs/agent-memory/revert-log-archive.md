@@ -1593,4 +1593,3 @@ Historical entries.
   - `docs/dashboards/progress-dashboard.md` (MediVARIA row)
 - Rollback note: delete `docs/research/medivaria/` and the ignored archive, and revert the listed updated docs to their pre-MediVARIA 2026-07-04 versions. No file under `VEGO-AI/` was touched.
 - Commands run: docx text extraction (python-docx, scratchpad); `python scripts/check_evidence_consistency.py`; `scripts/refresh-tracking.ps1 -Viz`; `scripts/build-confluence-wiki.ps1`; `scripts/dashboard-health.ps1 -RequireOutbox` - results in the 2026-07-04 MediVARIA session-log entry.
-
