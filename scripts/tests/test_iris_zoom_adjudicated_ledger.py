@@ -23,6 +23,7 @@ VALIDATOR = load("validate_iris_requirements_closure_adjudication", ROOT / "scri
 
 
 def review_rows(reviewer: str, preliminary: list[dict[str, str]]) -> list[dict[str, str]]:
+    gap_sha256, gap_count = MERGE.read_timeline_requirements()
     rows = []
     for source in preliminary:
         rows.append(
@@ -60,7 +61,14 @@ def review_rows(reviewer: str, preliminary: list[dict[str, str]]) -> list[dict[s
                     "",
                     "",
                     "",
-                    "Full 46:26.283 audiovisual timeline reviewed",
+                    (
+                        "Full 46:26.283 audiovisual timeline reviewed. "
+                        "Complete_Start_to_End_Review=Yes "
+                        f"Media_SHA256={MERGE.VIDEO_SHA256} "
+                        f"Gap_Register_SHA256={gap_sha256} "
+                        f"Uncovered_Intervals_Reviewed={gap_count}/{gap_count} "
+                        "Gap_Classifications=Complete"
+                    ),
                 ),
                 strict=True,
             )
