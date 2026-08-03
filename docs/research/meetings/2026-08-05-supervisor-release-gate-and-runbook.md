@@ -198,8 +198,9 @@ deferred decision must have a named owner and written-response deadline.
 
 ## 8. D-RQ outcome capture
 
-Allowed meeting outcomes are `Approve`, `Approve with correction`, `Defer`, or
-`Reject`. A correction must preserve the exact replacement wording. A rejection
+Allowed meeting outcomes are `Confirm`, `Confirm with correction`, `Retire or
+supersede`, or `Defer`. A correction or supersession must preserve the exact
+replacement wording and rationale. A rejection
 must identify the required resolution or superseding decision.
 
 | ID | Decision | Iris outcome/correction | Arnon outcome/correction | Rationale | Owner/deadline | Affected artifacts |

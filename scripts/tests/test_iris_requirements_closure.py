@@ -82,6 +82,49 @@ def test_master_parser_keeps_canonical_rows_before_companion_status_view() -> No
     assert all(len(row) == 11 for row in rows.values())
 
 
+def test_exp05_independently_reconciles_interval_union_and_gap_ledger() -> None:
+    source_rows = MODULE.read_jsonl(MODULE.MACHINE_JSONL)
+    metrics, expected_gaps = MODULE.machine_timeline_accounting(source_rows)
+    result = MODULE.RUNNERS["IRIS-EXP-05"]()
+    structure_checks = {check.name: check for check in result.checks}
+
+    assert metrics["asr_interval_union_seconds"] == MODULE.Decimal("2333.500")
+    assert metrics["uncovered_seconds"] == MODULE.Decimal("452.783")
+    assert metrics["machine_accounted_timeline_seconds"] == MODULE.Decimal(
+        "2786.283"
+    )
+    assert metrics["internal_gap_count"] == 932
+    assert len(expected_gaps) == 934
+    assert structure_checks[
+        "ASR interval union and uncovered intervals account for the complete media duration"
+    ].passed
+    assert structure_checks[
+        "machine uncovered-interval ledger is exact and remains human-pending"
+    ].passed
+    assert not result.passed_for_mode("readiness")
+
+
+def test_decision_vocabulary_maps_supersession_and_rejects_legacy_approve() -> None:
+    outcomes = MODULE.decision_outcomes(
+        "\n".join(
+            (
+                "| D-RQ-01 | Decision | Confirm |",
+                "| D-RQ-02 | Decision | Confirm with correction |",
+                "| D-RQ-03 | Decision | Retire or supersede |",
+                "| D-RQ-04 | Decision | Defer |",
+                "| D-RQ-05 | Decision | Approve |",
+            )
+        )
+    )
+
+    assert outcomes == {
+        "D-RQ-01": "Confirm",
+        "D-RQ-02": "Confirm with correction",
+        "D-RQ-03": "Retire or supersede",
+        "D-RQ-04": "Defer",
+    }
+
+
 def test_presentation_readiness_requires_artifacts_hashes_qa_and_human_gates() -> None:
     result = MODULE.RUNNERS["IRIS-EXP-08"]()
     readiness_checks = {check.name: check for check in result.readiness_checks}
@@ -90,6 +133,7 @@ def test_presentation_readiness_requires_artifacts_hashes_qa_and_human_gates() -
     assert {
         "controlled PPTX, PDF, review workbook, and backup exist",
         "current package hashes and backup members match controlled artifacts",
+        "verified render manifest binds the current package and all 21 inspected native slides",
         "visual QA is bound to the current PPTX/PDF hashes",
         "dated four-role live rehearsal is complete",
         "Iris and Arnon delivery/access tests pass",
@@ -98,6 +142,19 @@ def test_presentation_readiness_requires_artifacts_hashes_qa_and_human_gates() -
         "current package hashes and backup members match controlled artifacts"
     ].passed
     assert not result.passed_for_mode("readiness")
+
+
+def test_render_manifest_template_is_pending_and_verified_record_is_hash_bound() -> None:
+    template = MODULE.read_json(MODULE.PRESENTATION_RENDER_TEMPLATE)
+    record = MODULE.read_json(MODULE.PRESENTATION_RENDER_RECORD)
+
+    assert MODULE.PRESENTATION_RENDER_SCHEMA.is_file()
+    assert MODULE.render_manifest_structure_errors(
+        template, require_verified=False
+    ) == []
+    assert template["status"] == "PENDING_FINAL_RENDER"
+    assert record
+    assert MODULE.render_manifest_structure_errors(record, require_verified=True) == []
 
 
 def test_offline_backup_members_must_match_current_artifacts(tmp_path: Path) -> None:

@@ -29,8 +29,24 @@ acceptable machine text and change only genuine errors.
 4. Complete the remaining `908` segments in ascending batches of roughly 100.
    Preserve one unique row per segment; gaps are allowed while work is partial.
 5. Add `MEDIA-TIMELINE` last with `Record_Type=Full-media`. Its notes must cite
-   the media hash/path, complete start-to-end review, date, and the leading
-   `1.060` and trailing `1.273` seconds outside the ASR span.
+   the media hash/path, complete start-to-end review, date, and the exact
+   machine uncovered-interval register. The register currently contains `934`
+   intervals: one `1.060`-second lead, `932` internal intervals totaling
+   `450.450` seconds, and one `1.273`-second tail. Every interval must be
+   classified by each reviewer as reviewed silence, non-speech, overlap,
+   crosstalk/VAD exclusion, or a blocking transcription gap; the machine
+   ledger does not choose among those meanings.
+
+For deterministic merge, each reviewer's `MEDIA-TIMELINE` `Review_Notes` must
+include these semicolon-separated markers using the current values from the
+preliminary coverage JSON:
+
+```text
+Complete_Start_to_End_Review=Yes; Media_SHA256=11692B3777914CB4BCF8DC0CFAE909878E762149AE3CA2F031A16C4EC6473A77; Gap_Register_SHA256=<current gap-register SHA-256>; Uncovered_Intervals_Reviewed=934/934; Gap_Classifications=Complete
+```
+
+The markers bind a claimed review scope; they do not independently prove that
+the human review happened.
 
 Use only these speaker labels: `Iris`, `Arnon`, `Ali`, `Multiple`,
 `Unresolved`, or `Non-speech`. Confidence is `High`, `Medium`, `Low`, or
@@ -62,7 +78,8 @@ code from this command establishes truth or adjudication.
   IDs, or external-fact IDs requires a third-person adjudication row.
 - Ambiguous attribution stays `Unresolved`; direct quotations remain barred
   until the complete merge passes.
-- Completion requires two `1,195/1,195 + MEDIA-TIMELINE` returns, every
+- Completion requires two `1,195/1,195 + MEDIA-TIMELINE` returns, `934/934`
+  uncovered intervals independently classified by both reviewers, every
   disagreement adjudicated, normal merge exit `0`, deterministic merge check
   exit `0`, EXP-05/06 readiness PASS, and EXP-07 provenance binding.
 

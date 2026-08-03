@@ -34,6 +34,7 @@ DEFAULT_JSON = MEETING_DIR / "2026-07-29-iris-zoom-adjudicated-ledger.json"
 
 SCHEMA_VERSION = "IrisZoomAdjudicatedLedger-v1"
 TIMELINE_ID = "MEDIA-TIMELINE"
+VIDEO_SHA256 = "11692B3777914CB4BCF8DC0CFAE909878E762149AE3CA2F031A16C4EC6473A77"
 DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 CONTROL_PATTERN = re.compile(r"^(?:R|A|Q)-\d{2,}$")
 EXTERNAL_PATTERN = re.compile(r"^EF-\d{2,}$")
@@ -159,6 +160,51 @@ def read_preliminary(path: Path = PRELIMINARY_JSON) -> list[dict[str, str]]:
     return rows
 
 
+def read_timeline_requirements(
+    path: Path = PRELIMINARY_JSON,
+) -> tuple[str, int]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    coverage = payload.get("coverage", {})
+    if not isinstance(coverage, dict):
+        raise ValueError("preliminary ledger has no coverage object")
+    gap_hash = coverage.get("gap_register_sha256")
+    gap_count = coverage.get("uncovered_interval_count")
+    if not isinstance(gap_hash, str) or not re.fullmatch(r"[0-9A-F]{64}", gap_hash):
+        raise ValueError("preliminary coverage has no valid gap-register SHA-256")
+    if not isinstance(gap_count, int) or gap_count < 1:
+        raise ValueError("preliminary coverage has no valid uncovered-interval count")
+    return gap_hash, gap_count
+
+
+def validate_timeline_notes(
+    notes: str,
+    expected_gap_sha256: str,
+    expected_gap_count: int,
+    label: str,
+) -> None:
+    """Require a machine-readable claim from each full-media reviewer.
+
+    These markers do not prove the review happened; they make its claimed
+    scope independently checkable and bind it to the exact media/gap ledger.
+    """
+
+    required = (
+        "Complete_Start_to_End_Review=Yes",
+        f"Media_SHA256={VIDEO_SHA256}",
+        f"Gap_Register_SHA256={expected_gap_sha256}",
+        (
+            "Uncovered_Intervals_Reviewed="
+            f"{expected_gap_count}/{expected_gap_count}"
+        ),
+        "Gap_Classifications=Complete",
+    )
+    missing = [marker for marker in required if marker not in notes]
+    if missing:
+        raise ValueError(
+            f"{label} MEDIA-TIMELINE evidence missing: {', '.join(missing)}"
+        )
+
+
 def split_ids(value: str, pattern: re.Pattern[str], field: str) -> list[str]:
     values = [item.strip() for item in value.split(";") if item.strip()]
     invalid = [item for item in values if not pattern.fullmatch(item)]
@@ -171,6 +217,8 @@ def validate_review(
     rows: list[dict[str, str]],
     preliminary_ids: set[str],
     label: str,
+    expected_gap_sha256: str,
+    expected_gap_count: int,
 ) -> tuple[dict[str, dict[str, str]], dict[str, str]]:
     by_id: dict[str, dict[str, str]] = {}
     for row in rows:
@@ -197,6 +245,9 @@ def validate_review(
     timeline = by_id[TIMELINE_ID]
     if timeline["Record_Type"] != "Full-media" or not timeline["Review_Notes"]:
         raise ValueError(f"{label} MEDIA-TIMELINE needs Full-media type and evidence notes")
+    validate_timeline_notes(
+        timeline["Review_Notes"], expected_gap_sha256, expected_gap_count, label
+    )
 
     segment_rows = {key: value for key, value in by_id.items() if key != TIMELINE_ID}
     for segment_id, row in segment_rows.items():
@@ -283,10 +334,28 @@ def build_rows(
     reviewer_a_rows: list[dict[str, str]],
     reviewer_b_rows: list[dict[str, str]],
     adjudication_rows: list[dict[str, str]],
+    timeline_requirements: tuple[str, int] | None = None,
 ) -> tuple[list[dict[str, str]], dict[str, str]]:
     preliminary_ids = {row["Segment_ID"] for row in preliminary}
-    reviewer_a, timeline_a = validate_review(reviewer_a_rows, preliminary_ids, "Reviewer A")
-    reviewer_b, timeline_b = validate_review(reviewer_b_rows, preliminary_ids, "Reviewer B")
+    gap_sha256, gap_count = (
+        timeline_requirements
+        if timeline_requirements is not None
+        else read_timeline_requirements()
+    )
+    reviewer_a, timeline_a = validate_review(
+        reviewer_a_rows,
+        preliminary_ids,
+        "Reviewer A",
+        gap_sha256,
+        gap_count,
+    )
+    reviewer_b, timeline_b = validate_review(
+        reviewer_b_rows,
+        preliminary_ids,
+        "Reviewer B",
+        gap_sha256,
+        gap_count,
+    )
     reviewer_ids = {
         next(iter({row["Reviewer_ID"] for row in reviewer_a.values()})),
         next(iter({row["Reviewer_ID"] for row in reviewer_b.values()})),
@@ -358,6 +427,10 @@ def build_rows(
             }
         )
     timeline = {
+        "gap_register_sha256": gap_sha256,
+        "uncovered_interval_count": gap_count,
+        "human_classified_uncovered_intervals": gap_count,
+        "unclassified_uncovered_intervals": 0,
         "reviewer_a_evidence": timeline_a["Review_Notes"],
         "reviewer_b_evidence": timeline_b["Review_Notes"],
         "reviewer_a_date": timeline_a["Review_Date"],
@@ -405,7 +478,13 @@ def expected_outputs() -> tuple[str, str]:
     reviewer_a = read_csv(REVIEWER_A, REVIEW_FIELDS)
     reviewer_b = read_csv(REVIEWER_B, REVIEW_FIELDS)
     adjudication = read_csv(ADJUDICATION, ADJUDICATION_FIELDS)
-    rows, timeline = build_rows(preliminary, reviewer_a, reviewer_b, adjudication)
+    rows, timeline = build_rows(
+        preliminary,
+        reviewer_a,
+        reviewer_b,
+        adjudication,
+        read_timeline_requirements(),
+    )
     return render_csv(rows), render_json(rows, timeline)
 
 

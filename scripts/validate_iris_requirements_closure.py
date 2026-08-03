@@ -26,8 +26,10 @@ import zipfile
 from collections import Counter
 from dataclasses import asdict, dataclass
 from datetime import datetime
+from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 from urllib.parse import unquote
+from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -64,6 +66,9 @@ LEDGER_JSON = (
     / "docs/research/meetings/2026-07-29-iris-zoom-preliminary-disposition.json"
 )
 LEDGER_BUILDER = ROOT / "scripts/build_iris_zoom_disposition_ledger.py"
+GAP_LEDGER_CSV = (
+    ROOT / "docs/research/meetings/2026-07-29-iris-zoom-machine-gap-ledger.csv"
+)
 REVIEWER_A_TEMPLATE = (
     ROOT / "docs/research/meetings/2026-07-29-iris-zoom-reviewer-a.csv"
 )
@@ -102,6 +107,23 @@ LOCAL_PACKAGE_BACKUP = (
 )
 PRESENTATION_MANIFEST = (
     ROOT / "docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md"
+)
+PRESENTATION_SOURCE_MANIFEST = (
+    ROOT
+    / "docs/research/meetings/2026-08-05-supervisor-source-manifest.json"
+)
+PRESENTATION_SOURCE_MANIFEST_BUILDER = (
+    ROOT / "scripts/build_supervisor_source_manifest.py"
+)
+PRESENTATION_RENDER_SCHEMA = (
+    ROOT / "schemas/iris-presentation-render-manifest-v1.schema.json"
+)
+PRESENTATION_RENDER_TEMPLATE = (
+    ROOT
+    / "docs/research/meetings/2026-08-05-supervisor-render-manifest.template.json"
+)
+PRESENTATION_RENDER_RECORD = (
+    ROOT / "docs/research/meetings/2026-08-05-supervisor-render-manifest.json"
 )
 REHEARSAL_RECORD = (
     ROOT / "docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md"
@@ -176,6 +198,7 @@ RQ_FILES = (
     ROOT / "docs/research/phd-proposal/three-study-contract.md",
     ROOT / "docs/research/phd-proposal/proposal-v0.1.md",
 )
+MEDIA_DURATION_SECONDS = Decimal("2786.283")
 
 
 @dataclass(frozen=True)
@@ -264,6 +287,172 @@ def sha256(path: Path) -> str:
     return digest.hexdigest().upper()
 
 
+def sha256_text(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest().upper()
+
+
+def decimal_value(value: object) -> Decimal:
+    try:
+        return Decimal(str(value))
+    except Exception as error:  # noqa: BLE001 - malformed evidence must fail closed
+        raise ValueError(f"not a decimal value: {value!r}") from error
+
+
+def format_hms(seconds: Decimal) -> str:
+    milliseconds = int(
+        (seconds * 1000).quantize(Decimal("1"), rounding=ROUND_HALF_UP)
+    )
+    hours, remainder = divmod(milliseconds, 3_600_000)
+    minutes, remainder = divmod(remainder, 60_000)
+    whole_seconds, millis = divmod(remainder, 1_000)
+    return f"{hours:02d}:{minutes:02d}:{whole_seconds:02d}.{millis:03d}"
+
+
+def machine_timeline_accounting(
+    rows: list[dict[str, object]],
+) -> tuple[dict[str, Decimal | int], list[dict[str, str]]]:
+    """Independently calculate ASR interval union and uncovered intervals."""
+
+    if not rows:
+        return {}, []
+    cursor = Decimal("0")
+    interval_sum = Decimal("0")
+    union_seconds = Decimal("0")
+    overlap_seconds = Decimal("0")
+    overlap_count = 0
+    gaps: list[dict[str, str]] = []
+    previous_id = ""
+    previous_start = Decimal("-1")
+
+    for index, row in enumerate(rows, start=1):
+        try:
+            start = decimal_value(row.get("start"))
+            end = decimal_value(row.get("end"))
+        except ValueError:
+            return {}, []
+        if (
+            start < 0
+            or end < start
+            or end > MEDIA_DURATION_SECONDS
+            or start < previous_start
+        ):
+            return {}, []
+        interval_sum += end - start
+        if start > cursor:
+            gaps.append(
+                {
+                    "Gap_ID": "",
+                    "Gap_Type": "Lead" if not previous_id else "Internal",
+                    "Start": format_hms(cursor),
+                    "End": format_hms(start),
+                    "Duration_Seconds": f"{start - cursor:.3f}",
+                    "Previous_Segment_ID": previous_id,
+                    "Next_Segment_ID": f"S-{index:04d}",
+                }
+            )
+        if start < cursor:
+            overlap_count += 1
+            overlap_seconds += min(cursor, end) - start
+        if end > cursor:
+            union_seconds += end - max(start, cursor)
+            cursor = end
+        previous_id = f"S-{index:04d}"
+        previous_start = start
+
+    if cursor < MEDIA_DURATION_SECONDS:
+        gaps.append(
+            {
+                "Gap_ID": "",
+                "Gap_Type": "Tail",
+                "Start": format_hms(cursor),
+                "End": format_hms(MEDIA_DURATION_SECONDS),
+                "Duration_Seconds": f"{MEDIA_DURATION_SECONDS - cursor:.3f}",
+                "Previous_Segment_ID": previous_id,
+                "Next_Segment_ID": "",
+            }
+        )
+    elif cursor > MEDIA_DURATION_SECONDS:
+        return {}, []
+
+    for index, gap in enumerate(gaps, start=1):
+        gap["Gap_ID"] = f"G-{index:04d}"
+    gap_seconds = sum(
+        (decimal_value(gap["Duration_Seconds"]) for gap in gaps), Decimal("0")
+    )
+    metrics: dict[str, Decimal | int] = {
+        "asr_interval_duration_sum_seconds": interval_sum,
+        "asr_interval_union_seconds": union_seconds,
+        "overlap_count": overlap_count,
+        "overlap_seconds": overlap_seconds,
+        "uncovered_interval_count": len(gaps),
+        "uncovered_seconds": gap_seconds,
+        "lead_gap_count": sum(gap["Gap_Type"] == "Lead" for gap in gaps),
+        "untranscribed_lead_seconds": sum(
+            (
+                decimal_value(gap["Duration_Seconds"])
+                for gap in gaps
+                if gap["Gap_Type"] == "Lead"
+            ),
+            Decimal("0"),
+        ),
+        "internal_gap_count": sum(
+            gap["Gap_Type"] == "Internal" for gap in gaps
+        ),
+        "internal_gap_seconds": sum(
+            (
+                decimal_value(gap["Duration_Seconds"])
+                for gap in gaps
+                if gap["Gap_Type"] == "Internal"
+            ),
+            Decimal("0"),
+        ),
+        "tail_gap_count": sum(gap["Gap_Type"] == "Tail" for gap in gaps),
+        "untranscribed_tail_seconds": sum(
+            (
+                decimal_value(gap["Duration_Seconds"])
+                for gap in gaps
+                if gap["Gap_Type"] == "Tail"
+            ),
+            Decimal("0"),
+        ),
+        "maximum_uncovered_interval_seconds": max(
+            decimal_value(gap["Duration_Seconds"]) for gap in gaps
+        ),
+        "machine_accounted_timeline_seconds": union_seconds + gap_seconds,
+    }
+    return metrics, gaps
+
+
+def pptx_slide_texts(path: Path) -> list[str]:
+    """Extract normalized visible text per slide without Office automation."""
+    if not path.is_file():
+        return []
+    try:
+        with zipfile.ZipFile(path) as archive:
+            slide_names = [
+                name
+                for name in archive.namelist()
+                if re.fullmatch(r"ppt/slides/slide\d+\.xml", name)
+            ]
+            slide_names.sort(key=lambda name: int(re.search(r"\d+", name).group()))
+            slides: list[str] = []
+            for name in slide_names:
+                root = ElementTree.fromstring(archive.read(name))
+                parts = [
+                    node.text or ""
+                    for node in root.iter()
+                    if node.tag.endswith("}t")
+                ]
+                slides.append(re.sub(r"\s+", " ", " ".join(parts)).strip())
+    except (OSError, zipfile.BadZipFile, ElementTree.ParseError):
+        return []
+    return slides
+
+
+def pptx_visible_text(path: Path) -> str:
+    return " ".join(pptx_slide_texts(path))
+
+
 def backup_members_match(
     backup: Path, artifacts: tuple[Path, ...]
 ) -> bool:
@@ -296,8 +485,11 @@ def valid_sha256(value: object) -> bool:
 def valid_zoned_timestamp(value: object) -> bool:
     if not isinstance(value, str) or not value.strip():
         return False
+    normalized = value.replace("Z", "+00:00")
+    # RFC 3339 permits more fractional-second precision than datetime accepts.
+    normalized = re.sub(r"(\.\d{6})\d+(?=[+-]\d{2}:\d{2}$)", r"\1", normalized)
     try:
-        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        parsed = datetime.fromisoformat(normalized)
     except ValueError:
         return False
     return parsed.tzinfo is not None and parsed.utcoffset() is not None
@@ -357,6 +549,187 @@ def receipt_section(payload: dict[str, object], name: str) -> dict[str, object]:
     return value if isinstance(value, dict) else {}
 
 
+def source_manifest_errors(payload: dict[str, object]) -> list[str]:
+    errors: list[str] = []
+    if payload.get("schema_version") != "IrisSupervisorSourceManifest-v1":
+        errors.append("schema_version")
+    if payload.get("status") != "HASH_BOUND_LOCAL_CANDIDATE":
+        errors.append("status")
+    presentation = payload.get("presentation")
+    if not isinstance(presentation, dict):
+        errors.append("presentation")
+    else:
+        if presentation.get("path") != PRESENTATION_DECK.relative_to(ROOT).as_posix():
+            errors.append("presentation.path")
+        if presentation.get("bytes") != PRESENTATION_DECK.stat().st_size:
+            errors.append("presentation.bytes")
+        if presentation.get("sha256") != sha256(PRESENTATION_DECK):
+            errors.append("presentation.sha256")
+        if presentation.get("slide_count") != 21:
+            errors.append("presentation.slide_count")
+        if presentation.get("source_note_sections") != 21:
+            errors.append("presentation.source_note_sections")
+    sources = payload.get("sources")
+    if not isinstance(sources, list) or not sources:
+        errors.append("sources")
+        return errors
+    if payload.get("unique_source_path_count") != len(sources):
+        errors.append("unique_source_path_count")
+    seen: set[str] = set()
+    for index, entry in enumerate(sources):
+        prefix = f"sources[{index}]"
+        if not isinstance(entry, dict):
+            errors.append(prefix)
+            continue
+        path_text = entry.get("path")
+        if not isinstance(path_text, str) or path_text in seen:
+            errors.append(f"{prefix}.path")
+            continue
+        seen.add(path_text)
+        path = repo_artifact(path_text)
+        if entry.get("kind") == "file":
+            if path is None:
+                errors.append(f"{prefix}.file")
+            elif (
+                entry.get("bytes") != path.stat().st_size
+                or entry.get("sha256") != sha256(path)
+            ):
+                errors.append(f"{prefix}.hash")
+        elif entry.get("kind") == "directory":
+            directory = (ROOT / path_text).resolve()
+            try:
+                directory.relative_to(ROOT.resolve())
+            except ValueError:
+                errors.append(f"{prefix}.directory")
+                continue
+            members = entry.get("members")
+            if not directory.is_dir() or not isinstance(members, list) or not members:
+                errors.append(f"{prefix}.members")
+                continue
+            member_errors = []
+            for member in members:
+                if not isinstance(member, dict):
+                    member_errors.append("row")
+                    continue
+                member_path = repo_artifact(member.get("path"))
+                if member_path is None or (
+                    member.get("bytes") != member_path.stat().st_size
+                    or member.get("sha256") != sha256(member_path)
+                ):
+                    member_errors.append(str(member.get("path")))
+            canonical = json.dumps(
+                members, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            )
+            if (
+                member_errors
+                or entry.get("member_count") != len(members)
+                or entry.get("aggregate_sha256") != sha256_text(canonical)
+            ):
+                errors.append(f"{prefix}.members")
+        else:
+            errors.append(f"{prefix}.kind")
+        if not isinstance(entry.get("slides"), list) or not entry.get("slides"):
+            errors.append(f"{prefix}.slides")
+    return errors
+
+
+def render_manifest_structure_errors(
+    payload: dict[str, object], *, require_verified: bool
+) -> list[str]:
+    errors: list[str] = []
+    if payload.get("schema_version") != "IrisPresentationRenderManifest-v1":
+        errors.append("schema_version")
+    expected_status = "VERIFIED" if require_verified else "PENDING_FINAL_RENDER"
+    if payload.get("status") != expected_status:
+        errors.append("status")
+    if payload.get("expected_slide_count") != 21:
+        errors.append("expected_slide_count")
+    for section in ("package", "renderer", "montage", "visual_review"):
+        if not isinstance(payload.get(section), dict):
+            errors.append(section)
+    slides = payload.get("slides")
+    if not isinstance(slides, list):
+        errors.append("slides")
+        return errors
+    if not require_verified:
+        if slides:
+            errors.append("slides_pending")
+        return errors
+
+    package = payload.get("package", {})
+    assert isinstance(package, dict)
+    for label, expected in (("pptx", PRESENTATION_DECK), ("pdf", PRESENTATION_PDF)):
+        artifact = package.get(label)
+        if not isinstance(artifact, dict):
+            errors.append(f"package.{label}")
+            continue
+        if artifact.get("path") != expected.relative_to(ROOT).as_posix():
+            errors.append(f"package.{label}.path")
+        if artifact.get("bytes") != expected.stat().st_size:
+            errors.append(f"package.{label}.bytes")
+        if artifact.get("sha256") != sha256(expected):
+            errors.append(f"package.{label}.sha256")
+    revision = package.get("repository_revision")
+    if not isinstance(revision, str) or not revision or revision == "NOT_FROZEN":
+        errors.append("package.repository_revision")
+
+    renderer = payload.get("renderer", {})
+    assert isinstance(renderer, dict)
+    for field in ("name", "version", "environment"):
+        if not isinstance(renderer.get(field), str) or not renderer.get(field):
+            errors.append(f"renderer.{field}")
+    if not valid_zoned_timestamp(renderer.get("rendered_at")):
+        errors.append("renderer.rendered_at")
+
+    if len(slides) != 21:
+        errors.append("slides.count")
+    numbers = [slide.get("number") for slide in slides if isinstance(slide, dict)]
+    if numbers != list(range(1, 22)):
+        errors.append("slides.sequence")
+    for index, slide in enumerate(slides):
+        prefix = f"slides[{index}]"
+        if not isinstance(slide, dict):
+            errors.append(prefix)
+            continue
+        artifact = repo_artifact(slide.get("path"))
+        if artifact is None:
+            errors.append(f"{prefix}.path")
+        elif (
+            slide.get("bytes") != artifact.stat().st_size
+            or slide.get("sha256") != sha256(artifact)
+        ):
+            errors.append(f"{prefix}.hash")
+        if slide.get("visual_result") != "PASS":
+            errors.append(f"{prefix}.visual_result")
+        if not slide.get("inspector"):
+            errors.append(f"{prefix}.inspector")
+        if not valid_zoned_timestamp(slide.get("reviewed_at")):
+            errors.append(f"{prefix}.reviewed_at")
+
+    montage = payload.get("montage", {})
+    assert isinstance(montage, dict)
+    montage_artifact = repo_artifact(montage.get("path"))
+    if montage_artifact is None:
+        errors.append("montage.path")
+    elif (
+        montage.get("bytes") != montage_artifact.stat().st_size
+        or montage.get("sha256") != sha256(montage_artifact)
+    ):
+        errors.append("montage.hash")
+
+    visual = payload.get("visual_review", {})
+    assert isinstance(visual, dict)
+    if visual.get("overall_result") != "PASS":
+        errors.append("visual_review.overall_result")
+    if visual.get("open_defect_count") != 0:
+        errors.append("visual_review.open_defect_count")
+    if not visual.get("inspector"):
+        errors.append("visual_review.inspector")
+    if not valid_zoned_timestamp(visual.get("reviewed_at")):
+        errors.append("visual_review.reviewed_at")
+    return errors
+
+
 def check(name: str, passed: bool, passed_detail: str, failed_detail: str) -> Check:
     return Check(name, passed, passed_detail if passed else failed_detail)
 
@@ -371,9 +744,7 @@ def decision_outcomes(text: str) -> dict[str, str]:
     allowed = (
         "Confirm with correction",
         "Retire or supersede",
-        "Approve with correction",
         "Confirm",
-        "Approve",
         "Defer",
         "Reject",
     )
@@ -653,6 +1024,10 @@ def exp03() -> Result:
         for index, question in enumerate(CANONICAL_QUESTIONS):
             if question not in text:
                 rq_missing.append(f"{path.relative_to(ROOT)}: RQ{index}")
+    deck_text = re.sub(r"\s+", "", pptx_visible_text(PRESENTATION_DECK))
+    for index, question in enumerate(CANONICAL_QUESTIONS):
+        if re.sub(r"\s+", "", question) not in deck_text:
+            rq_missing.append(f"{PRESENTATION_DECK.relative_to(ROOT)}: RQ{index}")
 
     claim_text = read(CLAIM_REGISTER)
     required_claim_states = (
@@ -696,7 +1071,7 @@ def exp03() -> Result:
         Check(
             "canonical one-plus-three wording is identical in core artifacts",
             not rq_missing,
-            "; ".join(rq_missing) if rq_missing else "all six artifacts agree",
+            "; ".join(rq_missing) if rq_missing else "six documents and the PPTX agree",
         ),
         Check(
             "all five claim states remain explicit",
@@ -822,6 +1197,8 @@ def exp05() -> Result:
         adjudicated_rows_raw if isinstance(adjudicated_rows_raw, list) else []
     )
     csv_rows = read_csv_rows(LEDGER_CSV)
+    gap_rows = read_csv_rows(GAP_LEDGER_CSV)
+    timeline_metrics, expected_gaps = machine_timeline_accounting(source_rows)
     expected_ids = [f"S-{index:04d}" for index in range(1, 1196)]
     source_ids = [row.get("id") for row in source_rows]
     json_ids = [row.get("Segment_ID") for row in json_rows if isinstance(row, dict)]
@@ -863,6 +1240,74 @@ def exp05() -> Result:
     coverage = payload.get("coverage", {})
     coverage = coverage if isinstance(coverage, dict) else {}
     preliminary_timeline_status = coverage.get("timeline_review_status")
+    expected_gap_fields = {
+        "Gap_ID",
+        "Gap_Type",
+        "Start",
+        "End",
+        "Duration_Seconds",
+        "Previous_Segment_ID",
+        "Next_Segment_ID",
+        "Machine_Disposition",
+        "Human_Classification",
+        "Reviewer_A",
+        "Reviewer_B",
+        "Adjudication",
+        "Review_Status",
+    }
+    gap_schema_ok = bool(gap_rows) and all(
+        expected_gap_fields <= set(row) for row in gap_rows
+    )
+    gap_rows_match = (
+        len(gap_rows) == len(expected_gaps)
+        and all(
+            all(observed.get(field) == expected.get(field) for field in expected)
+            and observed.get("Machine_Disposition")
+            == "Uncovered by ASR/VAD interval union"
+            and observed.get("Review_Status")
+            == "Machine-only; human full-media classification needed"
+            and not observed.get("Human_Classification")
+            and not observed.get("Reviewer_A")
+            and not observed.get("Reviewer_B")
+            and not observed.get("Adjudication")
+            for observed, expected in zip(gap_rows, expected_gaps, strict=True)
+        )
+    )
+
+    def coverage_decimal(name: str) -> Decimal | None:
+        try:
+            return decimal_value(coverage.get(name))
+        except ValueError:
+            return None
+
+    coverage_metrics_match = bool(timeline_metrics) and all(
+        coverage_decimal(name) == value
+        for name, value in timeline_metrics.items()
+        if isinstance(value, Decimal)
+    )
+    coverage_metrics_match = coverage_metrics_match and all(
+        coverage.get(name) == value
+        for name, value in timeline_metrics.items()
+        if isinstance(value, int)
+    )
+    coverage_metrics_match = coverage_metrics_match and (
+        coverage_decimal("asr_interval_coverage_percent") == Decimal("83.750")
+        and coverage.get("gap_register_path")
+        == GAP_LEDGER_CSV.relative_to(ROOT).as_posix()
+        and coverage.get("gap_register_sha256") == sha256(GAP_LEDGER_CSV)
+        and coverage.get("human_classified_uncovered_intervals") == 0
+        and coverage.get("unclassified_uncovered_intervals") == len(expected_gaps)
+        and coverage_decimal("human_reviewed_media_seconds") == 0
+        and coverage_decimal("unreviewed_media_seconds") == MEDIA_DURATION_SECONDS
+    )
+    interval_union_complete = bool(timeline_metrics) and (
+        timeline_metrics.get("asr_interval_union_seconds") == Decimal("2333.500")
+        and timeline_metrics.get("uncovered_seconds") == Decimal("452.783")
+        and timeline_metrics.get("machine_accounted_timeline_seconds")
+        == MEDIA_DURATION_SECONDS
+        and timeline_metrics.get("overlap_count") == 0
+        and timeline_metrics.get("internal_gap_count") == 932
+    )
     linked_count = sum(
         bool(row.get("Control_IDs")) for row in json_rows if isinstance(row, dict)
     )
@@ -881,10 +1326,17 @@ def exp05() -> Result:
     full_timeline_reviewed = (
         timeline_status == "Human full-media review complete"
         and adjudicated_coverage.get("unreviewed_media_seconds") == 0
+        and adjudicated_coverage.get("gap_register_sha256")
+        == coverage.get("gap_register_sha256")
+        and adjudicated_coverage.get("uncovered_interval_count")
+        == len(expected_gaps)
+        and adjudicated_coverage.get("human_classified_uncovered_intervals")
+        == len(expected_gaps)
+        and adjudicated_coverage.get("unclassified_uncovered_intervals") == 0
     )
     checks = (
         check(
-            "machine source contains contiguous IDs 1 through 1195",
+            "machine source contains sequential IDs 1 through 1195",
             source_ids == list(range(1, 1196)),
             "1,195/1,195 source segments are present",
             f"found {len(source_rows)} valid source rows",
@@ -914,16 +1366,34 @@ def exp05() -> Result:
             "an uncited segment was promoted beyond the conservative boundary",
         ),
         check(
+            "ASR interval union and uncovered intervals account for the complete media duration",
+            interval_union_complete,
+            "2,333.500 ASR-union seconds plus 452.783 uncovered seconds equal 2,786.283 seconds; no overlaps",
+            "ASR interval union, overlap, or uncovered-time accounting is inconsistent",
+        ),
+        check(
+            "machine uncovered-interval ledger is exact and remains human-pending",
+            gap_schema_ok and gap_rows_match,
+            "934/934 lead/internal/tail intervals are enumerated without inferred human meaning",
+            "gap-ledger schema, intervals, ordering, or human-pending boundary is inconsistent",
+        ),
+        check(
+            "coverage summary is hash-bound to the exact interval accounting",
+            coverage_metrics_match,
+            "coverage JSON matches the independently recomputed union/gap metrics and gap-ledger hash",
+            "coverage JSON omits or disagrees with interval-union/gap evidence",
+        ),
+        check(
             "machine timeline boundary is explicit",
             coverage.get("first_segment_start") == "00:00:01.060"
             and coverage.get("last_segment_end") == "00:46:25.010"
             and coverage.get("media_duration") == "00:46:26.283"
             and preliminary_timeline_status
-            in {
-                "Machine segment coverage recorded; full-media human review pending",
-                "Human full-media review complete",
-            },
-            "ASR span and unreviewed full-media boundary are recorded",
+            == (
+                "Machine uncovered-interval register complete; human full-media "
+                "classification pending"
+            ),
+            "ASR span, uncovered intervals, and unreviewed full-media boundary are recorded",
             "timeline metadata is missing or overstates human review",
         ),
     )
@@ -1164,6 +1634,7 @@ def exp07() -> Result:
         ACTION_REGISTER,
         LEDGER_CSV,
         LEDGER_JSON,
+        GAP_LEDGER_CSV,
     )
     provenance_current = all(
         path.name in provenance and sha256(path) in provenance
@@ -1210,6 +1681,8 @@ def exp07() -> Result:
         ACTION_REGISTER,
         LEDGER_CSV,
         LEDGER_JSON,
+        GAP_LEDGER_CSV,
+        LEDGER_BUILDER,
         REVIEWER_A_TEMPLATE,
         REVIEWER_B_TEMPLATE,
         ADJUDICATION_TEMPLATE,
@@ -1286,7 +1759,7 @@ def exp07() -> Result:
         check(
             "provenance manifest contains current source and ledger hashes",
             provenance_current,
-            "machine JSONL, source registers, and both ledgers are current",
+            "machine JSONL, source registers, segment ledgers, and gap ledger are current",
             "one or more provenance-manifest hash entries are missing or stale",
         ),
         check(
@@ -1340,6 +1813,44 @@ def exp08() -> Result:
     manifest = read(PRESENTATION_MANIFEST)
     rehearsal = read(REHEARSAL_RECORD)
     delivery = read(DELIVERY_RECORD)
+    source_manifest = read_json(PRESENTATION_SOURCE_MANIFEST)
+    source_errors = source_manifest_errors(source_manifest)
+    try:
+        source_check = subprocess.run(
+            [sys.executable, str(PRESENTATION_SOURCE_MANIFEST_BUILDER), "--check"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=30,
+            check=False,
+        )
+        source_manifest_current = source_check.returncode == 0 and not source_errors
+        source_manifest_detail = (
+            "detached source manifest matches the current PPTX and every notes source"
+            if source_manifest_current
+            else "; ".join(source_errors)
+            or (source_check.stdout + source_check.stderr).strip()
+        )
+    except (OSError, subprocess.SubprocessError) as error:
+        source_manifest_current = False
+        source_manifest_detail = str(error)
+    render_schema = read_json(PRESENTATION_RENDER_SCHEMA)
+    render_template = read_json(PRESENTATION_RENDER_TEMPLATE)
+    render_template_errors = render_manifest_structure_errors(
+        render_template, require_verified=False
+    )
+    render_interface_ready = (
+        render_schema.get("$id")
+        == "https://vego-ai.local/schemas/iris-presentation-render-manifest-v1.schema.json"
+        and "$defs" in render_schema
+        and "allOf" in render_schema
+        and not render_template_errors
+    )
+    render_record = read_json(PRESENTATION_RENDER_RECORD)
+    render_record_errors = render_manifest_structure_errors(
+        render_record, require_verified=True
+    )
+    verified_render_manifest = bool(render_record) and not render_record_errors
     missing_controls = [control for control in EXPECTED_IDS if control not in manifest]
     expected_artifacts_documented = "| PPTX |" in manifest and "| PDF |" in manifest
     package_paths = (
@@ -1382,6 +1893,7 @@ def exp08() -> Result:
     )
     qa_bound_to_current_package = (
         package_artifacts_exist
+        and verified_render_manifest
         and sha256(PRESENTATION_DECK) in rehearsal
         and sha256(PRESENTATION_PDF) in rehearsal
         and "Automated preflight verdict: `PASS`" in rehearsal
@@ -1428,6 +1940,32 @@ def exp08() -> Result:
             "all presentation-control sections are present",
             "presentation-control section is missing",
         ),
+        check(
+            "Drive metadata, ACL, and research authorization remain separate gates",
+            all(
+                marker in checklist
+                for marker in (
+                    "metadata inventory",
+                    "ACL and intended viewer-only permission",
+                    "purpose-specific authorization",
+                )
+            ),
+            "checklist separates observable inventory, permission evidence, and named-user authority",
+            "Drive visibility or metadata is still conflated with ACL/authorization",
+        ),
+        check(
+            "detached presentation source manifest is current and hash-bound",
+            source_manifest_current,
+            source_manifest_detail,
+            source_manifest_detail or "source manifest is missing or stale",
+        ),
+        check(
+            "render-manifest schema and pending template preserve the final-render gate",
+            render_interface_ready,
+            "schema exists and the template remains PENDING_FINAL_RENDER",
+            "render schema/template is missing, malformed, or overstates completion: "
+            + ", ".join(render_template_errors),
+        ),
     )
     return Result(
         experiment="IRIS-EXP-08",
@@ -1449,6 +1987,13 @@ def exp08() -> Result:
                 package_hashes_current,
                 "PPTX, PDF, workbook, and backup hashes match both records; backup members match the current artifacts",
                 "package status, hashes, or backup members are missing, stale, or inconsistent",
+            ),
+            check(
+                "verified render manifest binds the current package and all 21 inspected native slides",
+                verified_render_manifest,
+                "PPTX/PDF, 21 slide images, montage, renderer, and local visual inspection are hash-bound",
+                "verified render manifest is absent or inconsistent: "
+                + ", ".join(render_record_errors),
             ),
             check(
                 "visual QA is bound to the current PPTX/PDF hashes",
@@ -1485,12 +2030,31 @@ def exp09() -> Result:
     outcomes = decision_outcomes("\n".join((presentation, minutes)))
     all_outcomes_recorded = all(decision in outcomes for decision in required_decisions)
     propagated = all(decision in decision_log for decision in required_decisions)
+    decision_interface_paths = (
+        ROOT / "docs/research/phd-proposal/2026-08-05-rq-decision-pack.md",
+        ROOT / "docs/research/meetings/2026-08-05-supervisor-pre-read.md",
+        PRESENTATION,
+        ROOT / "docs/research/meetings/2026-08-05-supervisor-release-gate-and-runbook.md",
+    )
+    interface_text = "\n".join(read(path) for path in decision_interface_paths)
+    slide_texts = pptx_slide_texts(PRESENTATION_DECK)
+    decision_slide = slide_texts[10] if len(slide_texts) >= 11 else ""
+    vocabulary = (
+        "Confirm",
+        "Confirm with correction",
+        "Retire or supersede",
+        "Defer",
+    )
+    decision_vocabulary_aligned = (
+        all(outcome in interface_text for outcome in vocabulary)
+        and all(outcome in decision_slide for outcome in vocabulary)
+        and "Approve with correction" not in decision_slide
+        and "Reject" not in decision_slide
+    )
     final_outcomes = {
         "Confirm",
         "Confirm with correction",
         "Retire or supersede",
-        "Approve",
-        "Approve with correction",
     }
     all_final = all_outcomes_recorded and all(
         outcomes[decision] in final_outcomes for decision in required_decisions
@@ -1517,6 +2081,12 @@ def exp09() -> Result:
             ),
             "decision/change propagation schema is present",
             "decision/change propagation schema is incomplete",
+        ),
+        check(
+            "live decision interfaces use the four canonical outcomes",
+            decision_vocabulary_aligned,
+            "Markdown interfaces and slide 11 use Confirm, correction, retire/supersede, or defer",
+            "one or more live interfaces still use legacy approve/reject vocabulary",
         ),
     )
     return Result(

@@ -2,7 +2,7 @@
 
 Status: **AUTOMATED PREFLIGHT PASSED — HUMAN REHEARSAL NOT RUN**
 
-Last updated: 2026-08-01
+Last updated: 2026-08-03
 
 This is an evidence form, not proof of rehearsal. Complete it only during real review of the exact frozen package identified below. Any edit after the final rehearsal invalidates the result until affected slides are rerendered and rechecked.
 
@@ -10,8 +10,8 @@ This is an evidence form, not proof of rehearsal. Complete it only during real r
 
 | Field | Recorded value |
 | --- | --- |
-| PPTX path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; corrected local candidate; 21 slides; `35D351A2609AD354CAE3078A6ABDFEDA6837248B399A4A54DB725FE487D7686F` |
-| PDF path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; native PowerPoint export; 21 pages; `F1FEFAD1F87E36F3A0823DE01C50F2C02D26D1B62ED2BB87768CC43CD2C12FF1` |
+| PPTX path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; v10 local candidate; 21 slides; `7765132B6406796AFE802887A9CC69B9A903843BDCBEC606C517738D91421D24` |
+| PDF path/version/SHA-256 | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; exact v10 native PowerPoint export; 21 pages; `A8E296911F734477ADD5005BF02C305DFCA4C9E897532DA510A3D629E700F7EC` |
 | Notes path/version/SHA-256 | Embedded in the PPTX; 21/21 slides contain a `[Sources]` section; same PPTX hash above |
 | Evidence appendix path/version/SHA-256 | `outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx`; machine-only review interface; `7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295` |
 | Presentation manifest version/SHA-256 | [current working manifest](./2026-08-05-supervisor-presentation-manifest.md); final document hash belongs in the provenance manifest |
@@ -37,7 +37,7 @@ This is an evidence form, not proof of rehearsal. Complete it only during real r
 
 | Check | Result | Evidence/notes |
 | --- | --- | --- |
-| Every slide rendered after final edit | PASS — automated/local | 21/21 slides exported through PowerPoint at 1600×900 and individually inspected; montage reviewed |
+| Every slide rendered after final edit | PASS — automated/local | Exact v10 candidate: 21/21 slides exported through PowerPoint at 1440×810, hash-bound in the [render manifest](./2026-08-05-supervisor-render-manifest.json), and locally inspected; montage reviewed |
 | Overflow/clipping/overlap | PASS — automated/local | Presentation overflow test: `Test passed. No overflow detected.`; native-render defects found during QA were corrected and rerendered |
 | Minimum readable typography | PASS — visual/local | Core and appendix inspected at full size; appendix action rows were split across two slides |
 | Contrast, color, and table readability | PASS — visual/local | White/black base with blue, amber, red, and green status accents; all tables readable in PowerPoint-native renders |
@@ -52,7 +52,7 @@ This is an evidence form, not proof of rehearsal. Complete it only during real r
 | --- | --- | --- |
 | Twelve-slide core matches the controlled sequence | PASS — automated/local | Slides 1–12 implement purpose, progress, RQs, studies, novelty boundary, Plan A/B, literature, evidence, medical gates, timeline, decisions, and closeout |
 | All baseline controls reachable through core/appendix | PASS — structure | Appendix contains 19 unique R IDs, 15 unique A IDs, and 10 unique Q IDs |
-| Exact umbrella RQ and SQ1–SQ3 synchronized | PASS — draft consistency | Slides 3–4 match the decision pack; supervisor approval remains pending |
+| Exact umbrella RQ and SQ1–SQ3 synchronized | PASS — exact local text extraction | The four verbatim strings in the v10 PPTX match the decision pack; supervisor approval remains separate. |
 | Every result has a permitted claim state | PASS — local claim check | The deck separates established, preliminary, planned, blocked, and partner-dependent statements |
 | EXP-005 `0/24`, medical `0/6`, and MIMIC `25/26` shown where relevant | PASS | Slide 8 shows all three boundaries; slide 9 repeats the medical no-go rule |
 | No direct unreviewed transcript quotation | PASS — text inspection | No direct quotation is present |
@@ -96,6 +96,10 @@ Automated preflight defects closed before this record was updated:
 | REH-DEF-03 | Low | Slide 12 | Widen footer number box so `12` is not clipped | Ali/Codex | CLOSED | Native render displays `12`; overflow test passed |
 | REH-DEF-04 | High | Slides A2, A4 and 11 | Rebuild clipped appendix-title runs and the two-digit slide-11 footer in native PowerPoint | Ali/Codex | CLOSED | Direct 1600x900 PowerPoint exports show both complete appendix titles and footer `11`; PDF parity and overflow test passed |
 | REH-DEF-05 | Medium | Slide A7 | Qualify alignment as machine-only in the title so it cannot imply bilingual human review | Ali/Codex | CLOSED | Direct 1600x900 PowerPoint export shows “Machine alignment”; review remains visibly `0` |
+| REH-DEF-06 | High | Slide 11 | Replace legacy approve/reject outcomes with `Confirm`, `Confirm with correction`, `Retire or supersede`, and `Defer` | Ali/Codex | CLOSED | v9 native render and exact PPTX text extraction show all four canonical outcomes; silence remains `Defer` |
+| REH-DEF-07 | Major | Slides 10, 13 | R-04's appendix slide-mapping (`5,10`) disagreed with the presentation manifest (`P-04;P-06;P-10`) and neither slide set showed novelty/scale/feasibility/resources content; added a doctoral-adequacy caption to slide 10 and corrected the appendix mapping to `10` | Ali/Claude | CLOSED | v10 native render shows the caption on slide 10 and `10` in the R-04 appendix row; manifest updated to `P-10` |
+| REH-DEF-08 | Minor | Slide 15 | Appendix `Slide` column omitted slide 2 for A-03/A-06 even though the manifest and slide 2 itself both reference them there | Ali/Claude | CLOSED | v10 native render shows `2,7` (A-03) and `2,10` (A-06) |
+| REH-DEF-09 | Minor | Slide 18 | The `Verified/Awaiting/Partial/Open/Blocked` vocabulary used throughout the appendix tables and the slide-8 bar chart had no on-deck definition; the `Claim states` slide defined a different five-term vocabulary instead | Ali/Claude | CLOSED | v10 native render shows a control-status legend caption on slide 18 distinguishing the two vocabularies |
 
 - Final rehearsal verdict: `NOT RUN`
 - Automated preflight verdict: `PASS`

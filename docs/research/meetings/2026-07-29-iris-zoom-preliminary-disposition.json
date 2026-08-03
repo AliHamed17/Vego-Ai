@@ -1,5 +1,5 @@
 {
-  "schema_version": "IrisZoomPreliminaryDisposition-v1",
+  "schema_version": "IrisZoomPreliminaryDisposition-v2",
   "generated_by": "scripts/build_iris_zoom_disposition_ledger.py",
   "evidence_boundary": "Machine-only preliminary ledger. No bilingual review, full speaker diarization, adjudication, supervisor acceptance, or external-fact verification is claimed.",
   "classification_policy": "Only source-register locators create control links. Uncited segments remain Context placeholders with Human-review-needed disposition.",
@@ -25,9 +25,28 @@
     "first_segment_start": "00:00:01.060",
     "last_segment_end": "00:46:25.010",
     "media_duration": "00:46:26.283",
+    "asr_interval_duration_sum_seconds": 2333.5,
+    "asr_interval_union_seconds": 2333.5,
+    "asr_interval_coverage_percent": 83.75,
+    "overlap_count": 0,
+    "overlap_seconds": 0.0,
+    "uncovered_interval_count": 934,
+    "uncovered_seconds": 452.783,
+    "lead_gap_count": 1,
     "untranscribed_lead_seconds": 1.06,
+    "internal_gap_count": 932,
+    "internal_gap_seconds": 450.45,
+    "tail_gap_count": 1,
     "untranscribed_tail_seconds": 1.273,
-    "timeline_review_status": "Machine segment coverage recorded; full-media human review pending"
+    "maximum_uncovered_interval_seconds": 12.44,
+    "machine_accounted_timeline_seconds": 2786.283,
+    "gap_register_path": "docs/research/meetings/2026-07-29-iris-zoom-machine-gap-ledger.csv",
+    "gap_register_sha256": "169C3A5203930936C40BAECCD8AF5DB0E097B7942C821605201FE64DC0AF3D1D",
+    "human_classified_uncovered_intervals": 0,
+    "unclassified_uncovered_intervals": 934,
+    "human_reviewed_media_seconds": 0,
+    "unreviewed_media_seconds": 2786.283,
+    "timeline_review_status": "Machine uncovered-interval register complete; human full-media classification pending"
   },
   "rows": [
     {

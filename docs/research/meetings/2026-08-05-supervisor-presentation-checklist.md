@@ -65,7 +65,17 @@ Full segment links and current classifications are in the [closure audit](../phd
 
 ## Decision worksheet
 
-Use only `Approve`, `Approve with correction`, `Defer`, or `Reject`. Record exact corrected wording; silence is `Defer`.
+Use only `Confirm`, `Confirm with correction`, `Retire or supersede`, or
+`Defer`. Record exact corrected/replacement wording and rationale; silence is
+`Defer`. A rejection without an approved replacement is a blocking governance
+exception, not a final disposition.
+
+| Meeting outcome | Acceptance mapping | Closure rule |
+| --- | --- | --- |
+| `Confirm` | `Confirmed` | Evidence and acceptance check must still pass before `Accepted`. |
+| `Confirm with correction` | `Corrected` | Propagate and revalidate before `Accepted after correction`. |
+| `Retire or supersede` | `Retired or superseded` | Record replacement/rationale before `Superseded by approved decision`. |
+| `Defer` | `Deferred` | Owner and deadline required; readiness/closure remain blocked. |
 
 | ID | Decision requested | Priority | Outcome | Exact correction or rationale | Approver |
 | --- | --- | --- | --- | --- | --- |
@@ -117,7 +127,9 @@ The [adversarial Q&A worksheet](./2026-08-05-supervisor-adversarial-qa-worksheet
 Content:
 
 - [ ] Ali reviews the exact pre-read, RQ pack, proposal, closure audit, workbook view, and presentation outline.
-- [x] The four canonical question strings are identical across the current deck and decision artifacts; supervisor approval is still pending.
+- [x] The four canonical question strings are identical across the v9 PPTX and
+  decision artifacts by exact local text extraction; supervisor approval
+  remains separate.
 - [x] Every slide maps to controlled requirements/claims and source notes.
 - [x] Each of 21 speaker-note sections contains a `[Sources]` block with repository paths and call timestamps where applicable.
 - [x] Every result uses the correct claim state.
@@ -142,7 +154,13 @@ Safety:
 - [x] No patient rows, restricted screenshots, credentials, private contacts, or unreviewed raw transcript extracts appear.
 - [x] No direct transcript quotation appears.
 - [x] Later supervisor-side segments are not attributed with certainty to Iris.
-- [x] Source Drive remains unchanged and viewer/read-only.
+- [x] The source-folder metadata inventory observed on 3 August matches the
+  controlled 25-file dataset and 12-file analysis inventory; this is not an
+  ACL or authorization check.
+- [ ] The source-folder ACL and intended viewer-only permission are verified
+  from an accountable permission record.
+- [ ] Each named researcher's purpose-specific authorization to use the source
+  data is verified independently of folder visibility.
 
 ## During the meeting
 

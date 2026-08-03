@@ -60,8 +60,74 @@ def test_preliminary_ledger_never_infers_human_review() -> None:
     )
 
 
+def test_machine_gap_ledger_accounts_for_complete_media_timeline() -> None:
+    source_rows = MODULE.read_machine_segments()
+    gaps = MODULE.build_gap_rows(source_rows)
+    metrics = MODULE.timeline_metrics(source_rows, gaps)
+
+    assert len(gaps) == 934
+    assert [gap["Gap_ID"] for gap in gaps] == [
+        f"G-{index:04d}" for index in range(1, 935)
+    ]
+    assert gaps[0]["Gap_Type"] == "Lead"
+    assert gaps[0]["Duration_Seconds"] == "1.060"
+    assert gaps[-1]["Gap_Type"] == "Tail"
+    assert gaps[-1]["Duration_Seconds"] == "1.273"
+    assert all(
+        gap["Review_Status"]
+        == "Machine-only; human full-media classification needed"
+        and not gap["Human_Classification"]
+        and not gap["Reviewer_A"]
+        and not gap["Reviewer_B"]
+        and not gap["Adjudication"]
+        for gap in gaps
+    )
+    assert metrics == {
+        "asr_interval_duration_sum_seconds": 2333.5,
+        "asr_interval_union_seconds": 2333.5,
+        "asr_interval_coverage_percent": 83.75,
+        "overlap_count": 0,
+        "overlap_seconds": 0.0,
+        "uncovered_interval_count": 934,
+        "uncovered_seconds": 452.783,
+        "lead_gap_count": 1,
+        "untranscribed_lead_seconds": 1.06,
+        "internal_gap_count": 932,
+        "internal_gap_seconds": 450.45,
+        "tail_gap_count": 1,
+        "untranscribed_tail_seconds": 1.273,
+        "maximum_uncovered_interval_seconds": 12.44,
+        "machine_accounted_timeline_seconds": 2786.283,
+    }
+
+
+def test_coverage_summary_binds_gap_register_without_claiming_review() -> None:
+    rows = MODULE.build_rows()
+    gaps = MODULE.build_gap_rows()
+    payload = MODULE.build_payload(rows, gaps)
+    coverage = payload["coverage"]
+
+    assert coverage["gap_register_path"] == MODULE.relative(MODULE.DEFAULT_GAP_CSV)
+    assert coverage["gap_register_sha256"] == MODULE.sha256_text(
+        MODULE.render_gap_csv(gaps)
+    )
+    assert coverage["human_classified_uncovered_intervals"] == 0
+    assert coverage["unclassified_uncovered_intervals"] == 934
+    assert coverage["human_reviewed_media_seconds"] == 0
+    assert coverage["unreviewed_media_seconds"] == 2786.283
+    assert coverage["timeline_review_status"].endswith(
+        "human full-media classification pending"
+    )
+
+
 def test_tracked_outputs_are_byte_reproducible() -> None:
     rows = MODULE.build_rows()
+    gaps = MODULE.build_gap_rows()
 
     assert MODULE.DEFAULT_CSV.read_text(encoding="utf-8") == MODULE.render_csv(rows)
-    assert MODULE.DEFAULT_JSON.read_text(encoding="utf-8") == MODULE.render_json(rows)
+    assert MODULE.DEFAULT_JSON.read_text(encoding="utf-8") == MODULE.render_json(
+        rows, gaps
+    )
+    assert MODULE.DEFAULT_GAP_CSV.read_text(encoding="utf-8") == (
+        MODULE.render_gap_csv(gaps)
+    )

@@ -2,7 +2,7 @@
 
 Status: **Seeded from meeting statements only; most claims remain unverified.**
 
-Last updated: 2026-08-01
+Last updated: 2026-08-03
 
 This register prevents conversational statements from becoming institutional policy, dataset fact, access evidence, partner commitment, or official scheduling information. Entries are paraphrases, not quotations. The raw recording and transcript remain the evidence for what was discussed; an accountable external source is required to establish whether a statement is true now.
 
@@ -34,7 +34,7 @@ Only `Verified after call`, `Corrected or contradicted`, or `Retired or not appl
 | EF-10 | Any granted medical access would be non-transferable and limited to defined research purposes. | S-0880–S-0889 | Unverified meeting statement | Executed authorization/DUA and written purpose, user, retention, export, and publication rules | R-12; A-09; A-11; Q-05; Q-09 |
 | EF-11 | Clalit was described as holding information for approximately five million living patients and three million former/deceased patients. | S-0927–S-0933 | Unverified meeting statement; high translation/terminology risk | Current authoritative dataset description from the accountable data owner | R-09; Q-02; Q-09 |
 | EF-12 | The described Clalit information includes treatments, tests, diagnoses, and immunization-related records, with some result connectivity incomplete. | S-0935–S-0949 | Unverified meeting statement; high translation/terminology risk | Current schema/data dictionary and custodian clarification | R-09; R-11; Q-02; Q-09 |
-| EF-13 | A source folder was being shared with viewer access, and changes should be made only in a separate working folder. | S-0973–S-1014 | Partially corroborated: the call records the share operation and viewer intent; receipt, current permission, owner, and research-use authority remain unverified | Source-owner inventory, Ali receipt test, permission record, and purpose/usage restrictions | R-17; A-04–A-05; Q-07 |
+| EF-13 | A source folder was being shared with viewer access, and changes should be made only in a separate working folder. | S-0973–S-1014 | Partially corroborated: a 3 August read-only metadata listing matches the controlled source inventory and confirms source/working-location separation; the complete ACL, viewer-only setting, owner authority, and purpose-specific research authorization remain unverified | [Drive boundary verification record](../governance/drive-boundary-verification-2026-08-03.md), plus accountable permission record and named-user authorization/DUA | R-17; A-04–A-05; Q-07 |
 | EF-14 | A partner message reported an initial idea and an unclear mechanism that might support retrieval/extraction, with a follow-up meeting proposed. | S-1087–S-1105 | Unverified meeting statement; terminology unresolved | Accountable participant’s written correction, invitation/minutes, mechanism description, and decision | R-09; A-15; Q-09–Q-10 |
 | EF-15 | The medical/innovation interaction was moving quickly after the MediVARIA one-pager, and another innovation partner was reportedly involved. | S-1120–S-1147 | Unverified meeting statement | Partner identity, role, meeting record, and accountable confirmation | R-09; A-15; Q-02; Q-10 |
 | EF-16 | Ali would be included in the continuing partner communication loop. | S-1146–S-1152 | Unverified commitment; no subsequent inclusion evidence linked | Invitation/message/minutes showing Ali included, plus date and next owner | A-15; Q-10 |

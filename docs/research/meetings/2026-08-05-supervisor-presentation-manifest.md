@@ -2,7 +2,7 @@
 
 Status: **BUILT LOCALLY — AUTOMATED QA PASSED — HUMAN REVIEW/REHEARSAL/SHARING/ACCEPTANCE PENDING**
 
-Last updated: 2026-08-01
+Last updated: 2026-08-03
 
 - Audience: Iris Reinhartz-Berger, Arnon Sturm, and Ali Hamed
 - Built format: 12-slide English core plus 9-slide evidence appendix, with presenter notes on all 21 slides
@@ -17,13 +17,13 @@ This manifest maps the `44` baseline controls (`19 R + 15 A + 10 Q`) to the buil
 
 | Component | Required state before delivery | Current state | Version/hash/evidence |
 | --- | --- | --- | --- |
-| PPTX | Built from current controlled sources; Ali review still required before sharing | BUILT LOCALLY; 21 slides; native title/footer corrections and machine-alignment wording applied | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; 100,216 bytes; SHA-256 `35D351A2609AD354CAE3078A6ABDFEDA6837248B399A4A54DB725FE487D7686F` |
-| PDF | Exported from the corrected PPTX and visually checked | BUILT LOCALLY; 21 pages | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; 332,495 bytes; SHA-256 `F1FEFAD1F87E36F3A0823DE01C50F2C02D26D1B62ED2BB87768CC43CD2C12FF1` |
+| PPTX | Built from current controlled sources; Ali review still required before sharing | BUILT LOCALLY; 21 slides; v10 native render inspected; exact RQs, gap boundary, scientific crosswalk, canonical decision vocabulary, R-04/A-03/A-06 slide mapping, and control-status legend synchronized | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx`; 98,468 bytes; SHA-256 `7765132B6406796AFE802887A9CC69B9A903843BDCBEC606C517738D91421D24` |
+| PDF | Exported from the exact v10 PPTX and visually checked | BUILT LOCALLY; 21 pages | `presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf`; 335,921 bytes; SHA-256 `A8E296911F734477ADD5005BF02C305DFCA4C9E897532DA510A3D629E700F7EC` |
 | Presenter notes | Complete, timed, and source-linked | 21/21 source-linked notes; human timed rehearsal pending | PPTX contains 21 `[Sources]` sections |
 | Bilingual evidence appendix | Human-reviewed before quotation or named attribution | BUILT AS MACHINE-ONLY REVIEW INTERFACE; `0` dual-reviewed rows; no direct quotations | `outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx`; SHA-256 `7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295` |
 | Decision worksheet | D-RQ-01–D-RQ-10 ready for exact outcomes | BUILT in core and pre-read; `0/10` outcomes recorded | [presentation checklist](./2026-08-05-supervisor-presentation-checklist.md) |
-| Source/citation manifest | Paths, timestamps, revisions, and hashes current | BUILT for local package; external facts retain their verification states | PPTX notes plus [source provenance](./2026-07-29-iris-supervisor-provenance-manifest.md) |
-| Rendered-slide QA report | Every final slide inspected | PASS: 21/21 slide renders inspected; padded-canvas overflow test passed; corrected appendix slides confirmed through native PowerPoint PDF output | [implementation manifest](../phd-proposal/next-step-implementation-manifest-2026-08-01.md) |
+| Source/citation manifest | Every `[Sources]` path resolves and is hash-bound to the exact local PPTX | Detached deterministic manifest; rerun after any deck or source edit; external facts retain their verification states | [hash-bound source manifest](./2026-08-05-supervisor-source-manifest.json) plus [source provenance](./2026-07-29-iris-supervisor-provenance-manifest.md) |
+| Rendered-slide QA report | Every slide from the final local PPTX rendered, hash-bound, and inspected | PASS — local technical QA for exact v10 candidate; Ali review and human rehearsal remain pending | [verified local render manifest](./2026-08-05-supervisor-render-manifest.json), [pending template](./2026-08-05-supervisor-render-manifest.template.json); schema `schemas/iris-presentation-render-manifest-v1.schema.json` |
 | Local offline backup | Exact PPTX, PDF, and review workbook; not a delivery event | STALE - invalidated by the corrected PPTX/PDF; rebuild required after human rehearsal and RG-04 freeze | Prior ZIP hash `AAD3065C157A9C2056DAD687E26451A7D6941626AB9E7A77D177831F483420B3`; must not be delivered |
 | Delivery/access record | Ali authorization plus Iris/Arnon access tests | NOT SHARED / NOT TESTED | [delivery/access record](./2026-08-05-supervisor-delivery-access-record.md) |
 
@@ -40,7 +40,7 @@ This manifest maps the `44` baseline controls (`19 R + 15 A + 10 Q`) to the buil
 | R-01 | P-03 | APP-A; APP-C | Show one umbrella RQ and exactly SQ1–SQ3 as provisional wording | D-RQ-01; D-RQ-02 |
 | R-02 | P-04 | APP-A; APP-C | Map every SQ to method, evidence, artifact, metrics, contribution, dependency, and fallback | D-RQ-03 |
 | R-03 | P-02; P-04 | APP-A; proposal skeleton | Show all six proposal areas and label incomplete sections honestly | Accept/correct proposal-coverage record |
-| R-04 | P-04; P-06; P-10 | APP-C; APP-G | Separate planned novelty/scale/feasibility from established evidence and open resources | D-RQ-03–D-RQ-05; assign gaps |
+| R-04 | P-10 | APP-G | Show the doctoral-adequacy caption (novelty/scale/feasibility/resources/schedule) and its per-dimension state | D-RQ-03–D-RQ-05; assign gaps |
 | R-05 | P-01; P-10 | APP-G | State that this weekly deck is not the candidacy deck and official format remains unverified | Assign A-14/Q-08 owner |
 | R-06 | P-02; P-12 | APP-A | Show dated writing/research delta while administration remains open | Accept/correct progress; choose one next task |
 | R-07 | P-03; P-06 | APP-C | Demonstrate that every RQ is answerable without medicine | D-RQ-01–D-RQ-05 |
@@ -99,7 +99,8 @@ This manifest maps the `44` baseline controls (`19 R + 15 A + 10 Q`) to the buil
 - [x] All `10` baseline questions have a planned checkpoint and evidence anchor.
 - [x] Every planned slide exists in the final PPTX and PDF.
 - [x] Every control is reachable from the final core or appendix.
-- [x] Every non-trivial deck assertion has a source note and current claim boundary.
+- [x] Every non-trivial deck assertion has a source note and current claim boundary; the detached manifest machine-binds each unique source path to its current bytes.
+- [x] A `VERIFIED` local technical render manifest binds the candidate PPTX/PDF, all 21 PowerPoint-native rendered slides, montage, renderer, and local inspection; this is not Ali review or human rehearsal.
 - [ ] Human-reviewed bilingual evidence supports any quotation or named later-turn attribution.
 - [ ] Final hashes and automated QA are recorded, but Ali authorization, human rehearsal, delivery, and access tests remain pending.
 - [ ] Meeting outcomes and corrections are propagated to the master register and affected artifacts.

@@ -123,19 +123,32 @@ Related evidence:
 
 ## 7. Decisions requested
 
-Please record one outcome per row: **Approve**, **Approve with correction**, **Defer**, or **Reject**.
+Please record one outcome per row: **Confirm**, **Confirm with correction**,
+**Retire or supersede**, or **Defer**. Silence is `Defer` and cannot close a
+decision.
+
+| Meeting outcome | Canonical acceptance state | Closure consequence |
+| --- | --- | --- |
+| `Confirm` | `Confirmed` | May become `Accepted` or `Accepted with ongoing control` only after implementation evidence and the acceptance check pass. |
+| `Confirm with correction` | `Corrected` | May become `Accepted after correction` only after the exact replacement wording propagates and is revalidated. |
+| `Retire or supersede` | `Retired or superseded` | May become `Superseded by approved decision` only when the replacement/retirement rationale and affected artifacts are recorded. |
+| `Defer` | `Deferred` | Remains open and blocks readiness/closure; record an owner and written-response deadline. |
+
+If a proposal is rejected without an approved replacement, record the
+governance exception as `Rejected`; it remains blocking and is not a final
+closure disposition.
 
 | ID | Decision | Recommended outcome | Supervisor outcome/correction |
 | --- | --- | --- | --- |
-| D-RQ-01 | Use the recommended U-RQ wording as the next working baseline | Approve with wording refinement allowed | Pending |
-| D-RQ-02 | Use SQ1 selective intervention, SQ2 governed knowledge reuse, and SQ3 evaluation/transfer as the exactly-three structure | Approve | Pending |
-| D-RQ-03 | Use the three-study mapping in section 4 | Approve with method refinement later | Pending |
-| D-RQ-04 | Define Plan A as conditional medical transfer and Plan B as non-medical transfer | Approve | Pending |
-| D-RQ-05 | Keep all questions answerable under Plan B | Approve | Pending |
-| D-RQ-06 | Use 26 August as the proposed medical-route decision gate | Approve or replace with a date | Pending |
-| D-RQ-07 | Accept the evidence-boundary wording in section 6 | Approve | Pending |
-| D-RQ-08 | Treat the existing literature taxonomy as the seed scope and refine its exact review method next | Approve with correction | Pending |
-| D-RQ-09 | Confirm the bounded metadata/schema-only MIMIC boundary and continued prohibition on patient-row inspection; require timing evidence for future time-box claims | Approve, narrow, or defer | Pending |
+| D-RQ-01 | Use the recommended U-RQ wording as the next working baseline | Confirm or confirm with exact wording correction | Pending |
+| D-RQ-02 | Use SQ1 selective intervention, SQ2 governed knowledge reuse, and SQ3 evaluation/transfer as the exactly-three structure | Confirm or confirm with correction | Pending |
+| D-RQ-03 | Use the three-study mapping in section 4 | Confirm or confirm with method correction | Pending |
+| D-RQ-04 | Define Plan A as conditional medical transfer and Plan B as non-medical transfer | Confirm, correct, or retire/supersede | Pending |
+| D-RQ-05 | Keep all questions answerable under Plan B | Confirm, correct, or retire/supersede | Pending |
+| D-RQ-06 | Use 26 August as the proposed medical-route decision gate | Confirm or confirm with a replacement date | Pending |
+| D-RQ-07 | Accept the evidence-boundary wording in section 6 | Confirm or confirm with correction | Pending |
+| D-RQ-08 | Treat the existing literature taxonomy as the seed scope and refine its exact review method next | Confirm or confirm with correction | Pending |
+| D-RQ-09 | Confirm the bounded metadata/schema-only MIMIC boundary and continued prohibition on patient-row inspection; require timing evidence for future time-box claims | Confirm, correct, retire/supersede, or defer | Pending |
 | D-RQ-10 | Assign an owner to verify university candidacy rules and dates | Name owner and source | Pending |
 
 ## 8. Read-back checklist

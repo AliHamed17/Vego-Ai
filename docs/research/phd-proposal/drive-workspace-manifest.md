@@ -13,9 +13,14 @@ derivatives, credentials, or raw controlled participant/expert material. The
 binding zone rules are in
 [`../governance/phd-data-boundary.md`](../governance/phd-data-boundary.md).
 
-The supplied MIMIC source folder remains separate and unchanged:
+The supplied MIMIC source folder remains separate from the working root:
 [MIMIC-III source resource](https://drive.google.com/drive/folders/1_RheL2DUcicQLGXJyY_soUb91zn9XLsz).
 Link to it; do not copy it into this working area.
+
+A 3 August read-only metadata check corroborated the controlled item counts and
+sizes, but did not prove a content-level unchanged state, the complete ACL, or
+research-use authorization. See the
+[Drive boundary verification record](../governance/drive-boundary-verification-2026-08-03.md).
 
 ## Implemented structure
 
@@ -64,3 +69,8 @@ the plan's Ali-review gate. Before sharing:
 3. sharing permissions use the minimum required access;
 4. both supervisors' access is tested without exposing controlled data; and
 5. the sharing event and result are recorded in the decision/change log.
+
+The supplied source has three separate controls: metadata inventory, ACL /
+viewer-only permission, and purpose-specific research authorization. Only the
+first was corroborated on 3 August. The other two remain unverified and block
+row-level use regardless of folder visibility.

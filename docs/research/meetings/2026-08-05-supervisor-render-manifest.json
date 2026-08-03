@@ -1,0 +1,228 @@
+{
+  "schema_version": "IrisPresentationRenderManifest-v1",
+  "status": "VERIFIED",
+  "evidence_boundary": "This record proves only that the exact local PPTX/PDF and 21 PowerPoint-native slide renders were hash-bound and passed local technical visual inspection. It is not Ali release approval, a timed/adversarial rehearsal, delivery, recipient access, or supervisor acceptance.",
+  "package": {
+    "pptx": {
+      "path": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx",
+      "bytes": 98468,
+      "sha256": "7765132B6406796AFE802887A9CC69B9A903843BDCBEC606C517738D91421D24"
+    },
+    "pdf": {
+      "path": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf",
+      "bytes": 335921,
+      "sha256": "A8E296911F734477ADD5005BF02C305DFCA4C9E897532DA510A3D629E700F7EC"
+    },
+    "repository_revision": "WORKING_CANDIDATE_v10_2026-08-03-fixall"
+  },
+  "renderer": {
+    "name": "Microsoft PowerPoint native PNG/PDF export",
+    "version": "16.0.20131.20152",
+    "environment": "Windows; PowerPoint native export; 1440x810 PNG slides",
+    "rendered_at": "2026-08-03T00:00:00+03:00"
+  },
+  "expected_slide_count": 21,
+  "slides": [
+    {
+      "number": 1,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide1.PNG",
+      "bytes": 24988,
+      "sha256": "1B7931EB096C239E1765CCB10CF53EA5A2E0F2C922C116AECF4A70925EEF63DE",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 2,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide2.PNG",
+      "bytes": 48244,
+      "sha256": "72FA0E3CDE46D6D6A882E86102D4219CBAB6AC9886CDC6AA21B60B3CED3C4DFD",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 3,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide3.PNG",
+      "bytes": 44986,
+      "sha256": "1339EB6CD4978693A9B61F00B356C51E00005B4455CAB59EAC0FB759883D841F",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 4,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide4.PNG",
+      "bytes": 28542,
+      "sha256": "C370D5C026FE8915398D7CCA74DA1EB50110B9E524CCA6E544D5134FFEECE75B",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 5,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide5.PNG",
+      "bytes": 27360,
+      "sha256": "FB2F2765DEAF46E8E75AF151A78A84F36BC588A0F7A2F300CC6F24D62020B63B",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 6,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide6.PNG",
+      "bytes": 59772,
+      "sha256": "2A6AF86B218BB3934F50B2DB8CCF04946055BD83AB36441D7A33A1C66DB17CED",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 7,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide7.PNG",
+      "bytes": 34028,
+      "sha256": "F31C4D7A070D0098A31AA22C601B51E983160826E4A344A2649DA6EB42864D3C",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 8,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide8.PNG",
+      "bytes": 36971,
+      "sha256": "C45FAC94DA328D4CDA73C3D1B1D469B780415FCA950343536B03F1D2A00D3A85",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 9,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide9.PNG",
+      "bytes": 36197,
+      "sha256": "A5F5AD0E7B185B259C8F99EE456D16DDF12EDFA89B28FB56ECBDE99C3AAA6D95",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 10,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide10.PNG",
+      "bytes": 51143,
+      "sha256": "54F7ADF2F429C12064729C24FB460ECBB686443441FE1D6178469A7A059476CD",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 11,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide11.PNG",
+      "bytes": 30962,
+      "sha256": "3B5C151BD633918658C1D9CC0157BD9BE725F26C4CB7C5990B607AE83E567CC0",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 12,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide12.PNG",
+      "bytes": 18763,
+      "sha256": "D69A568D939F0ECC43DCF1DED579F433DF1D9DFC48195BC99D3DE138B1779B4E",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 13,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide13.PNG",
+      "bytes": 30742,
+      "sha256": "4DD780F76F3D4B7E57261DE29B10838B60B8667F29EF1AEDBFC5F6BE9393D4DA",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 14,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide14.PNG",
+      "bytes": 28186,
+      "sha256": "081A2D6DF5CF10BAB505AE376033C0CF02BE933B4E15F6C7AF3E7CB6933066F7",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 15,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide15.PNG",
+      "bytes": 24735,
+      "sha256": "BA8A3B51390523CCB7ADBE27F188F58E7C9E6C123B7AA07393B442122DFE2377",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 16,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide16.PNG",
+      "bytes": 23684,
+      "sha256": "C916306B1BE3F2FDAF93975DA65DF51A073EB29E3E06CB17CEAAB0563EBD615E",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 17,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide17.PNG",
+      "bytes": 28628,
+      "sha256": "A0A9BB0BF416B25CDE9936C27685049B98AD5D1706F7CE5650BFE5046841531B",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 18,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide18.PNG",
+      "bytes": 27203,
+      "sha256": "870BBE545DD32D82FA76EDA7539D0955ADD4E152C238C7F18C3CC946DDCDBCF6",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 19,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide19.PNG",
+      "bytes": 56573,
+      "sha256": "500113683DA0A2400687B7A66657AAE0EC0E6034F1A4B16AEC9A9B2D10A72911",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 20,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide20.PNG",
+      "bytes": 30230,
+      "sha256": "7B4391BCB627E9BACDAA5AE0F87AB4BB6C15204EB1A3A585C96E00B9F345CFEF",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    },
+    {
+      "number": 21,
+      "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/Slide21.PNG",
+      "bytes": 26571,
+      "sha256": "1DEEE798BCB2D9400F2049D680BA50646F8BF78A97C281FA47B1F5F92C2F807A",
+      "visual_result": "PASS",
+      "inspector": "Claude independent visual QA (patched deck: R-04/A-03/A-06 slide mapping + control-status legend)",
+      "reviewed_at": "2026-08-03T00:00:00+03:00"
+    }
+  ],
+  "montage": {
+    "path": "outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/montage.png",
+    "bytes": 379414,
+    "sha256": "2DD877F566B9749B25E65D6F7613309DD1B8554D1940416AB0A9C19A6F29FBE7"
+  },
+  "visual_review": {
+    "overall_result": "PASS",
+    "inspector": "Claude independent audit + fix pass",
+    "reviewed_at": "2026-08-03T00:00:00+03:00",
+    "open_defect_count": 0,
+    "notes": "v10 fixes 3 defects confirmed by independent audit on 2026-08-03: R-04 appendix slide-mapping (slide 13) corrected from '5,10' to '10' and a doctoral-adequacy caption added to slide 10; A-03/A-06 appendix slide-mapping (slide 15) corrected to include slide 2, matching the presentation manifest and slide 2 itself; a control-status vocabulary legend caption added to slide 18 distinguishing it from the existing Claim-states table. Only slides 10, 13, 15, and 18 changed; all other 17 slides are byte-identical in text content to the v9 render. No overflow, overlap, or contrast defect found on any of the 21 slides."
+  }
+}

@@ -22,6 +22,7 @@ substantive clauses?
 - `docs/research/meetings/2026-07-29-iris-supervisor-bilingual-transcript.he-en.md`
 - `docs/research/meetings/2026-07-29-iris-zoom-preliminary-disposition.csv`
 - `docs/research/meetings/2026-07-29-iris-zoom-preliminary-disposition.json`
+- `docs/research/meetings/2026-07-29-iris-zoom-machine-gap-ledger.csv`
 - `docs/research/meetings/2026-07-29-iris-supervisor-call-report.md`
 - The July 29 requirements and action/question source registers.
 
@@ -65,6 +66,8 @@ not human-adjudicated evidence.
 | Cross-representation timestamp agreement | Structure | Segment timestamps agree across transcript and ledger inputs | `1195/1195` |
 | Duplicate or missing IDs | Structure | Duplicate, skipped, or extra segment identifiers | `0` |
 | Preliminary schema/class coverage | Structure | Segments with the full schema and one preliminary content class | `1195/1195` |
+| Machine interval-union accounting | Structure | ASR interval union plus every explicit uncovered interval equals source duration | `46:26.283 / 46:26.283` |
+| Machine uncovered-interval register | Structure | Positive intervals outside the ASR union are enumerated without inferred human meaning | `934/934` rows; `452.783` seconds; human status pending |
 | Raw-source integrity | Readiness | Recomputed media/config hashes equal the manifest | `3/3` |
 | Timeline disposition | Readiness | Media time is covered by a segment or an explicit human-reviewed gap class | `46:26.283 / 46:26.283` |
 | Unexplained timeline gaps | Readiness | Unclassified uncovered intervals | `0` |
@@ -74,7 +77,8 @@ not human-adjudicated evidence.
 
 Structural acceptance requires the structure metrics to meet their targets and
 establishes complete machine-level ledger accounting only. Readiness additionally
-requires raw-source and full-timeline review. Call-extraction closure remains
+requires raw-source and full-timeline review, including independent human
+classification of all `934` uncovered intervals. Call-extraction closure remains
 blocked until IRIS-EXP-06 completes independent bilingual and speaker review and
 every substantive clause receives an adjudicated disposition.
 

@@ -69,7 +69,10 @@ Proposed control: if the medical gates do not have documented owners, evidence p
 
 ## Decisions requested in this checkpoint
 
-Please record **Approve**, **Approve with correction**, **Defer**, or **Reject** for:
+Please record **Confirm**, **Confirm with correction**, **Retire or supersede**,
+or **Defer** for each item below. Silence is `Defer`; a rejection without an
+approved replacement remains a blocking governance exception and cannot close
+the item.
 
 1. the umbrella-RQ wording;
 2. SQ1, SQ2, and SQ3;

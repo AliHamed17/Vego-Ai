@@ -2,7 +2,7 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-08-01 by Codex (Iris next-step execution-control implementation)
+**Last Updated:** 2026-08-03 by Claude (independent audit of the Aug-1/Aug-3 Iris closure package + fix pass)
 
 ---
 
@@ -57,6 +57,7 @@ Original VEGO-AI Agent 1-4 pipeline (baseline)
 | **ISS-027** | High | The current August 5 PPTX/PDF, source notes, control appendix, workbook, and automated/render QA exist locally; human timed/adversarial rehearsal, Ali release approval, delivery, and Iris/Arnon access tests remain unproved. Candidacy presentation rules and its separate deck also remain unverified. | Ali reviews the exact frozen package; run and record both human rehearsals; correct and rerender if needed; then share only with authorization and record two recipient access tests. |
 
 | **ISS-028** | Medium | The prior local offline ZIP contains the superseded PPTX/PDF and is marked stale/invalidated; readiness now verifies ZIP member hashes instead of trusting a filename or manifest hash alone. | Rebuild and re-hash the ZIP only after the exact package passes human rehearsal and RG-04 freeze. |
+| **ISS-029** | Medium | 2026-08-03 independent audit (Claude) found and fixed: 9/31 (then 10/32, after adding a missing gap-ledger row) stale provenance-manifest hashes, 4 stale "verified" hashes in the execution control board, a missing detached source manifest causing 2 test failures, a false "Structure passes" claim (IRIS-EXP-07/08 both FAILed structure mode), R-04's contradictory/unsupported appendix slide mapping, A-03/A-06's incomplete appendix slide mapping, an undefined control-status vocabulary on the deck's claim-states slide, and a G1-G6 label collision between the medical gates and `THESIS_ACCURACY_EVIDENCE_ADVANCEMENT_PLAN.md` (renamed to `AG0-AG6` there). All fixed; PPTX rebuilt as v10 (`7765132B...`), PDF/renders/manifests regenerated. One structure-mode check remains FAIL by design: `IRIS-EXP-07`'s "provenance identifies an unchanged committed package revision" requires the frozen package paths (deck, master register, presentation manifest, etc.) to exactly match a real git commit, and this branch has uncommitted changes on top of `a55aee8`. | Commit the current working tree (24+ files) and re-cite that commit as the provenance base revision; only then does IRIS-EXP-07 fully pass structure mode. Requires explicit go-ahead to commit. |
 
 ---
 

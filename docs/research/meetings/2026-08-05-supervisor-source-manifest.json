@@ -1,0 +1,544 @@
+{
+  "schema_version": "IrisSupervisorSourceManifest-v1",
+  "status": "HASH_BOUND_LOCAL_CANDIDATE",
+  "generated_by": "scripts/build_supervisor_source_manifest.py",
+  "evidence_boundary": "Hashes bind the current local PPTX source notes to exact repository bytes. They do not establish source truth, review, approval, delivery, recipient access, or supervisor acceptance.",
+  "presentation": {
+    "path": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx",
+    "bytes": 98468,
+    "sha256": "7765132B6406796AFE802887A9CC69B9A903843BDCBEC606C517738D91421D24",
+    "slide_count": 21,
+    "source_note_sections": 21
+  },
+  "unique_source_path_count": 27,
+  "sources": [
+    {
+      "path": "docs/research/governance/medical-readiness-scorecard.md",
+      "slides": [
+        6,
+        9
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/governance/medical-readiness-scorecard.md"
+      ],
+      "kind": "file",
+      "bytes": 13428,
+      "sha256": "E340FEA182953DA2E0D635FAFFD91E02DB207BB941A5E176E45F95F03CD5264E"
+    },
+    {
+      "path": "docs/research/governance/mimic-metadata-audit-2026-07-30.md",
+      "slides": [
+        8,
+        9
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/governance/mimic-metadata-audit-2026-07-30.md"
+      ],
+      "kind": "file",
+      "bytes": 9445,
+      "sha256": "40687977FF669A0BBF94C52056988B3DA8F9B9B3648E33A8925EA0C921DDD6E2"
+    },
+    {
+      "path": "docs/research/governance/phd-data-boundary.md",
+      "slides": [
+        9
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/governance/phd-data-boundary.md"
+      ],
+      "kind": "file",
+      "bytes": 9768,
+      "sha256": "39F2A852656A8CDFC444BBDF76FBC133E9662F4DB406FE8B8FF0DBDC3D435C48"
+    },
+    {
+      "path": "docs/research/meetings/2026-07-29-iris-requirements-register.md",
+      "slides": [
+        3
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/meetings/2026-07-29-iris-requirements-register.md (R-01, R-07, R-08)"
+      ],
+      "kind": "file",
+      "bytes": 16406,
+      "sha256": "49C92138B264FF549E75C6957A1706FC1A7119F680116814DC31DD5F1E922F18"
+    },
+    {
+      "path": "docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md",
+      "slides": [
+        19
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md"
+      ],
+      "kind": "file",
+      "bytes": 16456,
+      "sha256": "0F7E2ACCD0BD938890E400B9322544EF096C296F214EC3957BF97618FEAA4EAC"
+    },
+    {
+      "path": "docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md",
+      "slides": [
+        21
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md"
+      ],
+      "kind": "file",
+      "bytes": 6299,
+      "sha256": "4422FEBE76846D691C6AB484D1ACD832A2B37262C5D46E70584740247B90037C"
+    },
+    {
+      "path": "docs/research/meetings/2026-08-05-supervisor-pre-read.md",
+      "slides": [
+        1
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/meetings/2026-08-05-supervisor-pre-read.md"
+      ],
+      "kind": "file",
+      "bytes": 7462,
+      "sha256": "6966E08170F804D76CC7833CB7CEF877F13050BAA515DB11B8DB306EC2B683BA"
+    },
+    {
+      "path": "docs/research/meetings/2026-08-05-supervisor-presentation-checklist.md",
+      "slides": [
+        1,
+        11
+      ],
+      "fragments": [
+        "decision-worksheet"
+      ],
+      "raw_references": [
+        "docs/research/meetings/2026-08-05-supervisor-presentation-checklist.md",
+        "docs/research/meetings/2026-08-05-supervisor-presentation-checklist.md#decision-worksheet"
+      ],
+      "kind": "file",
+      "bytes": 15703,
+      "sha256": "8493471F4045B9D779CF0B2543502C37D1776B42CC2C1F4EDBDE3504AD732B68"
+    },
+    {
+      "path": "docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md",
+      "slides": [
+        21
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md"
+      ],
+      "kind": "file",
+      "bytes": 12706,
+      "sha256": "3CD6779F09BB8F8B95BDCD29B9AA3AE4C103D737F2A6633D4258DD26DAEEC70C"
+    },
+    {
+      "path": "docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md",
+      "slides": [
+        21
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md"
+      ],
+      "kind": "file",
+      "bytes": 9453,
+      "sha256": "11ED4436E1B843014A868036BE3E5516120E68302AC815E316E95DA19AF07EB4"
+    },
+    {
+      "path": "docs/research/phd-proposal/2026-08-05-rq-decision-pack.md",
+      "slides": [
+        3,
+        4,
+        6,
+        11
+      ],
+      "fragments": [
+        "4-study-mapping",
+        "5-plan-a-and-plan-b-for-confirmation",
+        "7-decisions-requested"
+      ],
+      "raw_references": [
+        "docs/research/phd-proposal/2026-08-05-rq-decision-pack.md",
+        "docs/research/phd-proposal/2026-08-05-rq-decision-pack.md#4-study-mapping",
+        "docs/research/phd-proposal/2026-08-05-rq-decision-pack.md#5-plan-a-and-plan-b-for-confirmation",
+        "docs/research/phd-proposal/2026-08-05-rq-decision-pack.md#7-decisions-requested"
+      ],
+      "kind": "file",
+      "bytes": 15347,
+      "sha256": "4A1BE9017B9EEF25606A059D7B158785A9EEC4A605B9EDCB6B36C7AABFF7EAA7"
+    },
+    {
+      "path": "docs/research/phd-proposal/claim-register.md",
+      "slides": [
+        8,
+        18
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/claim-register.md"
+      ],
+      "kind": "file",
+      "bytes": 16292,
+      "sha256": "C2495E6EB3218414AB82FD0EDA22E7A9DF10EDDCDE6E04A75F746090F9F92022"
+    },
+    {
+      "path": "docs/research/phd-proposal/decision-change-log.md",
+      "slides": [
+        12
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/decision-change-log.md"
+      ],
+      "kind": "file",
+      "bytes": 5734,
+      "sha256": "E6A09A376433F6450F791B1805F11CB3B91A547965E83A6206F72F620E6180BC"
+    },
+    {
+      "path": "docs/research/phd-proposal/drive-workspace-manifest.md",
+      "slides": [
+        10
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/drive-workspace-manifest.md"
+      ],
+      "kind": "file",
+      "bytes": 4392,
+      "sha256": "1B26C129B5288B6573DED310AF1E098B3016851796B4ECD418F315DFA16DCDB4"
+    },
+    {
+      "path": "docs/research/phd-proposal/iris-requirements-closure-audit.md",
+      "slides": [
+        2,
+        8,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/iris-requirements-closure-audit.md"
+      ],
+      "kind": "file",
+      "bytes": 25178,
+      "sha256": "1A52D7A0D1F292582045FA8DF3129C8E315454C65B38BB2D03CCC398881F073A"
+    },
+    {
+      "path": "docs/research/phd-proposal/legacy-decision-disposition.md",
+      "slides": [
+        5
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/legacy-decision-disposition.md"
+      ],
+      "kind": "file",
+      "bytes": 3424,
+      "sha256": "C7A673E8B31422F70B96F05E3A62CC9C04C00213CD1286DE4B44190BDA7F6DE0"
+    },
+    {
+      "path": "docs/research/phd-proposal/legacy-rq-crosswalk.md",
+      "slides": [
+        5
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/legacy-rq-crosswalk.md"
+      ],
+      "kind": "file",
+      "bytes": 12589,
+      "sha256": "8B289ED4E1E8B52433608E97AAA3BBA0C6F51700E57254C666C4BCF5446DD2A3"
+    },
+    {
+      "path": "docs/research/phd-proposal/literature-review-protocol.md",
+      "slides": [
+        7
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/literature-review-protocol.md"
+      ],
+      "kind": "file",
+      "bytes": 5637,
+      "sha256": "983B4AC3531E87CC908542C300DA867DC587B567456D7AF7B592DB61E45B932D"
+    },
+    {
+      "path": "docs/research/phd-proposal/master-traceability-register.md",
+      "slides": [
+        2,
+        7
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/master-traceability-register.md",
+        "docs/research/phd-proposal/master-traceability-register.md (R-15, R-16, A-02, A-03)"
+      ],
+      "kind": "file",
+      "bytes": 39036,
+      "sha256": "41B90DAD3591553F3E49261AF48ED99C8307FEC3BE6FE7C84A941F27846242E2"
+    },
+    {
+      "path": "docs/research/phd-proposal/resource-raci-raid-register.md",
+      "slides": [
+        10
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/resource-raci-raid-register.md"
+      ],
+      "kind": "file",
+      "bytes": 24395,
+      "sha256": "6810BEFB58C2B2B001380C6BF5A1D6C8B0DF16DDB90228CD94ED5CB69D6A2C4A"
+    },
+    {
+      "path": "docs/research/phd-proposal/scientific-experiment-crosswalk.md",
+      "slides": [
+        20
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/scientific-experiment-crosswalk.md"
+      ],
+      "kind": "file",
+      "bytes": 11320,
+      "sha256": "B1BCAB998908B2BA289A68295F50CDCD9637D893F447FDBA39CDDA63A3D408FD"
+    },
+    {
+      "path": "docs/research/phd-proposal/three-study-contract.md",
+      "slides": [
+        4
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/three-study-contract.md"
+      ],
+      "kind": "file",
+      "bytes": 12957,
+      "sha256": "0058778275CC7487FE2D6895C911749B3550DFFAC5EF170524BDBF8A67193BEE"
+    },
+    {
+      "path": "docs/research/phd-proposal/university-process-verification-checklist.md",
+      "slides": [
+        10
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/research/phd-proposal/university-process-verification-checklist.md"
+      ],
+      "kind": "file",
+      "bytes": 1599,
+      "sha256": "74DF80411A660420173E44674BF7DEBBB4F75DD12AD21FE86A9A9A8058B18754"
+    },
+    {
+      "path": "docs/templates/weekly-supervisor-pre-read.md",
+      "slides": [
+        12
+      ],
+      "fragments": [],
+      "raw_references": [
+        "docs/templates/weekly-supervisor-pre-read.md"
+      ],
+      "kind": "file",
+      "bytes": 6983,
+      "sha256": "A776A2ECA74C97A5E00F1E63BD60B8AB5902C705CCFC8C51906277EB7C51D48A"
+    },
+    {
+      "path": "experiments/registry.md",
+      "slides": [
+        20
+      ],
+      "fragments": [],
+      "raw_references": [
+        "experiments/registry.md"
+      ],
+      "kind": "file",
+      "bytes": 17676,
+      "sha256": "0E27749289FD85E7CD7BDA1A9AB6FD31F38168D48B2B375B880E44F71C03F9EB"
+    },
+    {
+      "path": "outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx",
+      "slides": [
+        19
+      ],
+      "fragments": [],
+      "raw_references": [
+        "outputs/iris-closure-2026-08-01/Iris_Zoom_Review_Ledger_2026-07-29.xlsx"
+      ],
+      "kind": "file",
+      "bytes": 146350,
+      "sha256": "7F72BC625374C225B8C450E6A9EE5F4A6D147988BF35AF3BC54D4F5FC7C3F295"
+    },
+    {
+      "path": "reports/generated/exp005_label_review",
+      "slides": [
+        8
+      ],
+      "fragments": [],
+      "raw_references": [
+        "reports/generated/exp005_label_review/ (current safe-label gate: 0/24)"
+      ],
+      "kind": "directory",
+      "member_count": 30,
+      "aggregate_sha256": "69405305E831C010BEC9E22FD1583970FD797D53FDD839766690D51B01704C37",
+      "members": [
+        {
+          "path": "reports/generated/exp005_label_review/evidence_verdict.md",
+          "bytes": 871,
+          "sha256": "5CBB4B91EC8A660F1E422E7B47D697529A429436BB8EA22AF34734377B87282E"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/accuracy_summary.json",
+          "bytes": 2140,
+          "sha256": "D72497B0A923A1D5C1D5B6EEE789EC379CABDE134F406FF257FE358A75A831BD"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/error_analysis.csv",
+          "bytes": 314,
+          "sha256": "AABF58664D3633C7D79B5E910B4BE7A56B29960D39AAE87B3DF9ACF3E90A6B46"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/error_analysis.md",
+          "bytes": 467,
+          "sha256": "AECBF2D010A7913354D2D8C7E916029261A514661AB8D980AA338A5AA0B8FD38"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/error_summary.json",
+          "bytes": 2140,
+          "sha256": "D72497B0A923A1D5C1D5B6EEE789EC379CABDE134F406FF257FE358A75A831BD"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/expert_labeling_sheet_blind.csv",
+          "bytes": 20349,
+          "sha256": "D0932341BCC8315DE70DBDB2369DF7EA06C90140C82B2BA3D029AADA93CCEDDC"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/expert_labeling_sheet_full.csv",
+          "bytes": 29759,
+          "sha256": "F5ED1DE981EAF6B11B903C3FF95A7E03A81C19B3B66A02FF4D9A60CB52C81E6A"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/figures/label_coverage.svg",
+          "bytes": 1240,
+          "sha256": "8A4151650B5AA6DB237481E6AD7EB22E1FC19380C830466AE390681D8BF5C22F"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/figures/memory_advice_strength.svg",
+          "bytes": 1224,
+          "sha256": "61802EF6DE018ADDFE861E107B0BC9A764A09E0F793CD03FFA0C838E647D270C"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/labeling_instructions.md",
+          "bytes": 1326,
+          "sha256": "3111E513F62E435C18B8B48789F04F683B1BE75B03AFF063C758074C082A2274"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/memory_informed_vs_expert.csv",
+          "bytes": 108,
+          "sha256": "644F08566EEE13540E72C8B663071085BA4486E36AC0C410AD4D3BD203B07B61"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/original_vs_expert.csv",
+          "bytes": 108,
+          "sha256": "644F08566EEE13540E72C8B663071085BA4486E36AC0C410AD4D3BD203B07B61"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp003_filled/paired_comparison.csv",
+          "bytes": 228,
+          "sha256": "0789894F29BA912FF955AA5485A7110A64BDC6E4F1C093EA2FAEACE0E60A174C"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp005_adjudication_sheet.csv",
+          "bytes": 6774,
+          "sha256": "9BB8B189F7800F1B7DD3FBDA57D9E305C9F79AE2A0381F89AB420136FDB1F5DC"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp005_label_review_blind.csv",
+          "bytes": 7327,
+          "sha256": "D4D5CBB25C532DFC38D9E50F924F0B531CE6BF95F0DFFC02F49F4F5736681DCC"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/exp005_label_review_full.csv",
+          "bytes": 30255,
+          "sha256": "E85E90EF909BBEAA98A1F83A5955788D5DA55B2BDB0C1FD4E63C902DE0B8CEC1"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/EXP005_LABEL_REVIEW_PACKAGE.md",
+          "bytes": 1983,
+          "sha256": "1DA6F083723A5A7C00BDCB52F39F98F62FB7B71CFC9A889BD1531F6436DA83FC"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/invalid_labels.csv",
+          "bytes": 75,
+          "sha256": "A5819F114CEAE5686C4E0C6B2A6DAEDBC5613C95AC2DDDFB2D469A885072F0E3"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/label_these_first.md",
+          "bytes": 2965,
+          "sha256": "049CF26CDCF64A55C461ABA72680F8D356317B8C03562AA51D2187E3FC750AE7"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/label_validation_summary.json",
+          "bytes": 1424,
+          "sha256": "55760400D49C3AF7A88B2755B701E15F100ECED3805A50491FFE1965483A3FA8"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/labeling_instructions.md",
+          "bytes": 1789,
+          "sha256": "16B8749B35781BF77E9083C5FB7088D78182A9D151C2B0EC76C290E93459512E"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/policy_sensitivity/POLICY_SENSITIVITY_EXPERIMENT_REPORT.md",
+          "bytes": 5077,
+          "sha256": "40C04271A46EF0434C38BDDCB769D6191D18EEDFEB185F73F49772944DC28203"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/policy_sensitivity/policy_sensitivity_matrix.csv",
+          "bytes": 3542,
+          "sha256": "9C8CD8BFC1750B70B62B3613A290DF2E7DEFD5EA40AE1DDDF70347993EDADDAC"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/policy_sensitivity/policy_sensitivity_predictions.csv",
+          "bytes": 199202,
+          "sha256": "0D1C2909F561722135EFE9457E82C649D4D48A24D938240F2E26C81391FA4008"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/policy_sensitivity/policy_sensitivity_summary.json",
+          "bytes": 18853,
+          "sha256": "A4B0E28857905B769C21CF2B7E969074BE1D40065753C0CF967E1EBCAE931179"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/real_label_policy_gate.csv",
+          "bytes": 541,
+          "sha256": "551FE3E9BA1C2475AD6E7549CC941083503D93D450F4A89C0C91F99FE0F05ABB"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/real_label_policy_predictions.csv",
+          "bytes": 232,
+          "sha256": "72F06B79B86CCDAD43364F781455DC54ED0CC4E18C2CA0196D35EBF77257DAAC"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/real_vs_synthetic_policy_gate.md",
+          "bytes": 1361,
+          "sha256": "608AE7151D86CBDA44BE07E2BF0B68A39EA0F579B7672965E5C086B1E9A381CE"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/reproducibility_manifest.json",
+          "bytes": 3964,
+          "sha256": "7D0C78C1C88E11793D8DDD2054BA6EA746296B4965C330AE17B0985BB6D25A65"
+        },
+        {
+          "path": "reports/generated/exp005_label_review/reproducibility_manifest.md",
+          "bytes": 1002,
+          "sha256": "A35181A923DFE0CEB8EE8854DDA7C6C73A6D9437CC72380824894BB319BAE78C"
+        }
+      ]
+    }
+  ]
+}

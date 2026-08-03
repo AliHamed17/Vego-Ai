@@ -1,0 +1,38 @@
+{
+  "schema_version": "IrisPresentationRenderManifest-v1",
+  "status": "PENDING_FINAL_RENDER",
+  "evidence_boundary": "This pending template is not render, visual-inspection, rehearsal, release, delivery, or access evidence. Issue a separate VERIFIED record only for the frozen PPTX/PDF and exact rendered files.",
+  "package": {
+    "pptx": {
+      "path": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx",
+      "bytes": 0,
+      "sha256": ""
+    },
+    "pdf": {
+      "path": "presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf",
+      "bytes": 0,
+      "sha256": ""
+    },
+    "repository_revision": "NOT_FROZEN"
+  },
+  "renderer": {
+    "name": "",
+    "version": "",
+    "environment": "",
+    "rendered_at": ""
+  },
+  "expected_slide_count": 21,
+  "slides": [],
+  "montage": {
+    "path": "",
+    "bytes": 0,
+    "sha256": ""
+  },
+  "visual_review": {
+    "overall_result": "PENDING",
+    "inspector": "",
+    "reviewed_at": "",
+    "open_defect_count": 0,
+    "notes": "Final render and visual inspection have not been recorded."
+  }
+}

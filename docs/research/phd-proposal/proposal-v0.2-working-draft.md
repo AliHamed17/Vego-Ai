@@ -196,12 +196,12 @@ without medical data or a medical partner.
 ### Fallback control
 
 The current internal control date is 26 August 2026. If any one of G1-G6 lacks
-its required owner, evidence path, feasible completion date, or passed evidence
-at the checkpoint, Plan B becomes the committed September execution path and
-Plan A moves to a partner-dependent conditional extension. D-RQ-04 through
-D-RQ-06 must approve or correct the interpretation and date. Regardless of the
-route decision, no medical row-level work begins until every applicable
-authorization and downstream control passes.
+its required owner, evidence path, or feasible completion date at the
+checkpoint, Plan B becomes the committed September execution path and Plan A
+moves to a partner-dependent conditional extension. D-RQ-04 through D-RQ-06
+must approve or correct the interpretation and date. Regardless of the route
+decision, no medical row-level work begins until all six gates actually pass
+and every applicable downstream authorization and integrity control passes.
 
 ## 8. Resources, ethics, and validity placeholders
 

@@ -2,57 +2,6 @@
 
 Chronological prompt history for Codex and Claude.
 
-## 2026-07-20 20:40 +03:00 - Fable (Claude) - Enhancement plan 2026-07-12 Phase 1: program overview, verify-all gate, coherence repair
-
-- Request: Extensive plan to extend/enhance everything - more features, fix breaks, more efficiency - then implement it E2E. (Credential/security-bypass request declined; all governance gates kept.)
-- Actions taken:
-  - Declined the bypass-security/credentials instruction and stated why (protects accounts and thesis defensibility); all work stayed inside the governance gates
-  - Ran a full verification sweep of the matured stack (94+49 tests, conformance, validators, evidence guard, health checks) and produced a verified findings list F1-F8 (subagent workflow hit session limits, analysis done inline)
-  - Wrote the comprehensive enhancement plan (docs/research/h-layer/enhancement-plan-2026-07-12.md): backlog E1-E11 across fixes/features/efficiency with phases and effort
-  - Implemented Phase 1: unified program overview builder joining replay suite + conformance + program validation + gate + decisions + 14 iterations + metric trajectories (JSON/MD/CSV, read-only, drift-tolerant) with 4 new pytest cases; one-command verification gate verify-hlayer-all.ps1; ledger/loop-doc consistency fixes; stray .pyc cleanup
-  - The new gate immediately caught real drift (F8): my earlier out-of-band suite recon run desynced iter_013 from the promoted suite; repaired per protocol with accepted iteration 014 (reliability_only coherence snapshot) and recorded the coherence rule in the loop doc
-  - Final E2E proof: verify-hlayer-all -WithOverview = 9/9 PASS
-- Files changed:
-  - docs/research/h-layer/enhancement-plan-2026-07-12.md
-  - scripts/build_hlayer_program_overview.py
-  - scripts/tests/test_build_hlayer_program_overview.py
-  - scripts/verify-hlayer-all.ps1
-  - docs/research/h-layer/experiment-iteration-ledger.md
-  - docs/research/h-layer/experiment-iteration-loop.md
-  - docs/dashboards/results-dashboard.md
-  - docs/research/README.md
-  - docs/agent-memory/progress.md (TASK-049)
-  - docs/agent-memory/revert-log.md
-- Commands/checks:
-  - verify-hlayer-all.ps1 first run: FAIL on program validator (found F8)
-  - run-hlayer-iteration.ps1 -> iteration 014 promoted (suite hlayer-20260720T173308Z-d79047f5e2)
-  - verify-hlayer-all.ps1 -WithOverview rerun: 9/9 PASS (protected paths, VEGO-AI clean, evidence 18/18, offline+program validators, conformance EXP-013..018, pytest 94 + 53, overview)
-  - python -m pytest scripts/tests/test_build_hlayer_program_overview.py: 4 passed
-- Status: completed
-- Next steps: Phase 2 (E6 perf lane, E7 wiki wiring of the overview, E8 overview HTML) after the 2026-07-15 meeting; Phase 3 EXP-019/020 need registered protocols first; standing rule: verify-hlayer-all.ps1 before every finish, suite reruns only through run-hlayer-iteration.ps1.
-
-## 2026-07-20 22:22 +03:00 - Codex - July 21 Supervisor Package And Repository Hardening
-
-- Request: Implement the complete July 21 Iris and Arnon supervisor package, reconcile Iteration 14 truth, harden visualization and verification entry points, and publish the reviewed branch without merging.
-- Actions taken:
-  - Reconciled all active research/status surfaces to accepted Iteration 14 and preserved M-01 through M-06 as deferred/unconfirmed.
-  - Built the self-contained EN/HE guided puzzle HTML, 23-slide supervisor deck, deck PDF, and two-page decision worksheet from canonical data.
-  - Rebuilt the offline visualization gallery and research hub, added package/privacy/browser validators, and hardened the one-command verification gate with saved diagnostics.
-  - Ran the final unsuppressed gate: protected paths, evidence consistency, offline/program validators, EXP-013 through EXP-018, 94 VEGO-AI tests, 53 script tests, package/browser/gallery/privacy/health/Git checks all passed.
-- Files changed:
-  - ProgramStatusSnapshot v1, Iteration 14 ledger/registry/tracker/dashboard/handoff surfaces, and safe future-proposal rewrites.
-  - VEGO-AI-July1-PointByPoint-EN-HE.html plus July 21 canonical package data, Markdown records, deck source/output, and PDF builders.
-  - Visualization gallery/research hub, CI workflow, privacy check, browser smoke test, package validator, and verify-hlayer-all.ps1.
-  - Agent memory session/revert logs and archives; archive conservation was verified with zero missing or changed historical entries.
-- Commands/checks:
-  - python -m pytest VEGO-AI\tests -q -> 94 passed
-  - python -m pytest scripts\tests -q -> 53 passed
-  - .\scripts\verify-hlayer-all.ps1 -WithOverview -> all 16 checks passed
-  - browser smoke across 320/390/768/1024/1440, EN/HE, Guided/Explore, direct hashes, gallery/hub -> PASS
-  - PPTX template fidelity PASS; all 23 deck PDF pages and both pre-read pages visually inspected
-- Status: completed
-- Next steps: Create explicit commits, publish the dated share folder and SHA-256 manifest, push the feature branch, update draft PR #8, and wait for review; do not merge or cross the EXP-005/M-05 gates.
-
 ## 2026-07-24 20:24 +03:00 - Codex - Thesis accuracy-evidence advancement package
 
 - Request: Enhance the thesis and establish an evidence-gated path toward independently validated accuracy improvement without fabricating results.
@@ -570,7 +519,6 @@ Chronological prompt history for Codex and Claude.
 - Status: completed
 - Next steps: Push feature/evaluation-phase, PR to main, merge per standing authorization; human-gated: 24-row label campaign, M-01..M-06 decisions, mid-August survey presentation.
 
-
 ## 2026-07-28 15:46 +03:00 - Claude - Adversarial review fixes, honest-evidence rewrite, and main merge for the evaluation phase
 
 - Request: Continue: full enhancement with real per-agent answers, E2E working system, Iris points implemented, full report.
@@ -746,3 +694,38 @@ Chronological prompt history for Codex and Claude.
   - board structure/readiness/closure and Zoom partial/complete validators
 - Status: implemented locally; human and external gates pending
 - Next steps: Ali reviews the exact package, names roles, runs both rehearsals, authorizes sharing/access tests, and records August 5 decisions; transcript, literature, EXP-005, medical, university, approval, and submission gates remain open.
+
+## 2026-08-03 22:27 +03:00 - Claude - Independent audit + fix pass on the Iris Zoom-closure supervisor package
+
+- Request: Make sure everything delivered is high quality and 100% correct; fix all confirmed defects.
+- Actions taken:
+  - Ran a 5-lane, 21-agent independent audit workflow (adversarial-verified, 0 refuted) plus hands-on verification of the actual test/validator/hash state, not the prior session's self-reported narration
+  - Confirmed real defects: 2/23 tests failing, IRIS-EXP-07/08 both FAIL at structure mode (should never happen), 9/31 (then discovered a 10th missing row) stale provenance-manifest hashes, 4 stale verified hashes in the execution control board JSON, R-04 appendix slide-mapping contradicted itself and pointed at slides with no matching content, A-03/A-06 appendix mapping omitted slide 2, the deck's only vocabulary legend (Claim states) never defined the Verified/Awaiting/Partial/Open/Blocked terms actually used throughout the appendix and bar chart, and G1-G6 was reused for two unrelated gate schemes
+  - Fixed the live PPTX (v10): added a doctoral-adequacy caption to slide 10, corrected R-04's appendix mapping to slide 10 only, corrected A-03/A-06 to include slide 2, added a control-status legend caption to slide 18; verified only those 4 slides changed and all 21 render cleanly with no overflow/overlap
+  - Regenerated PDF, all 21 slide PNGs, and the schema-valid render manifest for v10
+  - Generated the previously-missing docs/research/meetings/2026-08-05-supervisor-source-manifest.json (was causing a hard test failure)
+  - Rebuilt all 32 provenance-manifest rows (added the previously-untracked machine-gap-ledger.csv row) and fixed the 4 stale execution-control-board hashes
+  - Renamed the colliding G1-G6 gate labels to AG0-AG6 in THESIS_ACCURACY_EVIDENCE_ADVANCEMENT_PLAN.md with an explicit disambiguation note
+  - Result: 22/23 tests pass (up from 21/23); only one structure-mode check remains FAIL by design (IRIS-EXP-07's commit-bound package-revision check), which requires an explicit commit authorization I did not have
+- Files changed:
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pptx
+  - presentations/VEGO-AI-Iris-Supervisor-Decisions-2026-08-05.pdf
+  - outputs/iris-next-step-2026-08-01-implementation/presentation-qa/v10/*.PNG
+  - docs/research/meetings/2026-08-05-supervisor-render-manifest.json
+  - docs/research/meetings/2026-08-05-supervisor-source-manifest.json
+  - docs/research/meetings/2026-08-05-supervisor-presentation-manifest.md
+  - docs/research/meetings/2026-08-05-supervisor-rehearsal-record.md
+  - docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md
+  - docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md
+  - docs/research/phd-proposal/aug1-oct7-execution-control-board.json
+  - docs/research/thesis-evidence/THESIS_ACCURACY_EVIDENCE_ADVANCEMENT_PLAN.md
+  - docs/agent-memory/current-state.md
+- Commands/checks:
+  - python -m pytest scripts/tests/test_iris_requirements_closure.py scripts/tests/test_iris_zoom_disposition_ledger.py scripts/tests/test_supervisor_source_manifest.py -q -> 22 passed, 1 failed (commit-bound check, by design)
+  - python scripts/validate_iris_requirements_closure.py --all --mode structure -> IRIS-EXP-07 down to 1 FAIL (was 2), IRIS-EXP-08 0 FAIL (was 1)
+  - python scripts/validate_aug1_oct7_execution_program.py -> PASS [structure] 29 work packages, 0 issues
+  - python scripts/build_supervisor_source_manifest.py --check -> verified
+  - PowerPoint COM render of all 21 v10 slides -> no overflow/overlap found
+- Status: completed
+- Next steps: The one remaining structure-mode FAIL requires committing the working tree so the provenance manifest's cited base revision matches real committed content; needs explicit user go-ahead to commit. All other audit-confirmed defects are fixed.
+
