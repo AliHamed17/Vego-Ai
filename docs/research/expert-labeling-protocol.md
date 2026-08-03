@@ -39,6 +39,27 @@ Experts should judge each pattern using:
 
 The full sheet may show original Agent 4 and memory-informed classifications for audit context. The blind sheet hides these fields and should be preferred when independent labels are needed.
 
+## Fast Interactive Labeling (EXP-005)
+
+Instead of opening `exp005_label_review_blind.csv` in Excel, an interactive terminal tool
+presents each pattern one at a time (description, affected cases, related guideline,
+priority) and prompts for the required fields with keyboard shortcuts:
+
+```powershell
+.\scripts\label-exp005-interactive.ps1
+```
+
+Or directly: `python scripts/exp005_interactive_labeler.py [--reviewer-id expert_01]`.
+
+- Writes to `reports/generated/exp005_label_review/exp005_label_review_filled.csv` by
+  default (does not overwrite the blind template).
+- Resumable: quit any time with `q`; rerunning picks up exactly where you left off without
+  losing already-entered labels. `s` skips a row for now.
+- Produces the same schema `-FilledLabelsSheet` expects, so once done, run:
+  `.\scripts\build-exp005-label-review.ps1 -FilledLabelsSheet <output> -RunDownstream`.
+- This tool does not supply, suggest, or infer any label itself; it only speeds up entry of
+  a real reviewer's own judgment. The bias/leakage rules below still apply in full.
+
 ## Reviewer Workflow
 
 Use this workflow unless the supervisor explicitly approves a different reviewer plan:

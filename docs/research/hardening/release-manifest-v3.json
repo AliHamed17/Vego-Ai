@@ -165,6 +165,7 @@
     "scripts/tests/test_build_progress_tracker.py",
     "scripts/tests/test_change_authorization.py",
     "scripts/tests/test_dependency_lock.py",
+    "scripts/tests/test_exp005_interactive_labeler.py",
     "scripts/tests/test_experiment_benchmark.py",
     "scripts/tests/test_feedback_generalizer.py",
     "scripts/tests/test_hardening_manifests.py",
@@ -204,7 +205,7 @@
     "tests/hlayer_offline/test_validator.py",
     "uv.lock"
   ],
-  "sourceTreeSha256": "8391dd0dd3380316f374e2d63d7b3611165b59d47995c84a1d8d92e5dc6bf246",
+  "sourceTreeSha256": "360b2740b793a3de0a9be4b6f4505657c6a602b17adf7501d7838ce329064d58",
   "toolVersions": {
     "jsonschema": "4.26.0",
     "openai": "1.109.1",
