@@ -76,8 +76,8 @@
         "docs/research/meetings/2026-07-29-iris-supervisor-provenance-manifest.md"
       ],
       "kind": "file",
-      "bytes": 16456,
-      "sha256": "0F7E2ACCD0BD938890E400B9322544EF096C296F214EC3957BF97618FEAA4EAC"
+      "bytes": 16562,
+      "sha256": "24D31870416A65628B9248C4BEED6857E032FD19C30BBA95EF98B5BC386A08E7"
     },
     {
       "path": "docs/research/meetings/2026-08-05-supervisor-delivery-access-record.md",
