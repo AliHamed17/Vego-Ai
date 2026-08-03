@@ -1,6 +1,15 @@
 # Revert Log
 
 Record file changes and rollback notes here.
+## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
+
+- Files added:
+  - `docs/research/evaluation-run-guide.md`
+  - `docs/research/supervisor-label-approval-checklist.md`
+- Files updated:
+  - `docs/research/supervisor-label-approval-pack.md` (appended sign-off checklist reference section 8)
+- Git branch: `feature/evaluation-phase` created and active.
+- Rollback note: Delete `docs/research/evaluation-run-guide.md` and `docs/research/supervisor-label-approval-checklist.md`, revert `docs/research/supervisor-label-approval-pack.md`, and switch back to `main` branch (`git checkout main`).
 
 ## 2026-07-27 - Codex - Evaluation Phase Branch & Supervisor Checklist
 
@@ -516,3 +525,9 @@ Record file changes and rollback notes here.
 - Rollback note: All changes are in the uncommitted working tree of branch docs/iris-july29-phd-execution; git diff/git status shows every touched path; nothing has been committed or pushed.
 - Git commit: none recorded by script.
 
+## 2026-08-03 22:XX +03:00 - Claude - Merge Iris closure workstream into main, resolving shared-memory-file conflicts
+
+- Files changed:
+  - docs/PROGRESS_TRACKER.md, docs/agent-memory/current-state.md, docs/agent-memory/decisions.md, docs/agent-memory/issues.md, docs/agent-memory/revert-log.md, docs/agent-memory/session-log.md, docs/agent-memory/session-log-archive.md (all conflict-resolved by combining both sides' content, not overwriting either)
+- Rollback note: This is a merge commit combining `docs/iris-july29-phd-execution` (209+ commits) into `main` alongside the already-merged evaluation-phase work (PR #15). Revert the merge commit to undo; the source branch remains available at `origin/docs/iris-july29-phd-execution` for cherry-picking if a partial revert is ever needed.
+- Git commit: recorded as the merge commit for PR #16.

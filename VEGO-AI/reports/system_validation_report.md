@@ -277,7 +277,7 @@ Manual real-display checklist still recommended before merge:
 
 PR #7:
 
-- URL: `https://github.com/AliHamed17/Vego-Ai/pull/7`
+- URL: `https://github.com/AliHamed17/vego-ai-research/pull/7`
 - State: open draft
 - Base: `main`
 - Head: `feature/visualizer-ux-refresh`

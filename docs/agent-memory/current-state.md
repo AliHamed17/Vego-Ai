@@ -2,11 +2,15 @@
 
 Fast orientation for Codex and Claude. Update this whenever the project state changes.
 
-**Last Updated:** 2026-08-03 by Claude (independent audit of the Aug-1/Aug-3 Iris closure package + fix pass)
+**Last Updated:** 2026-08-03 by Claude (independent audit of the Aug-1/Aug-3 Iris closure package + fix pass). The separate VEGO-AI H-layer evaluation-phase workstream below was last updated 2026-07-28 by Claude.
+
+This file now tracks two largely independent workstreams in the same repo: the Iris/PhD-proposal supervisor-closure workstream (branch `docs/iris-july29-phd-execution`) and the VEGO-AI H-layer architecture-evaluation workstream (merged via PR #15). Sections below are grouped by workstream where they diverge.
 
 ---
 
-## 1. Quick Status (< 10 lines)
+## 1. Quick Status
+
+### 1a. Iris / PhD-proposal supervisor-closure workstream
 * Branch `docs/iris-july29-phd-execution` preserves the ten July 29 evidence artifacts in `3d0beca`, the initial assurance tranche in `28ece6e`, the enhanced closure package in `18c0f2b`, and the next-step execution snapshot in `9a9279f`; production VEGO-AI behavior is unchanged.
 * The bilingual-review-pending July 29 registers control all 19 requirements, 15 actions, and 10 questions; the closure audit has `44/44` locators, with **2 verified complete, 6 awaiting human acceptance, 22 partial, 5 open, and 9 blocked**.
 * The recommended architecture is one umbrella RQ plus three subquestions: selective intervention, governed knowledge reuse, and evaluation/transfer. Iris and Arnon approval remains pending for the August 5 checkpoint.
@@ -19,7 +23,19 @@ Fast orientation for Codex and Claude. Update this whenever the project state ch
 * A deterministic preliminary ledger covers S-0001–S-1195: 910 machine-linked segments and 285 conservative human-review placeholders. Separate Reviewer A/B and third-person adjudication inputs now feed a fail-closed merger; human bilingual/speaker review remains 0/1,195 segments plus 0/1 full-media record per reviewer, and no adjudicated output exists.
 * The August 5 supervisor package is built locally as a 12-slide English core plus nine-slide appendix, 21/21 source-note sections, 21/21 native renders inspected, PDF export, and review workbook. The PPTX title/footer defects are corrected; the prior offline ZIP is explicitly stale and must be rebuilt only after rehearsal and freeze. Human timed/adversarial rehearsal, Ali release approval, sharing, and both access tests remain pending; this is not the candidacy deck.
 * A canonical 29-work-package August 1-October 7 execution board, supervisor release runbook, Zoom reviewer operations guide, literature execution register, proposal v0.2 working draft, university-inquiry draft, and ten-sheet companion workbook now operationalize the next steps. Board structure passes with 18 blocked, 6 partial, and 5 planned work packages; no pending evidence was promoted.
-* IRIS-EXP-01–10 now separate structure, readiness, and closure. Structure passes; readiness and closure must fail while human review, rehearsal, delivery, decisions, acceptance, approval, and submission evidence are missing. Submission closure now requires one exact schema-valid receipt hash-bound to authorization, package, external receipt, and issued certificate; the tracked template is `NOT_SUBMITTED`. September/October dates remain provisional pending official confirmation.
+* IRIS-EXP-01–10 now separate structure, readiness, and closure. All 10 pass structure mode as of commit `ef12f6f` (2026-08-03 fix-pass: `bf45c98` fixed the confirmed defects, `0456cff` bound provenance to that commit, `e637f0d` gitignored a stray tool-cache dir that was making the tree look dirty, `ef12f6f` refreshed the detached source manifest); readiness and closure still correctly fail while human review, rehearsal, delivery, decisions, acceptance, approval, and submission evidence are missing. Submission closure requires one exact schema-valid receipt hash-bound to authorization, package, external receipt, and issued certificate; the tracked template is `NOT_SUBMITTED`. September/October dates remain provisional pending official confirmation.
+
+### 1b. VEGO-AI H-layer architecture-evaluation workstream
+* Historical commits/tags contain the M1-M4B-1 reusable-human-judgment implementation. PR #8 records the thesis evidence release; PR #10 is the unified-runtime dependency; stacked PR #11 is the BigUI experiment-platform publication route. Live GitHub remains authoritative for review and merge state.
+* Two constraints are active: offline H-layer architecture/experiment hardening and the EXP-005 human-label gate for the parked evaluation track.
+* The machine-derived July 1 meeting record supports a **framework-first** direction pending participant confirmation. M-02 through M-05 have no recorded outcomes.
+* July skills, prompt requirements, and six detailed specifications are **provisional drafts**, not approved interfaces. `allowed-touch-proposal.md` is also unapproved.
+* **Research Loop:** Fifteen iterations (001-015) are accepted. Iterations 001-007 are historical/pre-manifest; 008-015 are manifest-backed. Iteration 015 (`HLAYER-UNIFIED-HARDENING-V1`) is the latest reliability-only snapshot, verdict `NEUTRAL`. It introduces legacy/unified/parity infrastructure but selects no empirical or model default. EXP-013-018 conformance remains offline-only and authorizes no live listener.
+* **MediVARIA draft added (2026-07-04):** a provisional PhD/future-work proposal exists, but it is not supervisor-endorsed clinical work. MSc evidence remains education-only; there is no patient data or clinical-performance evidence in this repo.
+* **Accuracy Verdict:** *Accuracy improvement cannot be evaluated yet* (0 generalization-safe real labels exist). The EXP-005 gate now gates the PARKED evaluation track only - not framework-track doc/spec work.
+* **Thesis evidence package (2026-07-25):** a B0-B5 evidence ladder, canonical evidence snapshot, claim/chapter traceability, EXP-019..029 gated protocols, a 91-page review DOCX/PDF, and offline baseline-progress HTML are prepared and manifest-bound. This improves reliability and evaluation rigor; it does not establish an accuracy gain.
+* **All-experiment benchmark (2026-07-26):** EXP-000..040 are evaluated with seven independent dimensions. Twenty-six experiments have current source-backed runs: 22 `MEASURED_PASS`, four `MEASURED_PARTIAL`, 13 `GATED_NOT_RUN`, and two `PARKED_NO_RUN`. `CurrentRunIndex-v1` identifies the current projection while 73 accepted bundles and 690 observations remain immutable history. Current accuracy evidence is still zero.
+* **Evaluation phase (2026-07-28, Claude):** `scripts/run-full-evaluation.ps1` chains the 16-check gate -> benchmark -> per-component contribution report -> program overview/charts -> advisory analyst and PASSES end to end. `scripts/build_agent_contribution_report.py` gives every agent/component an evidence-based verdict (6 contributing, 2 partial, 1 not-yet-measurable): A1 fixture agreement 0.778-0.875 sits within the paper range, A2 guideline F1 0.267-0.545 sits below the paper's 0.70-0.88 (weakest measured link; H-layer churn triage is the designed compensation). `scripts/hlayer_llm_analyst.py` adds an ADVISORY-ONLY narrative (LLM via hardened client when a key exists, deterministic otherwise). `docs/research/iris-july1-implementation-matrix.md` maps all 12 July-1 directives to real implementations. Thesis snapshot, BigUI catalog, and research hub re-anchored to the new canonical revision. No accuracy claim anywhere; EXP-005 gate unchanged at 0/24.
 
 ---
 

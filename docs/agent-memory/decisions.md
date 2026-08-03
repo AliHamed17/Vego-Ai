@@ -11,6 +11,7 @@ Durable decisions for this project.
 
 | Date | Title | Status | Notes / Superseded By |
 |---|---|---|---|
+| 2026-08-03 | Independent Audit Standard for the Iris Closure Package | Active | 21-agent adversarial audit found 0 refuted findings; restored all 10 IRIS-EXP structure checks to PASS. |
 | 2026-07-30 | July 29 Requirements-Closure Authority | Active working authority | The 19 requirements, 15 actions, and 10 open questions control the successor program, subject to bilingual confirmation and supervisor decisions. |
 | 2026-07-30 | One-Plus-Three Research Architecture | Recommended, pending approval | One umbrella RQ and SQ1 selective intervention, SQ2 governed knowledge reuse, and SQ3 evaluation/transfer map to three studies. |
 | 2026-07-30 | Plan A / Plan B and August 26 Fallback | Active working default | Plan A is a gated medical extension; Plan B completes through software/modeling and becomes the September default if any critical medical prerequisite is unproved. |
@@ -414,3 +415,10 @@ Durable decisions for this project.
 - Decision: Invalidate the earlier offline ZIP after any package correction. Readiness must parse the current backup status and compare each required ZIP member hash with the current PPTX, PDF, and review workbook; matching a stale ZIP filename or outer hash is insufficient.
 - Reason: The user requested implementation of the full next-step plan while preserving an evidence-honest boundary between locally automatable work and human, supervisor, institutional, medical, and submission gates.
 - Consequence: Local structure can be complete and testable now, while human rehearsal, delivery, transcript adjudication, decisions, labels, medical authorization, proposal approval, and submission remain visibly blocked.
+
+## 2026-08-03 - Independent Audit Standard for the Iris Closure Package
+
+- Decision: Before reporting any package as "high quality" or "100% correct," an independent audit must reproduce the claim from source — run the actual tests/validators, recompute hashes, and visually inspect rendered artifacts — rather than trust prior session narration. A 21-agent adversarial audit (0 findings refuted) is the standard applied here and should be repeated after any future large edit pass on this package.
+- Decision: All 10 IRIS-EXP structure-mode checks must pass at all times going forward; a stale provenance hash, a missing detached manifest, or an uncommitted frozen-package path is treated as a structure-mode regression to fix immediately, not a readiness/closure-only concern.
+- Reason: The 2026-08-03 audit found the prior "Structure passes" claim in this file was false against the live repository (9 of 31 provenance hashes stale, 2 test failures, IRIS-EXP-07/08 both FAIL), because a documentation edit pass changed frozen-package files without re-running the provenance/manifest builders afterward.
+- Consequence: `bf45c98` (fix pass) + `0456cff` (provenance rebinding) + `e637f0d` (.gitignore) + `ef12f6f` (source-manifest refresh) restore all 10 structure checks to PASS. Readiness and closure remain correctly non-zero pending human evidence.
